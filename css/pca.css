@@ -19,7 +19,7 @@ html[data-font-family="sans"] {
 .qa-card {
   width: 100%;
   max-width: 720px;
-  margin: 0 auto;
+  margin: 0 auto 22px;
   background: var(--card-front);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -99,5 +99,5 @@ html[data-font-family="sans"] {
 .qa-deck-meta { text-align: center; color: var(--muted); font-size: 13px; margin-bottom: 14px; }
 .qa-deck-meta strong { color: var(--gold-light); }
 
-/* Reuse mark-row spacing for the reveal button row. */
-.reveal-row { display: flex; justify-content: center; margin-top: 18px; }
+/* Reveal button row — sits below the card with matching rhythm. */
+.reveal-row { display: flex; justify-content: center; margin: 0 0 22px; }

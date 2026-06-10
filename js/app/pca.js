@@ -229,13 +229,26 @@ function renderReviewPanel() {
   }).join('');
 }
 
+// ── Overlay helpers (visibility is driven by the `.show` class; aria-hidden
+// is kept in sync for assistive tech). ───────────────────────────────────
+function showOverlay(id) {
+  const ov = $(id);
+  ov.classList.add('show');
+  ov.setAttribute('aria-hidden', 'false');
+}
+function hideOverlay(id) {
+  const ov = $(id);
+  ov.classList.remove('show');
+  ov.setAttribute('aria-hidden', 'true');
+}
+
 // ── Subject / sub-deck selector ────────────────────────────────────────
 function openSelector() {
   renderSelector();
-  $('studySelectorOverlay').setAttribute('aria-hidden', 'false');
+  showOverlay('studySelectorOverlay');
 }
 function closeSelector() {
-  $('studySelectorOverlay').setAttribute('aria-hidden', 'true');
+  hideOverlay('studySelectorOverlay');
   saveSelection();
   buildDeck();
   renderCard();
@@ -295,7 +308,7 @@ function openProgress() {
       <span style="float:right; color:var(--muted)">${seen}/${total} seen · ${avg}% conf</span></div>`;
   }).join('');
   body.innerHTML = rows || '<p>No content loaded.</p>';
-  $('progressOverlay').setAttribute('aria-hidden', 'false');
+  showOverlay('progressOverlay');
 }
 
 // ── Theme / font / size ────────────────────────────────────────────────
@@ -360,7 +373,12 @@ function resetProgress() {
 function initOverlayDismiss() {
   document.querySelectorAll('.consent-overlay').forEach(ov => {
     ov.addEventListener('click', (e) => {
-      if (e.target === ov) ov.setAttribute('aria-hidden', 'true');
+      if (e.target === ov) { ov.classList.remove('show'); ov.setAttribute('aria-hidden', 'true'); }
+    });
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') document.querySelectorAll('.consent-overlay.show').forEach(ov => {
+      ov.classList.remove('show'); ov.setAttribute('aria-hidden', 'true');
     });
   });
 }
@@ -386,7 +404,7 @@ function init() {
   $('selectorClearBtn').addEventListener('click', () => { state.selected.clear(); renderSelector(); });
   $('startStudyingBtn').addEventListener('click', () => { buildDeck(); renderCard(); });
   $('progressBtn').addEventListener('click', openProgress);
-  $('progressCloseBtn').addEventListener('click', () => $('progressOverlay').setAttribute('aria-hidden', 'true'));
+  $('progressCloseBtn').addEventListener('click', () => hideOverlay('progressOverlay'));
 
   $('modeQuizBtn').addEventListener('click', () =>
     alert('Multiple-choice Quiz mode is coming in a later phase. For now, use Review (self-check).'));
@@ -411,6 +429,39 @@ function init() {
   initOverlayDismiss();
   buildDeck();
   renderCard();
+  registerServiceWorker();
+}
+
+// Service worker: offline cache + auto-update. When a new worker installs
+// (after a deploy that bumped the cache name), promote it immediately and
+// reload once so the user is always on the latest version — no manual refresh.
+function registerServiceWorker() {
+  if (!('serviceWorker' in navigator)) return;
+  let refreshing = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (refreshing) return;
+    refreshing = true;
+    window.location.reload();
+  });
+  navigator.serviceWorker.register('sw.js').then((reg) => {
+    // Promote a worker that's already waiting (e.g. from a prior visit).
+    if (reg.waiting && navigator.serviceWorker.controller) reg.waiting.postMessage('SKIP_WAITING');
+    reg.addEventListener('updatefound', () => {
+      const next = reg.installing;
+      if (!next) return;
+      next.addEventListener('statechange', () => {
+        if (next.state === 'installed' && navigator.serviceWorker.controller) {
+          next.postMessage('SKIP_WAITING');
+        }
+      });
+    });
+    // Check for a new version on load and whenever the tab regains focus, so a
+    // long-open tab still picks up a deploy.
+    reg.update();
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') reg.update();
+    });
+  }).catch(() => {});
 }
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
