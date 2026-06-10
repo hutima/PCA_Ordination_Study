@@ -191,14 +191,17 @@ KEEP modules + the HTML shell):**
       list markers, headers, table rows; SUBJECT emitted via `json.dumps` to
       avoid JS-quote bugs; trailing standards cites stripped from questions.
 - [x] **Phase 6 — MCQ quiz mode (COMPLETE).** Review/Quiz toggle wired
-      (`setMode` in `pca.js`). Quiz auto-builds MCQs for "fact-style" cards —
-      short single-line answers with ≥3 short-answer siblings in the same
-      sub-deck — drawing distractors from those siblings (no per-card authoring
-      needed); authored `card.quiz` blocks are also honored. ~79 eligible
-      cards (mostly Bible Content passages + some BCO). Auto-graded: correct →
-      `easy`, wrong → `again`, feeding the same SRS. Keyboard 1–4 picks,
-      space/→ advances. Long-answer subjects show a graceful "no quiz-ready
-      cards" message. `.quiz-choice` styling in `css/pca.css`.
+      (`setMode` in `pca.js`). Quiz deck = **hand-authored MCQ bank**
+      (`window.PCA_QUIZ`, files in `js/data/quiz/<subject>.js`, ~89 questions
+      across all 6 subjects, grounded in the Westminster Standards/BCO) **plus**
+      auto-generated MCQs from short-answer review cards (passages etc.).
+      Authored questions are filtered by the selected subjects. The quiz bank
+      is separate from the generated review data so the build scripts never
+      overwrite it; `dev/validate.mjs` checks ids/answerIndex/choices. Picking
+      a choice auto-grades into the shared SRS (correct → `easy`, wrong →
+      `again`). Keyboard 1–4 picks, space/→ advances. `.quiz-choice` styling in
+      `css/pca.css`.
+      Quiz contract: `window.PCA_QUIZ = [{ id, subject, q, choices[], answerIndex, refs[] }]`.
 - [~] **Phase 7 — Analytics / PWA / polish.** DONE: service worker (`sw.js`)
       with offline precache + **auto-update** (new deploy → page promotes the
       waiting worker → reloads once; registration in `pca.js`). UI fixes:

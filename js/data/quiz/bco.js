@@ -1,0 +1,58 @@
+// PCA Ordination & Licensure Study — hand-authored Quiz bank: Book of Church Order.
+// Registered into window.PCA_QUIZ (separate from the generated review cards in
+// js/data/subjects/, so the build scripts never overwrite these).
+// Each: { id, subject, q, choices, answerIndex (0-based), refs[] }.
+(function (global) {
+  const Q = [
+    { id: 'qz-bco-1', subject: 'bco', refs: ['BCO 1-3'],
+      q: 'According to the BCO, who alone is the Head of the Church?',
+      choices: ['Christ alone', 'The General Assembly', 'The pope', 'The Moderator of Assembly'], answerIndex: 0 },
+    { id: 'qz-bco-2', subject: 'bco', refs: ['BCO Preface'],
+      q: 'The Constitution of the PCA consists of the Westminster Confession, the Larger and Shorter Catechisms, and which fourth document?',
+      choices: ['The Heidelberg Catechism', 'The Book of Church Order', 'The Book of Common Prayer', 'The Canons of Dort'], answerIndex: 1 },
+    { id: 'qz-bco-3', subject: 'bco', refs: ['BCO 7-2'],
+      q: 'What three permanent officers has Christ given to His Church?',
+      choices: ['Bishops, priests, and deacons', 'Apostles, prophets, and evangelists', 'Ruling elders, teaching elders, and deacons', 'Pastors, trustees, and clerks'], answerIndex: 2 },
+    { id: 'qz-bco-4', subject: 'bco', refs: ['BCO 3-1'],
+      q: 'Church power is "only ministerial and declarative." It is therefore NOT:',
+      choices: ['spiritual', 'scriptural', 'moral', 'legislative'], answerIndex: 3 },
+    { id: 'qz-bco-5', subject: 'bco', refs: ['BCO 10-2'],
+      q: 'Name the courts of the Church, from lowest to highest.',
+      choices: ['Session, Presbytery, General Assembly', 'Presbytery, Synod, General Assembly', 'Session, Synod, Presbytery', 'Consistory, Classis, Synod'], answerIndex: 0 },
+    { id: 'qz-bco-6', subject: 'bco', refs: ['BCO 3-1'],
+      q: 'The power which Christ has committed to His Church is:',
+      choices: ['partly civil', 'exclusively spiritual', 'coercive', 'primarily financial'], answerIndex: 1 },
+    { id: 'qz-bco-7', subject: 'bco', refs: ['BCO 6-1'],
+      q: 'What are the two classes of members in a particular church?',
+      choices: ['Active and inactive', 'Voting and non-voting', 'Communing and non-communing', 'Baptized and unbaptized'], answerIndex: 2 },
+    { id: 'qz-bco-8', subject: 'bco', refs: ['BCO 9-1'],
+      q: 'The office of deacon is one of sympathy and service; it is NOT an office of:',
+      choices: ['mercy', 'rule', 'ministry', 'service'], answerIndex: 1 },
+    { id: 'qz-bco-9', subject: 'bco', refs: ['BCO 30-1'],
+      q: 'Which is one of the church censures named in the BCO?',
+      choices: ['A monetary fine', 'Excommunication', 'Public penance', 'Suspension of salary'], answerIndex: 1 },
+    { id: 'qz-bco-10', subject: 'bco', refs: ['BCO 26-2'],
+      q: 'Amending the Book of Church Order requires a majority of the General Assembly, approval of a subsequent Assembly, and the consent of how many presbyteries?',
+      choices: ['A simple majority', 'Two-thirds (2/3)', 'Three-fourths (3/4)', 'All of them'], answerIndex: 1 },
+    { id: 'qz-bco-11', subject: 'bco', refs: ['BCO 26-2'],
+      q: 'Amending the doctrinal standards (Confession and Catechisms) requires the consent of how many presbyteries?',
+      choices: ['A simple majority', 'Two-thirds (2/3)', 'Three-fourths (3/4)', 'All of them'], answerIndex: 2 },
+    { id: 'qz-bco-12', subject: 'bco', refs: ['BCO 8-9'],
+      q: 'The "parity" of ruling and teaching elders means that:',
+      choices: ['they have exactly the same duties', 'they belong to one class of office with the same authority in the courts', 'they must be paid equally', 'teaching elders outrank ruling elders'], answerIndex: 1 },
+    { id: 'qz-bco-13', subject: 'bco', refs: ['BCO 42-4', 'BCO 43-2'],
+      q: 'Within how many days of a court’s action must a notice of appeal or complaint be filed?',
+      choices: ['10 days', '30 days', '60 days', '90 days'], answerIndex: 1 },
+    { id: 'qz-bco-14', subject: 'bco', refs: ['BCO 8-5'],
+      q: 'Who is authorized to administer the sacraments?',
+      choices: ['Any communing member', 'A deacon', 'A teaching elder (minister of the Word)', 'A ruling elder'], answerIndex: 2 },
+    { id: 'qz-bco-15', subject: 'bco', refs: ['BCO 2-1'],
+      q: 'The visible church consists of all those who profess faith in Christ, together with their:',
+      choices: ['children', 'spouses', 'good works', 'sponsors'], answerIndex: 0 },
+    { id: 'qz-bco-16', subject: 'bco', refs: ['BCO 21-4'],
+      q: 'Which is NOT one of the areas in which a candidate for ordination is examined?',
+      choices: ['Theology', 'Church history', 'The biblical languages', 'Civil law'], answerIndex: 3 },
+  ];
+  const bank = (global.PCA_QUIZ = global.PCA_QUIZ || []);
+  for (const x of Q) bank.push(x);
+})(typeof window !== 'undefined' ? window : globalThis);

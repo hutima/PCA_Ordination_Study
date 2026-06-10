@@ -117,10 +117,36 @@ function buildQuiz(card) {
 }
 
 // ── Deck building (due-first) ──────────────────────────────────────────
+function subjectLabel(id) {
+  const s = DATA.subjects.find(x => x.id === id);
+  return s ? s.label : id;
+}
+// Subjects implied by the current sub-deck selection (null = all subjects).
+function selectedSubjectIds() {
+  if (!state.selected.size) return null;
+  const s = new Set();
+  for (const k of state.selected) { const set = DATA.sets[k]; if (set) s.add(set.subject); }
+  return s;
+}
+// Quiz deck = hand-authored MCQs (window.PCA_QUIZ) for the selected subjects,
+// plus auto-generated MCQs from short-answer review cards in the selection.
+function quizDeckCards() {
+  const subj = selectedSubjectIds();
+  const bank = (typeof window !== 'undefined' && window.PCA_QUIZ) || [];
+  const authored = bank
+    .filter(q => !subj || subj.has(q.subject))
+    .map(q => ({
+      id: q.id, q: q.q, refs: q.refs || [],
+      _setKey: 'quiz:' + q.subject, _setLabel: subjectLabel(q.subject),
+      quiz: { choices: q.choices, answerIndex: q.answerIndex },
+    }));
+  const auto = cardsForKeys(effectiveSetKeys()).filter(quizEligible);
+  return authored.concat(auto);
+}
+
 function buildDeck() {
   const now = Date.now();
-  let cards = cardsForKeys(effectiveSetKeys());
-  if (state.mode === 'quiz') cards = cards.filter(quizEligible);
+  const cards = state.mode === 'quiz' ? quizDeckCards() : cardsForKeys(effectiveSetKeys());
   const due = [];
   const later = [];
   for (const c of cards) {
