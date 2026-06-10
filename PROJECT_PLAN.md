@@ -167,9 +167,18 @@ KEEP modules + the HTML shell):**
       per subject; run `dev/validate.mjs`.
 - [ ] **Phase 6 — MCQ quiz mode** for fact-style cards (author `quiz` blocks,
       render auto-graded choices feeding SRS).
-- [ ] **Phase 7 — Analytics / PWA / polish:** trim analytics to per-subject
-      mastery/due/confidence; bump `?v=NNN` cache-bust + `sw.js` precache;
-      verify offline; update `docs/index-structure.md` + `CLAUDE.md`.
+- [~] **Phase 7 — Analytics / PWA / polish.** DONE: service worker (`sw.js`)
+      with offline precache + **auto-update** (new deploy → page promotes the
+      waiting worker → reloads once; registration in `pca.js`). UI fixes:
+      overlays now toggle the `.show` class (Choose subjects / Progress modals
+      were dead because only `aria-hidden` was toggled); card/reveal/nav
+      spacing; Markdown renderer gained lettered-list (`a. b.`) support; BCO
+      generator (`dev/build_bco.py`, now reproducible) splits inline `a./b.`
+      sub-lists and cleans conversion debris. REMAINING: richer analytics
+      (charts/streaks) if desired; icon polish; bump cache on each release.
+
+      **Release ritual:** bump `?v=N` in `index.html` AND `CACHE` in `sw.js`
+      together so returning users auto-refresh onto the new version.
 
 ## 8. Key facts / conventions
 

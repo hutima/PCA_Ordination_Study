@@ -26,6 +26,7 @@ function renderInline(text) {
 
 const BULLET_RE = /^\s*-\s+(.*)$/;
 const ORDERED_RE = /^\s*(\d+)\.\s+(.*)$/;
+const LETTERED_RE = /^\s*([a-z])\.\s+(.*)$/;
 const QUOTE_RE = /^\s*>\s?(.*)$/;
 const TABLE_SEP_RE = /^\s*\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)+\|?\s*$/;
 
@@ -121,6 +122,21 @@ export function renderMarkdown(src) {
       }
       const startAttr = start !== 1 ? ` start="${start}"` : '';
       html.push(`<ol${startAttr}>` + items.map(it => `<li>${renderInline(escapeHtml(it))}</li>`).join('') + '</ol>');
+      continue;
+    }
+
+    // Lettered list (a. b. c.) → <ol type="a"> with the right starting letter.
+    if (LETTERED_RE.test(line)) {
+      flushParagraph(paragraph);
+      const m0 = line.match(LETTERED_RE);
+      const start = m0[1].charCodeAt(0) - 96; // 'a' -> 1
+      const items = [];
+      while (i < lines.length && LETTERED_RE.test(lines[i])) {
+        items.push(lines[i].match(LETTERED_RE)[2]);
+        i++;
+      }
+      const startAttr = start !== 1 ? ` start="${start}"` : '';
+      html.push(`<ol type="a"${startAttr}>` + items.map(it => `<li>${renderInline(escapeHtml(it))}</li>`).join('') + '</ol>');
       continue;
     }
 
