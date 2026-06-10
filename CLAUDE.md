@@ -1,24 +1,32 @@
 # Repository notes for Claude
 
-## Navigation
+This repo is the **PCA Ordination & Licensure Study** app — a static, offline
+spaced-repetition review app adapted from the Duff Greek study tool. Read
+**`PROJECT_PLAN.md`** first: it is the source of truth for the plan, decisions,
+architecture/reuse map, content contract, phase status, and next steps.
 
-- **`index.html` structure:** see `docs/index-structure.md` before scanning
-  the file. It maps the in-flow `.app` shell, the overlay siblings, and the
-  script groups by line range and `id`.
+## Orientation
+
+- **Entry point:** `js/app/pca.js` (ES module). Drives the shell in
+  `index.html`; styling in `styles.css` (base design tokens) + `css/pca.css`
+  (PCA-specific). State is module-local; progress persists to
+  `localStorage['pca_progress_v1']`, selection to `['pca_selection_v1']`.
+- **SRS engine (reused, content-agnostic):** `js/domain/srs/{constants,
+  scheduler,confidence}.js`. Outcomes `again`/`pass`/`easy` =
+  Hard/Uncertain/Easy. Do not edit lightly.
+- **Content:** `js/data/subjects/<id>.js` files register into the global
+  `window.PCA_DATA` contract (see PROJECT_PLAN §4). Add a subject by dropping a
+  data file there and a `<script defer>` tag in `index.html`.
+- **Markdown:** answers are Markdown rendered by `js/utils/markdown.js`
+  (escape-first; lists, GFM tables, blockquotes, inline emphasis).
+- **Validate content:** `node dev/validate.mjs`.
+- **Serve locally:** `python3 -m http.server 8137` then open `/`.
 
 ## Maintenance rules
 
-- **Keep `docs/index-structure.md` in sync.** If you edit `index.html` and
-  any of the following change, update the doc in the same commit:
-  - a section in `.app` is added, removed, reordered, or renamed
-  - an overlay (`consent-overlay`) is added or removed
-  - an `id` referenced by JS is added, removed, or renamed
-  - the script load order / grouping changes
-  - the `?v=NNN` cache-bust scheme changes
-- Line numbers in the doc are approximate — don't chase a few lines of drift,
-  but do refresh them when a section moves significantly.
-
-## Cache-bust
-
-Every asset URL in `index.html` ends in `?v=NNN`. The same number lives in
-`sw.js` (`CACHE_NAME` + precache list). Bump both together on release.
+- Keep `PROJECT_PLAN.md` **Status** and **Next steps** current as phases land.
+- Asset URLs in `index.html` carry a `?v=N` cache-bust param. A service worker
+  is **not** yet wired (planned for Phase 7); when it is, the version number
+  must agree between `index.html` and the SW precache list — bump together.
+- When adding/removing a subject data file, update the `<script defer>` tags in
+  `index.html` and re-run `node dev/validate.mjs`.

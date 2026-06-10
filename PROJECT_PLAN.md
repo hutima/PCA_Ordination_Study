@@ -149,13 +149,12 @@ KEEP modules + the HTML shell):**
       `js/utils/markdown.js` (escape-first MD renderer: lists, blockquotes,
       GFM tables, inline emphasis). `dev/validate.mjs` validator. Verified
       end-to-end parse→card→Markdown→real SRS scheduler. (commit: Phase 1)
-- [~] **Phase 2 — Strip Greek + wire subjects + branding.** DONE: lean
-      rewrite landed — new `index.html` (rebranded, drops all Greek controls),
-      `css/pca.css` (reveal-panel card, ref chips, subject grids, system-font
-      override), `js/app/pca.js` (state + localStorage persistence + selector +
-      deck + SRS + review flow). Reuses `domain/srs/*` + `utils/markdown.js`
-      only. Study-selector repurposed to subject/sub-deck tiles. REMAINING:
-      delete the now-dead Greek source files/fonts/pages (separate commit).
+- [x] **Phase 2 — Strip Greek + wire subjects + branding.** DONE. Lean rewrite
+      (`index.html`, `css/pca.css`, `js/app/pca.js`) reusing `domain/srs/*` +
+      `utils/markdown.js`. Study-selector → subject/sub-deck tiles. New
+      open-book-and-cross icon + manifest branding. Stripped all dead Greek
+      code/data/fonts/pages/sw/docs + the `@font-face` blocks in `styles.css`.
+      `js/` now contains only live deps. All `index.html` refs resolve (200).
 - [x] **Phase 3 — Self-check review flow end-to-end.** Working on BCO: reveal
       → grade Hard/Uncertain/Easy → SRS schedule → persist → due-first deck +
       review/progress panel. (Landed with Phase 2.)
