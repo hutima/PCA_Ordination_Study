@@ -177,8 +177,11 @@ KEEP modules + the HTML shell):**
             (A. Bible … I. Last Things). Outline parser: numbered questions,
             lettered/0-padded sub-points, Westminster quotes; J/Sacraments
             excluded (own subject).
-      - [ ] Bible Content (doc_2 §I, lines ~9–2560) and Hot Topics (doc_2
-            §III, ~8983+) remain; see §3 line markers.
+      - [x] Bible Content — `dev/build_bible_content.py`, 175 cards, 8 sub-decks
+            (Whole Bible; OT/NT People, Passages, Events, Topics). List-prompts
+            expand per-item (lettered OR numbered items); prose Q&A kept whole.
+      - [ ] Hot Topics (doc_2 §III, ~8983+) remains — messy multi-column
+            tables; see §9a.
       Generator notes: reflow joins word-wrapped lines, breaking on `?`,
       list markers, headers, table rows; SUBJECT emitted via `json.dumps` to
       avoid JS-quote bugs; trailing standards cites stripped from questions.
