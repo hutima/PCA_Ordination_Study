@@ -1,0 +1,28 @@
+{
+  "id": "./",
+  "name": "PCA Ordination & Licensure Study",
+  "short_name": "PCA Study",
+  "description": "Spaced-repetition review for PCA licensure and ordination exams: Bible Content, Theology, Sacraments, Church History, and the Book of Church Order.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0e0f14",
+  "theme_color": "#0e0f14",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

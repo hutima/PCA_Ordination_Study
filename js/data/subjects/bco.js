@@ -1,0 +1,577 @@
+// PCA Ordination & Licensure Study — Book of Church Order (BCO)
+// Source: "Final BCO Study Aid - Q & A" (J. Anderson). Q&A flashcards.
+// Card shape: { id, q (question, plain), a (answer, Markdown), refs[] }
+// Registered into the shared window.PCA_DATA contract.
+
+(function (global) {
+  const SETS = {
+  "bco-officers": {
+    "label": "Church, Power & Officers (Q1–20)",
+    "subject": "bco",
+    "order": 1,
+    "cards": [
+      {
+        "id": "bco-001",
+        "q": "Who is the head of the church? How does he exercise his authority?",
+        "a": "Christ alone is the head of the church. He exercises His authority and governs by His Word and Spirit and has appointed officers to guide His church by following His Word and Spirit.",
+        "refs": []
+      },
+      {
+        "id": "bco-002",
+        "q": "List at least two key principles of Presbyterian church government",
+        "a": "1. God alone is Lord of the conscience.\n2. Every church, or body, has the right to determine its qualifications for its members.\n3. Christ himself has appointed officers in his church.\n4. Godliness is founded on truth.\n5. Teachers should be sound in the faith.\n6. Each particular body has a right to elect its own officers.\n7. Church power is only ministerial and declarative and therefore not legislative .\n8. Church discipline must be purely moral and spiritual in nature and therefore not civil.",
+        "refs": []
+      },
+      {
+        "id": "bco-003",
+        "q": "Can the church “bind” men’s consciences? Why or why not?",
+        "a": "All church power is “only ministerial and declarative”; “no church judicatory may make laws to bind the conscience.” God has set the standard and human courts are fallible, along with the church’s power being purely moral and spiritual, declarative and ministerial.",
+        "refs": []
+      },
+      {
+        "id": "bco-004",
+        "q": "What is the Constitution of the Presbyterian Church in America?",
+        "a": "All the following as adopted by the Church and subject to the Scriptures:\n- Westminster Confession of Faith (Doctrinal standards)\n- Larger & Shorter Catechisms\n- BCO, consisting of Form of Government, the Rules of Discipline & Directory of Worship",
+        "refs": []
+      },
+      {
+        "id": "bco-005",
+        "q": "What is the visible church? Who are its members?",
+        "a": "The visible church consists of all who make profession of faith in the Lord Jesus Christ & their children\nThe visible church before the law, under the law & now under the Gospel, is one & the same & consists of all those who make profession of their faith in the Lord Jesus Christ, together with their children- BCO 2-1",
+        "refs": [
+          "BCO 2-1"
+        ]
+      },
+      {
+        "id": "bco-006",
+        "q": "What is the power of the church?",
+        "a": "The power of the church is exclusively spiritual. The power which Christ has committed to his church is vested in the whole body, the rulers and those ruled consisting in a spiritual commonwealth. This power is to proclaim, to administer & to enforce the law of Christ revealed in Scriptures (BCO 3, esp. 3.1; 3.3; 3.4)",
+        "refs": []
+      },
+      {
+        "id": "bco-007",
+        "q": "How does it differ from that of the state?",
+        "a": "- Church: Power exclusively spiritual\nConstitution derived from a higher source\n- State: Includes the use of force\nDerives from human reason and the course of providential events (BCO 3-4)",
+        "refs": [
+          "BCO 3-4"
+        ]
+      },
+      {
+        "id": "bco-008",
+        "q": "What is the difference between a commission and a committee of presbytery? (BCO 15-1)",
+        "a": "A committee is appointed by presbytery to examine, consider, and report to presbytery on a specific issue or matter that presbytery assigns to it. The presbytery then decides on any action to take.\nA commission is appointed by presbytery is authorized by presbytery to deliberate upon and conclude the business referred to it.",
+        "refs": []
+      },
+      {
+        "id": "bco-009",
+        "q": "What is the minimum number of TE’s & RE’s, and quorum, of a commission of presbytery?(15-2)",
+        "a": "Two teaching elders and two ruling elders, and the quorum shall be one more than half its membership unless otherwise determined by the Presbytery.",
+        "refs": []
+      },
+      {
+        "id": "bco-010",
+        "q": "What is a particular church?",
+        "a": "A particular church is a local congregation with a permanent governing body (BCO 5-1)",
+        "refs": [
+          "BCO 5-1"
+        ]
+      },
+      {
+        "id": "bco-011",
+        "q": "What is a mission church?",
+        "a": "A mission church is described in the same fashion as a particular church except that it has no permanent governing body and thus must be governed or supervised by others. Goal is to mature and be organized as a particular church as soon as this can be done decently and in good order (BCO 5-1)",
+        "refs": [
+          "BCO 5-1"
+        ]
+      },
+      {
+        "id": "bco-012",
+        "q": "What 2 kinds of members does the church have? What are their respective rights and privileges?",
+        "a": "- Communing: all rights & privileges of church (voting, office holding, & admission to Lord’s table)6-2,6-4\n- Non-communing members: entitled to baptism, pastoral oversight, instruction & gov’t of church (6-1)\n- Associate members: all the rights and privileges of the church except voting in congregational meetings and holding office in that church (6-4)",
+        "refs": []
+      },
+      {
+        "id": "bco-013",
+        "q": "What permanent officers has Christ given to his church?",
+        "a": "REs, TEs, and Deacons (BCO 7-2)",
+        "refs": [
+          "BCO 7-2"
+        ]
+      },
+      {
+        "id": "bco-014",
+        "q": "What are the qualifications for an elder?",
+        "a": "Character and Knowledge:\n- Competency of human learning\n- Blameless life\n- Sound in faith\n- Apt to teach\n- Sobriety and holiness of life becoming of the gospel\n- Rules his own house well\n- Have a good report of those outside the church (BCO 8-2)",
+        "refs": [
+          "BCO 8-2"
+        ]
+      },
+      {
+        "id": "bco-015",
+        "q": "What are an elder’s duties?",
+        "a": "- Watch over the flock committed to their charge in doctrine and morality\n- Exercise government and discipline\n- Oversight of both the local church and the “general” church\n- Visitation (especially of sick), instruction, comforting, nourishing, & guarding the children of the church.\n- Set worthy examples for the rest of the church\n- Love, pray with and for people (BCO 8-3)",
+        "refs": [
+          "BCO 8-3"
+        ]
+      },
+      {
+        "id": "bco-016",
+        "q": "How are ruling and teaching elders alike?",
+        "a": "Duties of office:\n- Watch over the flock committed to their charge in doctrine and morality\n- Exercise government and discipline\n- Oversight of both the local church and the “general” church\n- Visitation (especially of sick), instruction, comforting, nourishing, & guarding the children of the church.\n- Set worthy examples for the rest of the church\n- Love, pray with and for people (BCO 8-3)",
+        "refs": [
+          "BCO 8-3"
+        ]
+      },
+      {
+        "id": "bco-017",
+        "q": "How are ruling and teaching elders different?",
+        "a": "Only those elders specially gifted, called & trained by God to preach may serve as teaching elders (8-4)\n- TE feeds flock by reading, expounding, and preaching the word of God\n- Administers the sacraments (BCO 8-5)\n- Christ furnishes Ruling Elders with gifts and commission to govern (BCO 8-8)",
+        "refs": [
+          "BCO 8-5",
+          "BCO 8-8"
+        ]
+      },
+      {
+        "id": "bco-018",
+        "q": "What is meant by the “parity” of ruling and teaching elders?",
+        "a": "The class of elder is one class only. REs & TEs possess the same authority and eligibility to office in the courts of the church. Both, (but especially the Teaching Elders) are called to teach the Bible (BCO 8-9).",
+        "refs": [
+          "BCO 8-9"
+        ]
+      },
+      {
+        "id": "bco-019",
+        "q": "What are the duties of deacons?",
+        "a": "- Not an office of rule, but rather of service both to the physical and spiritual needs of the people\n- Ministers to those in need, the sick, the friendless, and any in distress\n- Devise methods to collect the gifts of the congregation\n- Keep church in proper (physical) repair (BCO 9-2).",
+        "refs": [
+          "BCO 9-2"
+        ]
+      },
+      {
+        "id": "bco-020",
+        "q": "What are the qualifications for deacons?",
+        "a": "- Men of spiritual character\n- Honest repute\n- Exemplary lives\n- Brotherly Spirit\n- Warm sympathies\n- Sound judgement (BCO 9-3)",
+        "refs": [
+          "BCO 9-3"
+        ]
+      }
+    ]
+  },
+  "bco-courts": {
+    "label": "Courts, Calling & Ordination (Q21–45)",
+    "subject": "bco",
+    "order": 2,
+    "cards": [
+      {
+        "id": "bco-021",
+        "q": "Name the courts of the church:",
+        "a": "Session, Presbyteries, General Assembly",
+        "refs": []
+      },
+      {
+        "id": "bco-022",
+        "q": "What is the proper or original jurisdiction of each?",
+        "a": "Each court exercises original jurisdiction over its own business (i.e., people).",
+        "refs": []
+      },
+      {
+        "id": "bco-023",
+        "q": "What officers must each court have?",
+        "a": "Moderator & Clerk",
+        "refs": []
+      },
+      {
+        "id": "bco-024",
+        "q": "How are they chosen?",
+        "a": "Except for the moderator of the session (the pastor) they are elected by the body, which they will serve.",
+        "refs": []
+      },
+      {
+        "id": "bco-025",
+        "q": "How is a man called to office in the church?",
+        "a": "- The individual-through the inward testimony of a good conscience as a calling of the Spirit.\n- The church-declaring it believes the man is called and it wants him to serve.\n- The Court-a court of the church agrees and is satisfied that he is qualified.\n- A call to a church office is based on being elected by the congregation-BCO 16-2.\n- “Ordinary vocation to office in the church is the calling of God by the Spirit, through the inward testimony of a good conscience, the manifest appropriation of God’s people. and the consulting judgement of a lawful court of the church. “-BCO 16..1 -3",
+        "refs": [
+          "BCO 16-2"
+        ]
+      },
+      {
+        "id": "bco-026",
+        "q": "What is a candidate?",
+        "a": "“A candidate for the ministry is a member of the church in .full communion who, believing himself to be called to preach the Gospel, submits himself to the care and guidance of the Presbytery in his course of study and of practical training to prepare himself for this office. “-BCO 18-1",
+        "refs": [
+          "BCO 18-1"
+        ]
+      },
+      {
+        "id": "bco-027",
+        "q": "What is required to become a candidate?",
+        "a": "1. Session endorsement\n2. Member at least six months\n3. File with clerk at least two months before presbytery meeting-BCO 18-2\n4. Appear before Presbytery in person.\n5. Be examined on experiential religion and motive for seeking ministry .-BCO 18-3",
+        "refs": [
+          "BCO 18-2",
+          "BCO 18-3"
+        ]
+      },
+      {
+        "id": "bco-028",
+        "q": "What is a licentiate?",
+        "a": "A licentiate is a person examined and permitted to preach within the pulpits of the PCA with the authority of the presbytery of the jurisdiction where he will preach.\n“To preserve the purity of the preaching of the Gospel, no man is permitted to preach in the pulpits of the Presbyterian Church in America on a regular basis without proper licensure from the Presbytery having jurisdiction where he will preach. “-BCO 19-1",
+        "refs": [
+          "BCO 19-1"
+        ]
+      },
+      {
+        "id": "bco-029",
+        "q": "In what areas is a prospective licentiate examined?",
+        "a": "1. Christian experience and inward call.\n2. Written or oral: Theology (Westminster Standards), English Bible, and Book of Church Order .\n3. Orally before Presbytery: on same as above.\n4. Provide written sermon and deliver it before Presbytery.-BCO 19-2",
+        "refs": [
+          "BCO 19-2"
+        ]
+      },
+      {
+        "id": "bco-030",
+        "q": "What is internship",
+        "a": "Candidates for the ministry of the Gospel undergo a time of “internship” in order that some trial is made in regard to the use of gifts and ability to serve as a teaching elder. The internship lasts at least one year and the nature of it is determined by the presbytery .It should involve the candidate in the full scope of duties of any regular ministerial calling.-BCO 19- 7",
+        "refs": []
+      },
+      {
+        "id": "bco-031",
+        "q": "What steps must a church take in calling a pastor?",
+        "a": "1. Session calls a meeting to elect a search committee34-BCO 20-2\n2. A congregational meeting must be called for the election of the pastor-BCO 20-3\n3 Elected by the congregation and reports to the congregation.",
+        "refs": [
+          "BCO 20-2",
+          "BCO 20-3"
+        ]
+      },
+      {
+        "id": "bco-032",
+        "q": "In what areas must a candidate for ordination be examined?",
+        "a": "1. Experiential religion 7. History of the Presbyterian Church in America\n2. Knowledge of Greek and Hebrew 8. Government and Discipline\n3. English Bible 9. Paper on a Theological subject\n4. Theology10. Paper on Exegesis (using Greek and Hebrew)\n5. Sacraments11. Preach a sermon.\n6. Church history",
+        "refs": []
+      },
+      {
+        "id": "bco-033",
+        "q": "What vows must he take?",
+        "a": "1. Commitment to the inerrant, infallible Bible.\n2. Submission to the Confession and Catechisms, and to the form of Church government\n3. Submission to your brethren.\n4. Perceive yourself called of God.\n5. Promise to maintain the truth of the Gospel and the purity and peace of the church.\n6. Promise to fully exercise your duties.\n7. Willing to take charge of the church. J5",
+        "refs": []
+      },
+      {
+        "id": "bco-034",
+        "q": "Who has the final say in establishing or dissolving a pastoral relationship?",
+        "a": "The Presbytery has the final say in establishing or dissolving pastoral relations.",
+        "refs": []
+      },
+      {
+        "id": "bco-035",
+        "q": "How may a pastoral relation be dissolved?",
+        "a": "A pastoral relation is dissolved when a presbytery accepts the resignation of a minister after a congregational meeting has been called and conducted, and its commissioners then appear before the presbytery to show cause why the presbytery should or should not accept the resignation of the pastor.",
+        "refs": []
+      },
+      {
+        "id": "bco-036",
+        "q": "What is the difference between an associate pastor and an assistant pastor?",
+        "a": "The associate pastor is called by the congregation and as such becomes a member of the Session and his pastoral relation is determined by the congregation. The assistant pastor is called by the Session and his pastoral relation to the church is determined by them.",
+        "refs": []
+      },
+      {
+        "id": "bco-037",
+        "q": "What steps must be followed in electing ruling elders or deacons?",
+        "a": "Public notice must be given at least one month prior to the time of the election, during which the congregation is asked to submit names to the Session.-BCO 24-1\n1. Public notice given of congregational meeting for election.\n2. If 25% of eligible voters ask for additional officers, the session shall call the meeting.\n3. Notice given as least one month before election\n4. Congregation asked to submit names to session.\n5. Session shall examine those nominated.\n6. Session shall present list of nominees to congregation.\n7. Session recommends congregation determines the number of officers to be elected.\n8. Majority vote of those present needed for election.\n9. Moderator asks congregation if it is ready to proceed to voting is done by private ballot.-BCO 24-1,4,5",
+        "refs": [
+          "BCO 24-1"
+        ]
+      },
+      {
+        "id": "bco-038",
+        "q": "In what areas is a nominee to be examined?",
+        "a": "1. Christian experience (especially personal character).\n2. Knowledge of doctrine, Church government, discipline in the Constitution of the PCA(BCO preface ill)\n3. Duties of office to which he is nominated.\n4. Willingness to give assent to the question required for ordination.-BCO 24-1",
+        "refs": [
+          "BCO 24-1"
+        ]
+      },
+      {
+        "id": "bco-039",
+        "q": "How may a congregational meeting be called?",
+        "a": "The session shall decide when a meeting is necessary and call it, or shall respond to a written notice of a set fraction of the church (BCO 25-2). BCO 25-2 “Whenever it may seem for the best interest of the church that a congregational meeting should be held, the Session shall call such meeting and give public notice of at least one week. No business shall be transacted at such meeting except what is stated in the notice. The session shall always call a congregational meeting when requested in writing to do so: by…”",
+        "refs": [
+          "BCO 25-2"
+        ]
+      },
+      {
+        "id": "bco-040",
+        "q": "Who can vote at a congregational meeting?",
+        "a": "All communing members of a particular church [25.1]",
+        "refs": []
+      },
+      {
+        "id": "bco-041",
+        "q": "What officers are required at congregational meeting?",
+        "a": "Moderator (or elected person) Clerk (elected)",
+        "refs": []
+      },
+      {
+        "id": "bco-042",
+        "q": "Who owns the property of the local church?",
+        "a": "The local church. BCO 25-8. The corporation of a particular church, through its duly elected trustees/corporation officers (or, if unincorporated, through those entitled to represent the particular church in matters related to real property) shall have sole title to its property, real, personal, or mixed, tangible or intangible, & shall be sole owner of any equity in the church estate, fund or property. Superior courts may receive moneys/properties only by free and voluntary actions.",
+        "refs": [
+          "BCO 25-8"
+        ]
+      },
+      {
+        "id": "bco-043",
+        "q": "How may the Book of Church Order be amended?",
+        "a": "1. Approval of majority at General Assembly\n2. Consent of 2/3 Presbyteries\n3. Approval of majority at subsequent General Assembly",
+        "refs": []
+      },
+      {
+        "id": "bco-044",
+        "q": "How may the doctrinal standards be amended?",
+        "a": "1. Approval of ¾ majority at General Assembly\n2. Consent of ¾ Presbyteries\n3. Approval of ¾ majority at subsequent General Assembly",
+        "refs": []
+      },
+      {
+        "id": "bco-045",
+        "q": "What portions of the BCO cannot be amended?",
+        "a": "All sections of the BCO may be amended",
+        "refs": []
+      }
+    ]
+  },
+  "bco-discipline": {
+    "label": "Discipline & Judicial Process (Q46–66)",
+    "subject": "bco",
+    "order": 3,
+    "cards": [
+      {
+        "id": "bco-046",
+        "q": "What is church discipline?",
+        "a": "“Discipline is the exercise of authority given the church by the Lord Jesus Christ to instruct and guide its members and to promote its purity and welfare.\n“The tern has two senses:\na. the one referring to the whole government, inspection, training, guardianship and control which the church maintains over its members, its officers and its courts.\nb. The other a restricted and technical sense, signifying judicial process. .’-BCO 27-1\n- Chapell suggests that the church should follow a Family model of discipline more than a judicial model-",
+        "refs": [
+          "BCO 27-1"
+        ]
+      },
+      {
+        "id": "bco-047",
+        "q": "What is the goal of church discipline?",
+        "a": "- The glory of God, the purity of his church, the keeping and reclaiming of disobedient sinners.\n- “The exercise of discipline is highly important and necessary. In its proper usage discipline maintains:\na. the glory of God,\nb. The purity of his Church,\nc. The keeping and reclaiming of disobedient sinners. Discipline is for the purpose of godliness (1 Timothy 4: 7); therefore, it demands a self-examination under Scripture.\nIts ends, so far as it involves judicial action, are the rebuke of offenses, The removal of scandal, the vindication of the honor of Christ, the promotion of The purity and general edification of the church, and The spiritual good o offenders themselves. “-BCO 27-3",
+        "refs": [
+          "BCO 27-3"
+        ]
+      },
+      {
+        "id": "bco-048",
+        "q": "What are the proper steps of church discipline?• Instruction in the Word. Individual responsibility to admonish. Calling of one or more witnesses. Action of the church court.",
+        "a": "- “Scriptural law is the basis of all discipline because it is the revelation of God’s Holy will.\nProperly disciplinary principles are set forth in the Scriptures and must be followed. They are:\na) Instruction in the Word;\nb) Individual’s responsibility to admonish one another (Matthew 18: 15, Galatians 6: 1);\nc) If the admonition is rejected, then the calling of one or more witnesses (Matthew 18: 16);\nd) If rejection persists, then the Church must act through her court unto admonition, suspension, excommunication and deposition (See BCO 29 and 30 for further explanation).\nSteps (a) through (d) must be followed in proper order for the exercise of discipline. “-BCO 27-5",
+        "refs": [
+          "BCO 27-5"
+        ]
+      },
+      {
+        "id": "bco-049",
+        "q": "Who is primarily responsible for disciplining non-communing members?• Primarily their parents.",
+        "a": "- The spiritual nurture, instruction & training of the children of the church are committed by God primarily to their parents. They are responsible to the church for the faithful discharge of their obligations. It is a prin-cipal duty of the Church to promote true religion in the home. True discipleship involves learning the Word of God under the guidance of the Holy Spirit both at home & in the church. Without learning there is no growth & without growth there is no discipline & without discipline there is sin & iniquity (1Tim 4: 7)28-1",
+        "refs": []
+      },
+      {
+        "id": "bco-050",
+        "q": "List and define church censures: • Admonition: Formal reproof of an offender",
+        "a": "- Suspension from sacraments: the temporary exclusion from those ordinances (indefinite).\n- Suspension from office: exclusion of a church officer from his office (definite or indefinite duration).\n- Excommunication: excision of an offender from the communion of the church.\n- Deposition-degradation of an officer from office (with/without other censure).",
+        "refs": []
+      },
+      {
+        "id": "bco-051",
+        "q": "With what court should charges be filed?",
+        "a": "With the court of original jurisdiction which rests with the body in which a person is a member.\n“Original jurisdiction (the right to first or initially hear and determined in relation to ministers of the Gospel shall be in the Presbytery of which the minister is a member, except in cases as provided in BCO 34-1. Such original jurisdiction in relation to church members shall be in the session of the church of which he/she is a member, except in cases as provided in BCO 33-1.”",
+        "refs": [
+          "BCO 34-1",
+          "BCO 33-1"
+        ]
+      },
+      {
+        "id": "bco-052",
+        "q": "What must be done before the formal charges are brought?",
+        "a": "Sessions & Presbyteries must determine from such persons satisfactory explanations concerning reports affecting their Christian character.\n“It is the duty of all church sessions and presbyteries to exercise care over those subject to their authority. They shall with due diligence and great discretion demand from such persons satisfactory explanations concerning reports affecting their Christian character. This duty is more imperative when those who deem themselves aggrieved by injurious reports shall ask an investigation ...”-BCO 31-2",
+        "refs": [
+          "BCO 31-2"
+        ]
+      },
+      {
+        "id": "bco-053",
+        "q": "When must a formal judicial process be pursued?",
+        "a": "When the court finds through investigation a strong presumption of guilt in the party involved.\n- ”...If such investigation, however originating, should result in raising a strong presumption of the guilt of the party involved, the court shall institute process, and shall appoint a prosecutor to prepare the indictment and to conduct the case. This prosecutor shall be a member of the court, except that in a case before the Session, he may be any communing member of the same congregation with the accused. “-BCO 31-2",
+        "refs": [
+          "BCO 31-2"
+        ]
+      },
+      {
+        "id": "bco-054",
+        "q": "How many witnesses are required?",
+        "a": "More than one. “The testimony of more than 1 witness shall be necessary in order to establish any charge; yet if in the testimony of 1 witness, corroborative evidence be produced, the offense may be considered to b proved. 35-3",
+        "refs": []
+      },
+      {
+        "id": "bco-055",
+        "q": "How should a censure be administered? With all tenderness and in a spirit of meekness",
+        "a": "- Suited to the nature of the offenses (See BCO 36 for details)",
+        "refs": []
+      },
+      {
+        "id": "bco-056",
+        "q": "What is the goal of discipline in regard to the offender?",
+        "a": "Repentance and restoration to the body",
+        "refs": []
+      },
+      {
+        "id": "bco-057",
+        "q": "Define “review and control”",
+        "a": "Every court above the session is to review the records of the court next below in the areas of :\n1. Correct recording.\n2. Regular and in accordance with the constitution.\n3. Suited to promote the welfare of the Church.\n4. Lawful junctions of the high court have been obeyed.\n“It is the right and duty of every court above the Session to review, at least once a year, the records of the court next below, and if any lower court fails to present its records for this purpose, the higher court may inquire them to be produced immediately, or at any time fixed by this higher court. “-BCO 40-1\n“In reviewing records of a lower court the higher court is to examine:\n1. Whether proceedings have been correctly recorded;\n2. Whether they have been regular and in accordance with the Constitution;\n3. Whether they have been wise, equitable and suited to promote the welfare of the Church;\n4. Whether the lawful injunctions of the higher court have been obeyed. “-BCO 40-2",
+        "refs": [
+          "BCO 40-1",
+          "BCO 40-2"
+        ]
+      },
+      {
+        "id": "bco-058",
+        "q": "Define “reference”",
+        "a": "A formal request for advice from a lower court to a higher court.\n“A reference is a written representation & application made by a lower court to a higher for advice or other ..action on a matter pending before the lower court, & is ordinarily to be made to the next higher court”41-1",
+        "refs": []
+      },
+      {
+        "id": "bco-059",
+        "q": "Define “appeal”",
+        "a": "A transfer to a higher court of a judicial case which has been ruled on by a lower court.\n“An appeal is the transfer lo a higher court of a judicial case on which judgment has been rendered in a lower court, and is allowable only lo the party against whom the decision has been rendered. The parties shall be known as the appellant and appellee. An appeal cannot be made to any court other than the next higher, except with its consent.”-BCO 42-1",
+        "refs": [
+          "BCO 42-1"
+        ]
+      },
+      {
+        "id": "bco-060",
+        "q": "How quickly must an appeal be filed? Within 30 days following the meeting of the court.",
+        "a": "“Notice of appeal may be given the court before its adjournment. Written notice of appeal, with supporting reasons, shall be filed by the appellant with both the clerk of the lower court and the clerk of the higher court, within thirty (30) days following the meeting of the court. No attempt should be made lo circularize the courts to which appeal is being made by either party before the case is heard. “-BCO 42-4",
+        "refs": [
+          "BCO 42-4"
+        ]
+      },
+      {
+        "id": "bco-061",
+        "q": "Define “complaint:",
+        "a": "” A written representation made against some act or decision of a court of the Church A complaint is a written representation made against some act or decision of a court of the Church. It is the right of any communing member of the church in good standing to make complaint against any action of a court to whose jurisdiction he is subject, except that no complaint is allowable in a judicial case in which an appeal is taken. “-BCO 43-1.",
+        "refs": [
+          "BCO 43-1"
+        ]
+      },
+      {
+        "id": "bco-062",
+        "q": "How quickly must a complaint be filed? Within 30 days of the meeting of the court.",
+        "a": "“A complaint shall first be made lo the court whose act or decision is alleged to be in error. Written notice of complaint, with supporting reasons, shall be filed with the clerk of the court within thirty (30) days following the meeting of the court. The court shall consider the complaint at its next slated meeting, or at a called meeting prior to its next slated meeting. No attempt should be made to circularize the court to which complaint is being made by either party. “-BCO 43-2",
+        "refs": [
+          "BCO 43-2"
+        ]
+      },
+      {
+        "id": "bco-063",
+        "q": "What should happen when a member moves out of the community?",
+        "a": "That member should transfer his membership to his new church.\n“When a church member shall remove his residence beyond the bounds of the congregation of which he is a member, so that he can no longer regularly attend its services, it shall be his duty to transfer his membership by presenting a certificate of dismission from the Session of the church of which he is a member to the church which he wishes to unite.\nWhen the church of which he is a member has no Session, or for other good reasons it seems impossible for the member to secure a certificate of dismission, he may be received by the Session upon other satisfactory testimonials, in which case the church of which he was a member shall be duly notified. “-BCO 46-1",
+        "refs": [
+          "BCO 46-1"
+        ]
+      },
+      {
+        "id": "bco-064",
+        "q": "What should be done when a member neglects the church a year or more?",
+        "a": "They shall be notified, if possible, both in person and in writing of their covenant obligations and that if they persist they will be removed from the rolls.\n“When a member of a particular church has willfully neglected the church for a period of one year, or has made it known that he has no intention of fulfilling the church vows, then the Session, continuing to exercise pastoral, discipline (BCO 27-1a and 27-4) in the spirit of Galatians 6: I; shall remind the member, if possible both in person and in writing, of the declarations and promises by which he entered into a solemn covenant with God and His Church (BCO 57-5, #3-5), and warn him that, the persists, his name shall be erased from the roll.\nAfter diligently pursuing such pastoral discipline, and after further inquiry and due delay, the Session is of the judge that the member will not fulfill his membership obligations in this or any other branch of the visible church (cf BCO 2-2), then the Session shall erase his name from the roll. This erasure is an act of pastoral discipline (BCO 27-1a) without process. The Session shall notify the person, if possible, whose name has been removed.\nNotwithstanding the above, if a member thus warned makes a written request for the process (i.e., BCO 31- 33,35-36), the Session shall grant such a request. Further, if the Session detet7llines that any offense of such a member is of the nature that process is necessary, the Session may institute such process “-38-4.",
+        "refs": [
+          "BCO 27-1a",
+          "BCO 57-5",
+          "BCO 2-2"
+        ]
+      },
+      {
+        "id": "bco-065",
+        "q": "What is an associate member?",
+        "a": "A member of a church who is temporarily living outside of their permanent home.\n“Associate members are those believers temporarily in a location other than their permanent homes. Such believers may become associate members of a particular church without ceasing to be communicant mem-bers of their home churches. An associate member shall have all the rights & privileges of that church, with the exception of voting in a congregational or corporation meeting & holding an office in that church”[46-4",
+        "refs": []
+      },
+      {
+        "id": "bco-066",
+        "q": "What parts of the Directory For Worship have constitutional authority (if any)?",
+        "a": ".’...BCO 56, 57, and 58 have been given full constitutional authority by the Eleventh General Assembly after being submitted to the Presbyteries and receiving the necessary two-thirds (2/3) approval of the Presbyteries. “- BCO The Directory For Worship of God",
+        "refs": []
+      }
+    ]
+  },
+  "bco-worship": {
+    "label": "Worship & Sacraments (Q67–74)",
+    "subject": "bco",
+    "order": 4,
+    "cards": [
+      {
+        "id": "bco-067",
+        "q": "What rule guides public worship?The Scriptures.",
+        "a": "“Since the Holy Scriptures are the only infallible rule for faith and practice, the principles of public worship must be derived from the Bible, and from no other source.\nThe Scriptures forbid the worshipping of God by images, or in any other way not appointed in His Ward, and requires the receiving, observing, and keeping pure and entire all such religious worship and ordinances 06 God has appointed in His Word (WSC 51,50) “-BCO 47-1",
+        "refs": [
+          "BCO 47-1",
+          "WSC 51,50"
+        ]
+      },
+      {
+        "id": "bco-068",
+        "q": "What is the purpose of public worship?1 To glorify God.",
+        "a": "“The end of public worship is the glory of God. His people should engage in all its several parts with an eye single to His glory. Public worship has as its aim the building of Christ ‘s Church by the perfecting of the saints and the addition to its membership of such as are being saved-all to the glory of God. Through public worship on the Lord’s day Christians should learn to serve God all the days of the week in their every activity, remembering, whether they eat or drink. or whatever they do, to do all to the glory of God (1 Corinthians 10:31). “-BCO 47-3",
+        "refs": [
+          "BCO 47-3"
+        ]
+      },
+      {
+        "id": "bco-069",
+        "q": "What are the proper elements of worship?",
+        "a": "Reading of ScripturePresentation of offerings\nSinging of psalms and hymnsConfession of Faith\nPrayerObserving the Sacraments\nPreaching of the WordOn Special occasions taking oaths.",
+        "refs": []
+      },
+      {
+        "id": "bco-070",
+        "q": "In brief, how ought we to keep the Lord’s Day?",
+        "a": "By keeping it holy, participating in public and private worship, and resting.",
+        "refs": []
+      },
+      {
+        "id": "bco-071",
+        "q": "Who is responsible for deciding who preaches in a church?",
+        "a": "The session. “No person should be invited to preach in any of the churches under our care without the consent of The Session “-BCO 53-6",
+        "refs": [
+          "BCO 53-6"
+        ]
+      },
+      {
+        "id": "bco-072",
+        "q": "What vows do parents make at the baptism of their children? (summarize)",
+        "a": "Set before them a godly exampleTeach them the doctrines of true religion\nPray with and for themStrive to bring them up in the admonition of the Lord",
+        "refs": []
+      },
+      {
+        "id": "bco-073",
+        "q": "Who admits people to the Lord’s Supper?",
+        "a": "The Session",
+        "refs": []
+      },
+      {
+        "id": "bco-074",
+        "q": "What vows are made in a profession of faith? Same vows as those made by communicant members:",
+        "a": "- Acknowledgement of sin & need of salvation in Christ - Endeavor to live as becomes a believer\n- Promise to support the church and submit to its authority and discipline",
+        "refs": []
+      }
+    ]
+  }
+};
+
+  const SUBJECT = {
+    id: 'bco',
+    label: 'Book of Church Order',
+    blurb: 'Government, officers, courts, discipline, and worship (BCO).',
+    order: 5,
+    setKeys: ["bco-officers", "bco-courts", "bco-discipline", "bco-worship"]
+  };
+
+  const data = (global.PCA_DATA = global.PCA_DATA || { subjects: [], sets: {} });
+  Object.assign(data.sets, SETS);
+  if (!data.subjects.some(s => s.id === SUBJECT.id)) data.subjects.push(SUBJECT);
+})(typeof window !== 'undefined' ? window : globalThis);

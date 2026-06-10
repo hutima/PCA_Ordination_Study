@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PCA Ordination &amp; Licensure Study</title>
+<meta name="description" content="Spaced-repetition review for PCA licensure and ordination exams — Bible Content, Theology, Sacraments, Church History, and the Book of Church Order.">
+<meta name="theme-color" content="#0e0f14">
+<link rel="icon" href="favicon.svg">
+<link rel="manifest" href="manifest.json?v=1">
+
+<!-- Pre-paint: set theme/font/size before first paint to avoid a flash. -->
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('pca_theme');
+    if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+    else document.documentElement.setAttribute('data-theme', window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    var f = localStorage.getItem('pca_font');
+    document.documentElement.setAttribute('data-font-family', f === 'sans' ? 'sans' : 'serif');
+    var s = localStorage.getItem('pca_text_size') || 'medium';
+    document.documentElement.setAttribute('data-text-size', s);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.documentElement.setAttribute('data-font-family', 'serif');
+    document.documentElement.setAttribute('data-text-size', 'medium');
+  }
+})();
+</script>
+
+<link rel="stylesheet" href="styles.css?v=1">
+<link rel="stylesheet" href="css/pca.css?v=1">
+</head>
+<body>
+<div class="app">
+
+  <header>
+    <div class="header-top">
+      <div></div>
+      <div class="theme-switcher" role="group" aria-label="Color theme">
+        <button class="theme-btn" id="themeSystemBtn" type="button" data-theme-mode="system">System</button>
+        <button class="theme-btn" id="themeDarkBtn" type="button" data-theme-mode="dark">Dark</button>
+        <button class="theme-btn" id="themeLightBtn" type="button" data-theme-mode="light">Light</button>
+      </div>
+    </div>
+    <h1>PCA Ordination &amp; Licensure Study</h1>
+    <div class="subtitle" id="appSubtitle">Spaced-Repetition Exam Review</div>
+    <div class="wycliffe">Bible Content · Theology · Sacraments · Church History · BCO</div>
+  </header>
+
+  <div class="notice-row">
+    <div class="app-notice" id="appNotice">Unofficial student-made study aid. Verify against the Westminster Standards, the BCO, and your presbytery's requirements.</div>
+  </div>
+
+  <div class="quick-start">
+    <button class="quick-btn" type="button" id="chooseSubjectBtn">Choose subjects</button>
+    <button class="quick-btn quick-primary" type="button" id="startStudyingBtn">Start studying</button>
+    <div class="mode-group" role="group" aria-label="Study mode">
+      <button class="mode-btn active" id="modeReviewBtn" type="button" data-mode="review">Review</button>
+      <button class="mode-btn" id="modeQuizBtn" type="button" data-mode="quiz" title="Multiple-choice mode (fact cards) — coming soon">Quiz</button>
+    </div>
+    <button class="quick-btn" type="button" id="progressBtn">Progress</button>
+  </div>
+
+  <details class="utility-section">
+    <summary>Progress &amp; display</summary>
+    <div class="display-prefs" role="group" aria-label="Display preferences">
+      <div class="display-prefs-row">
+        <span class="display-prefs-label">Font</span>
+        <div class="theme-switcher" role="group" aria-label="Font family">
+          <button class="theme-btn" id="fontSerifBtn" type="button" data-font="serif">Serif</button>
+          <button class="theme-btn" id="fontSansBtn" type="button" data-font="sans">Sans</button>
+        </div>
+      </div>
+      <div class="display-prefs-row">
+        <span class="display-prefs-label">Text size</span>
+        <div class="theme-switcher" role="group" aria-label="Text size">
+          <button class="theme-btn" id="textSizeMediumBtn" type="button" data-size="medium">Medium</button>
+          <button class="theme-btn" id="textSizeLargeBtn" type="button" data-size="large">Large</button>
+          <button class="theme-btn" id="textSizeXLargeBtn" type="button" data-size="x-large">X-Large</button>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
+      <button class="ctrl-btn" type="button" id="exportBtn">Export progress</button>
+      <button class="ctrl-btn" type="button" id="importBtn">Import progress</button>
+      <button class="ctrl-btn" type="button" id="resetProgressBtn">Reset progress…</button>
+      <input type="file" id="importFile" accept="application/json" style="display:none">
+    </div>
+  </details>
+
+  <div class="ornament">✦ · · · ✦</div>
+
+  <div class="qa-deck-meta" id="deckMeta"></div>
+  <div id="cardArea">
+    <div class="empty-state">
+      <p>Choose one or more subjects, then press <strong>Start studying</strong>.</p>
+    </div>
+  </div>
+
+  <section class="review-shell">
+    <div class="review-panel" id="reviewPanel">
+      <div class="review-stats" id="reviewStats"></div>
+      <div class="review-list" id="reviewList"></div>
+    </div>
+  </section>
+</div>
+
+<!-- Subject / sub-deck selector -->
+<div class="consent-overlay" id="studySelectorOverlay" aria-hidden="true">
+  <div class="consent-modal" role="dialog" aria-modal="true" aria-label="Choose subjects">
+    <h2>Choose what to study</h2>
+    <div class="pca-section-label">Subjects</div>
+    <div class="pca-grid" id="subjectGrid"></div>
+    <div class="pca-section-label">Sub-decks</div>
+    <div class="pca-grid" id="subdeckGrid"></div>
+    <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:8px;">
+      <button class="ctrl-btn" type="button" id="selectorClearBtn">Clear</button>
+      <button class="quick-btn quick-primary" type="button" id="selectorDoneBtn">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- Progress overlay -->
+<div class="consent-overlay" id="progressOverlay" aria-hidden="true">
+  <div class="consent-modal" role="dialog" aria-modal="true" aria-label="Progress">
+    <h2>Progress</h2>
+    <div id="progressBody"></div>
+    <div style="display:flex; justify-content:flex-end; margin-top:14px;">
+      <button class="quick-btn quick-primary" type="button" id="progressCloseBtn">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Subject data (plain defer globals → window.PCA_DATA) -->
+<script defer src="js/data/subjects/bco.js?v=1"></script>
+
+<!-- Entry point -->
+<script type="module" src="js/app/pca.js?v=1"></script>
+</body>
+</html>
