@@ -19,10 +19,12 @@ const DATA = (typeof window !== 'undefined' && window.PCA_DATA) || { subjects: [
 
 // ── State ──────────────────────────────────────────────────────────────
 const state = {
+  mode: 'review',          // 'review' (self-check) | 'quiz' (multiple choice)
   selected: new Set(),     // selected set keys
   deck: [],                // ordered array of card objects for this session
   pos: 0,
   revealed: false,
+  quiz: null,              // current card's MCQ: { choices, correctIndex, picked }
   progress: {},            // cardId -> SRS progress object
 };
 
@@ -78,10 +80,73 @@ function shuffle(arr) {
   return arr;
 }
 
+// ── Quiz (MCQ) eligibility & generation ────────────────────────────────
+// A card is quiz-eligible if it carries an authored `quiz` block, or its
+// answer is short enough to be a single multiple-choice option and its
+// sub-deck has at least three other short-answer siblings to draw distractors
+// from. This covers the fact-style decks (passages, events, term/people IDs,
+// whole-Bible facts) and leaves the long-form cards to Review mode.
+function isShortAnswer(card) {
+  const a = (card.a || '').trim();
+  return !!a && !a.includes('\n') && a.length <= 80 && !a.includes('|') && !a.includes('**');
+}
+function shortSiblings(setKey, exclude) {
+  const set = DATA.sets[setKey];
+  if (!set) return [];
+  const seen = new Set([exclude]);
+  const out = [];
+  for (const c of set.cards) {
+    const a = (c.a || '').trim();
+    if (isShortAnswer(c) && !seen.has(a)) { seen.add(a); out.push(a); }
+  }
+  return out;
+}
+function quizEligible(card) {
+  if (card.quiz && Array.isArray(card.quiz.choices) && card.quiz.choices.length >= 2) return true;
+  if (!isShortAnswer(card)) return false;
+  return shortSiblings(card._setKey, card.a.trim()).length >= 3;
+}
+function buildQuiz(card) {
+  if (card.quiz && Array.isArray(card.quiz.choices)) {
+    return { choices: card.quiz.choices.slice(), correctIndex: card.quiz.answerIndex, picked: -1 };
+  }
+  const correct = card.a.trim();
+  const distractors = shuffle(shortSiblings(card._setKey, correct)).slice(0, 3);
+  const choices = shuffle([correct, ...distractors]);
+  return { choices, correctIndex: choices.indexOf(correct), picked: -1 };
+}
+
 // ── Deck building (due-first) ──────────────────────────────────────────
+function subjectLabel(id) {
+  const s = DATA.subjects.find(x => x.id === id);
+  return s ? s.label : id;
+}
+// Subjects implied by the current sub-deck selection (null = all subjects).
+function selectedSubjectIds() {
+  if (!state.selected.size) return null;
+  const s = new Set();
+  for (const k of state.selected) { const set = DATA.sets[k]; if (set) s.add(set.subject); }
+  return s;
+}
+// Quiz deck = hand-authored MCQs (window.PCA_QUIZ) for the selected subjects,
+// plus auto-generated MCQs from short-answer review cards in the selection.
+function quizDeckCards() {
+  const subj = selectedSubjectIds();
+  const bank = (typeof window !== 'undefined' && window.PCA_QUIZ) || [];
+  const authored = bank
+    .filter(q => !subj || subj.has(q.subject))
+    .map(q => ({
+      id: q.id, q: q.q, refs: q.refs || [],
+      _setKey: 'quiz:' + q.subject, _setLabel: subjectLabel(q.subject),
+      quiz: { choices: q.choices, answerIndex: q.answerIndex },
+    }));
+  const auto = cardsForKeys(effectiveSetKeys()).filter(quizEligible);
+  return authored.concat(auto);
+}
+
 function buildDeck() {
   const now = Date.now();
-  const cards = cardsForKeys(effectiveSetKeys());
+  const cards = state.mode === 'quiz' ? quizDeckCards() : cardsForKeys(effectiveSetKeys());
   const due = [];
   const later = [];
   for (const c of cards) {
@@ -95,6 +160,23 @@ function buildDeck() {
   state.dueCount = due.length;
   state.pos = 0;
   state.revealed = false;
+  syncCardState();
+}
+
+// Prepare per-card transient state for the current position.
+function syncCardState() {
+  state.revealed = false;
+  const card = state.deck[state.pos];
+  state.quiz = (state.mode === 'quiz' && card) ? buildQuiz(card) : null;
+}
+
+function setMode(mode) {
+  if (mode !== 'review' && mode !== 'quiz') return;
+  state.mode = mode;
+  document.querySelectorAll('[data-mode]').forEach(b =>
+    b.classList.toggle('active', b.getAttribute('data-mode') === mode));
+  buildDeck();
+  renderCard();
 }
 
 // ── SRS application ────────────────────────────────────────────────────
@@ -138,11 +220,32 @@ function renderDeckMeta() {
 function renderCard() {
   const area = $('cardArea');
   if (!state.deck.length) {
-    area.innerHTML = `<div class="empty-state"><p>Choose one or more subjects, then press <strong>Start studying</strong>.</p></div>`;
+    const msg = state.mode === 'quiz'
+      ? `No quiz-ready cards in this selection. Quiz mode works on fact-style cards (passages, events, key terms/people). Try <strong>Review</strong>, or pick more subjects.`
+      : `Choose one or more subjects, then press <strong>Start studying</strong>.`;
+    area.innerHTML = `<div class="empty-state"><p>${msg}</p></div>`;
     renderDeckMeta();
+    renderReviewPanel();
     return;
   }
-  const card = state.deck[state.pos];
+  if (state.mode === 'quiz') renderQuizCard(area, state.deck[state.pos]);
+  else renderReviewCard(area, state.deck[state.pos]);
+  renderDeckMeta();
+  renderReviewPanel();
+}
+
+function navRowHtml() {
+  return `<div class="nav-row">
+      <button class="nav-btn nav-prev" id="prevBtn" type="button">‹ Prev</button>
+      <button class="nav-btn" id="nextBtn" type="button">Next ›</button>
+    </div>`;
+}
+function wireNav() {
+  $('prevBtn').addEventListener('click', () => move(-1));
+  $('nextBtn').addEventListener('click', () => move(1));
+}
+
+function renderReviewCard(area, card) {
   const refsHtml = (card.refs && card.refs.length)
     ? `<div class="qa-refs">${card.refs.map(r => `<span class="qa-ref-chip">${escapeText(r)}</span>`).join('')}</div>`
     : '';
@@ -167,28 +270,62 @@ function renderCard() {
       <div class="qa-question">${escapeText(card.q)}</div>
       ${answerBlock}
     </div>
-    <div class="nav-row">
-      <button class="nav-btn nav-prev" id="prevBtn" type="button">‹ Prev</button>
-      <button class="nav-btn" id="nextBtn" type="button">Next ›</button>
-    </div>
+    ${navRowHtml()}
     ${markRow}
   `;
 
   const qaCard = $('qaCard');
   if (qaCard) {
-    qaCard.addEventListener('click', (e) => {
-      // Don't toggle when the user is selecting text inside the answer.
+    qaCard.addEventListener('click', () => {
       if (window.getSelection && String(window.getSelection()).length) return;
       toggleReveal();
     });
   }
-  $('prevBtn').addEventListener('click', () => move(-1));
-  $('nextBtn').addEventListener('click', () => move(1));
+  wireNav();
   area.querySelectorAll('.mark-btn').forEach(btn =>
     btn.addEventListener('click', () => mark(btn.dataset.outcome)));
+}
 
-  renderDeckMeta();
-  renderReviewPanel();
+function renderQuizCard(area, card) {
+  const quiz = state.quiz || (state.quiz = buildQuiz(card));
+  const answered = quiz.picked >= 0;
+  const refsHtml = (answered && card.refs && card.refs.length)
+    ? `<div class="qa-refs">${card.refs.map(r => `<span class="qa-ref-chip">${escapeText(r)}</span>`).join('')}</div>`
+    : '';
+  const choicesHtml = quiz.choices.map((choice, idx) => {
+    let cls = 'quiz-choice';
+    if (answered) {
+      if (idx === quiz.correctIndex) cls += ' correct';
+      else if (idx === quiz.picked) cls += ' wrong';
+      else cls += ' dim';
+    }
+    return `<button class="${cls}" data-choice="${idx}" type="button" ${answered ? 'disabled' : ''}>${escapeText(choice)}</button>`;
+  }).join('');
+  const feedback = answered
+    ? `<div class="quiz-feedback ${quiz.picked === quiz.correctIndex ? 'correct' : 'wrong'}">${quiz.picked === quiz.correctIndex ? '✓ Correct' : '✗ Not quite'}</div>${refsHtml}`
+    : '';
+
+  area.innerHTML = `
+    <div class="qa-card revealed">
+      <div class="qa-deck-label">${escapeText(card._setLabel)} · Quiz</div>
+      <div class="qa-question">${escapeText(card.q)}</div>
+      <div class="quiz-choices">${choicesHtml}</div>
+      ${feedback}
+    </div>
+    ${navRowHtml()}
+  `;
+  area.querySelectorAll('.quiz-choice').forEach(btn =>
+    btn.addEventListener('click', () => answerQuiz(Number(btn.dataset.choice))));
+  wireNav();
+}
+
+function answerQuiz(idx) {
+  const quiz = state.quiz;
+  if (!quiz || quiz.picked >= 0) return;
+  quiz.picked = idx;
+  const card = state.deck[state.pos];
+  applyOutcome(card, idx === quiz.correctIndex ? 'easy' : 'again');
+  renderCard();
 }
 
 function toggleReveal() { state.revealed = !state.revealed; renderCard(); }
@@ -196,19 +333,22 @@ function move(delta) {
   const n = state.deck.length;
   if (!n) return;
   state.pos = (state.pos + delta + n) % n;
-  state.revealed = false;
+  syncCardState();
   renderCard();
 }
 function mark(outcome) {
   if (!state.deck.length) return;
   const card = state.deck[state.pos];
   applyOutcome(card, outcome);
-  // Advance to the next card; if at end, rebuild to pick up newly-due ones.
+  advance();
+}
+// Move to the next card after grading; rebuild at the end to pick up newly-due.
+function advance() {
   if (state.pos + 1 >= state.deck.length) {
     buildDeck();
   } else {
     state.pos += 1;
-    state.revealed = false;
+    syncCardState();
   }
   renderCard();
 }
@@ -410,8 +550,8 @@ function init() {
   $('progressBtn').addEventListener('click', openProgress);
   $('progressCloseBtn').addEventListener('click', () => hideOverlay('progressOverlay'));
 
-  $('modeQuizBtn').addEventListener('click', () =>
-    alert('Multiple-choice Quiz mode is coming in a later phase. For now, use Review (self-check).'));
+  $('modeReviewBtn').addEventListener('click', () => setMode('review'));
+  $('modeQuizBtn').addEventListener('click', () => setMode('quiz'));
 
   $('exportBtn').addEventListener('click', exportProgress);
   $('importBtn').addEventListener('click', () => $('importFile').click());
@@ -424,6 +564,19 @@ function init() {
     if (/INPUT|TEXTAREA/.test(tag)) return;
     if (document.querySelector('.consent-overlay.show')) return; // a modal is open
     if (!state.deck.length) return;
+    if (e.key === 'ArrowRight') { move(1); return; }
+    if (e.key === 'ArrowLeft') { move(-1); return; }
+    if (state.mode === 'quiz') {
+      // 1–4 pick a choice (before answering); space/enter advances after.
+      if (/^[1-9]$/.test(e.key) && state.quiz && state.quiz.picked < 0) {
+        const i = Number(e.key) - 1;
+        if (i < state.quiz.choices.length) answerQuiz(i);
+      } else if ((e.code === 'Space' || e.key === 'Enter') && state.quiz && state.quiz.picked >= 0) {
+        if (/BUTTON|A/.test(tag)) return;
+        e.preventDefault(); move(1);
+      }
+      return;
+    }
     if (e.code === 'Space' || e.key === 'Enter') {
       if (/BUTTON|A/.test(tag)) return; // let a focused control handle it
       e.preventDefault(); toggleReveal();
@@ -431,8 +584,6 @@ function init() {
     else if (state.revealed && e.key === '1') mark('again');
     else if (state.revealed && e.key === '2') mark('pass');
     else if (state.revealed && e.key === '3') mark('easy');
-    else if (e.key === 'ArrowRight') move(1);
-    else if (e.key === 'ArrowLeft') move(-1);
   });
 
   initOverlayDismiss();

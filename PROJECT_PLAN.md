@@ -190,8 +190,18 @@ KEEP modules + the HTML shell):**
       Generator notes: reflow joins word-wrapped lines, breaking on `?`,
       list markers, headers, table rows; SUBJECT emitted via `json.dumps` to
       avoid JS-quote bugs; trailing standards cites stripped from questions.
-- [ ] **Phase 6 — MCQ quiz mode** for fact-style cards (author `quiz` blocks,
-      render auto-graded choices feeding SRS).
+- [x] **Phase 6 — MCQ quiz mode (COMPLETE).** Review/Quiz toggle wired
+      (`setMode` in `pca.js`). Quiz deck = **hand-authored MCQ bank**
+      (`window.PCA_QUIZ`, files in `js/data/quiz/<subject>.js`, ~89 questions
+      across all 6 subjects, grounded in the Westminster Standards/BCO) **plus**
+      auto-generated MCQs from short-answer review cards (passages etc.).
+      Authored questions are filtered by the selected subjects. The quiz bank
+      is separate from the generated review data so the build scripts never
+      overwrite it; `dev/validate.mjs` checks ids/answerIndex/choices. Picking
+      a choice auto-grades into the shared SRS (correct → `easy`, wrong →
+      `again`). Keyboard 1–4 picks, space/→ advances. `.quiz-choice` styling in
+      `css/pca.css`.
+      Quiz contract: `window.PCA_QUIZ = [{ id, subject, q, choices[], answerIndex, refs[] }]`.
 - [~] **Phase 7 — Analytics / PWA / polish.** DONE: service worker (`sw.js`)
       with offline precache + **auto-update** (new deploy → page promotes the
       waiting worker → reloads once; registration in `pca.js`). UI fixes:
