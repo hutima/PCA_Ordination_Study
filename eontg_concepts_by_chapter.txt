@@ -1,0 +1,839 @@
+================================================================
+EONTG_CONCEPTS_BY_CHAPTER.TXT
+Teaching scaffold for Jeremy Duff, The Elements of New Testament Greek, 3rd ed.
+Course-aligned for WYB1513YY Elementary New Testament Greek, Spring-Summer 2026.
+================================================================
+
+AUTHORITY AND USE
+- This file supplies chapter concepts, drill targets, and common errors.
+- The weekly vocab files supply the REQUIRED / ASTERISKED / TESTABLE vocabulary pool.
+- The syllabus schedule determines the weekly file structure.
+- The memorization summary sheets may be used to confirm what paradigms/concepts were emphasized in a given week.
+- If this scaffold conflicts with Duff, the instructor, the syllabus, or a memorization guide, trust the course/textbook source and say this file should be corrected.
+
+COURSE WEEK ALIGNMENT FROM SYLLABUS
+  Week 01: Ch 01-05
+  Week 02: Ch 06-07
+  Week 03: Ch 08-09
+  Week 04: Ch 10-11; midterm covers Ch 01-11
+  Week 05: Ch 12-14
+  Week 06: Ch 15-16
+  Week 07: Ch 17-18
+  Week 08: Ch 19-20; final covers Ch 01-20
+
+MEMORIZATION GUIDE CROSS-CHECK
+  - Week 01: The Greek Alphabet; Breathing Marks; Punctuation; Present Active Paradigm of λυω; Contract Verb Paradigm; The Noun & Article Paradigm; Variant Feminine Paradigms; The Paradigm of αὐτος, αὐτη, αὐτο; The εἰμι Paradigm
+  - Week 02: The Meaning of Verbal Tenses (Aspect); The Master Indicative Paradigm; Square of Stops; The Contract Indicative Paradigm; Verbal Moods; The Active Imperative; The Active Infinitive; The Active Masculine Participles
+  - Week 03: The Middle Voice (Deponent) Indicative Paradigm; Other Moods of the Middle Voice; The Complete Paradigm of εἰμι; The Far Demonstrative Pronoun Paradigm; The Near Demonstrative Pronoun Paradigm; First and Second Personal Pronouns
+  - Week 04: The Relative Pronoun Paradigm; Second Aorist Stems; Second Aorist Paradigm; Future Liquid Stems
+  - Week 05: The Third Declension Paradigms; Other Third Declension Paradigms; The Participle Paradigm
+  - Week 06: Passive Endings; Passive Endings for Participles; Square of Stops and Aspirations; Irregular Passive Forms; The Perfect Paradigm; The Pluperfect Paradigm
+  - Week 07: The Subjunctive Mood; The Indefinite Constructions; Third Person Imperative; Aspect
+  - Week 08 guide [source document title says Week 09]: -μι Present Active Verbs; -μι Other Active Tenses; Middle Voice of -μι Verbs
+
+IMPORTANT SCOPE RULE
+When the student names chapter N, teach/test only grammar from chapters 1-N and only REQUIRED vocabulary from chapters 1-N as unglossed/testable material. A longer story may use a small number of non-required, later, or absent vocabulary items only if each is glossed inline; do not test those words as memorized.
+
+================================================================
+EONTG_CONCEPTS.TXT
+Concept summary for Jeremy Duff, The Elements of New Testament
+Greek, 3rd edition (Cambridge University Press, 2005).
+================================================================
+
+PURPOSE
+This file is a teaching scaffold for the tutor agent. It mirrors
+the per-chapter vocabulary files (eontg_[##].txt) by giving a
+concept summary for each of Duff's twenty chapters. When the
+student names a chapter N, the agent treats that chapter's
+concepts and earlier chapters' concepts as in-scope. Items
+marked [verify] are best-guesses based on the chapter title and
+standard NT-Greek pedagogy and should be confirmed against the
+textbook before being quizzed in fine detail. If the student
+flags a discrepancy, trust the textbook over this file and tell
+the user so they can correct the file.
+
+CHAPTER ORDERING (verified from Cambridge UP table of contents)
+01. The alphabet
+02. Basic sentences
+03. Cases and gender
+04. Prepositions
+05. Adjectives
+06. The tenses
+07. Moods
+08. Other patterns of nouns and verbs
+09. Pronouns and conjunctions
+10. Complex sentences
+11. Special verbs
+12. The third declension - part 1
+13. The third declension - part 2
+14. Participles
+15. The passive and voices
+16. The perfect
+17. The Subjunctive
+18. Using verbs
+19. Extra verbs
+20. Final pieces
+
+================================================================
+CH 01 - THE ALPHABET
+================================================================
+Focus
+  Greek alphabet, pronunciation, breathings, iota subscript,
+  punctuation, basic accent recognition.
+
+Key items
+  - Capital and lower-case letters; their order and names.
+  - Vowels (long, short, dichronous) and the seven diphthongs.
+  - Rough breathing and smooth breathing on every vowel-initial
+    word and on initial rho.
+  - Iota subscript (a, h, w with subscript): silent in
+    pronunciation but grammatically real.
+  - Punctuation: comma (,), full stop (.), raised dot for English
+    semicolon, Greek semicolon (;) for English question mark.
+  - Recognition of acute, grave, and circumflex accents.
+
+Drill targets
+  - Read aloud unfamiliar Greek words.
+  - Transliterate short Greek words into Latin script and back.
+  - Spot missing breathings or iota subscripts in student output.
+
+Common errors
+  - Forgetting breathings on vowel-initial words.
+  - Omitting iota subscript.
+  - Confusing eta with nu in handwriting.
+
+================================================================
+CH 02 - BASIC SENTENCES
+================================================================
+Focus
+  Present indicative active of regular omega-verbs; basic Greek
+  sentence structure; subject implicit in the verb ending;
+  negation with ou.
+
+Key items
+  - luw paradigm: luw, lueis, luei, luomen, luete, luousi(n).
+  - Subject pronouns are usually carried by the ending; explicit
+    nominative is for emphasis or contrast.
+  - Word order is freer than English; verb-first is common.
+  - Negation: ou before consonants, ouk before smooth-breathing
+    vowels, ouch before rough-breathing vowels.
+  - Movable nu on -ei / -si(n) endings before vowels or at
+    sentence end.
+
+Drill targets
+  - Produce the full present indicative active of any -w verb
+    given its lexical form.
+  - Parse PAI forms: lexical form, T V M P N.
+  - Translate short verb-only or verb + adverb sentences.
+
+Common errors
+  - Forgetting movable nu.
+  - Confusing -ei (3sg) with -eis (2sg).
+  - Using English subject pronouns when the ending already
+    carries the subject.
+
+================================================================
+CH 03 - CASES AND GENDER
+================================================================
+Focus
+  The case system (nom, acc, gen, dat, voc); gender (m, f, n);
+  number; the article; second declension. [verify whether 1st
+  declension is in this chapter or split with ch 8]
+
+Key items
+  - Five cases and their core syntactic functions:
+      Nom - subject; predicate nominative.
+      Acc - direct object; extent of space / time; motion toward
+            with prepositions.
+      Gen - possession; source; separation; partitive; with
+            certain prepositions and verbs.
+      Dat - indirect object; location; instrument; with certain
+            prepositions.
+      Voc - direct address.
+  - The article (ho, h, to) in all three genders, agreeing in
+    case, number, and gender.
+  - 2nd-declension masculines in -os (e.g. logos) and neuters
+    in -on (e.g. ergon).
+  - Neuter rule: a neuter plural subject typically takes a
+    singular verb.
+
+Drill targets
+  - Full declension of 2nd-declension nouns and the article.
+  - Identify case and function in short sentences.
+  - "Why is this noun in this case?" prompts.
+
+Common errors
+  - Confusing the article (ho, h, hoi, hai) with the relative
+    pronoun (hos, h, hoi, hai) - same shape, different
+    accent / breathing.
+  - Mixing genitive and dative endings -ou / -w.
+  - Forgetting the neuter-plural / singular-verb agreement quirk.
+
+================================================================
+CH 04 - PREPOSITIONS
+================================================================
+Focus
+  Prepositions and the cases they govern; how case meaning
+  interacts with preposition meaning.
+
+Key items
+  - One-case prepositions:
+      en + dat (in, among).
+      eis + acc (into, for).
+      ek / ex + gen (out of).
+      apo + gen (from).
+      pro + gen (before).
+      sun + dat (with).
+  - Two-case prepositions (selected):
+      dia: + gen (through), + acc (because of).
+      meta: + gen (with), + acc (after).
+      kata: + gen (down from, against), + acc (according to).
+      huper: + gen (on behalf of), + acc (above, beyond).
+  - Three-case prepositions: para, peri, epi, pros, hupo. [verify
+    the exact set Duff introduces here vs. later chapters]
+  - Elision before vowels: ap', di', met', etc.
+
+Drill targets
+  - Memorize preposition + case + meaning sets.
+  - Translate phrases and short sentences featuring prepositional
+    phrases.
+  - Spot-check: given a preposition + noun, which case must the
+    noun be in for this meaning?
+
+Common errors
+  - Choosing the wrong case for the intended meaning of a
+    multi-case preposition.
+  - Forgetting elision.
+  - Treating en as if it took the accusative (English-driven).
+
+================================================================
+CH 05 - ADJECTIVES
+================================================================
+Focus
+  First- and second-declension adjectives; adjective-noun
+  agreement; attributive, predicate, and substantival positions.
+
+Key items
+  - 2-1-2 adjectives: m and n on the 2nd declension, f on the 1st.
+    Example: kalos, kalh, kalon.
+  - Two-termination adjectives [verify whether introduced this
+    chapter].
+  - Agreement in case, number, and gender.
+  - Attributive position: ho kalos logos / ho logos ho kalos
+    ("the good word").
+  - Predicate position: kalos ho logos / ho logos kalos
+    ("the word is good"; supply esti).
+  - Substantival adjective: ho kalos ("the good man"); to kalon
+    ("the good thing"). Article + adjective, no noun.
+
+Drill targets
+  - Decline an adjective fully across all three genders.
+  - Distinguish attributive from predicate position by article
+    placement.
+  - Translate sentences using each of the three positions.
+
+Common errors
+  - Mismatching gender between adjective and noun.
+  - Translating predicate position as if attributive ("the good
+    word" instead of "the word is good").
+  - Forgetting that linking esti is often unwritten.
+
+================================================================
+CH 06 - THE TENSES
+================================================================
+Focus
+  Survey of the Greek tense system beyond the present:
+  imperfect, future, aorist (1st and possibly 2nd) indicative
+  active; explicit introduction of verbal aspect.
+
+Key items
+  - Imperfect active: augment + stem + secondary endings.
+    eluon, elues, elue(n), eluomen, eluete, eluon.
+  - Future active: stem + s + present-style endings.
+    lusw, luseis, lusei, lusomen, lusete, lusousi(n).
+  - First (sigmatic / weak) aorist active: augment + stem + sa +
+    secondary endings. elusa, elusas, eluse(n), elusamen,
+    elusate, elusan.
+  - Second (strong) aorist active [verify whether in this
+    chapter or in ch 11 / ch 19]: augment + altered stem +
+    secondary endings. elabon, elabes, etc.
+  - Aspect:
+      Aorist = perfective (action viewed as a whole).
+      Imperfect = imperfective in past (ongoing or repeated
+        action).
+      Present = imperfective in non-past.
+      Future = aspectually neutral / underdetermined.
+  - Augment moves to the front of the verb stem in compound
+    verbs: apoluw -> apeluon.
+
+Drill targets
+  - Produce imperfect, future, and 1st aorist of a regular -w
+    verb given its lexical form.
+  - Parse forms with an explicit aspect statement, not just
+    "past."
+  - Translate sentences mixing tenses and have the student
+    explain the aspect choice.
+
+Common errors
+  - Treating the aorist as simply "past" rather than as
+    perfective aspect.
+  - Forgetting the augment, especially in compound verbs.
+  - Confusing 1st and 2nd aorist endings.
+
+================================================================
+CH 07 - MOODS
+================================================================
+Focus
+  Introduction to non-indicative moods and / or non-finite forms.
+  [verify exact scope: Duff's front matter notes that the basic
+  use of participles is introduced earlier than in many books;
+  this may be the chapter, or that intro may sit elsewhere.]
+
+Key items (likely)
+  - The concept of mood: indicative (factual), subjunctive
+    (potential / hypothetical), imperative (command), optative
+    (rare in NT).
+  - First exposure to non-finite forms: infinitive and / or
+    participle, possibly at recognition level only.
+  - The role of mood in subordinate clauses.
+
+Drill targets
+  - Recognize a non-indicative form when it appears.
+  - State the basic semantic difference between indicative and
+    each of the other moods.
+
+Common errors
+  - Translating a subjunctive flatly as an indicative.
+  - Missing the modal force of an imperative.
+
+[verify: confirm with the textbook the exact contents of this
+chapter. The above is the most pedagogically likely arrangement
+given the Cambridge TOC. Do NOT drill detailed subjunctive or
+participle morphology from this chapter alone - the dedicated
+chapters are 17 and 14.]
+
+================================================================
+CH 08 - OTHER PATTERNS OF NOUNS AND VERBS
+================================================================
+Focus
+  First-declension feminine and masculine nouns; contract verbs;
+  eimi. [verify exact mix - some of these may sit in earlier
+  chapters.]
+
+Key items
+  - First declension feminine: hmera (alpha-pure), doxa
+    (alpha-impure), grafh (eta-stem).
+  - First-declension masculine: profhths, neanias.
+  - Contract verbs (-ew, -aw, -ow):
+      -ew: e + e -> ei; e + o -> ou; e + w -> w.
+      -aw: a + e -> a; a + o -> w.
+      -ow: o + e -> ou; o + o -> ou.
+  - eimi present indicative: eimi, ei, esti(n), esmen, este,
+    eisi(n).
+  - eimi imperfect: hmhn, hs, hn, hmen, hte, hsan.
+  - eimi is enclitic in many forms; its imperfect is irregular
+    (no augment in the standard sense).
+
+Drill targets
+  - Decline 1st-declension nouns in all three sub-types.
+  - Conjugate poiew, agapaw, plhrow in present indicative active.
+  - Recognize and produce eimi across persons, present and
+    imperfect.
+
+Common errors
+  - Producing contract verbs in their uncontracted form.
+  - Confusing eimi (be) with eimi/eisi forms in context.
+  - Treating esti as the verb in a sentence where it must be
+    supplied silently.
+
+================================================================
+CH 09 - PRONOUNS AND CONJUNCTIONS
+================================================================
+Focus
+  Personal, demonstrative, and relative pronouns; the high-
+  frequency conjunctions and particles.
+
+Key items
+  - Personal pronouns: egw / hmeis; su / humeis; autos / auth /
+    auto used as the 3rd-person pronoun in oblique cases.
+  - autos has three syntactic uses:
+      1) Oblique cases: 3rd-person pronoun ("him, her, it,
+         them").
+      2) Predicate position with article (ho autos logos):
+         "the same word."
+      3) Attributive / intensive: "the word itself" / "(he)
+         himself."
+  - Demonstratives: houtos / hauth / touto ("this");
+    ekeinos / ekeinh / ekeino ("that").
+  - Relative pronoun hos, h, ho. Distinguish from the article
+    (ho, h, to) and from hoti.
+  - Conjunctions and particles:
+      kai (and).
+      de (but / and; postpositive).
+      gar (for; postpositive).
+      oun (therefore; postpositive).
+      alla (but).
+      h (or).
+      hoti (recitative; content "that"; causal "because").
+      hina (in order that).
+      ean (if, with subj).
+      ei (if, with ind).
+      hws (as, when, that).
+
+Drill targets
+  - Decline autos fully and use it in all three syntactic roles.
+  - Distinguish article, relative pronoun, and hoti by accent /
+    breathing / context.
+  - Identify which conjunctions are postpositive and place them
+    correctly in production.
+
+Common errors
+  - Treating autos in attributive position as if it were the
+    oblique-case pronoun.
+  - Confusing houtos with autos.
+  - Forgetting that de, gar, oun cannot stand first in their
+    clause.
+  - Confusing relative hos with article ho.
+
+================================================================
+CH 10 - COMPLEX SENTENCES
+================================================================
+Focus
+  Subordinate clauses; conditional sentences (introduction);
+  purpose with hina + subjunctive; indirect statement with
+  hoti; result and reason. [verify exact mix]
+
+Key items
+  - Purpose: hina + subjunctive ("in order that ...").
+  - Indirect statement: hoti + indicative ("[he said] that ...").
+  - Conditional sentences (introduction):
+      Real / present-real (1st class): ei + ind, ... ind.
+      Future-more-vivid (3rd class): ean + subj, ... future ind.
+      [Other types likely deferred to ch 20.]
+  - Result clauses: hwste + indicative or infinitive [verify].
+  - Causal: hoti / dioti / epei + indicative.
+
+Drill targets
+  - Identify a subordinate clause's type from its conjunction
+    and verb mood.
+  - Produce a Greek purpose clause from an English target.
+  - Translate short conditional sentences and label the type.
+
+Common errors
+  - Putting an indicative in a hina purpose clause.
+  - Confusing the three uses of hoti (recitative, content,
+    causal).
+  - Forgetting that hina clauses use the subjunctive.
+
+================================================================
+CH 11 - SPECIAL VERBS
+================================================================
+Focus
+  High-frequency irregular verbs and their principal parts.
+  [verify whether mi-verbs are introduced here or in ch 19.]
+
+Key items
+  - The concept of principal parts (six forms generating every
+    finite form a verb can take):
+      1. Present (1sg act ind).
+      2. Future (1sg act ind).
+      3. Aorist active (1sg act ind).
+      4. Perfect active (1sg act ind).
+      5. Perfect middle / passive (1sg).
+      6. Aorist passive (1sg).
+  - Highly irregular high-frequency verbs:
+      legw -> erw -> eipon -> eirhka -> eirhmai -> errethhn.
+      erchomai -> eleusomai -> hlthon -> elhlutha -> -- -> --.
+      horaw -> opsomai -> eidon -> hewraka -> hewramai ->
+        wfthhn.
+      ginwskw -> gnwsomai -> egnwn -> egnwka -> egnwsmai ->
+        egnwsthhn.
+      ferw -> oisw -> hnegka -> enhnocha -> enhnegmai ->
+        hnechthhn.
+      esthiw -> fagomai -> efagon -> -- -> -- -> --.
+  - Suppletion: many of these "irregularities" are different
+    roots fused into one paradigm.
+
+Drill targets
+  - Recite the six principal parts of each high-frequency
+    irregular verb in scope.
+  - Identify the principal part a given finite form derives
+    from.
+  - Translate sentences featuring these verbs in non-present
+    tenses.
+
+Common errors
+  - Trying to derive an aorist by adding sa to an irregular
+    root.
+  - Missing that eipon is a 2nd aorist, not a present.
+  - Treating hlthon as some kind of imperfect.
+
+================================================================
+CH 12 - THIRD DECLENSION, PART 1
+================================================================
+Focus
+  Third-declension nouns; consonant-stem patterns; case endings
+  attaching to a stem ending in a stop.
+
+Key items
+  - Third-declension endings (canonical):
+      Sg: -s / -- (nom), -a / -n (acc), -os (gen), -i (dat),
+          (-) voc.
+      Pl: -es (nom), -as (acc), -wn (gen), -si(n) (dat).
+  - Consonant changes when stops meet -s or -si:
+      k, g, ch + s -> x  (e.g. fulax / fulakos).
+      p, b, f + s -> ps.
+      t, d, th + s -> s  (the dental drops).
+  - Common stop-stem nouns: ho fulax, fulakos; h elpis,
+    elpidos; h nux, nuktos; to fws, fwtos.
+  - The dative plural is the most diagnostic form for stop type.
+
+Drill targets
+  - Given a nom sg and gen sg, decline the noun fully.
+  - Predict the dative plural from the stem ending.
+  - Recognize a 3rd-declension form by its endings without
+    knowing the stem.
+
+Common errors
+  - Reading 3rd-declension forms as if they were 2nd-decl
+    masculines because of -os endings (which are gen sg here,
+    not nom sg).
+  - Failing to apply consonant changes in the dative plural.
+  - Mistaking a 3rd-decl acc sg in -a for a feminine
+    nominative.
+
+================================================================
+CH 13 - THIRD DECLENSION, PART 2
+================================================================
+Focus
+  Further 3rd-decl stem types: nasal stems, sigma stems, vowel
+  stems; neuters in -ma(t-); irregular family-relation nouns.
+
+Key items
+  - Nasal stems: ho aiwn, aiwnos; ho poimhn, poimenos; ho
+    hgemwn, hgemonos.
+  - -nt stems: ho archwn, archontos (also relevant for the
+    participle).
+  - Sigma stems (neuters in -os): to genos, genous (genesos ->
+    genous); to ethnos, ethnous.
+  - Vowel stems: h polis, polews; ho basileus, basilews.
+  - Neuters in -ma(t-): to onoma, onomatos; to pneuma,
+    pneumatos; to thelhma, thelhmatos.
+  - Irregulars: ho anhr, andros; h gunh, gunaikos; ho pathr,
+    patros; h mhthr, mhtros; h thugathr, thugatros.
+
+Drill targets
+  - Decline at least one example of each stem type fully.
+  - Recognize -ma as a strong cue for neuter 3rd-decl.
+  - Drill the family-relation irregulars as a memorization set.
+
+Common errors
+  - Reading polis as if it followed elpis (different pattern).
+  - Misaccenting pneumata.
+  - Producing the gen sg of polis as polisos rather than polews.
+
+================================================================
+CH 14 - PARTICIPLES
+================================================================
+Focus
+  Full treatment of the participle: formation across tense and
+  voice; declension; uses (attributive, substantival, adverbial,
+  genitive absolute, periphrastic).
+
+Key items
+  - Formation:
+      Present active: stem + wn / ousa / on (3rd-decl m & n,
+        1st-decl f). luwn, luousa, luon.
+      Present mid / pass: stem + omenos, h, on (2-1-2).
+      1st aorist active: stem + sas, sasa, san.
+      2nd aorist active: stem (altered) + wn, ousa, on.
+      Aorist middle: samenos, h, on.
+      Aorist passive: -theis, -theisa, -then.
+      Perfect active: -ws, -uia, -os.
+      Perfect mid / pass: -menos, h, on (with reduplication).
+  - Aspectual force:
+      Present participle - imperfective; contemporaneous with
+        main verb.
+      Aorist participle - perfective; often (not always) prior
+        to main verb.
+      Perfect participle - state resulting from a prior action.
+  - Uses:
+      Attributive (with article): "the man who is teaching" /
+        "the teaching man."
+      Substantival (with article, no noun): "the one teaching."
+      Adverbial (no article): time, cause, manner, means,
+        condition, concession.
+      Genitive absolute: a participial clause with a noun /
+        pronoun in the genitive that is not the subject of the
+        main verb.
+      Periphrastic: eimi + participle as an extended verbal
+        form.
+
+Drill targets
+  - Decline a present active participle fully across all
+    genders.
+  - Identify the use of each participle in a given sentence
+    (attributive / substantival / adverbial / gen abs).
+  - Translate the same Greek sentence rendering an adverbial
+    participle in two acceptable English ways.
+
+Common errors
+  - Reading every adverbial participle as "while X-ing"
+    without considering cause, condition, etc.
+  - Missing genitive absolutes because the genitive noun seems
+    unrelated to the main verb.
+  - Confusing aorist participles with finite aorists.
+  - Translating present participles as past when the main verb
+    is past.
+
+================================================================
+CH 15 - THE PASSIVE AND VOICES
+================================================================
+Focus
+  Voice in Greek: active, middle, passive. Formation of passive
+  forms across tenses (esp. aorist passive in -th-). Deponents.
+
+Key items
+  - Active: subject acts.
+  - Middle: subject acts on / for / with reference to itself.
+  - Passive: subject is acted upon.
+  - Forms:
+      Present mid / pass: luomai, luh, luetai, luometha,
+        luesthe, luontai. (Same form for middle and passive in
+        present and imperfect.)
+      Imperfect mid / pass: eluomhn, eluou, elueto, eluometha,
+        eluesthe, eluonto.
+      Future passive: -thsomai endings (luthhsomai, etc.).
+      Aorist passive: -th- + secondary active endings (eluthhn,
+        eluthhs, eluthh, eluthhmen, eluthhte, eluthhsan).
+  - Agent in a passive construction:
+      Personal: hupo + genitive ("by [a person]").
+      Impersonal: dative of means ("by [a thing]").
+  - Deponent verbs: middle / passive in form, active in meaning
+    (e.g. erchomai, ginomai, dechomai, apokrinomai).
+
+Drill targets
+  - Conjugate luw fully in the passive across present,
+    imperfect, aorist, future.
+  - Recognize -th- as the diagnostic aorist-passive marker.
+  - Translate passive sentences with both hupo + gen and
+    dative of means.
+
+Common errors
+  - Reading aorist passive forms (eluthh) as if they were
+    active because they take active-style endings.
+  - Translating deponents as passives.
+  - Missing the middle force in genuine middles (rare in NT but
+    not nonexistent).
+
+================================================================
+CH 16 - THE PERFECT
+================================================================
+Focus
+  Perfect and pluperfect indicative, active and middle / passive.
+  Reduplication and its patterns.
+
+Key items
+  - Perfect active formation:
+      Reduplication + stem + ka + primary endings.
+      leluka, lelukas, leluke(n), lelukamen, lelukate,
+        lelukasi(n).
+  - Perfect mid / pass formation:
+      Reduplication + stem (no -k-) + primary mid/pass endings.
+      lelumai, lelusai, lelutai, lelumetha, lelusthe, leluntai.
+  - Pluperfect active: augment + reduplication + stem + kei +
+    secondary endings. (Less common in NT.)
+  - Reduplication patterns:
+      Consonant-initial stem: double the consonant + e
+        (luw -> leluka).
+      Vowel-initial stem: lengthen the vowel
+        (akouw -> akhkoa - irregular).
+      Aspirated-stop reduplication: deaspirated initial
+        (filew -> pefilhka; thuw -> tethuka).
+  - Aspect: the perfect denotes a state resulting from a
+    completed action. Not simply a past tense.
+
+Drill targets
+  - Form the perfect of any regular -w verb given its stem.
+  - Recognize reduplication as the diagnostic marker of perfect.
+  - Translate perfects with English that captures the
+    resultant-state nuance, not merely "have done."
+
+Common errors
+  - Mistaking reduplication for an augment.
+  - Translating the perfect as a simple past.
+  - Forgetting the absence of -k- in the perfect mid / pass.
+
+================================================================
+CH 17 - THE SUBJUNCTIVE
+================================================================
+Focus
+  Full treatment of the subjunctive mood: formation and uses.
+
+Key items
+  - Formation: long thematic vowel (h / w) replaces the short
+    one of the indicative; primary endings remain.
+      Present active subj: luw, luhs, luh, luwmen, luhte,
+        luwsi(n).
+      Aorist active subj: lusw, lushs, lush, luswmen, lushte,
+        luswsi(n). (No augment in subjunctive.)
+      Aorist passive subj: luthw, luthhs, luthh, luthwmen,
+        luthhte, luthwsi(n).
+  - Aspect, not time: present subj = imperfective; aorist subj
+    = perfective. Both are non-past in subjunctive.
+  - Uses:
+      Hortatory ("let us X"): present or aorist subj, 1pl.
+      Deliberative question ("am I to X?"): subj, 1sg or 1pl.
+      Prohibition: mh + aorist subj (2nd person), or mh + present
+        imperative.
+      Purpose: hina / hopws + subj.
+      Indefinite / general clauses: hotan, hews an, hostis an,
+        etc., + subj.
+      Future-more-vivid conditional: ean + subj, ... future ind.
+      Strong denial: ou mh + aorist subj.
+
+Drill targets
+  - Conjugate the present and aorist subjunctive of a regular
+    verb.
+  - Identify the use of a subjunctive in a given sentence by
+    the subordinator.
+  - Translate hina and hotan clauses with full attention to the
+    subjunctive's modal force.
+
+Common errors
+  - Forgetting that the subjunctive has no augment.
+  - Confusing 2sg pres ind active (lueis) with 2sg pres subj
+    active (luhs) - different vowel and accent.
+  - Translating hina + subj as English purpose without
+    preserving modal nuance.
+
+================================================================
+CH 18 - USING VERBS
+================================================================
+Focus
+  Synthesis of the verbal system; the infinitive; the
+  imperative; further work on aspect; complex verbal
+  constructions. [verify exact mix]
+
+Key items
+  - Infinitive forms:
+      Present active: -ein (luein).
+      Aorist active: -sai (lusai).
+      Aorist passive: -thnai (luthhnai).
+      Perfect active: -kenai (lelukenai).
+      Mid / pass: -esthai, -sasthai, -sthai.
+  - Uses of the infinitive:
+      Complementary (with a finite verb): thelw luein.
+      Articular (preceded by tou, en tw, eis to, etc.) for
+        purpose, time, etc.
+      Indirect statement (after verbs of saying / believing /
+        commanding): subject of the inf in the accusative.
+  - Imperative:
+      Present active 2sg / 2pl: lue, luete.
+      Aorist active 2sg / 2pl: luson, lusate.
+      3rd-person imperative endings: -tw, -twsan / -ntwn.
+      Negative imperative (prohibition):
+        mh + present imperative ("stop doing X" / "don't be
+          doing X").
+        mh + aorist subjunctive ("don't start doing X").
+  - Aspect with non-finite forms: present = imperfective,
+    aorist = perfective; aspect dominates time outside the
+    indicative.
+
+Drill targets
+  - Form all four infinitive types of a regular verb.
+  - Distinguish complementary vs. articular vs. indirect-
+    statement uses.
+  - Form imperatives across both aspects and recognize the
+    semantic difference.
+
+Common errors
+  - Translating an aorist infinitive as past.
+  - Treating an articular infinitive as if it were a noun-only
+    construction without noting verbal force.
+  - Forgetting that the subject of an indirect-statement
+    infinitive is accusative.
+
+================================================================
+CH 19 - EXTRA VERBS
+================================================================
+Focus
+  mi-verbs and other paradigmatically "extra" verbs (liquid
+  futures, athematic forms, irregular aorists). [verify scope]
+
+Key items
+  - The four most common mi-verbs:
+      didwmi ("I give") - didwmi, didws, didwsi(n), didomen,
+        didote, didoasi(n). Aorist: edwka.
+      tithhmi ("I place / put") - tithhmi, tithhs, tithhsi(n),
+        tithemen, tithete, titheasi(n). Aorist: ethhka.
+      histhmi ("I make stand / [intransitive] stand") -
+        histhmi, hisths, histhsi(n), ... Aorist (transitive)
+        esthsa; (intransitive) esthn. Note the dual aorist
+        system.
+      afihmi ("I let go / forgive") - compound of hihmi.
+  - Athematic endings: mi-verbs add endings directly to a stem
+    that ends in a vowel (no thematic o / e).
+  - Liquid futures: stems ending in l, m, n, r form the future
+    with -ew contraction rather than -sw. menw -> menw (with
+    circumflex on the final syllable, distinct from present).
+  - Liquid aorists: stems in l, m, n, r form the aorist with
+    lengthening of the stem vowel rather than sa. apostellw ->
+    apesteila.
+
+Drill targets
+  - Recite the present indicative active of the four common
+    mi-verbs.
+  - Recite the principal parts of didwmi and tithhmi.
+  - Recognize and parse mi-verb forms in NT-style sentences.
+  - Distinguish transitive esthsa from intransitive esthn.
+
+Common errors
+  - Trying to read mi-verb forms with thematic-vowel
+    expectations.
+  - Reading 3pl in -asi(n) (didoasin) as a 3pl -w form.
+  - Confusing the two aorists of histhmi.
+  - Producing liquid futures sigmatically (*menso instead of
+    menw).
+
+================================================================
+CH 20 - FINAL PIECES
+================================================================
+Focus
+  Wrap-up topics: numerals, more pronouns, the full conditional
+  system, indirect speech, idioms, reading skills. [verify
+  exact contents.]
+
+Key items (likely)
+  - Numerals: cardinal one through twelve; the irregular
+    declension of heis, mia, hen and of treis / tessares;
+    ordinals prwtos, deuteros, etc.
+  - Indefinite vs. interrogative: tis / ti (indef, enclitic) vs.
+    tis / ti (interrog, accented).
+  - Reflexive pronouns: emautou, seautou, heautou.
+  - Conditional sentences - full system:
+      1st class (real / present-real): ei + ind, ind.
+      2nd class (contrary-to-fact): augmented forms in both
+        clauses, an in apodosis. "If X were the case (it isn't),
+        Y would be."
+      3rd class (future-more-vivid): ean + subj, future ind.
+      4th class (future-less-vivid; rare in NT): ei + opt,
+        opt + an.
+  - Indirect statement, indirect command, indirect question -
+    synthesis.
+  - Reading idioms and common particles in narrative.
+
+Drill targets
+  - Decline heis / treis / tessares fully.
+  - Distinguish all four classes of conditional in NT context.
+  - Translate continuous narrative passages of NT-style Greek.
+
+Common errors
+  - Confusing tis (indef) with tis (interrog) on the page.
+  - Mislabeling 3rd-class conditionals as 1st-class because of
+    surface similarity.
+  - Translating contrary-to-fact conditionals as future hopes.
+
+================================================================
+END OF FILE
+================================================================
