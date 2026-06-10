@@ -162,9 +162,26 @@ KEEP modules + the HTML shell):**
       answers (lists, GFM tables, Scripture blockquotes) + reference chips,
       styled in `css/pca.css`. (Landed with Phase 2.) Revisit nested lists
       (a./i. sub-points) when authoring Sacraments/Theology in Phase 5.
-- [ ] **Phase 5 — Author remaining subjects:** Sacraments, Theology (A–J),
-      Bible Content, Church History & PCA History, Hot Topics. One data file
-      per subject; run `dev/validate.mjs`.
+- [~] **Phase 5 — Author remaining subjects.** Each subject = a saved,
+      reproducible generator in `dev/build_<subject>.py` → `js/data/subjects/
+      <id>.js`, wired via a `<script defer>` in `index.html` + added to the
+      `sw.js` precache, validated with `node dev/validate.mjs`.
+      - [x] Sacraments — `dev/build_sacraments.py`, 27 cards, 3 sub-decks
+            (General / Baptism / Lord's Supper). Handles unnumbered wrapped
+            Q&A via a reflow pass + the comparison table.
+      - [x] Church History & PCA History — `dev/build_church_history.py`, 93
+            cards, 6 sub-decks (Overview/Eras/Solas, Denominations, Events,
+            Terms, People, PCA History). Glossary prompts ("identify the
+            following:") expand to one card per item; section headers stripped.
+      - [x] Theology (A–I) — `dev/build_theology.py`, 153 cards, 9 sub-decks
+            (A. Bible … I. Last Things). Outline parser: numbered questions,
+            lettered/0-padded sub-points, Westminster quotes; J/Sacraments
+            excluded (own subject).
+      - [ ] Bible Content (doc_2 §I, lines ~9–2560) and Hot Topics (doc_2
+            §III, ~8983+) remain; see §3 line markers.
+      Generator notes: reflow joins word-wrapped lines, breaking on `?`,
+      list markers, headers, table rows; SUBJECT emitted via `json.dumps` to
+      avoid JS-quote bugs; trailing standards cites stripped from questions.
 - [ ] **Phase 6 — MCQ quiz mode** for fact-style cards (author `quiz` blocks,
       render auto-graded choices feeding SRS).
 - [~] **Phase 7 — Analytics / PWA / polish.** DONE: service worker (`sw.js`)
@@ -192,6 +209,32 @@ KEEP modules + the HTML shell):**
   Keep `docs/index-structure.md` in sync with `index.html` (see `CLAUDE.md`).
 - **Local serve:** `python3 -m http.server 8137` then open `/`.
 - **Validate content:** `node dev/validate.mjs`.
+
+## 9a. Finishing Phase 5 — Bible Content & Hot Topics (precise notes)
+
+Both live in `source_materials/extracted/bible_content_theology.txt` (read with
+`encoding='utf-8', errors='ignore'` — it has stray non-UTF-8 bytes). Model the
+generators on `dev/build_theology.py` (outline parser) and
+`dev/build_church_history.py` (glossary expansion).
+
+- **Bible Content** (doc_2 §I, lines ~9–2560). Numbered questions `N.` (1–16+,
+  not 0-padded, low indent) — same shape as theology. Sub-section headers like
+  `1 Old Testament: Key People`, `2 …Key Passages`, `3 …Key Events`,
+  `4 New Testament: General`, `5 …Key People`, `6 …Key Passages`,
+  `7 …Key Topics` → use as sub-decks. Two flavors: prose Q&A (Synoptic Problem,
+  gospel features, outline of Christ's life) → one card; and "Discuss/Locate
+  the following: …" list-prompts where each person/passage is an item → expand
+  per-item like the church-history glossary. Watch the Ten Commandments block
+  and the OT/NT book-order lists.
+- **Hot Topics** (doc_2 §III, ~8983+). Intro `A.` paragraph, then topics
+  `1. Creation`, `2. …`. Contains wide multi-column tables (Creation Theories,
+  5 cols, heavily wrapped) — reuse the `normalize_answer` table merge from
+  `build_sacraments.py`, or simplify very wide tables to a bulleted list per
+  row. Note a trailing B./C./D. reference block (created each day, Ten Plagues,
+  Kings of Israel/Judah) — decide whether to include.
+
+After each: add `<script defer>` to `index.html`, add to `sw.js` PRECACHE,
+bump `?v=N` + `CACHE` together, run `node dev/validate.mjs`.
 
 ## 9. Immediate next steps
 
@@ -229,3 +272,9 @@ The lean app is built and runs (Phases 2–4 core landed). Remaining:
   `js/data/subjects/` and a `<script defer>` tag in `index.html`.
 - SRS application: `applyOutcome()` in `pca.js` — `again`→5min,
   `pass`→`getUncertainDelayMs`, `easy`→`getNextEasyIntervalDays`.
+
+## 10. Deferred TODOs (agreed, not yet built)
+
+- **Hide-answer toggle:** after Reveal, offer a way to hide the answer again so
+  the user can flip back and forth (recall test) without advancing. Currently
+  Reveal is one-way until Next. Build in the next UI pass.
