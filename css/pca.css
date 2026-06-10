@@ -26,7 +26,13 @@ html[data-font-family="sans"] {
   box-shadow: var(--shadow);
   padding: 28px 30px;
   position: relative;
+  cursor: pointer;
+  transition: border-color .15s ease;
+  -webkit-tap-highlight-color: transparent;
 }
+.qa-card:hover { border-color: var(--gold-dim); }
+.qa-card.revealed { background: var(--card-back); }
+.qa-tap-hint { text-align: center; opacity: 0.55; margin-top: 16px; }
 .qa-card::before, .qa-card::after {
   content: ''; position: absolute; width: 26px; height: 26px;
   border-color: var(--gold-dim); border-style: solid; opacity: 0.4;
@@ -99,5 +105,13 @@ html[data-font-family="sans"] {
 .qa-deck-meta { text-align: center; color: var(--muted); font-size: 13px; margin-bottom: 14px; }
 .qa-deck-meta strong { color: var(--gold-light); }
 
-/* Reveal button row — sits below the card with matching rhythm. */
-.reveal-row { display: flex; justify-content: center; margin: 0 0 22px; }
+/* Modals can grow taller than the viewport (the subject selector has two
+   grids); cap their height and let them scroll instead of blocking the page. */
+.consent-modal {
+  max-height: 88vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+/* The selector's sub-deck grid can be long — keep it scannable. */
+#subdeckGrid { max-height: 38vh; overflow-y: auto; }
