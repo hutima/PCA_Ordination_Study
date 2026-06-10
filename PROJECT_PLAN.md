@@ -190,8 +190,15 @@ KEEP modules + the HTML shell):**
       Generator notes: reflow joins word-wrapped lines, breaking on `?`,
       list markers, headers, table rows; SUBJECT emitted via `json.dumps` to
       avoid JS-quote bugs; trailing standards cites stripped from questions.
-- [ ] **Phase 6 — MCQ quiz mode** for fact-style cards (author `quiz` blocks,
-      render auto-graded choices feeding SRS).
+- [x] **Phase 6 — MCQ quiz mode (COMPLETE).** Review/Quiz toggle wired
+      (`setMode` in `pca.js`). Quiz auto-builds MCQs for "fact-style" cards —
+      short single-line answers with ≥3 short-answer siblings in the same
+      sub-deck — drawing distractors from those siblings (no per-card authoring
+      needed); authored `card.quiz` blocks are also honored. ~79 eligible
+      cards (mostly Bible Content passages + some BCO). Auto-graded: correct →
+      `easy`, wrong → `again`, feeding the same SRS. Keyboard 1–4 picks,
+      space/→ advances. Long-answer subjects show a graceful "no quiz-ready
+      cards" message. `.quiz-choice` styling in `css/pca.css`.
 - [~] **Phase 7 — Analytics / PWA / polish.** DONE: service worker (`sw.js`)
       with offline precache + **auto-update** (new deploy → page promotes the
       waiting worker → reloads once; registration in `pca.js`). UI fixes:
