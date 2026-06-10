@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "Elementary NT Greek Flashcards",
-  "short_name": "Greek Cards",
-  "description": "Offline flashcard app for Elementary New Testament Greek vocabulary.",
+  "name": "PCA Ordination & Licensure Study",
+  "short_name": "PCA Study",
+  "description": "Spaced-repetition review for PCA licensure and ordination exams: Bible Content, Theology, Sacraments, Church History, and the Book of Church Order.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
