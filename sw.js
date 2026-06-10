@@ -5,7 +5,7 @@
 // install a fresh worker, which the page promotes immediately (see the
 // registration block in js/app/pca.js) so users auto-refresh onto the new
 // version without a manual reload.
-const CACHE = 'pca-v2';
+const CACHE = 'pca-v3';
 
 const PRECACHE = [
   './',
@@ -22,6 +22,7 @@ const PRECACHE = [
   'js/domain/srs/confidence.js',
   'js/data/subjects/bco.js',
   'js/data/subjects/sacraments.js',
+  'js/data/subjects/church_history.js',
   'icons/icon-192.png',
   'icons/icon-512.png',
   'icons/apple-touch-icon.png',

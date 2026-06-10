@@ -169,7 +169,12 @@ KEEP modules + the HTML shell):**
       - [x] Sacraments — `dev/build_sacraments.py`, 27 cards, 3 sub-decks
             (General / Baptism / Lord's Supper). Handles unnumbered wrapped
             Q&A via a reflow pass + the comparison table.
-      - [ ] Theology (A–J), Bible Content, Church History & PCA History, Hot Topics.
+      - [x] Church History & PCA History — `dev/build_church_history.py`, 93
+            cards, 6 sub-decks (Overview/Eras/Solas, Denominations, Events,
+            Terms, People, PCA History). Glossary prompts ("identify the
+            following:") expand to one card per item; section headers stripped.
+      - [ ] Theology (A–J), Bible Content, Hot Topics — all in the big doc_2
+            (`bible_content_theology.txt`); see §3 line markers.
       Generator notes: reflow joins word-wrapped lines, breaking on `?`,
       list markers, headers, table rows; SUBJECT emitted via `json.dumps` to
       avoid JS-quote bugs; trailing standards cites stripped from questions.
