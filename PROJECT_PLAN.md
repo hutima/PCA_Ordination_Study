@@ -283,6 +283,6 @@ The lean app is built and runs (Phases 2–4 core landed). Remaining:
 
 ## 10. Deferred TODOs (agreed, not yet built)
 
-- **Hide-answer toggle:** after Reveal, offer a way to hide the answer again so
-  the user can flip back and forth (recall test) without advancing. Currently
-  Reveal is one-way until Next. Build in the next UI pass.
+- ~~Hide-answer toggle~~ — DONE. The card is now tap-to-flip: tapping it (or
+  Space/Enter) toggles the answer on/off so you can test recall back and forth.
+  The separate "Reveal answer" button was removed.

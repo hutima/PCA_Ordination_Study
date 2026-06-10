@@ -146,13 +146,12 @@ function renderCard() {
   const refsHtml = (card.refs && card.refs.length)
     ? `<div class="qa-refs">${card.refs.map(r => `<span class="qa-ref-chip">${escapeText(r)}</span>`).join('')}</div>`
     : '';
+  // The card flips like a tap-to-reveal flashcard: tapping it toggles the
+  // answer on and off so the user can test recall back and forth.
   const answerBlock = state.revealed
-    ? `<div class="qa-divider"></div><div class="qa-answer">${renderMarkdown(card.a)}</div>${refsHtml}`
-    : `<div class="qa-reveal-hint">Recall the answer, then reveal.</div>`;
-
-  const revealRow = state.revealed
-    ? ''
-    : `<div class="reveal-row"><button class="quick-btn quick-primary" id="revealBtn" type="button">Reveal answer</button></div>`;
+    ? `<div class="qa-divider"></div><div class="qa-answer">${renderMarkdown(card.a)}</div>${refsHtml}
+       <div class="qa-reveal-hint qa-tap-hint">Tap card to hide</div>`
+    : `<div class="qa-reveal-hint qa-tap-hint">Tap card to reveal answer</div>`;
 
   const markRow = state.revealed
     ? `<div class="mark-row" style="display:flex">
@@ -163,12 +162,11 @@ function renderCard() {
     : '';
 
   area.innerHTML = `
-    <div class="qa-card">
+    <div class="qa-card ${state.revealed ? 'revealed' : ''}" id="qaCard" role="button" tabindex="0" aria-pressed="${state.revealed}">
       <div class="qa-deck-label">${escapeText(card._setLabel)}</div>
       <div class="qa-question">${escapeText(card.q)}</div>
       ${answerBlock}
     </div>
-    ${revealRow}
     <div class="nav-row">
       <button class="nav-btn nav-prev" id="prevBtn" type="button">‹ Prev</button>
       <button class="nav-btn" id="nextBtn" type="button">Next ›</button>
@@ -176,8 +174,14 @@ function renderCard() {
     ${markRow}
   `;
 
-  const revealBtn = $('revealBtn');
-  if (revealBtn) revealBtn.addEventListener('click', reveal);
+  const qaCard = $('qaCard');
+  if (qaCard) {
+    qaCard.addEventListener('click', (e) => {
+      // Don't toggle when the user is selecting text inside the answer.
+      if (window.getSelection && String(window.getSelection()).length) return;
+      toggleReveal();
+    });
+  }
   $('prevBtn').addEventListener('click', () => move(-1));
   $('nextBtn').addEventListener('click', () => move(1));
   area.querySelectorAll('.mark-btn').forEach(btn =>
@@ -187,7 +191,7 @@ function renderCard() {
   renderReviewPanel();
 }
 
-function reveal() { state.revealed = true; renderCard(); }
+function toggleReveal() { state.revealed = !state.revealed; renderCard(); }
 function move(delta) {
   const n = state.deck.length;
   if (!n) return;
@@ -414,11 +418,16 @@ function init() {
   $('importFile').addEventListener('change', (e) => { if (e.target.files[0]) importProgress(e.target.files[0]); });
   $('resetProgressBtn').addEventListener('click', resetProgress);
 
-  // Keyboard: space = reveal, 1/2/3 = grade.
+  // Keyboard: space/enter = flip the card, 1/2/3 = grade, ←/→ = prev/next.
   document.addEventListener('keydown', (e) => {
-    if (e.target && /INPUT|TEXTAREA/.test(e.target.tagName)) return;
+    const tag = e.target && e.target.tagName;
+    if (/INPUT|TEXTAREA/.test(tag)) return;
+    if (document.querySelector('.consent-overlay.show')) return; // a modal is open
     if (!state.deck.length) return;
-    if (e.code === 'Space') { e.preventDefault(); state.revealed ? null : reveal(); }
+    if (e.code === 'Space' || e.key === 'Enter') {
+      if (/BUTTON|A/.test(tag)) return; // let a focused control handle it
+      e.preventDefault(); toggleReveal();
+    }
     else if (state.revealed && e.key === '1') mark('again');
     else if (state.revealed && e.key === '2') mark('pass');
     else if (state.revealed && e.key === '3') mark('easy');
