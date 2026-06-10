@@ -162,9 +162,17 @@ KEEP modules + the HTML shell):**
       answers (lists, GFM tables, Scripture blockquotes) + reference chips,
       styled in `css/pca.css`. (Landed with Phase 2.) Revisit nested lists
       (a./i. sub-points) when authoring Sacraments/Theology in Phase 5.
-- [ ] **Phase 5 — Author remaining subjects:** Sacraments, Theology (A–J),
-      Bible Content, Church History & PCA History, Hot Topics. One data file
-      per subject; run `dev/validate.mjs`.
+- [~] **Phase 5 — Author remaining subjects.** Each subject = a saved,
+      reproducible generator in `dev/build_<subject>.py` → `js/data/subjects/
+      <id>.js`, wired via a `<script defer>` in `index.html` + added to the
+      `sw.js` precache, validated with `node dev/validate.mjs`.
+      - [x] Sacraments — `dev/build_sacraments.py`, 27 cards, 3 sub-decks
+            (General / Baptism / Lord's Supper). Handles unnumbered wrapped
+            Q&A via a reflow pass + the comparison table.
+      - [ ] Theology (A–J), Bible Content, Church History & PCA History, Hot Topics.
+      Generator notes: reflow joins word-wrapped lines, breaking on `?`,
+      list markers, headers, table rows; SUBJECT emitted via `json.dumps` to
+      avoid JS-quote bugs; trailing standards cites stripped from questions.
 - [ ] **Phase 6 — MCQ quiz mode** for fact-style cards (author `quiz` blocks,
       render auto-graded choices feeding SRS).
 - [~] **Phase 7 — Analytics / PWA / polish.** DONE: service worker (`sw.js`)
@@ -229,3 +237,9 @@ The lean app is built and runs (Phases 2–4 core landed). Remaining:
   `js/data/subjects/` and a `<script defer>` tag in `index.html`.
 - SRS application: `applyOutcome()` in `pca.js` — `again`→5min,
   `pass`→`getUncertainDelayMs`, `easy`→`getNextEasyIntervalDays`.
+
+## 10. Deferred TODOs (agreed, not yet built)
+
+- **Hide-answer toggle:** after Reveal, offer a way to hide the answer again so
+  the user can flip back and forth (recall test) without advancing. Currently
+  Reveal is one-way until Next. Build in the next UI pass.
