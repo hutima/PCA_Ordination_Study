@@ -162,7 +162,8 @@ KEEP modules + the HTML shell):**
       answers (lists, GFM tables, Scripture blockquotes) + reference chips,
       styled in `css/pca.css`. (Landed with Phase 2.) Revisit nested lists
       (a./i. sub-points) when authoring Sacraments/Theology in Phase 5.
-- [~] **Phase 5 — Author remaining subjects.** Each subject = a saved,
+- [x] **Phase 5 — Author remaining subjects (COMPLETE).** All 6 subjects,
+      537 cards. Each subject = a saved,
       reproducible generator in `dev/build_<subject>.py` → `js/data/subjects/
       <id>.js`, wired via a `<script defer>` in `index.html` + added to the
       `sw.js` precache, validated with `node dev/validate.mjs`.
@@ -177,8 +178,15 @@ KEEP modules + the HTML shell):**
             (A. Bible … I. Last Things). Outline parser: numbered questions,
             lettered/0-padded sub-points, Westminster quotes; J/Sacraments
             excluded (own subject).
-      - [ ] Bible Content (doc_2 §I, lines ~9–2560) and Hot Topics (doc_2
-            §III, ~8983+) remain; see §3 line markers.
+      - [x] Bible Content — `dev/build_bible_content.py`, 175 cards, 8 sub-decks
+            (Whole Bible; OT/NT People, Passages, Events, Topics). List-prompts
+            expand per-item (lettered OR numbered items); prose Q&A kept whole.
+      - [x] Hot Topics — `dev/build_hot_topics.py`, 15 cards (12 topics +
+            B/C/D reference lists); Creation table merged, plague/day lists
+            render. Stops before the Westminster-Assembly appendix.
+
+      **All subjects (537 cards):** Bible Content 175, Theology 153, Church
+      History 93, BCO 74, Sacraments 27, Hot Topics 15.
       Generator notes: reflow joins word-wrapped lines, breaking on `?`,
       list markers, headers, table rows; SUBJECT emitted via `json.dumps` to
       avoid JS-quote bugs; trailing standards cites stripped from questions.
