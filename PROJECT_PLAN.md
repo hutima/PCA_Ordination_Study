@@ -149,14 +149,20 @@ KEEP modules + the HTML shell):**
       `js/utils/markdown.js` (escape-first MD renderer: lists, blockquotes,
       GFM tables, inline emphasis). `dev/validate.mjs` validator. Verified
       end-to-end parse→card→Markdown→real SRS scheduler. (commit: Phase 1)
-- [ ] **Phase 2 — Strip Greek + wire subjects + branding.** Remove Greek
-      modules/data/fonts. Rewrite lean orchestration (main/render) + clean
-      per-card SRS persistence. Repurpose study-selector to subject/sub-deck
-      pickers. Rebrand (name, title, favicon, remove Greek fonts).
-- [ ] **Phase 3 — Self-check review flow end-to-end** on BCO cards with SRS
-      (reveal → grade → schedule → due/review panel).
-- [ ] **Phase 4 — Rich-answer rendering** wired into the card back (tables,
-      Scripture blockquotes, reference chips) + styling.
+- [~] **Phase 2 — Strip Greek + wire subjects + branding.** DONE: lean
+      rewrite landed — new `index.html` (rebranded, drops all Greek controls),
+      `css/pca.css` (reveal-panel card, ref chips, subject grids, system-font
+      override), `js/app/pca.js` (state + localStorage persistence + selector +
+      deck + SRS + review flow). Reuses `domain/srs/*` + `utils/markdown.js`
+      only. Study-selector repurposed to subject/sub-deck tiles. REMAINING:
+      delete the now-dead Greek source files/fonts/pages (separate commit).
+- [x] **Phase 3 — Self-check review flow end-to-end.** Working on BCO: reveal
+      → grade Hard/Uncertain/Easy → SRS schedule → persist → due-first deck +
+      review/progress panel. (Landed with Phase 2.)
+- [x] **Phase 4 — Rich-answer rendering.** Wired: card back renders Markdown
+      answers (lists, GFM tables, Scripture blockquotes) + reference chips,
+      styled in `css/pca.css`. (Landed with Phase 2.) Revisit nested lists
+      (a./i. sub-points) when authoring Sacraments/Theology in Phase 5.
 - [ ] **Phase 5 — Author remaining subjects:** Sacraments, Theology (A–J),
       Bible Content, Church History & PCA History, Hot Topics. One data file
       per subject; run `dev/validate.mjs`.
@@ -179,15 +185,39 @@ KEEP modules + the HTML shell):**
 - **Local serve:** `python3 -m http.server 8137` then open `/`.
 - **Validate content:** `node dev/validate.mjs`.
 
-## 9. Immediate next steps (start of Phase 2)
+## 9. Immediate next steps
 
-1. Delete the STRIP list (Greek data/modules/fonts/reader/reference dumps).
-2. Stand up a clean `runtime` + per-card SRS progress store in
-   `js/state/` (localStorage; progress keyed by card id).
-3. Rewrite `js/app/main.js` lean: load `PCA_DATA`, build a deck from selected
-   subject/sub-decks, render Review cards, wire mark buttons → SRS, persist.
-4. Rewrite the card render to show question → reveal → Markdown answer + refs.
-5. Repurpose the study-selector overlay grids to subject/sub-deck pickers.
-6. Rebrand `index.html` / `manifest.json` (title, name, remove Greek fonts/
-   controls), update favicon/icons.
-7. Keep `BCO` working end-to-end as the smoke test before authoring more.
+The lean app is built and runs (Phases 2–4 core landed). Remaining:
+
+1. **Finish Phase 2 strip:** delete dead Greek files/assets now unused by the
+   app. The running app only needs: `index.html`, `css/pca.css`,
+   `js/app/pca.js`, `js/utils/markdown.js`, `js/utils/helpers.js`,
+   `js/domain/srs/{constants,scheduler,confidence}.js`, `js/data/subjects/*`,
+   `styles.css`, `favicon.svg`, `manifest.json`. Safe to remove: old
+   `js/app/main.js`, all `js/ui/*`, `js/logic/*`, `js/domain/grammar/*`,
+   `js/domain/deck/*`, `js/domain/gamification/*`, `js/state/*`, the Greek
+   `js/data/*` (everything except `subjects/`), `js/utils/greekSort.js`,
+   `fonts/`, `pages/`, root `*.txt` Greek dumps, `docs/index-structure.md`
+   (Greek-specific). Verify `python3 -m http.server` + asset 200s after.
+2. **Phase 5 — author remaining subjects** (the big content task): Sacraments,
+   Theology (A–J), Bible Content, Church History & PCA History, Hot Topics.
+   One `js/data/subjects/<id>.js` per subject following the BCO file as a
+   template; add a `<script defer>` tag for each in `index.html`; run
+   `node dev/validate.mjs`. Source text in `source_materials/extracted/`.
+   Parsers: BCO-style numbered Q&A is easiest; the others are
+   question-paragraph format (see §3 line markers for doc_2 sections).
+3. **Phase 6 — Quiz (MCQ)** mode: author `quiz` blocks on fact-style cards,
+   build an auto-graded MCQ render path in `pca.js` feeding the same SRS, wire
+   the currently-stubbed `#modeQuizBtn`.
+4. **Phase 7 — PWA + polish:** re-register a fresh service worker with a PCA
+   precache list + cache-bust, new icons, offline check; expand the progress
+   overlay (charts/streaks) if desired.
+
+### How the running app is wired (quick orientation)
+- Entry: `js/app/pca.js` (ES module). State in a module-local `state` object;
+  progress persisted to `localStorage['pca_progress_v1']`, selection to
+  `['pca_selection_v1']`. Theme/font/size keys: `pca_theme/pca_font/pca_text_size`.
+- Card model & data contract: see §4. Add subjects by dropping a data file in
+  `js/data/subjects/` and a `<script defer>` tag in `index.html`.
+- SRS application: `applyOutcome()` in `pca.js` — `again`→5min,
+  `pass`→`getUncertainDelayMs`, `easy`→`getNextEasyIntervalDays`.

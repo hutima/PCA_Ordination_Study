@@ -1,52 +1,35 @@
 <!DOCTYPE html>
-<!--
-  Structure map: docs/index-structure.md
-  If you add/remove/rename a section, overlay, id, or script group here,
-  update that doc in the same commit. Line numbers in the doc are approximate.
--->
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YH11KQB6QX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-YH11KQB6QX');
-</script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PCA Ordination &amp; Licensure Study</title>
+<meta name="description" content="Spaced-repetition review for PCA licensure and ordination exams — Bible Content, Theology, Sacraments, Church History, and the Book of Church Order.">
 <meta name="theme-color" content="#0e0f14">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Greek Cards">
-<link rel="manifest" href="manifest.json?v=235">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=235">
-<link rel="icon" type="image/svg+xml" href="favicon.svg?v=235">
-<title>Elementary NT Greek — Flashcards</title>
-<link rel="stylesheet" href="styles.css?v=235">
+<link rel="icon" href="favicon.svg">
+<link rel="manifest" href="manifest.json?v=1">
+
+<!-- Pre-paint: set theme/font/size before first paint to avoid a flash. -->
 <script>
-(function(){
+(function () {
   try {
-    var mode = localStorage.getItem("greekFlashcardsThemeMode") || "system";
-    var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-    var resolved = mode === "system" ? (prefersDark ? "dark" : "light") : mode;
-    document.documentElement.setAttribute("data-theme", resolved);
-  } catch (err) {
-    document.documentElement.setAttribute("data-theme", "dark");
-  }
-  try {
-    var fontFamily = localStorage.getItem("greekFlashcardsFontFamily");
-    if (fontFamily === "sans") document.documentElement.setAttribute("data-font-family", "sans");
-    else document.documentElement.setAttribute("data-font-family", "serif");
-    var textSize = localStorage.getItem("greekFlashcardsTextSize");
-    var allowed = { medium: 1, large: 1, "x-large": 1 };
-    document.documentElement.setAttribute("data-text-size", allowed[textSize] ? textSize : "medium");
-  } catch (err) {
-    document.documentElement.setAttribute("data-font-family", "serif");
-    document.documentElement.setAttribute("data-text-size", "medium");
+    var t = localStorage.getItem('pca_theme');
+    if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+    else document.documentElement.setAttribute('data-theme', window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    var f = localStorage.getItem('pca_font');
+    document.documentElement.setAttribute('data-font-family', f === 'sans' ? 'sans' : 'serif');
+    var s = localStorage.getItem('pca_text_size') || 'medium';
+    document.documentElement.setAttribute('data-text-size', s);
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.documentElement.setAttribute('data-font-family', 'serif');
+    document.documentElement.setAttribute('data-text-size', 'medium');
   }
 })();
 </script>
+
+<link rel="stylesheet" href="styles.css?v=1">
+<link rel="stylesheet" href="css/pca.css?v=1">
 </head>
 <body>
 <div class="app">
@@ -55,987 +38,104 @@
     <div class="header-top">
       <div></div>
       <div class="theme-switcher" role="group" aria-label="Color theme">
-        <button class="theme-btn" id="themeSystemBtn" type="button" onclick="setThemeMode('system')">System</button>
-        <button class="theme-btn" id="themeDarkBtn" type="button" onclick="setThemeMode('dark')">Dark</button>
-        <button class="theme-btn" id="themeLightBtn" type="button" onclick="setThemeMode('light')">Light</button>
+        <button class="theme-btn" id="themeSystemBtn" type="button" data-theme-mode="system">System</button>
+        <button class="theme-btn" id="themeDarkBtn" type="button" data-theme-mode="dark">Dark</button>
+        <button class="theme-btn" id="themeLightBtn" type="button" data-theme-mode="light">Light</button>
       </div>
     </div>
-    <div class="koine">ἡ κοινὴ διάλεκτος</div>
-    <h1>Elementary New Testament Greek</h1>
-    <div class="subtitle" id="appSubtitle">Vocabulary Flashcards</div>
-    <div class="wycliffe">Koine Greek Study Tool</div>
+    <h1>PCA Ordination &amp; Licensure Study</h1>
+    <div class="subtitle" id="appSubtitle">Spaced-Repetition Exam Review</div>
+    <div class="wycliffe">Bible Content · Theology · Sacraments · Church History · BCO</div>
   </header>
 
   <div class="notice-row">
-    <button class="ctrl-btn notice-btn" type="button" onclick="showDisclaimerModal()">Study aid notice</button>
-    <div class="app-notice" id="appNotice">Unofficial student-made AI study aid. Verify against course content and official materials.</div>
+    <div class="app-notice" id="appNotice">Unofficial student-made study aid. Verify against the Westminster Standards, the BCO, and your presbytery's requirements.</div>
   </div>
 
   <div class="quick-start">
-    <button class="quick-btn" type="button" onclick="openStudySelector()">Choose session</button>
-    <button class="quick-btn quick-primary" type="button" onclick="startStudying()">Start studying</button>
-    <div class="mode-group app-profile-group" role="group" aria-label="Study mode shortcut">
-      <button class="mode-btn active" id="modeShortcutVocabBtn" type="button" onclick="setStudyMode('vocab')">Vocab</button>
-      <button class="mode-btn" id="modeShortcutMorphBtn" type="button" onclick="setStudyMode('morph')">Grammar</button>
-      <button class="mode-btn" id="modeShortcutParsingBtn" type="button" onclick="setStudyMode('parsing')">Parsing</button>
-      <button class="mode-btn" id="modeShortcutReaderBtn" type="button" onclick="openReaderTab()">Reader</button>
+    <button class="quick-btn" type="button" id="chooseSubjectBtn">Choose subjects</button>
+    <button class="quick-btn quick-primary" type="button" id="startStudyingBtn">Start studying</button>
+    <div class="mode-group" role="group" aria-label="Study mode">
+      <button class="mode-btn active" id="modeReviewBtn" type="button" data-mode="review">Review</button>
+      <button class="mode-btn" id="modeQuizBtn" type="button" data-mode="quiz" title="Multiple-choice mode (fact cards) — coming soon">Quiz</button>
     </div>
-    <button class="quick-btn" type="button" onclick="openAnalyticsOverlay()">Progress</button>
-    <button class="quick-btn" type="button" onclick="openShortcutsModal()">User guide</button>
-    <a class="quick-btn" id="modeShortcutMemorizationBtn" href="pages/memorization.html">Paradigms</a>
+    <button class="quick-btn" type="button" id="progressBtn">Progress</button>
   </div>
 
   <details class="utility-section">
-    <summary>Progress tools</summary>
-    <button class="ctrl-btn" type="button" onclick="exportProgressJson()">Export progress</button>
-    <button class="ctrl-btn" type="button" onclick="triggerImportProgress()">Import progress</button>
-  </details>
-
-  <div class="ornament">✦ · · · ✦</div>
-
-  <details class="utility-section" id="advancedSettingsDetails">
-    <summary>Advanced review settings</summary>
+    <summary>Progress &amp; display</summary>
     <div class="display-prefs" role="group" aria-label="Display preferences">
       <div class="display-prefs-row">
         <span class="display-prefs-label">Font</span>
         <div class="theme-switcher" role="group" aria-label="Font family">
-          <button class="theme-btn" id="fontSerifBtn" type="button" onclick="setFontFamily('serif')">Serif</button>
-          <button class="theme-btn" id="fontSansBtn" type="button" onclick="setFontFamily('sans')">Sans</button>
+          <button class="theme-btn" id="fontSerifBtn" type="button" data-font="serif">Serif</button>
+          <button class="theme-btn" id="fontSansBtn" type="button" data-font="sans">Sans</button>
         </div>
       </div>
       <div class="display-prefs-row">
         <span class="display-prefs-label">Text size</span>
         <div class="theme-switcher" role="group" aria-label="Text size">
-          <button class="theme-btn" id="textSizeMediumBtn" type="button" onclick="setTextSize('medium')">Medium</button>
-          <button class="theme-btn" id="textSizeLargeBtn" type="button" onclick="setTextSize('large')">Large</button>
-          <button class="theme-btn" id="textSizeXLargeBtn" type="button" onclick="setTextSize('x-large')">X-Large</button>
+          <button class="theme-btn" id="textSizeMediumBtn" type="button" data-size="medium">Medium</button>
+          <button class="theme-btn" id="textSizeLargeBtn" type="button" data-size="large">Large</button>
+          <button class="theme-btn" id="textSizeXLargeBtn" type="button" data-size="x-large">X-Large</button>
         </div>
       </div>
     </div>
-<div class="controls-bar" id="controlsBar">
-<button class="toggle-label" id="shuffleToggle" type="button" role="switch" aria-checked="false" onclick="toggleShuffle()">
-      <span class="toggle-text">Shuffle</span>
-      <span class="toggle-switch" id="shuffleBtn" aria-hidden="true"></span>
-    </button>
-    <button class="toggle-label" id="excludeKnownMorphsToggle" type="button" role="switch" aria-checked="false" onclick="toggleExcludeKnownMorphs()" title="Drop forms whose last two parsing attempts were both fully correct (strict 2/2) from the parsing deck. 1/1 still appears so single wins get verified. Counts respect your dim toggles — disabled dims don't count against a form.">
-      <span class="toggle-text">Exclude known morphs (2/2)</span>
-      <span class="toggle-switch" id="excludeKnownMorphsBtn" aria-hidden="true"></span>
-    </button>
-    <button class="toggle-label" id="parsingReverseToggle" type="button" role="switch" aria-checked="false" onclick="toggleParsingReverse()" title="English → Greek: instead of parsing a Greek form, you're shown the parse you want (the chapter-gated dimensions you have enabled) and pick the matching Greek form from the same focused paradigm.">
-      <span class="toggle-text">English → Greek (pick the form)</span>
-      <span class="toggle-switch" id="parsingReverseBtn" aria-hidden="true"></span>
-    </button>
-    <button class="toggle-label" id="accentLookalikeToggle" type="button" role="switch" aria-checked="false" onclick="toggleAccentLookalikes()" title="In the English → Greek drill, add a curated accent/breathing look-alike as a distractor — e.g. the relative ἥ against the article ἡ, or the demonstrative αὕτη against the intensive αὐτή — so you have to read the accent and breathing, not just the letters.">
-      <span class="toggle-text">Accent/breathing look-alike distractors</span>
-      <span class="toggle-switch" id="accentLookalikeBtn" aria-hidden="true"></span>
-    </button>
-    <button class="toggle-label" id="requiredToggle" type="button" role="switch" aria-checked="false" onclick="toggleRequiredOnly()">
-      <span class="toggle-text">Required only</span>
-      <span class="toggle-switch" id="requiredBtn" aria-hidden="true"></span>
-    </button>
-    <button class="toggle-label" id="hardReviewToggle" type="button" role="switch" aria-checked="false" onclick="toggleHardVocabReview()" title="Drill only vocab you've missed more than 10 times and that's still under 40% confidence">
-      <span class="toggle-text">Hard review</span>
-      <span class="toggle-switch" id="hardReviewBtn" aria-hidden="true"></span>
-    </button>
-    <button class="toggle-label" id="stemNotesToggle" type="button" role="switch" aria-checked="true" onclick="toggleStemNotes()" title="Show stem and declension notes on vocab cards: the bare stem printed after second-aorist / liquid-future verbs and third-declension nouns, the bracketed principal parts under a verb, and the 'declines like' pointer on third-declension nouns.">
-      <span class="toggle-text">Stem &amp; declension notes</span>
-      <span class="toggle-switch on" id="stemNotesBtn" aria-hidden="true"></span>
-    </button>
-    <button class="toggle-label" id="secondAoristCardsToggle" type="button" role="switch" aria-checked="false" onclick="toggleSecondAoristCards()" title="Give each second-aorist form its own flashcard — e.g. εἶπον 'I said' joins the deck as a separate card — whenever its present-stem verb (λέγω) is in the deck. The aorist is woven into the chapter's cards away from the present form, and reviews of it count toward the base verb's stats.">
-      <span class="toggle-text">Second aorists as cards</span>
-      <span class="toggle-switch" id="secondAoristCardsBtn" aria-hidden="true"></span>
-    </button>
-    <button class="toggle-label" id="directionToggle" type="button" role="switch" aria-checked="false" onclick="toggleDirection()">
-      <span class="toggle-text">Eng → Gk</span>
-      <span class="toggle-switch" id="directionBtn" aria-hidden="true"></span>
-    </button>
-    <button class="toggle-label" id="spacedToggle" type="button" role="switch" aria-checked="false" onclick="toggleSpacedRepetition()">
-      <span class="toggle-text">Spaced review</span>
-      <span class="toggle-switch" id="spacedBtn" aria-hidden="true"></span>
-    </button>
-    <button class="toggle-label" id="unspacedDailyResetToggle" type="button" role="switch" aria-checked="false" onclick="toggleUnspacedDailyReset()" title="Auto-clear archived (Easy) cards once a day around 5 AM local time so you wake up to a fresh deck.">
-      <span class="toggle-text">Daily archive reset</span>
-      <span class="toggle-switch" id="unspacedDailyResetBtn" aria-hidden="true"></span>
-    </button>
-    <button class="toggle-label" id="splitSelectionToggle" type="button" role="switch" aria-checked="false" onclick="toggleSplitSelection()" title="Keep separate chapter selections for vocab and grammar modes">
-      <span class="toggle-text">Split vocab/grammar selection</span>
-      <span class="toggle-switch" id="splitSelectionBtn" aria-hidden="true"></span>
-    </button>
-    <button class="toggle-label" id="selfCheckToggle" type="button" role="switch" aria-checked="false" onclick="toggleMorphSelfCheck()" style="display:none">
-      <span class="toggle-text">Self-check</span>
-      <span class="toggle-switch" id="selfCheckBtn" aria-hidden="true"></span>
-    </button>
-    <details class="utility-section parsing-options-section" id="parsingOptionsDetails">
-      <summary>Parsing options</summary>
-      <button class="toggle-label" id="aspectStepToggle" type="button" role="switch" aria-checked="true" onclick="toggleAspectStep()" title="Ask Aspect (continuous/undefined/completed) as a separate parsing step. Aspect is derivable from tense, so turning this off shortens the walk by one step.">
-        <span class="toggle-text">Aspect step (parsing)</span>
-        <span class="toggle-switch" id="aspectStepBtn" aria-hidden="true"></span>
-      </button>
-      <details class="utility-section parsing-options-subfilters parsing-dim-value-subfilters" id="aspectValuesFiltersDetails">
-        <summary>Exclude aspect values…</summary>
-        <button class="toggle-label" id="dimValueFilter_aspect_continuousUndefined_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('aspect','continuousUndefined')" title="Excludes cards whose aspect is continuous, undefined, or the present/future composite continuous/undefined.">
-          <span class="toggle-text">Continuous/undefined (Ch. 6)</span>
-          <span class="toggle-switch" id="dimValueFilter_aspect_continuousUndefined_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="dimValueFilter_aspect_completed_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('aspect','completed')">
-          <span class="toggle-text">Completed (Ch. 16)</span>
-          <span class="toggle-switch" id="dimValueFilter_aspect_completed_Btn" aria-hidden="true"></span>
-        </button>
-      </details>
-      <button class="toggle-label" id="tenseStepToggle" type="button" role="switch" aria-checked="true" onclick="toggleDimStep('tense')" title="Ask Tense as a parsing step. Off: skipped silently, doesn't count toward stats, omitted from the parse summary.">
-        <span class="toggle-text">Tense step (parsing)</span>
-        <span class="toggle-switch" id="tenseStepBtn" aria-hidden="true"></span>
-      </button>
-      <details class="utility-section parsing-options-subfilters parsing-dim-value-subfilters" id="tenseValuesFiltersDetails">
-        <summary>Exclude tense values…</summary>
-        <button class="toggle-label" id="dimValueFilter_tense_present_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('tense','present')">
-          <span class="toggle-text">Present (Ch. 2)</span>
-          <span class="toggle-switch" id="dimValueFilter_tense_present_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="dimValueFilter_tense_future_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('tense','future')">
-          <span class="toggle-text">Future (Ch. 6)</span>
-          <span class="toggle-switch" id="dimValueFilter_tense_future_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="dimValueFilter_tense_imperfect_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('tense','imperfect')">
-          <span class="toggle-text">Imperfect (Ch. 6)</span>
-          <span class="toggle-switch" id="dimValueFilter_tense_imperfect_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="dimValueFilter_tense_aorist_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('tense','aorist')" title="Excludes both first-aorist and second-aorist cards (they normalize to 'aorist').">
-          <span class="toggle-text">Aorist (Ch. 6)</span>
-          <span class="toggle-switch" id="dimValueFilter_tense_aorist_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="dimValueFilter_tense_perfect_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('tense','perfect')">
-          <span class="toggle-text">Perfect (Ch. 16)</span>
-          <span class="toggle-switch" id="dimValueFilter_tense_perfect_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="dimValueFilter_tense_pluperfect_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('tense','pluperfect')">
-          <span class="toggle-text">Pluperfect (Ch. 16)</span>
-          <span class="toggle-switch" id="dimValueFilter_tense_pluperfect_Btn" aria-hidden="true"></span>
-        </button>
-      </details>
-      <button class="toggle-label" id="voiceStepToggle" type="button" role="switch" aria-checked="true" onclick="toggleDimStep('voice')" title="Ask Voice as a parsing step. Off: skipped silently, doesn't count toward stats, omitted from the parse summary. (Also chapter-gated: voice step only appears from ch 15+, or earlier for deponent verbs.)">
-        <span class="toggle-text">Voice step (parsing)</span>
-        <span class="toggle-switch" id="voiceStepBtn" aria-hidden="true"></span>
-      </button>
-      <details class="utility-section parsing-options-subfilters parsing-dim-value-subfilters" id="voiceValuesFiltersDetails">
-        <summary>Exclude voice values…</summary>
-        <button class="toggle-label" id="dimValueFilter_voice_active_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('voice','active')">
-          <span class="toggle-text">Active (Ch. 2)</span>
-          <span class="toggle-switch" id="dimValueFilter_voice_active_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="dimValueFilter_voice_middle_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('voice','middle')" title="Middle/passive composite cards are excluded only when both middle AND passive are excluded.">
-          <span class="toggle-text">Middle (Ch. 15)</span>
-          <span class="toggle-switch" id="dimValueFilter_voice_middle_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="dimValueFilter_voice_passive_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('voice','passive')">
-          <span class="toggle-text">Passive (Ch. 15)</span>
-          <span class="toggle-switch" id="dimValueFilter_voice_passive_Btn" aria-hidden="true"></span>
-        </button>
-      </details>
-      <button class="toggle-label" id="moodStepToggle" type="button" role="switch" aria-checked="true" onclick="toggleDimStep('mood')" title="Ask Mood as a parsing step. Off: skipped silently, doesn't count toward stats, omitted from the parse summary.">
-        <span class="toggle-text">Mood step (parsing)</span>
-        <span class="toggle-switch" id="moodStepBtn" aria-hidden="true"></span>
-      </button>
-      <details class="utility-section parsing-options-subfilters parsing-dim-value-subfilters" id="moodValuesFiltersDetails">
-        <summary>Exclude mood values…</summary>
-        <button class="toggle-label" id="dimValueFilter_mood_indicative_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('mood','indicative')">
-          <span class="toggle-text">Indicative (Ch. 2)</span>
-          <span class="toggle-switch" id="dimValueFilter_mood_indicative_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="dimValueFilter_mood_subjunctive_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('mood','subjunctive')">
-          <span class="toggle-text">Subjunctive (Ch. 17)</span>
-          <span class="toggle-switch" id="dimValueFilter_mood_subjunctive_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="dimValueFilter_mood_imperative_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('mood','imperative')">
-          <span class="toggle-text">Imperative (Ch. 7)</span>
-          <span class="toggle-switch" id="dimValueFilter_mood_imperative_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="dimValueFilter_mood_infinitive_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('mood','infinitive')">
-          <span class="toggle-text">Infinitive (Ch. 7)</span>
-          <span class="toggle-switch" id="dimValueFilter_mood_infinitive_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="dimValueFilter_mood_participle_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('mood','participle')">
-          <span class="toggle-text">Participle (Ch. 7)</span>
-          <span class="toggle-switch" id="dimValueFilter_mood_participle_Btn" aria-hidden="true"></span>
-        </button>
-      </details>
-      <button class="toggle-label" id="personStepToggle" type="button" role="switch" aria-checked="true" onclick="toggleDimStep('person')" title="Ask Person as a parsing step. Off: skipped silently, doesn't count toward stats, omitted from the parse summary.">
-        <span class="toggle-text">Person step (parsing)</span>
-        <span class="toggle-switch" id="personStepBtn" aria-hidden="true"></span>
-      </button>
-      <details class="utility-section parsing-options-subfilters parsing-dim-value-subfilters" id="personValuesFiltersDetails">
-        <summary>Exclude person values…</summary>
-        <button class="toggle-label" id="dimValueFilter_person_first_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('person','first')">
-          <span class="toggle-text">1st person (Ch. 2)</span>
-          <span class="toggle-switch" id="dimValueFilter_person_first_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="dimValueFilter_person_second_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('person','second')">
-          <span class="toggle-text">2nd person (Ch. 2)</span>
-          <span class="toggle-switch" id="dimValueFilter_person_second_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="dimValueFilter_person_third_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('person','third')">
-          <span class="toggle-text">3rd person (Ch. 2)</span>
-          <span class="toggle-switch" id="dimValueFilter_person_third_Btn" aria-hidden="true"></span>
-        </button>
-      </details>
-      <button class="toggle-label" id="numberStepToggle" type="button" role="switch" aria-checked="true" onclick="toggleDimStep('number')" title="Ask Number as a parsing step. Off: skipped silently, doesn't count toward stats, omitted from the parse summary.">
-        <span class="toggle-text">Number step (parsing)</span>
-        <span class="toggle-switch" id="numberStepBtn" aria-hidden="true"></span>
-      </button>
-      <details class="utility-section parsing-options-subfilters parsing-dim-value-subfilters" id="numberValuesFiltersDetails">
-        <summary>Exclude number values…</summary>
-        <button class="toggle-label" id="dimValueFilter_number_singular_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('number','singular')">
-          <span class="toggle-text">Singular (Ch. 2)</span>
-          <span class="toggle-switch" id="dimValueFilter_number_singular_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="dimValueFilter_number_plural_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('number','plural')">
-          <span class="toggle-text">Plural (Ch. 2)</span>
-          <span class="toggle-switch" id="dimValueFilter_number_plural_Btn" aria-hidden="true"></span>
-        </button>
-      </details>
-      <button class="toggle-label" id="caseStepToggle" type="button" role="switch" aria-checked="true" onclick="toggleDimStep('case')" title="Ask Case as a parsing step. Off: skipped silently, doesn't count toward stats, omitted from the parse summary.">
-        <span class="toggle-text">Case step (parsing)</span>
-        <span class="toggle-switch" id="caseStepBtn" aria-hidden="true"></span>
-      </button>
-      <details class="utility-section parsing-options-subfilters parsing-dim-value-subfilters" id="caseValuesFiltersDetails">
-        <summary>Exclude case values…</summary>
-        <button class="toggle-label" id="dimValueFilter_case_nominative_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('case','nominative')" title="Nominative/accusative composite cards are excluded only when both nominative AND accusative are excluded.">
-          <span class="toggle-text">Nominative (Ch. 2)</span>
-          <span class="toggle-switch" id="dimValueFilter_case_nominative_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="dimValueFilter_case_accusative_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('case','accusative')">
-          <span class="toggle-text">Accusative (Ch. 2)</span>
-          <span class="toggle-switch" id="dimValueFilter_case_accusative_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="dimValueFilter_case_genitive_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('case','genitive')">
-          <span class="toggle-text">Genitive (Ch. 3)</span>
-          <span class="toggle-switch" id="dimValueFilter_case_genitive_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="dimValueFilter_case_dative_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('case','dative')">
-          <span class="toggle-text">Dative (Ch. 3)</span>
-          <span class="toggle-switch" id="dimValueFilter_case_dative_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="dimValueFilter_case_vocative_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('case','vocative')">
-          <span class="toggle-text">Vocative (Ch. 3)</span>
-          <span class="toggle-switch" id="dimValueFilter_case_vocative_Btn" aria-hidden="true"></span>
-        </button>
-      </details>
-      <button class="toggle-label" id="genderStepToggle" type="button" role="switch" aria-checked="true" onclick="toggleDimStep('gender')" title="Ask Gender as a parsing step. Off: skipped silently, doesn't count toward stats, omitted from the parse summary. Single-gender lemmas (most nouns) auto-skip this step regardless — gender there is fixed by the lemma, not parsed from the form — but the parse summary still names it.">
-        <span class="toggle-text">Gender step (parsing)</span>
-        <span class="toggle-switch" id="genderStepBtn" aria-hidden="true"></span>
-      </button>
-      <details class="utility-section parsing-options-subfilters parsing-dim-value-subfilters" id="genderValuesFiltersDetails">
-        <summary>Exclude gender values…</summary>
-        <div class="parsing-options-subfilters-note">Single-gender lemmas (most nouns) ignore this filter — only adjectives, pronouns, and the article are excluded by it.</div>
-        <button class="toggle-label" id="dimValueFilter_gender_masculine_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('gender','masculine')" title="Tri-gender composite cards (masculine/feminine/neuter) are excluded only when all three components are excluded.">
-          <span class="toggle-text">Masculine (Ch. 2)</span>
-          <span class="toggle-switch" id="dimValueFilter_gender_masculine_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="dimValueFilter_gender_feminine_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('gender','feminine')">
-          <span class="toggle-text">Feminine (Ch. 3)</span>
-          <span class="toggle-switch" id="dimValueFilter_gender_feminine_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="dimValueFilter_gender_neuter_Toggle" type="button" role="switch" aria-checked="false" onclick="toggleDimValueFilter('gender','neuter')">
-          <span class="toggle-text">Neuter (Ch. 3)</span>
-          <span class="toggle-switch" id="dimValueFilter_gender_neuter_Btn" aria-hidden="true"></span>
-        </button>
-      </details>
-      <button class="toggle-label" id="optionalFormsToggle" type="button" role="switch" aria-checked="false" onclick="toggleOptionalForms()" title="Drill morphologically real paradigm forms Duff doesn't cover (e.g. εἰμί's future infinitive ἔσεσθαι, future participle ἐσόμενος series). Chapter-gated by each form group's introduction chapter. Off: standard Duff-aligned cards only; the wrong-pick form-lookup hint still shows these forms regardless.">
-        <span class="toggle-text">Optional paradigm</span>
-        <span class="toggle-switch" id="optionalFormsBtn" aria-hidden="true"></span>
-      </button>
-      <details class="utility-section parsing-options-subfilters" id="optionalFormsFiltersDetails">
-        <summary>Filter optional forms by category…</summary>
-        <div class="parsing-options-subfilters-note">Only applies when the parent toggle above is on. Off = exclude that category from the optional-form drill pool.</div>
-        <button class="toggle-label" id="optionalFilter_imperative_Toggle" type="button" role="switch" aria-checked="true" onclick="toggleOptionalFormFilter('imperative')" title="Include optional imperative forms (e.g. ἴσθι, λῦσαι, δός, στῆθι series) in the drill pool.">
-          <span class="toggle-text">Include imperatives</span>
-          <span class="toggle-switch" id="optionalFilter_imperative_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="optionalFilter_subjunctive_Toggle" type="button" role="switch" aria-checked="true" onclick="toggleOptionalFormFilter('subjunctive')" title="Include optional subjunctive forms (e.g. λύω/λύσω paradigms, δῶ, θῶ, στῶ) in the drill pool.">
-          <span class="toggle-text">Include subjunctives</span>
-          <span class="toggle-switch" id="optionalFilter_subjunctive_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="optionalFilter_infinitive_Toggle" type="button" role="switch" aria-checked="true" onclick="toggleOptionalFormFilter('infinitive')" title="Include optional infinitive forms (e.g. ἔσεσθαι, δοῦναι, θεῖναι, στῆναι, γενέσθαι) in the drill pool.">
-          <span class="toggle-text">Include infinitives</span>
-          <span class="toggle-switch" id="optionalFilter_infinitive_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="optionalFilter_participle_Toggle" type="button" role="switch" aria-checked="true" onclick="toggleOptionalFormFilter('participle')" title="Include optional participle full declensions (e.g. βαλών, γενόμενος, λελυκώς, ἑστηκώς, the aorist passive participles) in the drill pool.">
-          <span class="toggle-text">Include participles</span>
-          <span class="toggle-switch" id="optionalFilter_participle_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="optionalFilter_thirdPerson_Toggle" type="button" role="switch" aria-checked="true" onclick="toggleOptionalFormFilter('thirdPerson')" title="Include optional 3rd-person forms (e.g. ἔστω, ἔστωσαν, λυέσθω, the 3rd-person imperatives Duff skips) in the drill pool.">
-          <span class="toggle-text">Include 3rd-person forms</span>
-          <span class="toggle-switch" id="optionalFilter_thirdPerson_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="optionalFilter_futureTense_Toggle" type="button" role="switch" aria-checked="true" onclick="toggleOptionalFormFilter('futureTense')" title="Include optional future-tense forms (e.g. ἔσεσθαι, ἐσόμενος, βαλῶ paradigm, γενήσομαι series, future participles) in the drill pool.">
-          <span class="toggle-text">Include future-tense forms</span>
-          <span class="toggle-switch" id="optionalFilter_futureTense_Btn" aria-hidden="true"></span>
-        </button>
-        <button class="toggle-label" id="optionalFilter_perfectTense_Toggle" type="button" role="switch" aria-checked="true" onclick="toggleOptionalFormFilter('perfectTense')" title="Include optional perfect-tense forms (e.g. γέγονα series, βέβληκα series, ἕστηκα, λελυκώς, λελυμένος, δέδομαι) in the drill pool.">
-          <span class="toggle-text">Include perfect-tense forms</span>
-          <span class="toggle-switch" id="optionalFilter_perfectTense_Btn" aria-hidden="true"></span>
-        </button>
-      </details>
-    </details>
-    <div class="reset-actions-grid">
-      <button class="ctrl-btn" type="button" onclick="reshuffleEligible()">Reshuffle</button>
-      <button class="ctrl-btn" id="resetDeckBtn" type="button" onclick="resetCurrentDeck()">Reset deck</button>
-      <button class="ctrl-btn" id="resetRequiredBtn" type="button" onclick="resetRequiredOnly()" title="Reset only the required (graded) cards in this deck">Reset required</button>
-      <button class="ctrl-btn" id="resetKnownBtn" type="button" onclick="resetKnownMorphs()" title="Set every form's parsing tally back to 0/2 — clears the per-form recent attempts so the dots all read as unseen. The per-paradigm rolling % is kept." style="display:none">Reset known</button>
-      <button class="ctrl-btn" id="clearParsingStatsBtn" type="button" onclick="clearParsingStats()" title="Wipe ALL parsing stats — every paradigm's accuracy %, the per-mood/tense breakdown, and per-form tallies. Parsing mode only; vocab/morphology/reader progress are kept. No undo." style="display:none">Clear parsing stats</button>
-      <button class="ctrl-btn" type="button" onclick="openResetStatsModal()">Reset stats</button>
+    <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
+      <button class="ctrl-btn" type="button" id="exportBtn">Export progress</button>
+      <button class="ctrl-btn" type="button" id="importBtn">Import progress</button>
+      <button class="ctrl-btn" type="button" id="resetProgressBtn">Reset progress…</button>
+      <input type="file" id="importFile" accept="application/json" style="display:none">
     </div>
-  </div>
   </details>
 
-  <div id="readerView" class="reader-view" style="display:none"></div>
+  <div class="ornament">✦ · · · ✦</div>
 
-  <div class="paradigm-focus-row paradigm-focus-row-primary" id="parsingChapterRow" style="display:none">
-    <label class="paradigm-focus-label" for="parsingChapterSelect">Current chapter</label>
-    <select id="parsingChapterSelect" class="paradigm-focus-select" onchange="setParsingChapter(this.value)"></select>
-  </div>
-
-  <div class="paradigm-focus-row paradigm-focus-row-primary" id="paradigmFocusRowPrimary" style="display:none">
-    <label class="paradigm-focus-label" for="paradigmFocusSelectPrimary">Focused paradigm</label>
-    <select id="paradigmFocusSelectPrimary" class="paradigm-focus-select" onchange="setMorphFocusedParadigm(this.value)"></select>
-  </div>
-
-  <div class="card-area" id="cardArea">
+  <div class="qa-deck-meta" id="deckMeta"></div>
+  <div id="cardArea">
     <div class="empty-state">
-      <div class="big">αβγ</div>
-      Tap to choose a session and start studying.
+      <p>Choose one or more subjects, then press <strong>Start studying</strong>.</p>
     </div>
   </div>
 
-  <div class="nav-row" id="navRow" style="display:none">
-    <button class="nav-btn nav-prev" onclick="navigate(-1)">← Prev</button>
-    <button class="nav-btn nav-undo" id="spacedUndoBtn" onclick="restoreSpacedUndo()" style="display:none">↶ Undo</button>
-    <button class="nav-btn nav-reset" id="navResetBtn" onclick="resetCurrentDeck()" style="display:none">↻ Reset</button>
-    <button class="nav-btn nav-next" id="navNextBtn" onclick="handleNavNext()">Next →</button>
-  </div>
-
-  <div class="mark-row" id="markRow" style="display:none">
-    <button class="mark-btn mark-again" onclick="markCard('again')">✗ Hard</button>
-    <button class="mark-btn mark-pass"  onclick="markCard('pass')">~ Uncertain</button>
-    <button class="mark-btn mark-easy"  onclick="markCard('easy')">✓ Easy</button>
-  </div>
-
-  <div class="ff-row" id="ffRow" style="display:none">
-    <button class="ctrl-btn" type="button" onclick="fastForwardOneDay()">Fast-forward 1 day</button>
-    <button class="ctrl-btn" type="button" onclick="fastForwardOneWeek()">Fast-forward 1 week</button>
-  </div>
-
-<section class="review-shell">
-    <div class="review-panel show" id="reviewPanel">
-    <div class="review-header">
-      <span class="review-deck-tag" id="reviewDeckTag"></span>
-      <span class="review-title">Progress</span>
+  <section class="review-shell">
+    <div class="review-panel" id="reviewPanel">
+      <div class="review-stats" id="reviewStats"></div>
+      <div class="review-list" id="reviewList"></div>
     </div>
-    <div class="review-stats" id="reviewStats"></div>
-    <div class="review-sort-row" id="reviewSortRow"></div>
-    <div class="review-list" id="reviewList"></div>
-  </div>
   </section>
-
 </div>
 
-<div class="consent-overlay transfer-overlay" id="transferOverlay" aria-hidden="true">
-  <div class="consent-modal transfer-modal" role="dialog" aria-modal="true" aria-labelledby="transferTitle">
-    <div class="consent-label" id="transferLabel">Progress tools</div>
-    <h2 id="transferTitle">Import or export progress</h2>
-    <div class="consent-copy">
-      <p id="transferCopy">Use these tools to move progress between devices.</p>
-    </div>
-    <textarea id="transferTextarea" class="transfer-textarea" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea>
-    <div class="transfer-actions">
-      <button class="ctrl-btn" id="transferSecondaryBtn" type="button" onclick="handleTransferSecondaryAction()" style="display:none">Choose JSON file</button>
-    </div>
-    <div class="consent-actions transfer-footer-actions">
-      <button class="ctrl-btn" type="button" onclick="closeTransferModal()">Close</button>
-      <button class="ctrl-btn consent-primary" id="transferPrimaryBtn" type="button" onclick="handleTransferPrimaryAction()">Continue</button>
+<!-- Subject / sub-deck selector -->
+<div class="consent-overlay" id="studySelectorOverlay" aria-hidden="true">
+  <div class="consent-modal" role="dialog" aria-modal="true" aria-label="Choose subjects">
+    <h2>Choose what to study</h2>
+    <div class="pca-section-label">Subjects</div>
+    <div class="pca-grid" id="subjectGrid"></div>
+    <div class="pca-section-label">Sub-decks</div>
+    <div class="pca-grid" id="subdeckGrid"></div>
+    <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:8px;">
+      <button class="ctrl-btn" type="button" id="selectorClearBtn">Clear</button>
+      <button class="quick-btn quick-primary" type="button" id="selectorDoneBtn">Done</button>
     </div>
   </div>
 </div>
 
-<div class="consent-overlay analytics-overlay" id="analyticsOverlay" aria-hidden="true">
-  <div class="consent-modal analytics-modal" role="dialog" aria-modal="true" aria-labelledby="analyticsTitle">
-    <div class="analytics-header-row">
-      <div>
-        <div class="consent-label">Study analytics</div>
-        <h2 id="analyticsTitle">Progress and study time</h2>
-      </div>
-      <button class="ctrl-btn" type="button" onclick="closeAnalyticsOverlay()">Close</button>
-    </div>
-
-    <div id="analyticsHero"></div>
-
-    <details class="analytics-collapse" data-collapse-key="achievements">
-      <summary class="analytics-collapse-summary">
-        <span class="analytics-collapse-caret" aria-hidden="true">▾</span>
-        <div class="analytics-collapse-title-wrap">
-          <h3>Achievements</h3>
-          <p class="analytics-collapse-summary-status" id="analyticsAchievementsSummaryStatus">Badges earned across the whole course.</p>
-        </div>
-      </summary>
-      <div class="analytics-collapse-body">
-        <div id="analyticsAchievements"></div>
-      </div>
-    </details>
-
-    <details class="analytics-collapse" data-collapse-key="totalVocab">
-      <summary class="analytics-collapse-summary">
-        <span class="analytics-collapse-caret" aria-hidden="true">▾</span>
-        <div class="analytics-collapse-title-wrap">
-          <h3>Total Vocabulary</h3>
-          <p class="analytics-collapse-summary-status" id="analyticsTotalVocabSummaryStatus">Course-wide vocabulary progress.</p>
-        </div>
-      </summary>
-      <div class="analytics-collapse-body">
-        <div class="analytics-vocab-view-bar" id="analyticsVocabViewBar"></div>
-        <div id="analyticsTotalVocabBar"></div>
-        <details class="analytics-collapse analytics-sub-collapse" data-collapse-key="totalVocabChapterMap">
-          <summary class="analytics-collapse-summary">
-            <span class="analytics-collapse-caret" aria-hidden="true">▾</span>
-            <div class="analytics-collapse-title-wrap"><h4>Chapter map</h4></div>
-          </summary>
-          <div class="analytics-collapse-body">
-            <div id="analyticsChapterGrid"></div>
-          </div>
-        </details>
-        <details class="analytics-collapse analytics-sub-collapse" data-collapse-key="totalVocabProgress">
-          <summary class="analytics-collapse-summary">
-            <span class="analytics-collapse-caret" aria-hidden="true">▾</span>
-            <div class="analytics-collapse-title-wrap">
-              <h4>Vocabulary progress</h4>
-              <p class="analytics-collapse-summary-status" id="analyticsTotalVocabProgressStatus"></p>
-            </div>
-          </summary>
-          <div class="analytics-collapse-body">
-            <div id="analyticsTotalVocabProgressBody"></div>
-          </div>
-        </details>
-      </div>
-    </details>
-
-    <details class="analytics-collapse" data-collapse-key="selectedVocab">
-      <summary class="analytics-collapse-summary">
-        <span class="analytics-collapse-caret" aria-hidden="true">▾</span>
-        <div class="analytics-collapse-title-wrap">
-          <h3>Selected Vocabulary</h3>
-          <p class="analytics-collapse-summary-status" id="analyticsSelectedVocabSummaryStatus">Progress for the sets currently chosen for study.</p>
-        </div>
-      </summary>
-      <div class="analytics-collapse-body">
-        <details class="analytics-collapse analytics-sub-collapse" data-collapse-key="selectedVocabBar">
-          <summary class="analytics-collapse-summary">
-            <span class="analytics-collapse-caret" aria-hidden="true">▾</span>
-            <div class="analytics-collapse-title-wrap"><h4>Selected sets — confirmation overview</h4></div>
-          </summary>
-          <div class="analytics-collapse-body">
-            <div id="analyticsSelectedVocabBar"></div>
-          </div>
-        </details>
-        <details class="analytics-collapse analytics-sub-collapse" data-collapse-key="selectedVocabProgress">
-          <summary class="analytics-collapse-summary">
-            <span class="analytics-collapse-caret" aria-hidden="true">▾</span>
-            <div class="analytics-collapse-title-wrap">
-              <h4>Vocabulary progress</h4>
-              <p class="analytics-collapse-summary-status" id="analyticsSelectedVocabProgressStatus"></p>
-            </div>
-          </summary>
-          <div class="analytics-collapse-body">
-            <div id="analyticsSelectedVocabProgressBody"></div>
-          </div>
-        </details>
-      </div>
-    </details>
-
-    <details class="analytics-collapse" data-collapse-key="totalGrammar">
-      <summary class="analytics-collapse-summary">
-        <span class="analytics-collapse-caret" aria-hidden="true">▾</span>
-        <div class="analytics-collapse-title-wrap">
-          <h3>Grammar</h3>
-          <p class="analytics-collapse-summary-status" id="analyticsTotalGrammarSummaryStatus">Course-wide grammar progress.</p>
-        </div>
-      </summary>
-      <div class="analytics-collapse-body">
-        <div id="analyticsTotalGrammarBar"></div>
-        <details class="analytics-collapse analytics-sub-collapse" data-collapse-key="totalGrammarChapterMap">
-          <summary class="analytics-collapse-summary">
-            <span class="analytics-collapse-caret" aria-hidden="true">▾</span>
-            <div class="analytics-collapse-title-wrap"><h4>Chapter mastery</h4></div>
-          </summary>
-          <div class="analytics-collapse-body">
-            <div id="analyticsGrammarReview"></div>
-          </div>
-        </details>
-        <details class="analytics-collapse analytics-sub-collapse" data-collapse-key="totalGrammarProgress">
-          <summary class="analytics-collapse-summary">
-            <span class="analytics-collapse-caret" aria-hidden="true">▾</span>
-            <div class="analytics-collapse-title-wrap">
-              <h4>Grammar progress</h4>
-              <p class="analytics-collapse-summary-status" id="analyticsTotalGrammarProgressStatus"></p>
-            </div>
-          </summary>
-          <div class="analytics-collapse-body">
-            <div id="analyticsTotalGrammarProgressBody"></div>
-          </div>
-        </details>
-        <details class="analytics-collapse analytics-sub-collapse" data-collapse-key="paradigmStepStats">
-          <summary class="analytics-collapse-summary">
-            <span class="analytics-collapse-caret" aria-hidden="true">▾</span>
-            <div class="analytics-collapse-title-wrap">
-              <h4>Paradigm parsing (step-by-step)</h4>
-              <p class="analytics-collapse-summary-status" id="analyticsParadigmStepStatsStatus">Off-the-record drill stats. Tap a row for the per-mood / per-tense breakdown.</p>
-            </div>
-          </summary>
-          <div class="analytics-collapse-body">
-            <div id="analyticsParadigmStepStatsBody"></div>
-          </div>
-        </details>
-      </div>
-    </details>
-
-    <details class="analytics-collapse" data-collapse-key="selectedGrammar">
-      <summary class="analytics-collapse-summary">
-        <span class="analytics-collapse-caret" aria-hidden="true">▾</span>
-        <div class="analytics-collapse-title-wrap">
-          <h3>Selected Grammar</h3>
-          <p class="analytics-collapse-summary-status" id="analyticsSelectedGrammarSummaryStatus">Grammar drills for the sets currently chosen for study.</p>
-        </div>
-      </summary>
-      <div class="analytics-collapse-body">
-        <details class="analytics-collapse analytics-sub-collapse" data-collapse-key="selectedGrammarBar">
-          <summary class="analytics-collapse-summary">
-            <span class="analytics-collapse-caret" aria-hidden="true">▾</span>
-            <div class="analytics-collapse-title-wrap"><h4>Selected sets — confirmation overview</h4></div>
-          </summary>
-          <div class="analytics-collapse-body">
-            <div id="analyticsSelectedGrammarBar"></div>
-          </div>
-        </details>
-        <details class="analytics-collapse analytics-sub-collapse" data-collapse-key="selectedGrammarProgress">
-          <summary class="analytics-collapse-summary">
-            <span class="analytics-collapse-caret" aria-hidden="true">▾</span>
-            <div class="analytics-collapse-title-wrap">
-              <h4>Grammar progress</h4>
-              <p class="analytics-collapse-summary-status" id="analyticsSelectedGrammarProgressStatus"></p>
-            </div>
-          </summary>
-          <div class="analytics-collapse-body">
-            <div id="analyticsSelectedGrammarProgressBody"></div>
-          </div>
-        </details>
-      </div>
-    </details>
-
-    <details class="analytics-collapse" data-collapse-key="studyActivity">
-      <summary class="analytics-collapse-summary">
-        <span class="analytics-collapse-caret" aria-hidden="true">▾</span>
-        <div class="analytics-collapse-title-wrap">
-          <h3>Study activity</h3>
-          <p class="analytics-collapse-summary-status" id="analyticsStudyActivitySummaryStatus">Records, heatmap, and cumulative study time.</p>
-        </div>
-      </summary>
-      <div class="analytics-collapse-body">
-        <div id="analyticsRecords"></div>
-        <div id="analyticsHeatmap"></div>
-        <div class="analytics-metrics-grid" id="analyticsOverallMetrics"></div>
-        <div class="analytics-chart-card">
-          <div class="analytics-chart-title">Cumulative active study time</div>
-          <div id="analyticsTimeChart"></div>
-        </div>
-        <div class="analytics-session-summary" id="analyticsSessionSummary"></div>
-      </div>
-    </details>
-
-    <details class="analytics-collapse" data-collapse-key="titles">
-      <summary class="analytics-collapse-summary">
-        <span class="analytics-collapse-caret" aria-hidden="true">▾</span>
-        <div class="analytics-collapse-title-wrap">
-          <h3>Titles</h3>
-          <p class="analytics-collapse-summary-status" id="analyticsTitlesSummaryStatus">Rank ladder unlocked by accumulated XP.</p>
-        </div>
-      </summary>
-      <div class="analytics-collapse-body">
-        <div id="analyticsTitles"></div>
-      </div>
-    </details>
-    <div class="consent-actions transfer-footer-actions">
-      <button class="ctrl-btn" type="button" onclick="closeAnalyticsOverlay()">Close</button>
+<!-- Progress overlay -->
+<div class="consent-overlay" id="progressOverlay" aria-hidden="true">
+  <div class="consent-modal" role="dialog" aria-modal="true" aria-label="Progress">
+    <h2>Progress</h2>
+    <div id="progressBody"></div>
+    <div style="display:flex; justify-content:flex-end; margin-top:14px;">
+      <button class="quick-btn quick-primary" type="button" id="progressCloseBtn">Close</button>
     </div>
   </div>
 </div>
 
-<div class="consent-overlay analytics-overlay study-selector-overlay" id="studySelectorOverlay" aria-hidden="true">
-  <div class="consent-modal analytics-modal study-selector-modal" role="dialog" aria-modal="true" aria-labelledby="studySelectorTitle">
-    <div class="analytics-header-row">
-      <div>
-        <div class="consent-label">Start studying</div>
-        <h2 id="studySelectorTitle">Choose session</h2>
-      </div>
-      <button class="ctrl-btn" type="button" onclick="closeStudySelector()">Close</button>
-    </div>
-    <div class="selector-section deselect-section">
-      <span class="selector-label">Deselect</span>
-      <div class="chapters-grid deselect-grid">
-        <button class="chapter-btn" type="button" onclick="deselectAllChapters()">Deselect session</button>
-        <button class="chapter-btn" type="button" onclick="deselectAllChapters()">Deselect chapter</button>
-        <button class="chapter-btn" type="button" onclick="deselectAllSupplementals()">Deselect supplemental</button>
-        <button class="chapter-btn" type="button" onclick="deselectAllAdvanced()">Deselect advanced</button>
-        <button class="chapter-btn" type="button" onclick="deselectAll()">Deselect all</button>
-      </div>
-    </div>
-    <div class="selector-section">
-      <span class="selector-label">Sessions</span>
-      <div class="sessions-grid" id="sessionsGrid"></div>
-    </div>
-    <div class="selector-section">
-      <span class="selector-label">Manual chapter selection</span>
-      <div class="sessions-grid" id="chaptersGrid"></div>
-    </div>
-    <div class="selector-section" id="supplementalSection">
-      <span class="selector-label">Supplemental</span>
-      <div id="supplementalGrid"></div>
-    </div>
-    <div class="selector-section" id="advancedSection">
-      <details class="advanced-section-shell" id="advancedSectionShell">
-        <summary class="advanced-section-summary">
-          <span class="selector-label" style="margin-bottom:0">Advanced vocabulary</span>
-          <span class="advanced-section-meta" id="advancedSectionMeta"></span>
-        </summary>
-        <p class="advanced-section-blurb">Rare New Testament Greek lemmas not covered in your course, ordered by descending NT frequency in buckets of 200 (sub‑groups of 25). These are not counted toward course‑wide progress, but they do appear in the analytics for whatever you have selected.</p>
-        <div id="advancedGrid"></div>
-      </details>
-    </div>
-    <div class="analytics-footer-row">
-      <button class="ctrl-btn" type="button" onclick="closeStudySelector()">Close</button>
-    </div>
-  </div>
-</div>
+<!-- Subject data (plain defer globals → window.PCA_DATA) -->
+<script defer src="js/data/subjects/bco.js?v=1"></script>
 
-<div class="consent-overlay user-guide-overlay" id="shortcutsOverlay" aria-hidden="true">
-  <div class="consent-modal user-guide-modal" role="dialog" aria-modal="true" aria-labelledby="shortcutsTitle">
-    <div class="consent-label">User guide</div>
-    <h2 id="shortcutsTitle">How to use this app</h2>
-    <div class="consent-copy user-guide-copy">
-      <p>An unofficial study aid for Duff's <em>Elementary New Testament Greek</em>. Flip cards, mark how confident you felt, and the app schedules what comes back next.</p>
-
-      <details class="user-guide-changelog">
-        <summary>Changelog</summary>
-        <details class="user-guide-changelog-version" open>
-          <summary>Version 1.5 &middot; 2026-05-28</summary>
-          <ul class="user-guide-list">
-            <li><strong>Principal parts on verb cards, declension anchors on nouns &mdash; and a switch for both.</strong> The bracketed forms under an irregular verb&rsquo;s headword now sit on one compact line that grows with the course: the <em>2 aor.</em> / <em>fut.</em> parts still show from the start (early exposure to the NT&rsquo;s most common verb forms), and once your selection reaches the chapter that teaches them the line adds the aorist passive (Ch. 15 &mdash; <em>aor. pass. [ἐβλήθην]</em>) and the perfect (Ch. 16 &mdash; <em>pf. [βέβληκα]</em>), so nothing from a later chapter leaks into an earlier deck. Third-declension nouns add a quiet <em>declines like σάρξ</em> pointer in the hint line, anchoring each noun to the model paradigm it follows (σάρξ, ὄνομα, ἀστήρ, πόλις, βασιλεύς, ἔθνος, πλείων); the irregular kinship nouns (πατήρ-family) and χάρις stay untagged rather than overclaim. A new <em>Stem &amp; declension notes</em> toggle in advanced settings (on by default) switches all of these annotations &mdash; including the inline stems &mdash; off at once for bare cards.</li>
-            <li><strong>Noun stem inline on third-declension vocab cards.</strong> A chapter-vocab noun listed with its full genitive &mdash; the third-declension pattern, e.g. <em>σάρξ, σαρκός</em> &mdash; now shows its bare stem in smaller letters right after the headword, the way second-aorist verbs already show theirs: <em>ἡ νύξ, νυκτός, νυκτ-</em>. That&rsquo;s the stem every other case is built on (Duff&rsquo;s rule: knock the <em>-ος</em> off the genitive singular). Chapter 13&rsquo;s contracted types (<em>-εως</em>, <em>-ους</em>) are unchanged &mdash; their bare stem never surfaces uncontracted.</li>
-            <li><strong>Fixed a stuck parsing card.</strong> When a focused paradigm was down to a single in-scope form (e.g. the last unmastered form with <em>Exclude known morphs</em> on), finishing the parse and pressing <em>Next</em> could re-show the same completed summary instead of starting a fresh walk &mdash; so Next looked dead. The reshuffled cycle now always rebuilds the walk for the card at the head.</li>
-            <li><strong>Tidier parsing cards.</strong> Tightened the vertical spacing on the parsing cards so a full parse summary fits on screen, and tucked the &ldquo;how to tell&rdquo; spotting hints behind a collapsed <em>Hint (+)</em> disclosure (the ambiguous-form note stays open, since it explains why a mark was accepted).</li>
-            <li><strong>&ldquo;How to tell&rdquo; hints on confusable forms.</strong> The Greek &rarr; English parse summary now adds a short spotting hint for forms easy to mix up: present vs future (the future&rsquo;s σ &mdash; <em>&lambda;&#973;&epsilon;&iota;</em>/<em>&lambda;&#973;&sigma;&epsilon;&iota;</em>, and 2 pl. m/p <em>&lambda;&#973;&epsilon;&sigma;&theta;&epsilon;</em>/<em>&lambda;&#973;&sigma;&epsilon;&sigma;&theta;&epsilon;</em>); the augment that marks every past-tense indicative (<em>&#7956;&lambda;&upsilon;&omicron;&nu;</em>, <em>&#7956;&lambda;&upsilon;&sigma;&alpha;</em>, <em>&#7952;&lambda;&#973;&theta;&eta;&nu;</em> &mdash; absent in the non-indicative moods), plus that imperfect active <em>‑&omicron;&nu;</em> is both 1 sg. and 3 pl.; the aorist-passive <em>‑&theta;&eta;‑</em> infix; perfect/pluperfect reduplication; the participle suffix (<em>‑&mu;&epsilon;&nu;&omicron;&sigmaf;</em> is middle/passive, never active &mdash; the aorist-passive <em>‑&theta;&epsilon;&#943;&sigmaf;</em> being the exception) and how it declines; and the four infinitive endings (<em>‑&epsilon;&iota;&nu; / ‑&sigma;&alpha;&iota; / ‑&nu;&alpha;&iota; / ‑&sigma;&theta;&alpha;&iota;</em>, three of them in <em>‑&alpha;&iota;</em>). Each names its exceptions (liquid futures, 2nd-aorist passives) rather than overclaiming.</li>
-            <li><strong>Accent/breathing look-alike distractors (optional).</strong> In the <em>English &rarr; Greek</em> parsing drill, a new toggle (off by default) adds a curated look-alike as a wrong choice &mdash; the relative <em>&#7973;</em> against the article <em>&#7969;</em>, the demonstrative <em>&alpha;&#8016;&tau;&eta;</em> against the intensive <em>&alpha;&#8016;&tau;&#942;</em>, the interrogative <em>&tau;&#943;&sigmaf;</em> against the enclitic <em>&tau;&iota;&sigmaf;</em> &mdash; so you have to read the accent and breathing, not just the letters. After you answer, a note names the distinction.</li>
-            <li><strong>Parsing stops early on a form the paradigm can&rsquo;t have.</strong> Picking a value that doesn&rsquo;t exist for the focused paradigm now cuts the walk off with a short note, instead of marching through the remaining dimensions for a form that can&rsquo;t exist. Cases so far: <em>third person</em> on the first/second personal pronouns (<em>&#7952;&gamma;&#974; / &sigma;&#973;</em> have no third person &mdash; that&rsquo;s the separate <em>&alpha;&#8016;&tau;&#972;&sigmaf;</em> paradigm); the <em>vocative</em> on the article and every pronoun (they inflect nom/acc/gen/dat only &mdash; nouns and adjectives keep their vocative); and the <em>aorist</em> (or perfect/pluperfect) of <em>&epsilon;&#7984;&mu;&#943;</em>, which is suppletive and borrows those senses from other verbs.</li>
-            <li><strong>Parsing progress now breaks down by mood &amp; tense.</strong> The per-paradigm rows in <em>Progress</em> and the parsing review panel replace the old &ldquo;bucket of 20&rdquo; bars with a per-value breakdown: accuracy for each tense, mood, voice, case, person, number, and gender separately, on the same 5-band colour scale. A weak aorist or subjunctive no longer hides behind a healthy overall %. Each paradigm&rsquo;s headline % now counts every form in scope (its two most-recent attempts each) rather than just your last 20 parses.</li>
-            <li><strong>&ldquo;Weakest&rdquo; pointer + coverage.</strong> Each paradigm row flags its weakest value up front (e.g. <em>weakest: subjunctive 33%</em>), and every value shows how many of its forms you&rsquo;ve seen vs. how many are in scope &mdash; so untouched forms read as honestly as missed ones.</li>
-            <li><strong>Chapter-gated.</strong> The breakdown only lists values your current chapter has unlocked, so later moods and tenses appear as you reach them. The full colour-dotted list of every testable form is still there under each paradigm.</li>
-            <li><strong>Smaller saves.</strong> Parsing stats dropped the redundant bucket history and per-form timestamps; the breakdown is computed live from data already kept, so progress files are leaner with nothing lost. Existing saves convert automatically.</li>
-            <li><strong>Stem-flip highlighting ignores accents &mdash; unless the accent is the change.</strong> The present&harr;aorist/future diff strips the pitch accents before comparing, so only real stem changes light up and accent shifts no longer get flagged. The exception is forms that are letter-for-letter identical once accents are stripped &mdash; like liquid present <em>&kappa;&rho;&#943;&nu;&omega;</em> vs. future <em>&kappa;&rho;&iota;&nu;&#8182;</em>, where the circumflex is the only signal &mdash; there the differentiating accent now highlights instead of the card showing nothing. Breathing marks still count, and accents are still shown on every form.</li>
-            <li><strong>Verbal stem inline on second-aorist / liquid-future vocab cards.</strong> A chapter-vocab verb that builds an irregular aorist or liquid future now shows its bare stem in smaller letters right after the headword, lexicon-style &mdash; e.g. <em>&#7936;&pi;&omicron;&theta;&nu;&#8132;&sigma;&kappa;&omega;, &#7936;&pi;&omicron;&theta;&alpha;&nu;-</em> &mdash; so the present is read together with the stem its forms are built on. The full <em>2 aor.</em> / <em>fut.</em> rows underneath stay as before.</li>
-            <li><strong>Translation drills tightened to required vocabulary.</strong> A few grammar translation questions leaned on optional or out-of-scope words &mdash; e.g. a Ch&nbsp;10 slanted question used the comparative <em>&mu;&epsilon;&#943;&zeta;&omega;&nu;</em> (not taught until Ch&nbsp;20). These were rewritten to use only required words while keeping each item&rsquo;s grammar point intact. Lesson-target words (Ch&nbsp;9 reflexives/possessives, Ch&nbsp;12 <em>&#7940;&rho;&chi;&omega;&nu;</em>, Ch&nbsp;20 comparison) are unchanged.</li>
-            <li><strong>Translation drills no longer use vocabulary from later chapters.</strong> Several questions used words a student hasn&rsquo;t met yet at that point &mdash; e.g. <em>&epsilon;&#7984;&mu;&#943;</em> at Ch&nbsp;4 (it&rsquo;s Ch&nbsp;5), <em>&gamma;&upsilon;&nu;&#942;</em> / <em>&omicron;&#7990;&delta;&alpha;</em> / <em>&#7936;&pi;&omicron;&kappa;&rho;&#943;&nu;&omicron;&mu;&alpha;&iota;</em> / <em>&tau;&rho;&epsilon;&#8150;&sigmaf;</em> at chapters before they&rsquo;re introduced. Each was recast with a verb or noun already in scope (e.g. <em>&#7936;&kappa;&omicron;&#973;&omega;</em>, <em>&#7936;&delta;&epsilon;&lambda;&phi;&#942;</em>, <em>&pi;&iota;&sigma;&tau;&epsilon;&#973;&omega;</em>) so the grammar point is unchanged. The Ch&nbsp;10 time-expression drills now use <em>&#7969;&mu;&#941;&rho;&alpha;</em>/<em>&#8061;&rho;&alpha;</em> rather than <em>&nu;&#973;&xi;</em> (a 3rd-declension noun introduced at Ch&nbsp;12).</li>
-          </ul>
-        </details>
-        <details class="user-guide-changelog-version">
-          <summary>Version 1.4 &middot; 2026-05-23</summary>
-          <ul class="user-guide-list">
-            <li><strong>New <em>Parsing</em> mode.</strong> Walks every paradigm form one dimension at a time (aspect &rarr; tense &rarr; voice &rarr; mood &rarr; person &rarr; number &rarr; case &rarr; gender), with distractors gated to plausible values for the form and every form hit once before any repeats. Aspect supports a composite <em>continuous / undefined</em> pick.</li>
-            <li><strong>Parse-comparison summary on every card.</strong> Your full parse vs. the correct parse alongside the Greek form; on misses, the card also lists the forms that <em>would</em> have matched what you picked.</li>
-            <li><strong>Per-paradigm parsing stats.</strong> Progress &rarr; Total Grammar gets rolling per-paradigm, per-dimension accuracy from the last 20 attempts; tap any row for a bucket-of-20 history chart (up to 200 attempts), with an <em>All paradigms</em> aggregate at the top. These are off-the-record drill stats &mdash; they don't feed SRS.</li>
-            <li><strong>Three-deck spaced flow.</strong> Cards just got wrong sit briefly in a <em>middle</em> deck before sliding back to <em>active</em>, instead of all returning at random. Unspaced mode gets the same middle-round, and the bottom panel's <em>Cards left</em> matches.</li>
-            <li><strong>Stem-flip supplements</strong> for second aorist (Ch 11), aorist passive (Ch 14), perfect active (Ch 15), and &mu;&iota;-verb principal parts (Ch 18), with stem-diff highlighting.</li>
-            <li><strong>Mode strip + paradigm dropdown refresh.</strong> Four uniform-width buttons (Vocab / Grammar / Parsing / Reader) with <em>Paradigms</em> as a standalone button. The focused-paradigm picker is grouped by type and cumulative across selected chapters; added &pi;&rho;&omicron;&phi;&eta;&tau;&eta;&sigma;.</li>
-            <li><strong>Session persistence + undo robustness.</strong> Sessions persist up to 5h of inactivity; undo in spaced mode survives mode switches.</li>
-          </ul>
-        </details>
-        <details class="user-guide-changelog-version">
-          <summary>Version 1.3 &middot; 2026-05-20</summary>
-          <ul class="user-guide-list">
-            <li><strong>Grammar drills realigned to Duff's TOC.</strong> Every chapter audited against Duff's actual scope; out-of-scope concepts and distractors removed. Concept questions from W3O / W4O moved back into their chapter sections.</li>
-            <li><strong>Translation drills per chapter</strong> built from cumulative vocabulary, with padded distractors so length isn't a tell.</li>
-            <li><strong>Analytics restructured.</strong> Total vs. Selected split, vocab broken out by direction, sections collapsible. Chapter-map % uses rolling confidence instead of jumping to 100 the moment a card is &ldquo;known.&rdquo;</li>
-            <li><strong>Display preferences.</strong> Font family and text size under Advanced settings.</li>
-            <li><strong>Resets, clearer.</strong> <em>Reset required</em> is its own button; week-level <em>Select all</em> supplementals now toggle on/off.</li>
-            <li><strong>Analytics tag.</strong> A Google Analytics 4 page-visit tag for basic usage volume; no card content, progress, or personal data is sent.</li>
-          </ul>
-        </details>
-        <details class="user-guide-changelog-version">
-          <summary>Version 1.2 &middot; 2026-05-15</summary>
-          <ul class="user-guide-list">
-            <li><strong>New analytics views.</strong> Grammar concepts to review, a tappable chapter map that drills into per-word stats, and per-word stubborn-card lists for vocab and grammar.</li>
-            <li><strong>Honest grammar bands.</strong> Conceptual grammar items expanded to 3+ drills each so <em>Needs work / Shaky / Solid</em> reflects real progress, not a single coin flip.</li>
-            <li><strong>No more giveaway section titles.</strong> Labels that named the answer (e.g. &ldquo;Predicate position,&rdquo; &ldquo;Subjunctive recognition&rdquo;) reworded so recognition depends on the form, not the heading.</li>
-            <li><strong>Multi-case prepositions.</strong> Choice lists include other-case meanings of the same preposition, so the answer can't be picked by elimination.</li>
-          </ul>
-        </details>
-        <details class="user-guide-changelog-version">
-          <summary>Version 1.1</summary>
-          <ul class="user-guide-list">
-            <li><strong>Paradigm supplemental sets</strong> grouped per week under <em>Choose session &rarr; Supplemental</em>; full tables live under <strong>Paradigms</strong>.</li>
-            <li><strong>Translation drills per reader chapter</strong> plus tap-to-reveal literal English under each verse.</li>
-            <li>The study aid notice can be re-opened any time from the home screen.</li>
-          </ul>
-        </details>
-      </details>
-
-      <h3 class="user-guide-heading">Home screen tabs</h3>
-      <p><strong>Choose session.</strong> Pre-built sessions, manual chapter selection, per-week supplemental decks, and an Advanced vocabulary section (rare NT lemmas in buckets of 200).</p>
-      <p><strong>Start studying.</strong> Begins (or resumes) a session for whatever you have selected.</p>
-      <p><strong>Vocab / Grammar / Parsing / Reader / Paradigms.</strong> The mode strip switches what kind of card you study or jumps to a separate page:</p>
-      <ul class="user-guide-list">
-        <li><strong>Vocab</strong> &mdash; Greek headword on the front, English gloss on the back.</li>
-        <li><strong>Grammar</strong> &mdash; multiple-choice parsing and form drills from the chapter paradigms.</li>
-        <li><strong>Parsing</strong> &mdash; dimensional walk through paradigm forms (aspect &rarr; tense &rarr; voice &rarr; mood &rarr; person &rarr; number &rarr; case &rarr; gender), one multiple-choice step per dimension. Turn individual dimensions off or exclude specific values in <em>Parsing options</em>. Sets its own chapter via the <em>Current chapter</em> dropdown.</li>
-        <li><strong>Reader</strong> &mdash; Textus Receptus verses unlocked chapter by chapter, plus per-chapter <em>Translation drills</em>; tap any verse for a literal English line.</li>
-        <li><strong>Paradigms</strong> &mdash; separate page with full reference tables. Toolbar can hide Greek, English, or notes for self-testing.</li>
-      </ul>
-      <p><strong>Progress.</strong> Analytics overlay: streak, level/title, heatmap, course-completion bars, achievements, study-time ledger, and per-deck vocab / grammar / parsing stats.</p>
-      <p><strong>User guide.</strong> This screen.</p>
-
-      <h3 class="user-guide-heading">Advanced review settings</h3>
-      <p>Tucked under <em>Advanced review settings</em>. All toggles persist across sessions.</p>
-      <ul class="user-guide-list">
-        <li><strong>Shuffle</strong> &mdash; randomize card order.</li>
-        <li><strong>Required only</strong> &mdash; hide optional / supplemental words. On by default.</li>
-        <li><strong>Hard review</strong> &mdash; drill only vocab missed more than 10 times that's still under 40% confidence.</li>
-        <li><strong>Eng &rarr; Gk</strong> &mdash; flip the prompt direction.</li>
-        <li><strong>Spaced review</strong> &mdash; turn SRS on or off. On by default.</li>
-        <li><strong>Daily flip-deck reset</strong> &mdash; in unspaced mode, auto-clear archived (Easy) cards once a day around 5 AM local time.</li>
-        <li><strong>Split chapter selection</strong> &mdash; keep separate chapter sets for vocab vs. grammar. Parsing always owns its chapter independently.</li>
-        <li><strong>Self-check</strong> (grammar only) &mdash; hide the answer until you tap to reveal, then rate yourself.</li>
-        <li><strong>Parsing options</strong> (parsing only) &mdash; per-dimension master toggles, per-value exclude sub-filters, and an <em>Optional paradigm</em> toggle for subjunctive / non-present infinitives / participle declensions / etc.</li>
-        <li><strong>Display</strong> &mdash; Serif (Gentium Plus) or Sans (Noto Sans), plus Medium / Large / X-Large text size.</li>
-        <li><strong>Reshuffle / Reset deck / Reset required / Reset stats</strong> &mdash; reorder eligible cards, clear the current sets' progress, clear required flags, or wipe all stats globally (no undo).</li>
-      </ul>
-
-      <h3 class="user-guide-heading">How spaced repetition works</h3>
-      <p>Each card has its own schedule. Marking it adjusts both <em>when</em> it returns and an <em>ease</em> factor that scales future intervals:</p>
-      <ul class="user-guide-list">
-        <li><strong>&#x2717; Hard</strong> &mdash; comes back within minutes; drops ease and steps the card back.</li>
-        <li><strong>~ Uncertain</strong> &mdash; comes back at ~half its previous interval (capped 1h&ndash;1w).</li>
-        <li><strong>&#x2713; Easy</strong> &mdash; advances to the next ramp step (~1 &rarr; 3 &rarr; 7 &rarr; 14 days, then growing); recent accuracy multiplies the gap further.</li>
-      </ul>
-      <p>Cards move through three lanes &mdash; <em>active</em> (due now), <em>middle</em> (just missed, returning soon), and <em>deferred</em> (scheduled for a future day). The bottom panel's <em>Cards left</em> matches this layout. Use <strong>&#x21B6; Undo</strong> to reverse your last mark.</p>
-      <p>With <strong>Spaced review off</strong>, the deck behaves as a flip deck: <em>Hard</em> and <em>Uncertain</em> shuffle the card to the back of the active pile, <em>Easy</em> archives it. At the end of a pass the still-active cards reshuffle; archived cards stay until you press <strong>&#x21BB; Reset</strong> (mid-deck asks for confirmation; at deck-end the <strong>Next</strong> arrow becomes a one-tap Reset) or pick a new session.</p>
-
-      <h3 class="user-guide-heading">Progress tools and notice</h3>
-      <p><strong>Progress tools</strong> (collapsible) export your full progress as JSON or import a saved file &mdash; useful for moving between devices or backing up before a reset.</p>
-      <p><strong>Study aid notice</strong> re-opens the AI / unofficial-content disclaimer.</p>
-
-      <h3 class="user-guide-heading">Keyboard shortcuts (while studying)</h3>
-      <p>Flip: <strong>Space</strong> / <strong>Enter</strong> &middot; Navigate: <strong>&larr;</strong> <strong>&rarr;</strong> (or <strong>&uarr;</strong> <strong>&darr;</strong>)</p>
-      <p>Mark: <strong>1</strong> Hard, <strong>2</strong> Uncertain, <strong>3</strong> Easy (or <strong>R</strong> = Hard, <strong>K</strong> = Easy)</p>
-      <p>Grammar / Parsing options: <strong>1&ndash;4</strong> picks an answer</p>
-      <p>Grammar self-check: <strong>Space</strong> reveals &middot; <strong>1</strong> = I had it, <strong>2</strong> = Needs review</p>
-
-      <h3 class="user-guide-heading">Tips</h3>
-      <ul class="user-guide-list">
-        <li>Be honest with <em>Hard</em> / <em>Uncertain</em> / <em>Easy</em> &mdash; the schedule only helps if it reflects what you actually knew.</li>
-        <li>For paradigm tables side-by-side, use <strong>Paradigms</strong>; for guided dimensional drilling, use <strong>Parsing</strong>.</li>
-        <li>Reader translation drills are gentler than raw verses &mdash; work the drills before the TR verses.</li>
-        <li>Theme (System / Dark / Light) is in the top-right of the header.</li>
-      </ul>
-    </div>
-    <div class="consent-actions">
-      <button class="ctrl-btn consent-primary" type="button" onclick="closeShortcutsModal()">Close</button>
-    </div>
-  </div>
-</div>
-
-<div class="consent-overlay" id="consentOverlay" aria-hidden="true">
-  <div class="consent-modal" role="dialog" aria-modal="true" aria-labelledby="consentTitle">
-    <div class="consent-label">Before you begin</div>
-    <h2 id="consentTitle">Please read before using this app</h2>
-    <div class="consent-copy">
-      <p>This study tool was made with AI by a student. It is unofficial and may contain mistakes, omissions, or misleading answers.</p>
-      <p>Always check vocabulary, parsing, grammar explanations, and quiz content against your course content, instructor guidance, and official materials.</p>
-      <p>This app is meant to help with review and memorization, not to replace assigned coursework or authoritative sources.</p>
-      <p>Quick start: flip a card, then mark <strong>Hard</strong>, <strong>Uncertain</strong>, or <strong>Easy</strong>.</p>
-    </div>
-    <label class="consent-check-row" id="consentCheckRow">
-      <input type="checkbox" id="consentCheckbox">
-      <span>I understand this is an unofficial AI-assisted student study aid, and I will verify content against course materials and official sources.</span>
-    </label>
-    <div class="consent-actions">
-      <button class="ctrl-btn consent-primary" id="consentContinueBtn" type="button" onclick="handleConsentAction()" disabled>Agree and continue</button>
-    </div>
-  </div>
-</div>
-
-<div class="consent-overlay" id="resetSpacedOverlay" aria-hidden="true">
-  <div class="consent-modal reset-spaced-modal" role="dialog" aria-modal="true" aria-labelledby="resetSpacedTitle">
-    <div class="consent-label">Reset spaced review</div>
-    <h2 id="resetSpacedTitle">What would you like to reset?</h2>
-    <div class="consent-copy">
-      <p><strong>Set all to now</strong> keeps your SRS progress (streaks, intervals, ease) but makes every card in this deck due immediately, so you can review them all right away.</p>
-      <p><strong>Smooth schedule</strong> keeps all progress and just levels the review calendar: when many cards pile up on the same future day (e.g. after completing a reset), it pulls some of them to earlier days so roughly the same number come due each day. Cards due within the next 3 days are left alone, and nothing is ever pushed later.</p>
-      <p><strong>Reset progress</strong> clears all SRS scheduling and progress for this deck. Pass history and unspaced marks are kept.</p>
-      <p class="reset-scope-row">
-        <label>
-          <input type="checkbox" data-reset-required-only id="resetSpacedRequiredOnly">
-          <strong>Required cards only</strong> — apply just to graded vocabulary in the current selection (useful for quiz prep).
-        </label>
-      </p>
-    </div>
-    <div class="consent-actions reset-spaced-actions">
-      <button class="ctrl-btn" type="button" onclick="closeResetSpacedModal()">Cancel</button>
-      <button class="ctrl-btn reset-spaced-primary-btn" type="button" onclick="confirmResetSpacedTimingOnly()">Set all to now</button>
-      <button class="ctrl-btn reset-spaced-primary-btn" type="button" onclick="confirmResetSpacedSmooth()" title="Re-spread cards due more than 3 days out so a similar number come due each day. Never pushes a card later.">Smooth schedule</button>
-    </div>
-    <div class="reset-spaced-danger-row">
-      <button class="ctrl-btn reset-spaced-danger-btn" type="button" onclick="confirmResetSpacedProgress()">Reset progress</button>
-    </div>
-  </div>
-</div>
-
-<div class="consent-overlay" id="resetStatsOverlay" aria-hidden="true">
-  <div class="consent-modal reset-spaced-modal" role="dialog" aria-modal="true" aria-labelledby="resetStatsTitle">
-    <div class="consent-label">Reset stats</div>
-    <h2 id="resetStatsTitle">What would you like to reset?</h2>
-    <div class="consent-copy">
-      <p><strong>Reset stats</strong> clears all saved study stats, marks, spaced-review scheduling, achievements, and study-time history. Your settings (theme, fonts, profile, disclaimer) are kept.</p>
-      <p><strong>Reset to start</strong> wipes everything and returns the app to its initial launch state — stats, settings, theme, fonts, profile, and the study-aid disclaimer are all cleared, and the page will reload.</p>
-    </div>
-    <div class="consent-actions reset-stats-actions">
-      <button class="ctrl-btn" type="button" onclick="closeResetStatsModal()">Cancel</button>
-      <button class="ctrl-btn reset-spaced-primary-btn reset-stats-keep-btn" type="button" onclick="confirmResetStatsKeepSettings()">Reset stats</button>
-      <button class="ctrl-btn reset-spaced-danger-btn reset-stats-wipe-btn" type="button" onclick="confirmResetToStart()">Reset to start</button>
-    </div>
-  </div>
-</div>
-
-<div class="consent-overlay" id="resetUnspacedOverlay" aria-hidden="true">
-  <div class="consent-modal reset-spaced-modal" role="dialog" aria-modal="true" aria-labelledby="resetUnspacedTitle">
-    <div class="consent-label">Reset deck</div>
-    <h2 id="resetUnspacedTitle">Reset this flip deck?</h2>
-    <div class="consent-copy">
-      <p>Brings every archived card back into rotation and reshuffles the deck. Your spaced-review scheduling, intervals, confidence history, and pass history are kept.</p>
-      <p class="reset-scope-row">
-        <label>
-          <input type="checkbox" data-reset-required-only id="resetUnspacedRequiredOnly">
-          <strong>Required cards only</strong> — apply just to graded vocabulary in the current selection (useful for quiz prep).
-        </label>
-      </p>
-    </div>
-    <div class="consent-actions reset-spaced-actions">
-      <button class="ctrl-btn" type="button" onclick="closeResetUnspacedModal()">Cancel</button>
-      <button class="ctrl-btn consent-primary" type="button" onclick="confirmResetUnspacedMarks()">Reset marks</button>
-    </div>
-  </div>
-</div>
-
-<div class="consent-overlay" id="resetKnownOverlay" aria-hidden="true">
-  <div class="consent-modal reset-spaced-modal" role="dialog" aria-modal="true" aria-labelledby="resetKnownTitle">
-    <div class="consent-label">Reset known</div>
-    <h2 id="resetKnownTitle">What would you like to reset?</h2>
-    <div class="consent-copy">
-      <p>Sets each form's per-form tally back to 0/2, so its parsing dots read as unseen again and any forms hidden by &ldquo;Exclude known morphs&rdquo; come back into the drill. Per-paradigm rolling % and history are kept.</p>
-      <p id="resetKnownFocusedRow"><strong>Current paradigm only</strong> clears just <span id="resetKnownFocusedLemma">the current paradigm</span>.</p>
-      <p><strong>All paradigms</strong> clears every paradigm you've drilled.</p>
-    </div>
-    <div class="consent-actions reset-spaced-actions">
-      <button class="ctrl-btn" type="button" onclick="closeResetKnownModal()">Cancel</button>
-      <button class="ctrl-btn reset-spaced-primary-btn" id="resetKnownFocusedBtn" type="button" onclick="confirmResetKnownFocused()">Current paradigm only</button>
-    </div>
-    <div class="reset-spaced-danger-row">
-      <button class="ctrl-btn reset-spaced-danger-btn" type="button" onclick="confirmResetKnownAll()">All paradigms</button>
-    </div>
-  </div>
-</div>
-
-<div class="consent-overlay" id="whatsNewV1_5Overlay" aria-hidden="true">
-  <div class="consent-modal whats-new-modal" role="dialog" aria-modal="true" aria-labelledby="whatsNewV1_5Title">
-    <div class="consent-label">Version 1.5</div>
-    <h2 id="whatsNewV1_5Title">What's new</h2>
-    <div class="consent-copy">
-      <ul class="user-guide-list whats-new-list">
-        <li><strong>Parsing progress, by mood &amp; tense.</strong> Per-paradigm rows now break accuracy down per value &mdash; each tense, mood, voice, case, and so on &mdash; instead of one &ldquo;bucket of 20&rdquo; bar, so a weak aorist or subjunctive can&rsquo;t hide behind a healthy overall %.</li>
-        <li><strong>Weakest-value pointer + coverage</strong> on every paradigm, and only the values your current chapter has unlocked are shown.</li>
-        <li><strong>Leaner saves</strong> &mdash; the breakdown is computed live from data already kept; existing progress converts automatically.</li>
-      </ul>
-      <p class="whats-new-footer">See <strong>User guide &rarr; Changelog</strong> for the full v1.5 list.</p>
-    </div>
-    <div class="consent-actions">
-      <button class="ctrl-btn consent-primary" id="whatsNewV1_5CloseBtn" type="button" onclick="closeWhatsNewV1_5Modal()">Got it</button>
-    </div>
-  </div>
-</div>
-
-<div class="consent-overlay" id="refreshAvailableOverlay" aria-hidden="true">
-  <div class="consent-modal" role="dialog" aria-modal="true" aria-labelledby="refreshAvailableTitle">
-    <h2 id="refreshAvailableTitle">A new version is ready</h2>
-    <div class="consent-copy">
-      <p>Refresh to load the latest update. Your saved progress stays on this device and won't be affected.</p>
-    </div>
-    <div class="consent-actions">
-      <button class="ctrl-btn" type="button" onclick="dismissRefreshAvailable()">Later</button>
-      <button class="ctrl-btn consent-primary" type="button" onclick="acceptRefreshAvailable()">Refresh now</button>
-    </div>
-  </div>
-</div>
-
-<script defer src="js/data/words.js?v=235"></script>
-<script defer src="js/data/morphology.js?v=235"></script>
-<script defer src="js/data/lemma_inventory.js?v=235"></script>
-<script defer src="js/data/supplemental.js?v=235"></script>
-<script defer src="js/data/grammar.js?v=235"></script>
-<script defer src="js/data/supplementals/week_1_supplemental.js?v=235"></script>
-<script defer src="js/data/supplementals/week_1_paradigms.js?v=235"></script>
-<script defer src="js/data/supplementals/week_2_paradigms.js?v=235"></script>
-<script defer src="js/data/supplementals/week_3_paradigms.js?v=235"></script>
-<script defer src="js/data/supplementals/week_4_paradigms.js?v=235"></script>
-<script defer src="js/data/supplementals/second_aorist_flip.js?v=235"></script>
-<script defer src="js/data/supplementals/liquid_future_flip.js?v=235"></script>
-<script defer src="js/data/supplementals/week_5_paradigms.js?v=235"></script>
-<script defer src="js/data/supplementals/w6_aorist_passive_flip.js?v=235"></script>
-<script defer src="js/data/supplementals/w6_perfect_active_flip.js?v=235"></script>
-<script defer src="js/data/supplementals/w8_mi_verb_principal_parts_flip.js?v=235"></script>
-<script defer src="js/data/supplementals/week_6_paradigms.js?v=235"></script>
-<script defer src="js/data/supplementals/week_7_paradigms.js?v=235"></script>
-<script defer src="js/data/supplementals/week_8_paradigms.js?v=235"></script>
-<script defer src="js/data/supplementals/adj_paradigms.js?v=235"></script>
-<script defer src="js/data/supplementals/w3o_supplemental.js?v=235"></script>
-<script defer src="js/data/supplementals/w6o_supplemental.js?v=235"></script>
-<script defer src="js/data/supplementals/w7o_supplemental.js?v=235"></script>
-<script defer src="js/data/supplementals/w8o_supplemental.js?v=235"></script>
-<script defer src="js/data/supplementals/paradigm_morphology.js?v=235"></script>
-<script defer src="js/data/supplementals/stem_change_drills.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_01.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_02.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_03.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_04.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_05.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_06.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_07.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_08.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_09.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_10.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_11.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_12.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_13.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_14.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_15.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_16.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_17.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_18.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_19.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_20.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_21.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_22.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_23.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_24.js?v=235"></script>
-<script defer src="js/data/advanced/advanced_25.js?v=235"></script>
-<script defer src="js/data/reader.js?v=235"></script>
-<script defer src="js/data/reader_verse_literals.js?v=235"></script>
-<script defer src="js/data/reader_translations.js?v=235"></script>
-<script defer src="js/logic/pos_logic.js?v=235"></script>
-<script type="module" src="js/app/main.js?v=235"></script>
+<!-- Entry point -->
+<script type="module" src="js/app/pca.js?v=1"></script>
 </body>
 </html>

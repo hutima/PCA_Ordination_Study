@@ -1,0 +1,103 @@
+/* PCA Ordination & Licensure Study — overrides/additions on top of styles.css.
+   Reuses the base design tokens (--bg, --gold, --border, …). The Greek
+   flip-card is replaced by an auto-height reveal panel suited to long-form
+   Q&A answers (lists, tables, Scripture blocks). */
+
+/* Drop the Greek webfont dependency — use a system serif/sans stack. */
+:root {
+  --font-body: Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
+  --font-display: Georgia, 'Iowan Old Style', 'Palatino Linotype', serif;
+  --font-greek: var(--font-body);
+}
+html[data-font-family="sans"] {
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-greek: var(--font-body);
+}
+
+/* ── Review card (reveal panel) ───────────────────────────────────────── */
+.qa-card {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--card-front);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 30px;
+  position: relative;
+}
+.qa-card::before, .qa-card::after {
+  content: ''; position: absolute; width: 26px; height: 26px;
+  border-color: var(--gold-dim); border-style: solid; opacity: 0.4;
+}
+.qa-card::before { top: 12px; left: 12px; border-width: 1px 0 0 1px; }
+.qa-card::after  { bottom: 12px; right: 12px; border-width: 0 1px 1px 0; }
+
+.qa-deck-label {
+  font-family: var(--font-display); font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold-dim); margin-bottom: 14px;
+}
+.qa-question {
+  font-family: var(--font-display); font-size: 21px; line-height: 1.45;
+  color: var(--cream); margin-bottom: 8px;
+}
+.qa-divider { height: 1px; background: var(--border); margin: 20px 0; opacity: 0.7; }
+
+/* Rendered Markdown answer body. */
+.qa-answer { color: var(--cream); font-size: 16px; line-height: 1.6; }
+.qa-answer p { margin: 0 0 12px; }
+.qa-answer ul, .qa-answer ol { margin: 0 0 12px 22px; }
+.qa-answer li { margin: 4px 0; }
+.qa-answer strong { color: var(--gold-light); }
+.qa-answer blockquote {
+  margin: 12px 0; padding: 10px 16px;
+  border-left: 3px solid var(--gold-dim);
+  background: rgba(201,168,76,0.06);
+  color: var(--cream); font-style: italic; border-radius: 0 6px 6px 0;
+}
+.qa-answer table {
+  border-collapse: collapse; width: 100%; margin: 14px 0; font-size: 14px;
+}
+.qa-answer th, .qa-answer td {
+  border: 1px solid var(--border); padding: 7px 10px; text-align: left;
+  vertical-align: top;
+}
+.qa-answer th { background: rgba(201,168,76,0.08); color: var(--gold-light); }
+.qa-answer code {
+  font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.9em;
+  background: rgba(255,255,255,0.05); padding: 1px 5px; border-radius: 4px;
+}
+
+/* Reference chips. */
+.qa-refs { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px; }
+.qa-ref-chip {
+  font-family: var(--font-display); font-size: 12px; letter-spacing: 0.5px;
+  color: var(--gold-light); background: rgba(201,168,76,0.10);
+  border: 1px solid var(--gold-dim); border-radius: 999px; padding: 3px 11px;
+}
+
+.qa-reveal-hint { color: var(--muted); font-size: 13px; margin-top: 18px; font-style: italic; }
+
+/* ── Subject / sub-deck selector grids ────────────────────────────────── */
+.pca-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin: 12px 0 20px; }
+.pca-tile {
+  text-align: left; padding: 14px 16px; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--surface); color: var(--cream);
+  cursor: pointer; transition: border-color .15s, background .15s;
+}
+.pca-tile:hover { border-color: var(--gold-dim); }
+.pca-tile.selected { border-color: var(--gold); background: rgba(201,168,76,0.10); }
+.pca-tile-title { font-family: var(--font-display); font-size: 15px; margin-bottom: 4px; }
+.pca-tile-meta { font-size: 12px; color: var(--muted); }
+.pca-section-label {
+  font-family: var(--font-display); font-size: 12px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold-dim); margin: 8px 0 4px;
+}
+
+/* Deck meta line above the card. */
+.qa-deck-meta { text-align: center; color: var(--muted); font-size: 13px; margin-bottom: 14px; }
+.qa-deck-meta strong { color: var(--gold-light); }
+
+/* Reuse mark-row spacing for the reveal button row. */
+.reveal-row { display: flex; justify-content: center; margin-top: 18px; }
