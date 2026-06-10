@@ -173,8 +173,12 @@ KEEP modules + the HTML shell):**
             cards, 6 sub-decks (Overview/Eras/Solas, Denominations, Events,
             Terms, People, PCA History). Glossary prompts ("identify the
             following:") expand to one card per item; section headers stripped.
-      - [ ] Theology (A–J), Bible Content, Hot Topics — all in the big doc_2
-            (`bible_content_theology.txt`); see §3 line markers.
+      - [x] Theology (A–I) — `dev/build_theology.py`, 153 cards, 9 sub-decks
+            (A. Bible … I. Last Things). Outline parser: numbered questions,
+            lettered/0-padded sub-points, Westminster quotes; J/Sacraments
+            excluded (own subject).
+      - [ ] Bible Content (doc_2 §I, lines ~9–2560) and Hot Topics (doc_2
+            §III, ~8983+) remain; see §3 line markers.
       Generator notes: reflow joins word-wrapped lines, breaking on `?`,
       list markers, headers, table rows; SUBJECT emitted via `json.dumps` to
       avoid JS-quote bugs; trailing standards cites stripped from questions.
