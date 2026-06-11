@@ -214,6 +214,24 @@ KEEP modules + the HTML shell):**
 
       **Release ritual:** bump `?v=N` in `index.html` AND `CACHE` in `sw.js`
       together so returning users auto-refresh onto the new version.
+- [x] **Phase 9 — Modular refactor + card simplification + MCQ fairness.**
+      - `pca.js` split into focused modules under `js/app/` (store, content,
+        quiz, answer, refs, srs, modes, progress); `modes.js` is a registry —
+        adding a study mode = one descriptor + one button + sw precache entry.
+      - Review card now uses progressive disclosure: reveal shows a short
+        summary (authored `card.summary` or derived first line) + reference
+        chips; the full answer & quotations sit behind a tap-to-open expander.
+      - MCQ fairness: auto-generated distractors are length-balanced;
+        `dev/validate.mjs` flags any authored question whose correct option is
+        a length outlier (31 found and rewritten — distractors lengthened,
+        correct answers untouched).
+      - Service-worker auto-update hardened: install precaches with
+        `cache: 'reload'` (no stale assets), page-side reload now only fires
+        when an existing controller is replaced (no first-visit reload).
+        `dev/check_sw.mjs` verifies precache completeness (incl. the ES-module
+        import graph) and `?v=N`/CACHE agreement on every release.
+      - Headless jsdom harness (external, /tmp) verified 14/14 behavior checks
+        before and after the refactor; sw lifecycle stub-tested 7/7.
 - [x] **Phase 8 — Study-modes + analytics expansion (app review follow-up).**
       Acting on a full app review. Landed (cache `?v=10` / `pca-v10`):
       - **Browse mode** — non-graded collapsible outline of every card in the

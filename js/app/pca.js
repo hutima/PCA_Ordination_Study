@@ -385,9 +385,13 @@ function init() {
 // the user is always on the latest version — no manual refresh.
 function registerServiceWorker() {
   if (!('serviceWorker' in navigator)) return;
+  // Only reload when an existing controller is *replaced* (i.e. an update).
+  // On first install, clients.claim() also fires controllerchange — reloading
+  // then would needlessly restart a first-time visitor's session.
+  const hadController = !!navigator.serviceWorker.controller;
   let refreshing = false;
   navigator.serviceWorker.addEventListener('controllerchange', () => {
-    if (refreshing) return;
+    if (!hadController || refreshing) return;
     refreshing = true;
     window.location.reload();
   });

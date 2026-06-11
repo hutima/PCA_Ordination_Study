@@ -47,8 +47,12 @@ const PRECACHE = [
 ];
 
 self.addEventListener('install', (event) => {
+  // cache: 'reload' bypasses the HTTP cache so a new worker never precaches
+  // stale copies of assets the browser had cached from the previous release.
   event.waitUntil(
-    caches.open(CACHE).then((cache) => cache.addAll(PRECACHE)).catch(() => {})
+    caches.open(CACHE)
+      .then((cache) => cache.addAll(PRECACHE.map((u) => new Request(u, { cache: 'reload' }))))
+      .catch(() => {})
   );
 });
 
