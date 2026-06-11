@@ -22,8 +22,11 @@ architecture/reuse map, content contract, phase status, and next steps.
 - **Study modes:** Review (self-check; short summary first, full answer &
   quotations behind an expander), Quiz (MCQ), Browse (collapsible outline,
   non-graded), Mock exam (finite scored MCQ session), Catechisms (WSC/WLC
-  full text as flip cards — dropdown per catechism + per question, proofs in
-  a collapsed section; position persists to `pca_catechism_v1`). A Due/Weak
+  full text plus a hand-authored BCO-paraphrase set in
+  `js/data/catechisms_bco.js`, as flip cards — dropdown per set + per
+  question, proofs/references in a collapsed section; position persists to
+  `pca_catechism_v1`; a set with `verbatim: false` renders a paraphrase
+  callout instead of the confessional one). A Due/Weak
   focus toggle filters the Review/Quiz deck. Answers are provenance-tagged
   (`renderAnswer()`: standard quotes vs study notes) and reference chips
   deep-link to official texts (`refLink()`).

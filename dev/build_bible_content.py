@@ -45,7 +45,10 @@ def deck_for(title):
     return ('bc-whole', 'Whole Bible', 1)
 
 def clean(t):
-    return re.sub(r'\s+', ' ', FOOTNOTE_RE.sub('', t.replace('&amp;', '&'))).strip()
+    t = re.sub(r'\s+', ' ', FOOTNOTE_RE.sub('', t.replace('&amp;', '&'))).strip()
+    # source typo: a duplicated "around" at a line wrap ("around 1000 B.C. around")
+    t = re.sub(r'\baround (\d{3,4})\s*B\.C\. around\b', r'around \1 B.C.', t)
+    return t
 
 def is_list_prompt(q):
     ql = q.lower()
@@ -152,11 +155,22 @@ def main():
                     if not m:
                         i += 1; continue
                     item_head = m.group(2); i += 1
+                    # Passage items often run the verse text into the head
+                    # ("Psalm 19:1-4a: For the director of music. … The") —
+                    # split at the colon so the question is the reference and
+                    # the verse text opens the answer.
+                    mref = re.match(r'^((?:[123]\s)?[A-Z][A-Za-z]+\.?\s[\d:.,;\-–ab\s]+?)\s*:\s+(\S.*)$', item_head)
+                    head_tail = None
+                    if mref and re.search(r'\d', mref.group(1)):
+                        item_head = mref.group(1)
+                        head_tail = mref.group(2)
                     body_lines = []
                     while i < len(region):
                         if item_re.match(region[i]) or QUESTION_RE.match(region[i]) or SUBSEC_RE.match(region[i]):
                             break
                         body_lines.append(region[i]); i += 1
+                    if head_tail:
+                        body_lines.insert(0, ' ' * 12 + head_tail)
                     a = render_item_body(body_lines)
                     if not a and re.search(r'\s[-—:]\s', item_head):
                         parts = re.split(r'\s[-—:]\s', item_head, 1)
@@ -212,8 +226,13 @@ def render_item_body(lines):
                 seg = mr2.group(2) if mr2 else lines[i].strip()
                 text += (' ' if text else '') + seg.strip()
                 i += 1
-            lead = f'**{label}.** ' if len(label) <= 6 else ''
-            out.append((lead + clean(text)).strip())
+            if len(label) <= 6:
+                # short label ("OT", "NT") → bold lead before the body text
+                out.append((f'**{label}.** ' + clean(text)).strip())
+            else:
+                # full-prose first line — keep it (it is the start of the
+                # answer, e.g. "A prophetess who was the only female judge…")
+                out.append(clean(label + (' ' + text if text else '')))
         elif mr:
             out.append(clean(mr.group(2))); i += 1
         else:

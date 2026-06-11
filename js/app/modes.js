@@ -291,14 +291,19 @@ export function createModes(ctx) {
         `<option value="${c.id}" ${c.id === catState.cat ? 'selected' : ''}>${escapeHtml(c.label)}</option>`).join('');
       const qOptions = items.map(it =>
         `<option value="${it.n}" ${it.n === item.n ? 'selected' : ''}>Q${it.n}. ${escapeHtml(it.q.slice(0, 60))}${it.q.length > 60 ? '…' : ''}</option>`).join('');
+      const paraphrase = cat.verbatim === false;
       const proofs = (item.refs && item.refs.length)
-        ? `<details class="qa-full"><summary class="qa-full-toggle">Scripture proofs (${item.refs.length})</summary>
+        ? `<details class="qa-full"><summary class="qa-full-toggle">${paraphrase ? 'References' : 'Scripture proofs'} (${item.refs.length})</summary>
              ${renderRefs(item.refs)}</details>`
         : '';
+      const calloutCls = paraphrase ? 'qa-attribution' : 'qa-standard';
+      const calloutLabel = paraphrase
+        ? `${escapeHtml(cat.short)} ${item.n} — paraphrase, verify against the official text`
+        : `${escapeHtml(cat.label)} A.${item.n}`;
       const answerBlock = catState.revealed
         ? `<div class="qa-divider"></div>
-           <div class="qa-answer"><div class="qa-callout qa-standard">
-             <div class="qa-prov-label">${escapeHtml(cat.label)} A.${item.n}</div>
+           <div class="qa-answer"><div class="qa-callout ${calloutCls}">
+             <div class="qa-prov-label">${calloutLabel}</div>
              <p>${escapeHtml(item.a)}</p></div></div>
            ${proofs}
            <div class="qa-reveal-hint qa-tap-hint">Tap card to hide</div>`

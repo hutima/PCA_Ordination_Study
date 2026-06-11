@@ -214,6 +214,29 @@ KEEP modules + the HTML shell):**
 
       **Release ritual:** bump `?v=N` in `index.html` AND `CACHE` in `sw.js`
       together so returning users auto-refresh onto the new version.
+- [x] **Phase 11 — BCO paraphrase content + card-quality audit.**
+      The BCO is copyrighted: all BCO content is paraphrase, labeled as such
+      (sources panel + per-card paraphrase callouts), with chips → pcaac.org.
+      - Two hand-authored governance sub-decks (`js/data/subjects/
+        bco_governance.js`, 23 cards): courts in practice (Session/Presbytery/
+        GA/SJC, review & control, paths to a higher court, organizing
+        churches, evangelists, congregational business) and ministry/members/
+        worship in practice (good-faith subscription, membership vows,
+        reception modes, restoration, without-process, officer-only censures,
+        baptism, marriage, DFW constitutional authority incl. BCO 59,
+        out-of-bounds labor, deacon assistants). +14 BCO MCQs (qz-bco-17..30).
+      - **BCO Key Points (paraphrase)** memorization set (`js/data/
+        catechisms_bco.js`, 39 items) added to the Catechisms dropdown;
+        non-verbatim sets render a paraphrase callout, refs in a collapsed
+        "References" section.
+      - Card-quality audit & fixes: `build_bible_content.py` no longer drops
+        a list item's first prose line (58 fragment answers → 2 legitimate),
+        passage heads split at the ref colon ("Psalm 19:1-4a: …"); the
+        flattened Great Awakenings table in church_history became one proper
+        comparison-table card (4 garbage cards removed); BCO conversion
+        debris stripped; `summarize()` extends bare list-intro first lines
+        with following items so review summaries are complete thoughts.
+      - Release: `?v=13` / `pca-v13`.
 - [x] **Phase 10 — Westminster Standards content (public-domain PDFs).**
       Source: WCF + Larger/Shorter Catechism PDFs uploaded to main (public
       domain; the BCO is copyrighted and is linked, never embedded).

@@ -494,7 +494,7 @@
       {
         "id": "bco-066",
         "q": "What parts of the Directory For Worship have constitutional authority (if any)?",
-        "a": ".’...BCO 56, 57, and 58 have been given full constitutional authority by the Eleventh General Assembly after being submitted to the Presbyteries and receiving the necessary two-thirds (2/3) approval of the Presbyteries. “- BCO The Directory For Worship of God",
+        "a": "BCO 56, 57, and 58 have been given full constitutional authority by the Eleventh General Assembly after being submitted to the Presbyteries and receiving the necessary two-thirds (2/3) approval of the Presbyteries. “- BCO The Directory For Worship of God",
         "refs": []
       }
     ]
