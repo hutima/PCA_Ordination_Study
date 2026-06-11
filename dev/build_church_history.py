@@ -102,6 +102,29 @@ def looks_like_term(block):
         return False
     return len(first) <= 44 and len(block) >= 1 and not first.endswith(('.', '?'))
 
+# The source's "Great Awakening(s)" entry is a two-column comparison table that
+# plain-text extraction flattens into context-free fragments ("Nathaniel Taylor
+# (Yale)", "Highlights", …). Rebuild it by hand as one comparison card instead
+# of letting the glossary parser emit garbage cards.
+AWAKENINGS_Q = 'Compare the First and Second Great Awakenings (dates, figures, theology, distinctives).'
+AWAKENINGS_A = (
+    '| | 1st Great Awakening (c. 1735–43) | 2nd Great Awakening (1795–1830) |\n'
+    '|---|---|---|\n'
+    '| Major figures | Theodore Frelinghuysen (Dutch Reformed), Gilbert Tennent (Presbyterian), '
+    'Jonathan Edwards (Congregational), George Whitefield (Anglican) | Nathaniel Taylor (Yale), '
+    'Lyman Beecher, Charles Finney; Methodists/Baptists in the west, Presbyterian New School in the east |\n'
+    '| Theology | Calvinist | New Haven / Arminian (modified Edwards) |\n'
+    '| Salvation | Traditional Calvinist (sovereign God; total depravity; no decisionalism) | '
+    'Humans have the ability to choose to come to God |\n'
+    '| Church | "Pure church" model (only the born-again take the Supper); end of the Half-Way Covenant | '
+    'Private interpretation of the Bible; revivalism; volunteer societies |\n'
+    '| Society | Church/state relationships grow apart | Optimism about the US; volunteer societies; '
+    'sense of special blessing on America |\n'
+    '| Highlights | Edwards (Freedom of the Will; Original Sin; Religious Affections); '
+    "Whitefield's campaigns | Finney (Lectures on Revival); camp/tent meetings; "
+    'the anxious bench ("New Measures") |'
+)
+
 def main():
     text = open(SRC, encoding='utf-8').read()
     blks = blocks_of(text)
@@ -113,6 +136,7 @@ def main():
     section = 'ch-overview'      # default prose bucket
     gloss = None                 # active glossary sub-deck key, or None
     cur_q = None                 # (question, [answer blocks], deck)
+    in_awakenings = False        # inside the flattened Awakenings table
 
     def add(deck, q, a):
         nonlocal n
@@ -164,6 +188,17 @@ def main():
             continue
         # content block
         if gloss:
+            # Great Awakening(s) comparison table → one hand-built card; skip
+            # the flattened fragments until the next real entry.
+            if first.startswith('Great Awakening'):
+                add(gloss, AWAKENINGS_Q, AWAKENINGS_A)
+                in_awakenings = True
+                continue
+            if in_awakenings:
+                if first.startswith('Old School / New School'):
+                    in_awakenings = False  # fall through to normal handling
+                else:
+                    continue
             if looks_like_term(blk):
                 term = clean(blk[0])
                 defn = norm_para(blk[1:]) if len(blk) > 1 else ''

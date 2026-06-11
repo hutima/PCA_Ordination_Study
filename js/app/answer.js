@@ -64,13 +64,26 @@ export function renderAnswer(md) {
 
 // A short plain-text teaser for the front of progressive disclosure. Prefers an
 // authored `card.summary`; otherwise derives one from the first substantive line
-// of the answer (label stripped), capped to a tweet-ish length.
+// of the answer (label stripped), capped to a tweet-ish length. A first line
+// that is only a list intro ("The Assembly works through:") or a fragment is
+// extended with the following list items so the summary is a complete thought.
+const LIST_MARKER_RE = /^\s*(?:[-•]|\d+\.|[a-z]\.|\*\*[^*]+\*\*\.?)\s*/;
 export function summarize(card, max = 240) {
   if (card && typeof card.summary === 'string' && card.summary.trim()) return card.summary.trim();
   const a = String((card && card.a) || '').replace(/\r\n?/g, '\n').trim();
   if (!a) return '';
-  const first = a.split('\n').map(l => l.trim()).find(Boolean) || '';
-  let s = first.replace(LABEL_STRIP_RE, '').replace(/\s+/g, ' ').trim();
+  const lines = a.split('\n').map(l => l.trim()).filter(Boolean);
+  let s = (lines[0] || '').replace(LABEL_STRIP_RE, '').replace(/\s+/g, ' ').trim();
+  // Bare intro / fragment: pull in following list items as an inline run-on.
+  if ((s.endsWith(':') || s.length < 30) && lines.length > 1) {
+    const items = [];
+    for (const l of lines.slice(1)) {
+      const item = l.replace(LIST_MARKER_RE, '').replace(LABEL_STRIP_RE, '').replace(/\*\*/g, '').trim();
+      if (item) items.push(item);
+      if ((s + ' ' + items.join('; ')).length > max) break;
+    }
+    if (items.length) s = `${s.replace(/:$/, ':')} ${items.join('; ')}`;
+  }
   if (s.length > max) s = s.slice(0, max - 1).replace(/\s+\S*$/, '') + '…';
   return s;
 }

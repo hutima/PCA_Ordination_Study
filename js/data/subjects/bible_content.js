@@ -21,15 +21,15 @@
         "refs": []
       },
       {
-        "id": "bc-003-psalm-19-1-4a-for-the-director-of",
-        "q": "Psalm 19:1-4a: For the director of music. A psalm of David. The",
-        "a": "heavens declare the glory of God; the skies proclaim the work of his hands. 2 Day after day they pour forth speech; night after night they display knowledge. 3 There is no speech or language where their voice is not heard. 4 Their voice goes out into all the earth, their words to the ends of the world....",
+        "id": "bc-003-psalm-19-1-4a",
+        "q": "Psalm 19:1-4a",
+        "a": "For the director of music. A psalm of David. The heavens declare the glory of God; the skies proclaim the work of his hands. 2 Day after day they pour forth speech; night after night they display knowledge. 3 There is no speech or language where their voice is not heard. 4 Their voice goes out into all the earth, their words to the ends of the world....",
         "refs": []
       },
       {
-        "id": "bc-004-romans-1-20-for-since-the-creation",
-        "q": "Romans 1:20: For since the creation of the world God's invisible",
-        "a": "qualities-his eternal power and divine nature-- have been clearly seen, being understood from what has been made, so that men are without excuse.",
+        "id": "bc-004-romans-1-20",
+        "q": "Romans 1:20",
+        "a": "For since the creation of the world God's invisible qualities-his eternal power and divine nature-- have been clearly seen, being understood from what has been made, so that men are without excuse.",
         "refs": []
       },
       {
@@ -41,19 +41,19 @@
       {
         "id": "bc-006-history",
         "q": "History",
-        "a": "Genesis, Exodus, Leviticus, Numbers, Deuteronomy\n\nJoshua, Judges, Ruth, 1 Samuel, 2 Samuel, 1 Kings, 2 Kings, 1 Chronicles, 2 Chronicles, Ezra, Nehemiah, Esther",
+        "a": "Pentateuch (5) Genesis, Exodus, Leviticus, Numbers, Deuteronomy\n\nHistorical Books (12) Joshua, Judges, Ruth, 1 Samuel, 2 Samuel, 1 Kings, 2 Kings, 1 Chronicles, 2 Chronicles, Ezra, Nehemiah, Esther",
         "refs": []
       },
       {
         "id": "bc-007-poetry-5",
         "q": "Poetry (5)",
-        "a": "(see Scripture references)",
+        "a": "Job, Psalms, Proverbs, Ecclesiastes, Song of Songs",
         "refs": []
       },
       {
         "id": "bc-008-prophesy",
         "q": "Prophesy",
-        "a": "Isaiah, Jeremiah, Lamentations, Ezekiel, Daniel\n\nHosea, Joel, Amos, Obadiah, Jonah, Micah, Nahum, Habakkuk, Zephaniah, Haggai, Zechariah, Malachi",
+        "a": "Major (5) Isaiah, Jeremiah, Lamentations, Ezekiel, Daniel\n\nMinor (12) Hosea, Joel, Amos, Obadiah, Jonah, Micah, Nahum, Habakkuk, Zephaniah, Haggai, Zechariah, Malachi",
         "refs": []
       },
       {
@@ -102,109 +102,109 @@
       {
         "id": "bc-015-deborah",
         "q": "Deborah",
-        "a": "story is found in Judges 4-5. Barak refused to to attack Sisera, the commander of Jabin's army, unless Deborah went with him. Deborah's song of victory is recounted in Judges 5.",
+        "a": "A prophetess who was the only female judge of Israel. Her story is found in Judges 4-5. Barak refused to to attack Sisera, the commander of Jabin's army, unless Deborah went with him. Deborah's song of victory is recounted in Judges 5.",
         "refs": []
       },
       {
         "id": "bc-016-ruth",
         "q": "Ruth",
-        "a": "of loyalty to Naomi in staying with her. Ruth's account in the book which bears here name is a testimony of God's grace extending beyond ethnic Israel. Her marriage to Boaz produced Obed, the father of Jesse, the father of David... Christ. Ruth is mentioned in Matthew's genealogy (Mat 1).",
+        "a": "A Moabitess widow and step-daughter of Naomi. She is a model of loyalty to Naomi in staying with her. Ruth's account in the book which bears here name is a testimony of God's grace extending beyond ethnic Israel. Her marriage to Boaz produced Obed, the father of Jesse, the father of David... Christ. Ruth is mentioned in Matthew's genealogy (Mat 1).",
         "refs": []
       },
       {
         "id": "bc-017-joshua",
         "q": "Joshua",
-        "a": "Joshua son of Nun by Moses (Num 13:16). In the book of Exodus Joshua functions as Moses' assistant and accompanied Moses on Mount Sinai when Moses met with Yahweh to receive the Law (Exod 24-32). Joshua and Caleb were the only faithful spies among those sent out to explore the Promised Land and as a result they were the only ones not to die in the wilderness of that first generation of Israelites (Num 13-14). Joshua led Israel in the conquest of Canaan in the book that bears his name. His failure to give Israel rest is mentioned in Hebrews 4:8.",
+        "a": "His name was changed by Moses from Hoshea son of Nun to Joshua son of Nun by Moses (Num 13:16). In the book of Exodus Joshua functions as Moses' assistant and accompanied Moses on Mount Sinai when Moses met with Yahweh to receive the Law (Exod 24-32). Joshua and Caleb were the only faithful spies among those sent out to explore the Promised Land and as a result they were the only ones not to die in the wilderness of that first generation of Israelites (Num 13-14). Joshua led Israel in the conquest of Canaan in the book that bears his name. His failure to give Israel rest is mentioned in Hebrews 4:8.",
         "refs": []
       },
       {
         "id": "bc-018-gideon",
         "q": "Gideon",
-        "a": "Manasseh, he was the fifth recorded judge over Israel and the first of the out-group of judges. Before Gideon was called to be a judge Israel was oppressed by Midianites, Amalekites and other eastern peoples. When first called by God he asked for a sign and the angel of the Lord consumed an offering of meat and unleavened bread with fire. Gideon then heeded the request to tear down his father's Baal altar but did so at night. Gideon then tested God twice more with a wool fleece in relation to dew on the ground. The Lord whittled down Gideon's force to 300 men who lapped water with their hands to their mouths to save Israel from the Midianites. He beat the elders of Succoth and killed the men of Peniel for not helping with his pursuit of the Midianite kingd Zebah and Zalmunna. Though he refused Israel's request that he rule over them, Gideon functioned as a king by having seventy sons through many wives. He made an ephod at the end of his life which led Israel astray and his son Abimelech (\"my father is king\") went on to oppress Israel until he was killed by a woman who dropped a millstone on his head. He is mentioned in Hebrews 11 as an example of faith.",
+        "a": "(Judges 6-9) The son of Joash from the half-tribe of Manasseh, he was the fifth recorded judge over Israel and the first of the out-group of judges. Before Gideon was called to be a judge Israel was oppressed by Midianites, Amalekites and other eastern peoples. When first called by God he asked for a sign and the angel of the Lord consumed an offering of meat and unleavened bread with fire. Gideon then heeded the request to tear down his father's Baal altar but did so at night. Gideon then tested God twice more with a wool fleece in relation to dew on the ground. The Lord whittled down Gideon's force to 300 men who lapped water with their hands to their mouths to save Israel from the Midianites. He beat the elders of Succoth and killed the men of Peniel for not helping with his pursuit of the Midianite kingd Zebah and Zalmunna. Though he refused Israel's request that he rule over them, Gideon functioned as a king by having seventy sons through many wives. He made an ephod at the end of his life which led Israel astray and his son Abimelech (\"my father is king\") went on to oppress Israel until he was killed by a woman who dropped a millstone on his head. He is mentioned in Hebrews 11 as an example of faith.",
         "refs": []
       },
       {
         "id": "bc-019-samuel",
         "q": "Samuel",
-        "a": "by his mother Hannah under the priesthood of Eli. The Lord revealed to him the downfall of Eli's house (1 Sam 3) after which Samuel served as the last judge over Israel and its priest. The Lord led Israel to victory over the Philistines through Samuel (1 Sam 7). Samuel's ministry combined prophetic, priestly, and judicial offices. Samuel's sons were wicked and Israel demanded a king to rule over them (1 Sam 8), Samuel anointed Saul for this task (1 Sam 9) but then proclaimed Saul's rejection by the Lord (1 Sam 13) and anointed David as king (1 Sam 16). After dying (1 Sam 15), he was called from the dead when Saul consulted the witch of Endor and he proclaimed Saul's impending death along with his sons at the hands of the Philistines (1 Sam 28).",
+        "a": "The child of Hannah and Elkanah he was dedicated to the Lord by his mother Hannah under the priesthood of Eli. The Lord revealed to him the downfall of Eli's house (1 Sam 3) after which Samuel served as the last judge over Israel and its priest. The Lord led Israel to victory over the Philistines through Samuel (1 Sam 7). Samuel's ministry combined prophetic, priestly, and judicial offices. Samuel's sons were wicked and Israel demanded a king to rule over them (1 Sam 8), Samuel anointed Saul for this task (1 Sam 9) but then proclaimed Saul's rejection by the Lord (1 Sam 13) and anointed David as king (1 Sam 16). After dying (1 Sam 15), he was called from the dead when Saul consulted the witch of Endor and he proclaimed Saul's impending death along with his sons at the hands of the Philistines (1 Sam 28).",
         "refs": []
       },
       {
         "id": "bc-020-david",
         "q": "David",
-        "a": "great grandson of Ruth and Boaz. Anointed in secret by Samuel but remained loyal to Saul despite Saul's many attempts upon David's life. Following the death of Saul at the hands of the Philistines, David was anointed by the Israelites as king in Hebron. He reigned in Hebron for 71/2 years until he defeated Saul's supporters, thus uniting the kingship in Israel. Notable accomplishments include his defeat of Goliath, his establishment of Jerusalem as the capital of Israel, his placement of the ark in Jerusalem. His sin with Bathsheba led to turmoil throughout the rest of his reign, most notably the rebellion of his son Absalom. He authored many Psalms, including Psalm 51 which records his repentance following his sin with Bathsheba. The Davidic covenant is found in 2 Sam 7 (cf. Psalm 89:3-4) and 1 Chron 17.",
+        "a": "(1 Sam 16-1 Kgs 2 // 1 Chron 2-29) The youngest son of Jesse, great grandson of Ruth and Boaz. Anointed in secret by Samuel but remained loyal to Saul despite Saul's many attempts upon David's life. Following the death of Saul at the hands of the Philistines, David was anointed by the Israelites as king in Hebron. He reigned in Hebron for 71/2 years until he defeated Saul's supporters, thus uniting the kingship in Israel. Notable accomplishments include his defeat of Goliath, his establishment of Jerusalem as the capital of Israel, his placement of the ark in Jerusalem. His sin with Bathsheba led to turmoil throughout the rest of his reign, most notably the rebellion of his son Absalom. He authored many Psalms, including Psalm 51 which records his repentance following his sin with Bathsheba. The Davidic covenant is found in 2 Sam 7 (cf. Psalm 89:3-4) and 1 Chron 17.",
         "refs": []
       },
       {
         "id": "bc-021-solomon",
         "q": "Solomon",
-        "a": "to fight brother Adonijah for right to rule. Eventually Solomon executed Adonijah and Joab. God honored Solomon's request for wisdom and used Solomon to build the temple in Jerusalem. Solomon's wisdom was recorded in proverbs and songs, and he earned international acclaim as can be seen by the queen of Sheba's visit. However, Solomon formed may politically expedient but spiritually destructive alliances through marriages which introduced the worship of foreign gods into Israel.",
+        "a": "(1 Kgs 1-11 // 2 Chron 1-9) Son of David and Bathsheba. Had to fight brother Adonijah for right to rule. Eventually Solomon executed Adonijah and Joab. God honored Solomon's request for wisdom and used Solomon to build the temple in Jerusalem. Solomon's wisdom was recorded in proverbs and songs, and he earned international acclaim as can be seen by the queen of Sheba's visit. However, Solomon formed may politically expedient but spiritually destructive alliances through marriages which introduced the worship of foreign gods into Israel.",
         "refs": []
       },
       {
         "id": "bc-022-rehoboam",
         "q": "Rehoboam",
-        "a": "over united Israel, first king over Judah. Rejected the wise counsel of elders in favor of foolish counsel of young men to be oppressive to Israel (though this was from the Lord, 1 Kings 12:15), which led to the defection of the 10 Northern tribes under Jeroboam son of Nebat. 2 Chronicles 12 records Rehoboam's repentance when Shishak king of Egypt attacked Jerusalem.",
+        "a": "(1 Kgs 12-14 // 2 Chron 10-12) Son of Solomon and last king over united Israel, first king over Judah. Rejected the wise counsel of elders in favor of foolish counsel of young men to be oppressive to Israel (though this was from the Lord, 1 Kings 12:15), which led to the defection of the 10 Northern tribes under Jeroboam son of Nebat. 2 Chronicles 12 records Rehoboam's repentance when Shishak king of Egypt attacked Jerusalem.",
         "refs": []
       },
       {
         "id": "bc-023-jeroboam-son-of-nebat",
         "q": "Jeroboam son of Nebat",
-        "a": "who was appointed by Solomon to be in charge of a work force of the house of Joseph. He was told by the prophet Ahijah that he would rule 10 tribes of Israel because of Solomon's sin. He was exiled to Egypt for leading a revolt against Solomon. He led the 10 northern tribes in secession from Israel after Rehoboam failed to reform Solomon's policies. Fearing worship in Jerusalem would threaten his rule, he introduced syncretistic worship into Northern Israel, placing golden calves in Dan and Bethel and building high places, and he appointing all sorts of people as priests.",
+        "a": "(1 Kgs 11-14 // 2 Chron 10-13) A wealthy Ephraimite landowner who was appointed by Solomon to be in charge of a work force of the house of Joseph. He was told by the prophet Ahijah that he would rule 10 tribes of Israel because of Solomon's sin. He was exiled to Egypt for leading a revolt against Solomon. He led the 10 northern tribes in secession from Israel after Rehoboam failed to reform Solomon's policies. Fearing worship in Jerusalem would threaten his rule, he introduced syncretistic worship into Northern Israel, placing golden calves in Dan and Bethel and building high places, and he appointing all sorts of people as priests.",
         "refs": []
       },
       {
         "id": "bc-024-elijah",
         "q": "Elijah",
-        "a": "during the reigns of Ahab/Jezebel and Ahaziah. His ministry centered around confronting Baalism. Proclaimed a drought to Ahab, was fed by ravens in the Kerith Ravine and then performed a miracle for the widow of Zarephath so that her oil would not run out and raised her son from the dead, confronted the prophets of Baal on Mount Carmel, fled to Horeb from Jezebel where the Lord appeared to him in a still small voice saying that he had kept 7000 in Israel who had not bowed their knees to Baal, he proclaimed judgment on Ahab for taking Naboth's vineyard, and was taken up to heaven in a chariot of fire. He was a forerunner of the writing prophets of the 6th century.",
+        "a": "(1 Kgs 17-19, 21; 2 Kgs 1-2) Elijah the Tishbite prophesied during the reigns of Ahab/Jezebel and Ahaziah. His ministry centered around confronting Baalism. Proclaimed a drought to Ahab, was fed by ravens in the Kerith Ravine and then performed a miracle for the widow of Zarephath so that her oil would not run out and raised her son from the dead, confronted the prophets of Baal on Mount Carmel, fled to Horeb from Jezebel where the Lord appeared to him in a still small voice saying that he had kept 7000 in Israel who had not bowed their knees to Baal, he proclaimed judgment on Ahab for taking Naboth's vineyard, and was taken up to heaven in a chariot of fire. He was a forerunner of the writing prophets of the 6th century.",
         "refs": []
       },
       {
         "id": "bc-025-elisha",
         "q": "Elisha",
-        "a": "Elisha was promised a double portion of Elijah's spirit if he saw Elijah when he was taken which Elisha did. Miracles include: healing of bad water by putting salt into it, granted a perpetual flow of oil to a widow of the company of prophets so she could sell it and pay her debts, predicted the birth of a son for a Shunammite woman whose husband was old and then raised the boy from the dead, removed death from a pot of stew with some flour, multiplied bread and fed one hundred people, healed Naaman of leprosy (servant Gehazi received Naaman's leprosy for taking Namaan's money), caused an axhead to float, and blinded the Arameans, and a dead man's body came to life when it touched Elisha's bones. Elisha ministered to Northern Israel.",
+        "a": "(1 Kgs 19-2 Kgs 13) Anointed by Elijah as his successor. Elisha was promised a double portion of Elijah's spirit if he saw Elijah when he was taken which Elisha did. Miracles include: healing of bad water by putting salt into it, granted a perpetual flow of oil to a widow of the company of prophets so she could sell it and pay her debts, predicted the birth of a son for a Shunammite woman whose husband was old and then raised the boy from the dead, removed death from a pot of stew with some flour, multiplied bread and fed one hundred people, healed Naaman of leprosy (servant Gehazi received Naaman's leprosy for taking Namaan's money), caused an axhead to float, and blinded the Arameans, and a dead man's body came to life when it touched Elisha's bones. Elisha ministered to Northern Israel.",
         "refs": []
       },
       {
         "id": "bc-026-hezekiah",
         "q": "Hezekiah",
-        "a": "appears in the genealogy of Christ. Son of Ahaz, Hezekiah did what was right in the eyes of the Lord, removing the high places, cutting down Asherah poles and removing the bronze snake of Moses. He also worked to reverse his father's alliances with Assyria which were influencing Judah spiritually and politically. Was faithful to Yahweh during the threat of Sennacherib, king of Assyria. Remembered for praying and for receiving 15 more years of life (the sign for which was his shadow going back 10 steps) but then foolishly showing envoys of Babylon the treasures of the temple which he was then told would be taken after he died. Chronicles recounts how he purified the temple and celebrated the Passover.",
+        "a": "(2 Kgs 18-20 // 2 Chron 29-32 // Isa 36-39) King of Judah who appears in the genealogy of Christ. Son of Ahaz, Hezekiah did what was right in the eyes of the Lord, removing the high places, cutting down Asherah poles and removing the bronze snake of Moses. He also worked to reverse his father's alliances with Assyria which were influencing Judah spiritually and politically. Was faithful to Yahweh during the threat of Sennacherib, king of Assyria. Remembered for praying and for receiving 15 more years of life (the sign for which was his shadow going back 10 steps) but then foolishly showing envoys of Babylon the treasures of the temple which he was then told would be taken after he died. Chronicles recounts how he purified the temple and celebrated the Passover.",
         "refs": []
       },
       {
         "id": "bc-027-josiah",
         "q": "Josiah",
-        "a": "became king of Judah when he was 8 years old and did what was right in the eyes of the Lord. His reign lasted from 640-609 B.C. Found the book of the Law in the temple and renewed the covenant, celebrating Passover in the process. Fought against Baalism and the occult in Judah. Was killed in a battle with Pharaoh Neco on the plain of Megiddo.",
+        "a": "(2 Kgs 22-23 // 2 Chron 33-34) Son of the bad king Amon, he became king of Judah when he was 8 years old and did what was right in the eyes of the Lord. His reign lasted from 640-609 B.C. Found the book of the Law in the temple and renewed the covenant, celebrating Passover in the process. Fought against Baalism and the occult in Judah. Was killed in a battle with Pharaoh Neco on the plain of Megiddo.",
         "refs": []
       },
       {
         "id": "bc-028-jeremiah",
         "q": "Jeremiah",
-        "a": "continued to minister through the fall of Jerusalem and journey into Egypt as a hostage. He is remembered for his manifold sufferings and also for his message of hope found in his book. In Jeremiah 31 we learn of the New Covenant.",
+        "a": "Prophet from Anathoth who began his ministry in 627 B.C. and continued to minister through the fall of Jerusalem and journey into Egypt as a hostage. He is remembered for his manifold sufferings and also for his message of hope found in his book. In Jeremiah 31 we learn of the New Covenant.",
         "refs": []
       },
       {
         "id": "bc-029-ezekiel",
         "q": "Ezekiel",
-        "a": "B.C., when he was around 26 years old, He resettled in Tel Abib by the Kebar river and started his ministry around age\n\nthe glory of the Lord departing from the temple, return from the Exile, warnings against false shepherds, and the vision of the valley of dry bones.",
+        "a": "Exiled along with King Jehoiachin by Nebuchanezzar in 597 B.C., when he was around 26 years old, He resettled in Tel Abib by the Kebar river and started his ministry around age\n\nHighlights of his ministry include Ezekiel as watchman, the glory of the Lord departing from the temple, return from the Exile, warnings against false shepherds, and the vision of the valley of dry bones.",
         "refs": []
       },
       {
         "id": "bc-030-daniel",
         "q": "Daniel",
-        "a": "year of Jehoiakim's reign. He lived with spiritual integrity in Babylon, serving Nebuchadnezzar, Belshazzar, Darius the Mede, and Cyrus the Persian.",
+        "a": "Carried to Babylon by Nebuchadnezzar in 605 B.C., the 3rd year of Jehoiakim's reign. He lived with spiritual integrity in Babylon, serving Nebuchadnezzar, Belshazzar, Darius the Mede, and Cyrus the Persian.",
         "refs": []
       },
       {
         "id": "bc-031-nehemiah",
         "q": "Nehemiah",
-        "a": "Received permission to travel to Jerusalem to rebuild the city walls. He also supported the religious reforms of Ezra and he led the nation in covenant renewal in which they pledged to keep the Sabbath, support the temple, and not to intermarry. While he returned to Susa, Israel broke these vows and Nehemiah had to clean things up when he returned.",
+        "a": "The son of Hacaliah, he was a cupbearer to King Artaxerxes. Received permission to travel to Jerusalem to rebuild the city walls. He also supported the religious reforms of Ezra and he led the nation in covenant renewal in which they pledged to keep the Sabbath, support the temple, and not to intermarry. While he returned to Susa, Israel broke these vows and Nehemiah had to clean things up when he returned.",
         "refs": []
       },
       {
         "id": "bc-032-malachi",
         "q": "Malachi",
-        "a": "arranged in our English Bibles. Malachi's ministry is to be dated about the time of Ezra and Nehemiah. The reference to the \"governor\" (1:8) locates the book in the Persian period and Malachi's emphasis on the law (Mal 4:4) would indicate the time of Ezra's ministry of restoring the prominence and authority of the law (Ezra 7:14, 25, 26; Neh 8:18). Some date the book between the coming of Ezra (458 B.C.) and the coming of Nehemiah (445 B.C.). Others place Malachi in the period between Nehemiah's two visits to Jerusalem, about 433 B.C. Malachi, along with Ezra and Nehemiah, speaks against marriage to foreign wives, condemns the neglect of the tithe, castigates the evils of a degenerate priesthood and criticizes social sins. Also prominent in the book of the Malachi is the subject of the covenant. The end of Malachi predicts the coming of the Elijah which will precipitate the Day of the Lord.",
+        "a": "The book bearing his name is the last one in the OT, as it is arranged in our English Bibles. Malachi's ministry is to be dated about the time of Ezra and Nehemiah. The reference to the \"governor\" (1:8) locates the book in the Persian period and Malachi's emphasis on the law (Mal 4:4) would indicate the time of Ezra's ministry of restoring the prominence and authority of the law (Ezra 7:14, 25, 26; Neh 8:18). Some date the book between the coming of Ezra (458 B.C.) and the coming of Nehemiah (445 B.C.). Others place Malachi in the period between Nehemiah's two visits to Jerusalem, about 433 B.C. Malachi, along with Ezra and Nehemiah, speaks against marriage to foreign wives, condemns the neglect of the tithe, castigates the evils of a degenerate priesthood and criticizes social sins. Also prominent in the book of the Malachi is the subject of the covenant. The end of Malachi predicts the coming of the Elijah which will precipitate the Day of the Lord.",
         "refs": []
       }
     ]
@@ -217,67 +217,67 @@
       {
         "id": "bc-033-passover",
         "q": "Passover",
-        "a": "(see Scripture references)",
+        "a": "Exodus 12",
         "refs": []
       },
       {
         "id": "bc-034-ten-commandments",
         "q": "Ten Commandments",
-        "a": "(see Scripture references)",
+        "a": "Exodus 20; Deuteronomy 5",
         "refs": []
       },
       {
         "id": "bc-035-day-of-atonement",
         "q": "Day of Atonement",
-        "a": "(see Scripture references)",
+        "a": "Leviticus 16",
         "refs": []
       },
       {
         "id": "bc-036-the-shema-and-reiteration-of-the-l",
         "q": "The Shema and reiteration of the law",
-        "a": "(see Scripture references)",
+        "a": "Deuteronomy 6",
         "refs": []
       },
       {
         "id": "bc-037-watchmen",
         "q": "Watchmen",
-        "a": "(see Scripture references)",
+        "a": "Ezekiel 33",
         "refs": []
       },
       {
         "id": "bc-038-new-covenant",
         "q": "New Covenant",
-        "a": "(see Scripture references)",
+        "a": "Jeremiah 31 (cf. Ezekiel 36)",
         "refs": []
       },
       {
         "id": "bc-039-i-will-pour-out-my-spirit",
         "q": "\"I will pour out my Spirit\"",
-        "a": "people. Your sons and daughters will prophesy, your old men will dream dreams, your young men will see visions.",
+        "a": "Joel 2:28 'And afterward, I will pour out my Spirit on all people. Your sons and daughters will prophesy, your old men will dream dreams, your young men will see visions.",
         "refs": []
       },
       {
         "id": "bc-040-the-just-shall-live-by-faith",
         "q": "\"The just shall live by faith\"",
-        "a": "(see Scripture references)",
+        "a": "Habakkuk 2:4 //Romans 1:16-17 //Galatians 3:11",
         "refs": []
       },
       {
         "id": "bc-041-though-the-fig-tree-does-not-bloss",
         "q": "\"Though the fig tree does not blossom...\"",
-        "a": "(see Scripture references)",
+        "a": "Habakkuk 3:17",
         "refs": []
       },
       {
         "id": "bc-042-i-am-going-to-send-my-messenger",
         "q": "\"I am going to send my messenger\"",
-        "a": "(see Scripture references)",
+        "a": "Malachi 3:1",
         "refs": []
       },
       {
         "id": "bc-043-the-messianic-psalms",
         "q": "The Messianic Psalms",
-        "a": "you...\"\n\nme?\"\n\ndesired...\"\n\nMelchizedek\"\n\nfootstool\"\n\nname of the Lord\"",
+        "a": "Psalm 2 //Heb 1:5 - \"You are my son, today I have begotten you...\"\n\nPsalm 22 // Matt 27 - \"My God, My God, why have you forsaken me?\"\n\nPsalm 40 // Heb 10 - \"Sacrifices and offerings you have not desired...\"\n\nPsalm 45 // Heb 1:8-9 - \"Your throne, O God, is forever\"\n\nPsalm 110 //Heb 7 - \"You are a priest in the order of Melchizedek\"\n\nPsalm 110 //Heb 10 - \"...until I make your enemies your footstool\"\n\nPsalm 118 // Matt 21 - \"Blessed is he who comes in the name of the Lord\"",
         "refs": []
       }
     ]
@@ -290,103 +290,103 @@
       {
         "id": "bc-044-creation",
         "q": "Creation",
-        "a": "(see Scripture references)",
+        "a": "Genesis 1-2",
         "refs": []
       },
       {
         "id": "bc-045-fall",
         "q": "Fall",
-        "a": "(see Scripture references)",
+        "a": "Genesis 3",
         "refs": []
       },
       {
         "id": "bc-046-flood",
         "q": "Flood",
-        "a": "(see Scripture references)",
+        "a": "Genesis 6-9",
         "refs": []
       },
       {
         "id": "bc-047-babel",
         "q": "Babel",
-        "a": "(see Scripture references)",
+        "a": "Genesis 11",
         "refs": []
       },
       {
         "id": "bc-048-promise-to-abraham",
         "q": "Promise to Abraham*",
-        "a": "arrived in Palestine around the year 2091 b.c.",
+        "a": "Genesis 12. Arguably, Abraham was born in 2166 b.c. and arrived in Palestine around the year 2091 b.c.",
         "refs": []
       },
       {
         "id": "bc-049-sign-of-abrahamic-covenant",
         "q": "Sign of Abrahamic covenant",
-        "a": "(see Scripture references)",
+        "a": "Genesis 17",
         "refs": []
       },
       {
         "id": "bc-050-jacob-s-dream-of-the-ladder-to-hea",
         "q": "Jacob's Dream of the ladder to heaven (God affirming his",
-        "a": "Abrahamic promise)",
+        "a": "Abrahamic promise)\n\nGenesis 28",
         "refs": []
       },
       {
         "id": "bc-051-jacob-wrestling-with-the-angel",
         "q": "Jacob wrestling with the angel",
-        "a": "(see Scripture references)",
+        "a": "Genesis 32",
         "refs": []
       },
       {
         "id": "bc-052-the-exodus",
         "q": "The Exodus*",
-        "a": "15th century B.C. This date is based on 1 Kings 6:1 which says that Solomon began building the temple in the fourth year of his reign which was the 480th year since Israel's exodus from Egypt. The fourth year of Solomon's reign is taken to be 966 B.C., which plus 480 equals 1446 B.C., a number which comports well with Judges 11:26, which says that Israel had occupied Heshbon for 300 years by the time of Jephthah. However, conservative scholars, such as Kitchen, think the number 480 is symbolic (12 x 4) and think that among other things, archaeology favors a date in the 13th century B.C.",
+        "a": "Exodus 12:31-42. The early date is 1446 B.C., that is the 15th century B.C. This date is based on 1 Kings 6:1 which says that Solomon began building the temple in the fourth year of his reign which was the 480th year since Israel's exodus from Egypt. The fourth year of Solomon's reign is taken to be 966 B.C., which plus 480 equals 1446 B.C., a number which comports well with Judges 11:26, which says that Israel had occupied Heshbon for 300 years by the time of Jephthah. However, conservative scholars, such as Kitchen, think the number 480 is symbolic (12 x 4) and think that among other things, archaeology favors a date in the 13th century B.C.",
         "refs": []
       },
       {
         "id": "bc-053-fall-of-jericho",
         "q": "Fall of Jericho",
-        "a": "(see Scripture references)",
+        "a": "Joshua 6",
         "refs": []
       },
       {
         "id": "bc-054-the-anointing-of-david",
         "q": "The anointing of David*",
-        "a": "B.C. around",
+        "a": "1 Samuel 16 - the anointing of David occurred around 1000 B.C.\n\n2 Samuel 2:4 - over Judah\n\n2 Samuel 5:3 - over Israel",
         "refs": []
       },
       {
         "id": "bc-055-davidic-covenant",
         "q": "Davidic covenant",
-        "a": "(see Scripture references)",
+        "a": "2 Samuel 7 / 1 Chronicles 17 (cf. Psalm 89:3-4).",
         "refs": []
       },
       {
         "id": "bc-056-david-and-bathsheba",
         "q": "David and Bathsheba",
-        "a": "(see Scripture references)",
+        "a": "2 Samuel 11",
         "refs": []
       },
       {
         "id": "bc-057-dedication-of-the-temple",
         "q": "Dedication of the temple*",
-        "a": "950 B.C.",
+        "a": "1 Kings 8 / 2 Chronicles 6-7. The dedication occurred circa 950 B.C.",
         "refs": []
       },
       {
         "id": "bc-058-division-of-kingdom",
         "q": "Division of kingdom*",
-        "a": "B.C. Some say 933 B.C. and others 931 B.C.",
+        "a": "1 Kings 12 / 2 Chronicles 10. The division occurred circa 930 B.C. Some say 933 B.C. and others 931 B.C.",
         "refs": []
       },
       {
         "id": "bc-059-the-exile",
         "q": "The Exile*",
-        "a": "586 B.C., though some say 587 B.C. There were also two prior deportations, one in 605 B.C. in which Daniel was taken and one in 597 B.C. in which Ezekiel was taken.",
+        "a": "Assyrian Exile of Northern Israel: 2 Kings 17 in 722 B.C.\n\nBabylonian exile of Judah: 2 Kings 25 / 2 Chronicles 36 in 586 B.C., though some say 587 B.C. There were also two prior deportations, one in 605 B.C. in which Daniel was taken and one in 597 B.C. in which Ezekiel was taken.",
         "refs": []
       },
       {
         "id": "bc-060-the-return-from-exile",
         "q": "The return from exile*",
-        "a": "temple was completed around 515 B.C.",
+        "a": "First returnees came in 538 B.C. and the rebuilding of the temple was completed around 515 B.C.",
         "refs": []
       }
     ]
@@ -399,19 +399,19 @@
       {
         "id": "bc-061-which-are-the-prison-epistles",
         "q": "Which are the \"Prison Epistles?\"",
-        "a": "and Philemon during his imprisonment in Rome.",
+        "a": "Paul wrote the Books of Ephesians, Philippians, Colossians, and Philemon during his imprisonment in Rome.",
         "refs": []
       },
       {
         "id": "bc-062-which-are-the-pastoral-epistles",
         "q": "Which are the \"Pastoral Epistles?\"",
-        "a": "(see Scripture references)",
+        "a": "The Pastoral Epistles are 1 & 2 Timothy and Titus.",
         "refs": []
       },
       {
         "id": "bc-063-which-are-the-catholic-or-general",
         "q": "Which are the \"Catholic (or, General) Epistles?\"",
-        "a": "called Catholic/General epistles because they are addressed to Christians in General and not to any particular person.",
+        "a": "The epistles of Hebrews, James, 1 & 2 Peter, and Jude are called Catholic/General epistles because they are addressed to Christians in General and not to any particular person.",
         "refs": []
       },
       {
@@ -445,15 +445,15 @@
         "refs": []
       },
       {
-        "id": "bc-069-romans-6-14-for-sin-shall-not-be-y",
-        "q": "Romans 6:14: \"For sin shall not be your master, because you",
-        "a": "are not under law, but under grace.\"\n\nThe condemnation of the law is no longer applicable for\n\nthose in Christ.",
+        "id": "bc-069-romans-6-14",
+        "q": "Romans 6:14",
+        "a": "\"For sin shall not be your master, because you are not under law, but under grace.\"\n\nThe condemnation of the law is no longer applicable for\n\nthose in Christ.",
         "refs": []
       },
       {
-        "id": "bc-070-galatians-5-4-you-who-are-trying-t",
-        "q": "Galatians 5:4: \"You who are trying to be justified by law",
-        "a": "have been alienated from Christ; you have fallen away from grace.\"\n\nSince we received Christ by faith and not by the works of\n\nthe Law and thus are justified by grace through faith we should not then try to turn back to the Law but should pursue the righteousness which comes from faith.",
+        "id": "bc-070-galatians-5-4",
+        "q": "Galatians 5:4",
+        "a": "\"You who are trying to be justified by law have been alienated from Christ; you have fallen away from grace.\"\n\nSince we received Christ by faith and not by the works of\n\nthe Law and thus are justified by grace through faith we should not then try to turn back to the Law but should pursue the righteousness which comes from faith.",
         "refs": []
       }
     ]
@@ -466,73 +466,73 @@
       {
         "id": "bc-071-herod-the-great",
         "q": "Herod the Great",
-        "a": "illustrated by attempted manipulation of the magi and the slaughter of the innocents (Mat 2). Reconstructed Jerusalem Temple, beginning around 19 B.C.",
+        "a": "King of the Jews at Christ's birth. Suspicious in nature, illustrated by attempted manipulation of the magi and the slaughter of the innocents (Mat 2). Reconstructed Jerusalem Temple, beginning around 19 B.C.",
         "refs": []
       },
       {
         "id": "bc-072-herod-antipas",
         "q": "Herod Antipas",
-        "a": "marrying his niece, Herodias. John the Baptist denounced this as scandalous and was imprisoned and then executed when Herod caved into the demand of Herodias' daughter (prompted by her mother) that Herod give her John the Baptist's head on a platter as a reward for her pleasing dancing (Mat 14; Mark 6; cf. also Luke 3:19-20). Herod also had a brief encounter with Jesus because Pilate had sent Jesus to him for judgment. Herod asked Jesus many questions but Jesus would not answer them so Herod, along with the soldiers, mocked Jesus (Luke 23:7ff.). Jesus described Herod as \"that fox\" (Luke 13:31- 32).",
+        "a": "\"Herod the Tetrarch.\" Remembered for divorcing his wife and marrying his niece, Herodias. John the Baptist denounced this as scandalous and was imprisoned and then executed when Herod caved into the demand of Herodias' daughter (prompted by her mother) that Herod give her John the Baptist's head on a platter as a reward for her pleasing dancing (Mat 14; Mark 6; cf. also Luke 3:19-20). Herod also had a brief encounter with Jesus because Pilate had sent Jesus to him for judgment. Herod asked Jesus many questions but Jesus would not answer them so Herod, along with the soldiers, mocked Jesus (Luke 23:7ff.). Jesus described Herod as \"that fox\" (Luke 13:31- 32).",
         "refs": []
       },
       {
         "id": "bc-073-pharisees",
         "q": "Pharisees",
-        "a": "the lower middle and better artisan classes. They believed in the centrality of the Torah and the sovereignty of God. They thought the Babylonian Exile was caused by Israel's failure to keep the Torah and keep it was an individual's as well as a national duty. They determined that the Torah contained 613 commandments and attempted to make a hedge around the Torah by adding laws so that the Torah would not be broken. They especially stressed the ethical side of religion. They opposed Jesus for his failure to keep the Sabbath in their eyes and even collaborated with the Pharisees in trying to kill Jesus. Jesus condemned the Pharisees rather roundly in Matthew 23. Though the NT portrait of the Pharisees is largely negative, it is not entirely so (e.g., Nicodemus, a Pharisee, helped with the burial of Jesus' body, cf. John 19:39).",
+        "a": "The Pharisees were always a minority group. They came from the lower middle and better artisan classes. They believed in the centrality of the Torah and the sovereignty of God. They thought the Babylonian Exile was caused by Israel's failure to keep the Torah and keep it was an individual's as well as a national duty. They determined that the Torah contained 613 commandments and attempted to make a hedge around the Torah by adding laws so that the Torah would not be broken. They especially stressed the ethical side of religion. They opposed Jesus for his failure to keep the Sabbath in their eyes and even collaborated with the Pharisees in trying to kill Jesus. Jesus condemned the Pharisees rather roundly in Matthew 23. Though the NT portrait of the Pharisees is largely negative, it is not entirely so (e.g., Nicodemus, a Pharisee, helped with the burial of Jesus' body, cf. John 19:39).",
         "refs": []
       },
       {
         "id": "bc-074-sadducees",
         "q": "Sadducees",
-        "a": "restricted to the well-to-do. Though not all priests were Sadducees, all Sadducees were priests. They were thus allied to the temple cultus. \"They denied the permanent validity of any but the written laws of the Pentateuch. They rejected the later doctrines of the soul and its after-life, the resurrection, rewards and retributions, angels and demons. They believed that there was no fate, men having a free choice of good and evil, prosperity and adversity being the outcome of their own course of action.\" In the NT, Jesus opposed their denial of the resurrection (Mat 22) and Paul exploits this belief by declaring that he is on trial for his hope in the resurrection, causing a dispute to break out between the Pharisees and Sadducees (Acts 23).",
+        "a": "The Sadducees had no following among the populace but were restricted to the well-to-do. Though not all priests were Sadducees, all Sadducees were priests. They were thus allied to the temple cultus. \"They denied the permanent validity of any but the written laws of the Pentateuch. They rejected the later doctrines of the soul and its after-life, the resurrection, rewards and retributions, angels and demons. They believed that there was no fate, men having a free choice of good and evil, prosperity and adversity being the outcome of their own course of action.\" In the NT, Jesus opposed their denial of the resurrection (Mat 22) and Paul exploits this belief by declaring that he is on trial for his hope in the resurrection, causing a dispute to break out between the Pharisees and Sadducees (Acts 23).",
         "refs": []
       },
       {
         "id": "bc-075-the-apostles-name-them",
         "q": "The Apostles (name them)",
-        "a": "and the witness was rooted in years of intimate knowledge, experience, and training (cf. Mark 3:14: Jesus chose the apostles to \"be with him\"). The essential qualification of an apostle was the divine call and commissioning by Christ as well as being a follower of Jesus from the time of John the Baptist to his ascension, including being a witness to the resurrection (cf. Acts 1:21-22 in the account of Matthias being chosen to replace Judas), though Paul is unique in this regard because his commissioning came when he encountered Jesus on the road to Damascus.\n\nMatthew 10 and Mark 3 and are as follows: Simon Peter Andrew James John Philip Bartholomew Thomas Matthew James son of Alphaeus Thaddaeus xi. Simon the Zealot xii. Judas Iscariot",
+        "a": "The primary function of the apostles was witness to Christ, and the witness was rooted in years of intimate knowledge, experience, and training (cf. Mark 3:14: Jesus chose the apostles to \"be with him\"). The essential qualification of an apostle was the divine call and commissioning by Christ as well as being a follower of Jesus from the time of John the Baptist to his ascension, including being a witness to the resurrection (cf. Acts 1:21-22 in the account of Matthias being chosen to replace Judas), though Paul is unique in this regard because his commissioning came when he encountered Jesus on the road to Damascus.\n\nThe twelve apostles during Jesus' lifetime are in listed in Matthew 10 and Mark 3 and are as follows: Simon Peter Andrew James John Philip Bartholomew Thomas Matthew James son of Alphaeus Thaddaeus xi. Simon the Zealot xii. Judas Iscariot",
         "refs": []
       },
       {
         "id": "bc-076-peter",
         "q": "Peter",
-        "a": "instrumental early on in the Gentile mission (e.g. Acts 10), he is remembered as an apostle to the Jews. Confessed Jesus as the Messiah at Caesarea Philippi (Mat 16; Mar 8). Was impulsive, denied Christ but was restored to ministry. Preached the first sermon at Pentecost. Authored two NT books which bear his name. In the second he makes reference to his experience of the transfiguration. His brother was Andrew.",
+        "a": "One of the first disciples called (Mark 1:16). Though he was instrumental early on in the Gentile mission (e.g. Acts 10), he is remembered as an apostle to the Jews. Confessed Jesus as the Messiah at Caesarea Philippi (Mat 16; Mar 8). Was impulsive, denied Christ but was restored to ministry. Preached the first sermon at Pentecost. Authored two NT books which bear his name. In the second he makes reference to his experience of the transfiguration. His brother was Andrew.",
         "refs": []
       },
       {
         "id": "bc-077-cornelius",
         "q": "Cornelius",
-        "a": "Italian Regiment. Religiously, he was a God-fearing Gentile who converted to Christianity through the ministry of Peter. He and his household were baptized after Peter saw the Spirit had come upon them through their speaking in tongues.",
+        "a": "(Acts 10) He lived in Caesarea and was a centurion in the Italian Regiment. Religiously, he was a God-fearing Gentile who converted to Christianity through the ministry of Peter. He and his household were baptized after Peter saw the Spirit had come upon them through their speaking in tongues.",
         "refs": []
       },
       {
         "id": "bc-078-barnabas",
         "q": "Barnabas",
-        "a": "traveling companion of Paul (Acts 13-14) and spoke with Paul at the Jerusalem Council. However, Barnabas and Paul had a falling out over the issue of taking John Mark with them and as a result Paul began traveling with Titus while Barnabas traveled with John Mark (Acts 15).",
+        "a": "(Acts 4) Known as the \"so of encouragement,\" Barnabas was a traveling companion of Paul (Acts 13-14) and spoke with Paul at the Jerusalem Council. However, Barnabas and Paul had a falling out over the issue of taking John Mark with them and as a result Paul began traveling with Titus while Barnabas traveled with John Mark (Acts 15).",
         "refs": []
       },
       {
         "id": "bc-079-stephen",
         "q": "Stephen",
-        "a": "servants so the apostles could devote themselves to the ministry of the Word. Members of the Synagogue of the Freedman began to oppose Stephen and they had him arrested and brought before the Sandhedrin. Stephen's speech recounted salvation history and led to an indictment of his audience for being stiff-necked like their forefathers. He was then stoned to death and Saul of Tarsus was present at this event.",
+        "a": "(Acts 6-7) Stephen was one of seven men chosen to be table servants so the apostles could devote themselves to the ministry of the Word. Members of the Synagogue of the Freedman began to oppose Stephen and they had him arrested and brought before the Sandhedrin. Stephen's speech recounted salvation history and led to an indictment of his audience for being stiff-necked like their forefathers. He was then stoned to death and Saul of Tarsus was present at this event.",
         "refs": []
       },
       {
         "id": "bc-080-paul",
         "q": "Paul",
-        "a": "Pharisee and persecutor of the fledgling Christian church. His dramatic conversion is recorded in Acts 9. The second half of Acts deals with Paul's extensive missionary ministry, including three missionary journeys. He is remembered as the apostle to the Gentiles and author of thirteen NT books.",
+        "a": "Born in Tarsus, named Saul, from the tribe of Benjamin, a Pharisee and persecutor of the fledgling Christian church. His dramatic conversion is recorded in Acts 9. The second half of Acts deals with Paul's extensive missionary ministry, including three missionary journeys. He is remembered as the apostle to the Gentiles and author of thirteen NT books.",
         "refs": []
       },
       {
         "id": "bc-081-timothy",
         "q": "Timothy",
-        "a": "companion of Paul, he was the recipient of two of Paul's pastoral epistles. He traveled with Paul to Thessalonica, Corinth, and Ephesus. Paul entrusted Timothy with the pastorate in Ephesus. Timothy's release from imprisonment is mentioned in Hebrews 13:23.",
+        "a": "(Acts 16, 20) True son in the faith (1 Tim 1:2) and traveling companion of Paul, he was the recipient of two of Paul's pastoral epistles. He traveled with Paul to Thessalonica, Corinth, and Ephesus. Paul entrusted Timothy with the pastorate in Ephesus. Timothy's release from imprisonment is mentioned in Hebrews 13:23.",
         "refs": []
       },
       {
         "id": "bc-082-james",
         "q": "James",
-        "a": "during the Messiah's earthly ministry. Jesus' appearance to James is recorded in 1 Corinthians 15:7, after which James became a leader in the Jerusalem church. In Acts 15 James presides over the momentous Jerusalem council. James is traditionally believed to be the author of the general epistle which bears his name and is thought to have been stoned to death.",
+        "a": "Brother of Jesus who did not believe in Jesus' authority during the Messiah's earthly ministry. Jesus' appearance to James is recorded in 1 Corinthians 15:7, after which James became a leader in the Jerusalem church. In Acts 15 James presides over the momentous Jerusalem council. James is traditionally believed to be the author of the general epistle which bears his name and is thought to have been stoned to death.",
         "refs": []
       }
     ]

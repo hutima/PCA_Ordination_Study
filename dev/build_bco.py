@@ -22,6 +22,8 @@ def looks_like_q(text):
 def clean_text(t):
     t = t.replace('&amp;', '&')
     t = re.sub(r'[ \t]+', ' ', t)
+    # leading conversion debris like ".’..." before the real answer text
+    t = re.sub(r"^[.'’`´… ]+(?=[A-Za-z(])", '', t.strip())
     return t.strip()
 
 def split_inline_sublists(line):
