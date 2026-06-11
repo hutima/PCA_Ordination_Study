@@ -10,10 +10,13 @@ export const DATA = (typeof window !== 'undefined' && window.PCA_DATA) || { subj
 export const PROGRESS_KEY = 'pca_progress_v1';
 export const SELECTION_KEY = 'pca_selection_v1';
 export const ACTIVITY_KEY = 'pca_activity_v1';
+export const SHUFFLE_KEY = 'pca_shuffle_v1';
 
 export const state = {
   mode: 'review',          // see modes.js registry for valid ids
-  focus: 'due',            // 'due' (default) | 'weak' (low-confidence) | 'order' (unspaced book order)
+  focus: 'due',            // 'due' (default) | 'weak' (low-confidence) | 'order' (unspaced book order) | 'flip' (non-spaced flip deck)
+  shuffleOn: true,         // shuffle deck order (persisted)
+  flipArchived: new Set(), // card ids retired ("Easy") this flip-deck session
   selected: new Set(),     // selected set keys
   deck: [],                // ordered array of card objects for this session
   pos: 0,
@@ -41,6 +44,12 @@ export function loadSelection() {
 }
 export function saveSelection() {
   try { localStorage.setItem(SELECTION_KEY, JSON.stringify([...state.selected])); } catch (e) {}
+}
+export function loadShuffle() {
+  try { state.shuffleOn = localStorage.getItem(SHUFFLE_KEY) !== 'off'; } catch (e) {}
+}
+export function saveShuffle() {
+  try { localStorage.setItem(SHUFFLE_KEY, state.shuffleOn ? 'on' : 'off'); } catch (e) {}
 }
 export function loadActivity() {
   try { state.activity = JSON.parse(localStorage.getItem(ACTIVITY_KEY)) || {}; }

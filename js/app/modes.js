@@ -38,13 +38,13 @@ export function createModes(ctx) {
            ${refsHtml}${fullBlock}
            <div class="qa-reveal-hint qa-tap-hint">Tap card to hide</div>`
         : `<div class="qa-reveal-hint qa-tap-hint">Tap card to reveal answer</div>`;
-      const markRow = state.revealed
-        ? `<div class="mark-row" style="display:flex">
+      // Grading is available from both sides of the card — you can mark a
+      // card you already know without flipping it first.
+      const markRow = `<div class="mark-row" style="display:flex">
              <button class="mark-btn mark-again" data-outcome="again" type="button">✗ Hard</button>
              <button class="mark-btn mark-pass" data-outcome="pass" type="button">~ Uncertain</button>
              <button class="mark-btn mark-easy" data-outcome="easy" type="button">✓ Easy</button>
-           </div>`
-        : '';
+           </div>`;
       area.innerHTML = `
         <div class="qa-card ${state.revealed ? 'revealed' : ''}" id="qaCard" role="button" tabindex="0" aria-pressed="${state.revealed}">
           <div class="qa-deck-label">${escapeHtml(card._setLabel)}</div>
@@ -170,7 +170,7 @@ export function createModes(ctx) {
       const ex = state.exam;
       if (!ex || !ex.cards.length) {
         setDeckMeta('');
-        area.innerHTML = emptyState('Not enough quiz-ready material for a mock exam in this selection. Pick more subjects, or clear the selection to draw from everything.');
+        area.innerHTML = emptyState('Not enough quiz-ready material for a mock exam in this selection. Choose one or more subjects first, or pick more of them.');
         return;
       }
       if (ex.done) return renderResults(area);

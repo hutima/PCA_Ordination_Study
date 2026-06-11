@@ -151,11 +151,15 @@ html[data-font-family="sans"] {
 /* The selector's sub-deck grid can be long — keep it scannable. */
 #subdeckGrid { max-height: 38vh; overflow-y: auto; }
 
-/* ── Focus toggle (Due / Weak) ────────────────────────────────────────── */
+/* ── Focus toggle (Due / Weak / In order / Flip deck) + Shuffle ───────── */
 .focus-row {
   display: flex; align-items: center; justify-content: center; gap: 10px;
+  flex-wrap: wrap;
   margin: -6px 0 8px;
 }
+/* Shuffle toggle is parked while "In order" is the focus. */
+.focus-row .mode-btn:disabled { opacity: 0.4; cursor: default; }
+.focus-row .mode-btn:disabled:hover { color: var(--muted); background: transparent; }
 .focus-label {
   font-family: var(--font-display); font-size: 11px; letter-spacing: 2px;
   text-transform: uppercase; color: var(--gold-dim);
