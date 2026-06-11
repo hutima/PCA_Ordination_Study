@@ -21,10 +21,20 @@ architecture/reuse map, content contract, phase status, and next steps.
   through the registry.
 - **Study modes:** Review (self-check; short summary first, full answer &
   quotations behind an expander), Quiz (MCQ), Browse (collapsible outline,
-  non-graded), Mock exam (finite scored MCQ session). A Due/Weak focus toggle
-  filters the Review/Quiz deck. Answers are provenance-tagged
+  non-graded), Mock exam (finite scored MCQ session), Catechisms (WSC/WLC
+  full text as flip cards — dropdown per catechism + per question, proofs in
+  a collapsed section; position persists to `pca_catechism_v1`). A Due/Weak
+  focus toggle filters the Review/Quiz deck. Answers are provenance-tagged
   (`renderAnswer()`: standard quotes vs study notes) and reference chips
   deep-link to official texts (`refLink()`).
+- **Standards data (public domain):** generated from the PDFs at the repo
+  root — `dev/build_catechisms.py` → `js/data/catechisms.js`
+  (`window.PCA_CATECHISMS`, WSC 107 + WLC 196 with proof citations);
+  `dev/build_wcf.py` → `js/data/wcf.js` (`window.PCA_WCF`, 33 chapters /
+  171 sections; build-time artifact, not loaded by the app);
+  `dev/build_theology_wcf.mjs` → `js/data/subjects/theology_wcf.js`
+  (a theology sub-deck quoting WCF chapters not otherwise cited).
+  The BCO is copyrighted — never embed its text; link to pcaac.org instead.
 - **SRS engine (reused, content-agnostic):** `js/domain/srs/{constants,
   scheduler,confidence}.js`. Outcomes `again`/`pass`/`easy` =
   Hard/Uncertain/Easy. Do not edit lightly.

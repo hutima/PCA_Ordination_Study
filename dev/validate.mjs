@@ -101,4 +101,25 @@ console.log('\nQuiz bank:');
 for (const id of [...subjectIds]) if (bySubject[id]) console.log(`  ${id.padEnd(14)} ${String(bySubject[id]).padStart(3)} questions`);
 console.log(`${bank.length} authored quiz questions, ${quizProblems} problem(s)`);
 
-process.exit(problems + quizProblems ? 1 : 0);
+// ── Catechisms (window.PCA_CATECHISMS) ─────────────────────────────────
+let catProblems = 0;
+try {
+  await import(new URL('../js/data/catechisms.js', import.meta.url));
+  const cats = globalThis.PCA_CATECHISMS || {};
+  const expected = { wsc: 107, wlc: 196 };
+  for (const [id, n] of Object.entries(expected)) {
+    const c = cats[id];
+    if (!c) { console.error(`FAIL catechisms: missing ${id}`); catProblems++; continue; }
+    if (c.items.length !== n) { console.error(`FAIL ${id}: expected ${n} questions, got ${c.items.length}`); catProblems++; }
+    c.items.forEach((it, i) => {
+      if (it.n !== i + 1) { console.error(`FAIL ${id}: numbering breaks at ${i + 1}`); catProblems++; }
+      if (!it.q || !it.a) { console.error(`FAIL ${id} Q${it.n}: empty q/a`); catProblems++; }
+      if (!Array.isArray(it.refs)) { console.error(`FAIL ${id} Q${it.n}: refs not an array`); catProblems++; }
+    });
+  }
+  console.log(`\nCatechisms: WSC ${cats.wsc?.items.length ?? 0} + WLC ${cats.wlc?.items.length ?? 0} questions, ${catProblems} problem(s)`);
+} catch (e) {
+  console.log('\nCatechisms: data file not present (js/data/catechisms.js)');
+}
+
+process.exit(problems + quizProblems + catProblems ? 1 : 0);

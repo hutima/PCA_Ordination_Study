@@ -222,6 +222,23 @@ a.qa-ref-chip:hover { background: rgba(201,168,76,0.20); border-color: var(--gol
   background: rgba(201,168,76,0.06); font-style: italic; border-radius: 0 6px 6px 0;
 }
 
+/* ── Catechism module (WSC/WLC dropdowns + flip card) ─────────────────── */
+.cat-controls {
+  display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+  max-width: 720px; margin: 0 auto 16px;
+}
+.cat-controls select {
+  background: var(--surface); color: var(--cream);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 9px 12px; font-family: var(--font-body); font-size: 14px;
+  max-width: min(92vw, 420px); cursor: pointer;
+}
+.cat-controls select:hover, .cat-controls select:focus { border-color: var(--gold-dim); outline: none; }
+.cat-source {
+  text-align: center; color: var(--muted); font-size: 12px;
+  font-style: italic; margin-top: 14px;
+}
+
 /* ── Mock exam results ────────────────────────────────────────────────── */
 .exam-results .exam-score {
   font-family: var(--font-display); font-size: 38px; color: var(--gold-light);

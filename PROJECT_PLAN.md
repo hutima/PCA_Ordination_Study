@@ -214,6 +214,26 @@ KEEP modules + the HTML shell):**
 
       **Release ritual:** bump `?v=N` in `index.html` AND `CACHE` in `sw.js`
       together so returning users auto-refresh onto the new version.
+- [x] **Phase 10 — Westminster Standards content (public-domain PDFs).**
+      Source: WCF + Larger/Shorter Catechism PDFs uploaded to main (public
+      domain; the BCO is copyrighted and is linked, never embedded).
+      - `dev/build_catechisms.py` extracts WSC (107) and WLC (196) Q&A with
+        Scripture-proof citations from the PDFs. The WLC's page-bottom proof
+        apparatus (8pt) is separated from main text (10pt) via a font-size
+        text pool; marker letters are matched to footnotes page-locally and
+        stripped from answers; kerning-split words repaired by dictionary.
+      - **Catechisms study mode** (`modes.js` registry): dropdown to pick
+        WSC/WLC + a question dropdown, Q/A flip card (answer renders as a
+        labeled standard callout), Scripture proofs in a collapsed section,
+        prev/next + keyboard, position persisted (`pca_catechism_v1`).
+      - `dev/build_wcf.py` extracts the full WCF (33 chapters, 171 sections,
+        578 proof footnotes) → `js/data/wcf.js` (build-time artifact).
+      - `dev/build_theology_wcf.mjs` adds a theology sub-deck "Confession
+        definitions (WCF)": one card per WCF chapter not explicitly cited
+        anywhere in the theology content (26 cards quoting §1 verbatim with
+        proof refs), filling confessional gaps with official wording.
+      - `dev/validate.mjs` now validates the catechism data (counts,
+        numbering, non-empty). Release: `?v=12` / `pca-v12`.
 - [x] **Phase 9 — Modular refactor + card simplification + MCQ fairness.**
       - `pca.js` split into focused modules under `js/app/` (store, content,
         quiz, answer, refs, srs, modes, progress); `modes.js` is a registry —

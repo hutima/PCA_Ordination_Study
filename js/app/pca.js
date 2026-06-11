@@ -300,9 +300,12 @@ function initOverlayDismiss() {
 function initKeyboard() {
   document.addEventListener('keydown', (e) => {
     const tag = e.target && e.target.tagName;
-    if (/INPUT|TEXTAREA/.test(tag)) return;
+    if (/INPUT|TEXTAREA|SELECT/.test(tag)) return;
     if (document.querySelector('.consent-overlay.show')) return; // a modal is open
     if (state.mode === 'browse') return; // native <details> handles keyboard
+    // A mode may handle its own keys (e.g. catechism prev/next/reveal).
+    const activeMode = MODES.byId[state.mode];
+    if (activeMode && activeMode.onKey && activeMode.onKey(e)) return;
     if (state.mode === 'exam') {
       const ex = state.exam;
       if (!ex || ex.done) return;

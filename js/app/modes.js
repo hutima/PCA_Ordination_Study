@@ -233,7 +233,105 @@ export function createModes(ctx) {
     area.querySelector('#examRetakeBtn').addEventListener('click', () => { exam.start(); rerender(); });
   }
 
-  const list = [review, quiz, browse, exam];
+  // ── Catechisms (WSC / WLC full text, dropdown-driven recall) ─────────
+  // Q&A straight through the public-domain Westminster catechisms: pick a
+  // catechism and a question, recall the answer, tap to check yourself.
+  // Non-graded; proof citations render as chips linking to the source.
+  const CATECHISMS = (typeof window !== 'undefined' && window.PCA_CATECHISMS) || null;
+  const CAT_KEY = 'pca_catechism_v1';
+  const catState = { cat: 'wsc', n: 1, revealed: false };
+  try { Object.assign(catState, JSON.parse(localStorage.getItem(CAT_KEY)) || {}); } catch (e) {}
+  function saveCat() {
+    try { localStorage.setItem(CAT_KEY, JSON.stringify({ cat: catState.cat, n: catState.n })); } catch (e) {}
+  }
+  function catItems() {
+    const c = CATECHISMS && CATECHISMS[catState.cat];
+    return c ? c.items : [];
+  }
+  const catechism = {
+    id: 'catechism', label: 'Catechisms', usesDeck: false, focusable: false,
+    title: 'The Westminster Larger & Shorter Catechisms, question by question',
+    go(n) {
+      const items = catItems();
+      if (!items.length) return;
+      catState.n = ((n - 1 + items.length) % items.length) + 1;
+      catState.revealed = false;
+      saveCat();
+      rerender();
+    },
+    setCat(id) {
+      if (!CATECHISMS || !CATECHISMS[id]) return;
+      catState.cat = id;
+      catState.n = 1;
+      catState.revealed = false;
+      saveCat();
+      rerender();
+    },
+    toggle() { catState.revealed = !catState.revealed; rerender(); },
+    onKey(e) {
+      if (e.key === 'ArrowRight') { catechism.go(catState.n + 1); return true; }
+      if (e.key === 'ArrowLeft') { catechism.go(catState.n - 1); return true; }
+      if (e.code === 'Space' || e.key === 'Enter') {
+        e.preventDefault();
+        catechism.toggle();
+        return true;
+      }
+      return false;
+    },
+    render(area) {
+      if (!CATECHISMS) {
+        setDeckMeta('');
+        area.innerHTML = emptyState('Catechism data not loaded.');
+        return;
+      }
+      const cat = CATECHISMS[catState.cat];
+      const items = cat.items;
+      const item = items[Math.min(catState.n, items.length) - 1];
+      const catOptions = Object.values(CATECHISMS).map(c =>
+        `<option value="${c.id}" ${c.id === catState.cat ? 'selected' : ''}>${escapeHtml(c.label)}</option>`).join('');
+      const qOptions = items.map(it =>
+        `<option value="${it.n}" ${it.n === item.n ? 'selected' : ''}>Q${it.n}. ${escapeHtml(it.q.slice(0, 60))}${it.q.length > 60 ? '…' : ''}</option>`).join('');
+      const proofs = (item.refs && item.refs.length)
+        ? `<details class="qa-full"><summary class="qa-full-toggle">Scripture proofs (${item.refs.length})</summary>
+             ${renderRefs(item.refs)}</details>`
+        : '';
+      const answerBlock = catState.revealed
+        ? `<div class="qa-divider"></div>
+           <div class="qa-answer"><div class="qa-callout qa-standard">
+             <div class="qa-prov-label">${escapeHtml(cat.label)} A.${item.n}</div>
+             <p>${escapeHtml(item.a)}</p></div></div>
+           ${proofs}
+           <div class="qa-reveal-hint qa-tap-hint">Tap card to hide</div>`
+        : `<div class="qa-reveal-hint qa-tap-hint">Tap card to reveal the answer</div>`;
+      area.innerHTML = `
+        <div class="cat-controls">
+          <select id="catSelect" aria-label="Catechism">${catOptions}</select>
+          <select id="catQSelect" aria-label="Question">${qOptions}</select>
+        </div>
+        <div class="qa-card ${catState.revealed ? 'revealed' : ''}" id="catCard" role="button" tabindex="0" aria-pressed="${catState.revealed}">
+          <div class="qa-deck-label">${escapeHtml(cat.short)} · Question ${item.n} of ${items.length}</div>
+          <div class="qa-question">${escapeHtml(item.q)}</div>
+          ${answerBlock}
+        </div>
+        <div class="nav-row">
+          <button class="nav-btn nav-prev" id="catPrevBtn" type="button">‹ Prev</button>
+          <button class="nav-btn" id="catNextBtn" type="button">Next ›</button>
+        </div>
+        <div class="cat-source">${escapeHtml(cat.source)}</div>`;
+      setDeckMeta(`<strong>${escapeHtml(cat.label)}</strong> · ${items.length} questions`);
+      area.querySelector('#catSelect').addEventListener('change', (e) => catechism.setCat(e.target.value));
+      area.querySelector('#catQSelect').addEventListener('change', (e) => catechism.go(Number(e.target.value)));
+      area.querySelector('#catPrevBtn').addEventListener('click', () => catechism.go(catState.n - 1));
+      area.querySelector('#catNextBtn').addEventListener('click', () => catechism.go(catState.n + 1));
+      area.querySelector('#catCard').addEventListener('click', (e) => {
+        if (e.target.closest('a, select, button, summary, details')) return;
+        if (typeof getSelection === 'function' && String(getSelection()).length) return;
+        catechism.toggle();
+      });
+    },
+  };
+
+  const list = [review, quiz, browse, exam, catechism];
   const byId = {};
   for (const m of list) byId[m.id] = m;
   return { list, byId };
