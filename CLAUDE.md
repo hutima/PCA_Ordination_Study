@@ -26,9 +26,15 @@ architecture/reuse map, content contract, phase status, and next steps.
   `js/data/catechisms_bco.js`, as flip cards — dropdown per set + per
   question, proofs/references in a collapsed section; position persists to
   `pca_catechism_v1`; a set with `verbatim: false` renders a paraphrase
-  callout instead of the confessional one). A Due/Weak/In-order focus toggle
-  shapes the Review/Quiz deck (In order = unspaced read-through in book
-  order). Card re-renders run through `withCardAnchor()` (pca.js) so
+  callout instead of the confessional one). A Due/Weak/In-order/Flip-deck
+  focus toggle shapes the Review/Quiz deck (In order = unspaced read-through
+  in book order; Flip deck = non-spaced, ported from Duff: Hard/Uncertain
+  recycle to the back of the pile, Easy retires for the session — no SRS
+  writes, only the activity log). A persisted Shuffle toggle
+  (`pca_shuffle_v1`, default on) controls deck order; it is disabled under
+  In order. Review grade buttons show on both hidden and revealed states.
+  An empty subject selection means an empty deck — there is no implicit
+  "study everything" fallback. Card re-renders run through `withCardAnchor()` (pca.js) so
   reveal/hide/next never jumps the page. Answers are provenance-tagged
   (`renderAnswer()`: standard quotes vs study notes) and reference chips
   deep-link to official texts (`refLink()`).

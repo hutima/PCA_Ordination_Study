@@ -214,6 +214,25 @@ KEEP modules + the HTML shell):**
 
       **Release ritual:** bump `?v=N` in `index.html` AND `CACHE` in `sw.js`
       together so returning users auto-refresh onto the new version.
+- [x] **Phase 13 — Duff parity + UX fixes (user-reported).** Release `?v=18`/`pca-v18`.
+      - **Flip deck (non-spaced) focus** ported from the Duff tool: a fourth
+        Focus option. Hard/Uncertain send the card to the back of the pile,
+        Easy retires it for the session (`state.flipArchived`, session-only);
+        the SRS schedule is untouched, only the daily-activity log records the
+        rep. End of a pass reshuffles the remaining pile; an empty pile shows
+        a "Restart the deck" button. Start studying / changing the selection
+        resets the pass.
+      - **Shuffle toggle** (persisted, `localStorage['pca_shuffle_v1']`, on by
+        default) in the focus row: off = book order for due cards and the flip
+        deck; disabled while "In order" is the focus.
+      - **Grade buttons always visible** in Review (hidden + revealed states),
+        and keyboard 1/2/3 grade without revealing first.
+      - **No-selection bug fixed**: an empty selection no longer silently
+        means "everything" — `effectiveSetKeys()`/`quizDeckCards()` return
+        nothing until subjects are chosen.
+      - **UI**: mode bar reordered (Review · Browse · Catechisms · Quiz ·
+        Mock exam); the "Progress & display" utility section is now
+        "Settings".
 - [x] **Phase 12 — Text-quality + UX fixes (user-reported).**
       - **Catechism PDF extraction overhaul** (`dev/build_catechisms.py`):
         kerning-split words repaired everywhere (WSC answers/questions had no

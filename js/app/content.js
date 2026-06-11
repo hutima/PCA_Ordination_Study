@@ -9,9 +9,10 @@ export function allSetKeys() {
   for (const subj of DATA.subjects) for (const k of subj.setKeys) if (DATA.sets[k]) keys.push(k);
   return keys;
 }
-// The selection, or — when nothing is selected — every set.
+// The current selection. Nothing selected means nothing to study — the deck
+// stays empty until the user chooses subjects (no silent "everything" default).
 export function effectiveSetKeys() {
-  return state.selected.size ? [...state.selected] : allSetKeys();
+  return [...state.selected];
 }
 export function cardsForKeys(keys) {
   const out = [];

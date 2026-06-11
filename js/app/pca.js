@@ -16,6 +16,7 @@ import { getConfidencePct } from '../domain/srs/confidence.js';
 import { escapeHtml } from '../utils/text.js';
 import {
   DATA, state, loadProgress, saveProgress, loadSelection, saveSelection, loadActivity,
+  loadShuffle, saveShuffle, recordActivity,
 } from './store.js';
 import {
   effectiveSetKeys, cardsForKeys, shuffle, isWeak,
@@ -31,7 +32,17 @@ const EXAM_SIZE = 25;
 const $ = (id) => document.getElementById(id);
 const escapeText = escapeHtml; // template-literal alias
 
-// ── Deck building (due-first, or unspaced book order) ──────────────────
+// ── Deck building (due-first, unspaced book order, or flip deck) ───────
+// Sort cards into subject/sub-deck (book) order, stable within a sub-deck.
+function bookOrder(cards) {
+  const rank = new Map();
+  DATA.subjects.slice().sort((a, b) => (a.order || 0) - (b.order || 0))
+    .forEach(subj => subj.setKeys.forEach(k => rank.set(k, rank.size)));
+  const rankOf = (c) => rank.has(c._setKey) ? rank.get(c._setKey) : rank.size;
+  return cards.map((c, i) => [c, i])
+    .sort((x, y) => rankOf(x[0]) - rankOf(y[0]) || x[1] - y[1])
+    .map(x => x[0]);
+}
 function buildDeck() {
   const now = Date.now();
   let cards = state.mode === 'quiz' ? quizDeckCards() : cardsForKeys(effectiveSetKeys());
@@ -40,14 +51,18 @@ function buildDeck() {
   if (state.focus === 'order') {
     // Unspaced read-through: the whole selection in subject/sub-deck order,
     // ignoring the SRS schedule. Grading still records progress as usual.
-    const rank = new Map();
-    DATA.subjects.slice().sort((a, b) => (a.order || 0) - (b.order || 0))
-      .forEach(subj => subj.setKeys.forEach(k => rank.set(k, rank.size)));
-    const rankOf = (c) => rank.has(c._setKey) ? rank.get(c._setKey) : rank.size;
-    state.deck = cards.map((c, i) => [c, i])
-      .sort((x, y) => rankOf(x[0]) - rankOf(y[0]) || x[1] - y[1])
-      .map(x => x[0]);
+    state.deck = bookOrder(cards);
     state.dueCount = cards.filter(isDue).length;
+    state.pos = 0;
+    syncCardState();
+    return;
+  }
+  if (state.focus === 'flip') {
+    // Non-spaced flip deck (from the Duff tool): the whole selection minus
+    // cards retired this session. Grading recycles or retires — see mark().
+    cards = cards.filter(c => !state.flipArchived.has(c.id));
+    state.deck = state.shuffleOn ? shuffle(cards) : bookOrder(cards);
+    state.dueCount = 0;
     state.pos = 0;
     syncCardState();
     return;
@@ -55,9 +70,9 @@ function buildDeck() {
   const due = [];
   const later = [];
   for (const c of cards) (isDue(c) ? due : later).push(c);
-  shuffle(due);
+  const dueOrdered = state.shuffleOn ? shuffle(due) : bookOrder(due);
   later.sort((a, b) => state.progress[a.id].dueAt - state.progress[b.id].dueAt);
-  state.deck = due.concat(later);
+  state.deck = dueOrdered.concat(later);
   state.dueCount = due.length;
   state.pos = 0;
   syncCardState();
@@ -80,6 +95,10 @@ function setDeckMeta(html) {
 function renderSessionMeta() {
   if (!state.deck.length) { setDeckMeta(''); return; }
   const total = state.deck.length;
+  if (state.focus === 'flip') {
+    setDeckMeta(`<strong>${total}</strong> in the pile · <strong>${state.flipArchived.size}</strong> retired · card ${state.pos + 1} of ${total}`);
+    return;
+  }
   const due = state.dueCount || 0;
   setDeckMeta(`<strong>${due}</strong> due · <strong>${total}</strong> in session · card ${state.pos + 1} of ${total}`);
 }
@@ -87,7 +106,7 @@ function emptyState(html) { return `<div class="empty-state"><p>${html}</p></div
 function navRowHtml() {
   return `<div class="nav-row">
       <button class="nav-btn nav-prev" id="prevBtn" type="button">‹ Prev</button>
-      <button class="nav-btn" id="nextBtn" type="button">Next ›</button>
+      <button class="nav-btn nav-next" id="nextBtn" type="button">Next ›</button>
     </div>`;
 }
 function wireNav() {
@@ -125,8 +144,30 @@ function move(delta) {
 }
 function mark(outcome) {
   if (!state.deck.length) return;
+  if (state.focus === 'flip' && state.mode === 'review') { flipMark(outcome); return; }
   applyOutcome(state.deck[state.pos], outcome);
   advance();
+}
+// Flip-deck grading (non-spaced, ported from the Duff tool): Hard/Uncertain
+// send the card to the back of the pile, Easy retires it for this session.
+// The SRS schedule is untouched; only the daily-activity log records the rep.
+function flipMark(outcome) {
+  const [card] = state.deck.splice(state.pos, 1);
+  if (outcome === 'easy') state.flipArchived.add(card.id);
+  else state.deck.push(card);
+  recordActivity();
+  if (state.pos >= state.deck.length) {
+    // End of a pass — reshuffle what's still in play and start over.
+    if (state.shuffleOn) shuffle(state.deck);
+    state.pos = 0;
+  }
+  syncCardState();
+  withCardAnchor(renderCard);
+}
+function resetFlipDeck() {
+  state.flipArchived.clear();
+  buildDeck();
+  renderCard();
 }
 // Move to the next card after grading; rebuild at the end to pick up newly-due.
 function advance() {
@@ -162,10 +203,26 @@ function updateFocusVisibility() {
   if (row) row.style.display = (mode && mode.focusable) ? '' : 'none';
 }
 function setFocus(f) {
-  state.focus = (f === 'weak' || f === 'order') ? f : 'due';
+  state.focus = (f === 'weak' || f === 'order' || f === 'flip') ? f : 'due';
   syncToggleActive('[data-focus]', 'data-focus', state.focus);
+  updateShuffleButton();
   buildDeck();
   renderCard();
+}
+function toggleShuffle() {
+  state.shuffleOn = !state.shuffleOn;
+  saveShuffle();
+  updateShuffleButton();
+  buildDeck();
+  renderCard();
+}
+// "In order" is by definition unshuffled — the toggle is parked while it's on.
+function updateShuffleButton() {
+  const b = $('shuffleBtn');
+  if (!b) return;
+  b.classList.toggle('active', state.shuffleOn);
+  b.disabled = state.focus === 'order';
+  b.setAttribute('aria-pressed', String(state.shuffleOn));
 }
 
 // ── Top-level render ───────────────────────────────────────────────────
@@ -179,7 +236,12 @@ function renderCard() {
   }
   if (!state.deck.length) {
     let msg;
-    if (state.focus === 'weak') {
+    if (!state.selected.size) {
+      msg = `Choose one or more subjects, then press <strong>Start studying</strong>.`;
+    } else if (state.focus === 'flip' && state.flipArchived.size) {
+      msg = `Flip deck finished — you've retired all <strong>${state.flipArchived.size}</strong> cards. 🎉<br>
+        <button class="quick-btn" id="flipResetBtn" type="button" style="margin-top:12px">↻ Restart the deck</button>`;
+    } else if (state.focus === 'weak') {
       msg = `No weak spots in this selection yet. Weak spots are cards you've studied and scored under 60% on — keep reviewing and they'll collect here. Switch back to <strong>Due first</strong> to keep studying.`;
     } else if (state.mode === 'quiz') {
       msg = `No quiz-ready cards in this selection. Quiz mode works on fact-style cards (passages, events, key terms/people). Try <strong>Review</strong>, or pick more subjects.`;
@@ -187,6 +249,8 @@ function renderCard() {
       msg = `Choose one or more subjects, then press <strong>Start studying</strong>.`;
     }
     area.innerHTML = emptyState(msg);
+    const fr = $('flipResetBtn');
+    if (fr) fr.addEventListener('click', resetFlipDeck);
     renderSessionMeta();
     renderReviewPanel();
     return;
@@ -230,7 +294,13 @@ function openProgress() {
 
 // ── Subject / sub-deck selector ────────────────────────────────────────
 function openSelector() { renderSelector(); showOverlay('studySelectorOverlay'); }
-function closeSelector() { hideOverlay('studySelectorOverlay'); saveSelection(); buildDeck(); renderCard(); }
+function closeSelector() {
+  hideOverlay('studySelectorOverlay');
+  saveSelection();
+  state.flipArchived.clear(); // a new selection starts a fresh flip-deck pass
+  buildDeck();
+  renderCard();
+}
 function renderSelector() {
   const subjGrid = $('subjectGrid');
   const subjects = DATA.subjects.slice().sort((a, b) => (a.order || 0) - (b.order || 0));
@@ -367,9 +437,10 @@ function initKeyboard() {
       if (/BUTTON|A/.test(tag)) return;
       e.preventDefault(); toggleReveal();
     }
-    else if (state.revealed && e.key === '1') mark('again');
-    else if (state.revealed && e.key === '2') mark('pass');
-    else if (state.revealed && e.key === '3') mark('easy');
+    // Grading works from both the hidden and revealed sides of the card.
+    else if (state.mode === 'review' && e.key === '1') mark('again');
+    else if (state.mode === 'review' && e.key === '2') mark('pass');
+    else if (state.mode === 'review' && e.key === '3') mark('easy');
   });
 }
 
@@ -377,6 +448,7 @@ function init() {
   loadProgress();
   loadSelection();
   loadActivity();
+  loadShuffle();
 
   document.querySelectorAll('[data-theme-mode]').forEach(b =>
     b.addEventListener('click', () => setTheme(b.getAttribute('data-theme-mode'))));
@@ -391,7 +463,7 @@ function init() {
   $('chooseSubjectBtn').addEventListener('click', openSelector);
   $('selectorDoneBtn').addEventListener('click', closeSelector);
   $('selectorClearBtn').addEventListener('click', () => { state.selected.clear(); renderSelector(); });
-  $('startStudyingBtn').addEventListener('click', () => { buildDeck(); renderCard(); });
+  $('startStudyingBtn').addEventListener('click', () => { state.flipArchived.clear(); buildDeck(); renderCard(); });
   $('progressBtn').addEventListener('click', openProgress);
   $('progressCloseBtn').addEventListener('click', () => hideOverlay('progressOverlay'));
 
@@ -400,6 +472,8 @@ function init() {
   document.querySelectorAll('[data-focus]').forEach(b =>
     b.addEventListener('click', () => setFocus(b.getAttribute('data-focus'))));
   syncToggleActive('[data-focus]', 'data-focus', state.focus);
+  $('shuffleBtn').addEventListener('click', toggleShuffle);
+  updateShuffleButton();
   updateFocusVisibility();
 
   $('exportBtn').addEventListener('click', exportProgress);

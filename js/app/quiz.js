@@ -57,6 +57,8 @@ export function buildQuiz(card) {
 // Quiz deck = hand-authored MCQs (window.PCA_QUIZ) for the selected subjects,
 // plus auto-generated MCQs from short-answer review cards in the selection.
 export function quizDeckCards() {
+  const keys = effectiveSetKeys();
+  if (!keys.length) return []; // no subjects selected → nothing to quiz
   const subj = selectedSubjectIds();
   const bank = (typeof window !== 'undefined' && window.PCA_QUIZ) || [];
   const authored = bank
@@ -66,6 +68,6 @@ export function quizDeckCards() {
       _setKey: 'quiz:' + q.subject, _setLabel: subjectLabel(q.subject),
       quiz: { choices: q.choices, answerIndex: q.answerIndex },
     }));
-  const auto = cardsForKeys(effectiveSetKeys()).filter(quizEligible);
+  const auto = cardsForKeys(keys).filter(quizEligible);
   return authored.concat(auto);
 }
