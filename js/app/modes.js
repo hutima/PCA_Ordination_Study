@@ -12,7 +12,7 @@
 
 export function createModes(ctx) {
   const {
-    state, DATA, escapeHtml, renderAnswer, summarize, hasMoreThanSummary, renderRefs,
+    state, DATA, escapeHtml, renderAnswer, summarize, hasMoreThanSummary, directAnswer, renderRefs,
     buildQuiz, applyOutcome, rerender, mark, move, toggleReveal, withCardAnchor,
     effectiveSetKeys, quizDeckCards, shuffle, emptyState, navRowHtml, wireNav,
     setDeckMeta, EXAM_SIZE,
@@ -25,16 +25,21 @@ export function createModes(ctx) {
     render(area) {
       const card = state.deck[state.pos];
       const refsHtml = renderRefs(card.refs);
-      const more = hasMoreThanSummary(card);
-      // Reveal shows a short summary first; the full answer + quotations sit
+      // Short answers (memory verses etc.) render in full on reveal; longer
+      // ones show a short summary first, with the full answer + quotations
       // behind a tap-to-open expander so long card backs stay scannable.
+      const direct = directAnswer(card);
+      const more = !direct && hasMoreThanSummary(card);
       const fullBlock = more
         ? `<details class="qa-full"><summary class="qa-full-toggle">Full answer &amp; quotations</summary>
              <div class="qa-answer">${renderAnswer(card.a)}</div></details>`
         : '';
+      const revealBody = direct
+        ? `<div class="qa-answer">${renderAnswer(card.a)}</div>`
+        : `<div class="qa-summary">${escapeHtml(summarize(card))}</div>`;
       const answerBlock = state.revealed
         ? `<div class="qa-divider"></div>
-           <div class="qa-summary">${escapeHtml(summarize(card))}</div>
+           ${revealBody}
            ${refsHtml}${fullBlock}
            <div class="qa-reveal-hint qa-tap-hint">Tap card to hide</div>`
         : `<div class="qa-reveal-hint qa-tap-hint">Tap card to reveal answer</div>`;

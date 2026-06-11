@@ -66,6 +66,7 @@
   "id": "theo-wcf-12",
   "q": "What does the Westminster Confession teach in \"Of Adoption\" (WCF 12)?",
   "a": "WCF: All those that are justified, God vouchsafeth, in and for his only Son Jesus Christ, to make partakers of the grace of adoption, by which they are taken into the number, and enjoy the liberties and privileges of the children of God, have his name put upon them, receive the Spirit of adoption, have access to the throne of grace with boldness, are enabled to cry, Abba, Father, are pitied, protected, provided for, and chastened by him, as by a father: yet never cast off, but sealed to the day of redemption; and inherit the promises, as heirs of everlasting salvation.",
+  "summary": "All the justified are received into the number of God's children: they bear his name, receive the Spirit of adoption, have access to the throne of grace with boldness, and are pitied, protected, provided for, and chastened by him as a Father — never cast off, but sealed to the day of redemption.",
   "refs": [
    "WCF 12.1",
    "Eph. 1:5",
@@ -79,6 +80,7 @@
   "id": "theo-wcf-13",
   "q": "What does the Westminster Confession teach in \"Of Sanctification\" (WCF 13)?",
   "a": "WCF: They, who are once effectually called, and regenerated, having a new heart, and a new spirit created in them, are further sanctified, really and personally, through the virtue of Christ’s death and resurrection, by his Word and Spirit dwelling in them: the dominion of the whole body of sin is destroyed, and the several lusts thereof are more and more weakened and mortified; and they more and more quickened and strengthened in all saving graces, to the practice of true holiness, without which no man shall see the Lord.\nNote: WCF 13 has 3 sections; this card quotes §1 — open the reference chip to read the full chapter.",
+  "summary": "The regenerate are renewed in the whole man through Christ's death and resurrection: sin's dominion is destroyed, its lusts more and more weakened and mortified, and the saving graces quickened and strengthened unto practical holiness, without which no man shall see the Lord.",
   "refs": [
    "WCF 13.1",
    "1 Thess. 5:23–24",
@@ -133,6 +135,7 @@
   "id": "theo-wcf-18",
   "q": "What does the Westminster Confession teach in \"Of the Assurance of Grace and Salvation\" (WCF 18)?",
   "a": "WCF: Although hypocrites and other unregenerate men may vainly deceive themselves with false hopes and carnal presumptions of being in the favor of God, and estate of salvation (which hope of theirs shall perish): yet such as truly believe in the Lord Jesus, and love him in sincerity, endeavoring to walk in all good conscience before him, may, in this life, be certainly assured that they are in the state of grace, and may rejoice in the hope of the glory of God, which hope shall never make them ashamed.\nNote: WCF 18 has 4 sections; this card quotes §1 — open the reference chip to read the full chapter.",
+  "summary": "True believers may in this life be certainly assured that they are in a state of grace — an assurance founded on the divine promises, the inward evidences of grace, and the witness of the Spirit; it may be shaken or interrupted, yet believers are never left without the seed of God.",
   "refs": [
    "WCF 18.1",
    "1 John 5:13",
@@ -152,6 +155,7 @@
   "id": "theo-wcf-20",
   "q": "What does the Westminster Confession teach in \"Of Christian Liberty and Liberty of Conscience\" (WCF 20)?",
   "a": "WCF: The liberty which Christ hath purchased for believers under the gospel consists in their freedom from the guilt of sin, the condemning wrath of God, the curse of the moral law; and, in their being delivered from this present evil world, bondage to Satan, and dominion of sin; from the evil of afflictions, the sting of death, the victory of the grave, and everlasting damnation; as also, in their free access to God, and their yielding obedience unto him, not out of slavish fear, but a childlike love and willing mind. All which were common also to believers under the law. But, under the new testament, the liberty of Christians is further enlarged, in their freedom from the yoke of the ceremonial law, to which the Jewish church was subjected; and in greater boldness of access to the throne of grace, and in fuller communications of the free Spirit of God, than believers under the law did ordinarily partake of.\nNote: WCF 20 has 4 sections; this card quotes §1 — open the reference chip to read the full chapter.",
+  "summary": "Christ purchased believers' freedom from the guilt of sin, God's condemning wrath, and the curse of the law. God alone is Lord of the conscience, which he has left free from doctrines and commandments of men contrary to his Word — or, in matters of faith and worship, beside it.",
   "refs": [
    "WCF 20.1",
    "Titus 2:14",
@@ -248,6 +252,7 @@
   "id": "theo-wcf-29",
   "q": "What does the Westminster Confession teach in \"Of the Lord’s Supper\" (WCF 29)?",
   "a": "WCF: Our Lord Jesus, in the night wherein he was betrayed, instituted the sacrament of his body and blood, called the Lord’s Supper, to be observed in his church, unto the end of the world, for the perpetual remembrance of the sacrifice of himself in his death; the sealing all benefits thereof unto true believers, their spiritual nourishment and growth in him, their further engagement in and to all duties which they owe unto him; and, to be a bond and pledge of their communion with him, and with each other, as members of his mystical body.\nNote: WCF 29 has 8 sections; this card quotes §1 — open the reference chip to read the full chapter.",
+  "summary": "The Supper was instituted for the perpetual remembrance of Christ's one sacrifice — sealing its benefits to true believers, their spiritual nourishment and growth in him, their further engagement to him, and their communion with him and with each other.",
   "refs": [
    "WCF 29.1",
    "1 Cor. 11:23–26"
@@ -266,6 +271,7 @@
   "id": "theo-wcf-31",
   "q": "What does the Westminster Confession teach in \"Of Synods and Councils\" (WCF 31)?",
   "a": "WCF: For the better government, and further edification of the church, there ought to be such assemblies as are commonly called synods or councils: and it belongeth to the overseers and other rulers of the particular churches, by virtue of their office, and the power which Christ hath given them for edification and not for destruction, to appoint such assemblies; and to convene together in them, as often as they shall judge it expedient for the good of the church.\nNote: WCF 31 has 4 sections; this card quotes §1 — open the reference chip to read the full chapter.",
+  "summary": "For the better government and further edification of the church there ought to be synods and councils; they settle controversies of faith and cases of conscience ministerially — and since they may err, their decrees bind only as consonant with the Word of God.",
   "refs": [
    "WCF 31.1",
    "Acts 15:2, 4",

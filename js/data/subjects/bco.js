@@ -12,8 +12,8 @@
     "cards": [
       {
         "id": "bco-001",
-        "q": "Who is the head of the church?",
-        "a": "How does he exercise his authority?\nChrist alone is the head of the church. He exercises His authority and governs by His Word and Spirit and has appointed officers to guide His church by following His Word and Spirit.",
+        "q": "Who is the head of the church? How does he exercise his authority?",
+        "a": "Christ alone is the head of the church. He exercises His authority and governs by His Word and Spirit and has appointed officers to guide His church by following His Word and Spirit.",
         "refs": []
       },
       {
@@ -24,8 +24,8 @@
       },
       {
         "id": "bco-003",
-        "q": "Can the church “bind” men’s consciences?",
-        "a": "Why or why not?\nAll church power is “only ministerial and declarative”; “no church judicatory may make laws to bind the conscience.” God has set the standard and human courts are fallible, along with the church’s power being purely moral and spiritual, declarative and ministerial.",
+        "q": "Can the church “bind” men’s consciences? Why or why not?",
+        "a": "All church power is “only ministerial and declarative”; “no church judicatory may make laws to bind the conscience.” God has set the standard and human courts are fallible, along with the church’s power being purely moral and spiritual, declarative and ministerial.",
         "refs": []
       },
       {
@@ -36,8 +36,8 @@
       },
       {
         "id": "bco-005",
-        "q": "What is the visible church?",
-        "a": "Who are its members?\nThe visible church consists of all who make profession of faith in the Lord Jesus Christ & their children\nThe visible church before the law, under the law & now under the Gospel, is one & the same & consists of all those who make profession of their faith in the Lord Jesus Christ, together with their children- BCO 2-1",
+        "q": "What is the visible church? Who are its members?",
+        "a": "The visible church consists of all who make profession of faith in the Lord Jesus Christ & their children\nThe visible church before the law, under the law & now under the Gospel, is one & the same & consists of all those who make profession of their faith in the Lord Jesus Christ, together with their children- BCO 2-1",
         "refs": [
           "BCO 2-1"
         ]
@@ -86,8 +86,8 @@
       },
       {
         "id": "bco-012",
-        "q": "What 2 kinds of members does the church have?",
-        "a": "What are their respective rights and privileges?\n- Communing: all rights & privileges of church (voting, office holding, & admission to Lord’s table)6-2,6-4\n- Non-communing members: entitled to baptism, pastoral oversight, instruction & gov’t of church (6-1)\n- Associate members: all the rights and privileges of the church except voting in congregational meetings and holding office in that church (6-4)",
+        "q": "What 2 kinds of members does the church have? What are their respective rights and privileges?",
+        "a": "- Communing: all rights & privileges of church (voting, office holding, & admission to Lord’s table)6-2,6-4\n- Non-communing members: entitled to baptism, pastoral oversight, instruction & gov’t of church (6-1)\n- Associate members: all the rights and privileges of the church except voting in congregational meetings and holding office in that church (6-4)",
         "refs": []
       },
       {
@@ -371,7 +371,8 @@
         "a": "- Primarily their parents.\n- The spiritual nurture, instruction & training of the children of the church are committed by God primarily to their parents. They are responsible to the church for the faithful discharge of their obligations. It is a principal duty of the Church to promote true religion in the home. True discipleship involves learning the Word of God under the guidance of the Holy Spirit both at home & in the church. Without learning there is no growth & without growth there is no discipline & without discipline there is sin & iniquity (1 Tim 4:7) BCO 28-1",
         "refs": [
           "BCO 28-1"
-        ]
+        ],
+        "summary": "Primarily their parents: God commits the spiritual nurture, instruction, and training of the church's children to parents, who answer to the church for it; it is a principal duty of the Church to promote true religion in the home (BCO 28-1)."
       },
       {
         "id": "bco-050",
@@ -521,7 +522,8 @@
         "a": "1 To glorify God.\n“The end of public worship is the glory of God. His people should engage in all its several parts with an eye single to His glory. Public worship has as its aim the building of Christ ‘s Church by the perfecting of the saints and the addition to its membership of such as are being saved-all to the glory of God. Through public worship on the Lord’s day Christians should learn to serve God all the days of the week in their every activity, remembering, whether they eat or drink. or whatever they do, to do all to the glory of God (1 Corinthians 10:31). “-BCO 47-3",
         "refs": [
           "BCO 47-3"
-        ]
+        ],
+        "summary": "The glory of God (BCO 47-3): public worship aims at the building of Christ's Church by perfecting the saints and adding those being saved — training Christians to do all to God's glory every day of the week (1 Cor 10:31)."
       },
       {
         "id": "bco-069",

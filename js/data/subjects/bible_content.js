@@ -16,57 +16,49 @@
       },
       {
         "id": "bc-002-where-in-the-old-testament-would-y",
-        "q": "Where in the Old Testament would you find the Ten Commandments (two references)? Exodus 20:1-17 // Deuteronomy 5:1-21",
-        "a": "Where in the New Testament would you find the law summarized (two references, quote one)? Matthew 22:37-40 // Luke 10:27 // Mark 12:28-31\na. The Ten Commandments are located in Exodus 20:1-17 and Deut 5:1- 21\n(Exodus version)\n1. You shall have no other gods before me.\n2. You shall not make for yourself an idol in the form of anything in heaven above or on the earth beneath or in the waters below. You shall not bow down to them or worship them; for I, the LORD your God, am a jealous God, punishing the children for the sin of the fathers to the third and fourth generation of those who hate me, but showing love to a thousand generations of those who love me and keep my commandments.\n3. You shall not misuse the name of the LORD your God, for the LORD will not hold anyone guiltless who misuses his name.\n4. Remember the Sabbath day by keeping it holy. Six days you shall labor and do all your work, but the seventh day is a Sabbath to the LORD your God. On it you shall not do any work, neither you, nor your son or daughter, nor your manservant or maidservant, nor your animals, nor the alien within your gates. For in six days the LORD made the heavens and the earth, the sea, and all that is in them, but he rested on the seventh day. Therefore the LORD blessed the Sabbath day and made it holy.\ni. Deut version: Observe the Sabbath day by keeping it holy, as the LORD your God has commanded you. Six days you shall labor and do all your work, but the seventh day is a Sabbath to the LORD your God. On it you shall not do any work, neither you, nor your son or daughter, nor your manservant or maidservant, nor your ox, your donkey or any of your animals, nor the alien within your gates, so that your manservant and maidservant may rest, as you do. Remember that you were slaves in Egypt and that the LORD your God brought you out of there with a mighty hand and an outstretched arm. Therefore the LORD your God has commanded you to observe the Sabbath day.\n5. Honor your father and your mother, so that you may live long in the land the LORD your God is giving you.\ni. Deut version: Honor your father and your mother, as the LORD your God has commanded you, so that you may live long and that it may go well with you in the land the LORD your God is giving you.\n6. You shall not murder.\n7. You shall not commit adultery.\n8. You shall not steal.\n9. You shall not give false testimony against your neighbor.\n10. You shall not covet your neighbor's house. You shall not covet your neighbor's wife, or his manservant or maidservant, his ox or donkey, or anything that belongs to your neighbor.\ni. Deut version: You shall not covet your neighbor's wife. You shall not set your desire on your neighbor's house or land, his manservant or maidservant, his ox or donkey, or anything that belongs to your neighbor.\nRegarding the various divisions of the Ten Commandments: \"The text informs us that there are ten, but does not number them singly, for the system of dividing the text of the Old Testament into verses is, of course, not original. The Greek Catholic and the Reformed Churches consider the preamble as standing outside of the circle of ten. The first word then applies to the prohibition of worshipping other gods, the second to the prohibition of images, and so on to the end in the manner familiar to us. This division is as old as the time of Philo and Josephus. The Roman Catholic and Lutheran Churches count as one what we reckon as the first and second words. Inasmuch as the number ten is required, this compels the dividing up of what we call the tenth commandment into the ninth ('thou shalt not covet thy neighbour's wife, etc.'). This is necessary because no other word lends itself to a similar division, except perhaps the fourth, and neither the Romanists, nor the Lutherans, want to count in the preamble. Still a third division, now common among the Jews, reckons the preamble as the first word. This would, of course, ordinarily yield eleven, but this result is avoided through taking the first and second together...Something can be said in favour of closely drawing together the first and the second words...but nothing speaks in favour of dividing the tenth word into two...house here does not mean the mere building, but stands for the entire household-establishment, including, of course, and that in the first place, the wife.\"\nb. Law Summarized in the NT:\n1. Matthew 22:37-40: Jesus replied: \"'Love the Lord your God with all your heart and with all your soul and with all your mind.' 38 This is the first and greatest commandment. 39 And the second is like it: 'Love your neighbor as yourself.' 40 All the Law and the Prophets hang on these two commandments.\"\n2. Luke 10:27: [Jesus] answered: \"'Love the Lord your God with all your heart and with all your soul and with all your strength and with all your mind'; and, 'Love your neighbor as yourself.'\"\n3. Cf. Mark 12:28-31",
-        "refs": []
+        "q": "Where in the Old Testament would you find the Ten Commandments (two references)?",
+        "a": "Where in the New Testament would you find the law summarized (two references, quote one)? Matthew 22:37-40 // Luke 10:27 // Mark 12:28-31\na. The Ten Commandments are located in Exodus 20:1-17 and Deut 5:1- 21\n(Exodus version)\n1. You shall have no other gods before me.\n2. You shall not make for yourself an idol in the form of anything in heaven above or on the earth beneath or in the waters below. You shall not bow down to them or worship them; for I, the LORD your God, am a jealous God, punishing the children for the sin of the fathers to the third and fourth generation of those who hate me, but showing love to a thousand generations of those who love me and keep my commandments.\n3. You shall not misuse the name of the LORD your God, for the LORD will not hold anyone guiltless who misuses his name.\n4. Remember the Sabbath day by keeping it holy. Six days you shall labor and do all your work, but the seventh day is a Sabbath to the LORD your God. On it you shall not do any work, neither you, nor your son or daughter, nor your manservant or maidservant, nor your animals, nor the alien within your gates. For in six days the LORD made the heavens and the earth, the sea, and all that is in them, but he rested on the seventh day. Therefore the LORD blessed the Sabbath day and made it holy.\ni. Deut version: Observe the Sabbath day by keeping it holy, as the LORD your God has commanded you. Six days you shall labor and do all your work, but the seventh day is a Sabbath to the LORD your God. On it you shall not do any work, neither you, nor your son or daughter, nor your manservant or maidservant, nor your ox, your donkey or any of your animals, nor the alien within your gates, so that your manservant and maidservant may rest, as you do. Remember that you were slaves in Egypt and that the LORD your God brought you out of there with a mighty hand and an outstretched arm. Therefore the LORD your God has commanded you to observe the Sabbath day.\n5. Honor your father and your mother, so that you may live long in the land the LORD your God is giving you.\ni. Deut version: Honor your father and your mother, as the LORD your God has commanded you, so that you may live long and that it may go well with you in the land the LORD your God is giving you.\n6. You shall not murder.\n7. You shall not commit adultery.\n8. You shall not steal.\n9. You shall not give false testimony against your neighbor.\n10. You shall not covet your neighbor's house. You shall not covet your neighbor's wife, or his manservant or maidservant, his ox or donkey, or anything that belongs to your neighbor.\ni. Deut version: You shall not covet your neighbor's wife. You shall not set your desire on your neighbor's house or land, his manservant or maidservant, his ox or donkey, or anything that belongs to your neighbor.\nRegarding the various divisions of the Ten Commandments: \"The text informs us that there are ten, but does not number them singly, for the system of dividing the text of the Old Testament into verses is, of course, not original. The Greek Catholic and the Reformed Churches consider the preamble as standing outside of the circle of ten. The first word then applies to the prohibition of worshipping other gods, the second to the prohibition of images, and so on to the end in the manner familiar to us. This division is as old as the time of Philo and Josephus. The Roman Catholic and Lutheran Churches count as one what we reckon as the first and second words. Inasmuch as the number ten is required, this compels the dividing up of what we call the tenth commandment into the ninth ('thou shalt not covet thy neighbour's wife, etc.'). This is necessary because no other word lends itself to a similar division, except perhaps the fourth, and neither the Romanists, nor the Lutherans, want to count in the preamble. Still a third division, now common among the Jews, reckons the preamble as the first word. This would, of course, ordinarily yield eleven, but this result is avoided through taking the first and second together...Something can be said in favour of closely drawing together the first and the second words...but nothing speaks in favour of dividing the tenth word into two...house here does not mean the mere building, but stands for the entire household-establishment, including, of course, and that in the first place, the wife.\"",
+        "refs": [],
+        "summary": "Exodus 20:1-17 and Deuteronomy 5:1-21. (The Exodus version is quoted in full, with the note on how Reformed, Roman, and Jewish traditions number the ten.)"
       },
       {
-        "id": "bc-003-psalm-19-1-4a",
-        "q": "Psalm 19:1-4a",
-        "a": "For the director of music. A psalm of David. The heavens declare the glory of God; the skies proclaim the work of his hands. 2 Day after day they pour forth speech; night after night they display knowledge. 3 There is no speech or language where their voice is not heard. 4 Their voice goes out into all the earth, their words to the ends of the world....",
-        "refs": []
+        "id": "bc-002b-law-summarized-in-the-nt",
+        "q": "Where in the New Testament would you find the law summarized (two references, quote one)?",
+        "a": "1. Matthew 22:37-40: Jesus replied: \"'Love the Lord your God with all your heart and with all your soul and with all your mind.' 38 This is the first and greatest commandment. 39 And the second is like it: 'Love your neighbor as yourself.' 40 All the Law and the Prophets hang on these two commandments.\"\n2. Luke 10:27: [Jesus] answered: \"'Love the Lord your God with all your heart and with all your soul and with all your strength and with all your mind'; and, 'Love your neighbor as yourself.'\"\n3. Cf. Mark 12:28-31",
+        "refs": [],
+        "summary": "Matthew 22:37-40 and Luke 10:27 (cf. Mark 12:28-31): love the Lord your God with all your heart, soul, and mind — and your neighbor as yourself."
       },
       {
-        "id": "bc-004-romans-1-20",
-        "q": "Romans 1:20",
-        "a": "For since the creation of the world God's invisible qualities-his eternal power and divine nature-- have been clearly seen, being understood from what has been made, so that men are without excuse.",
-        "refs": []
+        "id": "bc-003-revelation-of-god-in-nature",
+        "q": "Locate two passages about the revelation of God in nature.",
+        "a": "Psalm 19:1-4a: \"For the director of music. A psalm of David. The heavens declare the glory of God; the skies proclaim the work of his hands. 2 Day after day they pour forth speech; night after night they display knowledge. 3 There is no speech or language where their voice is not heard. 4 Their voice goes out into all the earth, their words to the ends of the world....\"\n\nRomans 1:20: \"For since the creation of the world God's invisible qualities-his eternal power and divine nature-- have been clearly seen, being understood from what has been made, so that men are without excuse.\"\n\nCf. also Acts 14:15-17 (Paul speaking to pagans in Lystra).",
+        "summary": "Psalm 19:1-4a (\"the heavens declare the glory of God\") and Romans 1:20 (\"God's invisible qualities… clearly seen\"); cf. also Acts 14:15-17.",
+        "refs": [
+          "Psalm 19:1-4",
+          "Romans 1:20",
+          "Acts 14:15-17"
+        ]
       },
       {
-        "id": "bc-005-cf-also-acts-14-15-17-paul-speakin",
-        "q": "Cf. also Acts 14:15-17 [Paul speaking to pagans in Lystra]",
-        "a": "Old Testament: General",
-        "refs": []
-      },
-      {
-        "id": "bc-006-history",
-        "q": "History",
-        "a": "Pentateuch (5) Genesis, Exodus, Leviticus, Numbers, Deuteronomy\n\nHistorical Books (12) Joshua, Judges, Ruth, 1 Samuel, 2 Samuel, 1 Kings, 2 Kings, 1 Chronicles, 2 Chronicles, Ezra, Nehemiah, Esther",
-        "refs": []
-      },
-      {
-        "id": "bc-007-poetry-5",
-        "q": "Poetry (5)",
-        "a": "Job, Psalms, Proverbs, Ecclesiastes, Song of Songs",
-        "refs": []
-      },
-      {
-        "id": "bc-008-prophesy",
-        "q": "Prophesy",
-        "a": "Major (5) Isaiah, Jeremiah, Lamentations, Ezekiel, Daniel\n\nMinor (12) Hosea, Joel, Amos, Obadiah, Jonah, Micah, Nahum, Habakkuk, Zephaniah, Haggai, Zechariah, Malachi",
+        "id": "bc-006-ot-divisions",
+        "q": "Name the general divisions of the Old Testament and the books in each.",
+        "a": "**History (17).** Pentateuch (5): Genesis, Exodus, Leviticus, Numbers, Deuteronomy. Historical Books (12): Joshua, Judges, Ruth, 1 & 2 Samuel, 1 & 2 Kings, 1 & 2 Chronicles, Ezra, Nehemiah, Esther.\n\n**Poetry (5).** Job, Psalms, Proverbs, Ecclesiastes, Song of Songs.\n\n**Prophecy (17).** Major (5): Isaiah, Jeremiah, Lamentations, Ezekiel, Daniel. Minor (12): Hosea, Joel, Amos, Obadiah, Jonah, Micah, Nahum, Habakkuk, Zephaniah, Haggai, Zechariah, Malachi.",
+        "summary": "History (Pentateuch 5 + Historical Books 12), Poetry (5: Job–Song of Songs), and Prophecy (Major 5 + Minor 12).",
         "refs": []
       },
       {
         "id": "bc-009-give-a-general-outline-of-old-test",
         "q": "Give a general outline of Old Testament history, including key dates.",
-        "a": "|Bible History Overview | |Period |Start Date |People |History |Other | | | | |Books |Books | |Creation & | |Adam & Eve |Genesis | | |Fall | | | | | |Flood | |Noah |Genesis | | |Patriarchs |2100 |Abraham, |Genesis |Job? | | |(promise to |Isaac, Jacob,| | | | |Abraham) |Joseph | | | |Exodus |1446 |Moses |Exodus-Deut | | |Conquest |1406 |Joshua |Joshua | | |Judges |ca. 1375 | |Judges-1 Sam| | |United Kingdom|1050 (Saul) |Saul, David |1 Sam-1 |Poetical | | | |(anointed |Kings, 1 & 2|Books | | | |1010), |Chron | | | | |Solomon (40 | | | | | |years each) | | | |Divided |~ 930/922 |Israel & |1 & 2 Kings,|Prophetica| |Kingdom | |Judah |2 Chronicles|l Books & | | | | | |Psalms | |Exile |722 (Israel)|Ezekiel, |2 Kings |Ezekiel, | | | |Daniel | |Daniel | | |586 (Judah) | | | | |Post-Exilic |538 (return)|Zerubbabel, |Ezra, |Haggai, | | | |Ezra, |Nehemiah, |Zechariah,| | |516 Temple |Nehemiah |Esther |Malachi | | |built | | | | |Inter-Testamen|400 B.C. | | |Apocrypha | |tal | | | | | |Life of Christ|4 B.C. |John the |Matthew, | | | | |Baptist, |Mark, Luke,| | | | |Jesus, |John | | | | |Apostles | | | |Early Church |33 A.D. - |Apostles-espe|Acts |Letters | | | |cially Peter,| |(Paul & | | | |Paul, & John | |General), | | | | | |Revelation|\n|History |Covenantal Perspective | |Creation Genesis 1-2 |Covenant of Creation | |Fall Genesis 3 |Promise--eternal life | |Flood Genesis 6-9 |Condition--implicit and perfect | |Babel Genesis 11 |obedience | | |Penalty--physical, spiritual, | | |eternal death | | |Gen 3.15--Seed of redemptive | | |promise | | | | | |Noahic Covenant (Preservation) | |Patriarchal Period | | |Birth of Abram (c. 2150) | | |Abram goes to Canaan (2090) |Abrahamic Covenant (Formal | |Isaac born, offered (c. 2065 > |Covenant of Grace, Gen 12; | |2050) |Covenant, Gen 15) | |Abraham dies (c. 1990) |Election, the primacy of faith | | |Circumcision, the sign (Genesis | |Jacob and Esau born (c. 2000) |17:11) | |Joseph in Egypt (c. 1900) | | |Jacob dies (c. 1860) | | |Joseph dies (1800) | | | | | |Moses born in Egypt (c. 1530) | | |Exodus (c. 1446) | | |Moses dies (c. 1405) |Deliverance from Bondage | | |Mosaic Covenant (Law) | |Conquest of Canaan (begins c. | | |1400) | | |Joshua dies | | |Judges rule (until c. 1050) | | |Samuel last judge, also prophet | | | | | |Theocracy in Israel | | |Saul 1050-1010 | | |David Anointed 1 Sam 16 | | |1010-970 |Davidic Covenant (Kingdom) 2 | |Solomon 970-930 Temple |Samuel 7; Unconditional promise | |dedicated c. 950, 1 Kings 8 |of perpetual dynastic rule of | | |Davidic king. | |Divided Kingdom | | |c. 922, 1 Kings 12 | | | | | |Israel | | |Judah | | |(King Prophet) | | |Jeroboam | | |Rehoboam | | |Nadab | | |Abijah | | |Baasha | | |Asa | | |Elah | | |Zimri | | |Tibni | | |Omri | | |Jehoshaphat | | |Ahab Elijah | | |Jehoram | | |Ahaziah Elisha Ahaziah| | | | | |Joram | | |Athaliah | | |Jehu | | |Joash | | |Jehoahaz | | |Amaziah | | |Jehoash | | |Jeroboam II Jonah Azariah |New Covenant Promised (Jer 31) | |Zechariah Amos | | |Shallum | | |Menahem Hosea Jotham | | |Isaiah | | |Pekiah | | |Ahaz | | |Pekah | | |Hoshea | | |Hezekiah | | |722--Assyria | | |Manasseh | | |Amon | | |Josiah Jeremiah | | |Jehoahaz | | |Jehoiakim | | |Jehoiakin Daniel | | |Zedekiah | | |586--Babylon Ezekiel | | |538 Cyrus allows Jews to return | | |Haggai / Zechariah | | |c. 516 Darius allows 2nd Temple | | |to be completed | | |c. 458-445 Artaxerxes allows | | |Ezra / Nehemiah to return. | | |Malachi | |",
-        "refs": []
+        "a": "| Period | Start date | People | Books |\n|---|---|---|---|\n| Creation & Fall |  | Adam & Eve | Genesis |\n| Flood |  | Noah | Genesis |\n| Patriarchs (promise to Abraham) | 2100 | Abraham, Isaac, Jacob, Joseph | Genesis (Job?) |\n| Exodus | 1446 | Moses | Exodus–Deuteronomy |\n| Conquest | 1406 | Joshua | Joshua |\n| Judges | ca. 1375 |  | Judges–1 Samuel |\n| United Kingdom | 1050 (Saul) | Saul, David (anointed 1010), Solomon — 40 years each | 1 Samuel–1 Kings, 1 & 2 Chronicles; the Poetical Books |\n| Divided Kingdom | c. 930/922 | Israel & Judah | 1 & 2 Kings, 2 Chronicles; the Prophetical Books & Psalms |\n| Exile | 722 (Israel), 586 (Judah) | Ezekiel, Daniel | 2 Kings; Ezekiel, Daniel |\n| Post-Exilic | 538 (return), 516 (Temple rebuilt) | Zerubbabel, Ezra, Nehemiah, Esther | Ezra, Nehemiah, Esther; Haggai, Zechariah, Malachi |\n| Intertestamental | 400 B.C. |  | (Apocrypha) |\n| Life of Christ | 4 B.C. | John the Baptist, Jesus, the Apostles | Matthew, Mark, Luke, John |\n| Early Church | A.D. 33– | The Apostles — especially Peter, Paul, and John | Acts; the Letters (Paul & General); Revelation |\n\nKey dates to anchor: Abram born c. 2150, enters Canaan 2090; Isaac c. 2065; Jacob & Esau c. 2000; Joseph in Egypt c. 1900; Moses born c. 1530; Exodus c. 1446; conquest begins c. 1400; Saul 1050–1010; David 1010–970; Solomon 970–930 (Temple dedicated c. 950); kingdom divides c. 922; Israel falls 722; Judah falls 586; return under Cyrus 538; second Temple 516; Ezra/Nehemiah return c. 458–445.",
+        "refs": [],
+        "summary": "Patriarchs (c. 2100) → Exodus (1446) → Conquest (1406) → Judges (c. 1375) → United Kingdom (1050) → Divided Kingdom (c. 930) → Exile (722 Israel / 586 Judah) → Return (538) → Intertestamental (400 B.C.) → Christ and the early church."
       },
       {
         "id": "bc-010-give-a-general-outline-of-old-test",
         "q": "Give a general outline of Old Testament history from the perspective of the covenant, including key passages.",
-        "a": "|Covenant |Promise |Requirement|Sign |Reference | |Works |Adamic |Life |Obedience |Tree of Life|Gen 3 | | | | |(regarding | | | | | | |tree of | | | | | | |knowledge | | | | | | |of | | | | | | |good/evil) | | | |Grace |Noahic |Never |None stated|Rainbow |Gen 9 | | | |flood | | | | | | |again | | | | | |Abrahamic|Seed, |Circumcisio| |Gen 12, | | | |Land, |n | |15, 17 | | | |Blessing | | | | | | |to | | | | | | |Nations | | | | | |Mosaic |God's |Law (esp. |Passover/Sab|Exod | | | |special |Decalogue) |bath |19-24, | | | |people | | |Deut 5 | | |Davidic |Davidic |None |None |2 Sam 7 | | | |dynasty | | | | | | |securing | | | | | | |blessing | | | | | | |for the | | | | | | |people | | | | | |New |Renewal |None |None |Jer 31, | | | |of | | |Mat 24, | | | |promises | | |Luk 22 |",
-        "refs": []
+        "a": "| Covenant | Promise | Requirement | Sign | Reference |\n|---|---|---|---|---|\n| Works — Adamic | Life | Obedience (regarding the tree of knowledge of good/evil) | Tree of Life | Gen 3 |\n| Grace — Noahic | Never flood again | None stated | Rainbow | Gen 9 |\n| Grace — Abrahamic | Seed, land, blessing to the nations | Faith | Circumcision (Gen 17:11) | Gen 12, 15, 17 |\n| Grace — Mosaic | God's special people | Law (esp. the Decalogue) | Passover / Sabbath | Exod 19–24, Deut 5 |\n| Grace — Davidic | A Davidic dynasty securing blessing for the people | None | None | 2 Sam 7 |\n| Grace — New | Renewal of the promises | None | None | Jer 31; Matt 26:28; Luke 22:20 |",
+        "refs": [],
+        "summary": "The covenant of works (Adamic: life for obedience, Gen 3), then the covenant of grace administered through the Noahic (rainbow, Gen 9), Abrahamic (seed, land, blessing — circumcision, Gen 12/15/17), Mosaic (law, Passover/Sabbath, Exod 19-24), Davidic (dynasty, 2 Sam 7), and New (Jer 31; Luke 22) covenants."
       }
     ]
   },
@@ -77,133 +69,133 @@
     "cards": [
       {
         "id": "bc-011-adam",
-        "q": "Adam",
+        "q": "Discuss briefly the life and significance of Adam (book(s) and chapter(s)).",
         "a": "**OT.** Adam (and Eve) were the first humans, created without sin in the image of God. Genesis 1-5 shows us that God entered into a covenant of life (works) with them in which eternal life was promised to them on condition of perfect obedience. Genesis 3 records their fall into sin. Hosea 6:7 seems to allude to God's covenant with Adam, which he transgressed, though this text is debated since some take \"Adam\" in this verse to be a reference to a place.\n\n**NT.** Luke's genealogy in chapter 3 of his gospel traces Christ's lineage back to Adam. Romans 5:12-21 compares the death which came into the world through Adam with the life which came into the world through Christ. 1 Corinthians 15 also compares death in Adam with life in Christ. On the basis of Adam's having been created first and not being the one deceived, 1 Timothy 2 argues against women teaching or having authority over a man.",
         "refs": []
       },
       {
         "id": "bc-012-abraham",
-        "q": "Abraham",
+        "q": "Discuss briefly the life and significance of Abraham (book(s) and chapter(s)).",
         "a": "**OT.** Originally named Abram, he first appears in Genesis 11. In Genesis 12 God calls him away from his people and promises him land, nationhood, and that he would be a blessing to all nations. The story of Abraham continues up to his death in Genesis 25. Covenant of land in Genesis 15 and of circumcision in 17 and change of name to Abraham. Sacrifice of Isaac occurs in Genesis 22. The patriarchal covenant first made with him is referred to throughout the OT, e.g. Exodus 2.\n\n**NT.** Abraham is an example of justification in Romans 4 because his faith was credited to him as righteousness in Genesis 15:6. Paul again calls attention to Abraham in Galatians 3 and says that those who belong to Christ are Abraham's seed and heirs according to the promise. The greatness of Melchizedek to the Levitical priesthood is proved in Hebrews 7 by the fact that Abraham and thus Levi gave him a tenth of his plunder and Abraham, the lesser, was blessed by Melchizedek, the greater. In Hebrews 11 Abraham is an example of faith.",
         "refs": []
       },
       {
         "id": "bc-013-joseph",
-        "q": "Joseph",
+        "q": "Discuss briefly the life and significance of Joseph (book(s) and chapter(s)).",
         "a": "**OT.** The first and favored son of Jacob by Rachel, the 11th son overall. The narrative of his life spans Genesis 37-50. After having two dreams which implied that his brothers would bow down to him he was sold into slavery by his brothers and was tempted by Potiphar's wife and imprisoned. He is freed from jail when he is able to interpret Pharaoh's dreams predicting 7 years of plenty and 7 years of famine. During the famine, his brothers travel to Egypt where Joseph is in a position to save them.\n\n**NT.** In Hebrews 11 it is mentioned that when Joseph's end was near by faith he spoke about the Israelites' exodus from Egypt. He is perhaps alluded to in 2 Timothy 2 in Paul's call to Timothy to flee youthful lusts.",
         "refs": []
       },
       {
         "id": "bc-014-moses",
-        "q": "Moses",
+        "q": "Discuss briefly the life and significance of Moses (book(s) and chapter(s)).",
         "a": "**OT.** National hero who delivered Israel from Egyptian slavery. Born in Egypt and raised in Pharaoh's house. Married Zipporah and lived secluded life in Midian after committing murder until he was called by God to deliver Israel from bondage in Exodus 3. A reluctant leader, Moses saw God fulfill his promises as the great I AM, delivering Israel from Egypt, through the Red Sea, through the wilderness and to the threshold of the promised land. Through Moses, Israel received the Law on Mount Sinai. The account of Moses' life is found in Exodus, Leviticus, Numbers, and Deuteronomy. Authored Psalm 90.\n\n**NT.** The Law was given through Moses, grace and truth came through Jesus Christ (John 1:17). His old covenant ministry is contrasted with Paul's new covenant ministry in 2 Corinthians 3. Contrasted with Christ in Hebrews 3. Moses was a faithful servant in God's house whereas Christ is a faithful son over God's house. He is also mentioned in Hebrews 11 because he regarded disgrace for the sake of Christ as of greater value than the treasures of Egypt.",
         "refs": []
       },
       {
         "id": "bc-015-deborah",
-        "q": "Deborah",
+        "q": "Discuss briefly the life and significance of Deborah (book(s) and chapter(s)).",
         "a": "A prophetess who was the only female judge of Israel. Her story is found in Judges 4-5. Barak refused to to attack Sisera, the commander of Jabin's army, unless Deborah went with him. Deborah's song of victory is recounted in Judges 5.",
         "refs": []
       },
       {
         "id": "bc-016-ruth",
-        "q": "Ruth",
+        "q": "Discuss briefly the life and significance of Ruth (book(s) and chapter(s)).",
         "a": "A Moabitess widow and step-daughter of Naomi. She is a model of loyalty to Naomi in staying with her. Ruth's account in the book which bears here name is a testimony of God's grace extending beyond ethnic Israel. Her marriage to Boaz produced Obed, the father of Jesse, the father of David... Christ. Ruth is mentioned in Matthew's genealogy (Mat 1).",
         "refs": []
       },
       {
         "id": "bc-017-joshua",
-        "q": "Joshua",
+        "q": "Discuss briefly the life and significance of Joshua (book(s) and chapter(s)).",
         "a": "His name was changed by Moses from Hoshea son of Nun to Joshua son of Nun by Moses (Num 13:16). In the book of Exodus Joshua functions as Moses' assistant and accompanied Moses on Mount Sinai when Moses met with Yahweh to receive the Law (Exod 24-32). Joshua and Caleb were the only faithful spies among those sent out to explore the Promised Land and as a result they were the only ones not to die in the wilderness of that first generation of Israelites (Num 13-14). Joshua led Israel in the conquest of Canaan in the book that bears his name. His failure to give Israel rest is mentioned in Hebrews 4:8.",
         "refs": []
       },
       {
         "id": "bc-018-gideon",
-        "q": "Gideon",
+        "q": "Discuss briefly the life and significance of Gideon (book(s) and chapter(s)).",
         "a": "(Judges 6-9) The son of Joash from the half-tribe of Manasseh, he was the fifth recorded judge over Israel and the first of the out-group of judges. Before Gideon was called to be a judge Israel was oppressed by Midianites, Amalekites and other eastern peoples. When first called by God he asked for a sign and the angel of the Lord consumed an offering of meat and unleavened bread with fire. Gideon then heeded the request to tear down his father's Baal altar but did so at night. Gideon then tested God twice more with a wool fleece in relation to dew on the ground. The Lord whittled down Gideon's force to 300 men who lapped water with their hands to their mouths to save Israel from the Midianites. He beat the elders of Succoth and killed the men of Peniel for not helping with his pursuit of the Midianite kingd Zebah and Zalmunna. Though he refused Israel's request that he rule over them, Gideon functioned as a king by having seventy sons through many wives. He made an ephod at the end of his life which led Israel astray and his son Abimelech (\"my father is king\") went on to oppress Israel until he was killed by a woman who dropped a millstone on his head. He is mentioned in Hebrews 11 as an example of faith.",
         "refs": []
       },
       {
         "id": "bc-019-samuel",
-        "q": "Samuel",
+        "q": "Discuss briefly the life and significance of Samuel (book(s) and chapter(s)).",
         "a": "The child of Hannah and Elkanah he was dedicated to the Lord by his mother Hannah under the priesthood of Eli. The Lord revealed to him the downfall of Eli's house (1 Sam 3) after which Samuel served as the last judge over Israel and its priest. The Lord led Israel to victory over the Philistines through Samuel (1 Sam 7). Samuel's ministry combined prophetic, priestly, and judicial offices. Samuel's sons were wicked and Israel demanded a king to rule over them (1 Sam 8), Samuel anointed Saul for this task (1 Sam 9) but then proclaimed Saul's rejection by the Lord (1 Sam 13) and anointed David as king (1 Sam 16). After dying (1 Sam 15), he was called from the dead when Saul consulted the witch of Endor and he proclaimed Saul's impending death along with his sons at the hands of the Philistines (1 Sam 28).",
         "refs": []
       },
       {
         "id": "bc-020-david",
-        "q": "David",
+        "q": "Discuss briefly the life and significance of David (book(s) and chapter(s)).",
         "a": "(1 Sam 16-1 Kgs 2 // 1 Chron 2-29) The youngest son of Jesse, great grandson of Ruth and Boaz. Anointed in secret by Samuel but remained loyal to Saul despite Saul's many attempts upon David's life. Following the death of Saul at the hands of the Philistines, David was anointed by the Israelites as king in Hebron. He reigned in Hebron for 71/2 years until he defeated Saul's supporters, thus uniting the kingship in Israel. Notable accomplishments include his defeat of Goliath, his establishment of Jerusalem as the capital of Israel, his placement of the ark in Jerusalem. His sin with Bathsheba led to turmoil throughout the rest of his reign, most notably the rebellion of his son Absalom. He authored many Psalms, including Psalm 51 which records his repentance following his sin with Bathsheba. The Davidic covenant is found in 2 Sam 7 (cf. Psalm 89:3-4) and 1 Chron 17.",
         "refs": []
       },
       {
         "id": "bc-021-solomon",
-        "q": "Solomon",
+        "q": "Discuss briefly the life and significance of Solomon (book(s) and chapter(s)).",
         "a": "(1 Kgs 1-11 // 2 Chron 1-9) Son of David and Bathsheba. Had to fight brother Adonijah for right to rule. Eventually Solomon executed Adonijah and Joab. God honored Solomon's request for wisdom and used Solomon to build the temple in Jerusalem. Solomon's wisdom was recorded in proverbs and songs, and he earned international acclaim as can be seen by the queen of Sheba's visit. However, Solomon formed may politically expedient but spiritually destructive alliances through marriages which introduced the worship of foreign gods into Israel.",
         "refs": []
       },
       {
         "id": "bc-022-rehoboam",
-        "q": "Rehoboam",
+        "q": "Discuss briefly the life and significance of Rehoboam (book(s) and chapter(s)).",
         "a": "(1 Kgs 12-14 // 2 Chron 10-12) Son of Solomon and last king over united Israel, first king over Judah. Rejected the wise counsel of elders in favor of foolish counsel of young men to be oppressive to Israel (though this was from the Lord, 1 Kings 12:15), which led to the defection of the 10 Northern tribes under Jeroboam son of Nebat. 2 Chronicles 12 records Rehoboam's repentance when Shishak king of Egypt attacked Jerusalem.",
         "refs": []
       },
       {
         "id": "bc-023-jeroboam-son-of-nebat",
-        "q": "Jeroboam son of Nebat",
+        "q": "Discuss briefly the life and significance of Jeroboam son of Nebat (book(s) and chapter(s)).",
         "a": "(1 Kgs 11-14 // 2 Chron 10-13) A wealthy Ephraimite landowner who was appointed by Solomon to be in charge of a work force of the house of Joseph. He was told by the prophet Ahijah that he would rule 10 tribes of Israel because of Solomon's sin. He was exiled to Egypt for leading a revolt against Solomon. He led the 10 northern tribes in secession from Israel after Rehoboam failed to reform Solomon's policies. Fearing worship in Jerusalem would threaten his rule, he introduced syncretistic worship into Northern Israel, placing golden calves in Dan and Bethel and building high places, and he appointing all sorts of people as priests.",
         "refs": []
       },
       {
         "id": "bc-024-elijah",
-        "q": "Elijah",
+        "q": "Discuss briefly the life and significance of Elijah (book(s) and chapter(s)).",
         "a": "(1 Kgs 17-19, 21; 2 Kgs 1-2) Elijah the Tishbite prophesied during the reigns of Ahab/Jezebel and Ahaziah. His ministry centered around confronting Baalism. Proclaimed a drought to Ahab, was fed by ravens in the Kerith Ravine and then performed a miracle for the widow of Zarephath so that her oil would not run out and raised her son from the dead, confronted the prophets of Baal on Mount Carmel, fled to Horeb from Jezebel where the Lord appeared to him in a still small voice saying that he had kept 7000 in Israel who had not bowed their knees to Baal, he proclaimed judgment on Ahab for taking Naboth's vineyard, and was taken up to heaven in a chariot of fire. He was a forerunner of the writing prophets of the 6th century.",
         "refs": []
       },
       {
         "id": "bc-025-elisha",
-        "q": "Elisha",
+        "q": "Discuss briefly the life and significance of Elisha (book(s) and chapter(s)).",
         "a": "(1 Kgs 19-2 Kgs 13) Anointed by Elijah as his successor. Elisha was promised a double portion of Elijah's spirit if he saw Elijah when he was taken which Elisha did. Miracles include: healing of bad water by putting salt into it, granted a perpetual flow of oil to a widow of the company of prophets so she could sell it and pay her debts, predicted the birth of a son for a Shunammite woman whose husband was old and then raised the boy from the dead, removed death from a pot of stew with some flour, multiplied bread and fed one hundred people, healed Naaman of leprosy (servant Gehazi received Naaman's leprosy for taking Namaan's money), caused an axhead to float, and blinded the Arameans, and a dead man's body came to life when it touched Elisha's bones. Elisha ministered to Northern Israel.",
         "refs": []
       },
       {
         "id": "bc-026-hezekiah",
-        "q": "Hezekiah",
+        "q": "Discuss briefly the life and significance of Hezekiah (book(s) and chapter(s)).",
         "a": "(2 Kgs 18-20 // 2 Chron 29-32 // Isa 36-39) King of Judah who appears in the genealogy of Christ. Son of Ahaz, Hezekiah did what was right in the eyes of the Lord, removing the high places, cutting down Asherah poles and removing the bronze snake of Moses. He also worked to reverse his father's alliances with Assyria which were influencing Judah spiritually and politically. Was faithful to Yahweh during the threat of Sennacherib, king of Assyria. Remembered for praying and for receiving 15 more years of life (the sign for which was his shadow going back 10 steps) but then foolishly showing envoys of Babylon the treasures of the temple which he was then told would be taken after he died. Chronicles recounts how he purified the temple and celebrated the Passover.",
         "refs": []
       },
       {
         "id": "bc-027-josiah",
-        "q": "Josiah",
+        "q": "Discuss briefly the life and significance of Josiah (book(s) and chapter(s)).",
         "a": "(2 Kgs 22-23 // 2 Chron 33-34) Son of the bad king Amon, he became king of Judah when he was 8 years old and did what was right in the eyes of the Lord. His reign lasted from 640-609 B.C. Found the book of the Law in the temple and renewed the covenant, celebrating Passover in the process. Fought against Baalism and the occult in Judah. Was killed in a battle with Pharaoh Neco on the plain of Megiddo.",
         "refs": []
       },
       {
         "id": "bc-028-jeremiah",
-        "q": "Jeremiah",
+        "q": "Discuss briefly the life and significance of Jeremiah (book(s) and chapter(s)).",
         "a": "Prophet from Anathoth who began his ministry in 627 B.C. and continued to minister through the fall of Jerusalem and journey into Egypt as a hostage. He is remembered for his manifold sufferings and also for his message of hope found in his book. In Jeremiah 31 we learn of the New Covenant.",
         "refs": []
       },
       {
         "id": "bc-029-ezekiel",
-        "q": "Ezekiel",
+        "q": "Discuss briefly the life and significance of Ezekiel (book(s) and chapter(s)).",
         "a": "Exiled along with King Jehoiachin by Nebuchanezzar in 597 B.C., when he was around 26 years old, He resettled in Tel Abib by the Kebar river and started his ministry around age\n\nHighlights of his ministry include Ezekiel as watchman, the glory of the Lord departing from the temple, return from the Exile, warnings against false shepherds, and the vision of the valley of dry bones.",
         "refs": []
       },
       {
         "id": "bc-030-daniel",
-        "q": "Daniel",
+        "q": "Discuss briefly the life and significance of Daniel (book(s) and chapter(s)).",
         "a": "Carried to Babylon by Nebuchadnezzar in 605 B.C., the 3rd year of Jehoiakim's reign. He lived with spiritual integrity in Babylon, serving Nebuchadnezzar, Belshazzar, Darius the Mede, and Cyrus the Persian.",
         "refs": []
       },
       {
         "id": "bc-031-nehemiah",
-        "q": "Nehemiah",
+        "q": "Discuss briefly the life and significance of Nehemiah (book(s) and chapter(s)).",
         "a": "The son of Hacaliah, he was a cupbearer to King Artaxerxes. Received permission to travel to Jerusalem to rebuild the city walls. He also supported the religious reforms of Ezra and he led the nation in covenant renewal in which they pledged to keep the Sabbath, support the temple, and not to intermarry. While he returned to Susa, Israel broke these vows and Nehemiah had to clean things up when he returned.",
         "refs": []
       },
       {
         "id": "bc-032-malachi",
-        "q": "Malachi",
+        "q": "Discuss briefly the life and significance of Malachi (book(s) and chapter(s)).",
         "a": "The book bearing his name is the last one in the OT, as it is arranged in our English Bibles. Malachi's ministry is to be dated about the time of Ezra and Nehemiah. The reference to the \"governor\" (1:8) locates the book in the Persian period and Malachi's emphasis on the law (Mal 4:4) would indicate the time of Ezra's ministry of restoring the prominence and authority of the law (Ezra 7:14, 25, 26; Neh 8:18). Some date the book between the coming of Ezra (458 B.C.) and the coming of Nehemiah (445 B.C.). Others place Malachi in the period between Nehemiah's two visits to Jerusalem, about 433 B.C. Malachi, along with Ezra and Nehemiah, speaks against marriage to foreign wives, condemns the neglect of the tithe, castigates the evils of a degenerate priesthood and criticizes social sins. Also prominent in the book of the Malachi is the subject of the covenant. The end of Malachi predicts the coming of the Elijah which will precipitate the Day of the Lord.",
         "refs": []
       }
@@ -216,67 +208,67 @@
     "cards": [
       {
         "id": "bc-033-passover",
-        "q": "Passover",
+        "q": "Locate by book and chapter: Passover.",
         "a": "Exodus 12",
         "refs": []
       },
       {
         "id": "bc-034-ten-commandments",
-        "q": "Ten Commandments",
+        "q": "Locate by book and chapter: Ten Commandments.",
         "a": "Exodus 20; Deuteronomy 5",
         "refs": []
       },
       {
         "id": "bc-035-day-of-atonement",
-        "q": "Day of Atonement",
+        "q": "Locate by book and chapter: Day of Atonement.",
         "a": "Leviticus 16",
         "refs": []
       },
       {
         "id": "bc-036-the-shema-and-reiteration-of-the-l",
-        "q": "The Shema and reiteration of the law",
+        "q": "Locate by book and chapter: The Shema and reiteration of the law.",
         "a": "Deuteronomy 6",
         "refs": []
       },
       {
         "id": "bc-037-watchmen",
-        "q": "Watchmen",
+        "q": "Locate by book and chapter: Watchmen.",
         "a": "Ezekiel 33",
         "refs": []
       },
       {
         "id": "bc-038-new-covenant",
-        "q": "New Covenant",
+        "q": "Locate by book and chapter: New Covenant.",
         "a": "Jeremiah 31 (cf. Ezekiel 36)",
         "refs": []
       },
       {
         "id": "bc-039-i-will-pour-out-my-spirit",
-        "q": "\"I will pour out my Spirit\"",
+        "q": "Locate by book and chapter: \"I will pour out my Spirit\".",
         "a": "Joel 2:28 'And afterward, I will pour out my Spirit on all people. Your sons and daughters will prophesy, your old men will dream dreams, your young men will see visions.",
         "refs": []
       },
       {
         "id": "bc-040-the-just-shall-live-by-faith",
-        "q": "\"The just shall live by faith\"",
+        "q": "Locate by book and chapter: \"The just shall live by faith\".",
         "a": "Habakkuk 2:4 //Romans 1:16-17 //Galatians 3:11",
         "refs": []
       },
       {
         "id": "bc-041-though-the-fig-tree-does-not-bloss",
-        "q": "\"Though the fig tree does not blossom...\"",
+        "q": "Locate by book and chapter: \"Though the fig tree does not blossom...\".",
         "a": "Habakkuk 3:17",
         "refs": []
       },
       {
         "id": "bc-042-i-am-going-to-send-my-messenger",
-        "q": "\"I am going to send my messenger\"",
+        "q": "Locate by book and chapter: \"I am going to send my messenger\".",
         "a": "Malachi 3:1",
         "refs": []
       },
       {
         "id": "bc-043-the-messianic-psalms",
-        "q": "The Messianic Psalms",
+        "q": "Locate by book and chapter: The Messianic Psalms.",
         "a": "Psalm 2 //Heb 1:5 - \"You are my son, today I have begotten you...\"\n\nPsalm 22 // Matt 27 - \"My God, My God, why have you forsaken me?\"\n\nPsalm 40 // Heb 10 - \"Sacrifices and offerings you have not desired...\"\n\nPsalm 45 // Heb 1:8-9 - \"Your throne, O God, is forever\"\n\nPsalm 110 //Heb 7 - \"You are a priest in the order of Melchizedek\"\n\nPsalm 110 //Heb 10 - \"...until I make your enemies your footstool\"\n\nPsalm 118 // Matt 21 - \"Blessed is he who comes in the name of the Lord\"",
         "refs": []
       }
@@ -289,103 +281,103 @@
     "cards": [
       {
         "id": "bc-044-creation",
-        "q": "Creation",
+        "q": "Locate by book and chapter (and date where appropriate): Creation.",
         "a": "Genesis 1-2",
         "refs": []
       },
       {
         "id": "bc-045-fall",
-        "q": "Fall",
+        "q": "Locate by book and chapter (and date where appropriate): Fall.",
         "a": "Genesis 3",
         "refs": []
       },
       {
         "id": "bc-046-flood",
-        "q": "Flood",
+        "q": "Locate by book and chapter (and date where appropriate): Flood.",
         "a": "Genesis 6-9",
         "refs": []
       },
       {
         "id": "bc-047-babel",
-        "q": "Babel",
+        "q": "Locate by book and chapter (and date where appropriate): Babel.",
         "a": "Genesis 11",
         "refs": []
       },
       {
         "id": "bc-048-promise-to-abraham",
-        "q": "Promise to Abraham*",
+        "q": "Locate by book and chapter (and date where appropriate): Promise to Abraham.",
         "a": "Genesis 12. Arguably, Abraham was born in 2166 b.c. and arrived in Palestine around the year 2091 b.c.",
         "refs": []
       },
       {
         "id": "bc-049-sign-of-abrahamic-covenant",
-        "q": "Sign of Abrahamic covenant",
+        "q": "Locate by book and chapter (and date where appropriate): Sign of Abrahamic covenant.",
         "a": "Genesis 17",
         "refs": []
       },
       {
         "id": "bc-050-jacob-s-dream-of-the-ladder-to-hea",
-        "q": "Jacob's Dream of the ladder to heaven (God affirming his",
+        "q": "Locate by book and chapter (and date where appropriate): Jacob's Dream of the ladder to heaven (God affirming his.",
         "a": "Abrahamic promise)\n\nGenesis 28",
         "refs": []
       },
       {
         "id": "bc-051-jacob-wrestling-with-the-angel",
-        "q": "Jacob wrestling with the angel",
+        "q": "Locate by book and chapter (and date where appropriate): Jacob wrestling with the angel.",
         "a": "Genesis 32",
         "refs": []
       },
       {
         "id": "bc-052-the-exodus",
-        "q": "The Exodus*",
+        "q": "Locate by book and chapter (and date where appropriate): The Exodus.",
         "a": "Exodus 12:31-42. The early date is 1446 B.C., that is the 15th century B.C. This date is based on 1 Kings 6:1 which says that Solomon began building the temple in the fourth year of his reign which was the 480th year since Israel's exodus from Egypt. The fourth year of Solomon's reign is taken to be 966 B.C., which plus 480 equals 1446 B.C., a number which comports well with Judges 11:26, which says that Israel had occupied Heshbon for 300 years by the time of Jephthah. However, conservative scholars, such as Kitchen, think the number 480 is symbolic (12 x 4) and think that among other things, archaeology favors a date in the 13th century B.C.",
         "refs": []
       },
       {
         "id": "bc-053-fall-of-jericho",
-        "q": "Fall of Jericho",
+        "q": "Locate by book and chapter (and date where appropriate): Fall of Jericho.",
         "a": "Joshua 6",
         "refs": []
       },
       {
         "id": "bc-054-the-anointing-of-david",
-        "q": "The anointing of David*",
+        "q": "Locate by book and chapter (and date where appropriate): The anointing of David.",
         "a": "1 Samuel 16 - the anointing of David occurred around 1000 B.C.\n\n2 Samuel 2:4 - over Judah\n\n2 Samuel 5:3 - over Israel",
         "refs": []
       },
       {
         "id": "bc-055-davidic-covenant",
-        "q": "Davidic covenant",
+        "q": "Locate by book and chapter (and date where appropriate): Davidic covenant.",
         "a": "2 Samuel 7 / 1 Chronicles 17 (cf. Psalm 89:3-4).",
         "refs": []
       },
       {
         "id": "bc-056-david-and-bathsheba",
-        "q": "David and Bathsheba",
+        "q": "Locate by book and chapter (and date where appropriate): David and Bathsheba.",
         "a": "2 Samuel 11",
         "refs": []
       },
       {
         "id": "bc-057-dedication-of-the-temple",
-        "q": "Dedication of the temple*",
+        "q": "Locate by book and chapter (and date where appropriate): Dedication of the temple.",
         "a": "1 Kings 8 / 2 Chronicles 6-7. The dedication occurred circa 950 B.C.",
         "refs": []
       },
       {
         "id": "bc-058-division-of-kingdom",
-        "q": "Division of kingdom*",
+        "q": "Locate by book and chapter (and date where appropriate): Division of kingdom.",
         "a": "1 Kings 12 / 2 Chronicles 10. The division occurred circa 930 B.C. Some say 933 B.C. and others 931 B.C.",
         "refs": []
       },
       {
         "id": "bc-059-the-exile",
-        "q": "The Exile*",
+        "q": "Locate by book and chapter (and date where appropriate): The Exile.",
         "a": "Assyrian Exile of Northern Israel: 2 Kings 17 in 722 B.C.\n\nBabylonian exile of Judah: 2 Kings 25 / 2 Chronicles 36 in 586 B.C., though some say 587 B.C. There were also two prior deportations, one in 605 B.C. in which Daniel was taken and one in 597 B.C. in which Ezekiel was taken.",
         "refs": []
       },
       {
         "id": "bc-060-the-return-from-exile",
-        "q": "The return from exile*",
+        "q": "Locate by book and chapter (and date where appropriate): The return from exile.",
         "a": "First returnees came in 538 B.C. and the rebuilding of the temple was completed around 515 B.C.",
         "refs": []
       }
@@ -417,8 +409,9 @@
       {
         "id": "bc-064-what-are-the-distinctive-features",
         "q": "What are the distinctive features of each of the four gospels?",
-        "a": "| | | | | |Matthew |Mark |Luke |John | | | | | | |Juxtaposition of|Jesus' identity|Jesus' |Realized | |particularism |as the |humanity: |Eschatology: | |(go only to the |suffering |Christological |\"Whereas the | |lost sheep of |servant (cf. |titles are not |Synoptics stress | |Israel in Mat |Mark 10:45) |as dominant in |a future hope and| |10) with the |Disciples and |Luke |the return of | |universalism of |Discipleship: |Jesus' ministry|Christ, John | |the Great |As the |to the outcasts|defines eternal | |Commission |disciples |(e.g. parable |life and death as| |Fulfillment |recapitulate |of the Good |beginning now in | |formulae |the failures of|Samaritan, |this age, based | |Discipleship and|Israel, the |Prodigal Son |on men's and | |the Church: |reader is |parable) |women's response | |There is a more |forced to |Women: |to Jesus\" (e.g. | |positive |conclude that |Elizabeth and |John 3:18). | |portrait of the |no one is |Mary, |Miracles as | |disciples (e.g. |faithful and to|prophetess |Signs: In the | |Peter calls |ask himself |Anna, women |Synoptics Jesus | |Jesus the \"Son |whether or not |supported |only gives the | |of God\" in Mat |he is |Jesus' ministry|sign of Jonah but| |16) and emphasis|Holy Spirit is | |John stresses | |on community |conspicuous by |Poor: \"Blessed |Jesus' signs | |instructions |his absence |are the poor\" |Incipient | |(e.g. Mat 18) |Message about |rather than |Trinitarianism | |Conflict with |Jesus as the |\"poor in |and the unity of | |Jewish |Good News |spirit\" as in |Jesus' followers | |authorities seen| |Matthew |Election and | |in the | |Jesus prayer |security of the | |repetition of | |life is |believer | |the label \"their| |emphasized |Christ's death as| |synagogues\" | |The orderly |exaltation/glorif| | | |account of |ication | | | |Jesus' life |Jesus' trips to | | | |Holy Spirit |Jerusalem | | | |Stewardship of |Jesus' | | | |material |fulfillment of | | | |possessons |all major | | | | |Jerusalem | | | | |institutions and | | | | |rituals | | | | |Jesus' \"I AM\" | | | | |statements |",
-        "refs": []
+        "a": "**Matthew**\n\n- Juxtaposition of particularism (go only to the lost sheep of Israel, Mat 10) with the universalism of the Great Commission\n- Fulfillment formulae\n- Discipleship and the church: a more positive portrait of the disciples (e.g. Peter calls Jesus the \"Son of God,\" Mat 16) and emphasis on community instructions (e.g. Mat 18)\n- Conflict with the Jewish authorities, seen in the repeated label \"their synagogues\"\n\n**Mark**\n\n- Jesus' identity as the suffering servant (cf. Mark 10:45)\n- Disciples and discipleship: as the disciples recapitulate the failures of Israel, the reader is forced to conclude that no one is faithful and to ask whether or not he is\n- The Holy Spirit is conspicuous by his absence\n- The message about Jesus as the Good News\n\n**Luke**\n\n- Jesus' humanity: Christological titles are not as dominant as in the other gospels\n- Jesus' ministry to the outcasts (e.g. the parables of the Good Samaritan and the Prodigal Son)\n- Women: Elizabeth and Mary, the prophetess Anna, the women who supported Jesus' ministry\n- The poor: \"Blessed are the poor\" rather than Matthew's \"poor in spirit\"\n- Jesus' prayer life is emphasized\n- The orderly account of Jesus' life; the Holy Spirit; stewardship of material possessions\n\n**John**\n\n- Realized eschatology: \"Whereas the Synoptics stress a future hope and the return of Christ, John defines eternal life and death as beginning now in this age, based on men's and women's response to Jesus\" (e.g. John 3:18)\n- Miracles as signs: in the Synoptics Jesus only gives the sign of Jonah, but John stresses Jesus' signs\n- Incipient Trinitarianism and the unity of Jesus' followers\n- Election and the security of the believer\n- Christ's death as exaltation/glorification\n- Jesus' trips to Jerusalem and his fulfillment of all the major Jerusalem institutions and rituals\n- Jesus' \"I AM\" statements",
+        "refs": [],
+        "summary": "Matthew: fulfillment formulae, discipleship and the church, conflict with \"their synagogues.\" Mark: the suffering servant, failing disciples, the gospel about Jesus. Luke: Jesus' humanity, outcasts, women, the poor, prayer. John: realized eschatology, miracles as signs, \"I AM\" statements, the believer's security."
       },
       {
         "id": "bc-065-what-is-the-synoptic-problem",
@@ -429,8 +422,23 @@
       {
         "id": "bc-066-outline-the-life-of-christ",
         "q": "Outline the life of Christ.",
-        "a": "Preparation:\nBirth: Bethlehem, 6-4 B.C. (Mat 2:1) Trip to Egypt: Matthew 2 Trip to Temple: Luke 2\nPublic Ministry: Ministry began in A.D. 26 when Jesus was about\n30. We know his ministry lasted 3 years because of the 3 Passovers celebrated in John (2:23; 6:4; 11:55), though John 5:1 may be a reference to a fourth.\nYear One: Obscurity/Inauguration In Judea/Galilee Baptism: Mat 3 Mark 1 Luke 3 John 1 Temptation: Mat 4 Mark 1 Luke 4 Nicodemus: John 3 Ministry begins: Mat 4 Mark 1 Luke 4\nYear Two: Popularity/Acclamation  In Galilee Calls Apostles: Mat 4 Mark 3 Luke 6 Sermon on Mount/Plain: Mat 5-7 Luke 6 Parables of Kingdom: Mat 13 Mark 4 Luke 8 Apostles sent to preach: Mat 10 Mark 6 Luke 9\nYear Three: Adversity/Opposition  In Galilee/Judea Feeds 5000/Walks on water: Mat 14 Mark 6 Luke 9 John 6 Peter's Confession/Pass. Predic.: Mat 16 Mar 8 Luke 9 Transfiguration: Mat 17 Mark 9 Luke 9 Raises Lazarus: John 11\nPassion (One week, a.d. 30):  In Jerusalem Triumphal Entry: Mat 21 Mark 11 Luke 19 John 12 Upper Room/Last Supper: Mat 26 Mark 14 Luke 22 John 13-16 High Priestly Prayer: John 17 Resurrection: Mat 28 Mark 16 Luke 24 John 20-21\na. Name, locate and briefly discuss three of Jesus' parables.\n1. Parable of the Sower: Matthew 13:3-23 (cf. Mark 4) — The different types of soil represent different responses to the Kingdom message as proclaimed in Jesus ministry and that of his disciples. There are four possible responses: 1) Seed sown in along the path is snatched away by Satan; 2) Seed sown along rocky places is heard with joy at first but is squelched by persecution because of the lack of a root; 3) Seed sown among thorns is choked out by the worries of the world; 4) Seed sown in good soil produces one hundred fold. This parable encourages perseverance in the face of adversity and teaches that a failure to respond to Jesus' kingdom message is a reflection upon the heart of the hearer and not upon the efficacy of the message. Moreover, it leads each of us to ask what kind of soil we are.\n2. Parable of the Weeds: Matthew 13:24-30 — The parable is about the relation of the Kingdom and the world (i.e. the field represents the world). The kingdom has come but evil has not been uprooted from society. God plants his Kingdom but allows evil to grow along side. Delay in the judgment allows the Kingdom to grow. The wheat and the weeds, or sons of the Kingdom and of the evil one, however, will eventually be separated at the judgment. Augustine famously used this parable to teach that the church is a mixed body in the Donatist controversy.\n3. Parable of the Lost Sheep: Luke 15:1-7 — This parable answers the question of the Pharisees as to why Jesus welcomes and eats with tax collectors and \"sinners.\" The parable is about God's gracious love for the lost sinners and our need to emulate that love rather than becoming self-righteous. Jesus is the good shepherd who searches for lost sheep and we must join him in this search, rather than becoming like the older brother in the parable of the prodigal son.\nb. Name, locate and briefly discuss three of Jesus' miracles.\n1. Matthew 9:1-8: Jesus heals the paralytic (cf. Mark 2; Luke 5) — Jesus' healing of the paralytic implies to the Pharisees his ability to perform the much greater task of forgiving sins. Many people are impressed with claims regarding miraculous healings when the reality is that it is much more difficult to forgive sins and yet people take this for granted.\n2. Mark 8:22-26: Jesus heals a blind man at Bethsaida — Jesus spits on the man's eyes and put his hands on him and the man saw people that looked like trees walking around. Jesus once more put his hands on the man's eyes and he could then see clearly. This two-part healing of the man's physical sight foreshadows the two-part healing of the disciples' spiritual sight, the first part of which occurs with Peter's confession of Jesus as the Messiah later on in the chapter. However, Peter's rebuke of Jesus for his passion prediction shows that he still needs to have the second-stage of the healing, which Mark's gospel implies did not come until after Jesus' death.\n3. John 9: Jesus heals a man who had been born blind — Jesus' healing of a man who had been blind from birth is juxtaposed with the Pharisees spiritual blindness. This man was not only given physical sight but also spiritual sight after Jesus identified himself as the Son of Man to him. However, the Pharisees who have physical sight show themselves to be spiritually blind.",
-        "refs": []
+        "a": "**Preparation** — Birth: Bethlehem, 6–4 B.C. (Mat 2:1); the trip to Egypt (Matthew 2); the boy Jesus at the Temple (Luke 2).\n\nPublic ministry began in A.D. 26, when Jesus was about 30, and lasted three years — three Passovers are celebrated in John (2:23; 6:4; 11:55), and John 5:1 may be a fourth.\n\n**Year One — Obscurity/Inauguration (Judea/Galilee)**\n\n- Baptism: Mat 3; Mark 1; Luke 3; John 1\n- Temptation: Mat 4; Mark 1; Luke 4\n- Nicodemus: John 3\n- Ministry begins: Mat 4; Mark 1; Luke 4\n\n**Year Two — Popularity/Acclamation (Galilee)**\n\n- Calls the apostles: Mat 4; Mark 3; Luke 6\n- Sermon on the Mount/Plain: Mat 5–7; Luke 6\n- Parables of the Kingdom: Mat 13; Mark 4; Luke 8\n- Apostles sent out to preach: Mat 10; Mark 6; Luke 9\n\n**Year Three — Adversity/Opposition (Galilee/Judea)**\n\n- Feeds the 5,000 / walks on water: Mat 14; Mark 6; Luke 9; John 6\n- Peter's confession / passion predictions: Mat 16; Mark 8; Luke 9\n- Transfiguration: Mat 17; Mark 9; Luke 9\n- Raises Lazarus: John 11\n\n**Passion (one week, A.D. 30, Jerusalem)**\n\n- Triumphal Entry: Mat 21; Mark 11; Luke 19; John 12\n- Upper Room / Last Supper: Mat 26; Mark 14; Luke 22; John 13–16\n- High Priestly Prayer: John 17\n- Resurrection: Mat 28; Mark 16; Luke 24; John 20–21",
+        "refs": [],
+        "summary": "Preparation (born Bethlehem 6-4 B.C.) → three-year ministry from A.D. 26 (year one obscurity, year two popularity, year three opposition) → Passion week in Jerusalem, A.D. 30: triumphal entry, Last Supper, cross, resurrection."
+      },
+      {
+        "id": "bc-066b-three-parables",
+        "q": "Name, locate, and briefly discuss three of Jesus' parables.",
+        "a": "1. Parable of the Sower: Matthew 13:3-23 (cf. Mark 4) — The different types of soil represent different responses to the Kingdom message as proclaimed in Jesus ministry and that of his disciples. There are four possible responses: 1) Seed sown in along the path is snatched away by Satan; 2) Seed sown along rocky places is heard with joy at first but is squelched by persecution because of the lack of a root; 3) Seed sown among thorns is choked out by the worries of the world; 4) Seed sown in good soil produces one hundred fold. This parable encourages perseverance in the face of adversity and teaches that a failure to respond to Jesus' kingdom message is a reflection upon the heart of the hearer and not upon the efficacy of the message. Moreover, it leads each of us to ask what kind of soil we are.\n2. Parable of the Weeds: Matthew 13:24-30 — The parable is about the relation of the Kingdom and the world (i.e. the field represents the world). The kingdom has come but evil has not been uprooted from society. God plants his Kingdom but allows evil to grow along side. Delay in the judgment allows the Kingdom to grow. The wheat and the weeds, or sons of the Kingdom and of the evil one, however, will eventually be separated at the judgment. Augustine famously used this parable to teach that the church is a mixed body in the Donatist controversy.\n3. Parable of the Lost Sheep: Luke 15:1-7 — This parable answers the question of the Pharisees as to why Jesus welcomes and eats with tax collectors and \"sinners.\" The parable is about God's gracious love for the lost sinners and our need to emulate that love rather than becoming self-righteous. Jesus is the good shepherd who searches for lost sheep and we must join him in this search, rather than becoming like the older brother in the parable of the prodigal son.",
+        "refs": [],
+        "summary": "The Sower (Mat 13:3-23): four soils, four responses to the kingdom message. The Weeds (Mat 13:24-30): kingdom and evil grow together until the judgment. The Lost Sheep (Luke 15:1-7): God's gracious love for lost sinners, which we are to emulate."
+      },
+      {
+        "id": "bc-066c-three-miracles",
+        "q": "Name, locate, and briefly discuss three of Jesus' miracles.",
+        "a": "1. Matthew 9:1-8: Jesus heals the paralytic (cf. Mark 2; Luke 5) — Jesus' healing of the paralytic implies to the Pharisees his ability to perform the much greater task of forgiving sins. Many people are impressed with claims regarding miraculous healings when the reality is that it is much more difficult to forgive sins and yet people take this for granted.\n2. Mark 8:22-26: Jesus heals a blind man at Bethsaida — Jesus spits on the man's eyes and put his hands on him and the man saw people that looked like trees walking around. Jesus once more put his hands on the man's eyes and he could then see clearly. This two-part healing of the man's physical sight foreshadows the two-part healing of the disciples' spiritual sight, the first part of which occurs with Peter's confession of Jesus as the Messiah later on in the chapter. However, Peter's rebuke of Jesus for his passion prediction shows that he still needs to have the second-stage of the healing, which Mark's gospel implies did not come until after Jesus' death.\n3. John 9: Jesus heals a man who had been born blind — Jesus' healing of a man who had been blind from birth is juxtaposed with the Pharisees spiritual blindness. This man was not only given physical sight but also spiritual sight after Jesus identified himself as the Son of Man to him. However, the Pharisees who have physical sight show themselves to be spiritually blind.",
+        "refs": [],
+        "summary": "Healing the paralytic (Mat 9:1-8): authority to forgive sins. The blind man at Bethsaida (Mark 8:22-26): a two-stage healing foreshadowing the disciples' two-stage sight. The man born blind (John 9): physical sight given, the Pharisees' spiritual blindness exposed."
       },
       {
         "id": "bc-067-what-are-the-basic-elements-found",
@@ -441,20 +449,19 @@
       {
         "id": "bc-068-relate-the-writing-of-the-pauline",
         "q": "Relate the writing of the Pauline epistles to the life of Paul.",
-        "a": "| | |The Letters & Life of Paul | | | | | | |Date(s) |Reference(s) |Event(s) |Letter(s) | | | | | | |33 |Acts 9 |Conversion | | | | | | | |46-48 |Acts 13-14 |First Missionary|1 - Galatians | | | |Journey |(if after 1st | | | | |journey) | | | | | | |49-52 |Acts 15-18 |Second |2 - 1 & 2 | | | |Missionary |Thessalonians | | | |Journey | | | | | | | |53-57 |Acts 18-21 |Third Missionary|3 - 1 & 2 | | | |Journey |Corinthians; | | | | |Romans | | | | | | |57-62 |Acts 21-28 |First |Prison Epistles:| | | |Imprisonment |Ephesians, | | | |(Caesarea and |Philippians, | | | |Rome) |Colossians, | | | | |Philemon | | | | | | |62-68 | |Fourth |Pastoral | | | |Missionary |Epistles: | | | |Journey & Second|1 & 2 Timothy, | | | |Imprisonment |Titus | | | |(Rome) | |",
-        "refs": []
+        "a": "| Date(s) | Reference(s) | Event(s) | Letter(s) |\n|---|---|---|---|\n| 33 | Acts 9 | Conversion |  |\n| 46–48 | Acts 13–14 | First Missionary Journey | Galatians (if after the 1st journey) |\n| 49–52 | Acts 15–18 | Second Missionary Journey | 1 & 2 Thessalonians |\n| 53–57 | Acts 18–21 | Third Missionary Journey | 1 & 2 Corinthians; Romans |\n| 57–62 | Acts 21–28 | First Imprisonment (Caesarea and Rome) | Prison Epistles: Ephesians, Philippians, Colossians, Philemon |\n| 62–68 |  | Fourth Missionary Journey & Second Imprisonment (Rome) | Pastoral Epistles: 1 & 2 Timothy, Titus |",
+        "refs": [],
+        "summary": "Conversion (33) → 1st journey 46-48 (Galatians) → 2nd journey 49-52 (1 & 2 Thessalonians) → 3rd journey 53-57 (1 & 2 Corinthians, Romans) → first imprisonment 57-62 (the Prison Epistles) → 4th journey & second imprisonment 62-68 (the Pastorals)."
       },
       {
-        "id": "bc-069-romans-6-14",
-        "q": "Romans 6:14",
-        "a": "\"For sin shall not be your master, because you are not under law, but under grace.\"\n\nThe condemnation of the law is no longer applicable for\n\nthose in Christ.",
-        "refs": []
-      },
-      {
-        "id": "bc-070-galatians-5-4",
-        "q": "Galatians 5:4",
-        "a": "\"You who are trying to be justified by law have been alienated from Christ; you have fallen away from grace.\"\n\nSince we received Christ by faith and not by the works of\n\nthe Law and thus are justified by grace through faith we should not then try to turn back to the Law but should pursue the righteousness which comes from faith.",
-        "refs": []
+        "id": "bc-069-law-and-grace",
+        "q": "Locate and discuss at least two passages which deal with law and grace.",
+        "a": "Romans 6:14: \"For sin shall not be your master, because you are not under law, but under grace.\"\n\n- The condemnation of the law is no longer applicable for those in Christ.\n\nGalatians 5:4: \"You who are trying to be justified by law have been alienated from Christ; you have fallen away from grace.\"\n\n- Since we received Christ by faith and not by the works of the Law, and thus are justified by grace through faith, we should not then try to turn back to the Law but should pursue the righteousness which comes from faith.",
+        "summary": "Romans 6:14 (not under law but under grace — the law's condemnation no longer applies to those in Christ) and Galatians 5:4 (seeking justification by law means falling away from grace).",
+        "refs": [
+          "Romans 6:14",
+          "Galatians 5:4"
+        ]
       }
     ]
   },
@@ -465,73 +472,73 @@
     "cards": [
       {
         "id": "bc-071-herod-the-great",
-        "q": "Herod the Great",
+        "q": "Discuss briefly the significance of Herod the Great (book(s) and chapter(s)).",
         "a": "King of the Jews at Christ's birth. Suspicious in nature, illustrated by attempted manipulation of the magi and the slaughter of the innocents (Mat 2). Reconstructed Jerusalem Temple, beginning around 19 B.C.",
         "refs": []
       },
       {
         "id": "bc-072-herod-antipas",
-        "q": "Herod Antipas",
+        "q": "Discuss briefly the significance of Herod Antipas (book(s) and chapter(s)).",
         "a": "\"Herod the Tetrarch.\" Remembered for divorcing his wife and marrying his niece, Herodias. John the Baptist denounced this as scandalous and was imprisoned and then executed when Herod caved into the demand of Herodias' daughter (prompted by her mother) that Herod give her John the Baptist's head on a platter as a reward for her pleasing dancing (Mat 14; Mark 6; cf. also Luke 3:19-20). Herod also had a brief encounter with Jesus because Pilate had sent Jesus to him for judgment. Herod asked Jesus many questions but Jesus would not answer them so Herod, along with the soldiers, mocked Jesus (Luke 23:7ff.). Jesus described Herod as \"that fox\" (Luke 13:31- 32).",
         "refs": []
       },
       {
         "id": "bc-073-pharisees",
-        "q": "Pharisees",
+        "q": "Discuss briefly the significance of Pharisees (book(s) and chapter(s)).",
         "a": "The Pharisees were always a minority group. They came from the lower middle and better artisan classes. They believed in the centrality of the Torah and the sovereignty of God. They thought the Babylonian Exile was caused by Israel's failure to keep the Torah and keep it was an individual's as well as a national duty. They determined that the Torah contained 613 commandments and attempted to make a hedge around the Torah by adding laws so that the Torah would not be broken. They especially stressed the ethical side of religion. They opposed Jesus for his failure to keep the Sabbath in their eyes and even collaborated with the Pharisees in trying to kill Jesus. Jesus condemned the Pharisees rather roundly in Matthew 23. Though the NT portrait of the Pharisees is largely negative, it is not entirely so (e.g., Nicodemus, a Pharisee, helped with the burial of Jesus' body, cf. John 19:39).",
         "refs": []
       },
       {
         "id": "bc-074-sadducees",
-        "q": "Sadducees",
+        "q": "Discuss briefly the significance of Sadducees (book(s) and chapter(s)).",
         "a": "The Sadducees had no following among the populace but were restricted to the well-to-do. Though not all priests were Sadducees, all Sadducees were priests. They were thus allied to the temple cultus. \"They denied the permanent validity of any but the written laws of the Pentateuch. They rejected the later doctrines of the soul and its after-life, the resurrection, rewards and retributions, angels and demons. They believed that there was no fate, men having a free choice of good and evil, prosperity and adversity being the outcome of their own course of action.\" In the NT, Jesus opposed their denial of the resurrection (Mat 22) and Paul exploits this belief by declaring that he is on trial for his hope in the resurrection, causing a dispute to break out between the Pharisees and Sadducees (Acts 23).",
         "refs": []
       },
       {
         "id": "bc-075-the-apostles-name-them",
-        "q": "The Apostles (name them)",
+        "q": "Discuss briefly the significance of the Apostles (name them) (book(s) and chapter(s)).",
         "a": "The twelve apostles during Jesus' lifetime are listed in Matthew 10 and Mark 3 and are as follows:\n\n- Simon Peter\n- Andrew\n- James\n- John\n- Philip\n- Bartholomew\n- Thomas\n- Matthew\n- James son of Alphaeus\n- Thaddaeus\n- Simon the Zealot\n- Judas Iscariot\n\nThe primary function of the apostles was witness to Christ, and the witness was rooted in years of intimate knowledge, experience, and training (cf. Mark 3:14: Jesus chose the apostles to \"be with him\"). The essential qualification of an apostle was the divine call and commissioning by Christ as well as being a follower of Jesus from the time of John the Baptist to his ascension, including being a witness to the resurrection (cf. Acts 1:21-22 in the account of Matthias being chosen to replace Judas), though Paul is unique in this regard because his commissioning came when he encountered Jesus on the road to Damascus.",
         "refs": []
       },
       {
         "id": "bc-076-peter",
-        "q": "Peter",
+        "q": "Discuss briefly the significance of Peter (book(s) and chapter(s)).",
         "a": "One of the first disciples called (Mark 1:16). Though he was instrumental early on in the Gentile mission (e.g. Acts 10), he is remembered as an apostle to the Jews. Confessed Jesus as the Messiah at Caesarea Philippi (Mat 16; Mar 8). Was impulsive, denied Christ but was restored to ministry. Preached the first sermon at Pentecost. Authored two NT books which bear his name. In the second he makes reference to his experience of the transfiguration. His brother was Andrew.",
         "refs": []
       },
       {
         "id": "bc-077-cornelius",
-        "q": "Cornelius",
+        "q": "Discuss briefly the significance of Cornelius (book(s) and chapter(s)).",
         "a": "(Acts 10) He lived in Caesarea and was a centurion in the Italian Regiment. Religiously, he was a God-fearing Gentile who converted to Christianity through the ministry of Peter. He and his household were baptized after Peter saw the Spirit had come upon them through their speaking in tongues.",
         "refs": []
       },
       {
         "id": "bc-078-barnabas",
-        "q": "Barnabas",
+        "q": "Discuss briefly the significance of Barnabas (book(s) and chapter(s)).",
         "a": "(Acts 4) Known as the \"so of encouragement,\" Barnabas was a traveling companion of Paul (Acts 13-14) and spoke with Paul at the Jerusalem Council. However, Barnabas and Paul had a falling out over the issue of taking John Mark with them and as a result Paul began traveling with Titus while Barnabas traveled with John Mark (Acts 15).",
         "refs": []
       },
       {
         "id": "bc-079-stephen",
-        "q": "Stephen",
+        "q": "Discuss briefly the significance of Stephen (book(s) and chapter(s)).",
         "a": "(Acts 6-7) Stephen was one of seven men chosen to be table servants so the apostles could devote themselves to the ministry of the Word. Members of the Synagogue of the Freedman began to oppose Stephen and they had him arrested and brought before the Sandhedrin. Stephen's speech recounted salvation history and led to an indictment of his audience for being stiff-necked like their forefathers. He was then stoned to death and Saul of Tarsus was present at this event.",
         "refs": []
       },
       {
         "id": "bc-080-paul",
-        "q": "Paul",
+        "q": "Discuss briefly the significance of Paul (book(s) and chapter(s)).",
         "a": "Born in Tarsus, named Saul, from the tribe of Benjamin, a Pharisee and persecutor of the fledgling Christian church. His dramatic conversion is recorded in Acts 9. The second half of Acts deals with Paul's extensive missionary ministry, including three missionary journeys. He is remembered as the apostle to the Gentiles and author of thirteen NT books.",
         "refs": []
       },
       {
         "id": "bc-081-timothy",
-        "q": "Timothy",
+        "q": "Discuss briefly the significance of Timothy (book(s) and chapter(s)).",
         "a": "(Acts 16, 20) True son in the faith (1 Tim 1:2) and traveling companion of Paul, he was the recipient of two of Paul's pastoral epistles. He traveled with Paul to Thessalonica, Corinth, and Ephesus. Paul entrusted Timothy with the pastorate in Ephesus. Timothy's release from imprisonment is mentioned in Hebrews 13:23.",
         "refs": []
       },
       {
         "id": "bc-082-james",
-        "q": "James",
+        "q": "Discuss briefly the significance of James (book(s) and chapter(s)).",
         "a": "Brother of Jesus who did not believe in Jesus' authority during the Messiah's earthly ministry. Jesus' appearance to James is recorded in 1 Corinthians 15:7, after which James became a leader in the Jerusalem church. In Acts 15 James presides over the momentous Jerusalem council. James is traditionally believed to be the author of the general epistle which bears his name and is thought to have been stoned to death.",
         "refs": []
       }
@@ -544,379 +551,379 @@
     "cards": [
       {
         "id": "bc-083-birth-of-jesus-shepherds-jesus-in",
-        "q": "Birth of Jesus (shepherds) //Jesus in the Temple",
+        "q": "Give book and chapter for: Birth of Jesus (shepherds) //Jesus in the Temple.",
         "a": "Luke 2",
         "refs": []
       },
       {
         "id": "bc-084-birth-of-jesus-wise-men",
-        "q": "Birth of Jesus (wise men)",
+        "q": "Give book and chapter for: Birth of Jesus (wise men).",
         "a": "Matthew 2",
         "refs": []
       },
       {
         "id": "bc-085-baptism-of-jesus",
-        "q": "Baptism of Jesus",
+        "q": "Give book and chapter for: Baptism of Jesus.",
         "a": "Matthew 3 // Mark 1 // Luke 3",
         "refs": []
       },
       {
         "id": "bc-086-temptation-of-jesus",
-        "q": "Temptation of Jesus",
+        "q": "Give book and chapter for: Temptation of Jesus.",
         "a": "Matthew 4 // Mark 1 // Luke 4",
         "refs": []
       },
       {
         "id": "bc-087-sermon-on-the-mount",
-        "q": "Sermon on the Mount",
+        "q": "Give book and chapter for: Sermon on the Mount.",
         "a": "Matthew 5-7 (Sermon on the Plain: Luke 6)",
         "refs": []
       },
       {
         "id": "bc-088-the-lord-s-prayer",
-        "q": "The Lord's Prayer",
+        "q": "Give book and chapter for: The Lord's Prayer.",
         "a": "Matthew 6 // Luke 11",
         "refs": []
       },
       {
         "id": "bc-089-take-my-yoke",
-        "q": "\"Take my yoke\"",
+        "q": "Give book and chapter for: \"Take my yoke\".",
         "a": "Matthew 11",
         "refs": []
       },
       {
         "id": "bc-090-parables-of-the-kingdom",
-        "q": "Parables of the kingdom",
+        "q": "Give book and chapter for: Parables of the kingdom.",
         "a": "Matthew 13 // Mark 4 // Luke 8",
         "refs": []
       },
       {
         "id": "bc-091-prodigal-son",
-        "q": "Prodigal son",
+        "q": "Give book and chapter for: Prodigal son.",
         "a": "Luke 15",
         "refs": []
       },
       {
         "id": "bc-092-caesarea-philippi-peter-s-confessi",
-        "q": "Caesarea Philippi (Peter's Confession)",
+        "q": "Give book and chapter for: Caesarea Philippi (Peter's Confession).",
         "a": "Matthew 16 // Mark 8",
         "refs": []
       },
       {
         "id": "bc-093-i-will-build-my-church-gates-of-he",
-        "q": "\"I will build my church\" (gates of hell will not prevail)",
+        "q": "Give book and chapter for: \"I will build my church\" (gates of hell will not prevail).",
         "a": "Matthew 16",
         "refs": []
       },
       {
         "id": "bc-094-take-up-your-cross-and-follow-me",
-        "q": "\"Take up your cross and follow me\"",
+        "q": "Give book and chapter for: \"Take up your cross and follow me\".",
         "a": "Matthew 16 // Mark 8 // Luke 9",
         "refs": []
       },
       {
         "id": "bc-095-transfiguration",
-        "q": "Transfiguration",
+        "q": "Give book and chapter for: Transfiguration.",
         "a": "Matthew 17 // Mark 9 // Luke 9",
         "refs": []
       },
       {
         "id": "bc-096-mary-and-martha",
-        "q": "Mary and Martha",
+        "q": "Give book and chapter for: Mary and Martha.",
         "a": "Luke 10 // John 11",
         "refs": []
       },
       {
         "id": "bc-097-correcting-a-brother",
-        "q": "Correcting a brother",
+        "q": "Give book and chapter for: Correcting a brother.",
         "a": "Matthew 18 // Luke 17",
         "refs": []
       },
       {
         "id": "bc-098-keys-to-the-kingdom",
-        "q": "Keys to the kingdom",
+        "q": "Give book and chapter for: Keys to the kingdom.",
         "a": "Matthew 16 (cf. Mat 18:18)",
         "refs": []
       },
       {
         "id": "bc-099-two-great-commands-summary-of-the",
-        "q": "Two Great Commands (summary of the OT Law/10 Commandments)",
+        "q": "Give book and chapter for: Two Great Commands (summary of the OT Law/10 Commandments).",
         "a": "Matthew 22:37-40 // Mark 12:29-31 // Luke 10:27",
         "refs": []
       },
       {
         "id": "bc-100-the-comforter",
-        "q": "The Comforter",
+        "q": "Give book and chapter for: The Comforter.",
         "a": "John 14 (\"Counselor;\" see also John 15:26 & 16:7)",
         "refs": []
       },
       {
         "id": "bc-101-you-must-be-born-again",
-        "q": "\"You must be born again\"",
+        "q": "Give book and chapter for: \"You must be born again\".",
         "a": "John 3:3",
         "refs": []
       },
       {
         "id": "bc-102-woman-at-the-well",
-        "q": "Woman at the well",
+        "q": "Give book and chapter for: Woman at the well.",
         "a": "John 4",
         "refs": []
       },
       {
         "id": "bc-103-jesus-described-and-prophesied-in",
-        "q": "Jesus: described and prophesied in the OT",
+        "q": "Give book and chapter for: Jesus: described and prophesied in the OT.",
         "a": "Luke 24:25-27 (road to Emmaus); John 5:39, 46 (cf. witness\n\nto Jesus)",
         "refs": []
       },
       {
         "id": "bc-104-way-truth-and-life",
-        "q": "Way, Truth, and Life",
+        "q": "Give book and chapter for: Way, Truth, and Life.",
         "a": "John 14:6",
         "refs": []
       },
       {
         "id": "bc-105-seven-i-am-statements-in-john",
-        "q": "Seven \"I am\" Statements in John",
+        "q": "Give book and chapter for: Seven \"I am\" Statements in John.",
         "a": "6:35 - I am the Bread of Life\n\n8:12 - I am the Light of the World\n\n10:6 - I am the Gate\n\n10:11 - I am the Good Shepherd\n\n11:25 - I am the Resurrection and the Life\n\n14:6 - I am the Way, the Truth and the Life\n\n15:1 - I am the True Vine",
         "refs": []
       },
       {
         "id": "bc-106-feeding-of-the-5-000",
-        "q": "Feeding of the 5,000",
+        "q": "Give book and chapter for: Feeding of the 5,000.",
         "a": "Matthew 14 // Mark 6 // Luke 9 // John 6",
         "refs": []
       },
       {
         "id": "bc-107-the-true-vine",
-        "q": "The True Vine",
+        "q": "Give book and chapter for: The True Vine.",
         "a": "John 15",
         "refs": []
       },
       {
         "id": "bc-108-good-shepherd",
-        "q": "Good Shepherd",
+        "q": "Give book and chapter for: Good Shepherd.",
         "a": "John 10",
         "refs": []
       },
       {
         "id": "bc-109-high-priestly-prayer",
-        "q": "High priestly prayer",
+        "q": "Give book and chapter for: High priestly prayer.",
         "a": "John 17",
         "refs": []
       },
       {
         "id": "bc-110-triumphal-entry-to-jerusalem",
-        "q": "Triumphal entry to Jerusalem",
+        "q": "Give book and chapter for: Triumphal entry to Jerusalem.",
         "a": "Matthew 21 // Mark 11 // Luke 19 // John 12",
         "refs": []
       },
       {
         "id": "bc-111-last-supper",
-        "q": "Last Supper",
+        "q": "Give book and chapter for: Last Supper.",
         "a": "Matthew 26 // Mark 14 // Luke 22 // John 13",
         "refs": []
       },
       {
         "id": "bc-112-death-of-christ-event",
-        "q": "Death of Christ (event)",
+        "q": "Give book and chapter for: Death of Christ (event).",
         "a": "Matthew 27 // Mark 15 // Luke 23 // John 19",
         "refs": []
       },
       {
         "id": "bc-113-resurrection-of-christ-event",
-        "q": "Resurrection of Christ (event)",
+        "q": "Give book and chapter for: Resurrection of Christ (event).",
         "a": "Matthew 28 // Mark 16 // Luke 24 // John 20",
         "refs": []
       },
       {
         "id": "bc-114-ascension-of-christ",
-        "q": "Ascension of Christ",
+        "q": "Give book and chapter for: Ascension of Christ.",
         "a": "Luke 24 // Acts 1",
         "refs": []
       },
       {
         "id": "bc-115-great-commission",
-        "q": "Great Commission",
+        "q": "Give book and chapter for: Great Commission.",
         "a": "Matthew 28:19-20",
         "refs": []
       },
       {
         "id": "bc-116-the-sermons-of-acts",
-        "q": "The sermons of Acts",
+        "q": "Give book and chapter for: The sermons of Acts.",
         "a": "Peter at Pentecost Acts 2\n\nPeter at Solomon's Colonnade Acts 3\n\nPeter before the Sanhedrin Acts 4\n\nStephen before the Sanhedrin Acts 7\n\nPeter at Cornelius' house Acts 10\n\nPaul in Pisidian Antioch Acts 13\n\nPaul before the Areopagus Acts 17 (\"to the unknown\n\ngod\")\n\nPaul to the Ephesians Elders Acts 20\n\nPaul in Jerusalem Acts 22\n\nPaul before Felix Acts 24\n\nPaul before Agrippa Acts 26",
         "refs": []
       },
       {
         "id": "bc-117-pentecost",
-        "q": "Pentecost",
+        "q": "Give book and chapter for: Pentecost.",
         "a": "Acts 2",
         "refs": []
       },
       {
         "id": "bc-118-conversion-of-paul",
-        "q": "Conversion of Paul",
+        "q": "Give book and chapter for: Conversion of Paul.",
         "a": "Acts 9",
         "refs": []
       },
       {
         "id": "bc-119-apollos",
-        "q": "Apollos",
+        "q": "Give book and chapter for: Apollos.",
         "a": "Acts 18",
         "refs": []
       },
       {
         "id": "bc-120-jerusalem-council",
-        "q": "Jerusalem Council",
+        "q": "Give book and chapter for: Jerusalem Council.",
         "a": "Acts 15",
         "refs": []
       },
       {
         "id": "bc-121-missionary-journeys",
-        "q": "Missionary journeys",
+        "q": "Give book and chapter for: Missionary journeys.",
         "a": "1st Journey: Acts 13-14\n\n- Antioch; Seleucia; island of Cyprus (Salamis; Paphos-Bar Jesus/Elymas); Perga in Pamphylia-John Mark leaves and goes back to Jerusalem; Pisidian Antioch-sermon in synagogue; Iconium; Lycaonian cities of Lystra and Derbe; Lystra; Iconium; Pisidian Antioch; Pamphylia (Perga and Attalia) Antioch\n\n2nd Journey: Acts 16-18\n\n- Antioch; Syria and Cilicia; Debre; Lystra-picks up Timothy; Phrygia and Galatia-kept by the Holy Spirit from preaching in Asia; Border of Mysia-not allowed to enter Bithynia by the Spirit of Jesus; Troas-vision of the Macedonian man; Samothrace; Neapolis; Philippi; passed through Amphipolis and Apollonia on way to Thessalonica; Berea-Silas and Timothy stayed behind in Berea; Athens; Corinth-met Aquila (native of Pontus) and his wife Priscilla and left with them from Corinth to set sail for Syria; Cenchrea; Ephesus-Priscilla and Aquila stayed here; Caesarea; Jerusalem; Antioch\n\n3rd Journey: Acts 18-21\n\n- Antioch; Galatia and Phrygia [Excursus on Apollos]; Ephesus; Macedonia; Greece-stays here 3 months and just as he was about to set sail for Syria he decided to go back through Macedonia because of a plot; Macedonia (Philippi); Troas-stayed for 7 days; Assos-Paul traveled on foot while Luke and company sailed to Assos; Mitylene; Kios; Samos; Miletus; Cos; Rhodes; Patara in Lycia; Syria, specifically Tyre; Ptolemais; Caesarea- stayed with Philip the Evangelist, one of the Seven who had four unmarried prophetess daughters, and was prophesied about by Agabus; Jerusalem-stayed with Mnason, a man from Cyprus and one of the early disciples.",
         "refs": []
       },
       {
         "id": "bc-122-philippian-jailer",
-        "q": "Philippian jailer",
+        "q": "Give book and chapter for: Philippian jailer.",
         "a": "Acts 16",
         "refs": []
       },
       {
         "id": "bc-123-bereans-noble-received-the-word-wi",
-        "q": "Bereans (noble, received the Word with eagerness, examining",
+        "q": "Give book and chapter for: Bereans (noble, received the Word with eagerness, examining.",
         "a": "Scripture)\n\nActs 17:11",
         "refs": []
       },
       {
         "id": "bc-124-body-as-temple-of-holy-spirit",
-        "q": "Body as temple of Holy Spirit",
+        "q": "Give book and chapter for: Body as temple of Holy Spirit.",
         "a": "1 Corinthians 6",
         "refs": []
       },
       {
         "id": "bc-125-love-chapter",
-        "q": "Love chapter",
+        "q": "Give book and chapter for: Love chapter.",
         "a": "1 Corinthians 13",
         "refs": []
       },
       {
         "id": "bc-126-law-as-a-schoolmaster",
-        "q": "Law as a schoolmaster",
+        "q": "Give book and chapter for: Law as a schoolmaster.",
         "a": "Galatians 3:24",
         "refs": []
       },
       {
         "id": "bc-127-fruit-of-the-spirit",
-        "q": "Fruit of the Spirit",
+        "q": "Give book and chapter for: Fruit of the Spirit.",
         "a": "Galatians 5:22-25",
         "refs": []
       },
       {
         "id": "bc-128-armor-of-god",
-        "q": "Armor of God",
+        "q": "Give book and chapter for: Armor of God.",
         "a": "Ephesians 6:10-18 (cf. 1 Thess. 5)",
         "refs": []
       },
       {
         "id": "bc-129-the-mind-of-christ",
-        "q": "The mind of Christ",
+        "q": "Give book and chapter for: The mind of Christ.",
         "a": "1 Corinthians 2 (cf. Philippians 2)",
         "refs": []
       },
       {
         "id": "bc-130-pressing-toward-the-mark",
-        "q": "Pressing toward the mark",
+        "q": "Give book and chapter for: Pressing toward the mark.",
         "a": "Philippians 3:12-14",
         "refs": []
       },
       {
         "id": "bc-131-not-grieving-as-those-without-hope",
-        "q": "Not grieving as those without hope",
+        "q": "Give book and chapter for: Not grieving as those without hope.",
         "a": "1 Thessalonians 4:13-17",
         "refs": []
       },
       {
         "id": "bc-132-man-of-lawlessness",
-        "q": "\"Man of Lawlessness\"",
+        "q": "Give book and chapter for: \"Man of Lawlessness\".",
         "a": "2 Thessalonians 2",
         "refs": []
       },
       {
         "id": "bc-133-fought-the-good-fight-end-of-paul",
-        "q": "Fought the good fight (end of Paul's life)",
+        "q": "Give book and chapter for: Fought the good fight (end of Paul's life).",
         "a": "2 Timothy 4:7-8",
         "refs": []
       },
       {
         "id": "bc-134-the-washings-of-the-new-covenant",
-        "q": "The washings of the new covenant",
+        "q": "Give book and chapter for: The washings of the new covenant.",
         "a": "Hebrews 10:22 (cf. also 1 Cor 6:11)",
         "refs": []
       },
       {
         "id": "bc-135-melchizedek",
-        "q": "Melchizedek",
+        "q": "Give book and chapter for: Melchizedek.",
         "a": "Genesis 14 //Psalm 110 // Hebrews 7",
         "refs": []
       },
       {
         "id": "bc-136-not-forsaking-the-assembly-of-ours",
-        "q": "Not forsaking the assembly of ourselves",
+        "q": "Give book and chapter for: Not forsaking the assembly of ourselves.",
         "a": "Hebrews 10:25",
         "refs": []
       },
       {
         "id": "bc-137-the-chastening-of-those-he-loves",
-        "q": "The chastening of those He loves",
+        "q": "Give book and chapter for: The chastening of those He loves.",
         "a": "Hebrews 12:5-11",
         "refs": []
       },
       {
         "id": "bc-138-problems-with-unanswered-prayer",
-        "q": "Problems with unanswered prayer",
+        "q": "Give book and chapter for: Problems with unanswered prayer.",
         "a": "James 1, 4",
         "refs": []
       },
       {
         "id": "bc-139-problems-with-the-tongue",
-        "q": "Problems with the tongue",
+        "q": "Give book and chapter for: Problems with the tongue.",
         "a": "James 3",
         "refs": []
       },
       {
         "id": "bc-140-living-stones",
-        "q": "Living stones",
+        "q": "Give book and chapter for: Living stones.",
         "a": "1 Peter 2",
         "refs": []
       },
       {
         "id": "bc-141-that-we-may-know",
-        "q": "That we may know...",
+        "q": "Give book and chapter for: That we may know.",
         "a": "1 John 5:13 (cf. John 20:31)",
         "refs": []
       },
       {
         "id": "bc-142-the-elect-lady",
-        "q": "The elect lady",
+        "q": "Give book and chapter for: The elect lady.",
         "a": "2 John (v. 1)",
         "refs": []
       },
       {
         "id": "bc-143-the-great-white-throne-of-judgment",
-        "q": "The great white throne of judgment",
+        "q": "Give book and chapter for: The great white throne of judgment.",
         "a": "Revelation 20:7ff",
         "refs": []
       },
       {
         "id": "bc-144-the-millennium",
-        "q": "The millennium",
+        "q": "Give book and chapter for: The millennium.",
         "a": "Revelation 20:1-6",
         "refs": []
       },
       {
         "id": "bc-145-the-good-samaritan",
-        "q": "The Good Samaritan",
+        "q": "Give book and chapter for: The Good Samaritan.",
         "a": "Luke 10",
         "refs": []
       }
@@ -929,186 +936,188 @@
     "cards": [
       {
         "id": "bc-146-atonement",
-        "q": "Atonement",
+        "q": "Identify passages someone could read about: Atonement.",
         "a": "Romans 3:25:\n\n- \"God presented him as a sacrifice of atonement, through faith in his blood. He did this to demonstrate his justice, because in his forbearance he had left the sins committed beforehand unpunished....\"\n\nHebrews 2:17:\n\n- \"For this reason he had to be made like his brothers in every way, in order that he might become a merciful and faithful high priest in service to God, and that he might make atonement for the sins of the people.\"\n\n1 John 2:2:\n\n- \"He is the atoning sacrifice for our sins, and not only for ours but also for the sins of the whole world.\"",
         "refs": []
       },
       {
         "id": "bc-147-repentance",
-        "q": "Repentance",
+        "q": "Identify passages someone could read about: Repentance.",
         "a": "Mark 1:15:\n\n- \"'The time has come,' he said. 'The kingdom of God is near. Repent and believe the good news!'\"\n\nActs 2:37-38:\n\n- \"When the people heard this, they were cut to the heart and said to Peter and the other apostles, \"Brothers, what shall we do?\" 38 Peter replied, \"Repent and be baptized, every one of you, in the name of Jesus Christ for the forgiveness of your sins. And you will receive the gift of the Holy Spirit.\"\n\n2 Corinthians 7:10:\n\n- \"Godly sorrow brings repentance that leads to salvation and leaves no regret, but worldly sorrow brings death.\"",
         "refs": []
       },
       {
         "id": "bc-148-deity-of-christ",
-        "q": "Deity of Christ",
+        "q": "Identify passages someone could read about: Deity of Christ.",
         "a": "Mark 2:10-11 (Only God can forgive sins):\n\n- \"'But that you may know that the Son of Man has authority on earth to forgive sins....' He said to the paralytic, 11 'I tell you, get up, take your mat and go home.'\"\n\nJohn 1:1, 14:\n\n- \"In the beginning was the Word, and the Word was with God, and the Word was God...The Word became flesh and made his dwelling among us. We have seen his glory, the glory of the One and Only, who came from the Father, full of grace and truth.\"\n\nJohn 8:58\n\n- \"I tell you the truth,' Jesus answered, 'before Abraham was born, I am!'\"\n\nJohn 20:28:\n\n- \"Thomas said to him, 'My Lord and my God!'\"\n\nColossians 1:15-20:\n\n- \"He is the image of the invisible God, the firstborn over all creation. 16 For by him all things were created: things in heaven and on earth, visible and invisible, whether thrones or powers or rulers or authorities; all things were created by him and for him. 17 He is before all things, and in him all things hold together. 18 And he is the head of the body, the church; he is the beginning and the firstborn from among the dead, so that in everything he might have the supremacy. 19 For God was pleased to have all his fullness dwell in him, 20 and through him to reconcile to himself all things, whether things on earth or things in heaven, by making peace through his blood, shed on the cross.\"\n\nHebrews 1:3\n\n- \"The Son is the radiance of God's glory and the exact representation of his being, sustaining all things by his powerful word. After he had provided purification for sins, he sat down at the right hand of the Majesty in heaven.\"",
         "refs": []
       },
       {
         "id": "bc-149-resurrection-his-and-ours",
-        "q": "Resurrection (his and ours)",
+        "q": "Identify passages someone could read about: Resurrection (his and ours).",
         "a": "His Resurrection\n\n- Matthew 28:6\n  - \"He is not here; he has risen, just as he said. Come and see the place where he lay.\"\n- Acts 2:32\n  - \"God has raised this Jesus to life, and we are all witnesses of the fact.\"\n- 1 Corinthians 15:3-8:\n  - \"For what I received I passed on to you as of first importance: that Christ died for our sins according to the Scriptures, 4 that he was buried, that he was raised on the third day according to the Scriptures, 5 and that he appeared to Peter, and then to the Twelve. 6 After that, he appeared to more than five hundred of the brothers at the same time, most of whom are still living, though some have fallen asleep. 7 Then he appeared to James, then to all the apostles, 8 and last of all he appeared to me also, as to one abnormally born.\"\n\nOur Resurrection\n\n- Romans 6:5\n  - \"If we have been united with him like this in his death, we will certainly also be united with him in his resurrection.\"\n- 1 Corinthians 15:20-23\n  - \"But Christ has indeed been raised from the dead, the firstfruits of those who have fallen asleep. 21 For since death came through a man, the resurrection of the dead comes also through a man. 22 For as in Adam all die, so in Christ all will be made alive. 23 But each in his own turn: Christ, the firstfruits; then, when he comes, those who belong to him.\"\n- 2 Corinthians 4:13-14\n  - \"It is written: \"I believed; therefore I have spoken.\" With that same spirit of faith we also believe and therefore speak, 14 because we know that the one who raised the Lord Jesus from the dead will also raise us with Jesus and present us with you in his presence.\"",
         "refs": []
       },
       {
         "id": "bc-150-return-of-christ",
-        "q": "Return of Christ",
+        "q": "Identify passages someone could read about: Return of Christ.",
         "a": "Matthew 26:63-64:\n\n- \"But Jesus remained silent. The high priest said to him, 'I charge you under oath by the living God: Tell us if you are the Christ, the Son of God.' 64 'Yes, it is as you say,' Jesus replied. 'But I say to all of you: In the future you will see the Son of Man sitting at the right hand of the Mighty One and coming on the clouds of heaven.'\"\n\nActs 17:30-31:\n\n- \"...In the past God overlooked such ignorance, but now he commands all people everywhere to repent. 31 For he has set a day when he will judge the world with justice by the man he has appointed. He has given proof of this to all men by raising him from the dead.\"\n\n1 Thessalonians 4:16-18:\n\n- \"For the Lord himself will come down from heaven, with a loud command, with the voice of the archangel and with the trumpet call of God, and the dead in Christ will rise first. 17 After that, we who are still alive and are left will be caught up together with them in the clouds to meet the Lord in the air. And so we will be with the Lord forever. 18 Therefore encourage each other with these words.\"",
         "refs": []
       },
       {
         "id": "bc-151-speaking-in-tongues",
-        "q": "Speaking in tongues",
+        "q": "Identify passages someone could read about: Speaking in tongues.",
         "a": "Acts 2:1-13\n\n- The Spirit came upon them at Pentecost and they spoke in tongues of known languages.\n\nActs 10:44-46\n\n- While Peter was speaking the Holy Spirit came upon Cornelius and others listening to Peter and they spoke in tongues praising God.\n\nActs 19:1-7\n\n- After John the Baptist's disciples, who had not even heard of the Holy Spirit, were told of the Spirit by Paul and baptized, the Spirit came upon them and they spoke in tongues and prophesied.\n\n1 Corinthians 12-14\n\n- Tongues is especially the subject of chapter 14. Paul would rather have the Corinthians prophesy and so edify the church rather than speak in tongues and only edify himself. Anyone who speaks in tongues should pray that he might be able to interpret. Only two or three at most may speak in tongues in a worship service and each must have an interpreter.",
         "refs": []
       },
       {
         "id": "bc-152-spiritual-gifts",
-        "q": "Spiritual gifts",
+        "q": "Identify passages someone could read about: Spiritual gifts.",
         "a": "Romans 12:3-8\n\n1 Corinthians 12-14\n\nEphesians 4:7-16",
         "refs": []
       },
       {
         "id": "bc-153-civil-government",
-        "q": "Civil government",
+        "q": "Identify passages someone could read about: Civil government.",
         "a": "Matthew 22:15-17 (render to Caesar what is Caesar's)\n\nRomans 13:1-7 (submission to authority)\n\nTitus 3:1-2 (submissive to authority, be obedient, ready\n\nfor good work)\n\n1 Peter 2:13-17 (live as people who are free, honor\n\neveryone)",
         "refs": []
       },
       {
         "id": "bc-154-work",
-        "q": "Work",
+        "q": "Identify passages someone could read about: Work.",
         "a": "Ephesians 4:28:\n\n- \"He who has been stealing must steal no longer, but must work, doing something useful with his own hands, that he may have something to share with those in need.\"\n\n1 Thessalonians 4:11-12:\n\n- \"Make it your ambition to lead a quiet life, to mind your own business and to work with your hands, just as we told you, 12 so that your daily life may win the respect of outsiders and so that you will not be dependent on anybody.\"\n\n2 Thessalonians 3:6-15:\n\n- \"In the name of the Lord Jesus Christ, we command you, brothers, to keep away from every brother who is idle and does not live according to the teaching you received from us. 7 For you yourselves know how you ought to follow our example. We were not idle when we were with you, 8 nor did we eat anyone's food without paying for it. On the contrary, we worked night and day, laboring and toiling so that we would not be a burden to any of you. 9 We did this, not because we do not have the right to such help, but in order to make ourselves a model for you to follow. 10 For even when we were with you, we gave you this rule: \"If a man will not work, he shall not eat.\" 11 We hear that some among you are idle. They are not busy; they are busybodies. 12 Such people we command and urge in the Lord Jesus Christ to settle down and earn the bread they eat. 13 And as for you, brothers, never tire of doing what is right. 14 If anyone does not obey our instruction in this letter, take special note of him. Do not associate with him, in order that he may feel ashamed. 15 Yet do not regard him as an enemy, but warn him as a brother.\"",
         "refs": []
       },
       {
         "id": "bc-155-the-ministry",
-        "q": "The ministry",
+        "q": "Identify passages someone could read about: The ministry.",
         "a": "Matthew 28:18-20: \"Go therefore make disciples,\n\nbaptizing/teaching\"\n\n2 Corinthians 5:17-21:\n\n- \"Therefore, if anyone is in Christ, he is a new creation; the old has gone, the new has come! 18 All this is from God, who reconciled us to himself through Christ and gave us the ministry of reconciliation: 19 that God was reconciling the world to himself in Christ, not counting men's sins against them. And he has committed to us the message of reconciliation. 20 We are therefore Christ's ambassadors, as though God were making his appeal through us. We implore you on Christ's behalf: Be reconciled to God. 21 God made him who had no sin to be sin for us, so that in him we might become the righteousness of God.\"\n\nPastoral Epistles (1 and 2 Timothy, Titus)\n\n1 Peter 5:1-4:\n\n- \"To the elders among you, I appeal as a fellow elder, a witness of Christ's sufferings and one who also will share in the glory to be revealed: 2 Be shepherds of God's flock that is under your care, serving as overseers-- not because you must, but because you are willing, as God wants you to be; not greedy for money, but eager to serve; 3 not lording it over those entrusted to you, but being examples to the flock. 4 And when the Chief Shepherd appears, you will receive the crown of glory that will never fade away.\"",
         "refs": []
       },
       {
         "id": "bc-156-the-church",
-        "q": "The Church",
+        "q": "Identify passages someone could read about: The Church.",
         "a": "Matthew 16:18:\n\n- \"And I tell you that you are Peter, and on this rock I will build my church, and the gates of Hades will not overcome it.\"\n\nActs 2:42-47 (cf. also Acts 4:32-37):\n\n- \"They devoted themselves to the apostles' teaching and to the fellowship, to the breaking of bread and to prayer. 43 Everyone was filled with awe, and many wonders and miraculous signs were done by the apostles. 44 All the believers were together and had everything in common. 45 Selling their possessions and goods, they gave to anyone as he had need. 46 Every day they continued to meet together in the temple courts. They broke bread in their homes and ate together with glad and sincere hearts, 47 praising God and enjoying the favor of all the people. And the Lord added to their number daily those who were being saved.\"\n\n1 Peter 2:9-10:\n\n- \"But you are a chosen people, a royal priesthood, a holy nation, a people belonging to God, that you may declare the praises of him who called you out of darkness into his wonderful light. 10 Once you were not a people, but now you are the people of God; once you had not received mercy, but now you have received mercy.\"",
         "refs": []
       },
       {
         "id": "bc-157-qualifications-for-church-officers",
-        "q": "Qualifications for church officers",
+        "q": "Identify passages someone could read about: Qualifications for church officers.",
         "a": "1 Timothy 3:1-12\n\n- Covers Elders and Deacons\n\nTitus 1:5-9\n\n- \"The reason I left you in Crete was that you might straighten out what was left unfinished and appoint elders in every town, as I directed you. 6 An elder must be blameless, the husband of but one wife, a man whose children believe and are not open to the charge of being wild and disobedient. 7 Since an overseer is entrusted with God's work, he must be blameless-- not overbearing, not quick-tempered, not given to drunkenness, not violent, not pursuing dishonest gain. 8 Rather he must be hospitable, one who loves what is good, who is self- controlled, upright, holy and disciplined. 9 He must hold firmly to the trustworthy message as it has been taught, so that he can encourage others by sound doctrine and refute those who oppose it.\"",
         "refs": []
       },
       {
         "id": "bc-158-biblical-discipline",
-        "q": "Biblical discipline",
+        "q": "Identify passages someone could read about: Biblical discipline.",
         "a": "Procedure: Matthew 18:15-17:\n\n- \"If your brother sins against you, go and show him his fault, just between the two of you. If he listens to you, you have won your brother over. 16 But if he will not listen, take one or two others along, so that 'every matter may be established by the testimony of two or three witnesses.' 17 If he refuses to listen to them, tell it to the church; and if he refuses to listen even to the church, treat him as you would a pagan or a tax collector.\"\n\nExcommunication: 1 Corinthians 5:1-13:\n\n- \"It is actually reported that there is sexual immorality among you, and of a kind that does not occur even among pagans: A man has his father's wife. 2 And you are proud! Shouldn't you rather have been filled with grief and have put out of your fellowship the man who did this? 3 Even though I am not physically present, I am with you in spirit. And I have already passed judgment on the one who did this, just as if I were present. 4 When you are assembled in the name of our Lord Jesus and I am with you in spirit, and the power of our Lord Jesus is present, 5 hand this man over to Satan, so that the sinful nature may be destroyed and his spirit saved on the day of the Lord. 6 Your boasting is not good. Don't you know that a little yeast works through the whole batch of dough? 7 Get rid of the old yeast that you may be a new batch without yeast-- as you really are. For Christ, our Passover lamb, has been sacrificed. 8 Therefore let us keep the Festival, not with the old yeast, the yeast of malice and wickedness, but with bread without yeast, the bread of sincerity and truth. 9 I have written you in my letter not to associate with sexually immoral people-- 10 not at all meaning the people of this world who are immoral, or the greedy and swindlers, or idolaters. In that case you would have to leave this world. 11 But now I am writing you that you must not associate with anyone who calls himself a brother but is sexually immoral or greedy, an idolater or a slanderer, a drunkard or a swindler. With such a man do not even eat. 12 What business is it of mine to judge those outside the church? Are you not to judge those inside? 13 God will judge those outside. 'Expel the wicked man from among you.'\"\n\nRestoration: 2 Corinthians 2:5-11:\n\n- \"If anyone has caused grief, he has not so much grieved me as he has grieved all of you, to some extent-- not to put it too severely. 6 The punishment inflicted on him by the majority is sufficient for him. 7 Now instead, you ought to forgive and comfort him, so that he will not be overwhelmed by excessive sorrow. 8 I urge you, therefore, to reaffirm your love for him. 9 The reason I wrote you was to see if you would stand the test and be obedient in everything. 10 If you forgive anyone, I also forgive him. And what I have forgiven-- if there was anything to forgive- I have forgiven in the sight of Christ for your sake, 11 in order that Satan might not outwit us. For we are not unaware of his schemes.\"",
-        "refs": []
+        "refs": [],
+        "summary": "Procedure: Matthew 18:15-17 (one-on-one, then witnesses, then the church). Excommunication: 1 Corinthians 5:1-13 (\"expel the wicked man\"). Restoration: 2 Corinthians 2:5-11 (forgive and comfort him)."
       },
       {
         "id": "bc-159-women-in-the-church",
-        "q": "Women in the church",
+        "q": "Identify passages someone could read about: Women in the church.",
         "a": "Romans 16:1:\n\n- \"I commend to you our sister Phoebe, a servant of the church in Cenchrea.\"\n\n1 Corinthians 14:33b-35:\n\n- \"As in all the congregations of the saints, 34 women should remain silent in the churches. They are not allowed to speak, but must be in submission, as the Law says. 35 If they want to inquire about something, they should ask their own husbands at home; for it is disgraceful for a woman to speak in the church.\"\n\n1 Timothy 2:11-15:\n\n- \"A woman should learn in quietness and full submission. 12 I do not permit a woman to teach or to have authority over a man; she must be silent. 13 For Adam was formed first, then Eve. 14 And Adam was not the one deceived; it was the woman who was deceived and became a sinner. 15 But women will be saved through childbearing- if they continue in faith, love and holiness with propriety.\"",
         "refs": []
       },
       {
         "id": "bc-160-giving",
-        "q": "Giving",
+        "q": "Identify passages someone could read about: Giving.",
         "a": "Matthew 6:19-24:\n\n- \"'Do not store up for yourselves treasures on earth, where moth and rust destroy, and where thieves break in and steal. 20 But store up for yourselves treasures in heaven, where moth and rust do not destroy, and where thieves do not break in and steal. 21 For where your treasure is, there your heart will be also. 22 The eye is the lamp of the body. If your eyes are good, your whole body will be full of light. 23 But if your eyes are bad, your whole body will be full of darkness. If then the light within you is darkness, how great is that darkness! 24 No one can serve two masters. Either he will hate the one and love the other, or he will be devoted to the one and despise the other. You cannot serve both God and Money.'\"\n\nLuke 21:1-4:\n\n- \"As he looked up, Jesus saw the rich putting their gifts into the temple treasury. 2 He also saw a poor widow put in two very small copper coins. 3 'I tell you the truth,' he said, 'this poor widow has put in more than all the others. 4 All these people gave their gifts out of their wealth; but she out of her poverty put in all she had to live on.'\"\n\n2 Corinthians 8-9:\n\n- See especially 2 Corinthians 9:6-11: \"Remember this: Whoever sows sparingly will also reap sparingly, and whoever sows generously will also reap generously. 7 Each man should give what he has decided in his heart to give, not reluctantly or under compulsion, for God loves a cheerful giver. 8 And God is able to make all grace abound to you, so that in all things at all times, having all that you need, you will abound in every good work. 9 As it is written: \"He has scattered abroad his gifts to the poor; his righteousness endures forever.\" 10 Now he who supplies seed to the sower and bread for food will also supply and increase your store of seed and will enlarge the harvest of your righteousness. 11 You will be made rich in every way so that you can be generous on every occasion, and through us your generosity will result in thanksgiving to God.\"",
         "refs": []
       },
       {
         "id": "bc-161-money",
-        "q": "Money",
+        "q": "Identify passages someone could read about: Money.",
         "a": "Matthew 6:24:\n\n- \"No one can serve two masters. Either he will hate the one and love the other, or he will be devoted to the one and despise the other. You cannot serve both God and Money.\"\n\n1 Timothy 6:10:\n\n- \"For the love of money is a root of all kinds of evil. Some people, eager for money, have wandered from the faith and pierced themselves with many griefs.\"\n\nHebrews 13:5:\n\n- \"Keep your lives free from the love of money and be content with what you have, because God has said, 'Never will I leave you; never will I forsake you.'\"",
         "refs": []
       },
       {
         "id": "bc-162-marriage",
-        "q": "Marriage",
+        "q": "Identify passages someone could read about: Marriage.",
         "a": "1 Corinthians 7:1-16:\n\n- Paul gives instructions regarding the appropriateness of marrying to keep from burning with sexual passion; the mutual ownership of bodies in a marital relationship; appropriate reasons for abstaining from sexual intercourse; instruction to the unmarried and widows; and how to conduct oneself in marriages in which one's spouse is not a believer.\n\n1 Corinthians 7:39-40:\n\n- \"A woman is bound to her husband as long as he lives. But if her husband dies, she is free to marry anyone she wishes, but he must belong to the Lord. 40 In my judgment, she is happier if she stays as she is-and I think that I too have the Spirit of God.\"\n\nEphesians 5:21-33:\n\n- Marriage is depicted as metaphor for Christ's relationship to the church. The husband represents Christ and the wife represents the church.\n\nHebrews 13:4:\n\n- \"Marriage should be honored by all, and the marriage bed kept pure, for God will judge the adulterer and all the sexually immoral.\"",
         "refs": []
       },
       {
         "id": "bc-163-divorce",
-        "q": "Divorce",
+        "q": "Identify passages someone could read about: Divorce.",
         "a": "Matthew 19:3-12 // Mark 10:11-12 // Luke 16:18:\n\n- Jesus pronounces against divorce and remarriage, saying that Moses' permitted divorce due to hardness of heart. According to Matthew's version, Jesus permits divorce if pornei,a has occurred, that is, significant sexual sin.\n\n1 Corinthians 7:12-16\n\n- This is the so-called Pauline exception. In mixed marriages (Christian and non-Christian) Paul allows for divorce if the unbeliever deserts the believer.",
         "refs": []
       },
       {
         "id": "bc-164-family",
-        "q": "Family",
+        "q": "Identify passages someone could read about: Family.",
         "a": "Matthew 12:46-50:\n\n- \"While Jesus was still talking to the crowd, his mother and brothers stood outside, wanting to speak to him. 47 Someone told him, 'Your mother and brothers are standing outside, wanting to speak to you.' 48 He replied to him, 'Who is my mother, and who are my brothers?' 49 Pointing to his disciples, he said, 'Here are my mother and my brothers. 50 For whoever does the will of my Father in heaven is my brother and sister and mother.'\"\n\nEphesians 5:22-6:4\n\n- 5:22-33 addresses wives and husbands while 6:1-4 addresses children and their fathers.\n\n1 Timothy 3:4-5:\n\n- \"He [an Elder] must manage his own family well and see that his children obey him with proper respect. 5 (If anyone does not know how to manage his own family, how can he take care of God's church?).\"\n\n1 Timothy 5:8:\n\n- \"If anyone does not provide for his relatives, and especially for his immediate family, he has denied the faith and is worse than an unbeliever.\"",
         "refs": []
       },
       {
         "id": "bc-165-heaven-and-hell",
-        "q": "Heaven and hell",
+        "q": "Identify passages someone could read about: Heaven and hell.",
         "a": "Matthew 25:31-46:\n\n- This is the parable of the Sheep and the Goats. The conclusion of the parable, v. 46, relates to heaven and hell. This verse is as follows: \"Then they [the wicked goats] will go away to eternal punishment, but the righteous [sheep] to eternal life.\"\n\nLuke 16:19-31:\n\n- The parable of the Rich Man and Lazarus. The poor Lazarus dies and goes to Abraham's bosom while the rich man dies and goes to hell and is tormented.\n\n2 Corinthians 5:10:\n\n- \"For we must all appear before the judgment seat of Christ, that each one may receive what is due him for the things done while in the body, whether good or bad.\"\n\n2 Thessalonians 1:6-10:\n\n- \"God is just: He will pay back trouble to those who trouble you 7 and give relief to you who are troubled, and to us as well. This will happen when the Lord Jesus is revealed from heaven in blazing fire with his powerful angels. 8 He will punish those who do not know God and do not obey the gospel of our Lord Jesus. 9 They will be punished with everlasting destruction and shut out from the presence of the Lord and from the majesty of his power 10 on the day he comes to be glorified in his holy people and to be marveled at among all those who have believed. This includes you, because you believed our testimony to you.\"",
         "refs": []
       },
       {
         "id": "bc-166-reconciliation-among-believers",
-        "q": "Reconciliation among believers",
+        "q": "Identify passages someone could read about: Reconciliation among believers.",
         "a": "Matthew 5:21-26:\n\n- \"You have heard that it was said to the people long ago, 'Do not murder, and anyone who murders will be subject to judgment.' 22 But I tell you that anyone who is angry with his brother will be subject to judgment. Again, anyone who says to his brother, 'Raca,' is answerable to the Sanhedrin. But anyone who says, 'You fool!' will be in danger of the fire of hell. 23 Therefore, if you are offering your gift at the altar and there remember that your brother has something against you, 24 leave your gift there in front of the altar. First go and be reconciled to your brother; then come and offer your gift. 25 Settle matters quickly with your adversary who is taking you to court. Do it while you are still with him on the way, or he may hand you over to the judge, and the judge may hand you over to the officer, and you may be thrown into prison. 26 I tell you the truth, you will not get out until you have paid the last penny.\"\n\nJohn 13:34-35:\n\n- \"A new command I give you: Love one another. As I have loved you, so you must love one another. 35 By this all men will know that you are my disciples, if you love one another.\"\n\nEphesians 4:32:\n\n- \"Be kind and compassionate to one another, forgiving each other, just as in Christ God forgave you.\"\n\nPhilippians 4:2:\n\n- \"I plead with Euodia and I plead with Syntyche to agree with each other in the Lord.\"\n\nColossians 3: 13-14:\n\n- 13 Bear with each other and forgive whatever grievances you may have against one another. Forgive as the Lord forgave you. 14 And over all these virtues put on love, which binds them all together in perfect unity.",
         "refs": []
       },
       {
         "id": "bc-167-suffering",
-        "q": "Suffering",
+        "q": "Identify passages someone could read about: Suffering.",
         "a": "Philippians 1:29-30:\n\n- \"For it has been granted to you on behalf of Christ not only to believe on him, but also to suffer for him, 30 since you are going through the same struggle you saw I had, and now hear that I still have.\"\n\nHebrews 12:7-11:\n\n- \"Endure hardship as discipline; God is treating you as sons. For what son is not disciplined by his father? 8 If you are not disciplined (and everyone undergoes discipline), then you are illegitimate children and not true sons. 9 Moreover, we have all had human fathers who disciplined us and we respected them for it. How much more should we submit to the Father of our spirits and live! 10 Our fathers disciplined us for a little while as they thought best; but God disciplines us for our good, that we may share in his holiness. 11 No discipline seems pleasant at the time, but painful. Later on, however, it produces a harvest of righteousness and peace for those who have been trained by it.\"\n\nJames 1:2-4:\n\n- \"Consider it pure joy, my brothers, whenever you face trials of many kinds, 3 because you know that the testing of your faith develops perseverance. 4 Perseverance must finish its work so that you may be mature and complete, not lacking anything.\"\n\n1 Peter 4:1-2:\n\n- \"Therefore, since Christ suffered in his body, arm yourselves also with the same attitude, because he who has suffered in his body is done with sin. 2 As a result, he does not live the rest of his earthly life for evil human desires, but rather for the will of God.\"",
         "refs": []
       },
       {
         "id": "bc-168-resurrection-of-the-body",
-        "q": "Resurrection of the body",
+        "q": "Identify passages someone could read about: Resurrection of the body.",
         "a": "Romans 8:11:\n\n- \"And if the Spirit of him who raised Jesus from the dead is living in you, he who raised Christ from the dead will also give life to your mortal bodies through his Spirit, who lives in you.\"\n\n1 Corinthians 15:35-49:\n\n- These verses discuss what kind of body the resurrection body will be. In short, we will bear the image of the heavenly man, Christ, rather than the earthly man, Adam.\n\n2 Corinthians 5:1-5:\n\n- \"Now we know that if the earthly tent we live in is destroyed, we have a building from God, an eternal house in heaven, not built by human hands. 2 Meanwhile we groan, longing to be clothed with our heavenly dwelling, 3 because when we are clothed, we will not be found naked. 4 For while we are in this tent, we groan and are burdened, because we do not wish to be unclothed but to be clothed with our heavenly dwelling, so that what is mortal may be swallowed up by life. 5 Now it is God who has made us for this very purpose and has given us the Spirit as a deposit, guaranteeing what is to come.\"",
         "refs": []
       },
       {
         "id": "bc-169-infant-baptism",
-        "q": "Infant baptism",
+        "q": "Identify passages someone could read about: Infant baptism.",
         "a": "Acts 2:38-39:\n\n- \"Peter replied, 'Repent and be baptized, every one of you, in the name of Jesus Christ for the forgiveness of your sins. And you will receive the gift of the Holy Spirit. 39 The promise is for you and your children and for all who are far off-for all whom the Lord our God will call.'\"\n\nActs 16:13-15:\n\n- \"On the Sabbath we went outside the city gate to the river, where we expected to find a place of prayer. We sat down and began to speak to the women who had gathered there. 14 One of those listening was a woman named Lydia, a dealer in purple cloth from the city of Thyatira, who was a worshiper of God. The Lord opened her heart to respond to Paul's message. 15 When she and the members of her household were baptized, she invited us to her home. 'If you consider me a believer in the Lord,\" she said, \"come and stay at my house.' And she persuaded us.\"\n\n1 Corinthians 7:14:\n\n- \"For the unbelieving husband has been sanctified through his wife, and the unbelieving wife has been sanctified through her believing husband. Otherwise your children would be unclean, but as it is, they are holy.\"\n\nGalatians 3:8:\n\n- \"If you belong to Christ, then you are Abraham's seed, and heirs according to the promise.\"\n\nColossians 2:9-12:\n\n- \"For in Christ all the fullness of the Deity lives in bodily form, 10 and you have been given fullness in Christ, who is the head over every power and authority. 11 In him you were also circumcised, in the putting off of the sinful nature, not with a circumcision done by the hands of men but with the circumcision done by Christ, 12 having been buried with him in baptism and raised with him through your faith in the power of God, who raised him from the dead.\"",
         "refs": []
       },
       {
         "id": "bc-170-predestination",
-        "q": "Predestination",
+        "q": "Identify passages someone could read about: Predestination.",
         "a": "John 15:16:\n\n- \"You did not choose me, but I chose you and appointed you to go and bear fruit-fruit that will last....\"\n\nRomans 8:28-30:\n\n- \"And we know that in all things God works for the good of those who love him, who have been called according to his purpose. 29 For those God foreknew he also predestined to be conformed to the likeness of his Son, that he might be the firstborn among many brothers. 30 And those he predestined, he also called; those he called, he also justified; those he justified, he also glorified.\"\n\nEphesians 1:3-5, 11:\n\n- \"Praise be to the God and Father of our Lord Jesus Christ, who has blessed us in the heavenly realms with every spiritual blessing in Christ. 4 For he chose us in him before the creation of the world to be holy and blameless in his sight. In love 5 he predestined us to be adopted as his sons through Jesus Christ, in accordance with his pleasure and will...In him we were also chosen, having been predestined according to the plan of him who works out everything in conformity with the purpose of his will.\"\n\n1 Peter 1:1-2:\n\n- \"Peter, an apostle of Jesus Christ, To God's elect, strangers in the world, scattered throughout Pontus, Galatia, Cappadocia, Asia and Bithynia, 2 who have been chosen according to the foreknowledge of God the Father, through the sanctifying work of the Spirit, for obedience to Jesus Christ and sprinkling by his blood: Grace and peace be yours in abundance.\"",
         "refs": []
       },
       {
         "id": "bc-171-unity-of-the-church-and-gifts",
-        "q": "Unity of the Church (and gifts)",
+        "q": "Identify passages someone could read about: Unity of the Church (and gifts).",
         "a": "John 17:20-23:\n\n- \"My prayer is not for them alone. I pray also for those who will believe in me through their message, 21 that all of them may be one, Father, just as you are in me and I am in you. May they also be in us so that the world may believe that you have sent me. 22 I have given them the glory that you gave me, that they may be one as we are one: 23 I in them and you in me. May they be brought to complete unity to let the world know that you sent me and have loved them even as you have loved me.\"\n\n1 Corinthians 12 & 13:\n\n- Gifts distributed to the church as an interdependent body and the need for all to be done in love.\n\nEphesians 4:1-16:\n\n- Christians are to make every effort to keep the unity of the Spirit through the bond of peace. Though there is one body and Spirit, one Lord, one faith, one baptism, one God and Father of all, to each one grace has been apportioned by Christ so the body might be built up, rather than tossed about, and grow together.",
         "refs": []
       },
       {
         "id": "bc-172-christian-sabbath",
-        "q": "Christian Sabbath",
+        "q": "Identify passages someone could read about: Christian Sabbath.",
         "a": "Matthew 28:1 (cf. Mark 16:2 // Luke 24:1 // John 20:1)\n\n- \"After the Sabbath, at dawn on the first day of the week, Mary Magdalene and the other Mary went to look at the tomb.\"\n\nJohn 20:19:\n\n- \"On the evening of that first day of the week, when the disciples were together, with the doors locked for fear of the Jews, Jesus came and stood among them and said, \"Peace be with you!.\"\n\nActs 20:7:\n\n- \"On the first day of the week we came together to break bread. Paul spoke to the people and, because he intended to leave the next day, kept on talking until midnight.\"\n\n1 Corinthians 16:2:\n\n- \"On the first day of every week, each one of you should set aside a sum of money in keeping with his income, saving it up, so that when I come no collections will have to be made.\"",
         "refs": []
       },
       {
         "id": "bc-173-ordering-of-christian-worship",
-        "q": "Ordering of Christian worship",
+        "q": "Identify passages someone could read about: Ordering of Christian worship.",
         "a": "1 Corinthians 11:\n\n- Praying or prophesying with a head uncovered.\n\n1 Corinthians 14:26-40:\n\n- Addresses praying and prophesying tongues as well as the role of women in worship. Verse 40 appropriately concludes the passage as follows: \"But everything should be done in a fitting and orderly way.\"\n\n1 Timothy 2\n\n- This chapter urges that requests, prayers, intercession, and thanksgiving be made on behalf of everyone, such as kings in authority. Paul also says that he wants men to lift up holy hands in prayer and women to dress modestly and learn from men in quiet submission.",
         "refs": []
       },
       {
         "id": "bc-174-christian-liberty",
-        "q": "Christian liberty",
+        "q": "Identify passages someone could read about: Christian liberty.",
         "a": "Romans 14:\n\n- Call for acceptance of people with weak faith, re: food\n\n1 Corinthians 8-11:\n\n- The outline of this section is as follows:\n- Idol Meat (8:1-11:1)\n  - Knowledge Puffs Ups, but Love Builds Up (8:1-13)\n  - The Apostolic Example of Renouncing Rights (9:1-27)\n  - Paul's right to receive Support (9:1-14)\n  - The Apostolic Model: Paul's Renunciation of Rights (9:15-23)\n  - Self-Discipline for the Sake of the Gospel (9:24-27)\n  - Warning against Idolatry (10:1-22)\n  - Conclusion: Use Your Freedom for the Glory of God (10:23-11:1)\n\nGalatians 5:13\n\n- \"You, my brothers, were called to be free. But do not use your freedom to indulge the sinful nature; rather, serve one another in love.\"\n\n1 Peter 2:16:\n\n- 16 Live as free men, but do not use your freedom as a cover-up for evil; live as servants of God. 17 Show proper respect to everyone: Love the brotherhood of believers, fear God, honor the king.",
         "refs": []
       },
       {
         "id": "bc-175-significance-of-the-death-of-chris",
-        "q": "Significance of the death of Christ",
-        "a": "Mark 10:45: (Jesus' death is a ransom for many)\n\n- \"For even the Son of Man did not come to be served, but to serve, and to give his life as a ransom for many.\"\n\nRomans 3:21-25: (Jesus' death justifies us and God)\n\n- \"But now a righteousness from God, apart from law, has been made known, to which the Law and the Prophets testify. 22 This righteousness from God comes through faith in Jesus Christ to all who believe. There is no difference, 23 for all have sinned and fall short of the glory of God, 24 and are justified freely by his grace through the redemption that came by Christ Jesus. 25 God presented him as a sacrifice of atonement, through faith in his blood. He did this to demonstrate his justice, because in his forbearance he had left the sins committed beforehand unpunished-- 26 he did it to demonstrate his justice at the present time, so as to be just and the one who justifies those who have faith in Jesus.\"\n\nGalatians 3:13: (Jesus' death redeemed us from the\n\nLaw's curse)\n\n- \"Christ redeemed us from the curse of the law by becoming a curse for us, for it is written: 'Cursed is everyone who is hung on a tree.'\"\n\nColossians 1:19-20: (Jesus' death reconciles all things)\n\n- \"For God was pleased to have all his fullness dwell in him, 20 and through him to reconcile to himself all things, whether things on earth or things in heaven, by making peace through his blood, shed on the cross.\"\n\nColossians 2:13-15: (Jesus' death canceled c.o.d. and\n\ndisarmed powers)\n\n- \"When you were dead in your sins and in the uncircumcision of your sinful nature, God made you alive with Christ. He forgave us all our sins, 14 having canceled the written code, with its regulations, that was against us and that stood opposed to us; he took it away, nailing it to the cross. 15 And having disarmed the powers and authorities, he made a public spectacle of them, triumphing over them by the cross.\"\n\nHebrews 9:11-14: (Jesus' death obtained eternal\n\nredemption and cleansed our consciences enabling us to serve God)\n\n- \"When Christ came as high priest of the good things that are already here, he went through the greater and more perfect tabernacle that is not man-made, that is to say, not a part of this creation. 12 He did not enter by means of the blood of goats and calves; but he entered the Most Holy Place once for all by his own blood, having obtained eternal redemption. 13 The blood of goats and bulls and the ashes of a heifer sprinkled on those who are ceremonially unclean sanctify them so that they are outwardly clean. 14 How much more, then, will the blood of Christ, who through the eternal Spirit offered himself unblemished to God, cleanse our consciences from acts that lead to death, so that we may serve the living God!\"\n\nStudy Questions on Theology\n\nHave you read all of the Westminster Confession of Faith and the Westminster Larger and Shorter Catechisms? Yes\n\nAre you aware of any of its teachings about which you have reservations, or to which you take exception? Explain. See notes below\n\nReservations: < WCF 25.3 - The teaching on the Sabbath seems unduly restrictive; some recreations are in and of themselves-for me at least-beneficial in my worship of God, biking, hiking, camping, playing with children in the backyard, etc.\n\n< WCF 21.8 - regarding the definition/understanding of \"papist\"; In my Christian experience I have met several devout Catholics who understand the gospel of Christ for salvation that it is exclusively through the grace of God through the Holy Spirit that they are saved, not of works of salvation, either of themselves, or added to the work of Christ.",
+        "q": "Identify passages someone could read about: Significance of the death of Christ.",
+        "a": "Mark 10:45: (Jesus' death is a ransom for many)\n\n- \"For even the Son of Man did not come to be served, but to serve, and to give his life as a ransom for many.\"\n\nRomans 3:21-25: (Jesus' death justifies us and God)\n\n- \"But now a righteousness from God, apart from law, has been made known, to which the Law and the Prophets testify. 22 This righteousness from God comes through faith in Jesus Christ to all who believe. There is no difference, 23 for all have sinned and fall short of the glory of God, 24 and are justified freely by his grace through the redemption that came by Christ Jesus. 25 God presented him as a sacrifice of atonement, through faith in his blood. He did this to demonstrate his justice, because in his forbearance he had left the sins committed beforehand unpunished-- 26 he did it to demonstrate his justice at the present time, so as to be just and the one who justifies those who have faith in Jesus.\"\n\nGalatians 3:13: (Jesus' death redeemed us from the\n\nLaw's curse)\n\n- \"Christ redeemed us from the curse of the law by becoming a curse for us, for it is written: 'Cursed is everyone who is hung on a tree.'\"\n\nColossians 1:19-20: (Jesus' death reconciles all things)\n\n- \"For God was pleased to have all his fullness dwell in him, 20 and through him to reconcile to himself all things, whether things on earth or things in heaven, by making peace through his blood, shed on the cross.\"\n\nColossians 2:13-15: (Jesus' death canceled c.o.d. and\n\ndisarmed powers)\n\n- \"When you were dead in your sins and in the uncircumcision of your sinful nature, God made you alive with Christ. He forgave us all our sins, 14 having canceled the written code, with its regulations, that was against us and that stood opposed to us; he took it away, nailing it to the cross. 15 And having disarmed the powers and authorities, he made a public spectacle of them, triumphing over them by the cross.\"\n\nHebrews 9:11-14: (Jesus' death obtained eternal\n\nredemption and cleansed our consciences enabling us to serve God)\n\n- \"When Christ came as high priest of the good things that are already here, he went through the greater and more perfect tabernacle that is not man-made, that is to say, not a part of this creation. 12 He did not enter by means of the blood of goats and calves; but he entered the Most Holy Place once for all by his own blood, having obtained eternal redemption. 13 The blood of goats and bulls and the ashes of a heifer sprinkled on those who are ceremonially unclean sanctify them so that they are outwardly clean. 14 How much more, then, will the blood of Christ, who through the eternal Spirit offered himself unblemished to God, cleanse our consciences from acts that lead to death, so that we may serve the living God!\"",
         "refs": [
           "WCF 25.3",
           "WCF 21.8"
-        ]
+        ],
+        "summary": "Mark 10:45 (a ransom for many); Romans 3:21-26 (justifies us and demonstrates God's justice); Galatians 3:13 (redeemed from the law's curse); Colossians 1:19-20 (reconciles all things); Colossians 2:13-15 (cancels the written code, disarms the powers); Hebrews 9:11-14 (eternal redemption, cleansed consciences)."
       }
     ]
   }

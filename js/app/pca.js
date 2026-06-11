@@ -22,7 +22,7 @@ import {
   effectiveSetKeys, cardsForKeys, shuffle, isWeak,
 } from './content.js';
 import { buildQuiz, quizDeckCards } from './quiz.js';
-import { renderAnswer, summarize, hasMoreThanSummary } from './answer.js';
+import { renderAnswer, summarize, hasMoreThanSummary, directAnswer } from './answer.js';
 import { renderRefs } from './refs.js';
 import { applyOutcome } from './srs.js';
 import { createModes } from './modes.js';
@@ -179,7 +179,7 @@ function advance() {
 // ── Mode registry ──────────────────────────────────────────────────────
 const MODES = createModes({
   state, DATA, escapeHtml,
-  renderAnswer, summarize, hasMoreThanSummary, renderRefs,
+  renderAnswer, summarize, hasMoreThanSummary, directAnswer, renderRefs,
   buildQuiz, applyOutcome, rerender: renderCard, mark, move, toggleReveal,
   withCardAnchor, effectiveSetKeys, quizDeckCards, shuffle,
   emptyState, navRowHtml, wireNav, setDeckMeta, EXAM_SIZE,
@@ -482,6 +482,11 @@ function init() {
 
   $('chooseSubjectBtn').addEventListener('click', openSelector);
   $('selectorDoneBtn').addEventListener('click', closeSelector);
+  $('selectorDoneTopBtn').addEventListener('click', closeSelector);
+  $('selectorAllBtn').addEventListener('click', () => {
+    DATA.subjects.forEach(s => s.setKeys.forEach(k => { if (DATA.sets[k]) state.selected.add(k); }));
+    renderSelector();
+  });
   $('selectorClearBtn').addEventListener('click', () => { state.selected.clear(); renderSelector(); });
   $('startStudyingBtn').addEventListener('click', () => { state.flipArchived.clear(); buildDeck(); renderCard(); });
   $('progressBtn').addEventListener('click', openProgress);

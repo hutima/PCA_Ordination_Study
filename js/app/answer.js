@@ -97,6 +97,10 @@ function splitSentences(text) {
   return parts;
 }
 
+// A line that introduces a Scripture quotation in a passages-on-a-topic card,
+// e.g. "Romans 3:25:" or "1 Corinthians 15:3-8 (cf. also Acts 4:32-37):".
+const REF_LINE_RE = /^(?:[123]\s)?[A-Z][a-zA-Z]+\.?\s\d[\d:,–\- ]*[ab]?(?:\s*\(cf\.[^)]*\))?:$/;
+
 export function summarize(card, max = 240) {
   if (card && typeof card.summary === 'string' && card.summary.trim()) return card.summary.trim();
   const a = String((card && card.a) || '').replace(/\r\n?/g, '\n').trim();
@@ -105,24 +109,30 @@ export function summarize(card, max = 240) {
   // Table rows can't be teased line-by-line: derive from the prose around the
   // table, or — when the whole answer is a table — from its header cells.
   const prose = lines.filter(l => !l.startsWith('|'));
+  // A passages-on-a-topic card (reference headers, each followed by a quote)
+  // teases best as the list of references — that IS the recall target.
+  const refs = prose.filter(l => REF_LINE_RE.test(l)).map(l => l.replace(/:$/, ''));
+  if (refs.length >= 2 && refs.length >= prose.filter(l => !LIST_MARKER_RE.test(l)).length - 1) {
+    return `Key passages: ${refs.join('; ')}.`;
+  }
   let s = stripMarkup(prose[0] || '');
   if (!s) {
     const header = lines.find(l => l.startsWith('|') && /[^|\s:-]/.test(l)) || '';
     s = header.split('|').map(c => c.trim()).filter(Boolean).join(' · ');
   }
   if ((s.endsWith(':') || s.length < 30) && prose.length > 1) {
-    // Bare intro / fragment: append whole following list items; an ellipsis
-    // marks any items that didn't fit (always include at least one).
+    // Bare intro / fragment: append whole following list items; a "(+N more)"
+    // marks items that didn't fit, so the teaser still ends on a whole thought.
     const rest = prose.slice(1).map(stripMarkup).filter(Boolean);
     const items = [];
     for (const item of rest) {
-      if (items.length && `${s} ${items.join('; ')}; ${item}`.length > max) {
-        items.push('…');
-        break;
-      }
+      if (items.length && `${s} ${items.join('; ')}; ${item}`.length > max) break;
       items.push(item);
     }
-    if (items.length) s = `${s} ${items.join('; ')}`;
+    if (items.length) {
+      const left = rest.length - items.length;
+      s = `${s} ${items.join('; ')}${left > 0 ? ` (+${left} more)` : ''}`;
+    }
   } else if (s.length > max) {
     // Keep whole sentences while they fit; always keep the first.
     let acc = '';
@@ -138,6 +148,15 @@ export function summarize(card, max = 240) {
     s = (cut > 60 ? s.slice(0, cut) : s.slice(0, max).replace(/\s+\S*$/, '')) + ' …';
   }
   return s;
+}
+
+// Short, table-free answers don't need progressive disclosure: the review
+// card shows them in full on reveal instead of a teaser + expander (memory
+// verses especially read wrong as a teaser-summary of themselves).
+export function directAnswer(card) {
+  if (card && typeof card.summary === 'string' && card.summary.trim()) return false;
+  const a = String((card && card.a) || '').trim();
+  return a.length > 0 && a.length <= 480 && !a.includes('|');
 }
 
 // Does the answer carry more than its summary (lists, tables, quotes, labeled

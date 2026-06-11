@@ -64,8 +64,11 @@ for (const subject of data.subjects) {
       if (!c.a || !c.a.trim()) { console.error(`FAIL ${c.id}: empty answer`); problems++; }
       try { renderMarkdown(c.a); } catch (e) { console.error(`FAIL ${c.id}: render error ${e.message}`); problems++; }
       if (c.summary != null && (typeof c.summary !== 'string' || !c.summary.trim())) { console.error(`FAIL ${c.id}: summary must be a non-empty string`); problems++; }
-      // The review-card teaser (authored or derived) must never show raw table markup.
-      if (summarize(c).includes('|')) { console.error(`FAIL ${c.id}: teaser contains raw table markup`); problems++; }
+      // The review-card teaser (authored or derived) must never show raw table
+      // markup or trail off mid-thought — fix the card or author a summary.
+      const teaser = summarize(c);
+      if (teaser.includes('|')) { console.error(`FAIL ${c.id}: teaser contains raw table markup`); problems++; }
+      if (/…\s*$/.test(teaser)) { console.error(`FAIL ${c.id}: teaser ends mid-thought (…)`); problems++; }
       if (c.quiz) {
         if (!Array.isArray(c.quiz.choices) || c.quiz.choices.length < 2) { console.error(`FAIL ${c.id}: quiz needs >=2 choices`); problems++; }
         if (typeof c.quiz.answerIndex !== 'number' || c.quiz.answerIndex < 0 || c.quiz.answerIndex >= (c.quiz.choices?.length || 0)) { console.error(`FAIL ${c.id}: bad quiz answerIndex`); problems++; }

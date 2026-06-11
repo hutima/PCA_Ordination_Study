@@ -204,6 +204,8 @@ CURATE = {
                     "by Christian baptism — which is then not a re-baptism."),
     },
     'ht-007-theonomy': {
+        # The answer's first outline line just restates the card's question.
+        'replace_lines': {'a. What is Theonomy?': 'a. Definition'},
         'summary': ("The \"Christian Reconstruction\" school (Rushdoony, Bahnsen, North) "
                     "holds that the OT judicial law and its penal sanctions still bind all "
                     "nations. Critique: it overstresses continuity between the covenants — "
@@ -339,6 +341,14 @@ def apply_curation(sets):
                 if 'replace' in cur:
                     out.extend(cur['replace'])
                     continue
+                # replace_lines: targeted line edits (e.g. drop an answer line
+                # that just restates the card's own question).
+                for old_l, new_l in cur.get('replace_lines', {}).items():
+                    lines = c['a'].split('\n')
+                    if old_l not in lines:
+                        raise SystemExit(f"curation: line not found in {c['id']}: {old_l!r}")
+                    lines[lines.index(old_l)] = new_l
+                    c['a'] = '\n'.join(l for l in lines if l is not None)
                 for k in ('q', 'a', 'summary'):
                     if k in cur:
                         c[k] = cur[k]

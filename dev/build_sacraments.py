@@ -142,6 +142,16 @@ SECTIONS = [
 # expander) for cards whose answer is a table — a teaser derived line-by-line
 # from table markup is unreadable. Keyed by generated card id.
 SUMMARIES = {
+    'sac-004-does-anything-really-happen-in-a-sacrame':
+        ("Yes — by faith the sacraments are a means of grace: the Spirit nourishes "
+         "the believer, strengthens faith, and gives assurance. More than a memorial, "
+         "yet not by any power in the elements or the administrator's piety — only by "
+         "the working of the Holy Ghost and the blessing of Christ who instituted them."),
+    'sac-013-would-you-under-any-circumstances-baptiz':
+        ("Yes — there is no prohibition, since the command is to wash with water in "
+         "the triune name, not a method. But sprinkling is preferred and immersion "
+         "unusual and improper, given the washing/sprinkling imagery of the OT "
+         "purification rituals (Heb 9:10, 19-22; cf. 1 Cor 6:9-11)."),
     'sac-025-how-do-the-sacraments-agree-how-are-they':
         ("Agree: God is the author, Christ the spiritual benefit; sign and seal "
          "of the same covenant, by a minister of the gospel, until Christ "
