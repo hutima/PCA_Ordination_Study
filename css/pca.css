@@ -30,7 +30,6 @@ html[data-font-family="sans"] {
   transition: border-color .15s ease;
   -webkit-tap-highlight-color: transparent;
 }
-.qa-card:hover { border-color: var(--gold-dim); }
 .qa-card.revealed { background: var(--card-back); }
 .qa-tap-hint { text-align: center; opacity: 0.55; margin-top: 16px; }
 .qa-card::before, .qa-card::after {
@@ -124,7 +123,6 @@ html[data-font-family="sans"] {
 .qa-full > summary::-webkit-details-marker { display: none; }
 .qa-full > summary::before { content: '▸'; color: var(--gold-dim); transition: transform .12s; }
 .qa-full[open] > summary::before { content: '▾'; }
-.qa-full > summary:hover { color: var(--gold); }
 .qa-full .qa-answer { margin-top: 10px; }
 
 /* ── Subject / sub-deck selector grids ────────────────────────────────── */
@@ -134,7 +132,6 @@ html[data-font-family="sans"] {
   border: 1px solid var(--border); background: var(--surface); color: var(--cream);
   cursor: pointer; transition: border-color .15s, background .15s;
 }
-.pca-tile:hover { border-color: var(--gold-dim); }
 .pca-tile.selected { border-color: var(--gold); background: rgba(201,168,76,0.10); }
 .pca-tile-title { font-family: var(--font-display); font-size: 15px; margin-bottom: 4px; }
 .pca-tile-meta { font-size: 12px; color: var(--muted); }
@@ -151,7 +148,6 @@ html[data-font-family="sans"] {
   font-family: var(--font-body); font-size: 15px; line-height: 1.4;
   cursor: pointer; transition: border-color .12s, background .12s;
 }
-.quiz-choice:hover:not(:disabled) { border-color: var(--gold-dim); background: rgba(201,168,76,0.06); }
 .quiz-choice:disabled { cursor: default; }
 .quiz-choice.correct { border-color: var(--green); background: rgba(74,122,90,0.16); color: #9fd6ad; }
 .quiz-choice.wrong { border-color: var(--accent-red); background: rgba(140,58,58,0.16); color: #d98d8d; }
@@ -185,7 +181,6 @@ html[data-font-family="sans"] {
 }
 /* Shuffle toggle is parked while "In order" is the focus. */
 .focus-row .mode-btn:disabled { opacity: 0.4; cursor: default; }
-.focus-row .mode-btn:disabled:hover { color: var(--muted); background: transparent; }
 .focus-label {
   font-family: var(--font-display); font-size: 11px; letter-spacing: 2px;
   text-transform: uppercase; color: var(--gold-dim);
@@ -214,7 +209,6 @@ html[data-font-family="sans"] {
 
 /* Linked reference chips. */
 a.qa-ref-chip { text-decoration: none; transition: background .12s, border-color .12s; }
-a.qa-ref-chip:hover { background: rgba(201,168,76,0.20); border-color: var(--gold); }
 
 /* ── Browse / outline mode ────────────────────────────────────────────── */
 .browse-controls { display: flex; gap: 8px; justify-content: flex-end; max-width: 760px; margin: 0 auto 14px; }
@@ -239,7 +233,6 @@ a.qa-ref-chip:hover { background: rgba(201,168,76,0.20); border-color: var(--gol
 }
 .browse-item[open] summary::after { content: '–'; }
 .browse-item[open] summary { border-bottom: 1px solid var(--border); }
-.browse-item:hover { border-color: var(--gold-dim); }
 .browse-a { padding: 14px 16px; color: var(--cream); font-size: 15px; line-height: 1.6; }
 .browse-a p { margin: 0 0 10px; }
 .browse-a ul, .browse-a ol { margin: 0 0 10px 22px; }
@@ -263,7 +256,6 @@ a.qa-ref-chip:hover { background: rgba(201,168,76,0.20); border-color: var(--gol
   padding: 9px 12px; font-family: var(--font-body); font-size: 14px;
   max-width: min(92vw, 420px); cursor: pointer;
 }
-.cat-controls select:hover, .cat-controls select:focus { border-color: var(--gold-dim); outline: none; }
 .cat-source {
   text-align: center; color: var(--muted); font-size: 12px;
   font-style: italic; margin-top: 14px;
@@ -330,3 +322,23 @@ html[data-theme="light"] .hm-cell { background: rgba(82,62,24,0.08); }
 html[data-theme="light"] .hm-l1 { background: rgba(142,108,30,0.28); }
 html[data-theme="light"] .hm-l2 { background: rgba(142,108,30,0.48); }
 html[data-theme="light"] .hm-l3 { background: rgba(142,108,30,0.70); }
+
+/* Selector modal: title + a Done button at the top (the other Done sits at
+   the bottom) so the close affordance is reachable from either end. */
+.selector-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.selector-head h2 { margin: 0; }
+
+.cat-controls select:focus { border-color: var(--gold-dim); outline: none; }
+
+/* Hover affordances only on devices that actually hover — on touch,
+   a tap leaves a sticky :hover whose gold outline reads as "selected". */
+@media (hover: hover) {
+  .qa-card:hover { border-color: var(--gold-dim); }
+  .qa-full > summary:hover { color: var(--gold); }
+  .pca-tile:hover { border-color: var(--gold-dim); }
+  .quiz-choice:hover:not(:disabled) { border-color: var(--gold-dim); background: rgba(201,168,76,0.06); }
+  .focus-row .mode-btn:disabled:hover { color: var(--muted); background: transparent; }
+  a.qa-ref-chip:hover { background: rgba(201,168,76,0.20); border-color: var(--gold); }
+  .browse-item:hover { border-color: var(--gold-dim); }
+  .cat-controls select:hover { border-color: var(--gold-dim); outline: none; }
+}

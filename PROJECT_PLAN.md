@@ -216,6 +216,38 @@ KEEP modules + the HTML shell):**
 
       **Release ritual:** bump `?v=N` in `index.html` AND `CACHE` in `sw.js`
       together so returning users auto-refresh onto the new version.
+- [x] **Phase 15 — Full content audit + selector UX (user-reported).**
+      Release `?v=22`/`pca-v22`. A systematic audit (`dev/audit.mjs`) of all
+      590 cards against failure classes seen on the phone, fixed via a shared
+      curation engine (`dev/curation.py`) imported by the builders:
+      - **Selector:** Select all / Clear / Done at bottom + Done at top;
+        hover styles gated behind `@media (hover: hover)` so taps on touch
+        screens no longer leave a sticky gold "selected-looking" outline.
+      - **Licensure-style fronts (Bible Content):** list-prompt items now
+        carry their parent prompt ("Discuss briefly the life and significance
+        of Abraham…", "Locate by book and chapter: Passover.", "Identify
+        passages someone could read about: Atonement."); ids keep the item
+        slug. Memory verses re-attached to their parent questions (general
+        revelation; law & grace); OT divisions merged into one card; the
+        glued Ten-Commandments/NT-law double question split into two cards.
+      - **Flattened PDF tables rebuilt by hand:** OT history overview,
+        covenant table, four-gospels distinctives, Letters & Life of Paul,
+        spread of Christianity (all proper GFM tables → `md-stack` on
+        phones); the ordo-salutis junk table stripped.
+      - **Compound monsters split:** natures-of-Christ (25k chars → 26
+        cards, th-055a–z), Covenant of Grace relations (3 cards), life of
+        Christ (outline / parables / miracles), Presbyterianism-in-America
+        (timeline + a recovered modernism/fundamentalism card).
+      - **Content removed:** a ~20k-char copyrighted essay ("A Brief History
+        of Covenant Theology" © R. S. Clark) glued into ch-090, and the
+        source author's personal confessional exceptions glued into bc-175.
+      - **~60 authored summaries** across all subjects; `summarize()` gained
+        a "Key passages:" mode for Scripture-topic cards and "(+N more)"
+        instead of trailing "…"; short table-free answers (≤480 chars,
+        e.g. memory verses) now render in full on reveal (`directAnswer()`),
+        skipping the teaser+expander. BCO compound questions fold their
+        glued second question into the front. `validate.mjs` now fails any
+        teaser containing "|" or ending in "…". 616 cards total.
 - [x] **Phase 14 — Mobile tables + authored summaries (user-reported).**
       Release `?v=21`/`pca-v21`. The truncated "…" review teasers and
       phone-unreadable tables (screenshots from Hot Topics) fixed three ways:

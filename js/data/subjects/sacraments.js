@@ -33,7 +33,8 @@
         "id": "sac-004-does-anything-really-happen-in-a-sacrame",
         "q": "Does anything really happen in a sacrament?",
         "a": "Yes, by faith the sacraments are a means of grace; by the working of the Spirit the believer is spiritually nourished, her faith is strengthened and she receives assurance of her salvation; there is more to the sacrament than simply a memorial; not by any power in themselves, or any virtue derived from the piety or intention of him by whom they are administered, but only by the working of the Holy Ghost, and the blessing of Christ, by whom they are instituted.",
-        "refs": []
+        "refs": [],
+        "summary": "Yes — by faith the sacraments are a means of grace: the Spirit nourishes the believer, strengthens faith, and gives assurance. More than a memorial, yet not by any power in the elements or the administrator's piety — only by the working of the Holy Ghost and the blessing of Christ who instituted them."
       },
       {
         "id": "sac-005-what-nt-references-show-parallels-betwee",
@@ -96,7 +97,8 @@
         "id": "sac-013-would-you-under-any-circumstances-baptiz",
         "q": "Would you under any circumstances baptize someone by immersion? Explain.",
         "a": "Yes, having explained the nature of baptism to the individual, there is no prohibition against baptism in this manner, although the preferred manner is by sprinkling, the command is to wash with water in the triune name, not the method used; I would consider this unusual and improper as we understand from scripture, i.e. the washing or sprinkling imagery that is communicated in the OT purification rituals (Hebrews 9:10, 19-22); in the NT (1 Cor. 6:9-11).",
-        "refs": []
+        "refs": [],
+        "summary": "Yes — there is no prohibition, since the command is to wash with water in the triune name, not a method. But sprinkling is preferred and immersion unusual and improper, given the washing/sprinkling imagery of the OT purification rituals (Heb 9:10, 19-22; cf. 1 Cor 6:9-11)."
       },
       {
         "id": "sac-014-who-is-to-be-baptized-defend-your-answer",

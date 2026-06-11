@@ -37,14 +37,21 @@ architecture/reuse map, content contract, phase status, and next steps.
   "study everything" fallback. Card re-renders run through `withCardAnchor()` (pca.js) so
   reveal/hide/next never jumps the page. Answers are provenance-tagged
   (`renderAnswer()`: standard quotes vs study notes) and reference chips
-  deep-link to official texts (`refLink()`). Review's teaser is the authored
-  `card.summary` when present, else derived (`summarize()`, which skips table
-  rows). Long/tabular cards should carry an authored summary — for generated
-  subjects it lives in the builder's curation layer (`CURATE` in
-  `dev/build_hot_topics.py`, `SUMMARIES` in the sacraments/church-history
-  builders), keyed by card id. 3+-column Markdown tables are emitted with
-  `class="md-stack"` + per-cell `data-th` and stack into labeled row-blocks
-  under 640px (`css/pca.css`).
+  deep-link to official texts (`refLink()`). Review's reveal: short table-free
+  answers (≤480 chars — memory verses) render in full (`directAnswer()`);
+  longer cards show a teaser — the authored `card.summary` when present, else
+  derived (`summarize()`: skips table rows, lists "Key passages:" for
+  Scripture-topic cards, appends "(+N more)" rather than truncating — a
+  teaser must never end mid-thought; `validate.mjs` enforces this). Authored
+  summaries and structural repairs live in each builder's curation layer
+  (`CURATE` dicts keyed by card id; shared ops engine in `dev/curation.py` —
+  fails loudly if a key stops matching). `dev/audit.mjs` flags the failure
+  classes found in real phone use (questions-in-answers, glued inline
+  answers, flattened tables, mid-thought teasers). 3+-column Markdown tables
+  are emitted with `class="md-stack"` + per-cell `data-th` and stack into
+  labeled row-blocks under 640px (`css/pca.css`). Never embed copyrighted
+  text (the BCO, the R. S. Clark covenant-theology essay in the church
+  history source) — the curation layer cuts these.
 - **Standards data (public domain):** generated from the PDFs at the repo
   root — `dev/build_catechisms.py` → `js/data/catechisms.js`
   (`window.PCA_CATECHISMS`, WSC 107 + WLC 196 with proof citations);

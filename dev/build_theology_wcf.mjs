@@ -43,6 +43,35 @@ function fixWcf(t) {
     .replace(/\bperishb\b/g, 'perish');
 }
 
+// Authored one-line summaries: each card's body is a 17th-century run-on
+// sentence quoted verbatim, which the derived teaser can only cut mid-thought.
+const SUMMARIES = {
+  12: ('All the justified are received into the number of God\'s children: they bear his '
+       + 'name, receive the Spirit of adoption, have access to the throne of grace with '
+       + 'boldness, and are pitied, protected, provided for, and chastened by him as a '
+       + 'Father — never cast off, but sealed to the day of redemption.'),
+  13: ('The regenerate are renewed in the whole man through Christ\'s death and '
+       + 'resurrection: sin\'s dominion is destroyed, its lusts more and more weakened and '
+       + 'mortified, and the saving graces quickened and strengthened unto practical '
+       + 'holiness, without which no man shall see the Lord.'),
+  18: ('True believers may in this life be certainly assured that they are in a state of '
+       + 'grace — an assurance founded on the divine promises, the inward evidences of '
+       + 'grace, and the witness of the Spirit; it may be shaken or interrupted, yet '
+       + 'believers are never left without the seed of God.'),
+  20: ('Christ purchased believers\' freedom from the guilt of sin, God\'s condemning '
+       + 'wrath, and the curse of the law. God alone is Lord of the conscience, which he '
+       + 'has left free from doctrines and commandments of men contrary to his Word — or, '
+       + 'in matters of faith and worship, beside it.'),
+  29: ('The Supper was instituted for the perpetual remembrance of Christ\'s one '
+       + 'sacrifice — sealing its benefits to true believers, their spiritual nourishment '
+       + 'and growth in him, their further engagement to him, and their communion with him '
+       + 'and with each other.'),
+  31: ('For the better government and further edification of the church there ought to be '
+       + 'synods and councils; they settle controversies of faith and cases of conscience '
+       + 'ministerially — and since they may err, their decrees bind only as consonant '
+       + 'with the Word of God.'),
+};
+
 const cards = [];
 for (const ch of wcf.chapters) {
   if (covered.has(ch.n)) continue;
@@ -54,6 +83,7 @@ for (const ch of wcf.chapters) {
     id: `theo-wcf-${String(ch.n).padStart(2, '0')}`,
     q: `What does the Westminster Confession teach in "${ch.title}" (WCF ${ch.n})?`,
     a: `WCF: ${fixWcf(sec.text)}${note}`,
+    ...(SUMMARIES[ch.n] ? { summary: SUMMARIES[ch.n] } : {}),
     refs: [`WCF ${ch.n}.1`, ...sec.refs.slice(0, 5)],
   });
 }
