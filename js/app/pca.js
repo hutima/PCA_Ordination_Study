@@ -293,13 +293,29 @@ function openProgress() {
 }
 
 // ── Subject / sub-deck selector ────────────────────────────────────────
-function openSelector() { renderSelector(); showOverlay('studySelectorOverlay'); }
-function closeSelector() {
-  hideOverlay('studySelectorOverlay');
+// Tile clicks mutate state.selected live; the selection is applied (saved +
+// deck rebuilt) on ANY dismissal — Done, backdrop click, or Escape — so
+// clicking off the modal never silently discards the changes. The deck is
+// only rebuilt when the selection actually changed, so just peeking at the
+// selector doesn't reshuffle the session.
+let selectionAtOpen = '';
+function selectionFingerprint() { return [...state.selected].sort().join('|'); }
+function openSelector() {
+  selectionAtOpen = selectionFingerprint();
+  renderSelector();
+  showOverlay('studySelectorOverlay');
+}
+function applySelectorChanges() {
   saveSelection();
+  if (selectionFingerprint() === selectionAtOpen) return;
+  selectionAtOpen = selectionFingerprint();
   state.flipArchived.clear(); // a new selection starts a fresh flip-deck pass
   buildDeck();
   renderCard();
+}
+function closeSelector() {
+  hideOverlay('studySelectorOverlay');
+  applySelectorChanges();
 }
 function renderSelector() {
   const subjGrid = $('subjectGrid');
@@ -386,15 +402,19 @@ function resetProgress() {
 
 // ── Wiring ─────────────────────────────────────────────────────────────
 function initOverlayDismiss() {
+  // Hiding the subject selector by any route must also apply the selection.
+  const dismiss = (ov) => {
+    ov.classList.remove('show');
+    ov.setAttribute('aria-hidden', 'true');
+    if (ov.id === 'studySelectorOverlay') applySelectorChanges();
+  };
   document.querySelectorAll('.consent-overlay').forEach(ov => {
     ov.addEventListener('click', (e) => {
-      if (e.target === ov) { ov.classList.remove('show'); ov.setAttribute('aria-hidden', 'true'); }
+      if (e.target === ov) dismiss(ov);
     });
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') document.querySelectorAll('.consent-overlay.show').forEach(ov => {
-      ov.classList.remove('show'); ov.setAttribute('aria-hidden', 'true');
-    });
+    if (e.key === 'Escape') document.querySelectorAll('.consent-overlay.show').forEach(dismiss);
   });
 }
 
