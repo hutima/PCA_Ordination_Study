@@ -63,7 +63,7 @@
       {
         "id": "sac-008-where-in-scripture-are-these-terms-used",
         "q": "Where in Scripture are these terms used?",
-        "a": "The terms sign and seal are used in Romans 4:11-12, Abraham received the sign of circumcision the seal of righteousness by faith; Ephesians 1:13;",
+        "a": "The terms sign and seal are used in Romans 4:11-12, Abraham received the sign of circumcision, the seal of righteousness by faith; Ephesians 1:13.",
         "refs": []
       },
       {
@@ -95,7 +95,7 @@
       {
         "id": "sac-013-would-you-under-any-circumstances-baptiz",
         "q": "Would you under any circumstances baptize someone by immersion? Explain.",
-        "a": "Yes, having explained the nature of baptism to the individual, there is no prohibition against baptism in this manner, although the preferred manner is by sprinkling, the command is to wash with water in the triune name, not the method used; I would consider this unusual and improper as we understand from scripture, i.e. the washing or sprinkling imagery that is communicated in the OT purification rituals (Hebrews 9:10, 19-22); in the NT (1 Cor. 6:9-11);",
+        "a": "Yes, having explained the nature of baptism to the individual, there is no prohibition against baptism in this manner, although the preferred manner is by sprinkling, the command is to wash with water in the triune name, not the method used; I would consider this unusual and improper as we understand from scripture, i.e. the washing or sprinkling imagery that is communicated in the OT purification rituals (Hebrews 9:10, 19-22); in the NT (1 Cor. 6:9-11).",
         "refs": []
       },
       {

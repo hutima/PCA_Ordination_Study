@@ -102,13 +102,19 @@ def main():
         if mt:
             q = mt.group(2); i += 1
             body = []
-            while i < len(region) and not TOPIC_RE.match(region[i]) and not REFBLK_RE.match(region[i]):
+            # "Miscellaneous" is a stray section header between the last topic and
+            # the reference blocks — stop here so it doesn't trail into the card.
+            while i < len(region) and not TOPIC_RE.match(region[i]) \
+                    and not REFBLK_RE.match(region[i]) and region[i].strip() != 'Miscellaneous':
                 body.append(region[i]); i += 1
             add(topics, q, body)
         elif mb:
             q = mb.group(2); i += 1
             body = []
-            while i < len(region) and not REFBLK_RE.match(region[i]):
+            # "Synoptic Problem" is a stray trailing header after the last
+            # reference block — stop so it doesn't trail into the Kings card.
+            while i < len(region) and not REFBLK_RE.match(region[i]) \
+                    and region[i].strip() != 'Synoptic Problem':
                 # ref blocks may contain their own "1." plague list — keep as body
                 body.append(region[i]); i += 1
             add(refs, q, body)

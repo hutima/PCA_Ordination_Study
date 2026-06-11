@@ -1278,18 +1278,7 @@ Old Testament: General
 
 
         e. The Apostles (name them)
-          01. The primary function of the apostles was witness to Christ,
-              and the witness was rooted in years of intimate knowledge,
-              experience, and training (cf. Mark 3:14: Jesus chose the
-              apostles to "be with him"). The essential qualification of an
-              apostle was the divine call and commissioning by Christ as
-              well as being a follower of Jesus from the time of John the
-              Baptist to his ascension, including being a witness to the
-              resurrection (cf. Acts 1:21-22 in the account of Matthias
-              being chosen to replace Judas), though Paul is unique in this
-              regard because his commissioning came when he encountered
-              Jesus on the road to Damascus.
-          02. The twelve apostles during Jesus' lifetime are in listed in
+          01. The twelve apostles during Jesus' lifetime are listed in
               Matthew 10 and Mark 3 and are as follows:
               i. Simon Peter
              ii. Andrew
@@ -1303,6 +1292,17 @@ Old Testament: General
               x. Thaddaeus
              xi. Simon the Zealot
             xii. Judas Iscariot
+          02. The primary function of the apostles was witness to Christ,
+              and the witness was rooted in years of intimate knowledge,
+              experience, and training (cf. Mark 3:14: Jesus chose the
+              apostles to "be with him"). The essential qualification of an
+              apostle was the divine call and commissioning by Christ as
+              well as being a follower of Jesus from the time of John the
+              Baptist to his ascension, including being a witness to the
+              resurrection (cf. Acts 1:21-22 in the account of Matthias
+              being chosen to replace Judas), though Paul is unique in this
+              regard because his commissioning came when he encountered
+              Jesus on the road to Damascus.
 
 
         f. Peter
@@ -4972,12 +4972,12 @@ Old Testament: General
                  very hard for us to conceive and we only know it because
                  God has communicated this truth to us in the Bible. Perhaps
                  the easiest way to begin to understand this is by way of
-                 analogy. The very same H²O molecules are capable of
+                 analogy. The very same Hï¿½O molecules are capable of
                  existing in three separate states: water; vapor; and ice.
                  Similarly, the same God exists as three separate persons.
                  Where this analogy breaks down is that the same God exists
                  as those three separate person at the same time, while the
-                 same H²O molecules cannot exist in separate states at the
+                 same Hï¿½O molecules cannot exist in separate states at the
                  same time.
           02. Creation and Fall
               i. God created the entire cosmos and he created humans
@@ -7621,7 +7621,7 @@ II. Study Questions on Church History
           33. John Wesley
           34. Marrow controversy
           35. William Carey
-          36. George Müller
+          36. George Mï¿½ller
           37. Charles Spurgeon
           38. Charles Hodge
           39. B. B. Warfield
@@ -8132,7 +8132,7 @@ II. Study Questions on Church History
               labors
           10. Suppress schismatical contentions and disputations
           11. Receive other bodies conforming to PCA doctrine and order,
-              with consent of ¾ of Presbyteries
+              with consent of ï¿½ of Presbyteries
           12. Authorize Presbyteries to receive bodies suited to become
               "constituents" of their courts and lying within its
               geographical bounds
@@ -8996,8 +8996,8 @@ III. Hot Topics
 
 
         |Creation Theories                                                |
-|Theory      |Description |Understandin|Treatment of|Major       |
-|            |            |g of Time   |"Day"       |Problems    |
+|Theory      |Description |Understanding|Treatment of|Major       |
+|            |            |of Time|"Day"       |Problems    |
 |24-hour day |Views Gen 1 |Most support|24 hours    |-Reconciling|
 |            |as          |"young      |            |with        |
 |            |sequential  |earth"      |            |scientific  |
@@ -9019,16 +9019,16 @@ III. Hot Topics
 |            |            |            |            |-Often an   |
 |            |            |            |            |excuse for  |
 |            |            |            |            |evolution   |
-|Literary    |Views       |Narrative   |Oriented    |-Exodus     |
-|approach    |seven-day   |has nothing |toward      |20:11       |
+|Literary approach|Views       |Narrative   |Oriented    |-Exodus     |
+|            |seven-day   |has nothing |toward      |20:11       |
 |            |sequence as |to say about|Sabbath     |-Difficult  |
 |            |a literary  |time        |theology    |to preclude |
 |            |structure   |            |            |temporality |
 |            |            |            |            |on basis of |
 |            |            |            |            |literary    |
 |            |            |            |            |structure   |
-|Prior       |Suggests    |Most        |24 hours    |-No textual |
-|Creation    |existence of|scientific  |            |support     |
+|Prior Creation|Suggests    |Most        |24 hours    |-No textual |
+|            |existence of|scientific  |            |support     |
 |            |a previous  |ages related|            |-Questions  |
 |            |created     |to prior    |            |of          |
 |            |world prior |creation    |            |continuity  |
@@ -9681,6 +9681,7 @@ III. Hot Topics
 |                                     |Jehoiachin, |597         |
 |                                     |B           |            |
 |                                     |Zedekiah, B |597-586     |
+G = godly king; B = evil king
 
 
 
@@ -10063,13 +10064,13 @@ Rapids: Baker, 1990), 345.
 [106] Calvin: Theological Treatises (ed. J. K. S. Reid; LCC 22;
 Philadelphia: Westminster, 1954), 111-113.
 [107] The view  of  many  on  both  sides  including  Schreiner,  "Women  in
-Ministry," 193; Köstenberger, "Women  in  the  Pauline  Mission,"  229;  and
+Ministry," 193; Kï¿½stenberger, "Women  in  the  Pauline  Mission,"  229;  and
 Belleville, "Women in Ministry," 101. For arguments that 1 Tim  3:11  refers
 to women deacons and not the wives of deacons, see Schreiner, ibid.,
 [108] Keener leans toward something like this view in "Women  in  Ministry,"
 34-35,  but  his  definition  seems  too  intent  on  collapsing  legitimate
 distinctions into one overall definition.
-[109] Köstenberger, "Women in the Pauline Mission,"  231,  lists  four  ways
+[109] Kï¿½stenberger, "Women in the Pauline Mission,"  231,  lists  four  ways
 the term apostle is used in the NT: for the Twelve; for  someone  like  Paul
 who had seen the Lord and was commissioned by him  to  a  special  ministry;
 for an emissary or messenger  on  a  specific  task;  or  for  an  itinerant

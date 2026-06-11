@@ -25,6 +25,13 @@ LETTER_RE = re.compile(r'^\s{6,9}([a-z])\.\s+(.*)$')
 NUM_SUB_RE = re.compile(r'^\s{8,}(0\d|\d{2})\.\s+(.*)$')     # zero/2-padded
 REF_RE = re.compile(r'W(?:CF|LC|SC)\s*[\dIVXLC]+(?:[.:]\d+)?(?:[-–]\d+)?')
 FOOTNOTE_RE = re.compile(r'\[\d+\]')
+# Roman-numeral sub-items ("i. … ii. …", i–xx) nested under a lettered/numbered
+# item. Two or more become a Markdown bullet list instead of being run into the
+# prose ("i. God exists. ii. God is omnipotent. …").
+ROMAN_RE = re.compile(r'^\s{10,}(xx|xix|xvi{0,3}|xv|xiv|xi{0,3}|ix|iv|vi{0,3}|v|i{1,3})\.\s+(.*)$', re.I)
+# Word-export bullet debris: level-1 bullets came through as ".", level-2
+# (Wingdings circles) as a bare "o" — usually a Scripture proof under a sub-item.
+BULLET_SRC_RE = re.compile(r'^\s{8,}([.o])\s+(\S.*)$')
 
 SECTION_LABELS = {
     'A': 'A. The Bible', 'B': 'B. God & His World', 'C': 'C. Humankind',
@@ -59,6 +66,65 @@ def normalize_answer(lines):
         else:
             out.append(text)
     return re.sub(r'\n{3,}', '\n\n', '\n'.join(out)).strip()
+
+def gather_sub(region, i):
+    """Gather an item's continuation lines from i until the next answer/question/
+    section marker. Returns (flat, lead, romans, bullets, next_i):
+      flat    – every line folded with its markers kept (the legacy form);
+      lead    – non-roman/non-bullet text that wraps the parent's first line
+                (whatever appears before the first roman/bullet sub-item);
+      romans  – roman-numeral sub-items, each with its "."-bullet proof(s)
+                folded in after an em dash;
+      bullets – standalone "."/"o" Word-bullet items (when no roman precedes).
+    """
+    flat = ''
+    lead = ''
+    romans = []
+    bullets = []
+    while i < len(region) and region[i].strip() and not LETTER_RE.match(region[i]) \
+            and not NUM_SUB_RE.match(region[i]) and not QUESTION_RE.match(region[i]) \
+            and not SECTION_RE.match(region[i]):
+        s = region[i].strip()
+        flat += (' ' if flat else '') + s
+        mr = ROMAN_RE.match(region[i])
+        mb = BULLET_SRC_RE.match(region[i])
+        if mr:
+            romans.append(clean(mr.group(2)))
+        elif mb:
+            proof = clean(mb.group(2))
+            if romans:
+                romans[-1] = re.sub(r':\s*$', '', romans[-1]) + ' — ' + proof
+            else:
+                bullets.append(proof)
+        elif romans:
+            romans[-1] = clean(romans[-1] + ' ' + s)
+        elif bullets:
+            bullets[-1] = clean(bullets[-1] + ' ' + s)
+        else:
+            lead += (' ' if lead else '') + s
+        i += 1
+    return flat, clean(lead), romans, bullets, i
+
+
+def emit_item(cur, kind, marker, first, region, i):
+    """Append an answer item (plus any roman/bullet sub-list) for a marker line
+    whose own text is `first`; continuation starts at region[i]. Two or more
+    roman items (or any standalone bullets) render as a Markdown list rather than
+    being run together; otherwise the legacy inline form is preserved exactly."""
+    _flat, lead, romans, bullets, i = gather_sub(region, i)
+    head = f'{first} {lead}'.strip() if lead else first
+    sub = romans + bullets        # in practice only one of the two is populated
+    if len(sub) >= 2:
+        cur['items'].append((kind, marker + clean(head)))
+        cur['items'].append(('sub', '\n'.join(f'- {it}' for it in sub)))
+    elif len(sub) == 1:
+        # A lone sub-item is not a list — inline it (dropping the bare "i."
+        # marker) after an em dash, so no orphan marker or " . " debris remains.
+        cur['items'].append((kind, marker + clean(re.sub(r':\s*$', '', head) + ' — ' + sub[0])))
+    else:
+        cur['items'].append((kind, marker + clean(head)))
+    return i
+
 
 def main():
     raw = open(SRC, encoding='utf-8', errors='ignore').read().split('\n')
@@ -129,32 +195,13 @@ def main():
         ml = LETTER_RE.match(line)
         mn = NUM_SUB_RE.match(line)
         if ml:
-            text = ml.group(2)
-            i += 1
-            while i < len(region) and region[i].strip() and not LETTER_RE.match(region[i]) \
-                    and not NUM_SUB_RE.match(region[i]) and not QUESTION_RE.match(region[i]) \
-                    and not SECTION_RE.match(region[i]):
-                text += ' ' + region[i].strip(); i += 1
-            cur['items'].append(('letter', f'{ml.group(1)}. {clean(text)}'))
+            i = emit_item(cur, 'letter', f'{ml.group(1)}. ', ml.group(2), region, i + 1)
             continue
         if mn:
-            text = mn.group(2)
-            i += 1
-            while i < len(region) and region[i].strip() and not LETTER_RE.match(region[i]) \
-                    and not NUM_SUB_RE.match(region[i]) and not QUESTION_RE.match(region[i]) \
-                    and not SECTION_RE.match(region[i]):
-                text += ' ' + region[i].strip(); i += 1
-            num = int(mn.group(1))
-            cur['items'].append(('num', f'{num}. {clean(text)}'))
+            i = emit_item(cur, 'num', f'{int(mn.group(1))}. ', mn.group(2), region, i + 1)
             continue
         # plain prose continuation
-        text = line.strip()
-        i += 1
-        while i < len(region) and region[i].strip() and not LETTER_RE.match(region[i]) \
-                and not NUM_SUB_RE.match(region[i]) and not QUESTION_RE.match(region[i]) \
-                and not SECTION_RE.match(region[i]):
-            text += ' ' + region[i].strip(); i += 1
-        cur['items'].append(('prose', clean(text)))
+        i = emit_item(cur, 'prose', '', line.strip(), region, i + 1)
     close()
 
     order = [k for k in order if sets[k]['cards']]

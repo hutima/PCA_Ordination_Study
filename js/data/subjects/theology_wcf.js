@@ -65,7 +65,7 @@
  {
   "id": "theo-wcf-12",
   "q": "What does the Westminster Confession teach in \"Of Adoption\" (WCF 12)?",
-  "a": "WCF: All those that are justified, God vouchsafeth, in and for his only Son Jesus Christ, to make partakers of the grace of adoption, by which they are taken into the number, and enjoy the liberties and privileges of the children of God, have his name put upon them, receive the Spirit of adoption, have access to the throne of grace with boldness, are enabled to cry, Abba, Father, are pitied, protected, provided for, and chastened by him, as by a father: yet never cast of f, but sealed to the day of redemption; and inherit the promises, as heirs of everlasting salvation.",
+  "a": "WCF: All those that are justified, God vouchsafeth, in and for his only Son Jesus Christ, to make partakers of the grace of adoption, by which they are taken into the number, and enjoy the liberties and privileges of the children of God, have his name put upon them, receive the Spirit of adoption, have access to the throne of grace with boldness, are enabled to cry, Abba, Father, are pitied, protected, provided for, and chastened by him, as by a father: yet never cast off, but sealed to the day of redemption; and inherit the promises, as heirs of everlasting salvation.",
   "refs": [
    "WCF 12.1",
    "Eph. 1:5",
@@ -132,7 +132,7 @@
  {
   "id": "theo-wcf-18",
   "q": "What does the Westminster Confession teach in \"Of the Assurance of Grace and Salvation\" (WCF 18)?",
-  "a": "WCF: Although hypocrites and other unregenerate men may vainly deceive themselves with false hopes and carnal presumptions of being in the favor of God, and estate of salvationa (which hope of theirs shall perishb): yet such as truly believe in the Lord Jesus, and love him in sincerity, endeavoring to walk in all good conscience before him, may, in this life, be certainly assured that they are in the state of grace, and may rejoice in the hope of the glory of God, which hope shall never make them ashamed.\nNote: WCF 18 has 4 sections; this card quotes §1 — open the reference chip to read the full chapter.",
+  "a": "WCF: Although hypocrites and other unregenerate men may vainly deceive themselves with false hopes and carnal presumptions of being in the favor of God, and estate of salvation (which hope of theirs shall perish): yet such as truly believe in the Lord Jesus, and love him in sincerity, endeavoring to walk in all good conscience before him, may, in this life, be certainly assured that they are in the state of grace, and may rejoice in the hope of the glory of God, which hope shall never make them ashamed.\nNote: WCF 18 has 4 sections; this card quotes §1 — open the reference chip to read the full chapter.",
   "refs": [
    "WCF 18.1",
    "1 John 5:13",
@@ -275,7 +275,7 @@
  {
   "id": "theo-wcf-32",
   "q": "What does the Westminster Confession teach in \"Of the State of Men after Death, and of the Resurrection of the Dead\" (WCF 32)?",
-  "a": "WCF: The bodies of men, after death, return to dust, and see corruption: but their souls, which neither die nor sleep, having an immortal subsistence, immediately return to God who gave them: the souls of the righteous, being then made perfect in holiness, are received into the highest heavens, where they behold the face of God, in light and glory, waiting for the full redemption of their bodies. And the souls of the wicked are cast into hell, where they remain in torments and utter darkness, reserved to the judgment of the great d a y. Beside these two places, for souls separated from their bodies, the Scripture acknowledgeth none.\nNote: WCF 32 has 3 sections; this card quotes §1 — open the reference chip to read the full chapter.",
+  "a": "WCF: The bodies of men, after death, return to dust, and see corruption: but their souls, which neither die nor sleep, having an immortal subsistence, immediately return to God who gave them: the souls of the righteous, being then made perfect in holiness, are received into the highest heavens, where they behold the face of God, in light and glory, waiting for the full redemption of their bodies. And the souls of the wicked are cast into hell, where they remain in torments and utter darkness, reserved to the judgment of the great day. Beside these two places, for souls separated from their bodies, the Scripture acknowledgeth none.\nNote: WCF 32 has 3 sections; this card quotes §1 — open the reference chip to read the full chapter.",
   "refs": [
    "WCF 32.1",
    "Gen. 3:19",

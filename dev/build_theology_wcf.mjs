@@ -31,6 +31,18 @@ for (const q of globalThis.PCA_QUIZ || []) {
   if (q.subject === 'theology') { scan(q.q); (q.refs || []).forEach(scan); }
 }
 
+// A handful of PDF-extraction artifacts survive in the quoted §1 text: proof-
+// marker letters glued onto a word (build_wcf.py strips most, but a few slip
+// through when their footnote isn't matched) and words split by a stray space.
+// Repair the known cases so the confession quote reads correctly.
+function fixWcf(t) {
+  return t
+    .replace(/\bcast of f\b/g, 'cast off')
+    .replace(/great d a y\b/g, 'great day')
+    .replace(/\bsalvationa\b/g, 'salvation')
+    .replace(/\bperishb\b/g, 'perish');
+}
+
 const cards = [];
 for (const ch of wcf.chapters) {
   if (covered.has(ch.n)) continue;
@@ -41,7 +53,7 @@ for (const ch of wcf.chapters) {
   cards.push({
     id: `theo-wcf-${String(ch.n).padStart(2, '0')}`,
     q: `What does the Westminster Confession teach in "${ch.title}" (WCF ${ch.n})?`,
-    a: `WCF: ${sec.text}${note}`,
+    a: `WCF: ${fixWcf(sec.text)}${note}`,
     refs: [`WCF ${ch.n}.1`, ...sec.refs.slice(0, 5)],
   });
 }
