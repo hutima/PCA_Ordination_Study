@@ -52,6 +52,8 @@ def clean(t):
     t = re.sub(r'\s+', ' ', FOOTNOTE_RE.sub('', t.replace('&amp;', '&'))).strip()
     # source typo: a duplicated "around" at a line wrap ("around 1000 B.C. around")
     t = re.sub(r'\baround (\d{3,4})\s*B\.C\. around\b', r'around \1 B.C.', t)
+    # dotted-leader runs from the flattened life-of-Christ outline table
+    t = re.sub(r'\s*\.{5,}\s*', ' ', t).strip()
     return t
 
 def is_list_prompt(q):

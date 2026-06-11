@@ -245,7 +245,7 @@
       {
         "id": "bco-032",
         "q": "In what areas must a candidate for ordination be examined?",
-        "a": "1. Experiential religion 7. History of the Presbyterian Church in America\n2. Knowledge of Greek and Hebrew 8. Government and Discipline\n3. English Bible 9. Paper on a Theological subject\n4. Theology10. Paper on Exegesis (using Greek and Hebrew)\n5. Sacraments11. Preach a sermon.\n6. Church history",
+        "a": "1. Experiential religion\n2. Knowledge of Greek and Hebrew\n3. English Bible\n4. Theology\n5. Sacraments\n6. Church history\n7. History of the Presbyterian Church in America\n8. Government and Discipline\n9. Paper on a Theological subject\n10. Paper on Exegesis (using Greek and Hebrew)\n11. Preach a sermon.",
         "refs": []
       },
       {
@@ -368,8 +368,10 @@
       {
         "id": "bco-049",
         "q": "Who is primarily responsible for disciplining non-communing members?",
-        "a": "- Primarily their parents.\n- The spiritual nurture, instruction & training of the children of the church are committed by God primarily to their parents. They are responsible to the church for the faithful discharge of their obligations. It is a prin-cipal duty of the Church to promote true religion in the home. True discipleship involves learning the Word of God under the guidance of the Holy Spirit both at home & in the church. Without learning there is no growth & without growth there is no discipline & without discipline there is sin & iniquity (1Tim 4: 7)28-1",
-        "refs": []
+        "a": "- Primarily their parents.\n- The spiritual nurture, instruction & training of the children of the church are committed by God primarily to their parents. They are responsible to the church for the faithful discharge of their obligations. It is a principal duty of the Church to promote true religion in the home. True discipleship involves learning the Word of God under the guidance of the Holy Spirit both at home & in the church. Without learning there is no growth & without growth there is no discipline & without discipline there is sin & iniquity (1 Tim 4:7) BCO 28-1",
+        "refs": [
+          "BCO 28-1"
+        ]
       },
       {
         "id": "bco-050",
@@ -524,7 +526,7 @@
       {
         "id": "bco-069",
         "q": "What are the proper elements of worship?",
-        "a": "Reading of ScripturePresentation of offerings\nSinging of psalms and hymnsConfession of Faith\nPrayerObserving the Sacraments\nPreaching of the WordOn Special occasions taking oaths.",
+        "a": "- Reading of Scripture\n- Singing of psalms and hymns\n- Prayer\n- Preaching of the Word\n- Presentation of offerings\n- Confession of Faith\n- Observing the Sacraments\n- On special occasions taking oaths",
         "refs": []
       },
       {
@@ -544,7 +546,7 @@
       {
         "id": "bco-072",
         "q": "What vows do parents make at the baptism of their children? (summarize)",
-        "a": "Set before them a godly exampleTeach them the doctrines of true religion\nPray with and for themStrive to bring them up in the admonition of the Lord",
+        "a": "- Set before them a godly example\n- Pray with and for them\n- Teach them the doctrines of true religion\n- Strive to bring them up in the admonition of the Lord",
         "refs": []
       },
       {

@@ -122,12 +122,17 @@ Candidates for the ministry of the Gospel undergo a time of “internship” in 
 2. A congregational meeting must be called for the election of the pastor-BCO 20-3
 3 Elected by the congregation and reports to the congregation.
 32. In what areas must a candidate for ordination be examined?
-1. Experiential religion 7. History of the Presbyterian Church in America
-2. Knowledge of Greek and Hebrew 8. Government and Discipline
-3. English Bible 9. Paper on a Theological subject
-4. Theology10. Paper on Exegesis (using Greek and Hebrew)
-5. Sacraments11. Preach a sermon.
+1. Experiential religion
+2. Knowledge of Greek and Hebrew
+3. English Bible
+4. Theology
+5. Sacraments
 6. Church history
+7. History of the Presbyterian Church in America
+8. Government and Discipline
+9. Paper on a Theological subject
+10. Paper on Exegesis (using Greek and Hebrew)
+11. Preach a sermon.
 33. What vows must he take?
 1. Commitment to the inerrant, infallible Bible.
 2. Submission to the Confession and Catechisms, and to the form of Church government
@@ -195,7 +200,7 @@ c) If the admonition is rejected, then the calling of one or more witnesses (Mat
 d) If rejection persists, then the Church must act through her court unto admonition, suspension, excommunication and deposition (See BCO 29 and 30 for further explanation).
 Steps (a) through (d) must be followed in proper order for the exercise of discipline. “-BCO 27-5
 49. Who is primarily responsible for disciplining non-communing members?• Primarily their parents.
-• The spiritual nurture, instruction &amp; training of the children of the church are committed by God primarily to their parents. They are responsible to the church for the faithful discharge of their obligations. It is a prin-cipal duty of the Church to promote true religion in the home. True discipleship involves learning the Word of God under the guidance of the Holy Spirit both at home &amp; in the church. Without learning there is no growth &amp; without growth there is no discipline &amp; without discipline there is sin &amp; iniquity (1Tim 4: 7)28-1
+• The spiritual nurture, instruction &amp; training of the children of the church are committed by God primarily to their parents. They are responsible to the church for the faithful discharge of their obligations. It is a principal duty of the Church to promote true religion in the home. True discipleship involves learning the Word of God under the guidance of the Holy Spirit both at home &amp; in the church. Without learning there is no growth &amp; without growth there is no discipline &amp; without discipline there is sin &amp; iniquity (1 Tim 4:7) BCO 28-1
 50. List and define church censures: • Admonition: Formal reproof of an offender
 • Suspension from sacraments: the temporary exclusion from those ordinances (indefinite).
 • Suspension from office: exclusion of a church officer from his office (definite or indefinite duration).
@@ -257,17 +262,23 @@ The Scriptures forbid the worshipping of God by images, or in any other way not 
 68. What is the purpose of public worship?1 To glorify God.
 “The end of public worship is the glory of God. His people should engage in all its several parts with an eye single to His glory. Public worship has as its aim the building of Christ ‘s Church by the perfecting of the saints and the addition to its membership of such as are being saved-all to the glory of God. Through public worship on the Lord’s day Christians should learn to serve God all the days of the week in their every activity, remembering, whether they eat or drink. or whatever they do, to do all to the glory of God (1 Corinthians 10:31). “-BCO 47-3
 69. What are the proper elements of worship?
-Reading of ScripturePresentation of offerings
-Singing of psalms and hymnsConfession of Faith
-PrayerObserving the Sacraments
-Preaching of the WordOn Special occasions taking oaths.
+- Reading of Scripture
+- Singing of psalms and hymns
+- Prayer
+- Preaching of the Word
+- Presentation of offerings
+- Confession of Faith
+- Observing the Sacraments
+- On special occasions taking oaths
 70. In brief, how ought we to keep the Lord’s Day?
 By keeping it holy, participating in public and private worship, and resting.
 71. Who is responsible for deciding who preaches in a church?
 The session. “No person should be invited to preach in any of the churches under our care without the consent of The Session “-BCO 53-6
 72. What vows do parents make at the baptism of their children? (summarize)
-Set before them a godly exampleTeach them the doctrines of true religion
-Pray with and for themStrive to bring them up in the admonition of the Lord
+- Set before them a godly example
+- Pray with and for them
+- Teach them the doctrines of true religion
+- Strive to bring them up in the admonition of the Lord
 73. Who admits people to the Lord’s Supper?The Session
 74. What vows are made in a profession of faith? Same vows as those made by communicant members:
 - Acknowledgement of sin &amp; need of salvation in Christ   - Endeavor to live as becomes a believer

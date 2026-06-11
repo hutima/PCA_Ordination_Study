@@ -36,7 +36,7 @@
       {
         "id": "ch-004-methodist-churches",
         "q": "Methodist churches",
-        "a": "Designates several protestant groups has its root in the wok of John and Charles Wesley, sons of an Anglican rector; with friend George Whitefield formed the Holy Club, stressing “inward religion”, the religion of the heart, has a strong ethical view of sanctification, ca. 1725/1729; very evangelistic and rigorously disciplined, active in social concerns, marked by a practical faith Methodists resist strict confessionalism. In America, the first key leader was Francis Asbury and they played a great role in the 2nd Great Awakening in the West. They are typically known for having the same elements of Anglicanism (government, sacraments, etc.) with an evangelical emphasis, teaching on the idea of perfection. Also have influenced dominations like the Nazarenes, who came through the holiness traditions seen in Phoebe Palmer.",
+        "a": "Designates several protestant groups has its root in the work of John and Charles Wesley, sons of an Anglican rector; with friend George Whitefield formed the Holy Club, stressing “inward religion”, the religion of the heart, has a strong ethical view of sanctification, ca. 1725/1729; very evangelistic and rigorously disciplined, active in social concerns, marked by a practical faith Methodists resist strict confessionalism. In America, the first key leader was Francis Asbury and they played a great role in the 2nd Great Awakening in the West. They are typically known for having the same elements of Anglicanism (government, sacraments, etc.) with an evangelical emphasis, teaching on the idea of perfection. Also have influenced denominations like the Nazarenes, who came through the holiness traditions seen in Phoebe Palmer.",
         "refs": []
       },
       {
@@ -230,7 +230,7 @@
       {
         "id": "ch-034-fundamentalism",
         "q": "Fundamentalism",
-        "a": "Conservative response to Modernism taking it’s name from a series of volumes published by conservatives titled “The Fundamentals.” Response ranged from the astute (and Reformed) work of B.B. Warfield re: inspiration and J. Gresham Machen in NT studies to more combative and outright anti-intellectual movements. Produced a series confrontations re: Princeton Seminary in 1929 and the Scopes’s Monkey trial.",
+        "a": "Conservative response to Modernism taking its name from a series of volumes published by conservatives titled “The Fundamentals.” Response ranged from the astute (and Reformed) work of B.B. Warfield re: inspiration and J. Gresham Machen in NT studies to more combative and outright anti-intellectual movements. Produced a series of confrontations re: Princeton Seminary in 1929 and the Scopes’s Monkey trial.",
         "refs": []
       },
       {
@@ -303,7 +303,7 @@
       {
         "id": "ch-045-clement-of-alexandria-155-220-the-ea",
         "q": "Clement of Alexandria (155-220, the East)",
-        "a": "Founder of the School of Alexandria, Africa—c. ; Greek-speaking Egypt; influenced the Eastern region of Xty; eventually Eastern Orthodox; more speculative approach (was distrusted by the West) Sought intelligent orthodoxy Resisted the Gnostic movement in Alexandria/Egypt Fought Docetism (that Jesus only appeared human) Viewed God as impassible, God was beyond emotion, feeling, sympathy, etc.",
+        "a": "Founder of the School of Alexandria, Africa; Greek-speaking Egypt; influenced the Eastern region of Xty; eventually Eastern Orthodox; more speculative approach (was distrusted by the West) Sought intelligent orthodoxy Resisted the Gnostic movement in Alexandria/Egypt Fought Docetism (that Jesus only appeared human) Viewed God as impassible, God was beyond emotion, feeling, sympathy, etc.",
         "refs": []
       },
       {
@@ -543,13 +543,13 @@
       {
         "id": "ch-085-vatican-ii-1962-1965",
         "q": "Vatican II (1962-1965)",
-        "a": "To bring the faith more in tune with the modern world, more pastoral and conciliatory, the need for aggiornamento to bring the church up to date – dogma does not change, but is form and expression must;\nprotestants are seen as separated brethren rather than wicked heretics written products The Church (Ineffabilis Deus, Munificentissimus Deus are reaffirmed) and Divine Revelation",
+        "a": "To bring the faith more in tune with the modern world, more pastoral and conciliatory, the need for aggiornamento to bring the church up to date – dogma does not change, but its form and expression must;\nprotestants are seen as separated brethren rather than wicked heretics.\nWritten products: The Church and Divine Revelation; Ineffabilis Deus and Munificentissimus Deus are reaffirmed",
         "refs": []
       },
       {
         "id": "ch-086-monastic-movements",
         "q": "Monastic Movements",
-        "a": "Antony of Alexandria (251-356) Benedict of Nursia (480-550) Great reformer of Western monasticism 3fold vow—celibacy, poverty, obedience Work and pray; work of God, divine reading, manual work Basil the Great (330-379) Eastern monasticism More focused on serving the community Francis (founded in 1209) Poverty, penance, and preaching. Should serve the world and hear confessions Dominic (1216) Theologians of the middle ages, convert people and condemn heretics Bernard",
+        "a": "- Antony of Alexandria (251-356)\n- Benedict of Nursia (480-550): great reformer of Western monasticism; threefold vow—celibacy, poverty, obedience; work and pray (work of God, divine reading, manual work)\n- Basil the Great (330-379): Eastern monasticism; more focused on serving the community\n- Francis of Assisi (order founded 1209): poverty, penance, and preaching; should serve the world and hear confessions\n- Dominic (1216): theologians of the middle ages; convert people and condemn heretics\n- Bernard of Clairvaux (1090-1153)",
         "refs": []
       }
     ]

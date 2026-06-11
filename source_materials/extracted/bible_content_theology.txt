@@ -8996,8 +8996,8 @@ III. Hot Topics
 
 
         |Creation Theories                                                |
-|Theory      |Description |Understandin|Treatment of|Major       |
-|            |            |g of Time   |"Day"       |Problems    |
+|Theory      |Description |Understanding|Treatment of|Major       |
+|            |            |of Time|"Day"       |Problems    |
 |24-hour day |Views Gen 1 |Most support|24 hours    |-Reconciling|
 |            |as          |"young      |            |with        |
 |            |sequential  |earth"      |            |scientific  |
@@ -9019,16 +9019,16 @@ III. Hot Topics
 |            |            |            |            |-Often an   |
 |            |            |            |            |excuse for  |
 |            |            |            |            |evolution   |
-|Literary    |Views       |Narrative   |Oriented    |-Exodus     |
-|approach    |seven-day   |has nothing |toward      |20:11       |
+|Literary approach|Views       |Narrative   |Oriented    |-Exodus     |
+|            |seven-day   |has nothing |toward      |20:11       |
 |            |sequence as |to say about|Sabbath     |-Difficult  |
 |            |a literary  |time        |theology    |to preclude |
 |            |structure   |            |            |temporality |
 |            |            |            |            |on basis of |
 |            |            |            |            |literary    |
 |            |            |            |            |structure   |
-|Prior       |Suggests    |Most        |24 hours    |-No textual |
-|Creation    |existence of|scientific  |            |support     |
+|Prior Creation|Suggests    |Most        |24 hours    |-No textual |
+|            |existence of|scientific  |            |support     |
 |            |a previous  |ages related|            |-Questions  |
 |            |created     |to prior    |            |of          |
 |            |world prior |creation    |            |continuity  |
@@ -9681,6 +9681,7 @@ III. Hot Topics
 |                                     |Jehoiachin, |597         |
 |                                     |B           |            |
 |                                     |Zedekiah, B |597-586     |
+G = godly king; B = evil king
 
 
 
