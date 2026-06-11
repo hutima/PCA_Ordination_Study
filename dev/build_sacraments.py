@@ -153,10 +153,11 @@ SUMMARIES = {
          "unusual and improper, given the washing/sprinkling imagery of the OT "
          "purification rituals (Heb 9:10, 19-22; cf. 1 Cor 6:9-11)."),
     'sac-025-how-do-the-sacraments-agree-how-are-they':
-        ("Agree: God is the author, Christ the spiritual benefit; sign and seal "
-         "of the same covenant, by a minister of the gospel, until Christ "
-         "returns. Differ: water vs bread and wine; once vs often; "
-         "ingrafting/regeneration vs spiritual nourishment and growth in Christ."),
+        ("- Agree — God is the author, Christ the spiritual benefit; sign and "
+         "seal of the same covenant, by a minister of the gospel, until Christ "
+         "returns\n"
+         "- Differ — water vs bread and wine; once vs often; "
+         "ingrafting/regeneration vs spiritual nourishment and growth in Christ"),
 }
 
 def main():

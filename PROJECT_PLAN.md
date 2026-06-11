@@ -216,6 +216,31 @@ KEEP modules + the HTML shell):**
 
       **Release ritual:** bump `?v=N` in `index.html` AND `CACHE` in `sw.js`
       together so returning users auto-refresh onto the new version.
+- [x] **Phase 15e — Bulleted multi-part teasers.** Release `?v=26`/`pca-v26`.
+      Teasers render as Markdown (`renderAnswer(summarize(card))` + `.qa-summary`
+      list styles): ~25 multi-part authored summaries rewritten as bullet
+      lists (solas, censures, duties, exam areas, attributes, heresies, plan
+      of salvation…), and the derived enumeration path now emits intro +
+      bullets + an italic "(+N more)" instead of a semicolon chain (a short
+      fragment first line joins the bullets rather than posing as an intro).
+- [x] **Phase 15d — Enumeration-teaser sweep.** Release `?v=25`/`pca-v25`.
+      New `ENUM_FIRST_ONLY` audit class: enumeration questions ("What were
+      the solas…?", "List church censures") whose derived teaser expounded
+      only the first part. Ten authored enumerating summaries: the five
+      solas (ch-003), BCO principles of government, member kinds, elder and
+      deacon duties, licentiate/nominee exam areas, censures, Session
+      composition+duties (hand-authored governance file), church attributes
+      (th-118), Presbyterian-government principles (th-122), and the Acts
+      kerygma elements (bc-067).
+- [x] **Phase 15c — Stub-answer sweep.** Release `?v=24`/`pca-v24`. New
+      `STUB_ANSWER` audit class: answers that are dangling cross-references
+      into the source document. Fixed: th-020 days-of-creation ("See chart
+      below" → the creation-theories chart, shared from the hot-topics
+      builder), th-093 theonomy, th-123 women as officers, th-124
+      subscription (all "See below" → real authored answers + summaries);
+      ht-003's "a. See above." prefix stripped (`replace_text` op); two
+      bible-content fronts whose wrapped parenthetical leaked into the
+      answer (bc-050, bc-123) repaired.
 - [x] **Phase 15b — Consistent question-card height.** Release `?v=23`/
       `pca-v23`. Unrevealed review/catechism cards share a fixed min-height
       (270px under 640px, 210px above — covers ~95% of fronts; long

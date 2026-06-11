@@ -119,10 +119,16 @@ html[data-font-family="sans"] {
 
 .qa-reveal-hint { color: var(--muted); font-size: 13px; margin-top: 18px; font-style: italic; }
 
-/* Progressive disclosure: short summary first, full answer behind an expander. */
+/* Progressive disclosure: short summary first, full answer behind an expander.
+   The teaser renders as Markdown so multi-part summaries can be bullet lists. */
 .qa-summary {
   color: var(--cream); font-size: 17px; line-height: 1.55; margin: 2px 0 4px;
 }
+.qa-summary p { margin: 0 0 8px; }
+.qa-summary p:last-child { margin-bottom: 0; }
+.qa-summary ul, .qa-summary ol { margin: 4px 0 8px 22px; }
+.qa-summary li { margin: 4px 0; }
+.qa-summary em { color: var(--muted); font-size: 14px; }
 .qa-full { margin-top: 14px; border-top: 1px solid var(--border); padding-top: 10px; }
 .qa-full > summary {
   cursor: pointer; list-style: none; color: var(--gold-light);

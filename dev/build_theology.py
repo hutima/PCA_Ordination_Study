@@ -16,6 +16,10 @@ Run: python3 dev/build_theology.py
 import re, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from curation import apply_curation
+# The source answers "length of the days of creation" with "See chart below,"
+# pointing at the creation-theories chart that lives in the Hot Topics
+# section — reuse the hand-rebuilt table from that builder.
+from build_hot_topics import CREATION_TABLE
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'source_materials/extracted/bible_content_theology.txt')
@@ -142,6 +146,87 @@ def _nat(letter, q, **kw):
     return d
 
 CURATE = {
+    # Dangling cross-references: the source answers these with "See below"
+    # (pointing at the Hot Topics section of the same document). Give each a
+    # real answer drawn from that section.
+    'th-020-briefly-discuss-the-length-of-the': {
+        'a': ('The five main theories (each is drilled on its own card in the Hot Topics '
+              'deck):\n\n' + CREATION_TABLE),
+        'summary': ('Five main theories: 24-hour day (sequential and literal — most hold a '
+                    '"young earth"), Day-age (each day an era), Literary approach (a '
+                    'framework oriented to Sabbath theology), Prior creation (a created '
+                    'world before Gen 1), and Two-phase (chapters 1 & 2 as two phases with '
+                    'a gap between).'),
+    },
+    'th-093-what-is-theonomy-evaluate-it-bibli': {
+        'a': ('a. Theonomy ("the law of God") is the school of thought also called '
+              'Christian Reconstruction (Rushdoony, Bahnsen, North): it stresses the '
+              'continued normativity not only of the moral law but also of the judicial '
+              'law of Old Testament Israel, including its penal sanctions, and holds that '
+              'the judicial law binds all nations — so that civil government today should '
+              'enforce it.\n'
+              'b. Biblical evaluation:\n'
+              '1. Theonomy overemphasizes the continuity between the Old and New Covenants '
+              'at the expense of their discontinuity.\n'
+              '2. Israel, unlike any modern nation, was God\'s chosen nation in a unique '
+              'way (Deut 7:6); its civil law must be applied today with that uniqueness in '
+              'view.\n'
+              '3. In 1 Corinthians 5:1-13 Paul quotes the Old Testament penal sanction '
+              '"expel the wicked man from among you" (Deut 17:7) — but where the OT '
+              'context called for death by stoning, Paul applies it as excommunication, '
+              'equating the penal sanction of death with being put out of the church.'),
+        'summary': ('Theonomy (Christian Reconstruction: Rushdoony, Bahnsen, North): the OT '
+                    'judicial law and its penal sanctions still bind all nations. Critique: '
+                    'it overstresses covenant continuity — Israel was uniquely God\'s '
+                    'nation (Deut 7:6), and Paul turns a death-penalty text into '
+                    'excommunication (1 Cor 5:13 quoting Deut 17:7).'),
+    },
+    'th-123-may-women-serve-as-officers-in-the': {
+        'a': ('a. No — in the PCA the offices of elder and deacon are open to men only '
+              '(BCO 7-2). Scripture restricts the teaching/ruling office to men in '
+              '1 Timothy 2:8-15 and 1 Corinthians 14:33-36; the former grounds the '
+              'restriction not in culture but in the creation order (Adam was formed '
+              'first) and its usurpation at the fall.\n'
+              'b. Men and women are equal in worth and dignity in the sight of God '
+              '(Gen 1:27): a differentiation of roles does not imply inferiority, as the '
+              'example of the Trinity shows.\n'
+              'c. Positively, women have vital ministries: prophecy (Miriam, Deborah, '
+              'Huldah), teaching (Titus 2:3-4; Col 3:16; Priscilla with Aquila instructing '
+              'Apollos, Acts 18:26), service and diaconal mercy (Phoebe, Rom 16:1-2), '
+              'missions (Junia, Rom 16:7), and labor in the gospel (Rom 16:6, 12; '
+              'Phil 4:2-3).'),
+        'summary': ('No — the offices of elder and deacon are restricted to men '
+                    '(1 Tim 2:8-15, grounded in the creation order; 1 Cor 14:33-36; '
+                    'BCO 7-2). Yet men and women are equal in worth and dignity '
+                    '(Gen 1:27), and women have vital ministries of prophecy, teaching, '
+                    'service, missions, and gospel labor.'),
+    },
+    'th-124-what-is-subscription': {
+        'a': ('a. "Subscription" is receiving and adopting the Confession of Faith and '
+              'Catechisms of the church "as containing the system of doctrine taught in '
+              'the Holy Scriptures" — the second ordination vow (BCO 21-5).\n'
+              'b. Why is there disagreement? The vow does not define how closely one must '
+              'adhere. Four possible views:\n'
+              '1. "Substance of the doctrine" — correct doctrine is contained somewhere in '
+              'the standards (not an acceptable position in the PCA).\n'
+              '2. "Vital to the system" — subscription to the essential and necessary '
+              'articles; presbytery judges whether a stated difference touches them (the '
+              '"loose" view).\n'
+              '3. "Very doctrines of the Word" — no exceptions to the substance of any '
+              'doctrine of the standards (the "strict" view).\n'
+              '4. "Very word of doctrine" — ruled out, since it would set the standards on '
+              'a par with Scripture.\n'
+              'c. The live debate is between views 2 and 3. The PCA practices "good faith" '
+              'subscription (BCO 21-4): the candidate states every difference, and the '
+              'presbytery judges whether each is merely semantic, more than semantic but '
+              'not hostile to the system, or out of accord with a fundamental of the '
+              'system of doctrine.'),
+        'summary': ('Receiving and adopting the Westminster standards "as containing the '
+                    'system of doctrine taught in the Holy Scriptures" (BCO 21-5). Views '
+                    'range from "substance of doctrine" to "very word of doctrine"; the '
+                    'debate is between system subscription ("loose") and full subscription '
+                    '("strict") — the PCA practices "good faith" subscription (BCO 21-4).'),
+    },
     'th-052-how-is-the-covenant-of-grace-relat': {'split': [
         {'at': 'a. The Abrahamic Covenant?',
          'id': 'th-052a-cog-and-abrahamic-covenant',
@@ -178,11 +263,12 @@ CURATE = {
                            'omnipresence, while Grudem denies this.')),
              at='d. Did Christ lay aside any of His divine attributes at the incarnation?'),
         dict(_nat('e', 'Explain and defend against the early Christological heresies: Docetism, Arius, Nestorius, Apollinarius, Eutyches.',
-                  summary=('Docetism: Christ only seemed to be a man (vs John 20:24ff). Arius: the Son a '
-                           'creature, heteroousios (condemned at Nicea, 325). Nestorius: two persons '
-                           '(condemned at Ephesus, 431). Apollinarius: divine Logos in place of a human '
-                           'soul (condemned at Constantinople, 381). Eutyches: one blended nature, '
-                           'monophysitism (condemned at Chalcedon).')),
+                  summary=('- Docetism — Christ only seemed to be a man (vs John 20:24ff)\n'
+                           '- Arius — the Son a creature, heteroousios (condemned at Nicea, 325)\n'
+                           '- Nestorius — two persons (condemned at Ephesus, 431)\n'
+                           '- Apollinarius — divine Logos in place of a human soul (condemned at '
+                           'Constantinople, 381)\n'
+                           '- Eutyches — one blended nature: monophysitism (condemned at Chalcedon)')),
              at='e. Briefly explain and defend against the challenges to orthodox Christology posed by:'),
         dict(_nat('f', 'Are any of the early heresies regarding the natures of Christ held today? If so, by whom?'),
              at='f. Are any of the early heresies regarding the natures of Christ held today? If so, by whom?'),
@@ -258,11 +344,13 @@ CURATE = {
                     'witness (John 14:26; 2 Pet 3:16; 1 Tim 5:18).'),
     },
     'th-014-what-are-the-attributes-of-god-be': {
-        'summary': ('The qualities that constitute God\'s very nature. Communicable: '
-                    'spirituality, knowledge, wisdom, truthfulness, goodness, love, mercy, '
-                    'holiness, righteousness, jealousy, wrath, will, freedom, omnipotence, '
-                    'perfection, blessedness, beauty, glory. Incommunicable: self-existence, '
-                    'eternity, immutability, omnipresence, unity — each with its proof text.'),
+        'summary': ('The qualities that constitute God\'s very nature:\n'
+                    '- Communicable — spirituality, knowledge, wisdom, truthfulness, '
+                    'goodness, love, mercy, holiness, righteousness, jealousy, wrath, '
+                    'will, freedom, omnipotence, perfection, blessedness, beauty, glory\n'
+                    '- Incommunicable — self-existence, eternity, immutability, '
+                    'omnipresence, unity\n'
+                    'Each with its proof text in the full answer.'),
     },
     'th-017-what-is-an-amyraldian-view-of-god': {
         'summary': ('Amyraut (Saumur, 17th century): hypothetical universal predestination — '
@@ -316,12 +404,16 @@ CURATE = {
                     'sanctification → perseverance → glorification (Rom 8:28-30).'),
     },
     'th-057-how-would-you-explain-the-plan-of': {
-        'summary': ('Simple framework: God is holy (Mat 5:48) — all have sinned (Rom 3:23) — '
-                    'sin earns death but God gives life (Rom 6:23) — Christ died for sinners '
-                    '(Rom 5:8) — receive him (John 1:12) — by grace through faith, not works '
-                    '(Eph 2:8-9). For someone without a Judeo-Christian background, start '
-                    'further back: who God is, creation and fall, the gospel, the new life '
-                    'in the Spirit.'),
+        'summary': ('Simple framework:\n'
+                    '- God is holy (Mat 5:48)\n'
+                    '- All have sinned (Rom 3:23)\n'
+                    '- Sin earns death, but God gives life (Rom 6:23)\n'
+                    '- Christ died for sinners (Rom 5:8)\n'
+                    '- Receive him (John 1:12)\n'
+                    '- By grace through faith, not works (Eph 2:8-9)\n'
+                    'For someone without a Judeo-Christian background, start further '
+                    'back: who God is, creation and fall, the gospel, the new life in the '
+                    'Spirit.'),
     },
     'th-062-is-jesus-really-the-only-way-of-sa': {
         'summary': ('Yes — "No one comes to the Father except through me" (John 14:6); '
@@ -351,11 +443,12 @@ CURATE = {
                     'neglecting them is more sinful still.'),
     },
     'th-085-on-what-does-a-believer-s-persever': {
-        'summary': ('Not on the believer\'s free will, but on the immutability of the decree '
-                    'of election flowing from the Father\'s unchangeable love, the efficacy '
-                    'of Christ\'s merit and intercession, the abiding of the Spirit and the '
-                    'seed of God within, and the nature of the covenant of grace (WCF '
-                    'XVII.2; Rom 8:28-30).'),
+        'summary': ('Not on the believer\'s free will (WCF XVII.2; Rom 8:28-30), but on:\n'
+                    '- The immutability of the decree of election, flowing from the '
+                    'Father\'s unchangeable love\n'
+                    '- The efficacy of Christ\'s merit and intercession\n'
+                    '- The abiding of the Spirit and of the seed of God within\n'
+                    '- The nature of the covenant of grace'),
     },
     'th-086-can-a-person-be-sure-he-is-saved-d': {
         'summary': ('Yes — those who truly believe in the Lord Jesus, love him in sincerity, '
@@ -364,11 +457,12 @@ CURATE = {
                     '5:11-12) — unlike the false hopes of hypocrites.'),
     },
     'th-088-how-could-a-person-know-he-is-save': {
-        'summary': ('By an infallible assurance founded on three things (WCF XVIII.2): the '
-                    'divine truth of the promises (Heb 6:17-18), the inward evidence of the '
-                    'graces to which the promises are made (1 John 3:18-20), and the '
-                    'testimony of the Spirit of adoption witnessing with our spirits that we '
-                    'are God\'s children (Eph 1:13-14).'),
+        'summary': ('By an infallible assurance founded on three things (WCF XVIII.2):\n'
+                    '- The divine truth of the promises (Heb 6:17-18)\n'
+                    '- The inward evidence of the graces to which the promises are made '
+                    '(1 John 3:18-20)\n'
+                    '- The testimony of the Spirit of adoption witnessing with our spirits '
+                    'that we are God\'s children (Eph 1:13-14)'),
     },
     'th-098-what-is-christian-liberty-explain': {
         'summary': ('The freedom Christ purchased (WCF XX.1): from the guilt of sin, God\'s '
@@ -384,6 +478,29 @@ CURATE = {
                     'proceeding, not by the parties\' own wills in their own case '
                     '(WCF XXIV.6).'),
     },
+    'th-118-what-are-the-attributes-of-the-chu': {
+        'summary': ('Ascribed primarily to the church as an invisible organism (Berkhof):\n'
+                    '- Unity — through union with Christ (John 17:20-21)\n'
+                    '- Holiness (Eph 1:4)\n'
+                    '- Catholicity (1 Cor 1:2)\n'
+                    'Further marks:\n'
+                    '- Love (John 13:34-35)\n'
+                    '- The presence of Christ by the Spirit (Mat 18:20; Eph 2:22)\n'
+                    '- Apostolicity (Jude 3)'),
+    },
+    'th-122-what-are-the-principles-of-presbyt': {
+        'summary': ('Berkhof:\n'
+                    '- Christ is the Head of the church and the source of all its '
+                    'authority\n'
+                    '- He exercises it by his royal Word\n'
+                    '- He endowed the church with power, exercised through representative '
+                    'organs\n'
+                    '- That power resides primarily in the governing body of the local '
+                    'church\n'
+                    'Add: the regulative principle, the organic unity of the church, '
+                    'parity and plurality of elders, and graded courts (Session, '
+                    'Presbytery, General Assembly).'),
+    },
     'th-119-what-are-the-marks-of-the-church-p': {
         'summary': ('Churches are more or less pure as (WCF XXV.4): the doctrine of the '
                     'gospel is taught and embraced (1 Thes 1:4-8), the sacraments are '
@@ -392,23 +509,29 @@ CURATE = {
                     'corollary (Mat 18:15-20).'),
     },
     'th-121-define-three-basic-forms-of-church': {
-        'summary': ('Episcopalian: government entrusted to bishops as successors of the '
-                    'apostles (archbishop → bishop → rector); the congregation has no share. '
-                    'Presbyterian: elected elders in graded courts — session, presbytery, '
-                    'general assembly. Congregational: each congregation complete and '
-                    'independent (single-pastor-with-deacons or pure independency); wider '
-                    'bodies advisory only.'),
+        'summary': ('- Episcopalian — government entrusted to bishops as successors of '
+                    'the apostles (archbishop → bishop → rector); the congregation has no '
+                    'share\n'
+                    '- Presbyterian — elected elders in graded courts: session, '
+                    'presbytery, general assembly\n'
+                    '- Congregational — each congregation complete and independent '
+                    '(single-pastor-with-deacons or pure independency); wider bodies '
+                    'advisory only'),
     },
     'th-129-what-is-the-purpose-of-church-cens': {
-        'summary': ('Five ends (WCF XXX.3): reclaiming the offending brother; deterring '
-                    'others; purging the leaven from the lump; vindicating the honor of '
-                    'Christ and the gospel; and preventing the wrath of God from falling on '
-                    'a church that lets his covenant seals be profaned.'),
+        'summary': ('Five ends (WCF XXX.3):\n'
+                    '- Reclaiming the offending brother\n'
+                    '- Deterring others from like offenses\n'
+                    '- Purging the leaven from the lump\n'
+                    '- Vindicating the honor of Christ and the gospel\n'
+                    '- Preventing the wrath of God from falling on a church that lets his '
+                    'covenant seals be profaned'),
     },
     'th-131-identify-some-scripture-passages-t': {
-        'summary': ('Procedure: Matthew 18:15-17. Expelling the wicked: 1 Corinthians 5:3-13. '
-                    'Maintaining sound faith: Titus 1:10-14 (rebuke them sharply). '
-                    'Restoration: 2 Corinthians 2:5-11 (forgive and comfort him).'),
+        'summary': ('- Procedure — Matthew 18:15-17\n'
+                    '- Expelling the wicked — 1 Corinthians 5:3-13\n'
+                    '- Maintaining sound faith — Titus 1:10-14 (rebuke them sharply)\n'
+                    '- Restoration — 2 Corinthians 2:5-11 (forgive and comfort him)'),
     },
     'th-132-who-may-properly-call-church-assem': {
         'summary': ('The overseers and rulers of the particular churches, by virtue of their '

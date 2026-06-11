@@ -121,17 +121,23 @@ export function summarize(card, max = 240) {
     s = header.split('|').map(c => c.trim()).filter(Boolean).join(' · ');
   }
   if ((s.endsWith(':') || s.length < 30) && prose.length > 1) {
-    // Bare intro / fragment: append whole following list items; a "(+N more)"
-    // marks items that didn't fit, so the teaser still ends on a whole thought.
+    // Enumeration: render whole items as a bulleted list (the teaser renders
+    // as Markdown). A first line ending in ':' stays as the intro; a short
+    // fragment first line is just the first item and joins the bullets. A
+    // "(+N more)" line marks items that didn't fit, so the teaser still ends
+    // on a whole thought.
+    const isIntro = s.endsWith(':');
     const rest = prose.slice(1).map(stripMarkup).filter(Boolean);
+    const all = isIntro ? rest : [s, ...rest];
     const items = [];
-    for (const item of rest) {
-      if (items.length && `${s} ${items.join('; ')}; ${item}`.length > max) break;
+    for (const item of all) {
+      if (items.length && `${items.join('; ')}; ${item}`.length > max) break;
       items.push(item);
     }
     if (items.length) {
-      const left = rest.length - items.length;
-      s = `${s} ${items.join('; ')}${left > 0 ? ` (+${left} more)` : ''}`;
+      const left = all.length - items.length;
+      const bullets = `${items.map(it => `- ${it}`).join('\n')}${left > 0 ? `\n_(+${left} more)_` : ''}`;
+      s = isIntro ? `${s}\n${bullets}` : bullets;
     }
   } else if (s.length > max) {
     // Keep whole sentences while they fit; always keep the first.
@@ -142,7 +148,7 @@ export function summarize(card, max = 240) {
     }
     s = acc || s;
   }
-  if (s.length > HARD_MAX) {
+  if (!s.includes('\n') && s.length > HARD_MAX) {
     // One enormous sentence: cut at the last clause break that fits.
     const cut = Math.max(s.lastIndexOf('; ', HARD_MAX), s.lastIndexOf(', ', HARD_MAX));
     s = (cut > 60 ? s.slice(0, cut) : s.slice(0, max).replace(/\s+\S*$/, '')) + ' …';

@@ -182,7 +182,7 @@
         "q": "How do the sacraments agree? How are they similar/dissimilar?",
         "a": "|  | Baptism | Lord's Supper |\n|---|---|---|\n| Similar: | Author is God spiritual benefit is Christ sign and seal of same covenant, Romans 11:15-26 by minster of the gospel (Heb. 5:4) continued until second coming |  |\n| Dissimilar: |  |  |\n| Elements | Water | Bread and wine |\n| Frequency | Once | Often |\n| Sign/Seal | ingrafting into Christ, Rom. 6:3 remission of sin, 1 Cor. 6:9-11 adoption, Gal. 3:26-29 outpouring of the Holy Spirit, Ti. 3:4-5 | sets forth Christ's death, 1 Cor. 11:23ff our participating in his death, 1 Cor. 10:14-22 spiritual nourishment, John 6:53-57 unity of believers, 1 Cor. 10:17 |\n| Meaning (WLC) | Regeneration Ingrafting into Christ | Spiritual nourishment Growth in Christ |",
         "refs": [],
-        "summary": "Agree: God is the author, Christ the spiritual benefit; sign and seal of the same covenant, by a minister of the gospel, until Christ returns. Differ: water vs bread and wine; once vs often; ingrafting/regeneration vs spiritual nourishment and growth in Christ."
+        "summary": "- Agree — God is the author, Christ the spiritual benefit; sign and seal of the same covenant, by a minister of the gospel, until Christ returns\n- Differ — water vs bread and wine; once vs often; ingrafting/regeneration vs spiritual nourishment and growth in Christ"
       },
       {
         "id": "sac-026-administration-of-baptism",

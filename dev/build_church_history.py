@@ -191,6 +191,18 @@ Cf. Morton Smith, _How the Gold Became Dim_.
 - **Against the PCUS trends:** women teaching, exhorting, or leading in public assemblies; the social gospel; the "one church movement" (National and World Councils of Churches)."""
 
 CURATE = {
+    # An enumeration question: the teaser must name all the solas, not
+    # expound the first one.
+    'ch-003-what-were-the-solas-of-the-reformati': {
+        'summary': ('- Sola scriptura — Scripture the ultimate authority\n'
+                    '- Sola gratia — salvation entirely of grace, not a cooperative '
+                    'effort\n'
+                    '- Sola fide — grace received through faith alone, not sacraments or '
+                    'works\n'
+                    '- Solus Christus — salvation in Christ alone\n'
+                    '- Soli Deo gloria — God\'s glory above all\n'
+                    '…plus the priesthood of all believers.'),
+    },
     'ch-002-briefly-trace-the-spread-of-christia': {
         'a': SPREAD_TABLE,
         'summary': ('Apostles (to 70) → persecuted Fathers (70-312) → imperial church and '
@@ -212,10 +224,10 @@ CURATE = {
                     'life; held a Melchiorite view of the incarnation.'),
     },
     'ch-025-compare-the-first-and-second-great-a': {
-        'summary': ("1st (c. 1735–43): Calvinist — Frelinghuysen, Tennent, Edwards, "
-                    "Whitefield; \"pure church\" model, end of the Half-Way Covenant. "
-                    "2nd (1795–1830): New Haven/Arminian — Taylor, Beecher, Finney; "
-                    "revivalism, camp meetings, the anxious bench, volunteer societies."),
+        'summary': ("- 1st (c. 1735–43): Calvinist — Frelinghuysen, Tennent, Edwards, "
+                    "Whitefield; \"pure church\" model, end of the Half-Way Covenant\n"
+                    "- 2nd (1795–1830): New Haven/Arminian — Taylor, Beecher, Finney; "
+                    "revivalism, camp meetings, the anxious bench, volunteer societies"),
     },
     'ch-041-justin-martyr': {
         'summary': ('Greek apologist, martyred c. 160 in Rome. Converted while seeking true '
@@ -269,11 +281,13 @@ CURATE = {
     },
     'ch-090-what-are-some-distinctives-of-the-pc': {
         'a': PCA_DISTINCTIVES,
-        'summary': ('A high view of Scripture (verbal plenary inspiration), the spiritual '
-                    'mission of the church (evangelism), a distinctly Reformed and '
-                    'confessional ministry, and limited polity with power to the laity — '
-                    'against the PCUS drift: women leading assemblies, the social gospel, '
-                    'and NCC/WCC ecumenism.'),
+        'summary': ('- A high view of Scripture — verbal plenary inspiration\n'
+                    '- The spiritual mission of the church — evangelism\n'
+                    '- A distinctly Reformed, confessional ministry (Westminster '
+                    'Standards)\n'
+                    '- Limited polity, with power to the laity\n'
+                    '- Against the PCUS drift: women leading assemblies, the social '
+                    'gospel, NCC/WCC ecumenism'),
     },
 }
 
