@@ -31,6 +31,15 @@ html[data-font-family="sans"] {
   -webkit-tap-highlight-color: transparent;
 }
 .qa-card.revealed { background: var(--card-back); }
+/* Question side: a consistent minimum height so the card — and the nav/grade
+   buttons below it — stays put while flipping through questions (95% of
+   fronts fit within it; rare long questions still grow). The tap hint pins
+   to the bottom edge so short questions read as a deliberately sized card. */
+.qa-card:not(.revealed) { min-height: 210px; display: flex; flex-direction: column; }
+.qa-card:not(.revealed) .qa-reveal-hint { margin-top: auto; }
+@media (max-width: 640px) {
+  .qa-card:not(.revealed) { min-height: 270px; }
+}
 .qa-tap-hint { text-align: center; opacity: 0.55; margin-top: 16px; }
 .qa-card::before, .qa-card::after {
   content: ''; position: absolute; width: 26px; height: 26px;

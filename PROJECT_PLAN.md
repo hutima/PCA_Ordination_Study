@@ -216,6 +216,13 @@ KEEP modules + the HTML shell):**
 
       **Release ritual:** bump `?v=N` in `index.html` AND `CACHE` in `sw.js`
       together so returning users auto-refresh onto the new version.
+- [x] **Phase 15b — Consistent question-card height.** Release `?v=23`/
+      `pca-v23`. Unrevealed review/catechism cards share a fixed min-height
+      (270px under 640px, 210px above — covers ~95% of fronts; long
+      questions still grow) with the tap hint flex-pinned to the bottom, so
+      the card and the nav/grade buttons below it stay put while flipping
+      through questions. Verified 60/60 phone and 45/45 desktop cards at
+      identical heights with a single Next-button position.
 - [x] **Phase 15 — Full content audit + selector UX (user-reported).**
       Release `?v=22`/`pca-v22`. A systematic audit (`dev/audit.mjs`) of all
       590 cards against failure classes seen on the phone, fixed via a shared
