@@ -7,7 +7,7 @@
 <meta name="description" content="Spaced-repetition review for PCA licensure and ordination exams — Bible Content, Theology, Sacraments, Church History, and the Book of Church Order.">
 <meta name="theme-color" content="#0e0f14">
 <link rel="icon" href="favicon.svg">
-<link rel="manifest" href="manifest.json?v=9">
+<link rel="manifest" href="manifest.json?v=11">
 
 <!-- Pre-paint: set theme/font/size before first paint to avoid a flash. -->
 <script>
@@ -28,8 +28,8 @@
 })();
 </script>
 
-<link rel="stylesheet" href="styles.css?v=9">
-<link rel="stylesheet" href="css/pca.css?v=9">
+<link rel="stylesheet" href="styles.css?v=11">
+<link rel="stylesheet" href="css/pca.css?v=11">
 </head>
 <body>
 <div class="app">
@@ -56,10 +56,20 @@
     <button class="quick-btn" type="button" id="chooseSubjectBtn">Choose subjects</button>
     <button class="quick-btn quick-primary" type="button" id="startStudyingBtn">Start studying</button>
     <div class="mode-group" role="group" aria-label="Study mode">
-      <button class="mode-btn active" id="modeReviewBtn" type="button" data-mode="review">Review</button>
+      <button class="mode-btn active" id="modeReviewBtn" type="button" data-mode="review" title="Self-check flashcards: recall, reveal, grade yourself">Review</button>
       <button class="mode-btn" id="modeQuizBtn" type="button" data-mode="quiz" title="Multiple-choice quiz on fact-style cards (passages, events, key facts)">Quiz</button>
+      <button class="mode-btn" id="modeBrowseBtn" type="button" data-mode="browse" title="Read a subject as an outline — tap a question to expand the answer">Browse</button>
+      <button class="mode-btn" id="modeExamBtn" type="button" data-mode="exam" title="A timed-style mixed mock exam with a scored summary">Mock exam</button>
     </div>
     <button class="quick-btn" type="button" id="progressBtn">Progress</button>
+  </div>
+
+  <div class="focus-row" id="focusRow" role="group" aria-label="Deck focus">
+    <span class="focus-label">Focus</span>
+    <div class="mode-group">
+      <button class="mode-btn active" id="focusDueBtn" type="button" data-focus="due" title="Cards that are due, soonest first">Due first</button>
+      <button class="mode-btn" id="focusWeakBtn" type="button" data-focus="weak" title="Only cards you've studied and scored under 60%">Weak spots</button>
+    </div>
   </div>
 
   <details class="utility-section">
@@ -86,6 +96,33 @@
       <button class="ctrl-btn" type="button" id="importBtn">Import progress</button>
       <button class="ctrl-btn" type="button" id="resetProgressBtn">Reset progress…</button>
       <input type="file" id="importFile" accept="application/json" style="display:none">
+    </div>
+  </details>
+
+  <details class="utility-section">
+    <summary>Sources &amp; official texts</summary>
+    <div class="sources-body">
+      <p>This app is a study aid. Where the answer quotes a confessional standard
+        it is labeled (e.g. <em>Westminster Shorter Catechism</em>); text marked
+        <em>Study note</em> is the author's gloss — confirm it against the
+        official texts below. Reference chips on each card link out to the source.</p>
+      <ul class="sources-list">
+        <li><strong>Book of Church Order (PCA)</strong> —
+          <a href="https://www.pcaac.org/bco/" target="_blank" rel="noopener noreferrer">official current BCO (pcaac.org)</a> ·
+          <a href="https://www.pcahistory.org/bco/" target="_blank" rel="noopener noreferrer">browsable (pcahistory.org)</a></li>
+        <li><strong>Westminster Confession of Faith</strong> —
+          <a href="https://www.opc.org/wcf.html" target="_blank" rel="noopener noreferrer">with proof texts (opc.org)</a></li>
+        <li><strong>Westminster Larger Catechism</strong> —
+          <a href="https://www.opc.org/lc.html" target="_blank" rel="noopener noreferrer">opc.org</a></li>
+        <li><strong>Westminster Shorter Catechism</strong> —
+          <a href="https://www.opc.org/sc.html" target="_blank" rel="noopener noreferrer">opc.org</a></li>
+        <li><strong>Exam preparation guide</strong> —
+          <a href="https://www.pcabookstore.com/p-1765-preparing-for-licensure-and-or.aspx" target="_blank" rel="noopener noreferrer">Chapell/Meek, <em>Preparing for Licensure &amp; Ordination Exams</em></a> (the standard weekly-schedule companion)</li>
+      </ul>
+      <p class="sources-note">Note on provenance: the Book of Church Order deck was
+        adapted from a third-party 2007 study set and paraphrases the BCO — verify
+        wording and section numbers against the current official BCO. Exams are set
+        per presbytery; there is no standard PCA question bank.</p>
     </div>
   </details>
 
@@ -133,22 +170,22 @@
 </div>
 
 <!-- Subject data (plain defer globals → window.PCA_DATA) -->
-<script defer src="js/data/subjects/bible_content.js?v=9"></script>
-<script defer src="js/data/subjects/bco.js?v=9"></script>
-<script defer src="js/data/subjects/sacraments.js?v=9"></script>
-<script defer src="js/data/subjects/church_history.js?v=9"></script>
-<script defer src="js/data/subjects/hot_topics.js?v=9"></script>
-<script defer src="js/data/subjects/theology.js?v=9"></script>
+<script defer src="js/data/subjects/bible_content.js?v=11"></script>
+<script defer src="js/data/subjects/bco.js?v=11"></script>
+<script defer src="js/data/subjects/sacraments.js?v=11"></script>
+<script defer src="js/data/subjects/church_history.js?v=11"></script>
+<script defer src="js/data/subjects/hot_topics.js?v=11"></script>
+<script defer src="js/data/subjects/theology.js?v=11"></script>
 
 <!-- Hand-authored quiz bank (defer globals → window.PCA_QUIZ) -->
-<script defer src="js/data/quiz/bible_content.js?v=9"></script>
-<script defer src="js/data/quiz/bco.js?v=9"></script>
-<script defer src="js/data/quiz/sacraments.js?v=9"></script>
-<script defer src="js/data/quiz/church_history.js?v=9"></script>
-<script defer src="js/data/quiz/theology.js?v=9"></script>
-<script defer src="js/data/quiz/hot_topics.js?v=9"></script>
+<script defer src="js/data/quiz/bible_content.js?v=11"></script>
+<script defer src="js/data/quiz/bco.js?v=11"></script>
+<script defer src="js/data/quiz/sacraments.js?v=11"></script>
+<script defer src="js/data/quiz/church_history.js?v=11"></script>
+<script defer src="js/data/quiz/theology.js?v=11"></script>
+<script defer src="js/data/quiz/hot_topics.js?v=11"></script>
 
 <!-- Entry point -->
-<script type="module" src="js/app/pca.js?v=9"></script>
+<script type="module" src="js/app/pca.js?v=11"></script>
 </body>
 </html>

@@ -4,6 +4,34 @@
 import { readdirSync } from 'node:fs';
 import { renderMarkdown } from '../js/utils/markdown.js';
 
+// ── MCQ fairness: the correct option must not give itself away by length ──
+// Flags a question when the correct choice is the unique longest (or shortest)
+// AND is a clear outlier vs the other choices, by both ratio and absolute gap.
+// Length-balanced choices are the goal so a guesser can't pick by shape alone.
+function medianLen(arr) {
+  const s = arr.slice().sort((a, b) => a - b);
+  const m = Math.floor(s.length / 2);
+  return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
+}
+function choiceGiveaway(choices, answerIndex) {
+  if (!Array.isArray(choices) || choices.length < 3) return null;
+  const lens = choices.map(c => String(c).length);
+  const correct = lens[answerIndex];
+  const others = lens.filter((_, i) => i !== answerIndex);
+  const med = medianLen(others);
+  const maxOther = Math.max(...others);
+  const minOther = Math.min(...others);
+  const uniqueMax = correct === Math.max(...lens) && lens.filter(l => l === correct).length === 1;
+  const uniqueMin = correct === Math.min(...lens) && lens.filter(l => l === correct).length === 1;
+  if (uniqueMax && correct > med * 1.6 && correct - maxOther >= 12) {
+    return `correct option is the longest by a wide margin (${correct} vs others ≤${maxOther}, median ${med})`;
+  }
+  if (uniqueMin && correct < med * 0.6 && minOther - correct >= 8) {
+    return `correct option is the shortest by a wide margin (${correct} vs others ≥${minOther}, median ${med})`;
+  }
+  return null;
+}
+
 const SUBJECT_DIR = new URL('../js/data/subjects/', import.meta.url);
 const files = readdirSync(SUBJECT_DIR).filter(f => f.endsWith('.js'));
 
@@ -37,6 +65,8 @@ for (const subject of data.subjects) {
       if (c.quiz) {
         if (!Array.isArray(c.quiz.choices) || c.quiz.choices.length < 2) { console.error(`FAIL ${c.id}: quiz needs >=2 choices`); problems++; }
         if (typeof c.quiz.answerIndex !== 'number' || c.quiz.answerIndex < 0 || c.quiz.answerIndex >= (c.quiz.choices?.length || 0)) { console.error(`FAIL ${c.id}: bad quiz answerIndex`); problems++; }
+        const g = choiceGiveaway(c.quiz.choices, c.quiz.answerIndex);
+        if (g) { console.error(`FAIL ${c.id}: ${g}`); problems++; }
       }
     }
   }
@@ -64,6 +94,8 @@ for (const q of bank) {
   if (!Array.isArray(q.choices) || q.choices.length < 2) { console.error(`FAIL ${q.id}: needs >=2 choices`); quizProblems++; }
   if (new Set(q.choices).size !== q.choices.length) { console.error(`FAIL ${q.id}: duplicate choices`); quizProblems++; }
   if (typeof q.answerIndex !== 'number' || q.answerIndex < 0 || q.answerIndex >= (q.choices?.length || 0)) { console.error(`FAIL ${q.id}: bad answerIndex`); quizProblems++; }
+  const g = choiceGiveaway(q.choices, q.answerIndex);
+  if (g) { console.error(`FAIL ${q.id}: ${g}`); quizProblems++; }
 }
 console.log('\nQuiz bank:');
 for (const id of [...subjectIds]) if (bySubject[id]) console.log(`  ${id.padEnd(14)} ${String(bySubject[id]).padStart(3)} questions`);

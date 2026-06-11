@@ -85,6 +85,22 @@ html[data-font-family="sans"] {
 
 .qa-reveal-hint { color: var(--muted); font-size: 13px; margin-top: 18px; font-style: italic; }
 
+/* Progressive disclosure: short summary first, full answer behind an expander. */
+.qa-summary {
+  color: var(--cream); font-size: 17px; line-height: 1.55; margin: 2px 0 4px;
+}
+.qa-full { margin-top: 14px; border-top: 1px solid var(--border); padding-top: 10px; }
+.qa-full > summary {
+  cursor: pointer; list-style: none; color: var(--gold-light);
+  font-family: var(--font-display); font-size: 13px; letter-spacing: 0.5px;
+  padding: 4px 0; user-select: none; display: inline-flex; align-items: center; gap: 6px;
+}
+.qa-full > summary::-webkit-details-marker { display: none; }
+.qa-full > summary::before { content: '▸'; color: var(--gold-dim); transition: transform .12s; }
+.qa-full[open] > summary::before { content: '▾'; }
+.qa-full > summary:hover { color: var(--gold); }
+.qa-full .qa-answer { margin-top: 10px; }
+
 /* ── Subject / sub-deck selector grids ────────────────────────────────── */
 .pca-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin: 12px 0 20px; }
 .pca-tile {
@@ -134,3 +150,118 @@ html[data-font-family="sans"] {
 }
 /* The selector's sub-deck grid can be long — keep it scannable. */
 #subdeckGrid { max-height: 38vh; overflow-y: auto; }
+
+/* ── Focus toggle (Due / Weak) ────────────────────────────────────────── */
+.focus-row {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  margin: -6px 0 8px;
+}
+.focus-label {
+  font-family: var(--font-display); font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold-dim);
+}
+
+/* ── Provenance callouts in answers ───────────────────────────────────── */
+.qa-callout {
+  margin: 12px 0; padding: 10px 14px 4px; border-radius: 0 8px 8px 0;
+  border-left: 3px solid var(--gold-dim);
+}
+.qa-callout p:last-child, .qa-callout ul:last-child, .qa-callout ol:last-child { margin-bottom: 8px; }
+.qa-prov-label {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.5px;
+  text-transform: uppercase; margin-bottom: 6px;
+}
+.qa-standard { background: rgba(201,168,76,0.07); border-left-color: var(--gold); }
+.qa-standard .qa-prov-label { color: var(--gold-light); }
+.qa-attribution { background: rgba(255,255,255,0.03); }
+.qa-attribution .qa-prov-label { color: var(--gold-dim); }
+.qa-note {
+  background: rgba(255,255,255,0.025); border-left-color: var(--muted);
+  border-left-style: dashed;
+}
+.qa-note .qa-prov-label { color: var(--muted); }
+.qa-note, .qa-note p { color: var(--muted); }
+
+/* Linked reference chips. */
+a.qa-ref-chip { text-decoration: none; transition: background .12s, border-color .12s; }
+a.qa-ref-chip:hover { background: rgba(201,168,76,0.20); border-color: var(--gold); }
+
+/* ── Browse / outline mode ────────────────────────────────────────────── */
+.browse-controls { display: flex; gap: 8px; justify-content: flex-end; max-width: 760px; margin: 0 auto 14px; }
+.browse-group { max-width: 760px; margin: 0 auto 18px; }
+.browse-group-title {
+  font-family: var(--font-display); font-size: 12px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold-dim); margin: 0 0 8px;
+}
+.browse-item {
+  border: 1px solid var(--border); border-radius: 10px; background: var(--surface);
+  margin-bottom: 8px; overflow: hidden;
+}
+.browse-item summary {
+  cursor: pointer; padding: 12px 16px; list-style: none;
+  font-family: var(--font-display); font-size: 16px; line-height: 1.4; color: var(--cream);
+  position: relative; padding-right: 36px;
+}
+.browse-item summary::-webkit-details-marker { display: none; }
+.browse-item summary::after {
+  content: '+'; position: absolute; right: 16px; top: 11px;
+  color: var(--gold-dim); font-size: 18px;
+}
+.browse-item[open] summary::after { content: '–'; }
+.browse-item[open] summary { border-bottom: 1px solid var(--border); }
+.browse-item:hover { border-color: var(--gold-dim); }
+.browse-a { padding: 14px 16px; color: var(--cream); font-size: 15px; line-height: 1.6; }
+.browse-a p { margin: 0 0 10px; }
+.browse-a ul, .browse-a ol { margin: 0 0 10px 22px; }
+.browse-a strong { color: var(--gold-light); }
+.browse-a table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 14px; }
+.browse-a th, .browse-a td { border: 1px solid var(--border); padding: 7px 10px; text-align: left; vertical-align: top; }
+.browse-a th { background: rgba(201,168,76,0.08); color: var(--gold-light); }
+.browse-a blockquote {
+  margin: 10px 0; padding: 8px 14px; border-left: 3px solid var(--gold-dim);
+  background: rgba(201,168,76,0.06); font-style: italic; border-radius: 0 6px 6px 0;
+}
+
+/* ── Mock exam results ────────────────────────────────────────────────── */
+.exam-results .exam-score {
+  font-family: var(--font-display); font-size: 38px; color: var(--gold-light);
+  text-align: center; margin: 6px 0 18px;
+}
+.exam-results .exam-score-pct { font-size: 20px; color: var(--muted); margin-left: 8px; }
+
+/* ── Progress overlay: hero, forecast, mastery bars, heatmap ──────────── */
+.prog-hero { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 4px 0 18px; }
+.prog-stat {
+  text-align: center; padding: 12px 6px; border: 1px solid var(--border);
+  border-radius: 10px; background: var(--surface);
+}
+.prog-stat-num { font-family: var(--font-display); font-size: 26px; color: var(--gold-light); line-height: 1.1; }
+.prog-stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+.prog-section-title {
+  font-family: var(--font-display); font-size: 12px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold-dim); margin: 18px 0 8px;
+}
+.prog-forecast { display: flex; flex-wrap: wrap; gap: 14px; color: var(--muted); font-size: 14px; }
+.prog-forecast strong { color: var(--gold-light); font-family: var(--font-display); }
+
+.mastery-row { margin-bottom: 10px; }
+.mastery-head { display: flex; justify-content: space-between; font-size: 14px; color: var(--cream); margin-bottom: 4px; }
+.mastery-meta { color: var(--muted); font-size: 12px; }
+.mastery-bar { height: 8px; background: rgba(255,255,255,0.06); border-radius: 999px; overflow: hidden; }
+.mastery-fill { height: 100%; background: linear-gradient(90deg, var(--gold-dim), var(--gold)); border-radius: 999px; }
+
+.heatmap { display: flex; gap: 3px; overflow-x: auto; padding-bottom: 4px; }
+.hm-col { display: flex; flex-direction: column; gap: 3px; }
+.hm-cell { width: 11px; height: 11px; border-radius: 2px; background: rgba(255,255,255,0.05); }
+.hm-l1 { background: rgba(201,168,76,0.30); }
+.hm-l2 { background: rgba(201,168,76,0.50); }
+.hm-l3 { background: rgba(201,168,76,0.72); }
+.hm-l4 { background: var(--gold); }
+
+/* ── Sources & official texts panel ───────────────────────────────────── */
+.sources-body { font-size: 14px; line-height: 1.6; color: var(--cream); }
+.sources-body p { margin: 0 0 12px; }
+.sources-list { margin: 0 0 12px 18px; }
+.sources-list li { margin: 6px 0; }
+.sources-list a { color: var(--gold-light); }
+.sources-note { color: var(--muted); font-size: 13px; font-style: italic; }

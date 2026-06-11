@@ -5,7 +5,7 @@
 // install a fresh worker, which the page promotes immediately (see the
 // registration block in js/app/pca.js) so users auto-refresh onto the new
 // version without a manual reload.
-const CACHE = 'pca-v9';
+const CACHE = 'pca-v11';
 
 const PRECACHE = [
   './',
@@ -15,7 +15,16 @@ const PRECACHE = [
   'styles.css',
   'css/pca.css',
   'js/app/pca.js',
+  'js/app/store.js',
+  'js/app/content.js',
+  'js/app/quiz.js',
+  'js/app/answer.js',
+  'js/app/refs.js',
+  'js/app/srs.js',
+  'js/app/modes.js',
+  'js/app/progress.js',
   'js/utils/markdown.js',
+  'js/utils/text.js',
   'js/utils/helpers.js',
   'js/domain/srs/constants.js',
   'js/domain/srs/scheduler.js',
@@ -38,8 +47,12 @@ const PRECACHE = [
 ];
 
 self.addEventListener('install', (event) => {
+  // cache: 'reload' bypasses the HTTP cache so a new worker never precaches
+  // stale copies of assets the browser had cached from the previous release.
   event.waitUntil(
-    caches.open(CACHE).then((cache) => cache.addAll(PRECACHE)).catch(() => {})
+    caches.open(CACHE)
+      .then((cache) => cache.addAll(PRECACHE.map((u) => new Request(u, { cache: 'reload' }))))
+      .catch(() => {})
   );
 });
 
