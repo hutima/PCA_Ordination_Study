@@ -188,7 +188,7 @@ export function createModes(ctx) {
           ${feedback}
         </div>
         <div class="nav-row">
-          <button class="nav-btn" id="examNextBtn" type="button" ${q.picked >= 0 ? '' : 'disabled'}>${last ? 'See results ›' : 'Next ›'}</button>
+          <button class="nav-btn nav-next" id="examNextBtn" type="button" ${q.picked >= 0 ? '' : 'disabled'}>${last ? 'See results ›' : 'Next ›'}</button>
         </div>`;
       setDeckMeta(`Mock exam — question <strong>${ex.pos + 1}</strong> of <strong>${ex.cards.length}</strong>`);
       area.querySelectorAll('.quiz-choice').forEach(btn =>
@@ -227,7 +227,7 @@ export function createModes(ctx) {
         ${subHtml}
         ${missedHtml}
         <div class="nav-row" style="margin-top:18px">
-          <button class="nav-btn" id="examRetakeBtn" type="button">Take another ›</button>
+          <button class="nav-btn nav-next" id="examRetakeBtn" type="button">Take another ›</button>
         </div>
       </div>`;
     area.querySelector('#examRetakeBtn').addEventListener('click', () => { exam.start(); rerender(); });
@@ -303,7 +303,7 @@ export function createModes(ctx) {
           <div id="catBody"></div>
           <div class="nav-row">
             <button class="nav-btn nav-prev" id="catPrevBtn" type="button">‹ Prev</button>
-            <button class="nav-btn" id="catNextBtn" type="button">Next ›</button>
+            <button class="nav-btn nav-next" id="catNextBtn" type="button">Next ›</button>
           </div>
           <div class="cat-source" id="catSource"></div>`;
         area.querySelector('#catSelect').addEventListener('change', (e) => catechism.setCat(e.target.value));

@@ -106,7 +106,7 @@ function emptyState(html) { return `<div class="empty-state"><p>${html}</p></div
 function navRowHtml() {
   return `<div class="nav-row">
       <button class="nav-btn nav-prev" id="prevBtn" type="button">‹ Prev</button>
-      <button class="nav-btn" id="nextBtn" type="button">Next ›</button>
+      <button class="nav-btn nav-next" id="nextBtn" type="button">Next ›</button>
     </div>`;
 }
 function wireNav() {

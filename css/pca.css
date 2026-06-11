@@ -286,3 +286,21 @@ a.qa-ref-chip:hover { background: rgba(201,168,76,0.20); border-color: var(--gol
 .sources-list li { margin: 6px 0; }
 .sources-list a { color: var(--gold-light); }
 .sources-note { color: var(--muted); font-size: 13px; font-style: italic; }
+
+/* ── Light theme overrides ────────────────────────────────────────────────
+   The colors above are tuned for the dark theme; a handful are hard-coded
+   (pale green/red text, white-tint backgrounds) and need darker equivalents
+   on the cream background. Everything else inherits via the CSS variables
+   that styles.css already swaps per theme. */
+html[data-theme="light"] .quiz-choice.correct { color: #2e6b40; background: rgba(63,111,79,0.10); }
+html[data-theme="light"] .quiz-choice.wrong { color: #9c3535; background: rgba(140,58,58,0.08); }
+html[data-theme="light"] .quiz-feedback.correct { color: #3a6a4a; }
+html[data-theme="light"] .quiz-feedback.wrong { color: #9c3535; }
+/* White-tint fills are invisible on cream — use a warm dark tint instead. */
+html[data-theme="light"] .qa-answer code { background: rgba(82,62,24,0.07); }
+html[data-theme="light"] .qa-attribution { background: rgba(82,62,24,0.04); }
+html[data-theme="light"] .mastery-bar { background: rgba(82,62,24,0.12); }
+html[data-theme="light"] .hm-cell { background: rgba(82,62,24,0.08); }
+html[data-theme="light"] .hm-l1 { background: rgba(142,108,30,0.28); }
+html[data-theme="light"] .hm-l2 { background: rgba(142,108,30,0.48); }
+html[data-theme="light"] .hm-l3 { background: rgba(142,108,30,0.70); }
