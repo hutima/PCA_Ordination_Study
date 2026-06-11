@@ -289,10 +289,37 @@ export function createModes(ctx) {
       const cat = CATECHISMS[catState.cat];
       const items = cat.items;
       const item = items[Math.min(catState.n, items.length) - 1];
-      const catOptions = Object.values(CATECHISMS).map(c =>
-        `<option value="${c.id}" ${c.id === catState.cat ? 'selected' : ''}>${escapeHtml(c.label)}</option>`).join('');
-      const qOptions = items.map(it =>
-        `<option value="${it.n}" ${it.n === item.n ? 'selected' : ''}>Q${it.n}. ${escapeHtml(it.q.slice(0, 60))}${it.q.length > 60 ? '…' : ''}</option>`).join('');
+      // The dropdowns and nav buttons mount once and survive re-renders; only
+      // the card body is rebuilt per question. Recreating a <select> while its
+      // native popup is open (e.g. open a dropdown, then hit Next) orphans the
+      // popup — it stays painted over the page and can never close.
+      if (!area.querySelector('#catSelect')) {
+        area.innerHTML = `
+          <div class="cat-controls">
+            <select id="catSelect" aria-label="Catechism">${Object.values(CATECHISMS).map(c =>
+              `<option value="${c.id}">${escapeHtml(c.label)}</option>`).join('')}</select>
+            <select id="catQSelect" aria-label="Question"></select>
+          </div>
+          <div id="catBody"></div>
+          <div class="nav-row">
+            <button class="nav-btn nav-prev" id="catPrevBtn" type="button">‹ Prev</button>
+            <button class="nav-btn" id="catNextBtn" type="button">Next ›</button>
+          </div>
+          <div class="cat-source" id="catSource"></div>`;
+        area.querySelector('#catSelect').addEventListener('change', (e) => catechism.setCat(e.target.value));
+        area.querySelector('#catQSelect').addEventListener('change', (e) => catechism.go(Number(e.target.value)));
+        area.querySelector('#catPrevBtn').addEventListener('click', () => catechism.go(catState.n - 1));
+        area.querySelector('#catNextBtn').addEventListener('click', () => catechism.go(catState.n + 1));
+      }
+      const catSel = area.querySelector('#catSelect');
+      const qSel = area.querySelector('#catQSelect');
+      if (qSel.dataset.cat !== catState.cat) {
+        qSel.innerHTML = items.map(it =>
+          `<option value="${it.n}">Q${it.n}. ${escapeHtml(it.q.slice(0, 60))}${it.q.length > 60 ? '…' : ''}</option>`).join('');
+        qSel.dataset.cat = catState.cat;
+      }
+      catSel.value = catState.cat;
+      qSel.value = String(item.n);
       const paraphrase = cat.verbatim === false;
       const proofs = (item.refs && item.refs.length)
         ? `<details class="qa-full"><summary class="qa-full-toggle">${paraphrase ? 'References' : 'Scripture proofs'} (${item.refs.length})</summary>
@@ -310,26 +337,14 @@ export function createModes(ctx) {
            ${proofs}
            <div class="qa-reveal-hint qa-tap-hint">Tap card to hide</div>`
         : `<div class="qa-reveal-hint qa-tap-hint">Tap card to reveal the answer</div>`;
-      area.innerHTML = `
-        <div class="cat-controls">
-          <select id="catSelect" aria-label="Catechism">${catOptions}</select>
-          <select id="catQSelect" aria-label="Question">${qOptions}</select>
-        </div>
+      area.querySelector('#catBody').innerHTML = `
         <div class="qa-card ${catState.revealed ? 'revealed' : ''}" id="catCard" role="button" tabindex="0" aria-pressed="${catState.revealed}">
           <div class="qa-deck-label">${escapeHtml(cat.short)} · Question ${item.n} of ${items.length}</div>
           <div class="qa-question">${escapeHtml(item.q)}</div>
           ${answerBlock}
-        </div>
-        <div class="nav-row">
-          <button class="nav-btn nav-prev" id="catPrevBtn" type="button">‹ Prev</button>
-          <button class="nav-btn" id="catNextBtn" type="button">Next ›</button>
-        </div>
-        <div class="cat-source">${escapeHtml(cat.source)}</div>`;
+        </div>`;
+      area.querySelector('#catSource').textContent = cat.source;
       setDeckMeta(`<strong>${escapeHtml(cat.label)}</strong> · ${items.length} questions`);
-      area.querySelector('#catSelect').addEventListener('change', (e) => catechism.setCat(e.target.value));
-      area.querySelector('#catQSelect').addEventListener('change', (e) => catechism.go(Number(e.target.value)));
-      area.querySelector('#catPrevBtn').addEventListener('click', () => catechism.go(catState.n - 1));
-      area.querySelector('#catNextBtn').addEventListener('click', () => catechism.go(catState.n + 1));
       area.querySelector('#catCard').addEventListener('click', (e) => {
         if (e.target.closest('a, select, button, summary, details')) return;
         if (typeof getSelection === 'function' && String(getSelection()).length) return;
