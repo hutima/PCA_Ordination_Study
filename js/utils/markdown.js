@@ -98,15 +98,35 @@ export function renderMarkdown(src) {
       continue;
     }
 
-    // Unordered list.
+    // Unordered list. One nesting level: an item indented 2+ spaces deeper
+    // than the list's shallowest item renders as a sub-list of the item above.
     if (BULLET_RE.test(line)) {
       flushParagraph(paragraph);
       const items = [];
       while (i < lines.length && BULLET_RE.test(lines[i])) {
-        items.push(lines[i].match(BULLET_RE)[1]);
+        const m = lines[i].match(/^(\s*)-\s+(.*)$/);
+        items.push({ indent: m[1].length, text: m[2] });
         i++;
       }
-      html.push('<ul>' + items.map(it => `<li>${renderInline(escapeHtml(it))}</li>`).join('') + '</ul>');
+      const base = Math.min(...items.map(it => it.indent));
+      let t = '<ul>';
+      let liOpen = false;
+      let subOpen = false;
+      for (const it of items) {
+        const li = `<li>${renderInline(escapeHtml(it.text))}`;
+        if (it.indent >= base + 2 && liOpen) {
+          if (!subOpen) { t += '<ul>'; subOpen = true; }
+          t += li + '</li>';
+        } else {
+          if (subOpen) { t += '</ul>'; subOpen = false; }
+          if (liOpen) t += '</li>';
+          t += li;
+          liOpen = true;
+        }
+      }
+      if (subOpen) t += '</ul>';
+      if (liOpen) t += '</li>';
+      html.push(t + '</ul>');
       continue;
     }
 

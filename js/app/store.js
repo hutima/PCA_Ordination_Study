@@ -13,7 +13,7 @@ export const ACTIVITY_KEY = 'pca_activity_v1';
 
 export const state = {
   mode: 'review',          // see modes.js registry for valid ids
-  focus: 'due',            // 'due' (default deck) | 'weak' (low-confidence only)
+  focus: 'due',            // 'due' (default) | 'weak' (low-confidence) | 'order' (unspaced book order)
   selected: new Set(),     // selected set keys
   deck: [],                // ordered array of card objects for this session
   pos: 0,

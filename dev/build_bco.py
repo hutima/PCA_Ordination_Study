@@ -108,17 +108,27 @@ def parse():
     return cards
 
 def split_inline_answer(q, a):
-    """When the answer landed empty, peel it off the question line."""
-    if a.strip():
-        return q, a
+    """Peel answer text that ran onto the question line — after the '?', a
+    bullet run, or (when the answer is otherwise empty) a ':'. Parenthetical
+    asides like '(BCO 15-1)' or '(summarize)' stay on the question."""
+    head, tail = q, ''
     if '?' in q:
-        i = q.index('?'); head, tail = q[:i+1], q[i+1:].strip()
-        if tail: return head, tail
-        return head, a
-    if ':' in q:
-        i = q.index(':'); head, tail = q[:i+1], q[i+1:].strip()
-        if tail: return head, tail
-    return q, a
+        i = q.index('?')
+        head, tail = q[:i+1], q[i+1:].strip()
+        pm = re.match(r'(\([^)]*\))\s*(.*)$', tail)
+        if pm:
+            head, tail = head + ' ' + pm.group(1), pm.group(2).strip()
+    elif '•' in q:
+        i = q.index('•')
+        head, tail = q[:i].strip(), q[i:].strip()
+    elif not a.strip() and ':' in q:
+        i = q.index(':')
+        head, tail = q[:i+1], q[i+1:].strip()
+    if tail:
+        # inline "• x • y" runs become one bullet line each
+        tail = re.sub(r'\s*•\s*', '\n• ', tail).lstrip('\n')
+        a = tail + ('\n' + a if a.strip() else '')
+    return head, a
 
 def main():
     raw_cards = parse()
