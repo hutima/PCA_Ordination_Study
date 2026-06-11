@@ -10,7 +10,7 @@ Two card patterns:
 
 Run: python3 dev/build_church_history.py
 """
-import re, json, os
+import re, json, os, html
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'source_materials/extracted/church_history.txt')
@@ -47,7 +47,9 @@ def blocks_of(text):
     return blocks
 
 def clean(t):
-    return re.sub(r'\s+', ' ', t.replace('&amp;', '&')).strip()
+    # html.unescape decodes leftover HTML entities from the source extraction
+    # (&quot; → ", &#39; → ', &amp; → &) that otherwise render literally.
+    return re.sub(r'\s+', ' ', html.unescape(t)).strip()
 
 def norm_para(lines):
     """Join wrapped lines into paragraphs; keep list markers separate."""

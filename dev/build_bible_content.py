@@ -21,7 +21,7 @@ SUBSEC_RE = re.compile(r'^\s{4,16}(\d+)\s+((?:Old|New) Testament:.*|Whole Bible)
 QUESTION_RE = re.compile(r'^\s{3,7}([1-9]\d?)\.\s+(.*)$')   # not zero-padded
 LETTER_RE = re.compile(r'^\s{6,9}([a-z])\.\s+(.*)$')
 NUM_SUB_RE = re.compile(r'^\s{8,}(0\d|\d{2})\.\s+(.*)$')     # 0/2-padded (e.g. "01. OT")
-ROMAN_RE = re.compile(r'^\s{10,}(i{1,3}|iv|v|vi{0,3}|ix|x)\.\s+(.*)$', re.I)
+ROMAN_RE = re.compile(r'^\s{10,}(xx|xix|xvi{0,3}|xv|xiv|xi{0,3}|ix|iv|vi{0,3}|v|i{1,3})\.\s+(.*)$', re.I)
 # Word-export bullet debris: level-1 bullets came through as ".", level-2
 # (Wingdings circles) as a bare "o". Convert to Markdown list items instead of
 # letting the reflow run them into the surrounding prose.
@@ -257,22 +257,40 @@ def render_item_body(lines):
         mr = ROMAN_RE.match(ln)
         if mn:
             label = clean(mn.group(2))
-            # gather following roman/prose as the label's text
+            # Gather the label's following lines. `text` is the old inline form
+            # (roman markers dropped); `romans`/`lead` split the same lines into
+            # roman sub-items vs. the non-roman remainder for the list form.
             i += 1
             text = ''
+            lead = ''
+            romans = []
             while i < len(lines) and lines[i].strip() and not NUM_SUB_RE.match(lines[i]) \
                     and not BULLET_SRC_RE.match(lines[i]):
                 mr2 = ROMAN_RE.match(lines[i])
                 seg = mr2.group(2) if mr2 else lines[i].strip()
                 text += (' ' if text else '') + seg.strip()
+                if mr2:
+                    romans.append(clean(mr2.group(2)))
+                elif romans:
+                    romans[-1] = clean(romans[-1] + ' ' + lines[i].strip())
+                else:
+                    lead += (' ' if lead else '') + lines[i].strip()
                 i += 1
+            # Two or more roman sub-items are a real enumeration ("name them") and
+            # render as a Markdown bullet list instead of being run together
+            # ("Simon Peter Andrew James …"); a lone roman item is just the
+            # label's discussion prose, so keep it inline as before.
+            listed = len(romans) >= 2
+            body = clean(lead) if listed else clean(text)
             if len(label) <= 6:
                 # short label ("OT", "NT") → bold lead before the body text
-                out.append((f'**{label}.** ' + clean(text)).strip())
+                out.append((f'**{label}.** ' + body).strip())
             else:
                 # full-prose first line — keep it (it is the start of the
                 # answer, e.g. "A prophetess who was the only female judge…")
-                out.append(clean(label + (' ' + text if text else '')))
+                out.append(clean(label + (' ' + body if body else '')))
+            if listed:
+                out.append('\n'.join(f'- {r}' for r in romans))
         elif mr:
             out.append(clean(mr.group(2))); i += 1
         elif BULLET_SRC_RE.match(ln):
@@ -311,10 +329,27 @@ def collect_answer(region, i):
                 text += ' ' + region[i].strip(); i += 1
             out.append(f'{ml.group(1)}. {clean(text)}')
         elif mn:
-            text = mn.group(2); i += 1
+            first = mn.group(2); i += 1
+            lead = ''; romans = []
             while i < len(region) and region[i].strip() and not boundary(region[i]):
-                text += ' ' + region[i].strip(); i += 1
-            out.append(f'{int(mn.group(1))}. {clean(text)}')
+                mr = ROMAN_RE.match(region[i])
+                if mr:
+                    romans.append(clean(mr.group(2)))
+                elif romans:
+                    romans[-1] = clean(romans[-1] + ' ' + region[i].strip())
+                else:
+                    lead += (' ' if lead else '') + region[i].strip()
+                i += 1
+            head = f'{first} {lead}'.strip() if lead else first
+            # Two or more roman sub-items become a bullet list rather than being
+            # run into the prose ("who i. Did good works ii. Was crucified …").
+            if len(romans) >= 2:
+                out.append(f'{int(mn.group(1))}. {clean(head)}')
+                out.append('\n'.join(f'- {r}' for r in romans))
+            elif romans:
+                out.append(f'{int(mn.group(1))}. {clean(head + " — " + romans[0])}')
+            else:
+                out.append(f'{int(mn.group(1))}. {clean(head)}')
         elif BULLET_SRC_RE.match(ln):
             block, i = consume_bullets(region, i, stops)
             if block:

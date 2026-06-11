@@ -102,7 +102,10 @@ def main():
         if mt:
             q = mt.group(2); i += 1
             body = []
-            while i < len(region) and not TOPIC_RE.match(region[i]) and not REFBLK_RE.match(region[i]):
+            # "Miscellaneous" is a stray section header between the last topic and
+            # the reference blocks — stop here so it doesn't trail into the card.
+            while i < len(region) and not TOPIC_RE.match(region[i]) \
+                    and not REFBLK_RE.match(region[i]) and region[i].strip() != 'Miscellaneous':
                 body.append(region[i]); i += 1
             add(topics, q, body)
         elif mb:
