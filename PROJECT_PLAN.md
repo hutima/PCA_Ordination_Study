@@ -216,6 +216,15 @@ KEEP modules + the HTML shell):**
 
       **Release ritual:** bump `?v=N` in `index.html` AND `CACHE` in `sw.js`
       together so returning users auto-refresh onto the new version.
+- [x] **Phase 15d — Enumeration-teaser sweep.** Release `?v=25`/`pca-v25`.
+      New `ENUM_FIRST_ONLY` audit class: enumeration questions ("What were
+      the solas…?", "List church censures") whose derived teaser expounded
+      only the first part. Ten authored enumerating summaries: the five
+      solas (ch-003), BCO principles of government, member kinds, elder and
+      deacon duties, licentiate/nominee exam areas, censures, Session
+      composition+duties (hand-authored governance file), church attributes
+      (th-118), Presbyterian-government principles (th-122), and the Acts
+      kerygma elements (bc-067).
 - [x] **Phase 15c — Stub-answer sweep.** Release `?v=24`/`pca-v24`. New
       `STUB_ANSWER` audit class: answers that are dangling cross-references
       into the source document. Fixed: th-020 days-of-creation ("See chart

@@ -191,6 +191,15 @@ Cf. Morton Smith, _How the Gold Became Dim_.
 - **Against the PCUS trends:** women teaching, exhorting, or leading in public assemblies; the social gospel; the "one church movement" (National and World Councils of Churches)."""
 
 CURATE = {
+    # An enumeration question: the teaser must name all the solas, not
+    # expound the first one.
+    'ch-003-what-were-the-solas-of-the-reformati': {
+        'summary': ('Sola scriptura (Scripture the ultimate authority), sola gratia '
+                    '(salvation entirely of grace, not a cooperative effort), sola fide '
+                    '(grace received through faith alone, not sacraments or works), solus '
+                    'Christus (salvation in Christ alone), soli Deo gloria (God\'s glory '
+                    'above all) — plus the priesthood of all believers.'),
+    },
     'ch-002-briefly-trace-the-spread-of-christia': {
         'a': SPREAD_TABLE,
         'summary': ('Apostles (to 70) → persecuted Fathers (70-312) → imperial church and '

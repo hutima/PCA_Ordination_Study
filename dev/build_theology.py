@@ -469,6 +469,21 @@ CURATE = {
                     'proceeding, not by the parties\' own wills in their own case '
                     '(WCF XXIV.6).'),
     },
+    'th-118-what-are-the-attributes-of-the-chu': {
+        'summary': ('Unity (through union with Christ, John 17:20-21), holiness (Eph 1:4), '
+                    'and catholicity (1 Cor 1:2) — ascribed primarily to the church as an '
+                    'invisible organism (Berkhof); with love (John 13:34-35), the presence '
+                    'of Christ by the Spirit (Mat 18:20; Eph 2:22), and apostolicity '
+                    '(Jude 3) as further marks.'),
+    },
+    'th-122-what-are-the-principles-of-presbyt': {
+        'summary': ('Berkhof: Christ is the Head and source of all authority, exercising '
+                    'it by his royal Word; he endowed the church with power, exercised '
+                    'through representative organs, residing primarily in the local '
+                    'governing body. Add: the regulative principle, the organic unity of '
+                    'the church, parity and plurality of elders, and graded courts '
+                    '(Session, Presbytery, General Assembly).'),
+    },
     'th-119-what-are-the-marks-of-the-church-p': {
         'summary': ('Churches are more or less pure as (WCF XXV.4): the doctrine of the '
                     'gospel is taught and embraced (1 Thes 1:4-8), the sacraments are '

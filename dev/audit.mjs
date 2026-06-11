@@ -61,6 +61,26 @@ for (const subject of data.subjects) {
         flag('STUB_ANSWER', c, a.slice(0, 80).replace(/\n/g, ' / '));
       }
 
+      // Enumeration questions ("What were the solas…?", "List…") whose
+      // derived teaser expounds only the FIRST part: the teaser should name
+      // every part. Heuristic: ≥3 top-level items and the teaser never
+      // mentions the lead of the last one.
+      if (!c.summary && /(what (are|were)|name (the|them)|list |how many|(three|four|five|seven|ten) )/i.test(q)) {
+        const items = lines.filter(l => /^(- |\d+\.|[a-z]\.|\*\*)/.test(l) || /^[A-Z][^.!?]{0,45}[-–—:]\s/.test(l));
+        if (items.length >= 3) {
+          const teaser = summarize(c);
+          const last = items[items.length - 1].replace(/^(- |\d+\.|[a-z]\.)\s*/, '');
+          const lastLead = (last.match(/^[\w'’]+(\s+[\w'’]+)?/) || [''])[0];
+          // A "(+N more)" teaser already enumerates; items that are
+          // standards/Scripture quotes are proofs, not enumerated parts.
+          const proofLead = /^(WSC|WLC|WCF|[123]?\s?[A-Z][a-z]+\.?\s\d)/.test(last);
+          if (lastLead && !proofLead && !/\(\+\d+ more\)$/.test(teaser)
+              && !teaser.toLowerCase().includes(lastLead.toLowerCase().slice(0, 12))) {
+            flag('ENUM_FIRST_ONLY', c, `items=${items.length}, teaser: ${teaser.slice(0, 70)}`);
+          }
+        }
+      }
+
       // E: question is a fragment, not a prompt.
       if (/^\s*(cf\.|see |e\.g\.|i\.e\.|also |\[|\()/i.test(q) || /^[a-z]/.test(q.trim())) {
         flag('FRAGMENT_QUESTION', c, q.slice(0, 70));

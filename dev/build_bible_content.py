@@ -360,6 +360,16 @@ CURATE = {
               'eagerness, examining Scripture).'),
         'a': 'Acts 17:11',
     },
+    # The question asks for the ELEMENTS of the sermons; the derived teaser
+    # was listing the sermons themselves.
+    'bc-067-what-are-the-basic-elements-found': {
+        'summary': ('The apostolic kerygma: (1) God\'s OT promises are fulfilled — the '
+                    'Messiah has come; (2) the Messiah is Jesus of Nazareth — who did good '
+                    'works and miracles, was crucified according to God\'s purpose, was '
+                    'raised, is exalted as Lord, and will return in judgment; (3) '
+                    'therefore everyone who hears must repent and be baptized. (Twelve '
+                    'sermons, Acts 2-26.)'),
+    },
     'bc-158-biblical-discipline': {
         'summary': ('Procedure: Matthew 18:15-17 (one-on-one, then witnesses, then the '
                     'church). Excommunication: 1 Corinthians 5:1-13 ("expel the wicked '

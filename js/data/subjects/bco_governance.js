@@ -18,6 +18,7 @@
           id: 'bco-gov-001-session',
           q: 'Who makes up the Session of a particular church, and what are its chief duties?',
           a: 'The Session consists of the pastor (and any associate pastors) together with the ruling elders of the church.\nIts chief duties include:\n- maintaining the spiritual government of the congregation\n- receiving, dismissing, and exercising discipline over members\n- overseeing the worship of the church (including admission to the sacraments)\n- training and examining officer nominees and overseeing the diaconate\n- appointing representatives to the higher courts\nNote: paraphrase — see the chapter on the Session for the full enumeration.',
+          summary: 'The pastor (and any associates) plus the ruling elders. Duties: the spiritual government of the congregation; receiving, dismissing, and disciplining members; overseeing worship and admission to the sacraments; training and examining officer nominees and overseeing the diaconate; appointing representatives to the higher courts (BCO 12).',
           refs: ['BCO 12'],
         },
         {

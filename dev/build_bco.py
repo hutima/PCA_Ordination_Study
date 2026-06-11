@@ -141,6 +141,38 @@ SUMMARIES = {
                 "Christ's Church by perfecting the saints and adding those being saved — "
                 "training Christians to do all to God's glory every day of the week "
                 "(1 Cor 10:31)."),
+    # Enumeration questions: the teaser must name every part, not expound
+    # the first one.
+    'bco-002': ("God alone is Lord of the conscience; every body sets the qualifications "
+                "for its members; Christ appointed the officers; godliness is founded on "
+                "truth; teachers must be sound in the faith; each body elects its own "
+                "officers; church power is ministerial and declarative, not legislative; "
+                "discipline is moral and spiritual, not civil."),
+    'bco-012': ("Communing members — all rights and privileges (voting, office, the "
+                "Lord's table; BCO 6-2, 6-4); non-communing members — baptism, pastoral "
+                "oversight, instruction, and government (6-1); associate members — all "
+                "privileges except voting and holding office in that church (6-4)."),
+    'bco-015': ("Watch over the flock in doctrine and morality; exercise government and "
+                "discipline; take oversight of the local and the general church; visit "
+                "(especially the sick), instruct, comfort, nourish, and guard the "
+                "children; set a worthy example; love and pray with and for the people "
+                "(BCO 8-3)."),
+    'bco-019': ("An office of service, not rule: minister to those in need, the sick, "
+                "the friendless, and any in distress; devise methods to collect the "
+                "congregation's gifts; keep the church in proper physical repair "
+                "(BCO 9-2)."),
+    'bco-029': ("Christian experience and inward call; written or oral exams in Theology "
+                "(the Westminster Standards), English Bible, and the Book of Church "
+                "Order; oral examination before Presbytery on the same; a written sermon "
+                "delivered before Presbytery (BCO 19-2)."),
+    'bco-038': ("Christian experience (especially personal character); knowledge of "
+                "doctrine, church government, and discipline in the PCA Constitution; "
+                "the duties of the office to which he is nominated; willingness to "
+                "assent to the ordination questions (BCO 24-1)."),
+    'bco-050': ("Admonition (formal reproof); suspension from the sacraments (temporary, "
+                "indefinite); suspension from office (definite or indefinite); "
+                "deposition (degradation of an officer from office); excommunication "
+                "(excision from the communion of the church)."),
 }
 
 def main():

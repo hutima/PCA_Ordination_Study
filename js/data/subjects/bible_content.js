@@ -444,7 +444,8 @@
         "id": "bc-067-what-are-the-basic-elements-found",
         "q": "What are the basic elements found in each of the sermons recorded in Acts?",
         "a": "a. The sermons in Acts occur in the following passages:\n1. Peter at Pentecost Acts 2\n2. Peter at Solomon's Colonnade Acts 3\n3. Peter before the Sanhedrin Acts 4\n4. Stephen before the Sanhedrin Acts 7\n5. Peter at Cornelius' house Acts 10\n6. Paul in Pisidian Antioch Acts 13\n7. Paul before the pagans in Lystra Acts 14\n8. Paul before the Areopagus Acts 17\n9. Paul to the Ephesians Elders Acts 20\n10. Paul in Jerusalem Acts 22\n11. Paul before Felix Acts 24\n12. Paul before Agrippa Acts 26\nb. The basic elements are as follows:\n1. God's OT promises have been fulfilled, the Messiah has come\n2. The Messiah is Jesus of Nazareth, who\n- Did good works and miracles\n- Was crucified according to God's divine purpose\n- Was raised from the dead\n- Is exalted by God and bears the title Lord\n- Will return in judgment and to effect ultimate redemption\n3. This being true, everyone who hears must repent and be baptized",
-        "refs": []
+        "refs": [],
+        "summary": "The apostolic kerygma: (1) God's OT promises are fulfilled — the Messiah has come; (2) the Messiah is Jesus of Nazareth — who did good works and miracles, was crucified according to God's purpose, was raised, is exalted as Lord, and will return in judgment; (3) therefore everyone who hears must repent and be baptized. (Twelve sermons, Acts 2-26.)"
       },
       {
         "id": "bc-068-relate-the-writing-of-the-pauline",

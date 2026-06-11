@@ -25,7 +25,8 @@
         "id": "ch-003-what-were-the-solas-of-the-reformati",
         "q": "What were the “solas” of the Reformation?",
         "a": "Sola scriptura - Ultimate authority is scripture (history, assemblies, doctrine and interpretation are all helpful and important, but they are not on an equal footing) Don’t need the church to interpret scripture. Scripture defines the church, not the church defining scripture.\nSola gratia - Basis for salvation is entire grace; it is not God taking what I can offer and then adding his share to it; it isn’t a co-operative effort.\nSola fides - Means for salvation: How is grace delivered? Not by the sacraments (ala RCC) but by faith (which God also gives). Again notice it isn’t our faith, plus the things we do—works are an evidence of faith, not a means of salvation.\nSolus Christus - salvation is in Christ alone Soli Deo Gloria - God’s glory above all else Priesthood of all Believers - No hierarchy of access to God: all can come directly to him; we don’t need priestly mediator.\nNo one is closer to God based on office.\nWe all have a responsibility to minister to one another.",
-        "refs": []
+        "refs": [],
+        "summary": "Sola scriptura (Scripture the ultimate authority), sola gratia (salvation entirely of grace, not a cooperative effort), sola fide (grace received through faith alone, not sacraments or works), solus Christus (salvation in Christ alone), soli Deo gloria (God's glory above all) — plus the priesthood of all believers."
       }
     ]
   },

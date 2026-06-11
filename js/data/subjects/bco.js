@@ -20,7 +20,8 @@
         "id": "bco-002",
         "q": "List at least two key principles of Presbyterian church government",
         "a": "1. God alone is Lord of the conscience.\n2. Every church, or body, has the right to determine its qualifications for its members.\n3. Christ himself has appointed officers in his church.\n4. Godliness is founded on truth.\n5. Teachers should be sound in the faith.\n6. Each particular body has a right to elect its own officers.\n7. Church power is only ministerial and declarative and therefore not legislative .\n8. Church discipline must be purely moral and spiritual in nature and therefore not civil.",
-        "refs": []
+        "refs": [],
+        "summary": "God alone is Lord of the conscience; every body sets the qualifications for its members; Christ appointed the officers; godliness is founded on truth; teachers must be sound in the faith; each body elects its own officers; church power is ministerial and declarative, not legislative; discipline is moral and spiritual, not civil."
       },
       {
         "id": "bco-003",
@@ -88,7 +89,8 @@
         "id": "bco-012",
         "q": "What 2 kinds of members does the church have? What are their respective rights and privileges?",
         "a": "- Communing: all rights & privileges of church (voting, office holding, & admission to Lord’s table)6-2,6-4\n- Non-communing members: entitled to baptism, pastoral oversight, instruction & gov’t of church (6-1)\n- Associate members: all the rights and privileges of the church except voting in congregational meetings and holding office in that church (6-4)",
-        "refs": []
+        "refs": [],
+        "summary": "Communing members — all rights and privileges (voting, office, the Lord's table; BCO 6-2, 6-4); non-communing members — baptism, pastoral oversight, instruction, and government (6-1); associate members — all privileges except voting and holding office in that church (6-4)."
       },
       {
         "id": "bco-013",
@@ -112,7 +114,8 @@
         "a": "- Watch over the flock committed to their charge in doctrine and morality\n- Exercise government and discipline\n- Oversight of both the local church and the “general” church\n- Visitation (especially of sick), instruction, comforting, nourishing, & guarding the children of the church.\n- Set worthy examples for the rest of the church\n- Love, pray with and for people (BCO 8-3)",
         "refs": [
           "BCO 8-3"
-        ]
+        ],
+        "summary": "Watch over the flock in doctrine and morality; exercise government and discipline; take oversight of the local and the general church; visit (especially the sick), instruct, comfort, nourish, and guard the children; set a worthy example; love and pray with and for the people (BCO 8-3)."
       },
       {
         "id": "bco-016",
@@ -145,7 +148,8 @@
         "a": "- Not an office of rule, but rather of service both to the physical and spiritual needs of the people\n- Ministers to those in need, the sick, the friendless, and any in distress\n- Devise methods to collect the gifts of the congregation\n- Keep church in proper (physical) repair (BCO 9-2).",
         "refs": [
           "BCO 9-2"
-        ]
+        ],
+        "summary": "An office of service, not rule: minister to those in need, the sick, the friendless, and any in distress; devise methods to collect the congregation's gifts; keep the church in proper physical repair (BCO 9-2)."
       },
       {
         "id": "bco-020",
@@ -225,7 +229,8 @@
         "a": "1. Christian experience and inward call.\n2. Written or oral: Theology (Westminster Standards), English Bible, and Book of Church Order .\n3. Orally before Presbytery: on same as above.\n4. Provide written sermon and deliver it before Presbytery.-BCO 19-2",
         "refs": [
           "BCO 19-2"
-        ]
+        ],
+        "summary": "Christian experience and inward call; written or oral exams in Theology (the Westminster Standards), English Bible, and the Book of Church Order; oral examination before Presbytery on the same; a written sermon delivered before Presbytery (BCO 19-2)."
       },
       {
         "id": "bco-030",
@@ -286,7 +291,8 @@
         "a": "1. Christian experience (especially personal character).\n2. Knowledge of doctrine, Church government, discipline in the Constitution of the PCA(BCO preface ill)\n3. Duties of office to which he is nominated.\n4. Willingness to give assent to the question required for ordination.-BCO 24-1",
         "refs": [
           "BCO 24-1"
-        ]
+        ],
+        "summary": "Christian experience (especially personal character); knowledge of doctrine, church government, and discipline in the PCA Constitution; the duties of the office to which he is nominated; willingness to assent to the ordination questions (BCO 24-1)."
       },
       {
         "id": "bco-039",
@@ -378,7 +384,8 @@
         "id": "bco-050",
         "q": "List and define church censures:",
         "a": "- Admonition: Formal reproof of an offender\n- Suspension from sacraments: the temporary exclusion from those ordinances (indefinite).\n- Suspension from office: exclusion of a church officer from his office (definite or indefinite duration).\n- Excommunication: excision of an offender from the communion of the church.\n- Deposition-degradation of an officer from office (with/without other censure).",
-        "refs": []
+        "refs": [],
+        "summary": "Admonition (formal reproof); suspension from the sacraments (temporary, indefinite); suspension from office (definite or indefinite); deposition (degradation of an officer from office); excommunication (excision from the communion of the church)."
       },
       {
         "id": "bco-051",
