@@ -28,7 +28,7 @@
       choices: ['consubstantiation', 'transubstantiation', 'memorialism', 'the spiritual presence'], answerIndex: 1 },
     { id: 'qz-sac-9', subject: 'sacraments',
       q: 'Which view of the Lord’s Supper is associated with Ulrich Zwingli?',
-      choices: ['Transubstantiation', 'Consubstantiation', 'A memorial / remembrance view', 'Real spiritual presence'], answerIndex: 2 },
+      choices: ['Transubstantiation', 'Consubstantiation', 'Memorialism (remembrance)', 'Real spiritual presence'], answerIndex: 2 },
     { id: 'qz-sac-10', subject: 'sacraments', refs: ['1 Cor 11'],
       q: 'The practice of "fencing the table" before communion means that:',
       choices: ['only ordained men may partake', 'the ignorant and scandalous are warned to refrain', 'the elements are physically guarded', 'no one outside the local church may attend'], answerIndex: 1 },

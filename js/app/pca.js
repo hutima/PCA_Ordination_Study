@@ -31,18 +31,30 @@ const EXAM_SIZE = 25;
 const $ = (id) => document.getElementById(id);
 const escapeText = escapeHtml; // template-literal alias
 
-// ── Deck building (due-first) ──────────────────────────────────────────
+// ── Deck building (due-first, or unspaced book order) ──────────────────
 function buildDeck() {
   const now = Date.now();
   let cards = state.mode === 'quiz' ? quizDeckCards() : cardsForKeys(effectiveSetKeys());
   if (state.focus === 'weak') cards = cards.filter(isWeak);
+  const isDue = (c) => { const p = state.progress[c.id]; return !p || !p.dueAt || p.dueAt <= now; };
+  if (state.focus === 'order') {
+    // Unspaced read-through: the whole selection in subject/sub-deck order,
+    // ignoring the SRS schedule. Grading still records progress as usual.
+    const rank = new Map();
+    DATA.subjects.slice().sort((a, b) => (a.order || 0) - (b.order || 0))
+      .forEach(subj => subj.setKeys.forEach(k => rank.set(k, rank.size)));
+    const rankOf = (c) => rank.has(c._setKey) ? rank.get(c._setKey) : rank.size;
+    state.deck = cards.map((c, i) => [c, i])
+      .sort((x, y) => rankOf(x[0]) - rankOf(y[0]) || x[1] - y[1])
+      .map(x => x[0]);
+    state.dueCount = cards.filter(isDue).length;
+    state.pos = 0;
+    syncCardState();
+    return;
+  }
   const due = [];
   const later = [];
-  for (const c of cards) {
-    const p = state.progress[c.id];
-    if (!p || !p.dueAt || p.dueAt <= now) due.push(c);
-    else later.push(c);
-  }
+  for (const c of cards) (isDue(c) ? due : later).push(c);
   shuffle(due);
   later.sort((a, b) => state.progress[a.id].dueAt - state.progress[b.id].dueAt);
   state.deck = due.concat(later);
@@ -83,14 +95,33 @@ function wireNav() {
   const n = $('nextBtn'); if (n) n.addEventListener('click', () => move(1));
 }
 
+// Keep the card's top edge visually stable across re-renders that change the
+// card's height (reveal/hide, prev/next). Without this, collapsing a long
+// answer shrinks the document and the browser clamps the scroll position —
+// the page appears to jump. If the card top was on-screen it stays exactly
+// where it was; if the user had scrolled deep into a long answer, the next
+// render pins the question just below the top of the viewport.
+function withCardAnchor(render) {
+  const sel = '#cardArea .qa-card';
+  const before = document.querySelector(sel);
+  if (!before) { render(); return; }
+  const prevTop = before.getBoundingClientRect().top;
+  render();
+  const after = document.querySelector(sel);
+  if (!after) return;
+  const visible = prevTop >= 0 && prevTop <= window.innerHeight * 0.6;
+  const delta = after.getBoundingClientRect().top - (visible ? prevTop : 12);
+  if (Math.abs(delta) > 2) window.scrollBy(0, delta);
+}
+
 // ── Controller deck operations (used by review mode + keyboard) ────────
-function toggleReveal() { state.revealed = !state.revealed; renderCard(); }
+function toggleReveal() { state.revealed = !state.revealed; withCardAnchor(renderCard); }
 function move(delta) {
   const n = state.deck.length;
   if (!n) return;
   state.pos = (state.pos + delta + n) % n;
   syncCardState();
-  renderCard();
+  withCardAnchor(renderCard);
 }
 function mark(outcome) {
   if (!state.deck.length) return;
@@ -101,7 +132,7 @@ function mark(outcome) {
 function advance() {
   if (state.pos + 1 >= state.deck.length) buildDeck();
   else { state.pos += 1; syncCardState(); }
-  renderCard();
+  withCardAnchor(renderCard);
 }
 
 // ── Mode registry ──────────────────────────────────────────────────────
@@ -109,7 +140,7 @@ const MODES = createModes({
   state, DATA, escapeHtml,
   renderAnswer, summarize, hasMoreThanSummary, renderRefs,
   buildQuiz, applyOutcome, rerender: renderCard, mark, move, toggleReveal,
-  effectiveSetKeys, quizDeckCards, shuffle,
+  withCardAnchor, effectiveSetKeys, quizDeckCards, shuffle,
   emptyState, navRowHtml, wireNav, setDeckMeta, EXAM_SIZE,
 });
 
@@ -131,7 +162,7 @@ function updateFocusVisibility() {
   if (row) row.style.display = (mode && mode.focusable) ? '' : 'none';
 }
 function setFocus(f) {
-  state.focus = f === 'weak' ? 'weak' : 'due';
+  state.focus = (f === 'weak' || f === 'order') ? f : 'due';
   syncToggleActive('[data-focus]', 'data-focus', state.focus);
   buildDeck();
   renderCard();

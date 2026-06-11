@@ -64,36 +64,83 @@ export function renderAnswer(md) {
 
 // A short plain-text teaser for the front of progressive disclosure. Prefers an
 // authored `card.summary`; otherwise derives one from the first substantive line
-// of the answer (label stripped), capped to a tweet-ish length. A first line
-// that is only a list intro ("The Assembly works through:") or a fragment is
-// extended with the following list items so the summary is a complete thought.
+// of the answer (label stripped). The summary always ends on a complete thought:
+// prose is cut at sentence boundaries (never mid-sentence), a bare list intro
+// ("The Assembly works through:") is extended with whole list items, and only a
+// single enormous sentence falls back to a clause cut.
 const LIST_MARKER_RE = /^\s*(?:[-•]|\d+\.|[a-z]\.|\*\*[^*]+\*\*\.?)\s*/;
+const HARD_MAX = 420;
+
+function stripMarkup(line) {
+  return line.replace(LIST_MARKER_RE, '').replace(LABEL_STRIP_RE, '')
+    .replace(/\*\*/g, '').replace(/\s+/g, ' ').trim();
+}
+
+// Split prose into sentences. A boundary is ./!/? (plus closing quotes or
+// brackets) followed by whitespace and a capital or opening quote — so
+// citations ("Matt. 10:29", "BCO 25-2") and initials ("J. Gresham") never
+// split, since what follows them is a digit or they end in a single capital.
+function splitSentences(text) {
+  const parts = [];
+  let last = 0;
+  const re = /[.?!]["”’)\]]*(?=\s+["“(]*[A-Z])/g;
+  let m;
+  while ((m = re.exec(text))) {
+    const end = m.index + m[0].length;
+    const chunk = text.slice(last, end);
+    if (/(^|\s)(?:[A-Z]|Mr|Mrs|Dr|St|vs|etc|cf|viz|i\.e|e\.g)\.$/.test(chunk)) continue;
+    parts.push(chunk.trim());
+    last = end;
+  }
+  const rest = text.slice(last).trim();
+  if (rest) parts.push(rest);
+  return parts;
+}
+
 export function summarize(card, max = 240) {
   if (card && typeof card.summary === 'string' && card.summary.trim()) return card.summary.trim();
   const a = String((card && card.a) || '').replace(/\r\n?/g, '\n').trim();
   if (!a) return '';
   const lines = a.split('\n').map(l => l.trim()).filter(Boolean);
-  let s = (lines[0] || '').replace(LABEL_STRIP_RE, '').replace(/\s+/g, ' ').trim();
-  // Bare intro / fragment: pull in following list items as an inline run-on.
+  let s = stripMarkup(lines[0] || '');
   if ((s.endsWith(':') || s.length < 30) && lines.length > 1) {
+    // Bare intro / fragment: append whole following list items; an ellipsis
+    // marks any items that didn't fit (always include at least one).
+    const rest = lines.slice(1).map(stripMarkup).filter(Boolean);
     const items = [];
-    for (const l of lines.slice(1)) {
-      const item = l.replace(LIST_MARKER_RE, '').replace(LABEL_STRIP_RE, '').replace(/\*\*/g, '').trim();
-      if (item) items.push(item);
-      if ((s + ' ' + items.join('; ')).length > max) break;
+    for (const item of rest) {
+      if (items.length && `${s} ${items.join('; ')}; ${item}`.length > max) {
+        items.push('…');
+        break;
+      }
+      items.push(item);
     }
-    if (items.length) s = `${s.replace(/:$/, ':')} ${items.join('; ')}`;
+    if (items.length) s = `${s} ${items.join('; ')}`;
+  } else if (s.length > max) {
+    // Keep whole sentences while they fit; always keep the first.
+    let acc = '';
+    for (const sent of splitSentences(s)) {
+      if (acc && `${acc} ${sent}`.length > max) break;
+      acc = acc ? `${acc} ${sent}` : sent;
+    }
+    s = acc || s;
   }
-  if (s.length > max) s = s.slice(0, max - 1).replace(/\s+\S*$/, '') + '…';
+  if (s.length > HARD_MAX) {
+    // One enormous sentence: cut at the last clause break that fits.
+    const cut = Math.max(s.lastIndexOf('; ', HARD_MAX), s.lastIndexOf(', ', HARD_MAX));
+    s = (cut > 60 ? s.slice(0, cut) : s.slice(0, max).replace(/\s+\S*$/, '')) + ' …';
+  }
   return s;
 }
 
-// Does the answer carry more than its one-line summary (lists, tables, quotes,
-// multiple lines)? Used to decide whether to offer a "full answer" expander.
+// Does the answer carry more than its summary (lists, tables, quotes, labeled
+// callouts, dropped sentences)? Decides whether to offer the "full answer"
+// expander.
 export function hasMoreThanSummary(card) {
   if (card && typeof card.summary === 'string' && card.summary.trim()) return true;
   const a = String((card && card.a) || '').replace(/\r\n?/g, '\n').trim();
   if (!a) return false;
   const lines = a.split('\n').map(l => l.trim()).filter(Boolean);
-  return lines.length > 1 || a.length > 240 || /[|*>]/.test(a);
+  if (lines.length > 1 || /[|*>]/.test(a) || LABEL_STRIP_RE.test(lines[0])) return true;
+  return summarize(card).length < stripMarkup(lines[0]).length;
 }

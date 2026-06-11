@@ -12,8 +12,8 @@
     "cards": [
       {
         "id": "bco-001",
-        "q": "Who is the head of the church? How does he exercise his authority?",
-        "a": "Christ alone is the head of the church. He exercises His authority and governs by His Word and Spirit and has appointed officers to guide His church by following His Word and Spirit.",
+        "q": "Who is the head of the church?",
+        "a": "How does he exercise his authority?\nChrist alone is the head of the church. He exercises His authority and governs by His Word and Spirit and has appointed officers to guide His church by following His Word and Spirit.",
         "refs": []
       },
       {
@@ -24,8 +24,8 @@
       },
       {
         "id": "bco-003",
-        "q": "Can the church “bind” men’s consciences? Why or why not?",
-        "a": "All church power is “only ministerial and declarative”; “no church judicatory may make laws to bind the conscience.” God has set the standard and human courts are fallible, along with the church’s power being purely moral and spiritual, declarative and ministerial.",
+        "q": "Can the church “bind” men’s consciences?",
+        "a": "Why or why not?\nAll church power is “only ministerial and declarative”; “no church judicatory may make laws to bind the conscience.” God has set the standard and human courts are fallible, along with the church’s power being purely moral and spiritual, declarative and ministerial.",
         "refs": []
       },
       {
@@ -36,8 +36,8 @@
       },
       {
         "id": "bco-005",
-        "q": "What is the visible church? Who are its members?",
-        "a": "The visible church consists of all who make profession of faith in the Lord Jesus Christ & their children\nThe visible church before the law, under the law & now under the Gospel, is one & the same & consists of all those who make profession of their faith in the Lord Jesus Christ, together with their children- BCO 2-1",
+        "q": "What is the visible church?",
+        "a": "Who are its members?\nThe visible church consists of all who make profession of faith in the Lord Jesus Christ & their children\nThe visible church before the law, under the law & now under the Gospel, is one & the same & consists of all those who make profession of their faith in the Lord Jesus Christ, together with their children- BCO 2-1",
         "refs": [
           "BCO 2-1"
         ]
@@ -64,7 +64,7 @@
       },
       {
         "id": "bco-009",
-        "q": "What is the minimum number of TE’s & RE’s, and quorum, of a commission of presbytery?(15-2)",
+        "q": "What is the minimum number of TE’s & RE’s, and quorum, of a commission of presbytery? (15-2)",
         "a": "Two teaching elders and two ruling elders, and the quorum shall be one more than half its membership unless otherwise determined by the Presbytery.",
         "refs": []
       },
@@ -86,8 +86,8 @@
       },
       {
         "id": "bco-012",
-        "q": "What 2 kinds of members does the church have? What are their respective rights and privileges?",
-        "a": "- Communing: all rights & privileges of church (voting, office holding, & admission to Lord’s table)6-2,6-4\n- Non-communing members: entitled to baptism, pastoral oversight, instruction & gov’t of church (6-1)\n- Associate members: all the rights and privileges of the church except voting in congregational meetings and holding office in that church (6-4)",
+        "q": "What 2 kinds of members does the church have?",
+        "a": "What are their respective rights and privileges?\n- Communing: all rights & privileges of church (voting, office holding, & admission to Lord’s table)6-2,6-4\n- Non-communing members: entitled to baptism, pastoral oversight, instruction & gov’t of church (6-1)\n- Associate members: all the rights and privileges of the church except voting in congregational meetings and holding office in that church (6-4)",
         "refs": []
       },
       {
@@ -359,22 +359,22 @@
       },
       {
         "id": "bco-048",
-        "q": "What are the proper steps of church discipline?• Instruction in the Word. Individual responsibility to admonish. Calling of one or more witnesses. Action of the church court.",
-        "a": "- “Scriptural law is the basis of all discipline because it is the revelation of God’s Holy will.\nProperly disciplinary principles are set forth in the Scriptures and must be followed. They are:\na) Instruction in the Word;\nb) Individual’s responsibility to admonish one another (Matthew 18: 15, Galatians 6: 1);\nc) If the admonition is rejected, then the calling of one or more witnesses (Matthew 18: 16);\nd) If rejection persists, then the Church must act through her court unto admonition, suspension, excommunication and deposition (See BCO 29 and 30 for further explanation).\nSteps (a) through (d) must be followed in proper order for the exercise of discipline. “-BCO 27-5",
+        "q": "What are the proper steps of church discipline?",
+        "a": "- Instruction in the Word. Individual responsibility to admonish. Calling of one or more witnesses. Action of the church court.\n- “Scriptural law is the basis of all discipline because it is the revelation of God’s Holy will.\nProperly disciplinary principles are set forth in the Scriptures and must be followed. They are:\na) Instruction in the Word;\nb) Individual’s responsibility to admonish one another (Matthew 18: 15, Galatians 6: 1);\nc) If the admonition is rejected, then the calling of one or more witnesses (Matthew 18: 16);\nd) If rejection persists, then the Church must act through her court unto admonition, suspension, excommunication and deposition (See BCO 29 and 30 for further explanation).\nSteps (a) through (d) must be followed in proper order for the exercise of discipline. “-BCO 27-5",
         "refs": [
           "BCO 27-5"
         ]
       },
       {
         "id": "bco-049",
-        "q": "Who is primarily responsible for disciplining non-communing members?• Primarily their parents.",
-        "a": "- The spiritual nurture, instruction & training of the children of the church are committed by God primarily to their parents. They are responsible to the church for the faithful discharge of their obligations. It is a prin-cipal duty of the Church to promote true religion in the home. True discipleship involves learning the Word of God under the guidance of the Holy Spirit both at home & in the church. Without learning there is no growth & without growth there is no discipline & without discipline there is sin & iniquity (1Tim 4: 7)28-1",
+        "q": "Who is primarily responsible for disciplining non-communing members?",
+        "a": "- Primarily their parents.\n- The spiritual nurture, instruction & training of the children of the church are committed by God primarily to their parents. They are responsible to the church for the faithful discharge of their obligations. It is a prin-cipal duty of the Church to promote true religion in the home. True discipleship involves learning the Word of God under the guidance of the Holy Spirit both at home & in the church. Without learning there is no growth & without growth there is no discipline & without discipline there is sin & iniquity (1Tim 4: 7)28-1",
         "refs": []
       },
       {
         "id": "bco-050",
-        "q": "List and define church censures: • Admonition: Formal reproof of an offender",
-        "a": "- Suspension from sacraments: the temporary exclusion from those ordinances (indefinite).\n- Suspension from office: exclusion of a church officer from his office (definite or indefinite duration).\n- Excommunication: excision of an offender from the communion of the church.\n- Deposition-degradation of an officer from office (with/without other censure).",
+        "q": "List and define church censures:",
+        "a": "- Admonition: Formal reproof of an offender\n- Suspension from sacraments: the temporary exclusion from those ordinances (indefinite).\n- Suspension from office: exclusion of a church officer from his office (definite or indefinite duration).\n- Excommunication: excision of an offender from the communion of the church.\n- Deposition-degradation of an officer from office (with/without other censure).",
         "refs": []
       },
       {
@@ -410,8 +410,8 @@
       },
       {
         "id": "bco-055",
-        "q": "How should a censure be administered? With all tenderness and in a spirit of meekness",
-        "a": "-Suited to the nature of the offenses (See BCO 36 for details)",
+        "q": "How should a censure be administered?",
+        "a": "With all tenderness and in a spirit of meekness\n-Suited to the nature of the offenses (See BCO 36 for details)",
         "refs": []
       },
       {
@@ -445,8 +445,8 @@
       },
       {
         "id": "bco-060",
-        "q": "How quickly must an appeal be filed? Within 30 days following the meeting of the court.",
-        "a": "“Notice of appeal may be given the court before its adjournment. Written notice of appeal, with supporting reasons, shall be filed by the appellant with both the clerk of the lower court and the clerk of the higher court, within thirty (30) days following the meeting of the court. No attempt should be made lo circularize the courts to which appeal is being made by either party before the case is heard. “-BCO 42-4",
+        "q": "How quickly must an appeal be filed?",
+        "a": "Within 30 days following the meeting of the court.\n“Notice of appeal may be given the court before its adjournment. Written notice of appeal, with supporting reasons, shall be filed by the appellant with both the clerk of the lower court and the clerk of the higher court, within thirty (30) days following the meeting of the court. No attempt should be made lo circularize the courts to which appeal is being made by either party before the case is heard. “-BCO 42-4",
         "refs": [
           "BCO 42-4"
         ]
@@ -461,8 +461,8 @@
       },
       {
         "id": "bco-062",
-        "q": "How quickly must a complaint be filed? Within 30 days of the meeting of the court.",
-        "a": "“A complaint shall first be made lo the court whose act or decision is alleged to be in error. Written notice of complaint, with supporting reasons, shall be filed with the clerk of the court within thirty (30) days following the meeting of the court. The court shall consider the complaint at its next slated meeting, or at a called meeting prior to its next slated meeting. No attempt should be made to circularize the court to which complaint is being made by either party. “-BCO 43-2",
+        "q": "How quickly must a complaint be filed?",
+        "a": "Within 30 days of the meeting of the court.\n“A complaint shall first be made lo the court whose act or decision is alleged to be in error. Written notice of complaint, with supporting reasons, shall be filed with the clerk of the court within thirty (30) days following the meeting of the court. The court shall consider the complaint at its next slated meeting, or at a called meeting prior to its next slated meeting. No attempt should be made to circularize the court to which complaint is being made by either party. “-BCO 43-2",
         "refs": [
           "BCO 43-2"
         ]
@@ -506,8 +506,8 @@
     "cards": [
       {
         "id": "bco-067",
-        "q": "What rule guides public worship?The Scriptures.",
-        "a": "“Since the Holy Scriptures are the only infallible rule for faith and practice, the principles of public worship must be derived from the Bible, and from no other source.\nThe Scriptures forbid the worshipping of God by images, or in any other way not appointed in His Ward, and requires the receiving, observing, and keeping pure and entire all such religious worship and ordinances 06 God has appointed in His Word (WSC 51,50) “-BCO 47-1",
+        "q": "What rule guides public worship?",
+        "a": "The Scriptures.\n“Since the Holy Scriptures are the only infallible rule for faith and practice, the principles of public worship must be derived from the Bible, and from no other source.\nThe Scriptures forbid the worshipping of God by images, or in any other way not appointed in His Ward, and requires the receiving, observing, and keeping pure and entire all such religious worship and ordinances 06 God has appointed in His Word (WSC 51,50) “-BCO 47-1",
         "refs": [
           "BCO 47-1",
           "WSC 51,50"
@@ -515,8 +515,8 @@
       },
       {
         "id": "bco-068",
-        "q": "What is the purpose of public worship?1 To glorify God.",
-        "a": "“The end of public worship is the glory of God. His people should engage in all its several parts with an eye single to His glory. Public worship has as its aim the building of Christ ‘s Church by the perfecting of the saints and the addition to its membership of such as are being saved-all to the glory of God. Through public worship on the Lord’s day Christians should learn to serve God all the days of the week in their every activity, remembering, whether they eat or drink. or whatever they do, to do all to the glory of God (1 Corinthians 10:31). “-BCO 47-3",
+        "q": "What is the purpose of public worship?",
+        "a": "1 To glorify God.\n“The end of public worship is the glory of God. His people should engage in all its several parts with an eye single to His glory. Public worship has as its aim the building of Christ ‘s Church by the perfecting of the saints and the addition to its membership of such as are being saved-all to the glory of God. Through public worship on the Lord’s day Christians should learn to serve God all the days of the week in their every activity, remembering, whether they eat or drink. or whatever they do, to do all to the glory of God (1 Corinthians 10:31). “-BCO 47-3",
         "refs": [
           "BCO 47-3"
         ]
@@ -555,8 +555,8 @@
       },
       {
         "id": "bco-074",
-        "q": "What vows are made in a profession of faith? Same vows as those made by communicant members:",
-        "a": "- Acknowledgement of sin & need of salvation in Christ - Endeavor to live as becomes a believer\n- Promise to support the church and submit to its authority and discipline",
+        "q": "What vows are made in a profession of faith?",
+        "a": "Same vows as those made by communicant members:\n- Acknowledgement of sin & need of salvation in Christ - Endeavor to live as becomes a believer\n- Promise to support the church and submit to its authority and discipline",
         "refs": []
       }
     ]

@@ -214,6 +214,38 @@ KEEP modules + the HTML shell):**
 
       **Release ritual:** bump `?v=N` in `index.html` AND `CACHE` in `sw.js`
       together so returning users auto-refresh onto the new version.
+- [x] **Phase 12 — Text-quality + UX fixes (user-reported).**
+      - **Catechism PDF extraction overhaul** (`dev/build_catechisms.py`):
+        kerning-split words repaired everywhere (WSC answers/questions had no
+        repair at all — "W hat", "Ho w", "miser y", "g race", "bor n"); the
+        repair iterates to a fixpoint for 3-way splits ("wo rk s"), prefers
+        right-merges for lowercase ambiguity ("communion in g race"), and
+        tests halves with lenient stemming so plurals don't false-merge
+        ("allthings" ×13 fixed). WLC Q18's interleaved answer line is
+        rerouted ("a wise, b and pow-" leak). Fused/space-orphan footnote
+        markers stripped with a kerning-fragment guard (never eats "g races",
+        "T hou", "gover nor s"); verified-text overrides for undecidable
+        collisions ("fora", "cand", "reater"). 1311/1317 footnotes matched.
+      - **Word bullet debris → Markdown lists**: `build_bible_content.py`
+        converts the "." / "o" bullet artifacts into (nested) `-` lists;
+        `markdown.js` renders one level of `  - ` nesting. `build_bco.py`
+        peels answer text that ran onto question lines ("…discipline?• …",
+        "How quickly must an appeal be filed? Within 30 days…") and splits
+        inline "•" runs into list lines.
+      - **Sentence-complete summaries** (`answer.js`): derived review
+        summaries never cut mid-sentence — whole sentences/list items only
+        (294 mid-word truncations → 0), clause-cut fallback only past 420
+        chars.
+      - **Stable card scrolling**: `withCardAnchor()` in `pca.js` keeps the
+        card's top edge fixed across reveal/hide/next re-renders (catechism +
+        review/quiz), so collapsing a long answer no longer jumps the page.
+      - **MCQ fairness**: qz-ch-8 (Calvin's Institutes) distractors no longer
+        carry other authors' names (answer-by-omission); qz-sac-9 phrasing
+        normalized.
+      - **Unspaced mode**: a third Focus option **In order** reads the whole
+        selection straight through in subject/sub-deck order, ignoring the
+        SRS schedule (grading still records progress).
+      - Release: `?v=14` / `pca-v14`.
 - [x] **Phase 11 — BCO paraphrase content + card-quality audit.**
       The BCO is copyrighted: all BCO content is paraphrase, labeled as such
       (sources panel + per-card paraphrase callouts), with chips → pcaac.org.

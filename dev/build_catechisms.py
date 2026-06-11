@@ -83,6 +83,25 @@ def marker_pattern(letter):
     )
 
 
+def kerning_fragment(line, start, end, token):
+    """Does the candidate marker `token` at line[start:end] look like a piece
+    of a kerning-split word rather than a footnote marker? True when joining
+    it with a neighboring token restores a word: the "g" in "g races", the
+    "hou" in "T hou", the trailing "s" of "gover nor s". Only consulted for
+    the lenient (space-bounded) marker paths — punctuation-anchored markers
+    are stripped unconditionally."""
+    prevs = re.findall(r"[A-Za-z]+", line[:start])[-2:]
+    nxts = re.findall(r"[A-Za-z]+", line[end:])[:1]
+    joins = []
+    if prevs:
+        joins.append(prevs[-1] + token)
+    if nxts:
+        joins.append(token + nxts[0])
+    if len(prevs) == 2:
+        joins.append(prevs[0] + prevs[1] + token)
+    return any(_is_wordish(j) for j in joins)
+
+
 def parse_questions(main_lines):
     """Parse Q/A items from a stream of main-text lines (no footnotes)."""
     items = []
@@ -157,18 +176,24 @@ def build_wsc():
         if current is not None:
             proofs.append(current)
 
-        answer = " ".join(ans)
+        answer = join_wrapped(ans)
         for idx in range(len(proofs)):
             letter = chr(ord("a") + idx % 26)
             m = marker_pattern(letter).search(answer)
+            if not m and letter != "a":
+                # Marker preceded by a space instead of punctuation
+                # ("preserving c and governing"). Never for "a" — the article.
+                m = next((c for c in re.finditer(r"(?<=\s)" + letter + r"[´'’]*(?=[\s)\]]|$)", answer)
+                          if not kerning_fragment(answer, c.start(), c.end(), letter)), None)
             if m:
-                answer = answer[: m.start()] + (" " if m.group(1) else "") + answer[m.end():]
+                answer = answer[: m.start()].rstrip() + " " + answer[m.end():].lstrip()
         refs = []
         for p in proofs:
             c = first_citation(p)
             if c and c not in refs:
                 refs.append(c)
-        items.append({"n": num, "q": tidy(" ".join(qtext)), "a": tidy(answer), "refs": refs})
+        items.append({"n": num, "q": repair_split_words(tidy(join_wrapped(qtext))),
+                      "a": repair_split_words(tidy(answer)), "refs": refs})
     seen = {}
     for it in items:
         seen.setdefault(it["n"], it)
@@ -211,15 +236,54 @@ def _is_wordish(w):
 SPLIT_OVERRIDES = {
     "inter mission": "intermission", "for mer": "former",
     "tender ness": "tenderness", "cor poral": "corporal", "ear nest": "earnest",
+    "for med": "formed", "ima ge": "image", "inter mitted": "intermitted",
+    "per mitted": "permitted", "suf ficient": "sufficient", "bor ne": "borne",
+    "tor mented": "tormented", "re generate": "regenerate",
+    "tor ments": "torments", "pur posing": "purposing",
+    "ing rafting": "ingrafting", "she wing": "shewing",
+    "infir mities": "infirmities", "char ms": "charms",
+    # Marker letters fused where stripping or keeping them forms real words
+    # the dictionary guards cannot disambiguate; verified against the printed
+    # text (WLC 76, 151, 162).
+    "grieves fora and": "grieves for and",
+    "reater experience": "greater experience",
+    "exhibitg unto": "exhibit unto",
+    # Orphan marker "c" between words; "cand" is a web2 entry, so neither the
+    # strip guard nor the merge test can reject it (WSC 11: "…preserving and
+    # governing…").
+    "preserving c and governing": "preserving and governing",
 }
+
+# Single letters that legitimately stand alone (article, pronoun, vocative).
+# Any other lone letter is a kerning fragment ("W hat", "miser y", "g race"):
+# every single letter is a web2 entry, so the both-halves-are-words test alone
+# would never merge these.
+SINGLE_LETTER_OK = set("aAIO")
 
 
 def repair_split_words(text):
     for k, v in SPLIT_OVERRIDES.items():
         text = re.sub(r"\b" + k + r"\b", v, text)
+    text = re.sub(r"’\s+s\b", "’s", text)  # detached possessive ("God’ s")
     if not _WORDS:
         return text
+    # Hyphenation break that landed mid-line ("acknowl- edgment").
+    text = re.sub(
+        r"\b([A-Za-z]{2,})- ([a-z]{2,})\b",
+        lambda m: m.group(1) + m.group(2) if _is_wordish(m.group(1) + m.group(2)) else m.group(0),
+        text)
+    # Iterate to a fixpoint: a three-way split ("wo rk s") needs one pass to
+    # make "work s" and a second to attach the "s".
     tokens = text.split(" ")
+    for _ in range(4):
+        merged_tokens = _merge_pass(tokens)
+        if merged_tokens == tokens:
+            break
+        tokens = merged_tokens
+    return " ".join(tokens)
+
+
+def _merge_pass(tokens):
     out = []
     i = 0
     while i < len(tokens):
@@ -227,16 +291,32 @@ def repair_split_words(text):
         if (b and re.fullmatch(r"[A-Za-z]+", a) and re.fullmatch(r"[A-Za-z]+[.,;:?!]*", b)):
             b_word = re.match(r"[A-Za-z]+", b).group(0)
             merged = a + b_word
-            # Fragment test uses raw membership (lenient stemming would let
-            # fragments like "ments" pass); merged test may use stems.
-            if ((a.lower() not in _WORDS or b_word.lower() not in _WORDS)
-                    and _is_wordish(merged)):
+            # A half must fail even the lenient stem test to count as a
+            # fragment: plurals/archaic inflections missing from web2
+            # ("things", "seeth") must not trigger merges ("allthings").
+            frag = ((len(a) == 1 and a not in SINGLE_LETTER_OK)
+                    or (len(b_word) == 1 and b_word not in SINGLE_LETTER_OK))
+            ok = ((not _is_wordish(a) or not _is_wordish(b_word) or frag)
+                  and _is_wordish(merged))
+            # Ambiguous direction ("communion in g race"): when the lone
+            # letter also joins the *following* token into a raw dictionary
+            # word and the left token is a real lowercase word, merge right
+            # on the next pass instead ("in grace", not "ing race"). The
+            # lowercase test keeps question openers merging left ("Ho w is"
+            # → "How is", never "Ho wis").
+            if ok and b == b_word and i + 2 < len(tokens):
+                nxt = re.match(r"[A-Za-z]+", tokens[i + 2])
+                if (nxt and nxt.group(0) == tokens[i + 2]
+                        and a.islower() and a in _WORDS
+                        and (b_word + nxt.group(0)).lower() in _WORDS):
+                    ok = False
+            if ok:
                 out.append(merged + b[len(b_word):])
                 i += 2
                 continue
         out.append(a)
         i += 1
-    return " ".join(out)
+    return out
 
 
 def join_wrapped(lines):
@@ -251,6 +331,16 @@ def join_wrapped(lines):
         else:
             text += (" " if text else "") + l
     return text
+
+
+# A standalone b–z after punctuation is never legitimate English; an "a"
+# counts only when attached directly to the punctuation (",a and") — spaced
+# ", a and" could be the article.
+ORPHAN_RE = re.compile(r"(?<=[.,;:?!])(?:\s*[b-z]|a)[´'’]*(?=[\s)\]]|$)")
+
+
+def scrub_orphan_markers(text):
+    return ORPHAN_RE.sub("", text)
 
 
 def letter_distance(prev, nxt):
@@ -377,14 +467,26 @@ def parse_wlc_questions(main_lines):
             continue
         num = int(qm.group(1))
         qtext = [qm.group(2)]
+        leaked = []  # answer lines extracted above the "A." line (layout glitch)
         i += 1
         while i < n and not A_RE.match(main_lines[i][1]) and not Q_RE.match(main_lines[i][1]):
-            qtext.append(main_lines[i][1])
+            # A catechism question ends at its "?" — anything after it on the
+            # way to the "A." line is answer text pypdf emitted out of order
+            # (WLC Q18); reattach it after the answer's first line.
+            if "?" in " ".join(qtext):
+                leaked.append(main_lines[i])
+            else:
+                qtext.append(main_lines[i][1])
             i += 1
         alines = []
         if i < n and A_RE.match(main_lines[i][1]):
             alines.append([main_lines[i][0], A_RE.match(main_lines[i][1]).group(1)])
             i += 1
+        for pg, l in leaked:
+            if alines and alines[-1][0] == pg:
+                alines[-1][1] += " " + l.strip()
+            else:
+                alines.append([pg, l])
         while i < n and not Q_RE.match(main_lines[i][1]):
             t = main_lines[i][1].strip()
             # skip ALL-CAPS section headings (e.g. WHAT MAN OUGHT TO BELIEVE…)
@@ -423,7 +525,13 @@ def build_wlc():
     matched = 0
     for page_no, letter, cite in footnotes:
         pat = marker_pattern(letter)
-        fused = re.compile(r"([A-Za-z]+)" + re.escape(letter) + r"[´'’]*(?=[.,;:?!])")
+        # Marker fused into the preceding word ("forevert." / "preservingc and"):
+        # accept only when removing the letter turns a non-word into a word.
+        fused = re.compile(r"([A-Za-z]+)" + re.escape(letter) + r"[´'’]*(?=[\s.,;:?!)\]]|$)")
+        # Marker fused onto the tail of a kerning-split word ("gover ningd"):
+        # accept when dropping the letter and closing the split restores a word.
+        split_tail = re.compile(r"([A-Za-z]+) ([A-Za-z]+)" + re.escape(letter)
+                                + r"[´'’]*(?=[\s.,;:?!)\]]|$)")
         hit = False
         for pg in (page_no, page_no - 1, page_no + 1):
             for it, ln in by_page.get(pg, []):
@@ -431,11 +539,34 @@ def build_wlc():
                 if m:
                     ln[1] = ln[1][: m.start()] + (" " if m.group(1) else "") + ln[1][m.end():]
                 else:
-                    fm = fused.search(ln[1])
-                    if not (fm and not _is_wordish(fm.group(1) + letter)
-                            and _is_wordish(fm.group(1))):
-                        continue
-                    ln[1] = ln[1][: fm.start()] + fm.group(1) + ln[1][fm.end():]
+                    # Host must be a full word of 3+ letters: a 1–2 letter
+                    # "host" is usually the tail of a hyphen/kerning break
+                    # ("unlaw- / ful" → "fu"+l), not a word with a marker.
+                    fm = next((c for c in fused.finditer(ln[1])
+                               if len(c.group(1)) >= 3
+                               and not _is_wordish(c.group(1) + letter)
+                               and _is_wordish(c.group(1))
+                               and not kerning_fragment(ln[1], c.start(), c.end(), c.group(1) + letter)), None)
+                    if fm:
+                        ln[1] = ln[1][: fm.start()] + fm.group(1) + ln[1][fm.end():]
+                    else:
+                        sm = next((c for c in split_tail.finditer(ln[1])
+                                   if not _is_wordish(c.group(2) + letter)
+                                   and not _is_wordish(c.group(1) + c.group(2) + letter)
+                                   and _is_wordish(c.group(1) + c.group(2))), None)
+                        if sm:
+                            ln[1] = ln[1][: sm.start()] + sm.group(1) + sm.group(2) + ln[1][sm.end():]
+                        elif letter == "a":
+                            continue
+                        else:
+                            # Orphan marker after a space instead of punctuation
+                            # ("fully furnished y to execute"). Never "a" — the
+                            # article. A lone b–z is never legitimate English.
+                            om = next((c for c in re.finditer(r"(?<=\s)" + re.escape(letter) + r"[´'’]*(?=[\s)\]]|$)", ln[1])
+                                       if not kerning_fragment(ln[1], c.start(), c.end(), letter)), None)
+                            if not om:
+                                continue
+                            ln[1] = ln[1][: om.start()].rstrip() + " " + ln[1][om.end():].lstrip()
                 if cite and cite not in it["refs"]:
                     it["refs"].append(cite)
                 matched += 1
@@ -448,8 +579,8 @@ def build_wlc():
         a = tidy(join_wrapped(l for _, l in it["alines"]))
         # Scrub any orphan marker letters whose footnote we failed to pair —
         # a standalone b–z after punctuation (spaced or attached) is never
-        # legitimate English.
-        a = re.sub(r"(?<=[.,;:?!])\s*[b-z][´'’]*(?=[\s)\]]|$)", "", a)
+        # legitimate English (unless it is a kerning fragment of a word).
+        a = scrub_orphan_markers(a)
         it["a"] = repair_split_words(tidy(a))
         del it["alines"]
     print(f"WLC: parsed {len(items)} questions ({items[0]['n']}..{items[-1]['n']}); "

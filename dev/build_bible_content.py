@@ -22,6 +22,10 @@ QUESTION_RE = re.compile(r'^\s{3,7}([1-9]\d?)\.\s+(.*)$')   # not zero-padded
 LETTER_RE = re.compile(r'^\s{6,9}([a-z])\.\s+(.*)$')
 NUM_SUB_RE = re.compile(r'^\s{8,}(0\d|\d{2})\.\s+(.*)$')     # 0/2-padded (e.g. "01. OT")
 ROMAN_RE = re.compile(r'^\s{10,}(i{1,3}|iv|v|vi{0,3}|ix|x)\.\s+(.*)$', re.I)
+# Word-export bullet debris: level-1 bullets came through as ".", level-2
+# (Wingdings circles) as a bare "o". Convert to Markdown list items instead of
+# letting the reflow run them into the surrounding prose.
+BULLET_SRC_RE = re.compile(r'^\s{8,}([.o])\s+(\S.*)$')
 REF_RE = re.compile(r'W(?:CF|LC|SC)\s*[\dIVXLC]+(?:[.:]\d+)?')
 SCRIPT_RE = re.compile(r'\b(?:[123]\s)?[A-Z][a-z]+\.?\s\d+(?::\d+(?:[-–]\d+)?)?')
 FOOTNOTE_RE = re.compile(r'\[\d+\]')
@@ -130,7 +134,7 @@ def main():
             # gather wrapped question text
             q = mq.group(2); i += 1
             while i < len(region) and region[i].strip() and not is_marker(region[i]) \
-                    and not NUM_SUB_RE.match(region[i]):
+                    and not NUM_SUB_RE.match(region[i]) and not BULLET_SRC_RE.match(region[i]):
                 q += ' ' + region[i].strip(); i += 1
             q = clean(q)
             if is_list_prompt(q):
@@ -205,10 +209,45 @@ def main():
     for k in order2:
         print(f"  {k}: {len(sets[k]['cards'])} cards — {sets[k]['label']}")
 
+def consume_bullets(lines, i, stops):
+    """Consume a run of bullet lines (+ wrapped continuations) starting at i;
+    return (markdown_block, next_i). Bullets indented deeper than the run's
+    shallowest marker become nested items."""
+    items = []  # (indent, text)
+    while i < len(lines):
+        ln = lines[i]
+        if not ln.strip():
+            break
+        m = BULLET_SRC_RE.match(ln)
+        if not m:
+            break
+        indent = len(ln) - len(ln.lstrip())
+        text = m.group(2)
+        i += 1
+        while i < len(lines) and lines[i].strip() and not BULLET_SRC_RE.match(lines[i]) \
+                and not any(s(lines[i]) for s in stops):
+            cont = lines[i].strip()
+            # Reference range wrapped after its hyphen ("(9:24-\n27)") closes
+            # up; anything else joins with a space — this doc's "Place- note"
+            # dashes must not swallow the following word.
+            if text.endswith('-') and cont[:1].isdigit():
+                text += cont
+            else:
+                text += ' ' + cont
+            i += 1
+        items.append((indent, clean(text)))
+    if not items:
+        return '', i
+    base = min(ind for ind, _ in items)
+    md = [('  - ' if ind > base else '- ') + t for ind, t in items if t]
+    return '\n'.join(md), i
+
+
 def render_item_body(lines):
     """Render a list-item's nested body (01. OT / 02. NT / i. discussion / prose)
     into Markdown: OT/NT labels become bold leads, discussion becomes paragraphs."""
     out = []
+    stops = [NUM_SUB_RE.match, ROMAN_RE.match]
     i = 0
     while i < len(lines):
         ln = lines[i]
@@ -221,7 +260,8 @@ def render_item_body(lines):
             # gather following roman/prose as the label's text
             i += 1
             text = ''
-            while i < len(lines) and lines[i].strip() and not NUM_SUB_RE.match(lines[i]):
+            while i < len(lines) and lines[i].strip() and not NUM_SUB_RE.match(lines[i]) \
+                    and not BULLET_SRC_RE.match(lines[i]):
                 mr2 = ROMAN_RE.match(lines[i])
                 seg = mr2.group(2) if mr2 else lines[i].strip()
                 text += (' ' if text else '') + seg.strip()
@@ -235,10 +275,15 @@ def render_item_body(lines):
                 out.append(clean(label + (' ' + text if text else '')))
         elif mr:
             out.append(clean(mr.group(2))); i += 1
+        elif BULLET_SRC_RE.match(ln):
+            block, i = consume_bullets(lines, i, stops)
+            if block:
+                out.append(block)
         else:
             text, i = '', i
             buf = ''
-            while i < len(lines) and lines[i].strip() and not NUM_SUB_RE.match(lines[i]) and not ROMAN_RE.match(lines[i]):
+            while i < len(lines) and lines[i].strip() and not NUM_SUB_RE.match(lines[i]) \
+                    and not ROMAN_RE.match(lines[i]) and not BULLET_SRC_RE.match(lines[i]):
                 buf += (' ' if buf else '') + lines[i].strip(); i += 1
             out.append(clean(buf))
     return re.sub(r'\n{3,}', '\n\n', '\n\n'.join(x for x in out if x)).strip()
@@ -247,6 +292,11 @@ def collect_answer(region, i):
     """Collect a prose question's answer (lettered/num/prose) until next
     question or sub-section header."""
     out = []
+    stops = [LETTER_RE.match, NUM_SUB_RE.match, QUESTION_RE.match, SUBSEC_RE.match]
+
+    def boundary(ln):
+        return any(s(ln) for s in stops) or BULLET_SRC_RE.match(ln)
+
     while i < len(region):
         ln = region[i]
         if QUESTION_RE.match(ln) or SUBSEC_RE.match(ln):
@@ -257,20 +307,21 @@ def collect_answer(region, i):
         mn = NUM_SUB_RE.match(ln)
         if ml:
             text = ml.group(2); i += 1
-            while i < len(region) and region[i].strip() and not LETTER_RE.match(region[i]) \
-                    and not NUM_SUB_RE.match(region[i]) and not QUESTION_RE.match(region[i]) and not SUBSEC_RE.match(region[i]):
+            while i < len(region) and region[i].strip() and not boundary(region[i]):
                 text += ' ' + region[i].strip(); i += 1
             out.append(f'{ml.group(1)}. {clean(text)}')
         elif mn:
             text = mn.group(2); i += 1
-            while i < len(region) and region[i].strip() and not LETTER_RE.match(region[i]) \
-                    and not NUM_SUB_RE.match(region[i]) and not QUESTION_RE.match(region[i]) and not SUBSEC_RE.match(region[i]):
+            while i < len(region) and region[i].strip() and not boundary(region[i]):
                 text += ' ' + region[i].strip(); i += 1
             out.append(f'{int(mn.group(1))}. {clean(text)}')
+        elif BULLET_SRC_RE.match(ln):
+            block, i = consume_bullets(region, i, stops)
+            if block:
+                out.append(block)
         else:
             text = ln.strip(); i += 1
-            while i < len(region) and region[i].strip() and not LETTER_RE.match(region[i]) \
-                    and not NUM_SUB_RE.match(region[i]) and not QUESTION_RE.match(region[i]) and not SUBSEC_RE.match(region[i]):
+            while i < len(region) and region[i].strip() and not boundary(region[i]):
                 text += ' ' + region[i].strip(); i += 1
             out.append(clean(text))
     return re.sub(r'\n{3,}', '\n\n', '\n'.join(out)).strip(), i

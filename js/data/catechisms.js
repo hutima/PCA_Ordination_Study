@@ -100,7 +100,7 @@
    {
     "n": 11,
     "q": "What are God’s works of providence?",
-    "a": "God’s works of providence are his most holy, wise, and powerful preserving c and governing all his creatures, and all their actions.",
+    "a": "God’s works of providence are his most holy, wise, and powerful preserving and governing all his creatures, and all their actions.",
     "refs": [
      "Psa. 145:17",
      "Psa. 104:24",
@@ -362,7 +362,7 @@
    {
     "n": 38,
     "q": "What benefits do believers receive from Christ at the resurrection?",
-    "a": "At the resurrection, believers being raised up in glory, shall be openly acknowledged and acquitted in the day of judgment, and made perfectly blessed in full enjoying of God c to all eternity.",
+    "a": "At the resurrection, believers being raised up in glory, shall be openly acknowledged and acquitted in the day of judgment, and made perfectly blessed in full enjoying of God to all eternity.",
     "refs": [
      "1 Cor. 15:43",
      "Matt. 25:23",
@@ -651,7 +651,7 @@
    {
     "n": 71,
     "q": "What is required in the seventh commandment?",
-    "a": "The seventh commandment requireth the preser- vation of our own and our neighbour’s chastity, in heart, speech, and behaviour.",
+    "a": "The seventh commandment requireth the preservation of our own and our neighbour’s chastity, in heart, speech, and behaviour.",
     "refs": [
      "1 Cor. 7:2,3"
     ]
@@ -675,7 +675,7 @@
    {
     "n": 74,
     "q": "What is required in the eighth commandment?",
-    "a": "The eighth commandment requireth the lawful procuring and furthering the wealth and outward estate of our selves and others.",
+    "a": "The eighth commandment requireth the lawful procuring and furthering the wealth and outward estate of ourselves and others.",
     "refs": [
      "Gen. 30:30"
     ]
@@ -734,7 +734,7 @@
    {
     "n": 81,
     "q": "What is forbidden in the tenth commandment?",
-    "a": "The tenth commandment forbiddeth all discon- tentment with our own estate, envying or grieving at the good of our neighbour, and all inordinate motions and affections to any thing that is his.",
+    "a": "The tenth commandment forbiddeth all discontentment with our own estate, envying or grieving at the good of our neighbour, and all inordinate motions and affections to any thing that is his.",
     "refs": [
      "1 Kin. 21:4",
      "Gal. 5:26",
@@ -892,7 +892,7 @@
    {
     "n": 98,
     "q": "What is prayer?",
-    "a": "Prayer is an offering up of our desires to God, for things agreeable to his will, in the name of Christ, with confession of our sins, and thankful acknowl- edgment of his mercies.",
+    "a": "Prayer is an offering up of our desires to God, for things agreeable to his will, in the name of Christ, with confession of our sins, and thankful acknowledgment of his mercies.",
     "refs": [
      "Psa. 62:8",
      "1 John 5:14",
@@ -1031,13 +1031,14 @@
     "n": 4,
     "q": "How doth it appear that the Scriptures are the Word of God?",
     "refs": [
+     "Hos. 8:12",
      "Ps. 12:6",
      "Luke 24:27",
      "Rom. 3:19, 27",
      "Acts 18:28",
      "John 16:13–14"
     ],
-    "a": "The Scriptures manifest themselves to be the Word of God, by their majestyg and purity; by the consent of all the parts, and the scope of the whole, which is to give all glory to God; by their light leave his father and his mother, and shall cleave unto his wife: and they shall be one flesh. and power to convince and convert sinners, to comfort and build up believers unto salvation: but the Spirit of God bearing witness by and with the Scriptures in the heart of man, is alone able fully to persuade it that they are the very Word of God."
+    "a": "The Scriptures manifest themselves to be the Word of God, by their majesty and purity; by the consent of all the parts, and the scope of the whole, which is to give all glory to God; by their light leave his father and his mother, and shall cleave unto his wife: and they shall be one flesh. and power to convince and convert sinners, to comfort and build up believers unto salvation: but the Spirit of God bearing witness by and with the Scriptures in the heart of man, is alone able fully to persuade it that they are the very Word of God."
    },
    {
     "n": 5,
@@ -1079,7 +1080,7 @@
      "Deut. 32:4",
      "Ex. 34:6"
     ],
-    "a": "God is a Spirit, in and of himself infinite in being, glory, blessedness, and perfection; all-suf ficient, eternal, unchangeable, incomprehensible, every where present, almighty, knowing allthings, most wise, most holy, most just, most merciful and gracious, long-suffering, and abundant in goodness and truth."
+    "a": "God is a Spirit, in and of himself infinite in being, glory, blessedness, and perfection; all-sufficient, eternal, unchangeable, incomprehensible, every where present, almighty, knowing all things, most wise, most holy, most just, most merciful and gracious, long-suffering, and abundant in goodness and truth."
    },
    {
     "n": 8,
@@ -1101,7 +1102,7 @@
    },
    {
     "n": 10,
-    "q": "W hat are the personal properties of the three persons in the Godhead?",
+    "q": "What are the personal properties of the three persons in the Godhead?",
     "refs": [
      "Heb. 1:5–6, 8",
      "John 1:14, 18",
@@ -1111,7 +1112,7 @@
    },
    {
     "n": 11,
-    "q": "Ho w doth it appear that the Son and the Holy Ghost are God equal with the Father?",
+    "q": "How doth it appear that the Son and the Holy Ghost are God equal with the Father?",
     "refs": [
      "Isa. 6:3, 5",
      "John 1:1",
@@ -1141,7 +1142,7 @@
    },
    {
     "n": 14,
-    "q": "Ho w doth God execute his decrees?",
+    "q": "How doth God execute his decrees?",
     "refs": [
      "Rev. 4:11",
      "Eph. 1:11"
@@ -1150,16 +1151,17 @@
    },
    {
     "n": 15,
-    "q": "W hat is the work of creation?",
+    "q": "What is the work of creation?",
     "refs": [
      "Gen. 1:1"
     ],
-    "a": "The work of creation is that wherein God did in the beginning, by the word of his power, make of nothing the world, and allthings therein, for himself, within the space of six days, and all very good."
+    "a": "The work of creation is that wherein God did in the beginning, by the word of his power, make of nothing the world, and all things therein, for himself, within the space of six days, and all very good."
    },
    {
     "n": 16,
-    "q": "Ho w did God create angels?",
+    "q": "How did God create angels?",
     "refs": [
+     "Col. 1:16",
      "Ps. 104:4",
      "Matt. 22:30",
      "Matt. 25:31",
@@ -1168,11 +1170,11 @@
      "Ps. 91:11–12",
      "2 Pet. 2:4"
     ],
-    "a": "God created all the angelsf spirits, immortal, holy, excelling in knowledge, mighty in power, to execute his commandments, and to praise his name, yet subject to change."
+    "a": "God created all the angels spirits, immortal, holy, excelling in knowledge, mighty in power, to execute his commandments, and to praise his name, yet subject to change."
    },
    {
     "n": 17,
-    "q": "Ho w did God create man?",
+    "q": "How did God create man?",
     "refs": [
      "Gen. 1:27",
      "Gen. 2:7",
@@ -1189,16 +1191,20 @@
    },
    {
     "n": 18,
-    "q": "W hat are God’s works of providence? a wise, b and pow-",
+    "q": "What are God’s works of providence?",
     "refs": [
+     "Ps. 145:17",
+     "Ps. 104:24",
+     "Heb. 1:3",
+     "Ps. 103:19",
      "Matt. 10:29–31",
      "Rom. 11:36"
     ],
-    "a": "God’s works of providence are his most holy, erful preservingc and gover ningd all his creatures; ordering them, and all their actions, to his own glory."
+    "a": "God’s works of providence are his most holy, wise, and powerful preserving and governing all his creatures; ordering them, and all their actions, to his own glory."
    },
    {
     "n": 19,
-    "q": "W hat is God’s providence towards the angels?",
+    "q": "What is God’s providence towards the angels?",
     "refs": [
      "Jude 6",
      "Job 1:12",
@@ -1210,7 +1216,7 @@
    },
    {
     "n": 20,
-    "q": "W hat was the providence of God toward man in the estate in which he was created?",
+    "q": "What was the providence of God toward man in the estate in which he was created?",
     "refs": [
      "Gen. 2:8, 15",
      "Gen. 1:28",
@@ -1250,7 +1256,7 @@
    },
    {
     "n": 24,
-    "q": "W hat is sin?",
+    "q": "What is sin?",
     "refs": [
      "Lev. 5:17"
     ],
@@ -1258,7 +1264,7 @@
    },
    {
     "n": 25,
-    "q": "W herein consisteth the sinfulness of that estate whereinto man fell?",
+    "q": "Wherein consisteth the sinfulness of that estate whereinto man fell?",
     "refs": [
      "Rom. 5:12, 19",
      "Rom. 3:10–12",
@@ -1268,15 +1274,15 @@
    },
    {
     "n": 26,
-    "q": "Ho w is original sin conveyed from our first parents unto their posterity?",
+    "q": "How is original sin conveyed from our first parents unto their posterity?",
     "refs": [
      "Ps. 51:5"
     ],
-    "a": "Original sin is conveyed from our first parents unto their posterity by natural generation, so as all that proceed from them in that way are conceived and bor n in sin."
+    "a": "Original sin is conveyed from our first parents unto their posterity by natural generation, so as all that proceed from them in that way are conceived and born in sin."
    },
    {
     "n": 27,
-    "q": "W hat miser y did the fall bring upon mankind?",
+    "q": "What misery did the fall bring upon mankind?",
     "refs": [
      "Gen. 3:8, 10",
      "Gen. 3:16–19",
@@ -1288,7 +1294,7 @@
    },
    {
     "n": 28,
-    "q": "W hat are the punishments of sin in this world?",
+    "q": "What are the punishments of sin in this world?",
     "refs": [
      "Eph. 4:18",
      "Rom. 1:28",
@@ -1304,7 +1310,7 @@
    },
    {
     "n": 29,
-    "q": "W hat are the punishments of sin in the world to come?",
+    "q": "What are the punishments of sin in the world to come?",
     "refs": [
      "2 Thess. 1:9"
     ],
@@ -1312,7 +1318,7 @@
    },
    {
     "n": 30,
-    "q": "Doth God leave all mankind to perish in the estate of sin and miser y?",
+    "q": "Doth God leave all mankind to perish in the estate of sin and misery?",
     "refs": [
      "1 Thess. 5:9",
      "Gen. 3:17",
@@ -1322,7 +1328,7 @@
    },
    {
     "n": 31,
-    "q": "With whom was the covenant of g race made?",
+    "q": "With whom was the covenant of grace made?",
     "refs": [
      "Gal. 3:16"
     ],
@@ -1330,18 +1336,20 @@
    },
    {
     "n": 32,
-    "q": "Ho w is the grace of God manifested in the second covenant?",
+    "q": "How is the grace of God manifested in the second covenant?",
     "refs": [
      "Gen. 3:15",
      "1 John 5:11–12",
      "John 3:16, 36",
+     "Isa. 59:21",
      "2 Cor. 4:13",
      "Gal. 5:22–23",
      "Ezek. 36:27",
+     "James 2:18, 22",
      "2 Cor. 5:14–15",
      "Eph. 2:10"
     ],
-    "a": "The grace of God is manifested in the second covenant, in that he freely provideth and offereth to sinners a Mediator, and life and salvation by him; and requiring faith as the condition to interest them in him, promiseth and giveth his Holy Spiritc to all his elect, to work in them that faith, with all other saving graces; and to enable them unto all holy obedience, as the evidence of the truth of their faithg and thankfulness to God, and as the way which he hath appointed them to salvation."
+    "a": "The grace of God is manifested in the second covenant, in that he freely provideth and offereth to sinners a Mediator, and life and salvation by him; and requiring faith as the condition to interest them in him, promiseth and giveth his Holy Spirit to all his elect, to work in them that faith, with all other saving graces; and to enable them unto all holy obedience, as the evidence of the truth of their faith and thankfulness to God, and as the way which he hath appointed them to salvation."
    },
    {
     "n": 33,
@@ -1367,17 +1375,18 @@
    },
    {
     "n": 35,
-    "q": "Ho w is the covenant of g race administered under the ne w testament?",
+    "q": "How is the covenant of grace administered under the new testament?",
     "refs": [
      "Luke 24:47–48",
+     "Matt. 28:19–20",
      "Matt. 26:28",
      "Rom. 1:16"
     ],
-    "a": "Under the new testament, when Christ the substance was exhibited, the same covenant of grace was and still is to be administered in the preaching of the Word, and the administration of the sacraments of baptismt and the Lord’s Supper; in which grace and salvation are held forth in more fullness, evidence, and efficacy, to all nations."
+    "a": "Under the new testament, when Christ the substance was exhibited, the same covenant of grace was and still is to be administered in the preaching of the Word, and the administration of the sacraments of baptism and the Lord’s Supper; in which grace and salvation are held forth in more fullness, evidence, and efficacy, to all nations."
    },
    {
     "n": 36,
-    "q": "W ho is the Mediator of the covenant of grace?",
+    "q": "Who is the Mediator of the covenant of grace?",
     "refs": [
      "1 Tim. 2:5",
      "John 1:1, 14",
@@ -1388,7 +1397,7 @@
    },
    {
     "n": 37,
-    "q": "Ho w did Christ, being the Son of God, become man?",
+    "q": "How did Christ, being the Son of God, become man?",
     "refs": [
      "John 1:14",
      "Luke 1:27, 31",
@@ -1398,7 +1407,7 @@
    },
    {
     "n": 38,
-    "q": "W hy was it requisite that the Mediator should be God?",
+    "q": "Why was it requisite that the Mediator should be God?",
     "refs": [
      "Acts 2:24–25",
      "Acts 20:28",
@@ -1413,7 +1422,7 @@
    },
    {
     "n": 39,
-    "q": "W hy was it requisite that the Mediator should be man?",
+    "q": "Why was it requisite that the Mediator should be man?",
     "refs": [
      "Heb. 2:16",
      "Gal. 4:4",
@@ -1422,11 +1431,11 @@
      "Gal. 4:5",
      "Heb. 4:16"
     ],
-    "a": "It was requisite that the Mediator should be man, that he might advance our nature, perform obedience to the law, suffer and make intercession for us in our nature, have a fellow feeling of our infirmities; that we might receive the adoption of sons, and have comfort and access with boldness unto the throne of g race."
+    "a": "It was requisite that the Mediator should be man, that he might advance our nature, perform obedience to the law, suffer and make intercession for us in our nature, have a fellow feeling of our infirmities; that we might receive the adoption of sons, and have comfort and access with boldness unto the throne of grace."
    },
    {
     "n": 40,
-    "q": "W hy was it requisite that the Mediator should be God and man in one person?",
+    "q": "Why was it requisite that the Mediator should be God and man in one person?",
     "refs": [
      "Matt. 1:21, 23",
      "1 Pet. 2:6"
@@ -1435,7 +1444,7 @@
    },
    {
     "n": 41,
-    "q": "W hy was our Mediator called Jesus?",
+    "q": "Why was our Mediator called Jesus?",
     "refs": [
      "Matt. 1:21"
     ],
@@ -1443,14 +1452,15 @@
    },
    {
     "n": 42,
-    "q": "W hy was our Mediator called Christ?",
+    "q": "Why was our Mediator called Christ?",
     "refs": [
      "Matt. 3:16",
+     "John 6:27",
      "Acts 3:21–22",
      "Heb. 5:5–7",
      "Ps. 2:6"
     ],
-    "a": "Our Mediator was called Christ, because he was anointed with the Holy Ghost above measure; and so set apart, and fully furnished y to execute the offices of prophet, priest, with all authority and ability, and king of his church, in the estate both of his humiliation and exaltation."
+    "a": "Our Mediator was called Christ, because he was anointed with the Holy Ghost above measure; and so set apart, and fully furnished to execute the offices of prophet, priest, with all authority and ability, and king of his church, in the estate both of his humiliation and exaltation."
    },
    {
     "n": 43,
@@ -1462,11 +1472,11 @@
      "John 15:15",
      "Acts 20:32"
     ],
-    "a": "Christ executeth the office of a prophet, in his revealing to the church, in all ages, by his Spirit and Word, in divers ways of administration, the whole will of God, in allthings concerning their edification and salvation."
+    "a": "Christ executeth the office of a prophet, in his revealing to the church, in all ages, by his Spirit and Word, in divers ways of administration, the whole will of God, in all things concerning their edification and salvation."
    },
    {
     "n": 44,
-    "q": "Ho w doth Christ execute the office of a priest?",
+    "q": "How doth Christ execute the office of a priest?",
     "refs": [
      "Heb. 9:14, 28",
      "Heb. 2:17",
@@ -1476,7 +1486,7 @@
    },
    {
     "n": 45,
-    "q": "Ho w doth Christ execute the office of a king?",
+    "q": "How doth Christ execute the office of a king?",
     "refs": [
      "Acts 15:14–16",
      "Eph. 4:11–12",
@@ -1491,32 +1501,33 @@
      "Rom. 8:28",
      "2 Thess. 1:8–9"
     ],
-    "a": "Christ executeth the office of a king, in calling out of the world a people to himself, and giving them officers, laws, and censures, by which he visibly governs them; in bestowing saving grace upon his elect, rewarding their obedience, and correcting them for their sins, preserving and supporting them under all their temptations and sufferings, restraining and overcoming all their enemies, and powerfully ordering allthings for his own glory, and their good; and also in taking vengeance on the rest, who know not God, and obey not the gospel."
+    "a": "Christ executeth the office of a king, in calling out of the world a people to himself, and giving them officers, laws, and censures, by which he visibly governs them; in bestowing saving grace upon his elect, rewarding their obedience, and correcting them for their sins, preserving and supporting them under all their temptations and sufferings, restraining and overcoming all their enemies, and powerfully ordering all things for his own glory, and their good; and also in taking vengeance on the rest, who know not God, and obey not the gospel."
    },
    {
     "n": 46,
-    "q": "W hat was the estate of Christ’s humiliation?",
+    "q": "What was the estate of Christ’s humiliation?",
     "refs": [
      "Phil. 2:6–8",
+     "Luke 1:31",
      "Luke 2:7",
      "Gal. 4:4",
      "Ps. 22:1",
      "Matt. 12:40",
      "Acts 2:24–27, 31"
     ],
-    "a": "The estate of Christ’s humiliation was that low condition, wherein he for our sakes, emptying himself of his glory, took upon him the for m of a servant, in his conceptionz and birth, life, death, and after his death, until his resurrection."
+    "a": "The estate of Christ’s humiliation was that low condition, wherein he for our sakes, emptying himself of his glory, took upon him the form of a servant, in his conception and birth, life, death, and after his death, until his resurrection."
    },
    {
     "n": 47,
-    "q": "Ho w did Christ humble himself in his conception and birth?",
+    "q": "How did Christ humble himself in his conception and birth?",
     "refs": [
      "John 1:14, 18"
     ],
-    "a": "Christ humbled himself in his conception and birth, in that, being from all eternity the Son of God, in the bosom of the Father, he was pleased in the fullness of time to become the son of man, made of a woman of low estate, and to be bor n of her; with divers circumstances of more than ordinary abasement."
+    "a": "Christ humbled himself in his conception and birth, in that, being from all eternity the Son of God, in the bosom of the Father, he was pleased in the fullness of time to become the son of man, made of a woman of low estate, and to be born of her; with divers circumstances of more than ordinary abasement."
    },
    {
     "n": 48,
-    "q": "Ho w did Christ humble himself in his life?",
+    "q": "How did Christ humble himself in his life?",
     "refs": [
      "Gal. 4:4",
      "Matt. 5:17",
@@ -1524,11 +1535,11 @@
      "Matt. 4:1–11",
      "Heb. 2:17–18"
     ],
-    "a": "Christ humbled himself in his life, by subjecting himself to the law, which he perfectly fulfilled; and by conflicting with the indignities of the world, temptations of Satan, and infir mities in his flesh, whether common to the nature of man, or particularly accompanying that his low condition."
+    "a": "Christ humbled himself in his life, by subjecting himself to the law, which he perfectly fulfilled; and by conflicting with the indignities of the world, temptations of Satan, and infirmities in his flesh, whether common to the nature of man, or particularly accompanying that his low condition."
    },
    {
     "n": 49,
-    "q": "Ho w did Christ humble himself in his death?",
+    "q": "How did Christ humble himself in his death?",
     "refs": [
      "Matt. 27:4",
      "Matt. 26:56",
@@ -1538,11 +1549,11 @@
      "Isa. 53:10",
      "Phil. 2:8"
     ],
-    "a": "Christ humbled himself in his death, in that having been betrayed by Judas, forsaken by his disciples, scorned and rejected by the world, condemned by Pilate, and tormented by his persecutors; having also conflicted with the terrors of death, and the powers of darkness, felt and bor ne the weight of God’s wrath, he laid down his life an offering for sin, enduring the painful, shameful, and cursed death of the cross."
+    "a": "Christ humbled himself in his death, in that having been betrayed by Judas, forsaken by his disciples, scorned and rejected by the world, condemned by Pilate, and tormented by his persecutors; having also conflicted with the terrors of death, and the powers of darkness, felt and borne the weight of God’s wrath, he laid down his life an offering for sin, enduring the painful, shameful, and cursed death of the cross."
    },
    {
     "n": 50,
-    "q": "W herein consisted Christ’s humiliation after his death?",
+    "q": "Wherein consisted Christ’s humiliation after his death?",
     "refs": [
      "1 Cor. 15:3–4",
      "Ps. 16:10"
@@ -1562,7 +1573,7 @@
    },
    {
     "n": 52,
-    "q": "Ho w was Christ exalted in his resurrection?",
+    "q": "How was Christ exalted in his resurrection?",
     "refs": [
      "Acts 2:24, 27",
      "Luke 24:39",
@@ -1579,11 +1590,11 @@
      "1 Cor. 15:25–27",
      "1 Cor. 15:20"
     ],
-    "a": "Christ was exalted in his resurrection, in that, not having seen corruption in death, (of which it was not possible for him to be held,) and having the very same body in which he suffered, with the essential properties thereof, (but without mortality, and other common infir mities belonging to this life,) really united to his soul, he rose again from the dead the third day by his own power; whereby he declared himself to be the Son of God, to have satisfied divine justice, to have vanquished death, and him that had the power of it, and to be Lord of quick and dead: all which he did as a public person, the head of his church, for their justification, quickening in grace, support against enemies, and to assure them of their resurrection from the dead at the last day."
+    "a": "Christ was exalted in his resurrection, in that, not having seen corruption in death, (of which it was not possible for him to be held,) and having the very same body in which he suffered, with the essential properties thereof, (but without mortality, and other common infirmities belonging to this life,) really united to his soul, he rose again from the dead the third day by his own power; whereby he declared himself to be the Son of God, to have satisfied divine justice, to have vanquished death, and him that had the power of it, and to be Lord of quick and dead: all which he did as a public person, the head of his church, for their justification, quickening in grace, support against enemies, and to assure them of their resurrection from the dead at the last day."
    },
    {
     "n": 53,
-    "q": "Ho w was Christ exalted in his ascension?",
+    "q": "How was Christ exalted in his ascension?",
     "refs": [
      "Acts 1:2–3",
      "Matt. 28:19–20",
@@ -1598,7 +1609,7 @@
    },
    {
     "n": 54,
-    "q": "Ho w is Christ exalted in his sitting at the right hand of God?",
+    "q": "How is Christ exalted in his sitting at the right hand of God?",
     "refs": [
      "Phil. 2:9",
      "Acts 2:28",
@@ -1607,11 +1618,11 @@
      "Eph. 4:10–12",
      "Rom. 8:34"
     ],
-    "a": "Christ is exalted in his sitting at the right hand of God, in that as God-man he is advanced to the highest favor with God the Father, with all fullness of joy, glory, and power over allthings in heaven and earth; and doth gather and defend his church, and subdue their enemies; furnisheth his ministers and people with gifts and graces, and maketh intercession for them."
+    "a": "Christ is exalted in his sitting at the right hand of God, in that as God-man he is advanced to the highest favor with God the Father, with all fullness of joy, glory, and power over all things in heaven and earth; and doth gather and defend his church, and subdue their enemies; furnisheth his ministers and people with gifts and graces, and maketh intercession for them."
    },
    {
     "n": 55,
-    "q": "Ho w doth Christ make intercession?",
+    "q": "How doth Christ make intercession?",
     "refs": [
      "Heb. 9:12, 24",
      "Isa. 53:12",
@@ -1619,13 +1630,14 @@
      "Rom. 8:33–34",
      "Rom. 5:1–2",
      "Heb. 4:16",
+     "Eph. 1:6",
      "1 Pet. 2:5"
     ],
-    "a": "Christ maketh intercession, by his appearing in our nature continually before the Father in heaven, in the merit of his obedience and sacrifice on earth, declaring his will to have it applied to all believers; answering all accusations against them, and procuring for them quiet of conscience, notwithstanding daily failings, access with boldness to the throne of g race, and acceptance of their personsl and services."
+    "a": "Christ maketh intercession, by his appearing in our nature continually before the Father in heaven, in the merit of his obedience and sacrifice on earth, declaring his will to have it applied to all believers; answering all accusations against them, and procuring for them quiet of conscience, notwithstanding daily failings, access with boldness to the throne of grace, and acceptance of their persons and services."
    },
    {
     "n": 56,
-    "q": "Ho w is Christ to be exalted in his coming again to judge the world?",
+    "q": "How is Christ to be exalted in his coming again to judge the world?",
     "refs": [
      "Acts 3:14–15",
      "Matt. 24:30",
@@ -1637,7 +1649,7 @@
    },
    {
     "n": 57,
-    "q": "W hat benefits hath Christ procured by his mediation?",
+    "q": "What benefits hath Christ procured by his mediation?",
     "refs": [
      "1 Tim. 2:5–6",
      "2 Cor. 1:20"
@@ -1646,7 +1658,7 @@
    },
    {
     "n": 58,
-    "q": "Ho w do we come to be made partakers of the benefits which Christ hath procured?",
+    "q": "How do we come to be made partakers of the benefits which Christ hath procured?",
     "refs": [
      "John 1:11–12",
      "Titus 3:4–7"
@@ -1655,7 +1667,7 @@
    },
    {
     "n": 59,
-    "q": "W ho are made partakers of redemption through Christ?",
+    "q": "Who are made partakers of redemption through Christ?",
     "refs": [
      "Eph. 1:13–14",
      "Rom. 10:17"
@@ -1686,7 +1698,7 @@
    },
    {
     "n": 62,
-    "q": "W hat is the visible church?",
+    "q": "What is the visible church?",
     "refs": [
      "1 Cor. 1:2",
      "1 Cor. 7:14"
@@ -1695,7 +1707,7 @@
    },
    {
     "n": 63,
-    "q": "W hat are the special privileges of the visible church?",
+    "q": "What are the special privileges of the visible church?",
     "refs": [
      "Isa. 4:5–6",
      "Ps. 115:1–2, 9",
@@ -1707,7 +1719,7 @@
    },
    {
     "n": 64,
-    "q": "W hat is the invisible church?",
+    "q": "What is the invisible church?",
     "refs": [
      "Eph. 1:10"
     ],
@@ -1715,7 +1727,7 @@
    },
    {
     "n": 65,
-    "q": "W hat special benefits do the members of the invisible church enjoy by Christ?",
+    "q": "What special benefits do the members of the invisible church enjoy by Christ?",
     "refs": [
      "John 17:21"
     ],
@@ -1723,7 +1735,7 @@
    },
    {
     "n": 66,
-    "q": "W hat is that union which the elect have with Christ?",
+    "q": "What is that union which the elect have with Christ?",
     "refs": [
      "Eph. 2:6–7",
      "Eph. 1:22",
@@ -1733,15 +1745,16 @@
    },
    {
     "n": 67,
-    "q": "W hat is effectual calling?",
+    "q": "What is effectual calling?",
     "refs": [
      "Ezek. 37:9, 14",
+     "Titus 3:4–5",
      "John 3:5",
      "Acts 26:18",
      "Ezek. 11:19",
      "Eph. 2:5"
     ],
-    "a": "Effectual calling is the work of God’s almighty power and grace, whereby (out of his free and special love to his elect, and from nothing in them moving him thereuntow) he doth, in his accepted time, invite and draw them to Jesus Christ, by his Word and Spirit; son of man, and say to the wind, Thus saith the Lord GOD; Come from the four winds, O breath, and breathe upon these slain, that they may live.… and [I] shall put my spirit in you, and ye shall live, and I shall place you in your own land: then shall ye know that I the LORD have spoken it, and performed it, saith the LORD. John 5:25. Verily, verily, I say unto you, The hour is coming, and now is, when the dead shall hear the voice of the Son of God: and they that hear shall live. Eph. 1:18–20. … the eyes of your understanding being enlightened; that ye may know what is the hope of his calling, and what the riches of the glory of his inheritance in the saints, and what is the exceeding greatness of his power to us-ward who believe, according to the working of his mighty power, which he wrought in Christ, when he raised him from the dead, and set him at his own right hand in the heavenly places. 2 Tim. 1:8–9. Be not thou therefore ashamed of the testimony of our Lord, nor of me his prisoner: but be thou partaker of the afflictions of the gospel according to the power of God; who hath saved us, and called us with an holy calling, not according to our works, but according to his own purpose and grace, which was given us in Christ Jesus before the world began. savingly enlightening their minds, renewing and powerfully determining their wills, so as they (although in themselves dead in sin) are hereby made willing and able freely to answer his call, and to accept and embrace the grace offered and conveyed therein."
+    "a": "Effectual calling is the work of God’s almighty power and grace, whereby (out of his free and special love to his elect, and from nothing in them moving him thereunto) he doth, in his accepted time, invite and draw them to Jesus Christ, by his Word and Spirit; son of man, and say to the wind, Thus saith the Lord GOD; Come from the four winds, O breath, and breathe upon these slain, that they may live.… and [I] shall put my spirit in you, and ye shall live, and I shall place you in your own land: then shall ye know that I the LORD have spoken it, and performed it, saith the LORD. John 5:25. Verily, verily, I say unto you, The hour is coming, and now is, when the dead shall hear the voice of the Son of God: and they that hear shall live. Eph. 1:18–20. … the eyes of your understanding being enlightened; that ye may know what is the hope of his calling, and what the riches of the glory of his inheritance in the saints, and what is the exceeding greatness of his power to us-ward who believe, according to the working of his mighty power, which he wrought in Christ, when he raised him from the dead, and set him at his own right hand in the heavenly places. 2 Tim. 1:8–9. Be not thou therefore ashamed of the testimony of our Lord, nor of me his prisoner: but be thou partaker of the afflictions of the gospel according to the power of God; who hath saved us, and called us with an holy calling, not according to our works, but according to his own purpose and grace, which was given us in Christ Jesus before the world began. savingly enlightening their minds, renewing and powerfully determining their wills, so as they (although in themselves dead in sin) are hereby made willing and able freely to answer his call, and to accept and embrace the grace offered and conveyed therein."
    },
    {
     "n": 68,
@@ -1756,7 +1769,7 @@
    },
    {
     "n": 69,
-    "q": "W hat is the communion in g race which the members of the invisible church have with Christ?",
+    "q": "What is the communion in grace which the members of the invisible church have with Christ?",
     "refs": [
      "Rom. 8:30",
      "Eph. 1:5",
@@ -1766,7 +1779,7 @@
    },
    {
     "n": 70,
-    "q": "W hat is justification?",
+    "q": "What is justification?",
     "refs": [
      "Rom. 3:22, 24",
      "Jer. 23:6",
@@ -1778,7 +1791,7 @@
    },
    {
     "n": 71,
-    "q": "Ho w is justification an act of God’s free g race?",
+    "q": "How is justification an act of God’s free grace?",
     "refs": [
      "Rom. 5:8–10, 19",
      "1 Tim. 2:5–6",
@@ -1791,20 +1804,21 @@
    },
    {
     "n": 72,
-    "q": "W hat is justifying faith?",
+    "q": "What is justifying faith?",
     "refs": [
      "Heb. 10:39",
+     "2 Cor. 4:13",
      "Rom. 10:14–17",
      "Acts 2:37",
      "Eph. 1:13",
      "John 1:12",
      "Phil. 3:9"
     ],
-    "a": "Justifying faith is a saving grace, wrought in the heart of a sinner by the Spiritw and Word of God, whereby he, being convinced of his sin and misery, and of the disability in himself and all other creatures to recover him out of his lost condition, not only assenteth to the truth of the promise of the gospel, but receiveth and resteth upon Christ and his righteousness, therein held forth, for pardon of sin, and for the accepting and accounting of his person righteous in the sight of God for salvation."
+    "a": "Justifying faith is a saving grace, wrought in the heart of a sinner by the Spirit and Word of God, whereby he, being convinced of his sin and misery, and of the disability in himself and all other creatures to recover him out of his lost condition, not only assenteth to the truth of the promise of the gospel, but receiveth and resteth upon Christ and his righteousness, therein held forth, for pardon of sin, and for the accepting and accounting of his person righteous in the sight of God for salvation."
    },
    {
     "n": 73,
-    "q": "Ho w doth faith justify a sinner in the sight of God?",
+    "q": "How doth faith justify a sinner in the sight of God?",
     "refs": [
      "Gal. 3:11",
      "Rom. 4:5",
@@ -1814,7 +1828,7 @@
    },
    {
     "n": 74,
-    "q": "W hat is adoption?",
+    "q": "What is adoption?",
     "refs": [
      "1 John 3:1",
      "Eph. 1:5",
@@ -1828,21 +1842,23 @@
    },
    {
     "n": 75,
-    "q": "W hat is sanctification?",
+    "q": "What is sanctification?",
     "refs": [
+     "Ezek. 36:27",
      "Rom. 6:4–6",
      "2 Cor. 5:17",
      "Acts 11:18",
      "Jude 20",
      "Ezek. 36:25–27"
     ],
-    "a": "Sanctification is a work of God’s grace, whereby they whom God hath, before the foundation of the world, chosen to be holy, are in time, through the powerful operation of his Spiritn applying the death and resurrection of Christ unto them, renewed in their whole man after the image of God; having the seeds of repentance unto life, and all other saving graces, put into their hearts, and those graces so stirred up, increased, and strengthened, as that they more and more die unto sin, and rise unto newness of life. we are bound to give thanks alway to God for you, brethren beloved of the Lord, because God hath from the beginning chosen you to salvation through sanctification of the Spirit and belief of the truth. Eph. 1:4. … according as he hath chosen us in him before the foundation of the world, that we should be holy and without blame before him in love. 1 Cor. 6:11. And such were some of you: but ye are washed, but ye are sanctified, but ye are justified in the name of the Lord Jesus, and by the Spirit of our God."
+    "a": "Sanctification is a work of God’s grace, whereby they whom God hath, before the foundation of the world, chosen to be holy, are in time, through the powerful operation of his Spirit applying the death and resurrection of Christ unto them, renewed in their whole man after the image of God; having the seeds of repentance unto life, and all other saving graces, put into their hearts, and those graces so stirred up, increased, and strengthened, as that they more and more die unto sin, and rise unto newness of life. we are bound to give thanks alway to God for you, brethren beloved of the Lord, because God hath from the beginning chosen you to salvation through sanctification of the Spirit and belief of the truth. Eph. 1:4. … according as he hath chosen us in him before the foundation of the world, that we should be holy and without blame before him in love. 1 Cor. 6:11. And such were some of you: but ye are washed, but ye are sanctified, but ye are justified in the name of the Lord Jesus, and by the Spirit of our God."
    },
    {
     "n": 76,
-    "q": "W hat is repentance unto life?",
+    "q": "What is repentance unto life?",
     "refs": [
      "2 Tim. 2:25",
+     "Zech. 12:10",
      "Acts 11:18, 20",
      "Ezek. 18:28, 30",
      "Ezek. 36:31",
@@ -1851,11 +1867,11 @@
      "Luke 1:16–17",
      "2 Chron. 7:14"
     ],
-    "a": "Repentance unto life is a saving grace, wrought in the heart of a sinner by the Spiritu and Word of God, whereby, out of the sight and sense, not only of the danger, but also of the filthiness and odiousness of his sins, and upon the apprehension of God’s mercy in Christ to such as are penitent, he so grieves fora and hates his sins, as that he turns from them all to God, pur posing and endeavoring constantly to walk with him in all the ways of new obedience."
+    "a": "Repentance unto life is a saving grace, wrought in the heart of a sinner by the Spirit and Word of God, whereby, out of the sight and sense, not only of the danger, but also of the filthiness and odiousness of his sins, and upon the apprehension of God’s mercy in Christ to such as are penitent, he so grieves for and hates his sins, as that he turns from them all to God, purposing and endeavoring constantly to walk with him in all the ways of new obedience."
    },
    {
     "n": 77,
-    "q": "W herein do justification and sanctification differ?",
+    "q": "Wherein do justification and sanctification differ?",
     "refs": [
      "1 Cor. 6:11",
      "Rom. 4:6, 8",
@@ -1871,7 +1887,7 @@
    },
    {
     "n": 78,
-    "q": "W hence ariseth the imperfection of sanctification in believers?",
+    "q": "Whence ariseth the imperfection of sanctification in believers?",
     "refs": [
      "Rom. 7:18, 23",
      "Heb. 12:1",
@@ -1895,7 +1911,7 @@
    },
    {
     "n": 80,
-    "q": "Can true believers be infallibly assured that they are in the estate of g race, and that they shall persevere therein unto salvation?",
+    "q": "Can true believers be infallibly assured that they are in the estate of grace, and that they shall persevere therein unto salvation?",
     "refs": [
      "1 John 2:3",
      "1 Cor. 2:12",
@@ -1906,7 +1922,7 @@
    },
    {
     "n": 81,
-    "q": "Are all true believers at all times assured of their present being in the estate of g race, and that the y shall be saved?",
+    "q": "Are all true believers at all times assured of their present being in the estate of grace, and that they shall be saved?",
     "refs": [
      "Eph. 1:13",
      "Isa. 50:10",
@@ -1917,7 +1933,7 @@
    },
    {
     "n": 82,
-    "q": "W hat is the communion in glor y which the members of the invisible church have with Christ?",
+    "q": "What is the communion in glory which the members of the invisible church have with Christ?",
     "refs": [
      "2 Cor. 3:18",
      "Luke 23:43",
@@ -1927,7 +1943,7 @@
    },
    {
     "n": 83,
-    "q": "W hat is the communion in glor y with Christ which the members of the invisible church enjoy in this life?",
+    "q": "What is the communion in glory with Christ which the members of the invisible church enjoy in this life?",
     "refs": [
      "Eph. 2:5–6",
      "Rom. 5:5",
@@ -1959,7 +1975,7 @@
    },
    {
     "n": 86,
-    "q": "W hat is the communion in glor y with Christ, which the members of the invisible church enjoy immediately after death?",
+    "q": "What is the communion in glory with Christ, which the members of the invisible church enjoy immediately after death?",
     "refs": [
      "Heb. 12:23",
      "2 Cor. 5:1, 6",
@@ -1974,7 +1990,7 @@
    },
    {
     "n": 87,
-    "q": "W hat are we to believe concerning the resurrection?",
+    "q": "What are we to believe concerning the resurrection?",
     "refs": [
      "Dan. 12:2",
      "Job 19:26",
@@ -1985,7 +2001,7 @@
    },
    {
     "n": 88,
-    "q": "W hat shall immediately follow after the resurrection?",
+    "q": "What shall immediately follow after the resurrection?",
     "refs": [
      "Eccl. 12:14",
      "Matt. 24:36, 42"
@@ -1994,7 +2010,7 @@
    },
    {
     "n": 89,
-    "q": "W hat shall be done to the wicked at the day of judgment?",
+    "q": "What shall be done to the wicked at the day of judgment?",
     "refs": [
      "Matt. 25:33",
      "Rom. 2:15–16",
@@ -2005,7 +2021,7 @@
    },
    {
     "n": 90,
-    "q": "W hat shall be done to the righteous at the day of judgment?",
+    "q": "What shall be done to the righteous at the day of judgment?",
     "refs": [
      "1 Thess. 4:17",
      "Matt. 25:33",
@@ -2016,7 +2032,7 @@
      "Heb. 12:22–23",
      "1 John 3:2"
     ],
-    "a": "At the day of judgment, the righteous, being caught up to Christ in the clouds, shall be set on his right hand, and there openly acknowledged and acquitted, shall join with him in the judging of reprobate angels and men, and shall be received into heaven, where they shall be fully and forever freed from all sin and misery; filled with inconceivable joys, made perfectly holy and happy both in body and soul, in the company of innumerable saints and holy angels, bu t especially in the immediate vision and fruition of God the Father, of our Lord Jesus Christ, and of the Holy Spirit, to all eternity. And this is the perfect and full communion, which the members of the invisible church shall enjoy with Christ in glory, at the resurrection and day of judgment."
+    "a": "At the day of judgment, the righteous, being caught up to Christ in the clouds, shall be set on his right hand, and there openly acknowledged and acquitted, shall join with him in the judging of reprobate angels and men, and shall be received into heaven, where they shall be fully and forever freed from all sin and misery; filled with inconceivable joys, made perfectly holy and happy both in body and soul, in the company of innumerable saints and holy angels, but especially in the immediate vision and fruition of God the Father, of our Lord Jesus Christ, and of the Holy Spirit, to all eternity. And this is the perfect and full communion, which the members of the invisible church shall enjoy with Christ in glory, at the resurrection and day of judgment."
    },
    {
     "n": 91,
@@ -2028,7 +2044,7 @@
    },
    {
     "n": 92,
-    "q": "W hat did God at first reveal unto man as the rule of his obedience?",
+    "q": "What did God at first reveal unto man as the rule of his obedience?",
     "refs": [
      "Gen. 1:26–27"
     ],
@@ -2036,7 +2052,7 @@
    },
    {
     "n": 93,
-    "q": "W hat is the moral law?",
+    "q": "What is the moral law?",
     "refs": [
      "Deut. 5:1–3, 31",
      "Luke 1:75",
@@ -2068,18 +2084,18 @@
    },
    {
     "n": 96,
-    "q": "W hat particular use is there of the moral law to unregenerate men?",
+    "q": "What particular use is there of the moral law to unregenerate men?",
     "refs": [
      "Ps. 51:13",
      "Gal. 3:24",
      "Rom. 1:20",
      "Gal. 3:10"
     ],
-    "a": "The moral law is of use to unregenerate men, to awaken their consciences to f lee from wrath to come, and to drive them to Christ; or, upon their continuance in the estate and way of sin, to leave them inexcusable, and under the curse thereof."
+    "a": "The moral law is of use to unregenerate men, to awaken their consciences to flee from wrath to come, and to drive them to Christ; or, upon their continuance in the estate and way of sin, to leave them inexcusable, and under the curse thereof."
    },
    {
     "n": 97,
-    "q": "W hat special use is there of the moral law to the re generate?",
+    "q": "What special use is there of the moral law to the regenerate?",
     "refs": [
      "Rom. 6:14",
      "Gal. 5:23",
@@ -2091,7 +2107,7 @@
    },
    {
     "n": 98,
-    "q": "W here is the moral law summarily comprehended?",
+    "q": "Where is the moral law summarily comprehended?",
     "refs": [
      "Deut. 4:13",
      "Matt. 22:37–40"
@@ -2100,7 +2116,7 @@
    },
    {
     "n": 99,
-    "q": "W hat rules are to be observed for the right understanding of the Ten Commandments?",
+    "q": "What rules are to be observed for the right understanding of the Ten Commandments?",
     "refs": [
      "Ps. 19:7",
      "Rom. 7:14",
@@ -2117,11 +2133,11 @@
      "2 Cor. 1:24",
      "1 Tim. 5:22"
     ],
-    "a": "For the right understanding of the Ten Commandments, these rules are to be observed: 1. That the law is perfect, and bindeth everyone to full conformity in the whole man unto the righteousness thereof, and unto entire obedience forever; so as to require the utmost perfection of every duty, and to forbid the least degree of every sin. 2. That it is spiritual, and so reacheth the understanding, will, affections, and all other powers of the soul; as well as words, works, and gestures. 3. That one and the same thing, in divers respects, is required or forbidden in several commandments. 4. That as, where a duty is commanded, the contrary sin is forbidden; and, where a sin is forbidden, the contrary duty is commanded: so, where a promise is annexed, the contrary threatening is included; and, where a threatening is annexed, the contrary promise is included. 5. That what God forbids, is at no time to be done; what he commands, is always our duty; and yet every particular duty is not to be done at all times. 6. That under one sin or duty, all of the same kind are forbidden or commanded; together with all the causes, means, occasions, and appearances thereof, and provocations thereunto. 7. That what is forbidden or commanded to ourselves, we are bound, according to our places, to endeavor that it may be avoided or performed by others, according to the duty of their places. 8. That in what is commanded toothers, we are bound, according to our places and callings, to be helpful to them; and to take heed of partaking with others in what is forbidden them."
+    "a": "For the right understanding of the Ten Commandments, these rules are to be observed: 1. That the law is perfect, and bindeth everyone to full conformity in the whole man unto the righteousness thereof, and unto entire obedience forever; so as to require the utmost perfection of every duty, and to forbid the least degree of every sin. 2. That it is spiritual, and so reacheth the understanding, will, affections, and all other powers of the soul; as well as words, works, and gestures. 3. That one and the same thing, in divers respects, is required or forbidden in several commandments. 4. That as, where a duty is commanded, the contrary sin is forbidden; and, where a sin is forbidden, the contrary duty is commanded: so, where a promise is annexed, the contrary threatening is included; and, where a threatening is annexed, the contrary promise is included. 5. That what God forbids, is at no time to be done; what he commands, is always our duty; and yet every particular duty is not to be done at all times. 6. That under one sin or duty, all of the same kind are forbidden or commanded; together with all the causes, means, occasions, and appearances thereof, and provocations thereunto. 7. That what is forbidden or commanded to ourselves, we are bound, according to our places, to endeavor that it may be avoided or performed by others, according to the duty of their places. 8. That in what is commanded to others, we are bound, according to our places and callings, to be helpful to them; and to take heed of partaking with others in what is forbidden them."
    },
    {
     "n": 100,
-    "q": "W hat special things are we to consider in the Ten Commandments?",
+    "q": "What special things are we to consider in the Ten Commandments?",
     "refs": [],
     "a": "We are to consider, in the Ten Commandments, the preface, the substance of the commandments themselves, and several reasons annexed to some of them, the more to enforce them."
    },
@@ -2132,12 +2148,13 @@
      "Ex. 20:2",
      "Isa. 44:6",
      "Ex. 3:14",
+     "Ex. 6:3",
      "Acts 17:24, 28",
      "Gen. 17:7",
      "Luke 1:74–75",
      "1 Pet. 1:15–19"
     ],
-    "a": "The preface to the Ten Commandments is contained in these words, I am the LORD thy God, which have brought thee out of the land of Egypt, out of the house of bondage. Wherein God manifesteth his sovereignty, as being JEHOVAH, the eternal, immutable, and almighty God; having his being in and of himself, and giving being to all his wordst and works: and that he is a God in covenant, as with Israel of old, so with all his people; who, as he brought them out of their bondage in Egypt, so he delivereth us from our spiritual thraldom; and that therefore we are bound to take him for our God alone, and to keep all his commandments."
+    "a": "The preface to the Ten Commandments is contained in these words, I am the LORD thy God, which have brought thee out of the land of Egypt, out of the house of bondage. Wherein God manifesteth his sovereignty, as being JEHOVAH, the eternal, immutable, and almighty God; having his being in and of himself, and giving being to all his words and works: and that he is a God in covenant, as with Israel of old, so with all his people; who, as he brought them out of their bondage in Egypt, so he delivereth us from our spiritual thraldom; and that therefore we are bound to take him for our God alone, and to keep all his commandments."
    },
    {
     "n": 102,
@@ -2183,7 +2200,7 @@
      "Ps. 119:136",
      "Mic. 6:8"
     ],
-    "a": "The duties required in the first commandment are, the knowing and acknowledging of God to be the only true God, and our God; and to worship and glorify him accordingly, by thinking, meditating, remembering, highly esteeming, honoring, adoring, choosing, loving, desiring, fearing of him; believing him; trusting, hoping, delighting, rejoicing in him; being zealous for him; calling upon him, giving all praise and thanks, and yielding all obedience and submission to him with the whole man; being careful in allthings to please him, and sorrowful when in anything he is offended; and walking humbly with him."
+    "a": "The duties required in the first commandment are, the knowing and acknowledging of God to be the only true God, and our God; and to worship and glorify him accordingly, by thinking, meditating, remembering, highly esteeming, honoring, adoring, choosing, loving, desiring, fearing of him; believing him; trusting, hoping, delighting, rejoicing in him; being zealous for him; calling upon him, giving all praise and thanks, and yielding all obedience and submission to him with the whole man; being careful in all things to please him, and sorrowful when in anything he is offended; and walking humbly with him."
    },
    {
     "n": 105,
@@ -2245,7 +2262,7 @@
      "Ps. 44:20–21",
      "1 Chron. 28:9"
     ],
-    "a": "These words before me or before my face, in the first commandment, teach us, that God, whoseeth allthings, taketh special notice of, and is much displeased with, the sin of having any other God: that so it may be an argument to dissuade from it, and to aggravate it as a most impudent provocation: as also to persuade us to do as in his sight, whatever we do in his service."
+    "a": "These words before me or before my face, in the first commandment, teach us, that God, who seeth all things, taketh special notice of, and is much displeased with, the sin of having any other God: that so it may be an argument to dissuade from it, and to aggravate it as a most impudent provocation: as also to persuade us to do as in his sight, whatever we do in his service."
    },
    {
     "n": 107,
@@ -2253,7 +2270,7 @@
     "refs": [
      "Ex. 20:4–6"
     ],
-    "a": "The second commandment is, Thou shalt not make unto thee any g raven ima ge, or any likeness of any thing that is in heaven above, or that is in the earth beneath, or that is in the water under the earth: thou shalt not bow down thyself to them, nor serve them: for I the LORD thy God am a jealous God, visiting the iniquity of the fathers upon the children unto the third and fourth generation of them that hate me; and she wing mercy unto thousands of them that love me, and keep my commandments."
+    "a": "The second commandment is, Thou shalt not make unto thee any graven image, or any likeness of any thing that is in heaven above, or that is in the earth beneath, or that is in the water under the earth: thou shalt not bow down thyself to them, nor serve them: for I the LORD thy God am a jealous God, visiting the iniquity of the fathers upon the children unto the third and fourth generation of them that hate me; and shewing mercy unto thousands of them that love me, and keep my commandments."
    },
    {
     "n": 108,
@@ -2373,6 +2390,7 @@
      "Mark 6:26",
      "Rom. 9:14, 19",
      "Deut. 29:29",
+     "Rom. 3:5, 7",
      "Eccl. 8:11",
      "Matt. 5:21–22, 27",
      "Ezek. 13:22",
@@ -2393,7 +2411,7 @@
      "Rom. 2:23–24",
      "Gal. 3:1, 3"
     ],
-    "a": "The sins forbidden in the third commandment are, the notusing of God’s name as is required; and the abuse of it in an ignorant, vain, irreverent, profane, superstitious, or wicked mentioning or otherwise using his titles, attributes, ordinances, or works, by blasphemy, perjury; all sinful cursings, oaths, vows, and lots; violating of our oaths and vows, if lawful, and fulfilling them, if of things unlawful; murmuring and quarreling at, curious prying into, and misapplying of God’s decreesi and providences; misinterpreting, misapplying, or anyway perverting the Word, or any part of it, to profane jests, curious or unprofitable questions, vain janglings, or the maintaining of false doctrines; abusing it, the creatures, or anything contained under the name of God, to charms, or sinful lusts and practices; the maligning, scorning, reviling, or anywise opposing of God’s truth, grace, and ways; making profession of religion in hypocrisy, or for sinister ends; being ashamed of it, or a shame to it, by unconformable, unwise, unfruitful, and offensive walking, or backsliding from it."
+    "a": "The sins forbidden in the third commandment are, the not using of God’s name as is required; and the abuse of it in an ignorant, vain, irreverent, profane, superstitious, or wicked mentioning or otherwise using his titles, attributes, ordinances, or works, by blasphemy, perjury; all sinful cursings, oaths, vows, and lots; violating of our oaths and vows, if lawful, and fulfilling them, if of things unlawful; murmuring and quarreling at, curious prying into, and misapplying of God’s decrees and providences; misinterpreting, misapplying, or anyway perverting the Word, or any part of it, to profane jests, curious or unprofitable questions, vain janglings, or the maintaining of false doctrines; abusing it, the creatures, or anything contained under the name of God, to charms, or sinful lusts and practices; the maligning, scorning, reviling, or anywise opposing of God’s truth, grace, and ways; making profession of religion in hypocrisy, or for sinister ends; being ashamed of it, or a shame to it, by unconformable, unwise, unfruitful, and offensive walking, or backsliding from it."
    },
    {
     "n": 114,
@@ -2404,7 +2422,7 @@
      "Deut. 28:58–59",
      "1 Sam. 2:29"
     ],
-    "a": "The reasons annexed to the third commandment, in these words, T he LORD thy God, and, For the LORD will not hold him guiltless that taketh his name in vain, are, because he is the Lord and our God, therefore his name is not to be profaned, or anyway abused by us; especially because he will be so far from acquitting and sparing the transgressors of this commandment, as that he will not suffer them to escape his righteous judgment, albeit many such escape the censures and punishments of men."
+    "a": "The reasons annexed to the third commandment, in these words, The LORD thy God, and, For the LORD will not hold him guiltless that taketh his name in vain, are, because he is the Lord and our God, therefore his name is not to be profaned, or anyway abused by us; especially because he will be so far from acquitting and sparing the transgressors of this commandment, as that he will not suffer them to escape his righteous judgment, albeit many such escape the censures and punishments of men."
    },
    {
     "n": 115,
@@ -2418,9 +2436,10 @@
     "n": 116,
     "q": "What is required in the fourth commandment?",
     "refs": [
-     "Deut. 5:12–14"
+     "Deut. 5:12–14",
+     "Rev. 1:10"
     ],
-    "a": "The fourth commandment requireth of all men the sanctifying or keeping holy to God such set times as he hath appointed in his Word, expressly one whole day in seven; which was the seventh from the beginning of the world to the resurrection of Christ, and the first day of the week ever since, and so to continue to the end of the world; which is the Christian sabbath, and in the New Testament l called the Lord’s Day."
+    "a": "The fourth commandment requireth of all men the sanctifying or keeping holy to God such set times as he hath appointed in his Word, expressly one whole day in seven; which was the seventh from the beginning of the world to the resurrection of Christ, and the first day of the week ever since, and so to continue to the end of the world; which is the Christian sabbath, and in the New Testament called the Lord’s Day."
    },
    {
     "n": 117,
@@ -2428,18 +2447,19 @@
     "refs": [
      "Ex. 20:8, 10",
      "Ex. 16:25–28",
+     "Matt. 12:1–5",
      "Isa. 58:13–14",
      "Ex. 20:8"
     ],
-    "a": "The Sabbath or Lord’s Day is to be sanctified by an holy resting all the day, not only from such works as are at all times sinful, but even from such worldly employments and recreations as are on other days lawful; and making it our delight to spend the whole time (except so much of it as is to be taken up in works of necessity and mercyo) in the public and private exercises of God’s worship: and, to that end, we are to prepare our hearts, and with such foresight, diligence, and moderation, to dispose and seasonably dispatch our worldly business, that we may be the more free and fit for the duties of that day."
+    "a": "The Sabbath or Lord’s Day is to be sanctified by an holy resting all the day, not only from such works as are at all times sinful, but even from such worldly employments and recreations as are on other days lawful; and making it our delight to spend the whole time (except so much of it as is to be taken up in works of necessity and mercy) in the public and private exercises of God’s worship: and, to that end, we are to prepare our hearts, and with such foresight, diligence, and moderation, to dispose and seasonably dispatch our worldly business, that we may be the more free and fit for the duties of that day."
    },
    {
     "n": 118,
-    "q": "W hy is the charge of keeping the Sabbath more specially directed to governors of families, and other superiors?",
+    "q": "Why is the charge of keeping the Sabbath more specially directed to governors of families, and other superiors?",
     "refs": [
      "Ex. 20:10"
     ],
-    "a": "The charge of keeping the Sabbath is more specially directed to governor s of families, and other superiors, because they are bound not only to keep it themselves, but to see that it be observed by all those that are under their charge; and because they are prone ofttimes to hinder them by employments of their own."
+    "a": "The charge of keeping the Sabbath is more specially directed to governors of families, and other superiors, because they are bound not only to keep it themselves, but to see that it be observed by all those that are under their charge; and because they are prone ofttimes to hinder them by employments of their own."
    },
    {
     "n": 119,
@@ -2460,7 +2480,7 @@
      "Ex. 20:10",
      "Ex. 20:11"
     ],
-    "a": "The reasons annexed to the fourth commandment, the more to enforce it, are taken from the equity of it, God allowing us six days of seven for our own affairs, and reserving but one for himself, in these words, Six days shalt thou labour, and do all thy work: from God’s challenging a special propriety in that day, T he seventh day is the sabbath of the LORD thy God: from the example of God, who in six days … made heaven and earth, the sea, and all that in them is, and rested the seventh day: and from that blessing which God put upon that day, not only in sanctifying it to be a day for his service, but in ordaining it to be a means of blessing to us in our sanctifying it; Wherefore the LORD blessed the sabbath day, and hallowed it."
+    "a": "The reasons annexed to the fourth commandment, the more to enforce it, are taken from the equity of it, God allowing us six days of seven for our own affairs, and reserving but one for himself, in these words, Six days shalt thou labour, and do all thy work: from God’s challenging a special propriety in that day, The seventh day is the sabbath of the LORD thy God: from the example of God, who in six days … made heaven and earth, the sea, and all that in them is, and rested the seventh day: and from that blessing which God put upon that day, not only in sanctifying it to be a day for his service, but in ordaining it to be a means of blessing to us in our sanctifying it; Wherefore the LORD blessed the sabbath day, and hallowed it."
    },
    {
     "n": 121,
@@ -2480,12 +2500,12 @@
    },
    {
     "n": 122,
-    "q": "W hat is the sum of the six commandments which contain our duty to man?",
+    "q": "What is the sum of the six commandments which contain our duty to man?",
     "refs": [
      "Matt. 22:39",
      "Matt. 7:12"
     ],
-    "a": "The sum of the six commandments which contain our duty to man is, to love our neighbor as ourselves, and to do toothers what we would have them to do to us."
+    "a": "The sum of the six commandments which contain our duty to man is, to love our neighbor as ourselves, and to do to others what we would have them to do to us."
    },
    {
     "n": 123,
@@ -2500,12 +2520,13 @@
     "q": "Who are meant by father and mother in the fifth commandment?",
     "refs": [
      "Prov. 23:22, 25",
+     "1 Tim. 5:1–2",
      "Gen. 4:20–21",
      "2 Kings 5:13",
      "2 Kings 2:12",
      "Isa. 49:23"
     ],
-    "a": "By father and mother, in the fifth commandment, are meant, not only natural parents, but all superiors in ageo and gifts; and especially such as, by God’s ordinance, are over us in place of authority, whether in family, church, or commonwealth."
+    "a": "By father and mother, in the fifth commandment, are meant, not only natural parents, but all superiors in age and gifts; and especially such as, by God’s ordinance, are over us in place of authority, whether in family, church, or commonwealth."
    },
    {
     "n": 125,
@@ -2541,7 +2562,7 @@
      "Gen. 9:23",
      "Ps. 127:3–5"
     ],
-    "a": "The honor which inferiors owe to their superiors is, all due reverence in heart, word, and behavior; prayer and thanksgiving for them; imitation of their virtues and graces; willing obedience to their lawful commands and counsels; due submission to their corrections; fidelity to, defense, and maintenance of their persons and authority, according to their several ranks, and the nature of their places; bearing with their infir mities, and covering them in love, that so they may be an honor to them and to their government."
+    "a": "The honor which inferiors owe to their superiors is, all due reverence in heart, word, and behavior; prayer and thanksgiving for them; imitation of their virtues and graces; willing obedience to their lawful commands and counsels; due submission to their corrections; fidelity to, defense, and maintenance of their persons and authority, according to their several ranks, and the nature of their places; bearing with their infirmities, and covering them in love, that so they may be an honor to them and to their government."
    },
    {
     "n": 128,
@@ -2550,13 +2571,15 @@
      "Matt. 15:4–6",
      "Num. 11:28–29",
      "1 Sam. 8:7",
+     "2 Sam. 15:10",
+     "Ex. 21:15",
      "1 Sam. 10:27",
      "1 Sam. 2:25",
      "Deut. 21:18–21",
      "Prov. 30:11, 17",
      "Prov. 19:26"
     ],
-    "a": "The sins of inferiors against their superiors are, all neglect of the duties required toward them; envying at, contempt of, and rebellionn against, their personso and places, in their lawful counsels, commands, and corrections; cursing, mocking, and all such refractory and scandalous carriage, as proves a shame and dishonor to them and their government."
+    "a": "The sins of inferiors against their superiors are, all neglect of the duties required toward them; envying at, contempt of, and rebellion against, their persons and places, in their lawful counsels, commands, and corrections; cursing, mocking, and all such refractory and scandalous carriage, as proves a shame and dishonor to them and their government."
    },
    {
     "n": 129,
@@ -2577,7 +2600,7 @@
      "1 Kings 3:28",
      "Titus 2:15"
     ],
-    "a": "It is required of superiors, according to that power they receive from God, and that relation wherein they stand, to love, pray for, and bless their inferiors; to instruct, counsel, and admonish them; countenancing, commending, and rewarding such as do well; and discountenancing, reproving, and chastising such as do ill; protecting, and providing for them allthings necessary for soulg and body: and by grave, wise, holy, and exemplary carriage, to procure glory to God, honor to themselves, and so to preserve that authority which God hath put upon them."
+    "a": "It is required of superiors, according to that power they receive from God, and that relation wherein they stand, to love, pray for, and bless their inferiors; to instruct, counsel, and admonish them; countenancing, commending, and rewarding such as do well; and discountenancing, reproving, and chastising such as do ill; protecting, and providing for them all things necessary for soul and body: and by grave, wise, holy, and exemplary carriage, to procure glory to God, honor to themselves, and so to preserve that authority which God hath put upon them."
    },
    {
     "n": 130,
@@ -2629,7 +2652,7 @@
      "Ex. 20:12",
      "Eph. 6:2–3"
     ],
-    "a": "The reason annexed to the fifth commandment, in these words, T hat thy days may be long upon the land which the LORD thy God giveth thee, is an express promise of long life and prosperity, as far as it shall serve for God’s glory and their own good, to all such as keep this commandment."
+    "a": "The reason annexed to the fifth commandment, in these words, That thy days may be long upon the land which the LORD thy God giveth thee, is an express promise of long life and prosperity, as far as it shall serve for God’s glory and their own good, to all such as keep this commandment."
    },
    {
     "n": 134,
@@ -2643,6 +2666,8 @@
     "n": 135,
     "q": "What are the duties required in the sixth commandment?",
     "refs": [
+     "Eph. 5:28–29",
+     "1 Kings 18:4",
      "Jer. 26:15–16",
      "Eph. 4:26–27",
      "2 Sam. 2:22–23",
@@ -2667,7 +2692,7 @@
      "Matt. 5:24",
      "1 Thess. 5:14"
     ],
-    "a": "The duties required in the sixth commandment are, all careful studies, and lawful endeavors, to preserve the life of ourselvesn and others o by resisting all thoughts and purposes, subduing all passions, and avoiding all occasions, temptations, and practices, which tend to the unjust taking away the life of any; by just defense thereof against violence, patient bearing of the hand of God, quietness of mind, cheerfulness of spirit; sober use of meat, drink, a physic, sleep, labor, and recreations; by charitable thoughts, love, compassion, meekness, gentleness, kindness; peaceable, mild, and courteous speeches and behavior; forbearance, readiness to be reconciled, patient bearing and forgiving of injuries, and requiting good for evil; comforting and succoring the distressed, and protecting and defending the innocent."
+    "a": "The duties required in the sixth commandment are, all careful studies, and lawful endeavors, to preserve the life of ourselves and others by resisting all thoughts and purposes, subduing all passions, and avoiding all occasions, temptations, and practices, which tend to the unjust taking away the life of any; by just defense thereof against violence, patient bearing of the hand of God, quietness of mind, cheerfulness of spirit; sober use of meat, drink, a physic, sleep, labor, and recreations; by charitable thoughts, love, compassion, meekness, gentleness, kindness; peaceable, mild, and courteous speeches and behavior; forbearance, readiness to be reconciled, patient bearing and forgiving of injuries, and requiting good for evil; comforting and succoring the distressed, and protecting and defending the innocent."
    },
    {
     "n": 136,
@@ -2701,7 +2726,7 @@
     "refs": [
      "Ex. 20:14"
     ],
-    "a": "The seventh commandment is, Thou shalt not commit adulter y."
+    "a": "The seventh commandment is, Thou shalt not commit adultery."
    },
    {
     "n": 138,
@@ -2848,7 +2873,7 @@
      "Ps. 15:4",
      "Phil. 4:8"
     ],
-    "a": "The duties required in the ninth commandment are, the preserving and promoting of truth between man and man, and the good name of our neighbor, as well as our own; appearing and standing for the truth; and from the heart, sincerely, freely, clearly, and fully, speaking the truth, and only the truth, in matters of judgment and justice, and in all other things whatsoever; a charitable esteem of our neighbors; loving, desiring, and rejoicing in their good name; sorrowing for, and covering of their infir mities; freely acknowledging of their gifts and graces, defending their innocency; a ready receiving of a good report, and unwillingness to admit of an evil report, concerning them; discouraging talebearers, flatterers, and slanderers; love and care of our own good name, and defending it when need requireth; keeping of lawful promises; studying and practicing of whatsoever things are true, honest, lovely, and of good report."
+    "a": "The duties required in the ninth commandment are, the preserving and promoting of truth between man and man, and the good name of our neighbor, as well as our own; appearing and standing for the truth; and from the heart, sincerely, freely, clearly, and fully, speaking the truth, and only the truth, in matters of judgment and justice, and in all other things whatsoever; a charitable esteem of our neighbors; loving, desiring, and rejoicing in their good name; sorrowing for, and covering of their infirmities; freely acknowledging of their gifts and graces, defending their innocency; a ready receiving of a good report, and unwillingness to admit of an evil report, concerning them; discouraging talebearers, flatterers, and slanderers; love and care of our own good name, and defending it when need requireth; keeping of lawful promises; studying and practicing of whatsoever things are true, honest, lovely, and of good report."
    },
    {
     "n": 145,
@@ -2902,7 +2927,7 @@
      "1 Sam. 2:24",
      "2 Sam. 13:12–13"
     ],
-    "a": "The sins forbidden in the ninth commandment are, all prejudicing the truth, and the good name of our neighbors, as well as our own, especially in public judicature; giving false evidence, suborning false witnesses, wittingly appearing and pleading for an evil cause, outfacing and overbearing the truth; passing unjust sentence, calling evil good, and good evil; rewarding the wicked according to the work of the righteous, and the righteous according to the work of the wicked; forger y, concealing the truth, undue silence in a just cause, and holding our peace when iniquity calleth for either a reproof from ourselves, or complaint toothers; speaking the truth unseasonably, or maliciously to a wrong end, or perverting it to a wrong meaning, or in doubtful and equivocal expressions, to the prejudice of truth or justice; speaking untruth, lying, slandering, backbiting, detracting, talebearing, whispering, scoffing, reviling, rash, harsh, and partial censuring; misconstructing intentions, words, and actions; flattering, vainglorious boasting; thinking or speaking too highly or too meanly of ourselves or others; denying the gifts and graces of God; aggravating smaller faults; hiding, excusing, or extenuating of sins, when called to a free confession; unnecessary discovering of infir mities; raising false rumors, receiving and countenancing evil reports, and stopping our ears against just defense; evil suspicion; envying or grieving at the deserved credit of any, endeavoring or desiring to impair it, rejoicing in their disgrace and infamy; scornful contempt, fond admiration; breach of lawful promises; neglecting such things as are of good report, and practicing, or not avoiding ourselves, or not hindering what we can in others, such things as procure an ill name."
+    "a": "The sins forbidden in the ninth commandment are, all prejudicing the truth, and the good name of our neighbors, as well as our own, especially in public judicature; giving false evidence, suborning false witnesses, wittingly appearing and pleading for an evil cause, outfacing and overbearing the truth; passing unjust sentence, calling evil good, and good evil; rewarding the wicked according to the work of the righteous, and the righteous according to the work of the wicked; forgery, concealing the truth, undue silence in a just cause, and holding our peace when iniquity calleth for either a reproof from ourselves, or complaint to others; speaking the truth unseasonably, or maliciously to a wrong end, or perverting it to a wrong meaning, or in doubtful and equivocal expressions, to the prejudice of truth or justice; speaking untruth, lying, slandering, backbiting, detracting, talebearing, whispering, scoffing, reviling, rash, harsh, and partial censuring; misconstructing intentions, words, and actions; flattering, vainglorious boasting; thinking or speaking too highly or too meanly of ourselves or others; denying the gifts and graces of God; aggravating smaller faults; hiding, excusing, or extenuating of sins, when called to a free confession; unnecessary discovering of infirmities; raising false rumors, receiving and countenancing evil reports, and stopping our ears against just defense; evil suspicion; envying or grieving at the deserved credit of any, endeavoring or desiring to impair it, rejoicing in their disgrace and infamy; scornful contempt, fond admiration; breach of lawful promises; neglecting such things as are of good report, and practicing, or not avoiding ourselves, or not hindering what we can in others, such things as procure an ill name."
    },
    {
     "n": 146,
@@ -2926,10 +2951,11 @@
     "q": "What are the sins forbidden in the tenth commandment?",
     "refs": [
      "1 Cor. 10:10",
+     "Gal. 5:26",
      "Ps. 112:9–10",
      "Rom. 7:7–8"
     ],
-    "a": "The sins forbidden in the tenth commandment are, discontentment with our own estate; envyingq and grieving at the good of our neighbor, together with all inordinate motions and affections to anything that is his."
+    "a": "The sins forbidden in the tenth commandment are, discontentment with our own estate; envying and grieving at the good of our neighbor, together with all inordinate motions and affections to anything that is his."
    },
    {
     "n": 149,
@@ -3007,16 +3033,18 @@
      "Isa. 57:17",
      "Jer. 34:8–11",
      "Jer. 7:10",
+     "Ezek. 23:37–39",
      "Isa. 58:3–5",
+     "1 Cor. 11:20–21",
      "Prov. 7:14–15",
      "Ezra 9:13–14",
      "2 Sam. 16:22"
     ],
-    "a": "Sins receive their aggravations, 1. From the persons offending: if they be of riper age, reater experience or grace, eminent for profession, gifts, place, office, guides toothers, and whose example is likely to be followed by others. 2. From the parties offended: if immediately against God, his attributes, and worship; against Christ, and his grace; the Holy Spirit, his witness, and workings; against superiors, men of eminency, and such as we stand especially related and engaged unto; against any of the saints, particularly weak brethren, the souls of them, or any other, and the common good of all or many. 3. From the nature and quality of the offense: if it be against the express letter of the law, break many commandments, contain in it many sins: if not only conceived in the heart, but breaks forth in words and actions, scandalize others, and admit of no reparation: if against means, mercies, judgments, light of nature, conviction of conscience, public or private admonition, censures of the church, civil punishments; and our prayers, purposes, promises, vows, covenants, and engagements to God or men: if done deliberately, willfully, presumptuously, impudently, boastingly, maliciously, frequently, obstinately, with delight, continuance, or relapsing after repentance. 4. From circumstances of timed and place: if on the Lord’s Day, or other times of divine worship; or immediately beforeh or after these, or other helps to prevent or remedy such miscarriages: if in public, or in the presence of others, who are thereby likely to be provoked or defiled."
+    "a": "Sins receive their aggravations, 1. From the persons offending: if they be of riper age, greater experience or grace, eminent for profession, gifts, place, office, guides to others, and whose example is likely to be followed by others. 2. From the parties offended: if immediately against God, his attributes, and worship; against Christ, and his grace; the Holy Spirit, his witness, and workings; against superiors, men of eminency, and such as we stand especially related and engaged unto; against any of the saints, particularly weak brethren, the souls of them, or any other, and the common good of all or many. 3. From the nature and quality of the offense: if it be against the express letter of the law, break many commandments, contain in it many sins: if not only conceived in the heart, but breaks forth in words and actions, scandalize others, and admit of no reparation: if against means, mercies, judgments, light of nature, conviction of conscience, public or private admonition, censures of the church, civil punishments; and our prayers, purposes, promises, vows, covenants, and engagements to God or men: if done deliberately, willfully, presumptuously, impudently, boastingly, maliciously, frequently, obstinately, with delight, continuance, or relapsing after repentance. 4. From circumstances of timed and place: if on the Lord’s Day, or other times of divine worship; or immediately before or after these, or other helps to prevent or remedy such miscarriages: if in public, or in the presence of others, who are thereby likely to be provoked or defiled."
    },
    {
     "n": 152,
-    "q": "What doth ever y sin deserve at the hands of God?",
+    "q": "What doth every sin deserve at the hands of God?",
     "refs": [
      "James 2:10–11",
      "Ex. 20:1–2",
@@ -3087,20 +3115,20 @@
      "Prov. 3:5",
      "Prov. 2:1–6"
     ],
-    "a": "The Holy Scriptures are to be read with an high and reverent esteem of them; with a fir m persuasion that they are the very Word of God, and that he only can enable us to understand them; with desire to know, believe, and obey the will of God revealed in them; with diligence, and attention to the matter and scope of them; with meditation, application, self-denial, and prayer."
+    "a": "The Holy Scriptures are to be read with an high and reverent esteem of them; with a firm persuasion that they are the very Word of God, and that he only can enable us to understand them; with desire to know, believe, and obey the will of God revealed in them; with diligence, and attention to the matter and scope of them; with meditation, application, self-denial, and prayer."
    },
    {
     "n": 158,
-    "q": "By whom is the Word of God to bepreached?",
+    "q": "By whom is the Word of God to be preached?",
     "refs": [
      "1 Tim. 3:2, 6",
      "Jer. 14:15"
     ],
-    "a": "The Word of God is to bepreached only by such as are sufficiently gifted, and also duly approved and called to that office."
+    "a": "The Word of God is to be preached only by such as are sufficiently gifted, and also duly approved and called to that office."
    },
    {
     "n": 159,
-    "q": "How is the Word of God to bepreached by those that are called thereunto?",
+    "q": "How is the Word of God to be preached by those that are called thereunto?",
     "refs": [
      "Titus 2:1, 8",
      "Acts 18:25",
@@ -3111,6 +3139,7 @@
      "Acts 20:27",
      "Col. 1:28",
      "1 Cor. 3:2",
+     "2 Cor. 5:13–14",
      "Col. 4:12",
      "2 Cor. 2:17",
      "1 Thess. 2:4–6",
@@ -3118,7 +3147,7 @@
      "2 Cor. 12:19",
      "1 Tim. 4:16"
     ],
-    "a": "They that are called to labor in the ministry of the Word, are to preach sound doctrine, diligently, in season and out of season; plainly, not in the enticing words of man’s wisdom, but in demonstration of the Spirit, and of power; faithfully, making known the whole counsel of God; wisely, applying themselves to the necessities and capacities of the hearers; zealously, with fervent love to Godi and the souls of his people; sincerely, aiming at his glory, and their conversion, edification, and salvation."
+    "a": "They that are called to labor in the ministry of the Word, are to preach sound doctrine, diligently, in season and out of season; plainly, not in the enticing words of man’s wisdom, but in demonstration of the Spirit, and of power; faithfully, making known the whole counsel of God; wisely, applying themselves to the necessities and capacities of the hearers; zealously, with fervent love to God and the souls of his people; sincerely, aiming at his glory, and their conversion, edification, and salvation."
    },
    {
     "n": 160,
@@ -3151,14 +3180,14 @@
     "q": "What is a sacrament?",
     "refs": [
      "Gen. 17:7, 10",
+     "Rom. 4:11",
      "Rom. 15:8",
      "Acts 2:38",
-     "Rom. 4:11",
      "Rom. 6:3–4",
      "Eph. 4:2–5",
      "Eph. 2:11–12"
     ],
-    "a": "A sacrament is an holy ordinance instituted by Christ in his church, to signify, seal, and exhibitg unto those that are within the covenant of grace, the benefits of his mediation; to strengthen and increase their faith, and all other graces; to oblige them to obedience; to testify and cherish their love and communion one with another; and to distinguish them from those that are without."
+    "a": "A sacrament is an holy ordinance instituted by Christ in his church, to signify, seal, and exhibit unto those that are within the covenant of grace, the benefits of his mediation; to strengthen and increase their faith, and all other graces; to oblige them to obedience; to testify and cherish their love and communion one with another; and to distinguish them from those that are without."
    },
    {
     "n": 163,
@@ -3166,11 +3195,11 @@
     "refs": [
      "Matt. 3:11"
     ],
-    "a": "The parts of a sacrament are two; the one an outward and sensible sign, used according to Christ’s own appointment; the other an inward and spiritual g race thereby signified."
+    "a": "The parts of a sacrament are two; the one an outward and sensible sign, used according to Christ’s own appointment; the other an inward and spiritual grace thereby signified."
    },
    {
     "n": 164,
-    "q": "How many sacraments hath Christ instituted in his church under the ne w testament?",
+    "q": "How many sacraments hath Christ instituted in his church under the new testament?",
     "refs": [
      "Matt. 28:19"
     ],
@@ -3213,7 +3242,7 @@
      "Acts 2:38",
      "1 Cor. 12:13, 25"
     ],
-    "a": "The needful but much neglected duty of improving our baptism, is to be performed by us all our life long, especially in the time of temptation, and when we are present at the administration of it toothers; by serious and thankful consideration of the nature of it, and of the ends for which Christ instituted it, the privileges and benefits conferred and sealed thereby, and our solemn vow made therein; by being humbled for our sinful defilement, our falling short of, and walking contrary to, the grace of baptism, and our engagements; by growing up to assurance of pardon of sin, and of all other blessings sealed to us in that sacrament; by drawing strength from the death and resurrection of Christ, into whom we are baptized, for the mortifying of sin, and quickening of grace; and by endeavoring to live by faith, to have our conversation in holiness and righteousness, as those that have therein given up their names to Christ; and to walk in brotherly love, as being baptized by the same Spirit into one body."
+    "a": "The needful but much neglected duty of improving our baptism, is to be performed by us all our life long, especially in the time of temptation, and when we are present at the administration of it to others; by serious and thankful consideration of the nature of it, and of the ends for which Christ instituted it, the privileges and benefits conferred and sealed thereby, and our solemn vow made therein; by being humbled for our sinful defilement, our falling short of, and walking contrary to, the grace of baptism, and our engagements; by growing up to assurance of pardon of sin, and of all other blessings sealed to us in that sacrament; by drawing strength from the death and resurrection of Christ, into whom we are baptized, for the mortifying of sin, and quickening of grace; and by endeavoring to live by faith, to have our conversation in holiness and righteousness, as those that have therein given up their names to Christ; and to walk in brotherly love, as being baptized by the same Spirit into one body."
    },
    {
     "n": 168,
@@ -3249,8 +3278,9 @@
    },
    {
     "n": 171,
-    "q": "How are they that receive the sacrament of the Lord’s Supper to prepare themselves before the y come unto it?",
+    "q": "How are they that receive the sacrament of the Lord’s Supper to prepare themselves before they come unto it?",
     "refs": [
+     "1 Cor. 11:28",
      "2 Cor. 13:5",
      "1 Cor. 5:7",
      "1 Cor. 11:29",
@@ -3264,7 +3294,7 @@
      "1 Cor. 11:24–25",
      "2 Chron. 30:18–19"
     ],
-    "a": "They that receive the sacrament of the Lord’s Supper are, before they come, to prepare themselves thereunto, by examining themselvesx of their being in Christ, of their sins and wants; of the truth and measure of their knowledge, faith, repentance; love to God and the brethren, charity to all men, forgiving those that have done them wrong; of their desires after Christ, and of their new obedience; and by renewing the exercise of these graces, by serious meditation, and fervent prayer."
+    "a": "They that receive the sacrament of the Lord’s Supper are, before they come, to prepare themselves thereunto, by examining themselves of their being in Christ, of their sins and wants; of the truth and measure of their knowledge, faith, repentance; love to God and the brethren, charity to all men, forgiving those that have done them wrong; of their desires after Christ, and of their new obedience; and by renewing the exercise of these graces, by serious meditation, and fervent prayer."
    },
    {
     "n": 172,
@@ -3274,11 +3304,12 @@
      "Isa. 54:7–10",
      "Phil. 3:8–9",
      "2 Tim. 2:19",
+     "Isa. 40:11, 29",
      "Mark 9:24",
      "Acts 2:37",
      "Rom. 4:11"
     ],
-    "a": "One who doubteth of his being in Christ, or of his due preparation to the sacrament of the Lord’s Supper, may have true interest in Christ, though he be not yet assured thereof; and in God’s account hath it, if he be duly affected with the apprehension of the want of it, and unfeignedly desires to be found in Christ, and to depart from iniquity: in which case (because promises are made, and this sacrament is appointed, for the relief even of weak and doubting Christiansq) he is to bewail his unbelief, and labor to have his doubts resolved; and, so doing, he may and ought to come to the Lord’s Supper, that he may be further strengthened."
+    "a": "One who doubteth of his being in Christ, or of his due preparation to the sacrament of the Lord’s Supper, may have true interest in Christ, though he be not yet assured thereof; and in God’s account hath it, if he be duly affected with the apprehension of the want of it, and unfeignedly desires to be found in Christ, and to depart from iniquity: in which case (because promises are made, and this sacrament is appointed, for the relief even of weak and doubting Christians) he is to bewail his unbelief, and labor to have his doubts resolved; and, so doing, he may and ought to come to the Lord’s Supper, that he may be further strengthened."
    },
    {
     "n": 173,
@@ -3330,7 +3361,7 @@
    },
    {
     "n": 176,
-    "q": "W herein do the sacraments of baptism and the Lord’s Supper agree?",
+    "q": "Wherein do the sacraments of baptism and the Lord’s Supper agree?",
     "refs": [
      "Matt. 28:19",
      "Rom. 6:3–4",
@@ -3406,7 +3437,7 @@
     "refs": [
      "Rom. 8:26–27"
     ],
-    "a": "We not knowing what to pray for as we ought, the Spirit helpeth our infir mities, by enabling us to understand both for whom, and what, and how prayer is to be made; and by working and quickening in our hearts (although not in all persons, nor at all times, in the same measure) those apprehensions, affections, and graces which are requisite for the right performance of that duty."
+    "a": "We not knowing what to pray for as we ought, the Spirit helpeth our infirmities, by enabling us to understand both for whom, and what, and how prayer is to be made; and by working and quickening in our hearts (although not in all persons, nor at all times, in the same measure) those apprehensions, affections, and graces which are requisite for the right performance of that duty."
    },
    {
     "n": 183,
@@ -3433,7 +3464,7 @@
      "Ps. 125:4",
      "1 John 5:14"
     ],
-    "a": "We are to pray for allthings tending to the glory of God, the welfare of the church, our owns or others’ good; but not for anything that is unlawful."
+    "a": "We are to pray for all things tending to the glory of God, the welfare of the church, our owns or others’ good; but not for anything that is unlawful."
    },
    {
     "n": 185,
@@ -3464,7 +3495,7 @@
      "1 John 5:14",
      "Matt. 6:9–13"
     ],
-    "a": "The whole Word of God is of use to direct us in the duty of prayer; but the special rule of direction is that for m of prayer which our Savior Christ taught his disciples, commonly called the Lord’s Prayer."
+    "a": "The whole Word of God is of use to direct us in the duty of prayer; but the special rule of direction is that form of prayer which our Savior Christ taught his disciples, commonly called the Lord’s Prayer."
    },
    {
     "n": 187,
@@ -3513,7 +3544,7 @@
      "2 Kings 19:15–16",
      "2 Chron. 20:6"
     ],
-    "a": "In the first petition, (which is, Hallowed be thy name,) acknowledging the utter inability and indisposition that is in ourselves and all men to honor God aright, we pray, that God would by his grace enable and incline us and others to know, to acknowledge, and highly to esteem him, his titles, attributes, ordinances, Word, work s, a n d whatsoever he is pleased to make himself known by; and to glorify him in thought, word, and deed: that he would prevent and remove atheism, ignorance, idolatry, profaneness, and whatsoever is dishonorable to him; and, by his overruling providence, direct and dispose of allthings to his own glory."
+    "a": "In the first petition, (which is, Hallowed be thy name,) acknowledging the utter inability and indisposition that is in ourselves and all men to honor God aright, we pray, that God would by his grace enable and incline us and others to know, to acknowledge, and highly to esteem him, his titles, attributes, ordinances, Word, works, and whatsoever he is pleased to make himself known by; and to glorify him in thought, word, and deed: that he would prevent and remove atheism, ignorance, idolatry, profaneness, and whatsoever is dishonorable to him; and, by his overruling providence, direct and dispose of all things to his own glory."
    },
    {
     "n": 191,
@@ -3533,7 +3564,7 @@
      "Rev. 22:20",
      "Isa. 64:1–2"
     ],
-    "a": "In the second petition, (which is, T hy kingdom come,) acknowledging ourselves and all mankind to be by nature under the dominion of sin and Satan, we pray, that the kingdom of sin and Satan may be destroyed, the gospel propagated throughout the world, the Jews called, the fullness of the Gentiles brought in; the church furnished with all gospel officers and ordinances, purged from corruption, countenanced and maintained by the civil magistrate: that the ordinances of Christ may be purely dispensed, and made effectual to the converting of those that are yet in their sins, and the confirming, comforting, and building up of those that are already converted: that Christ would rule in our hearts here, and hasten the time of his second coming, and our reigning with him forever: and that he would be pleased so to exercise the kingdom of his power in all the world, as may best conduce to these ends."
+    "a": "In the second petition, (which is, Thy kingdom come,) acknowledging ourselves and all mankind to be by nature under the dominion of sin and Satan, we pray, that the kingdom of sin and Satan may be destroyed, the gospel propagated throughout the world, the Jews called, the fullness of the Gentiles brought in; the church furnished with all gospel officers and ordinances, purged from corruption, countenanced and maintained by the civil magistrate: that the ordinances of Christ may be purely dispensed, and made effectual to the converting of those that are yet in their sins, and the confirming, comforting, and building up of those that are already converted: that Christ would rule in our hearts here, and hasten the time of his second coming, and our reigning with him forever: and that he would be pleased so to exercise the kingdom of his power in all the world, as may best conduce to these ends."
    },
    {
     "n": 192,
@@ -3558,7 +3589,7 @@
      "Ps. 119:112",
      "Isa. 6:2–3"
     ],
-    "a": "In the third petition, (which is, T hy will be done in earth, as it is in heaven,) acknowledging, that by nature we and all men are not only utterly unable and unwilling to know and do the will of God, but prone to rebel against his Word, to repine and murmur against his providence, and wholly inclined to do the will of the flesh, and of the devil: we pray, that God would by his Spirit take away from ourselves and others all blindness, weakness, indisposedness, and perverseness of heart; and by his grace make us able and willing to know, do, and submit to his will in allthings, with the like humility, cheerfulness, faithfulness, diligence, zeal, sincerity, and constancy, as the angels do in heaven."
+    "a": "In the third petition, (which is, Thy will be done in earth, as it is in heaven,) acknowledging, that by nature we and all men are not only utterly unable and unwilling to know and do the will of God, but prone to rebel against his Word, to repine and murmur against his providence, and wholly inclined to do the will of the flesh, and of the devil: we pray, that God would by his Spirit take away from ourselves and others all blindness, weakness, indisposedness, and perverseness of heart; and by his grace make us able and willing to know, do, and submit to his will in all things, with the like humility, cheerfulness, faithfulness, diligence, zeal, sincerity, and constancy, as the angels do in heaven."
    },
    {
     "n": 193,
@@ -3577,7 +3608,7 @@
      "1 Tim. 6:6–8",
      "Prov. 30:8–9"
     ],
-    "a": "In the fourth petition, (which is, Give us this day our daily bread,) acknowledging, that in Adam, and by our own sin, we have forfeited our right to all the outward blessings of this life, and deserve to be wholly deprived of them by God, and to have them cursed to us in the use of them; and that neither they of themselves are able to sustain us, nor we to merit, or by our own industry to procure them; but prone to desire, get, and use them unlawfully: we pray for ourselves and others, that both they and we, waiting upon the providence of God from day to day in the use of lawful means, may, of his free gift, and as to his fatherly wisdom shall seem best, enjoy a competent portion of them; and have the same continued and blessed unto us in our holy and comfortable use of them, and contentment in them; and be kept from allthings that are contrary to our temporal support and comfort."
+    "a": "In the fourth petition, (which is, Give us this day our daily bread,) acknowledging, that in Adam, and by our own sin, we have forfeited our right to all the outward blessings of this life, and deserve to be wholly deprived of them by God, and to have them cursed to us in the use of them; and that neither they of themselves are able to sustain us, nor we to merit, or by our own industry to procure them; but prone to desire, get, and use them unlawfully: we pray for ourselves and others, that both they and we, waiting upon the providence of God from day to day in the use of lawful means, may, of his free gift, and as to his fatherly wisdom shall seem best, enjoy a competent portion of them; and have the same continued and blessed unto us in our holy and comfortable use of them, and contentment in them; and be kept from all things that are contrary to our temporal support and comfort."
    },
    {
     "n": 194,
@@ -3592,7 +3623,7 @@
      "Rom. 15:13",
      "Luke 11:4"
     ],
-    "a": "In the fifth petition, (which is, Forgive us our debts, as we forgive our debtors,) acknowledging, that we and all others are guilty both of original and actual sin, and thereby become debtors to the justice of God; and that neither we, nor any other creature, can make the least satisfaction for that debt: we pray for ourselves and others, that God of his free g race would, through the obedience and satisfaction of Christ, apprehended and applied by faith, acquit us both from the guilt and punishment of sin, accept us in his Beloved; continue his favor and grace to us, pardon our daily failings, and fill us with peace and joy, in giving us daily more and more assurance of forgiveness; which we are the rather emboldened to ask, and encouraged to expect, when we have this testimony in ourselves, that we from the heart forgive others their offenses."
+    "a": "In the fifth petition, (which is, Forgive us our debts, as we forgive our debtors,) acknowledging, that we and all others are guilty both of original and actual sin, and thereby become debtors to the justice of God; and that neither we, nor any other creature, can make the least satisfaction for that debt: we pray for ourselves and others, that God of his free grace would, through the obedience and satisfaction of Christ, apprehended and applied by faith, acquit us both from the guilt and punishment of sin, accept us in his Beloved; continue his favor and grace to us, pardon our daily failings, and fill us with peace and joy, in giving us daily more and more assurance of forgiveness; which we are the rather emboldened to ask, and encouraged to expect, when we have this testimony in ourselves, that we from the heart forgive others their offenses."
    },
    {
     "n": 195,
@@ -3619,7 +3650,7 @@
      "2 Cor. 13:7, 9",
      "Rom. 16:20"
     ],
-    "a": "In the sixth petition, (which is, And lead us not into temptation, but deliver us from evil,) acknowledging, that the most wise, righteous, and gracious God, for divers holy and just ends, may so order things, that we may be assaulted, foiled, and for a time led captive by temptations; that Satan, the world, and the flesh, are ready powerfully to draw us aside, and ensnare us; and that we, even after the pardon of our sins, by reason of our corruption, weakness, and want of watchfulness, are not only subject to be tempted, and forward to expose ourselves unto temptations, but also of ourselves unable and unwilling to resist them, to recover out of them, and to improve them; and worthy to be left under the power of them: we pray, that God would so overrule the world and all in it, subdue the flesh, and restrain Satan, order allthings, bestow and bless all means of grace, and quicken us to watchfulness in the use of them, that we and all his people may by his providence be kept from being tempted to sin; or, if tempted, that by his Spirit we may be powerfully supported and enabled to stand in the hour of temptation; or when fallen, raised again and recovered out of it, and have a sanctified use and improvement thereof: that our sanctification and salvation may be perfected, Satan trodden under our feet, and we fully freed from sin, temptation, and all evil, forever."
+    "a": "In the sixth petition, (which is, And lead us not into temptation, but deliver us from evil,) acknowledging, that the most wise, righteous, and gracious God, for divers holy and just ends, may so order things, that we may be assaulted, foiled, and for a time led captive by temptations; that Satan, the world, and the flesh, are ready powerfully to draw us aside, and ensnare us; and that we, even after the pardon of our sins, by reason of our corruption, weakness, and want of watchfulness, are not only subject to be tempted, and forward to expose ourselves unto temptations, but also of ourselves unable and unwilling to resist them, to recover out of them, and to improve them; and worthy to be left under the power of them: we pray, that God would so overrule the world and all in it, subdue the flesh, and restrain Satan, order all things, bestow and bless all means of grace, and quicken us to watchfulness in the use of them, that we and all his people may by his providence be kept from being tempted to sin; or, if tempted, that by his Spirit we may be powerfully supported and enabled to stand in the hour of temptation; or when fallen, raised again and recovered out of it, and have a sanctified use and improvement thereof: that our sanctification and salvation may be perfected, Satan trodden under our feet, and we fully freed from sin, temptation, and all evil, forever."
    },
    {
     "n": 196,
@@ -3635,7 +3666,7 @@
      "2 Chron. 14:11",
      "1 Cor. 14:16"
     ],
-    "a": "The conclusion of the Lord’s Prayer, (which is, For thine is the kingdom, and the power, and the glor y, for ever. Amen.) teacheth us to enforce our petitions with arguments, which are to be taken, not from any worthiness in ourselves, or in any other creature, but from God; and with our prayers to join praises, ascribing to God alone eternal sovereignty, omnipotency, and glorious excellency; in regard whereof, as he is able and willing to help us, so we by faith are emboldened to plead with him that he would, and quietly to rely upon him, that he will fulfill our requests. And, to testify this our desire and assurance, we say, Amen."
+    "a": "The conclusion of the Lord’s Prayer, (which is, For thine is the kingdom, and the power, and the glory, for ever. Amen.) teacheth us to enforce our petitions with arguments, which are to be taken, not from any worthiness in ourselves, or in any other creature, but from God; and with our prayers to join praises, ascribing to God alone eternal sovereignty, omnipotency, and glorious excellency; in regard whereof, as he is able and willing to help us, so we by faith are emboldened to plead with him that he would, and quietly to rely upon him, that he will fulfill our requests. And, to testify this our desire and assurance, we say, Amen."
    }
   ]
  }

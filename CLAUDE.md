@@ -26,8 +26,10 @@ architecture/reuse map, content contract, phase status, and next steps.
   `js/data/catechisms_bco.js`, as flip cards — dropdown per set + per
   question, proofs/references in a collapsed section; position persists to
   `pca_catechism_v1`; a set with `verbatim: false` renders a paraphrase
-  callout instead of the confessional one). A Due/Weak
-  focus toggle filters the Review/Quiz deck. Answers are provenance-tagged
+  callout instead of the confessional one). A Due/Weak/In-order focus toggle
+  shapes the Review/Quiz deck (In order = unspaced read-through in book
+  order). Card re-renders run through `withCardAnchor()` (pca.js) so
+  reveal/hide/next never jumps the page. Answers are provenance-tagged
   (`renderAnswer()`: standard quotes vs study notes) and reference chips
   deep-link to official texts (`refLink()`).
 - **Standards data (public domain):** generated from the PDFs at the repo

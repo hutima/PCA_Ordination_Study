@@ -13,7 +13,7 @@
 export function createModes(ctx) {
   const {
     state, DATA, escapeHtml, renderAnswer, summarize, hasMoreThanSummary, renderRefs,
-    buildQuiz, applyOutcome, rerender, mark, move, toggleReveal,
+    buildQuiz, applyOutcome, rerender, mark, move, toggleReveal, withCardAnchor,
     effectiveSetKeys, quizDeckCards, shuffle, emptyState, navRowHtml, wireNav,
     setDeckMeta, EXAM_SIZE,
   } = ctx;
@@ -251,13 +251,15 @@ export function createModes(ctx) {
   const catechism = {
     id: 'catechism', label: 'Catechisms', usesDeck: false, focusable: false,
     title: 'The Westminster Larger & Shorter Catechisms, question by question',
+    // Re-renders run through withCardAnchor so the card's top edge stays put
+    // when a long answer opens or collapses (no page jump).
     go(n) {
       const items = catItems();
       if (!items.length) return;
       catState.n = ((n - 1 + items.length) % items.length) + 1;
       catState.revealed = false;
       saveCat();
-      rerender();
+      withCardAnchor(rerender);
     },
     setCat(id) {
       if (!CATECHISMS || !CATECHISMS[id]) return;
@@ -265,9 +267,9 @@ export function createModes(ctx) {
       catState.n = 1;
       catState.revealed = false;
       saveCat();
-      rerender();
+      withCardAnchor(rerender);
     },
-    toggle() { catState.revealed = !catState.revealed; rerender(); },
+    toggle() { catState.revealed = !catState.revealed; withCardAnchor(rerender); },
     onKey(e) {
       if (e.key === 'ArrowRight') { catechism.go(catState.n + 1); return true; }
       if (e.key === 'ArrowLeft') { catechism.go(catState.n - 1); return true; }
