@@ -170,7 +170,8 @@
         "id": "ch-025-compare-the-first-and-second-great-a",
         "q": "Compare the First and Second Great Awakenings (dates, figures, theology, distinctives).",
         "a": "| | 1st Great Awakening (c. 1735–43) | 2nd Great Awakening (1795–1830) |\n|---|---|---|\n| Major figures | Theodore Frelinghuysen (Dutch Reformed), Gilbert Tennent (Presbyterian), Jonathan Edwards (Congregational), George Whitefield (Anglican) | Nathaniel Taylor (Yale), Lyman Beecher, Charles Finney; Methodists/Baptists in the west, Presbyterian New School in the east |\n| Theology | Calvinist | New Haven / Arminian (modified Edwards) |\n| Salvation | Traditional Calvinist (sovereign God; total depravity; no decisionalism) | Humans have the ability to choose to come to God |\n| Church | \"Pure church\" model (only the born-again take the Supper); end of the Half-Way Covenant | Private interpretation of the Bible; revivalism; volunteer societies |\n| Society | Church/state relationships grow apart | Optimism about the US; volunteer societies; sense of special blessing on America |\n| Highlights | Edwards (Freedom of the Will; Original Sin; Religious Affections); Whitefield's campaigns | Finney (Lectures on Revival); camp/tent meetings; the anxious bench (\"New Measures\") |",
-        "refs": []
+        "refs": [],
+        "summary": "1st (c. 1735–43): Calvinist — Frelinghuysen, Tennent, Edwards, Whitefield; \"pure church\" model, end of the Half-Way Covenant. 2nd (1795–1830): New Haven/Arminian — Taylor, Beecher, Finney; revivalism, camp meetings, the anxious bench, volunteer societies."
       },
       {
         "id": "ch-026-old-school-new-school",
