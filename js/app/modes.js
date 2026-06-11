@@ -36,7 +36,9 @@ export function createModes(ctx) {
         : '';
       const revealBody = direct
         ? `<div class="qa-answer">${renderAnswer(card.a)}</div>`
-        : `<div class="qa-summary">${escapeHtml(summarize(card))}</div>`;
+        // Teasers render as Markdown (escape-first) so multi-part summaries
+        // can be bulleted lists instead of semicolon chains.
+        : `<div class="qa-summary">${renderAnswer(summarize(card))}</div>`;
       const answerBlock = state.revealed
         ? `<div class="qa-divider"></div>
            ${revealBody}

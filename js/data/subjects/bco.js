@@ -21,7 +21,7 @@
         "q": "List at least two key principles of Presbyterian church government",
         "a": "1. God alone is Lord of the conscience.\n2. Every church, or body, has the right to determine its qualifications for its members.\n3. Christ himself has appointed officers in his church.\n4. Godliness is founded on truth.\n5. Teachers should be sound in the faith.\n6. Each particular body has a right to elect its own officers.\n7. Church power is only ministerial and declarative and therefore not legislative .\n8. Church discipline must be purely moral and spiritual in nature and therefore not civil.",
         "refs": [],
-        "summary": "God alone is Lord of the conscience; every body sets the qualifications for its members; Christ appointed the officers; godliness is founded on truth; teachers must be sound in the faith; each body elects its own officers; church power is ministerial and declarative, not legislative; discipline is moral and spiritual, not civil."
+        "summary": "The eight preliminary principles:\n- God alone is Lord of the conscience\n- Every body sets the qualifications for its members\n- Christ himself appointed the officers\n- Godliness is founded on truth\n- Teachers must be sound in the faith\n- Each body elects its own officers\n- Church power is ministerial and declarative, not legislative\n- Discipline is moral and spiritual, not civil"
       },
       {
         "id": "bco-003",
@@ -90,7 +90,7 @@
         "q": "What 2 kinds of members does the church have? What are their respective rights and privileges?",
         "a": "- Communing: all rights & privileges of church (voting, office holding, & admission to Lord’s table)6-2,6-4\n- Non-communing members: entitled to baptism, pastoral oversight, instruction & gov’t of church (6-1)\n- Associate members: all the rights and privileges of the church except voting in congregational meetings and holding office in that church (6-4)",
         "refs": [],
-        "summary": "Communing members — all rights and privileges (voting, office, the Lord's table; BCO 6-2, 6-4); non-communing members — baptism, pastoral oversight, instruction, and government (6-1); associate members — all privileges except voting and holding office in that church (6-4)."
+        "summary": "- Communing members — all rights and privileges: voting, office, the Lord's table (BCO 6-2, 6-4)\n- Non-communing members — baptism, pastoral oversight, instruction, and government (6-1)\n- Associate members — all privileges except voting and holding office in that church (6-4)"
       },
       {
         "id": "bco-013",
@@ -115,7 +115,7 @@
         "refs": [
           "BCO 8-3"
         ],
-        "summary": "Watch over the flock in doctrine and morality; exercise government and discipline; take oversight of the local and the general church; visit (especially the sick), instruct, comfort, nourish, and guard the children; set a worthy example; love and pray with and for the people (BCO 8-3)."
+        "summary": "- Watch over the flock in doctrine and morality\n- Exercise government and discipline\n- Take oversight of the local and the general church\n- Visit (especially the sick), instruct, comfort, nourish, and guard the children\n- Set a worthy example; love and pray with and for the people (BCO 8-3)"
       },
       {
         "id": "bco-016",
@@ -149,7 +149,7 @@
         "refs": [
           "BCO 9-2"
         ],
-        "summary": "An office of service, not rule: minister to those in need, the sick, the friendless, and any in distress; devise methods to collect the congregation's gifts; keep the church in proper physical repair (BCO 9-2)."
+        "summary": "An office of service, not rule (BCO 9-2):\n- Minister to those in need, the sick, the friendless, and any in distress\n- Devise methods to collect the congregation's gifts\n- Keep the church in proper physical repair"
       },
       {
         "id": "bco-020",
@@ -230,7 +230,7 @@
         "refs": [
           "BCO 19-2"
         ],
-        "summary": "Christian experience and inward call; written or oral exams in Theology (the Westminster Standards), English Bible, and the Book of Church Order; oral examination before Presbytery on the same; a written sermon delivered before Presbytery (BCO 19-2)."
+        "summary": "Per BCO 19-2:\n- Christian experience and inward call\n- Written or oral exams: Theology (the Westminster Standards), English Bible, the Book of Church Order\n- Oral examination before Presbytery on the same\n- A written sermon, delivered before Presbytery"
       },
       {
         "id": "bco-030",
@@ -292,7 +292,7 @@
         "refs": [
           "BCO 24-1"
         ],
-        "summary": "Christian experience (especially personal character); knowledge of doctrine, church government, and discipline in the PCA Constitution; the duties of the office to which he is nominated; willingness to assent to the ordination questions (BCO 24-1)."
+        "summary": "Per BCO 24-1:\n- Christian experience (especially personal character)\n- Knowledge of doctrine, church government, and discipline in the PCA Constitution\n- The duties of the office to which he is nominated\n- Willingness to assent to the ordination questions"
       },
       {
         "id": "bco-039",
@@ -385,7 +385,7 @@
         "q": "List and define church censures:",
         "a": "- Admonition: Formal reproof of an offender\n- Suspension from sacraments: the temporary exclusion from those ordinances (indefinite).\n- Suspension from office: exclusion of a church officer from his office (definite or indefinite duration).\n- Excommunication: excision of an offender from the communion of the church.\n- Deposition-degradation of an officer from office (with/without other censure).",
         "refs": [],
-        "summary": "Admonition (formal reproof); suspension from the sacraments (temporary, indefinite); suspension from office (definite or indefinite); deposition (degradation of an officer from office); excommunication (excision from the communion of the church)."
+        "summary": "- Admonition — formal reproof\n- Suspension from the sacraments — temporary, indefinite\n- Suspension from office — definite or indefinite\n- Deposition — degradation of an officer from office\n- Excommunication — excision from the communion of the church"
       },
       {
         "id": "bco-051",

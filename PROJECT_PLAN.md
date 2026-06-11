@@ -216,6 +216,13 @@ KEEP modules + the HTML shell):**
 
       **Release ritual:** bump `?v=N` in `index.html` AND `CACHE` in `sw.js`
       together so returning users auto-refresh onto the new version.
+- [x] **Phase 15e — Bulleted multi-part teasers.** Release `?v=26`/`pca-v26`.
+      Teasers render as Markdown (`renderAnswer(summarize(card))` + `.qa-summary`
+      list styles): ~25 multi-part authored summaries rewritten as bullet
+      lists (solas, censures, duties, exam areas, attributes, heresies, plan
+      of salvation…), and the derived enumeration path now emits intro +
+      bullets + an italic "(+N more)" instead of a semicolon chain (a short
+      fragment first line joins the bullets rather than posing as an intro).
 - [x] **Phase 15d — Enumeration-teaser sweep.** Release `?v=25`/`pca-v25`.
       New `ENUM_FIRST_ONLY` audit class: enumeration questions ("What were
       the solas…?", "List church censures") whose derived teaser expounded

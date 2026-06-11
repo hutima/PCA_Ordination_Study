@@ -143,36 +143,49 @@ SUMMARIES = {
                 "(1 Cor 10:31)."),
     # Enumeration questions: the teaser must name every part, not expound
     # the first one.
-    'bco-002': ("God alone is Lord of the conscience; every body sets the qualifications "
-                "for its members; Christ appointed the officers; godliness is founded on "
-                "truth; teachers must be sound in the faith; each body elects its own "
-                "officers; church power is ministerial and declarative, not legislative; "
-                "discipline is moral and spiritual, not civil."),
-    'bco-012': ("Communing members — all rights and privileges (voting, office, the "
-                "Lord's table; BCO 6-2, 6-4); non-communing members — baptism, pastoral "
-                "oversight, instruction, and government (6-1); associate members — all "
-                "privileges except voting and holding office in that church (6-4)."),
-    'bco-015': ("Watch over the flock in doctrine and morality; exercise government and "
-                "discipline; take oversight of the local and the general church; visit "
-                "(especially the sick), instruct, comfort, nourish, and guard the "
-                "children; set a worthy example; love and pray with and for the people "
-                "(BCO 8-3)."),
-    'bco-019': ("An office of service, not rule: minister to those in need, the sick, "
-                "the friendless, and any in distress; devise methods to collect the "
-                "congregation's gifts; keep the church in proper physical repair "
-                "(BCO 9-2)."),
-    'bco-029': ("Christian experience and inward call; written or oral exams in Theology "
-                "(the Westminster Standards), English Bible, and the Book of Church "
-                "Order; oral examination before Presbytery on the same; a written sermon "
-                "delivered before Presbytery (BCO 19-2)."),
-    'bco-038': ("Christian experience (especially personal character); knowledge of "
-                "doctrine, church government, and discipline in the PCA Constitution; "
-                "the duties of the office to which he is nominated; willingness to "
-                "assent to the ordination questions (BCO 24-1)."),
-    'bco-050': ("Admonition (formal reproof); suspension from the sacraments (temporary, "
-                "indefinite); suspension from office (definite or indefinite); "
-                "deposition (degradation of an officer from office); excommunication "
-                "(excision from the communion of the church)."),
+    'bco-002': ("The eight preliminary principles:\n"
+                "- God alone is Lord of the conscience\n"
+                "- Every body sets the qualifications for its members\n"
+                "- Christ himself appointed the officers\n"
+                "- Godliness is founded on truth\n"
+                "- Teachers must be sound in the faith\n"
+                "- Each body elects its own officers\n"
+                "- Church power is ministerial and declarative, not legislative\n"
+                "- Discipline is moral and spiritual, not civil"),
+    'bco-012': ("- Communing members — all rights and privileges: voting, office, the "
+                "Lord's table (BCO 6-2, 6-4)\n"
+                "- Non-communing members — baptism, pastoral oversight, instruction, and "
+                "government (6-1)\n"
+                "- Associate members — all privileges except voting and holding office in "
+                "that church (6-4)"),
+    'bco-015': ("- Watch over the flock in doctrine and morality\n"
+                "- Exercise government and discipline\n"
+                "- Take oversight of the local and the general church\n"
+                "- Visit (especially the sick), instruct, comfort, nourish, and guard the "
+                "children\n"
+                "- Set a worthy example; love and pray with and for the people (BCO 8-3)"),
+    'bco-019': ("An office of service, not rule (BCO 9-2):\n"
+                "- Minister to those in need, the sick, the friendless, and any in "
+                "distress\n"
+                "- Devise methods to collect the congregation's gifts\n"
+                "- Keep the church in proper physical repair"),
+    'bco-029': ("Per BCO 19-2:\n"
+                "- Christian experience and inward call\n"
+                "- Written or oral exams: Theology (the Westminster Standards), English "
+                "Bible, the Book of Church Order\n"
+                "- Oral examination before Presbytery on the same\n"
+                "- A written sermon, delivered before Presbytery"),
+    'bco-038': ("Per BCO 24-1:\n"
+                "- Christian experience (especially personal character)\n"
+                "- Knowledge of doctrine, church government, and discipline in the PCA "
+                "Constitution\n"
+                "- The duties of the office to which he is nominated\n"
+                "- Willingness to assent to the ordination questions"),
+    'bco-050': ("- Admonition — formal reproof\n"
+                "- Suspension from the sacraments — temporary, indefinite\n"
+                "- Suspension from office — definite or indefinite\n"
+                "- Deposition — degradation of an officer from office\n"
+                "- Excommunication — excision from the communion of the church"),
 }
 
 def main():

@@ -26,7 +26,7 @@
         "q": "What were the “solas” of the Reformation?",
         "a": "Sola scriptura - Ultimate authority is scripture (history, assemblies, doctrine and interpretation are all helpful and important, but they are not on an equal footing) Don’t need the church to interpret scripture. Scripture defines the church, not the church defining scripture.\nSola gratia - Basis for salvation is entire grace; it is not God taking what I can offer and then adding his share to it; it isn’t a co-operative effort.\nSola fides - Means for salvation: How is grace delivered? Not by the sacraments (ala RCC) but by faith (which God also gives). Again notice it isn’t our faith, plus the things we do—works are an evidence of faith, not a means of salvation.\nSolus Christus - salvation is in Christ alone Soli Deo Gloria - God’s glory above all else Priesthood of all Believers - No hierarchy of access to God: all can come directly to him; we don’t need priestly mediator.\nNo one is closer to God based on office.\nWe all have a responsibility to minister to one another.",
         "refs": [],
-        "summary": "Sola scriptura (Scripture the ultimate authority), sola gratia (salvation entirely of grace, not a cooperative effort), sola fide (grace received through faith alone, not sacraments or works), solus Christus (salvation in Christ alone), soli Deo gloria (God's glory above all) — plus the priesthood of all believers."
+        "summary": "- Sola scriptura — Scripture the ultimate authority\n- Sola gratia — salvation entirely of grace, not a cooperative effort\n- Sola fide — grace received through faith alone, not sacraments or works\n- Solus Christus — salvation in Christ alone\n- Soli Deo gloria — God's glory above all\n…plus the priesthood of all believers."
       }
     ]
   },
@@ -175,7 +175,7 @@
         "q": "Compare the First and Second Great Awakenings (dates, figures, theology, distinctives).",
         "a": "| | 1st Great Awakening (c. 1735–43) | 2nd Great Awakening (1795–1830) |\n|---|---|---|\n| Major figures | Theodore Frelinghuysen (Dutch Reformed), Gilbert Tennent (Presbyterian), Jonathan Edwards (Congregational), George Whitefield (Anglican) | Nathaniel Taylor (Yale), Lyman Beecher, Charles Finney; Methodists/Baptists in the west, Presbyterian New School in the east |\n| Theology | Calvinist | New Haven / Arminian (modified Edwards) |\n| Salvation | Traditional Calvinist (sovereign God; total depravity; no decisionalism) | Humans have the ability to choose to come to God |\n| Church | \"Pure church\" model (only the born-again take the Supper); end of the Half-Way Covenant | Private interpretation of the Bible; revivalism; volunteer societies |\n| Society | Church/state relationships grow apart | Optimism about the US; volunteer societies; sense of special blessing on America |\n| Highlights | Edwards (Freedom of the Will; Original Sin; Religious Affections); Whitefield's campaigns | Finney (Lectures on Revival); camp/tent meetings; the anxious bench (\"New Measures\") |",
         "refs": [],
-        "summary": "1st (c. 1735–43): Calvinist — Frelinghuysen, Tennent, Edwards, Whitefield; \"pure church\" model, end of the Half-Way Covenant. 2nd (1795–1830): New Haven/Arminian — Taylor, Beecher, Finney; revivalism, camp meetings, the anxious bench, volunteer societies."
+        "summary": "- 1st (c. 1735–43): Calvinist — Frelinghuysen, Tennent, Edwards, Whitefield; \"pure church\" model, end of the Half-Way Covenant\n- 2nd (1795–1830): New Haven/Arminian — Taylor, Beecher, Finney; revivalism, camp meetings, the anxious bench, volunteer societies"
       },
       {
         "id": "ch-026-old-school-new-school",
@@ -601,7 +601,7 @@
         "q": "What are some distinctives of the PCA?",
         "a": "Cf. Morton Smith, _How the Gold Became Dim_.\n\n- **A high view of Scripture:** verbal plenary inspiration; Scripture the basis for authority within the church.\n- **The spiritual mission of the church** — evangelism.\n- **A distinctly Presbyterian and Reformed ministry,** confessionally subscribing to the Westminster Standards.\n- **Limited polity** in church matters; power with the laity.\n- **Against the PCUS trends:** women teaching, exhorting, or leading in public assemblies; the social gospel; the \"one church movement\" (National and World Councils of Churches).",
         "refs": [],
-        "summary": "A high view of Scripture (verbal plenary inspiration), the spiritual mission of the church (evangelism), a distinctly Reformed and confessional ministry, and limited polity with power to the laity — against the PCUS drift: women leading assemblies, the social gospel, and NCC/WCC ecumenism."
+        "summary": "- A high view of Scripture — verbal plenary inspiration\n- The spiritual mission of the church — evangelism\n- A distinctly Reformed, confessional ministry (Westminster Standards)\n- Limited polity, with power to the laity\n- Against the PCUS drift: women leading assemblies, the social gospel, NCC/WCC ecumenism"
       }
     ]
   }

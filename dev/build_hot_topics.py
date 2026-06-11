@@ -100,11 +100,12 @@ def theory_card(suffix, name, summary, desc, time, day, problems):
 CURATE = {
     'ht-001-creation': {
         'a': CREATION_TABLE,
-        'summary': ("Five main theories: 24-hour day (sequential and literal), "
-                    "Day-age (each day an era), Literary approach (a framework "
-                    "oriented to Sabbath theology), Prior creation (a created "
-                    "world before Gen 1), and Two-phase (chapters 1 & 2 as two "
-                    "phases). Each view is drilled on its own card."),
+        'summary': ("Five main theories (each drilled on its own card):\n"
+                    "- 24-hour day — sequential and literal\n"
+                    "- Day-age — each day an era\n"
+                    "- Literary approach — a framework oriented to Sabbath theology\n"
+                    "- Prior creation — a created world before Gen 1\n"
+                    "- Two-phase — chapters 1 & 2 as two phases"),
         'append': [
             theory_card('a', '24-hour day',
                         ('Gen 1 read as sequential and literal: each "day" is 24 hours, '
@@ -235,10 +236,12 @@ CURATE = {
     },
     'ht-011-confessional-subscription': {
         'summary': ("How a candidate \"receives and adopts\" the Westminster standards "
-                    "(BCO 21-5). Four views: substance of doctrine (not acceptable), "
-                    "vital to the system (\"loose\"), very doctrines of the Word "
-                    "(\"strict\"), very word of doctrine (ruled out). The live debate is "
-                    "between the loose and strict views."),
+                    "(BCO 21-5). Four views:\n"
+                    "- Substance of doctrine — not acceptable\n"
+                    "- Vital to the system — the \"loose\" view\n"
+                    "- Very doctrines of the Word — the \"strict\" view\n"
+                    "- Very word of doctrine — ruled out\n"
+                    "The live debate is between the loose and strict views."),
     },
     'ht-012-fencing-the-lord-s-table': {
         'summary': ("Settled at GA in 1993: per BCO 58-4b the warning before the Supper "
@@ -257,9 +260,11 @@ CURATE = {
               "5. Birds of the Air, Water Creatures\n"
               "6. Land Creatures, Humankind\n\n"
               "**Day 7:** God Rested"),
-        'summary': ("Days 1–3 form (light & darkness; waters above & below; land & "
-                    "vegetation); days 4–6 fill (sun, moon, stars; birds & water "
-                    "creatures; land creatures & humankind); day 7 God rested."),
+        'summary': ("- Days 1–3 form: light & darkness; waters above & below; land & "
+                    "vegetation\n"
+                    "- Days 4–6 fill: sun, moon, stars; birds & water creatures; land "
+                    "creatures & humankind\n"
+                    "- Day 7: God rested"),
     },
     'ht-014-ten-plagues-exodus-7-12': {
         'summary': ("The ten plagues on Egypt: blood, frogs, gnats, flies, livestock, "

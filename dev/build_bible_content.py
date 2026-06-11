@@ -294,11 +294,13 @@ CURATE = {
     },
     'bc-064-what-are-the-distinctive-features': {
         'a': GOSPELS_DISTINCTIVES,
-        'summary': ('Matthew: fulfillment formulae, discipleship and the church, conflict with '
-                    '"their synagogues." Mark: the suffering servant, failing disciples, the '
-                    'gospel about Jesus. Luke: Jesus\' humanity, outcasts, women, the poor, '
-                    'prayer. John: realized eschatology, miracles as signs, "I AM" statements, '
-                    'the believer\'s security.'),
+        'summary': ('- Matthew — fulfillment formulae; discipleship and the church; '
+                    'conflict with "their synagogues"\n'
+                    '- Mark — the suffering servant; failing disciples; the gospel about '
+                    'Jesus\n'
+                    '- Luke — Jesus\' humanity; outcasts, women, and the poor; prayer\n'
+                    '- John — realized eschatology; miracles as signs; "I AM" statements; '
+                    'the believer\'s security'),
     },
     # Three prompts glued into one card → outline, parables, miracles.
     'bc-066-outline-the-life-of-christ': {'split': [
@@ -363,27 +365,29 @@ CURATE = {
     # The question asks for the ELEMENTS of the sermons; the derived teaser
     # was listing the sermons themselves.
     'bc-067-what-are-the-basic-elements-found': {
-        'summary': ('The apostolic kerygma: (1) God\'s OT promises are fulfilled — the '
-                    'Messiah has come; (2) the Messiah is Jesus of Nazareth — who did good '
-                    'works and miracles, was crucified according to God\'s purpose, was '
-                    'raised, is exalted as Lord, and will return in judgment; (3) '
-                    'therefore everyone who hears must repent and be baptized. (Twelve '
-                    'sermons, Acts 2-26.)'),
+        'summary': ('The apostolic kerygma (twelve sermons, Acts 2-26):\n'
+                    '- God\'s OT promises are fulfilled — the Messiah has come\n'
+                    '- The Messiah is Jesus of Nazareth: he did good works and miracles, '
+                    'was crucified according to God\'s purpose, was raised, is exalted '
+                    'as Lord, and will return in judgment\n'
+                    '- Therefore everyone who hears must repent and be baptized'),
     },
     'bc-158-biblical-discipline': {
-        'summary': ('Procedure: Matthew 18:15-17 (one-on-one, then witnesses, then the '
-                    'church). Excommunication: 1 Corinthians 5:1-13 ("expel the wicked '
-                    'man"). Restoration: 2 Corinthians 2:5-11 (forgive and comfort him).'),
+        'summary': ('- Procedure — Matthew 18:15-17 (one-on-one, then witnesses, then '
+                    'the church)\n'
+                    '- Excommunication — 1 Corinthians 5:1-13 ("expel the wicked man")\n'
+                    '- Restoration — 2 Corinthians 2:5-11 (forgive and comfort him)'),
     },
     # The extraction ran the next document section — including the source
     # author's PERSONAL stated exceptions to the Standards — into this card.
     'bc-175-significance-of-the-death-of-chris': {
         'strip_after': 'Study Questions on Theology',
-        'summary': ('Mark 10:45 (a ransom for many); Romans 3:21-26 (justifies us and '
-                    'demonstrates God\'s justice); Galatians 3:13 (redeemed from the law\'s '
-                    'curse); Colossians 1:19-20 (reconciles all things); Colossians 2:13-15 '
-                    '(cancels the written code, disarms the powers); Hebrews 9:11-14 '
-                    '(eternal redemption, cleansed consciences).'),
+        'summary': ('- Mark 10:45 — a ransom for many\n'
+                    '- Romans 3:21-26 — justifies us and demonstrates God\'s justice\n'
+                    '- Galatians 3:13 — redeemed from the law\'s curse\n'
+                    '- Colossians 1:19-20 — reconciles all things\n'
+                    '- Colossians 2:13-15 — cancels the written code, disarms the powers\n'
+                    '- Hebrews 9:11-14 — eternal redemption, cleansed consciences'),
     },
 }
 

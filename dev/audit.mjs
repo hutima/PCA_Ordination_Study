@@ -74,7 +74,7 @@ for (const subject of data.subjects) {
           // A "(+N more)" teaser already enumerates; items that are
           // standards/Scripture quotes are proofs, not enumerated parts.
           const proofLead = /^(WSC|WLC|WCF|[123]?\s?[A-Z][a-z]+\.?\s\d)/.test(last);
-          if (lastLead && !proofLead && !/\(\+\d+ more\)$/.test(teaser)
+          if (lastLead && !proofLead && !/\(\+\d+ more\)_?$/.test(teaser)
               && !teaser.toLowerCase().includes(lastLead.toLowerCase().slice(0, 12))) {
             flag('ENUM_FIRST_ONLY', c, `items=${items.length}, teaser: ${teaser.slice(0, 70)}`);
           }

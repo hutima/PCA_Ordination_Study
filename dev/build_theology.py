@@ -263,11 +263,12 @@ CURATE = {
                            'omnipresence, while Grudem denies this.')),
              at='d. Did Christ lay aside any of His divine attributes at the incarnation?'),
         dict(_nat('e', 'Explain and defend against the early Christological heresies: Docetism, Arius, Nestorius, Apollinarius, Eutyches.',
-                  summary=('Docetism: Christ only seemed to be a man (vs John 20:24ff). Arius: the Son a '
-                           'creature, heteroousios (condemned at Nicea, 325). Nestorius: two persons '
-                           '(condemned at Ephesus, 431). Apollinarius: divine Logos in place of a human '
-                           'soul (condemned at Constantinople, 381). Eutyches: one blended nature, '
-                           'monophysitism (condemned at Chalcedon).')),
+                  summary=('- Docetism — Christ only seemed to be a man (vs John 20:24ff)\n'
+                           '- Arius — the Son a creature, heteroousios (condemned at Nicea, 325)\n'
+                           '- Nestorius — two persons (condemned at Ephesus, 431)\n'
+                           '- Apollinarius — divine Logos in place of a human soul (condemned at '
+                           'Constantinople, 381)\n'
+                           '- Eutyches — one blended nature: monophysitism (condemned at Chalcedon)')),
              at='e. Briefly explain and defend against the challenges to orthodox Christology posed by:'),
         dict(_nat('f', 'Are any of the early heresies regarding the natures of Christ held today? If so, by whom?'),
              at='f. Are any of the early heresies regarding the natures of Christ held today? If so, by whom?'),
@@ -343,11 +344,13 @@ CURATE = {
                     'witness (John 14:26; 2 Pet 3:16; 1 Tim 5:18).'),
     },
     'th-014-what-are-the-attributes-of-god-be': {
-        'summary': ('The qualities that constitute God\'s very nature. Communicable: '
-                    'spirituality, knowledge, wisdom, truthfulness, goodness, love, mercy, '
-                    'holiness, righteousness, jealousy, wrath, will, freedom, omnipotence, '
-                    'perfection, blessedness, beauty, glory. Incommunicable: self-existence, '
-                    'eternity, immutability, omnipresence, unity — each with its proof text.'),
+        'summary': ('The qualities that constitute God\'s very nature:\n'
+                    '- Communicable — spirituality, knowledge, wisdom, truthfulness, '
+                    'goodness, love, mercy, holiness, righteousness, jealousy, wrath, '
+                    'will, freedom, omnipotence, perfection, blessedness, beauty, glory\n'
+                    '- Incommunicable — self-existence, eternity, immutability, '
+                    'omnipresence, unity\n'
+                    'Each with its proof text in the full answer.'),
     },
     'th-017-what-is-an-amyraldian-view-of-god': {
         'summary': ('Amyraut (Saumur, 17th century): hypothetical universal predestination — '
@@ -401,12 +404,16 @@ CURATE = {
                     'sanctification → perseverance → glorification (Rom 8:28-30).'),
     },
     'th-057-how-would-you-explain-the-plan-of': {
-        'summary': ('Simple framework: God is holy (Mat 5:48) — all have sinned (Rom 3:23) — '
-                    'sin earns death but God gives life (Rom 6:23) — Christ died for sinners '
-                    '(Rom 5:8) — receive him (John 1:12) — by grace through faith, not works '
-                    '(Eph 2:8-9). For someone without a Judeo-Christian background, start '
-                    'further back: who God is, creation and fall, the gospel, the new life '
-                    'in the Spirit.'),
+        'summary': ('Simple framework:\n'
+                    '- God is holy (Mat 5:48)\n'
+                    '- All have sinned (Rom 3:23)\n'
+                    '- Sin earns death, but God gives life (Rom 6:23)\n'
+                    '- Christ died for sinners (Rom 5:8)\n'
+                    '- Receive him (John 1:12)\n'
+                    '- By grace through faith, not works (Eph 2:8-9)\n'
+                    'For someone without a Judeo-Christian background, start further '
+                    'back: who God is, creation and fall, the gospel, the new life in the '
+                    'Spirit.'),
     },
     'th-062-is-jesus-really-the-only-way-of-sa': {
         'summary': ('Yes — "No one comes to the Father except through me" (John 14:6); '
@@ -436,11 +443,12 @@ CURATE = {
                     'neglecting them is more sinful still.'),
     },
     'th-085-on-what-does-a-believer-s-persever': {
-        'summary': ('Not on the believer\'s free will, but on the immutability of the decree '
-                    'of election flowing from the Father\'s unchangeable love, the efficacy '
-                    'of Christ\'s merit and intercession, the abiding of the Spirit and the '
-                    'seed of God within, and the nature of the covenant of grace (WCF '
-                    'XVII.2; Rom 8:28-30).'),
+        'summary': ('Not on the believer\'s free will (WCF XVII.2; Rom 8:28-30), but on:\n'
+                    '- The immutability of the decree of election, flowing from the '
+                    'Father\'s unchangeable love\n'
+                    '- The efficacy of Christ\'s merit and intercession\n'
+                    '- The abiding of the Spirit and of the seed of God within\n'
+                    '- The nature of the covenant of grace'),
     },
     'th-086-can-a-person-be-sure-he-is-saved-d': {
         'summary': ('Yes — those who truly believe in the Lord Jesus, love him in sincerity, '
@@ -449,11 +457,12 @@ CURATE = {
                     '5:11-12) — unlike the false hopes of hypocrites.'),
     },
     'th-088-how-could-a-person-know-he-is-save': {
-        'summary': ('By an infallible assurance founded on three things (WCF XVIII.2): the '
-                    'divine truth of the promises (Heb 6:17-18), the inward evidence of the '
-                    'graces to which the promises are made (1 John 3:18-20), and the '
-                    'testimony of the Spirit of adoption witnessing with our spirits that we '
-                    'are God\'s children (Eph 1:13-14).'),
+        'summary': ('By an infallible assurance founded on three things (WCF XVIII.2):\n'
+                    '- The divine truth of the promises (Heb 6:17-18)\n'
+                    '- The inward evidence of the graces to which the promises are made '
+                    '(1 John 3:18-20)\n'
+                    '- The testimony of the Spirit of adoption witnessing with our spirits '
+                    'that we are God\'s children (Eph 1:13-14)'),
     },
     'th-098-what-is-christian-liberty-explain': {
         'summary': ('The freedom Christ purchased (WCF XX.1): from the guilt of sin, God\'s '
@@ -470,19 +479,27 @@ CURATE = {
                     '(WCF XXIV.6).'),
     },
     'th-118-what-are-the-attributes-of-the-chu': {
-        'summary': ('Unity (through union with Christ, John 17:20-21), holiness (Eph 1:4), '
-                    'and catholicity (1 Cor 1:2) — ascribed primarily to the church as an '
-                    'invisible organism (Berkhof); with love (John 13:34-35), the presence '
-                    'of Christ by the Spirit (Mat 18:20; Eph 2:22), and apostolicity '
-                    '(Jude 3) as further marks.'),
+        'summary': ('Ascribed primarily to the church as an invisible organism (Berkhof):\n'
+                    '- Unity — through union with Christ (John 17:20-21)\n'
+                    '- Holiness (Eph 1:4)\n'
+                    '- Catholicity (1 Cor 1:2)\n'
+                    'Further marks:\n'
+                    '- Love (John 13:34-35)\n'
+                    '- The presence of Christ by the Spirit (Mat 18:20; Eph 2:22)\n'
+                    '- Apostolicity (Jude 3)'),
     },
     'th-122-what-are-the-principles-of-presbyt': {
-        'summary': ('Berkhof: Christ is the Head and source of all authority, exercising '
-                    'it by his royal Word; he endowed the church with power, exercised '
-                    'through representative organs, residing primarily in the local '
-                    'governing body. Add: the regulative principle, the organic unity of '
-                    'the church, parity and plurality of elders, and graded courts '
-                    '(Session, Presbytery, General Assembly).'),
+        'summary': ('Berkhof:\n'
+                    '- Christ is the Head of the church and the source of all its '
+                    'authority\n'
+                    '- He exercises it by his royal Word\n'
+                    '- He endowed the church with power, exercised through representative '
+                    'organs\n'
+                    '- That power resides primarily in the governing body of the local '
+                    'church\n'
+                    'Add: the regulative principle, the organic unity of the church, '
+                    'parity and plurality of elders, and graded courts (Session, '
+                    'Presbytery, General Assembly).'),
     },
     'th-119-what-are-the-marks-of-the-church-p': {
         'summary': ('Churches are more or less pure as (WCF XXV.4): the doctrine of the '
@@ -492,23 +509,29 @@ CURATE = {
                     'corollary (Mat 18:15-20).'),
     },
     'th-121-define-three-basic-forms-of-church': {
-        'summary': ('Episcopalian: government entrusted to bishops as successors of the '
-                    'apostles (archbishop → bishop → rector); the congregation has no share. '
-                    'Presbyterian: elected elders in graded courts — session, presbytery, '
-                    'general assembly. Congregational: each congregation complete and '
-                    'independent (single-pastor-with-deacons or pure independency); wider '
-                    'bodies advisory only.'),
+        'summary': ('- Episcopalian — government entrusted to bishops as successors of '
+                    'the apostles (archbishop → bishop → rector); the congregation has no '
+                    'share\n'
+                    '- Presbyterian — elected elders in graded courts: session, '
+                    'presbytery, general assembly\n'
+                    '- Congregational — each congregation complete and independent '
+                    '(single-pastor-with-deacons or pure independency); wider bodies '
+                    'advisory only'),
     },
     'th-129-what-is-the-purpose-of-church-cens': {
-        'summary': ('Five ends (WCF XXX.3): reclaiming the offending brother; deterring '
-                    'others; purging the leaven from the lump; vindicating the honor of '
-                    'Christ and the gospel; and preventing the wrath of God from falling on '
-                    'a church that lets his covenant seals be profaned.'),
+        'summary': ('Five ends (WCF XXX.3):\n'
+                    '- Reclaiming the offending brother\n'
+                    '- Deterring others from like offenses\n'
+                    '- Purging the leaven from the lump\n'
+                    '- Vindicating the honor of Christ and the gospel\n'
+                    '- Preventing the wrath of God from falling on a church that lets his '
+                    'covenant seals be profaned'),
     },
     'th-131-identify-some-scripture-passages-t': {
-        'summary': ('Procedure: Matthew 18:15-17. Expelling the wicked: 1 Corinthians 5:3-13. '
-                    'Maintaining sound faith: Titus 1:10-14 (rebuke them sharply). '
-                    'Restoration: 2 Corinthians 2:5-11 (forgive and comfort him).'),
+        'summary': ('- Procedure — Matthew 18:15-17\n'
+                    '- Expelling the wicked — 1 Corinthians 5:3-13\n'
+                    '- Maintaining sound faith — Titus 1:10-14 (rebuke them sharply)\n'
+                    '- Restoration — 2 Corinthians 2:5-11 (forgive and comfort him)'),
     },
     'th-132-who-may-properly-call-church-assem': {
         'summary': ('The overseers and rulers of the particular churches, by virtue of their '
