@@ -37,7 +37,14 @@ architecture/reuse map, content contract, phase status, and next steps.
   "study everything" fallback. Card re-renders run through `withCardAnchor()` (pca.js) so
   reveal/hide/next never jumps the page. Answers are provenance-tagged
   (`renderAnswer()`: standard quotes vs study notes) and reference chips
-  deep-link to official texts (`refLink()`).
+  deep-link to official texts (`refLink()`). Review's teaser is the authored
+  `card.summary` when present, else derived (`summarize()`, which skips table
+  rows). Long/tabular cards should carry an authored summary — for generated
+  subjects it lives in the builder's curation layer (`CURATE` in
+  `dev/build_hot_topics.py`, `SUMMARIES` in the sacraments/church-history
+  builders), keyed by card id. 3+-column Markdown tables are emitted with
+  `class="md-stack"` + per-cell `data-th` and stack into labeled row-blocks
+  under 640px (`css/pca.css`).
 - **Standards data (public domain):** generated from the PDFs at the repo
   root — `dev/build_catechisms.py` → `js/data/catechisms.js`
   (`window.PCA_CATECHISMS`, WSC 107 + WLC 196 with proof citations);

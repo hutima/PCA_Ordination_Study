@@ -127,6 +127,17 @@ AWAKENINGS_A = (
     'the anxious bench ("New Measures") |'
 )
 
+# Authored short summaries (the teaser shown before the "Full answer"
+# expander) for cards whose answer is a table — a teaser derived line-by-line
+# from table markup is unreadable. Keyed by generated card id.
+SUMMARIES = {
+    'ch-025-compare-the-first-and-second-great-a':
+        ("1st (c. 1735–43): Calvinist — Frelinghuysen, Tennent, Edwards, "
+         "Whitefield; \"pure church\" model, end of the Half-Way Covenant. "
+         "2nd (1795–1830): New Haven/Arminian — Taylor, Beecher, Finney; "
+         "revivalism, camp meetings, the anxious bench, volunteer societies."),
+}
+
 def main():
     text = open(SRC, encoding='utf-8').read()
     blks = blocks_of(text)
@@ -150,7 +161,10 @@ def main():
         cid = f'ch-{n:03d}-{slug}' if slug else f'ch-{n:03d}'
         while cid in seen: cid += 'x'
         seen.add(cid)
-        sets[deck]['cards'].append({"id": cid, "q": q, "a": a, "refs": extract_refs(q + ' ' + a)})
+        card = {"id": cid, "q": q, "a": a, "refs": extract_refs(q + ' ' + a)}
+        if cid in SUMMARIES:
+            card["summary"] = SUMMARIES[cid]
+        sets[deck]['cards'].append(card)
 
     def close_prose():
         nonlocal cur_q
@@ -211,6 +225,10 @@ def main():
         if cur_q:
             cur_q[1].extend([''] + blk)  # paragraph break then block
     close_prose()
+
+    missing = set(SUMMARIES) - seen
+    if missing:
+        raise SystemExit(f'summary keys no longer match any card: {sorted(missing)}')
 
     order = [k for k, _, _ in SETS_META if sets[k]['cards']]
     sets = {k: sets[k] for k in order}

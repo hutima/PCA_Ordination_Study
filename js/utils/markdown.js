@@ -75,11 +75,18 @@ export function renderMarkdown(src) {
         rows.push(splitRow(lines[i]));
         i++;
       }
-      let t = '<table><thead><tr>';
+      // 3+ column tables get `md-stack`: CSS turns each row into a labeled
+      // block on narrow screens. Every cell carries its column header in
+      // `data-th` so nothing is lost when the header row is hidden.
+      const stack = header.length >= 3 ? ' class="md-stack"' : '';
+      let t = `<table${stack}><thead><tr>`;
       t += header.map(c => `<th>${renderInline(escapeHtml(c))}</th>`).join('');
       t += '</tr></thead><tbody>';
       for (const r of rows) {
-        t += '<tr>' + header.map((_, idx) => `<td>${renderInline(escapeHtml(r[idx] || ''))}</td>`).join('') + '</tr>';
+        t += '<tr>' + header.map((h, idx) => {
+          const th = h ? ` data-th="${escapeHtml(h)}"` : '';
+          return `<td${th}>${renderInline(escapeHtml(r[idx] || ''))}</td>`;
+        }).join('') + '</tr>';
       }
       t += '</tbody></table>';
       html.push(t);

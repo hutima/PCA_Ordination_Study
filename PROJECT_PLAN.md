@@ -71,6 +71,8 @@ window.PCA_DATA = {
           id,            // globally unique, e.g. "bco-014"
           q,             // question, plain text
           a,             // answer, Markdown (lists / tables / > Scripture)
+          summary,       // optional, authored plain-text teaser for Review's
+                         // progressive disclosure (else derived from `a`)
           refs: [...],   // standards/Scripture citations -> rendered as chips
           tags: [...],   // optional
           quiz: {        // optional, fact-style cards only (Phase 6)
@@ -214,6 +216,28 @@ KEEP modules + the HTML shell):**
 
       **Release ritual:** bump `?v=N` in `index.html` AND `CACHE` in `sw.js`
       together so returning users auto-refresh onto the new version.
+- [x] **Phase 14 — Mobile tables + authored summaries (user-reported).**
+      Release `?v=21`/`pca-v21`. The truncated "…" review teasers and
+      phone-unreadable tables (screenshots from Hot Topics) fixed three ways:
+      - **Authored `card.summary`** (already preferred by `summarize()`, never
+        used before) for every Hot Topics card plus the two table-only cards
+        in Sacraments (`sac-025`) and Church History (`ch-025`). Added via a
+        curation layer in the generators (`CURATE` in `build_hot_topics.py`,
+        `SUMMARIES` in the other two) — keys are checked against generated ids
+        so the build fails loudly if extraction drifts.
+      - **Sub-card splits:** the 5-theory Creation table → overview card (table
+        kept) + one card per theory + a Literary-Framework-support card;
+        Kings of Israel/Judah → two list cards (nine dynasties / Davidic line;
+        also fixes a Pekahiah/Pekah date column-slip in the extraction). The
+        seven-days table → paired forming/filling lists. Hot Topics is now 22
+        cards (590 total).
+      - **Responsive tables:** `renderMarkdown()` stamps every cell with its
+        column header (`data-th`) and classes 3+-column tables `md-stack`;
+        below 640px CSS hides the header row and renders each row as a
+        labeled block (Review + Browse). `summarize()` now skips table rows
+        when deriving a teaser (header cells joined as a fallback), and
+        `validate.mjs` fails any card whose teaser contains raw `|` markup or
+        a malformed `summary`.
 - [x] **Phase 13 — Duff parity + UX fixes (user-reported).** Release `?v=18`/`pca-v18`.
       - **Flip deck (non-spaced) focus** ported from the Duff tool: a fourth
         Focus option. Hard/Uncertain send the card to the back of the pile,

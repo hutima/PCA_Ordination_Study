@@ -138,6 +138,17 @@ SECTIONS = [
     ('sac-supper', "The Lord's Supper", 3),
 ]
 
+# Authored short summaries (the teaser shown before the "Full answer"
+# expander) for cards whose answer is a table — a teaser derived line-by-line
+# from table markup is unreadable. Keyed by generated card id.
+SUMMARIES = {
+    'sac-025-how-do-the-sacraments-agree-how-are-they':
+        ("Agree: God is the author, Christ the spiritual benefit; sign and seal "
+         "of the same covenant, by a minister of the gospel, until Christ "
+         "returns. Differ: water vs bread and wine; once vs often; "
+         "ingrafting/regeneration vs spiritual nourishment and growth in Christ."),
+}
+
 def main():
     raw = open(SRC, encoding='utf-8').read().split('\n')
     logical = merge_directive_continuations(reflow(raw))
@@ -194,7 +205,14 @@ def main():
         refs = extract_refs(q + ' ' + ' '.join(ans_lines))
         # strip a trailing standards citation from the displayed question
         qd = re.sub(r'\s+W(?:CF|LC|SC)\s*[\dIVXLC][\dIVXLC.:,\-– ]*$', '', q).rstrip()
-        sets[sec]['cards'].append({"id": cid, "q": qd, "a": a, "refs": refs})
+        card = {"id": cid, "q": qd, "a": a, "refs": refs}
+        if cid in SUMMARIES:
+            card["summary"] = SUMMARIES[cid]
+        sets[sec]['cards'].append(card)
+
+    missing = set(SUMMARIES) - seen
+    if missing:
+        raise SystemExit(f'summary keys no longer match any card: {sorted(missing)}')
 
     # drop empty sets
     order = [k for k, _, _ in SECTIONS if sets[k]['cards']]

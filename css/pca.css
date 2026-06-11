@@ -70,6 +70,32 @@ html[data-font-family="sans"] {
   vertical-align: top;
 }
 .qa-answer th { background: rgba(201,168,76,0.08); color: var(--gold-light); }
+/* Wide (3+ column) tables can't fit a phone. Below 640px each row becomes a
+   labeled block: the header row is hidden and every cell re-shows its column
+   header from the data-th attribute the Markdown renderer stamps on it. */
+@media (max-width: 640px) {
+  .qa-answer table.md-stack, .browse-a table.md-stack,
+  .qa-answer table.md-stack tbody, .browse-a table.md-stack tbody,
+  .qa-answer table.md-stack tr, .browse-a table.md-stack tr,
+  .qa-answer table.md-stack td, .browse-a table.md-stack td { display: block; }
+  .qa-answer table.md-stack thead, .browse-a table.md-stack thead { display: none; }
+  .qa-answer table.md-stack tr, .browse-a table.md-stack tr {
+    border: 1px solid var(--border); border-radius: 8px;
+    margin: 0 0 10px; padding: 4px 0; background: rgba(255,255,255,0.02);
+  }
+  .qa-answer table.md-stack td, .browse-a table.md-stack td {
+    border: 0; padding: 5px 12px;
+  }
+  .qa-answer table.md-stack td:empty, .browse-a table.md-stack td:empty { display: none; }
+  /* First cell is the row's own label (theory name, comparison row, …). */
+  .qa-answer table.md-stack td:first-child, .browse-a table.md-stack td:first-child {
+    color: var(--gold-light); font-weight: 600;
+  }
+  .qa-answer table.md-stack td[data-th]::before, .browse-a table.md-stack td[data-th]::before {
+    content: attr(data-th); display: block; font-size: 11px; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--muted); font-weight: 400; margin-bottom: 1px;
+  }
+}
 .qa-answer code {
   font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.9em;
   background: rgba(255,255,255,0.05); padding: 1px 5px; border-radius: 4px;

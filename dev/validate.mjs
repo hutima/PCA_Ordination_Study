@@ -3,6 +3,7 @@
 // malformed content. Run: node dev/validate.mjs
 import { readdirSync } from 'node:fs';
 import { renderMarkdown } from '../js/utils/markdown.js';
+import { summarize } from '../js/app/answer.js';
 
 // ── MCQ fairness: the correct option must not give itself away by length ──
 // Flags a question when the correct choice is the unique longest (or shortest)
@@ -62,6 +63,9 @@ for (const subject of data.subjects) {
       if (!c.q || !c.q.trim()) { console.error(`FAIL ${c.id}: empty question`); problems++; }
       if (!c.a || !c.a.trim()) { console.error(`FAIL ${c.id}: empty answer`); problems++; }
       try { renderMarkdown(c.a); } catch (e) { console.error(`FAIL ${c.id}: render error ${e.message}`); problems++; }
+      if (c.summary != null && (typeof c.summary !== 'string' || !c.summary.trim())) { console.error(`FAIL ${c.id}: summary must be a non-empty string`); problems++; }
+      // The review-card teaser (authored or derived) must never show raw table markup.
+      if (summarize(c).includes('|')) { console.error(`FAIL ${c.id}: teaser contains raw table markup`); problems++; }
       if (c.quiz) {
         if (!Array.isArray(c.quiz.choices) || c.quiz.choices.length < 2) { console.error(`FAIL ${c.id}: quiz needs >=2 choices`); problems++; }
         if (typeof c.quiz.answerIndex !== 'number' || c.quiz.answerIndex < 0 || c.quiz.answerIndex >= (c.quiz.choices?.length || 0)) { console.error(`FAIL ${c.id}: bad quiz answerIndex`); problems++; }

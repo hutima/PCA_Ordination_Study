@@ -102,11 +102,18 @@ export function summarize(card, max = 240) {
   const a = String((card && card.a) || '').replace(/\r\n?/g, '\n').trim();
   if (!a) return '';
   const lines = a.split('\n').map(l => l.trim()).filter(Boolean);
-  let s = stripMarkup(lines[0] || '');
-  if ((s.endsWith(':') || s.length < 30) && lines.length > 1) {
+  // Table rows can't be teased line-by-line: derive from the prose around the
+  // table, or — when the whole answer is a table — from its header cells.
+  const prose = lines.filter(l => !l.startsWith('|'));
+  let s = stripMarkup(prose[0] || '');
+  if (!s) {
+    const header = lines.find(l => l.startsWith('|') && /[^|\s:-]/.test(l)) || '';
+    s = header.split('|').map(c => c.trim()).filter(Boolean).join(' · ');
+  }
+  if ((s.endsWith(':') || s.length < 30) && prose.length > 1) {
     // Bare intro / fragment: append whole following list items; an ellipsis
     // marks any items that didn't fit (always include at least one).
-    const rest = lines.slice(1).map(stripMarkup).filter(Boolean);
+    const rest = prose.slice(1).map(stripMarkup).filter(Boolean);
     const items = [];
     for (const item of rest) {
       if (items.length && `${s} ${items.join('; ')}; ${item}`.length > max) {
