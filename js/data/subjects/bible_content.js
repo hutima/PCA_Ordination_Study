@@ -317,8 +317,8 @@
       },
       {
         "id": "bc-050-jacob-s-dream-of-the-ladder-to-hea",
-        "q": "Locate by book and chapter (and date where appropriate): Jacob's Dream of the ladder to heaven (God affirming his.",
-        "a": "Abrahamic promise)\n\nGenesis 28",
+        "q": "Locate by book and chapter (and date where appropriate): Jacob's dream of the ladder to heaven (God affirming his Abrahamic promise).",
+        "a": "Genesis 28",
         "refs": []
       },
       {
@@ -791,8 +791,8 @@
       },
       {
         "id": "bc-123-bereans-noble-received-the-word-wi",
-        "q": "Give book and chapter for: Bereans (noble, received the Word with eagerness, examining.",
-        "a": "Scripture)\n\nActs 17:11",
+        "q": "Give book and chapter for: Bereans (noble — received the Word with eagerness, examining Scripture).",
+        "a": "Acts 17:11",
         "refs": []
       },
       {

@@ -53,6 +53,14 @@ for (const subject of data.subjects) {
       if (!c.summary && /…\s*$/.test(teaser)) flag('TEASER_ELLIPSIS', c, teaser.slice(-60));
       if (!c.summary && / · /.test(teaser)) flag('TEASER_HEADER_FALLBACK', c, teaser.slice(0, 60));
 
+      // Stub answers: a dangling cross-reference ("See chart below") whose
+      // referent lives elsewhere in the source document, or the builder's
+      // own placeholder. In-card "see below/above" in long answers is fine.
+      if ((a.length < 250 && /\bsee\s+(the\s+)?(chart|table|diagram|notes?|below|above)\b/i.test(a))
+          || a.includes('(see Scripture references)')) {
+        flag('STUB_ANSWER', c, a.slice(0, 80).replace(/\n/g, ' / '));
+      }
+
       // E: question is a fragment, not a prompt.
       if (/^\s*(cf\.|see |e\.g\.|i\.e\.|also |\[|\()/i.test(q) || /^[a-z]/.test(q.trim())) {
         flag('FRAGMENT_QUESTION', c, q.slice(0, 70));

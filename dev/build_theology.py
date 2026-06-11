@@ -16,6 +16,10 @@ Run: python3 dev/build_theology.py
 import re, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from curation import apply_curation
+# The source answers "length of the days of creation" with "See chart below,"
+# pointing at the creation-theories chart that lives in the Hot Topics
+# section — reuse the hand-rebuilt table from that builder.
+from build_hot_topics import CREATION_TABLE
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'source_materials/extracted/bible_content_theology.txt')
@@ -142,6 +146,87 @@ def _nat(letter, q, **kw):
     return d
 
 CURATE = {
+    # Dangling cross-references: the source answers these with "See below"
+    # (pointing at the Hot Topics section of the same document). Give each a
+    # real answer drawn from that section.
+    'th-020-briefly-discuss-the-length-of-the': {
+        'a': ('The five main theories (each is drilled on its own card in the Hot Topics '
+              'deck):\n\n' + CREATION_TABLE),
+        'summary': ('Five main theories: 24-hour day (sequential and literal — most hold a '
+                    '"young earth"), Day-age (each day an era), Literary approach (a '
+                    'framework oriented to Sabbath theology), Prior creation (a created '
+                    'world before Gen 1), and Two-phase (chapters 1 & 2 as two phases with '
+                    'a gap between).'),
+    },
+    'th-093-what-is-theonomy-evaluate-it-bibli': {
+        'a': ('a. Theonomy ("the law of God") is the school of thought also called '
+              'Christian Reconstruction (Rushdoony, Bahnsen, North): it stresses the '
+              'continued normativity not only of the moral law but also of the judicial '
+              'law of Old Testament Israel, including its penal sanctions, and holds that '
+              'the judicial law binds all nations — so that civil government today should '
+              'enforce it.\n'
+              'b. Biblical evaluation:\n'
+              '1. Theonomy overemphasizes the continuity between the Old and New Covenants '
+              'at the expense of their discontinuity.\n'
+              '2. Israel, unlike any modern nation, was God\'s chosen nation in a unique '
+              'way (Deut 7:6); its civil law must be applied today with that uniqueness in '
+              'view.\n'
+              '3. In 1 Corinthians 5:1-13 Paul quotes the Old Testament penal sanction '
+              '"expel the wicked man from among you" (Deut 17:7) — but where the OT '
+              'context called for death by stoning, Paul applies it as excommunication, '
+              'equating the penal sanction of death with being put out of the church.'),
+        'summary': ('Theonomy (Christian Reconstruction: Rushdoony, Bahnsen, North): the OT '
+                    'judicial law and its penal sanctions still bind all nations. Critique: '
+                    'it overstresses covenant continuity — Israel was uniquely God\'s '
+                    'nation (Deut 7:6), and Paul turns a death-penalty text into '
+                    'excommunication (1 Cor 5:13 quoting Deut 17:7).'),
+    },
+    'th-123-may-women-serve-as-officers-in-the': {
+        'a': ('a. No — in the PCA the offices of elder and deacon are open to men only '
+              '(BCO 7-2). Scripture restricts the teaching/ruling office to men in '
+              '1 Timothy 2:8-15 and 1 Corinthians 14:33-36; the former grounds the '
+              'restriction not in culture but in the creation order (Adam was formed '
+              'first) and its usurpation at the fall.\n'
+              'b. Men and women are equal in worth and dignity in the sight of God '
+              '(Gen 1:27): a differentiation of roles does not imply inferiority, as the '
+              'example of the Trinity shows.\n'
+              'c. Positively, women have vital ministries: prophecy (Miriam, Deborah, '
+              'Huldah), teaching (Titus 2:3-4; Col 3:16; Priscilla with Aquila instructing '
+              'Apollos, Acts 18:26), service and diaconal mercy (Phoebe, Rom 16:1-2), '
+              'missions (Junia, Rom 16:7), and labor in the gospel (Rom 16:6, 12; '
+              'Phil 4:2-3).'),
+        'summary': ('No — the offices of elder and deacon are restricted to men '
+                    '(1 Tim 2:8-15, grounded in the creation order; 1 Cor 14:33-36; '
+                    'BCO 7-2). Yet men and women are equal in worth and dignity '
+                    '(Gen 1:27), and women have vital ministries of prophecy, teaching, '
+                    'service, missions, and gospel labor.'),
+    },
+    'th-124-what-is-subscription': {
+        'a': ('a. "Subscription" is receiving and adopting the Confession of Faith and '
+              'Catechisms of the church "as containing the system of doctrine taught in '
+              'the Holy Scriptures" — the second ordination vow (BCO 21-5).\n'
+              'b. Why is there disagreement? The vow does not define how closely one must '
+              'adhere. Four possible views:\n'
+              '1. "Substance of the doctrine" — correct doctrine is contained somewhere in '
+              'the standards (not an acceptable position in the PCA).\n'
+              '2. "Vital to the system" — subscription to the essential and necessary '
+              'articles; presbytery judges whether a stated difference touches them (the '
+              '"loose" view).\n'
+              '3. "Very doctrines of the Word" — no exceptions to the substance of any '
+              'doctrine of the standards (the "strict" view).\n'
+              '4. "Very word of doctrine" — ruled out, since it would set the standards on '
+              'a par with Scripture.\n'
+              'c. The live debate is between views 2 and 3. The PCA practices "good faith" '
+              'subscription (BCO 21-4): the candidate states every difference, and the '
+              'presbytery judges whether each is merely semantic, more than semantic but '
+              'not hostile to the system, or out of accord with a fundamental of the '
+              'system of doctrine.'),
+        'summary': ('Receiving and adopting the Westminster standards "as containing the '
+                    'system of doctrine taught in the Holy Scriptures" (BCO 21-5). Views '
+                    'range from "substance of doctrine" to "very word of doctrine"; the '
+                    'debate is between system subscription ("loose") and full subscription '
+                    '("strict") — the PCA practices "good faith" subscription (BCO 21-4).'),
+    },
     'th-052-how-is-the-covenant-of-grace-relat': {'split': [
         {'at': 'a. The Abrahamic Covenant?',
          'id': 'th-052a-cog-and-abrahamic-covenant',

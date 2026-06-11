@@ -216,6 +216,15 @@ KEEP modules + the HTML shell):**
 
       **Release ritual:** bump `?v=N` in `index.html` AND `CACHE` in `sw.js`
       together so returning users auto-refresh onto the new version.
+- [x] **Phase 15c — Stub-answer sweep.** Release `?v=24`/`pca-v24`. New
+      `STUB_ANSWER` audit class: answers that are dangling cross-references
+      into the source document. Fixed: th-020 days-of-creation ("See chart
+      below" → the creation-theories chart, shared from the hot-topics
+      builder), th-093 theonomy, th-123 women as officers, th-124
+      subscription (all "See below" → real authored answers + summaries);
+      ht-003's "a. See above." prefix stripped (`replace_text` op); two
+      bible-content fronts whose wrapped parenthetical leaked into the
+      answer (bc-050, bc-123) repaired.
 - [x] **Phase 15b — Consistent question-card height.** Release `?v=23`/
       `pca-v23`. Unrevealed review/catechism cards share a fixed min-height
       (270px under 640px, 210px above — covers ~95% of fronts; long

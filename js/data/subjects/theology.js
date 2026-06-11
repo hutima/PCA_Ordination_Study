@@ -162,8 +162,9 @@
       {
         "id": "th-020-briefly-discuss-the-length-of-the",
         "q": "Briefly discuss the length of the days of creation.",
-        "a": "a. See chart below.",
-        "refs": []
+        "a": "The five main theories (each is drilled on its own card in the Hot Topics deck):\n\n| Theory | Description | Understanding of Time | Treatment of \"Day\" | Major Problems |\n|---|---|---|---|---|\n| 24-hour day | Views Gen 1 as sequential and literal | Most support \"young earth\" | 24 hours | Reconciling with scientific data; integrating chapters 1 & 2 |\n| Day-age | Views creation as taking place over six eras | Unlimited time available for each era | Day = age | Sequence does not suit scientific data; difficult to substantiate author's intention as day = age; often an excuse for evolution |\n| Literary approach | Views seven-day sequence as a literary structure | Narrative has nothing to say about time | Oriented toward Sabbath theology | Exodus 20:11; difficult to preclude temporality on basis of literary structure |\n| Prior Creation | Suggests existence of a previous created world prior to Gen 1 | Most scientific ages related to prior creation | 24 hours | No textual support; questions of continuity in scientific record; sun/moon |\n| Two-phase | Two distinct phases of creation in chapters 1 & 2 with long period of time in between | Gap between 2:3 and 2:4 can accommodate any time requirements | Any view possible | People in chapter 1 are not Adam and Eve and must be viewed as not yet morally responsible |",
+        "refs": [],
+        "summary": "Five main theories: 24-hour day (sequential and literal — most hold a \"young earth\"), Day-age (each day an era), Literary approach (a framework oriented to Sabbath theology), Prior creation (a created world before Gen 1), and Two-phase (chapters 1 & 2 as two phases with a gap between)."
       },
       {
         "id": "th-021-evaluate-biblically-the-theory-of",
@@ -982,8 +983,9 @@
       {
         "id": "th-093-what-is-theonomy-evaluate-it-bibli",
         "q": "What is \"theonomy?\" Evaluate it biblically.",
-        "a": "a. See below.",
-        "refs": []
+        "a": "a. Theonomy (\"the law of God\") is the school of thought also called Christian Reconstruction (Rushdoony, Bahnsen, North): it stresses the continued normativity not only of the moral law but also of the judicial law of Old Testament Israel, including its penal sanctions, and holds that the judicial law binds all nations — so that civil government today should enforce it.\nb. Biblical evaluation:\n1. Theonomy overemphasizes the continuity between the Old and New Covenants at the expense of their discontinuity.\n2. Israel, unlike any modern nation, was God's chosen nation in a unique way (Deut 7:6); its civil law must be applied today with that uniqueness in view.\n3. In 1 Corinthians 5:1-13 Paul quotes the Old Testament penal sanction \"expel the wicked man from among you\" (Deut 17:7) — but where the OT context called for death by stoning, Paul applies it as excommunication, equating the penal sanction of death with being put out of the church.",
+        "refs": [],
+        "summary": "Theonomy (Christian Reconstruction: Rushdoony, Bahnsen, North): the OT judicial law and its penal sanctions still bind all nations. Critique: it overstresses covenant continuity — Israel was uniquely God's nation (Deut 7:6), and Paul turns a death-penalty text into excommunication (1 Cor 5:13 quoting Deut 17:7)."
       },
       {
         "id": "th-094-where-is-the-law-of-god-summed-up",
@@ -1223,14 +1225,16 @@
       {
         "id": "th-123-may-women-serve-as-officers-in-the",
         "q": "May women serve as officers in the church? Support your answer from Scripture.",
-        "a": "a. See below.",
-        "refs": []
+        "a": "a. No — in the PCA the offices of elder and deacon are open to men only (BCO 7-2). Scripture restricts the teaching/ruling office to men in 1 Timothy 2:8-15 and 1 Corinthians 14:33-36; the former grounds the restriction not in culture but in the creation order (Adam was formed first) and its usurpation at the fall.\nb. Men and women are equal in worth and dignity in the sight of God (Gen 1:27): a differentiation of roles does not imply inferiority, as the example of the Trinity shows.\nc. Positively, women have vital ministries: prophecy (Miriam, Deborah, Huldah), teaching (Titus 2:3-4; Col 3:16; Priscilla with Aquila instructing Apollos, Acts 18:26), service and diaconal mercy (Phoebe, Rom 16:1-2), missions (Junia, Rom 16:7), and labor in the gospel (Rom 16:6, 12; Phil 4:2-3).",
+        "refs": [],
+        "summary": "No — the offices of elder and deacon are restricted to men (1 Tim 2:8-15, grounded in the creation order; 1 Cor 14:33-36; BCO 7-2). Yet men and women are equal in worth and dignity (Gen 1:27), and women have vital ministries of prophecy, teaching, service, missions, and gospel labor."
       },
       {
         "id": "th-124-what-is-subscription",
         "q": "What is \"subscription?\"",
-        "a": "1. See below.\na. Why is there disagreement on this subject?\n1. See below.\nb. What view of subscription do you hold and why?\n1. See below.",
-        "refs": []
+        "a": "a. \"Subscription\" is receiving and adopting the Confession of Faith and Catechisms of the church \"as containing the system of doctrine taught in the Holy Scriptures\" — the second ordination vow (BCO 21-5).\nb. Why is there disagreement? The vow does not define how closely one must adhere. Four possible views:\n1. \"Substance of the doctrine\" — correct doctrine is contained somewhere in the standards (not an acceptable position in the PCA).\n2. \"Vital to the system\" — subscription to the essential and necessary articles; presbytery judges whether a stated difference touches them (the \"loose\" view).\n3. \"Very doctrines of the Word\" — no exceptions to the substance of any doctrine of the standards (the \"strict\" view).\n4. \"Very word of doctrine\" — ruled out, since it would set the standards on a par with Scripture.\nc. The live debate is between views 2 and 3. The PCA practices \"good faith\" subscription (BCO 21-4): the candidate states every difference, and the presbytery judges whether each is merely semantic, more than semantic but not hostile to the system, or out of accord with a fundamental of the system of doctrine.",
+        "refs": [],
+        "summary": "Receiving and adopting the Westminster standards \"as containing the system of doctrine taught in the Holy Scriptures\" (BCO 21-5). Views range from \"substance of doctrine\" to \"very word of doctrine\"; the debate is between system subscription (\"loose\") and full subscription (\"strict\") — the PCA practices \"good faith\" subscription (BCO 21-4)."
       },
       {
         "id": "th-125-what-privileges-do-christians-shar",

@@ -348,6 +348,18 @@ CURATE = {
         'refs': ['Romans 6:14', 'Galatians 5:4'],
     }]},
     'bc-070-galatians-5-4': 'drop',
+    # Two items whose parenthetical wrapped onto the next source line: the
+    # tail leaked into the answer and the front was cut mid-phrase.
+    'bc-050-jacob-s-dream-of-the-ladder-to-hea': {
+        'q': ("Locate by book and chapter (and date where appropriate): Jacob's dream of "
+              "the ladder to heaven (God affirming his Abrahamic promise)."),
+        'a': 'Genesis 28',
+    },
+    'bc-123-bereans-noble-received-the-word-wi': {
+        'q': ('Give book and chapter for: Bereans (noble — received the Word with '
+              'eagerness, examining Scripture).'),
+        'a': 'Acts 17:11',
+    },
     'bc-158-biblical-discipline': {
         'summary': ('Procedure: Matthew 18:15-17 (one-on-one, then witnesses, then the '
                     'church). Excommunication: 1 Corinthians 5:1-13 ("expel the wicked '

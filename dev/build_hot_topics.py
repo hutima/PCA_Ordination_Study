@@ -177,6 +177,8 @@ CURATE = {
                     "differing views."),
     },
     'ht-003-regulative-principle': {
+        # "See above" pointed at the theology section of the source document.
+        'replace_text': {'a. See above. b. ': 'a. '},
         'summary': ("True worship is only what God commands; anything not commanded is "
                     "false worship. WCF 21.1: God \"may not be worshiped according to the "
                     "imaginations and devices of men, or the suggestions of Satan… or any "
@@ -341,6 +343,12 @@ def apply_curation(sets):
                 if 'replace' in cur:
                     out.extend(cur['replace'])
                     continue
+                # replace_text: targeted substring edits (e.g. drop a dangling
+                # "See above" that pointed elsewhere in the source document).
+                for old_t, new_t in cur.get('replace_text', {}).items():
+                    if old_t not in c['a']:
+                        raise SystemExit(f"curation: text not found in {c['id']}: {old_t!r}")
+                    c['a'] = c['a'].replace(old_t, new_t)
                 # replace_lines: targeted line edits (e.g. drop an answer line
                 # that just restates the card's own question).
                 for old_l, new_l in cur.get('replace_lines', {}).items():
