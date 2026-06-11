@@ -10,7 +10,13 @@ architecture/reuse map, content contract, phase status, and next steps.
 - **Entry point:** `js/app/pca.js` (ES module). Drives the shell in
   `index.html`; styling in `styles.css` (base design tokens) + `css/pca.css`
   (PCA-specific). State is module-local; progress persists to
-  `localStorage['pca_progress_v1']`, selection to `['pca_selection_v1']`.
+  `localStorage['pca_progress_v1']`, selection to `['pca_selection_v1']`,
+  daily-activity log (streak/heatmap) to `['pca_activity_v1']`.
+- **Study modes:** Review (self-check), Quiz (MCQ), Browse (collapsible
+  outline, non-graded), Mock exam (finite scored MCQ session). A Due/Weak
+  focus toggle filters the Review/Quiz deck. Answers are provenance-tagged
+  (`renderAnswer()`: standard quotes vs study notes) and reference chips
+  deep-link to official texts (`refLink()`).
 - **SRS engine (reused, content-agnostic):** `js/domain/srs/{constants,
   scheduler,confidence}.js`. Outcomes `again`/`pass`/`easy` =
   Hard/Uncertain/Easy. Do not edit lightly.
@@ -25,8 +31,9 @@ architecture/reuse map, content contract, phase status, and next steps.
 ## Maintenance rules
 
 - Keep `PROJECT_PLAN.md` **Status** and **Next steps** current as phases land.
-- Asset URLs in `index.html` carry a `?v=N` cache-bust param. A service worker
-  is **not** yet wired (planned for Phase 7); when it is, the version number
-  must agree between `index.html` and the SW precache list — bump together.
+- Asset URLs in `index.html` carry a `?v=N` cache-bust param. The service
+  worker (`sw.js`) is wired and auto-updates; on every release bump the `?v=N`
+  in `index.html` **and** `CACHE` in `sw.js` together so returning users
+  auto-refresh onto the new version.
 - When adding/removing a subject data file, update the `<script defer>` tags in
   `index.html` and re-run `node dev/validate.mjs`.

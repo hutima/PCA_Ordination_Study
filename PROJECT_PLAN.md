@@ -214,6 +214,30 @@ KEEP modules + the HTML shell):**
 
       **Release ritual:** bump `?v=N` in `index.html` AND `CACHE` in `sw.js`
       together so returning users auto-refresh onto the new version.
+- [x] **Phase 8 — Study-modes + analytics expansion (app review follow-up).**
+      Acting on a full app review. Landed (cache `?v=10` / `pca-v10`):
+      - **Browse mode** — non-graded collapsible outline of every card in the
+        selection (`<details>` per question). The "summary with expandable
+        detail" read-through; no SRS.
+      - **Mock exam mode** — finite (25-question) mixed MCQ session across the
+        selection with a scored, per-subject results summary; still feeds SRS.
+      - **Weak-spots focus** — a Due/Weak toggle on the Review/Quiz deck;
+        Weak = studied cards under 60% confidence. Also reachable from a
+        "Study weak spots" button in the Progress overlay.
+      - **Rich Progress overlay** — hero stats (streak, today, coverage, seen),
+        a GitHub-style 17-week activity heatmap, per-subject mastery bars,
+        due-forecast, and a weak-spots list. New daily-activity log persisted
+        to `localStorage['pca_activity_v1']` (incremented in `applyOutcome`).
+      - **Provenance-aware answers** — `renderAnswer()` wraps confessional
+        quotes (`WSC:`/`WLC:`/`WCF:`), attributions (`Calvin:`…) and `Note:`
+        study notes in labeled callouts so official wording is distinct from a
+        gloss. Cards without prefixes render unchanged.
+      - **Linked references + official-sources panel** — reference chips
+        deep-link to official texts (`refLink()`: BCO→pcahistory, WCF/WLC/WSC
+        →opc.org, Scripture→BibleGateway). A "Sources & official texts" panel
+        links the official BCO, the Westminster Standards with proof texts, and
+        the Chapell/Meek prep guide, and flags that the BCO deck is adapted
+        from a third-party 2007 set (paraphrase — verify against current BCO).
 
 ## 8. Key facts / conventions
 
