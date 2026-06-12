@@ -154,7 +154,6 @@ html[data-font-family="sans"] {
 .subdeck-row.selected { border-color: var(--gold); background: rgba(201,168,76,0.10); }
 .subdeck-row-title { font-family: var(--font-display); font-size: 15px; }
 .subdeck-row-meta { margin-left: auto; font-size: 12px; color: var(--muted); white-space: nowrap; }
-.subdeck-row-all { justify-content: center; text-align: center; font-family: var(--font-display); font-size: 14px; }
 
 /* ── Quiz (MCQ) mode ──────────────────────────────────────────────────── */
 .quiz-choices { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
@@ -202,6 +201,14 @@ html[data-font-family="sans"] {
 .subdeck-group-title { font-family: var(--font-display); font-size: 14px; }
 .subdeck-group-meta { margin-left: auto; font-size: 12px; color: var(--muted); white-space: nowrap; }
 .subdeck-group.has-selected > summary .subdeck-group-title { color: var(--gold); }
+/* Top-level select-all toggle on the summary row (its click handler calls
+   preventDefault so it never toggles the group open/closed). */
+.subdeck-group-select {
+  flex: none; padding: 5px 10px; border-radius: 8px; font-size: 12px;
+  border: 1px solid var(--border); background: transparent; color: var(--muted);
+  cursor: pointer; white-space: nowrap; transition: border-color .15s, color .15s, background .15s;
+}
+.subdeck-group-select.selected { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.10); }
 
 /* ── Focus toggle (Due / Weak / In order / Flip deck) + Shuffle ───────── */
 .focus-row {
@@ -366,6 +373,7 @@ html[data-theme="light"] .hm-l3 { background: rgba(142,108,30,0.70); }
   .qa-card:hover { border-color: var(--gold-dim); }
   .qa-full > summary:hover { color: var(--gold); }
   .subdeck-row:hover { border-color: var(--gold-dim); }
+  .subdeck-group-select:hover { border-color: var(--gold-dim); color: var(--cream); }
   .quiz-choice:hover:not(:disabled) { border-color: var(--gold-dim); background: rgba(201,168,76,0.06); }
   .focus-row .mode-btn:disabled:hover { color: var(--muted); background: transparent; }
   a.qa-ref-chip:hover { background: rgba(201,168,76,0.20); border-color: var(--gold); }
