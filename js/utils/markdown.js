@@ -15,12 +15,14 @@ function escapeHtml(s) {
     .replace(/"/g, '&quot;');
 }
 
-// Inline spans run on already-escaped text.
-function renderInline(text) {
+// Inline spans run on already-escaped text. An optional `linkify` transforms the
+// text after emphasis (used to turn Scripture references into source links).
+function renderInline(text, linkify) {
   let t = text;
   t = t.replace(/`([^`]+)`/g, (_, c) => `<code>${c}</code>`);
   t = t.replace(/\*\*([^*]+)\*\*/g, (_, c) => `<strong>${c}</strong>`);
   t = t.replace(/(?:^|(?<=\s))_([^_]+)_(?=\s|$|[.,;:!?])/g, (_, c) => `<em>${c}</em>`);
+  if (linkify) t = linkify(t);
   return t;
 }
 
@@ -41,15 +43,17 @@ function splitRow(line) {
   return s.split('|').map(c => c.trim());
 }
 
-export function renderMarkdown(src) {
+export function renderMarkdown(src, opts = {}) {
   if (src == null) return '';
+  const linkify = opts.linkify || null;
+  const inline = (s) => renderInline(escapeHtml(s), linkify);
   const lines = String(src).replace(/\r\n?/g, '\n').split('\n');
   const html = [];
   let i = 0;
 
   const flushParagraph = (buf) => {
     if (!buf.length) return;
-    html.push(`<p>${renderInline(escapeHtml(buf.join(' ')))}</p>`);
+    html.push(`<p>${inline(buf.join(' '))}</p>`);
     buf.length = 0;
   };
 
@@ -80,12 +84,12 @@ export function renderMarkdown(src) {
       // `data-th` so nothing is lost when the header row is hidden.
       const stack = header.length >= 3 ? ' class="md-stack"' : '';
       let t = `<table${stack}><thead><tr>`;
-      t += header.map(c => `<th>${renderInline(escapeHtml(c))}</th>`).join('');
+      t += header.map(c => `<th>${inline(c)}</th>`).join('');
       t += '</tr></thead><tbody>';
       for (const r of rows) {
         t += '<tr>' + header.map((h, idx) => {
           const th = h ? ` data-th="${escapeHtml(h)}"` : '';
-          return `<td${th}>${renderInline(escapeHtml(r[idx] || ''))}</td>`;
+          return `<td${th}>${inline(r[idx] || "")}</td>`;
         }).join('') + '</tr>';
       }
       t += '</tbody></table>';
@@ -101,7 +105,7 @@ export function renderMarkdown(src) {
         quote.push(lines[i].match(QUOTE_RE)[1]);
         i++;
       }
-      html.push(`<blockquote>${renderInline(escapeHtml(quote.join(' ')))}</blockquote>`);
+      html.push(`<blockquote>${inline(quote.join(' '))}</blockquote>`);
       continue;
     }
 
@@ -120,7 +124,7 @@ export function renderMarkdown(src) {
       let liOpen = false;
       let subOpen = false;
       for (const it of items) {
-        const li = `<li>${renderInline(escapeHtml(it.text))}`;
+        const li = `<li>${inline(it.text)}`;
         if (it.indent >= base + 2 && liOpen) {
           if (!subOpen) { t += '<ul>'; subOpen = true; }
           t += li + '</li>';
@@ -148,7 +152,7 @@ export function renderMarkdown(src) {
         i++;
       }
       const startAttr = start !== 1 ? ` start="${start}"` : '';
-      html.push(`<ol${startAttr}>` + items.map(it => `<li>${renderInline(escapeHtml(it))}</li>`).join('') + '</ol>');
+      html.push(`<ol${startAttr}>` + items.map(it => `<li>${inline(it)}</li>`).join('') + '</ol>');
       continue;
     }
 
@@ -163,7 +167,7 @@ export function renderMarkdown(src) {
         i++;
       }
       const startAttr = start !== 1 ? ` start="${start}"` : '';
-      html.push(`<ol type="a"${startAttr}>` + items.map(it => `<li>${renderInline(escapeHtml(it))}</li>`).join('') + '</ol>');
+      html.push(`<ol type="a"${startAttr}>` + items.map(it => `<li>${inline(it)}</li>`).join('') + '</ol>');
       continue;
     }
 

@@ -75,12 +75,19 @@ That changes the update workflow:
   callout, `BCO:` as "Book of Church Order (quoted wording)" (only very
   short BCO wording cues — see the copyright rule below), `Note:` as a
   study-note callout. Reference chips deep-link to official texts
-  (`refLink()` in `refs.js`). Review's reveal: short table-free answers
+  (`refLink()` in `refs.js`): BCO → the right pcaac.org part page +
+  `#chapter_N` anchor, Scripture → esv.org (`scriptureLink()` normalizes the
+  book to its full ESV name). Inline Scripture references inside answer/teaser
+  prose are also auto-linked to esv.org by `linkifyScripture()` (`refs.js`),
+  applied via the renderer's `opts.linkify` hook (`renderAnswer` passes it) —
+  so a citation is tappable wherever it appears, not just in the chip row.
+  Review's reveal: short table-free answers
   (≤480 chars) render in full (`directAnswer()`); longer cards show a
   teaser — the authored `card.summary` when present, else derived
-  (`summarize()`: skips table rows, lists "Key passages:" for
-  Scripture-topic cards, appends "(+N more)" rather than truncating — a
-  teaser must never end mid-thought; `validate.mjs` enforces this).
+  (`summarize()`: skips table rows, renders Scripture-topic cards as a
+  bullet list of their passage references, appends "(+N more)" rather than
+  truncating — a teaser must never end mid-thought; `validate.mjs` enforces
+  this).
   3+-column Markdown tables are emitted with `class="md-stack"` + per-cell
   `data-th` and stack into labeled row-blocks under 640px (`css/pca.css`).
 - **Semicolon walls:** multi-part answers chained with semicolons must render

@@ -223,7 +223,7 @@ KEEP modules + the HTML shell):**
       **Release ritual:** bump `?v=N` in `index.html` AND `CACHE` in `sw.js`
       together so returning users auto-refresh onto the new version.
 - [x] **Phase 17 — Full-width stacked subject selector (Duff-style rows).**
-      Releases `?v=28`/`pca-v28`, `?v=29`/`pca-v29`, `?v=30`/`pca-v30`. The selector's two sections (subject tile
+      Releases `?v=28`–`?v=31` / `pca-v28`–`pca-v31`. The selector's two sections (subject tile
       grid + sub-deck grid inside each `<details>`) were replaced by one
       stacked list (`#subjectList` in `index.html`): each subject is a
       full-width collapsible `.subdeck-group` row (label left, "n/m selected ·
@@ -258,6 +258,28 @@ KEEP modules + the HTML shell):**
         Scripture refs in the card+quiz data produce clean esv.org URLs (zero
         fallbacks); an unrecognized abbreviation still falls back to a
         tolerant biblegateway ESV search.
+      - **Inline Scripture links + passage-card teaser fix** (`?v=31`,
+        user-reported via the "The ministry" card): the esv.org change above
+        only linked the `refs[]` chip row, but most Scripture citations live
+        *inside* answer prose (957 distinct, ~1.2k occurrences). Added
+        `linkifyScripture()` (`refs.js`) — a book-token regex that wraps every
+        in-prose reference in an esv.org `<a class="qa-ref-inline">` — wired
+        through the Markdown renderer's new `opts.linkify` hook
+        (`renderMarkdown(src, opts)` → `renderInline`) and enabled by
+        `renderAnswer` (`answer.js`), so links appear in answers, teasers, and
+        Browse. To avoid swallowing the next reference, the inline matcher
+        takes only chapter + optional `:verse(-range)` (no bare chapter ranges
+        or comma lists). Verified: 1211 inline links across all answers, only
+        10 tolerant-search fallbacks (bare "Cor."/"Thess."/"Pet." with the
+        number dropped at the source), zero false positives on non-Scripture
+        prose. Separately, `summarize()`'s passages-on-a-topic branch now emits
+        a **bullet list** of the references (was a "Key passages: a; b; c."
+        semicolon line) and `REF_LINE_RE` was broadened (optional trailing
+        colon, any parenthetical gloss) so the whole `bc-146…bc-174` family
+        teases as a clean linked bullet list. Fixed malformed bodies
+        (bc-155 inline-quoted first passage; bc-153 parenthetical wrapped
+        across blank lines) and authored explicit summaries for the two
+        irregular cards (bc-149 section-grouped, bc-163 `//`-joined refs).
       deeper slimming.** (Same release as 16, `?v=27`.)
       - **BCO comprehensive deck replaced** by the user's
         `pca_bco_comprehensive_quoted_labeled_bundle.zip` (committed to main):

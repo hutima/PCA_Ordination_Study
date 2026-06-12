@@ -8,6 +8,9 @@
 
 import { renderMarkdown } from '../utils/markdown.js';
 import { escapeHtml } from '../utils/text.js';
+import { linkifyScripture } from './refs.js';
+
+const MD_OPTS = { linkify: linkifyScripture };
 
 const STANDARD_LABELS = {
   WSC: 'Westminster Shorter Catechism', WLC: 'Westminster Larger Catechism',
@@ -52,7 +55,7 @@ export function renderAnswer(md) {
     }
   }
   return segs.map(seg => {
-    const body = renderMarkdown(seg.lines.join('\n'));
+    const body = renderMarkdown(seg.lines.join('\n'), MD_OPTS);
     if (seg.kind === 'plain') return body;
     const cls = seg.kind === 'standard' ? 'qa-standard'
       : seg.kind === 'note' ? 'qa-note' : 'qa-attribution';
@@ -99,8 +102,9 @@ function splitSentences(text) {
 }
 
 // A line that introduces a Scripture quotation in a passages-on-a-topic card,
-// e.g. "Romans 3:25:" or "1 Corinthians 15:3-8 (cf. also Acts 4:32-37):".
-const REF_LINE_RE = /^(?:[123]\s)?[A-Z][a-zA-Z]+\.?\s\d[\d:,–\- ]*[ab]?(?:\s*\(cf\.[^)]*\))?:$/;
+// e.g. "Romans 3:25:", "John 8:58", or "Mark 2:10-11 (Only God forgives sins):"
+// — the trailing colon and a parenthetical gloss are both optional.
+const REF_LINE_RE = /^(?:[123]\s)?[A-Z][a-zA-Z]+\.?\s\d[\d:,–\- ]*[ab]?(?:\s*\([^)]*\))?:?$/;
 
 export function summarize(card, max = 240) {
   if (card && typeof card.summary === 'string' && card.summary.trim()) return card.summary.trim();
@@ -111,10 +115,12 @@ export function summarize(card, max = 240) {
   // table, or — when the whole answer is a table — from its header cells.
   const prose = lines.filter(l => !l.startsWith('|'));
   // A passages-on-a-topic card (reference headers, each followed by a quote)
-  // teases best as the list of references — that IS the recall target.
+  // teases best as the list of references — that IS the recall target. Render
+  // them as a bullet list (the teaser is Markdown); inline linkification turns
+  // each reference into a tappable esv.org link.
   const refs = prose.filter(l => REF_LINE_RE.test(l)).map(l => l.replace(/:$/, ''));
   if (refs.length >= 2 && refs.length >= prose.filter(l => !LIST_MARKER_RE.test(l)).length - 1) {
-    return `Key passages: ${refs.join('; ')}.`;
+    return refs.map(r => `- ${r}`).join('\n');
   }
   let s = stripMarkup(prose[0] || '');
   if (!s) {
