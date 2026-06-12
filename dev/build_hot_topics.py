@@ -187,11 +187,13 @@ CURATE = {
     },
     'ht-004-sabbath': {
         'summary': ("The Sabbath is a creation ordinance (Gen 2:1-3), moved to the Lord's "
-                    "Day in the NT. Strict sabbatarianism keeps the seventh day; "
-                    "semisabbatarianism transfers its demands to Sunday. The Westminster "
-                    "view (WCF 21.8) requires rest even from recreations; the Continental "
-                    "view (Heidelberg, Calvin) stresses worship, spiritual rest, and "
-                    "relief of servants."),
+                    "Day in the NT.\n"
+                    "- Strict sabbatarianism keeps the seventh day; semisabbatarianism "
+                    "transfers its demands to Sunday\n"
+                    "- The Westminster view (WCF 21.8) requires rest even from "
+                    "recreations\n"
+                    "- The Continental view (Heidelberg, Calvin) stresses worship, "
+                    "spiritual rest, and relief of servants"),
     },
     'ht-005-role-of-women-in-the-church': {
         'summary': ("Men and women are equal in worth and dignity (Gen 1:27), and women "

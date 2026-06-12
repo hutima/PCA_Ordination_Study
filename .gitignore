@@ -1,2 +1,8 @@
 __pycache__/
 *.pyc
+
+# Heavy source binaries are kept out of the repo (see PROJECT_PLAN §3)
+*.pdf
+*.doc
+*.docx
+*.zip

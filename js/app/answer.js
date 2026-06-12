@@ -12,6 +12,7 @@ import { escapeHtml } from '../utils/text.js';
 const STANDARD_LABELS = {
   WSC: 'Westminster Shorter Catechism', WLC: 'Westminster Larger Catechism',
   WCF: 'Westminster Confession', WSA: 'Westminster Assembly',
+  BCO: 'Book of Church Order (quoted wording)',
 };
 const ATTRIBUTION_LABELS = {
   Calvin: 'Calvin', Luther: 'Luther', Augustine: 'Augustine',
@@ -19,7 +20,7 @@ const ATTRIBUTION_LABELS = {
 };
 const PROV_RE = /^\s*([A-Za-z]+)\s*:\s?(.*)$/;
 // Leading provenance label stripped when deriving a plain-text summary.
-const LABEL_STRIP_RE = /^\s*(WSC|WLC|WCF|WSA|Note|Calvin|Luther|Augustine|Turretin|Heidelberg)\s*:\s*/;
+const LABEL_STRIP_RE = /^\s*(WSC|WLC|WCF|WSA|BCO|Note|Calvin|Luther|Augustine|Turretin|Heidelberg)\s*:\s*/;
 
 function classifyLine(line) {
   const m = line.match(PROV_RE);

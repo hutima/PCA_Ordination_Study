@@ -81,6 +81,28 @@ for (const subject of data.subjects) {
         }
       }
 
+      // G: semicolon wall — a plain paragraph line chaining 3+ parallel
+      // parts with top-level semicolons (outside parens/quotes) should be a
+      // list (user-reported from real phone use). The first line is exempt
+      // (bio cards open with an "epithet—dates; role" snapshot), as are
+      // quoted standards and provenance-labeled lines.
+      let firstPlain = true;
+      for (const l of lines) {
+        if (/^(\||>|[-•*]\s|\d+\.\s|[a-z][.)]\s|#)/.test(l)) continue;
+        const isFirst = firstPlain; firstPlain = false;
+        if (isFirst || /^(WSC|WLC|WCF|WSA|BCO|Note)\s*:/.test(l) || /^["“]/.test(l)) continue;
+        let depth = 0, inq = false, semis = 0;
+        for (const ch of l) {
+          if (ch === '(') depth++;
+          else if (ch === ')') depth = Math.max(0, depth - 1);
+          else if (ch === '“') inq = true;
+          else if (ch === '”') inq = false;
+          else if (ch === '"') inq = !inq;
+          else if (ch === ';' && depth === 0 && !inq) semis++;
+        }
+        if (semis >= 3) { flag('SEMICOLON_CHAIN', c, l.slice(0, 80)); break; }
+      }
+
       // E: question is a fragment, not a prompt.
       if (/^\s*(cf\.|see |e\.g\.|i\.e\.|also |\[|\()/i.test(q) || /^[a-z]/.test(q.trim())) {
         flag('FRAGMENT_QUESTION', c, q.slice(0, 70));

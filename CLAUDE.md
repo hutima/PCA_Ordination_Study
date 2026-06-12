@@ -5,6 +5,38 @@ spaced-repetition review app adapted from the Duff Greek study tool. Read
 **`PROJECT_PLAN.md`** first: it is the source of truth for the plan, decisions,
 architecture/reuse map, content contract, phase status, and next steps.
 
+## How to update content (post-Phase-16 cleanup — read this first)
+
+The repo was slimmed in Phase 16/16b: the Westminster PDFs, the `.doc/.docx`
+study guides, the BCO bundle zips, and the whole `source_materials/` tree
+(including `extracted/*.txt`, which every `dev/build_*.py` reads) are **gone
+from the working tree**. `.gitignore` blocks `*.pdf/*.doc/*.docx/*.zip` so
+they don't creep back.
+
+That changes the update workflow:
+
+- **The checked-in `js/data/**` files are the working source of truth.** For
+  small content fixes (typos, a card's answer/summary, restructuring one
+  card), edit the generated file directly and note it in `PROJECT_PLAN.md`.
+  The "Do not hand-edit; re-run the generator" headers predate the cleanup.
+- **To re-run a builder** (bulk/structural changes via its `CURATE` layer),
+  first restore its inputs from git history — they live at any pre-Phase-16
+  commit, e.g.:
+  `git show 'b9199aa:source_materials/extracted/church_history.txt' > …`
+  (same for the Westminster PDFs needed by `dev/build_catechisms.py` /
+  `dev/build_wcf.py`). Restore, run `python3 dev/build_<subject>.py`, commit
+  the regenerated `js/data/**` output only — do not re-commit the inputs.
+- **If you hand-edit a generated file and later re-run its builder, the
+  builder will overwrite your edit** — port hand-edits into the builder's
+  `CURATE` dict when you do bulk work. Known hand-edits so far are listed in
+  PROJECT_PLAN Phase 16b (sacraments sac-004/sac-011; the whole
+  `bco_comprehensive.js` one-shot transform).
+- **Always finish with the quality gates:** `node dev/validate.mjs` (card
+  shape, Markdown render, teaser completeness, MCQ fairness) and
+  `node dev/audit.mjs` (phone-use failure classes — questions-in-answers,
+  glued answers, flattened tables, mid-thought teasers, semicolon walls).
+  The audit baseline is 8 known flags; don't add new ones.
+
 ## Orientation
 
 - **Entry point:** `js/app/pca.js` — a thin controller over focused modules in
@@ -34,51 +66,67 @@ architecture/reuse map, content contract, phase status, and next steps.
   (`pca_shuffle_v1`, default on) controls deck order; it is disabled under
   In order. Review grade buttons show on both hidden and revealed states.
   An empty subject selection means an empty deck — there is no implicit
-  "study everything" fallback. Card re-renders run through `withCardAnchor()` (pca.js) so
-  reveal/hide/next never jumps the page. Answers are provenance-tagged
-  (`renderAnswer()`: standard quotes vs study notes) and reference chips
-  deep-link to official texts (`refLink()`). Review's reveal: short table-free
-  answers (≤480 chars — memory verses) render in full (`directAnswer()`);
-  longer cards show a teaser — the authored `card.summary` when present, else
-  derived (`summarize()`: skips table rows, lists "Key passages:" for
+  "study everything" fallback. Card re-renders run through `withCardAnchor()`
+  (pca.js) so reveal/hide/next never jumps the page.
+- **Answer rendering:** answers are Markdown (`js/utils/markdown.js`,
+  escape-first; lists, GFM tables, blockquotes, inline emphasis) and are
+  provenance-tagged by `renderAnswer()` (`answer.js`): a line starting
+  `WSC:`/`WLC:`/`WCF:`/`WSA:` renders as a labeled standard-quotation
+  callout, `BCO:` as "Book of Church Order (quoted wording)" (only very
+  short BCO wording cues — see the copyright rule below), `Note:` as a
+  study-note callout. Reference chips deep-link to official texts
+  (`refLink()` in `refs.js`). Review's reveal: short table-free answers
+  (≤480 chars) render in full (`directAnswer()`); longer cards show a
+  teaser — the authored `card.summary` when present, else derived
+  (`summarize()`: skips table rows, lists "Key passages:" for
   Scripture-topic cards, appends "(+N more)" rather than truncating — a
-  teaser must never end mid-thought; `validate.mjs` enforces this). Authored
-  summaries and structural repairs live in each builder's curation layer
-  (`CURATE` dicts keyed by card id; shared ops engine in `dev/curation.py` —
-  fails loudly if a key stops matching). `dev/audit.mjs` flags the failure
-  classes found in real phone use (questions-in-answers, glued inline
-  answers, flattened tables, mid-thought teasers). 3+-column Markdown tables
-  are emitted with `class="md-stack"` + per-cell `data-th` and stack into
-  labeled row-blocks under 640px (`css/pca.css`). Never embed copyrighted
-  text (the BCO, the R. S. Clark covenant-theology essay in the church
-  history source) — the curation layer cuts these.
-- **Standards data (public domain):** generated from the PDFs at the repo
-  root — `dev/build_catechisms.py` → `js/data/catechisms.js`
-  (`window.PCA_CATECHISMS`, WSC 107 + WLC 196 with proof citations);
-  `dev/build_wcf.py` → `js/data/wcf.js` (`window.PCA_WCF`, 33 chapters /
-  171 sections; build-time artifact, not loaded by the app);
-  `dev/build_theology_wcf.mjs` → `js/data/subjects/theology_wcf.js`
-  (a theology sub-deck quoting WCF chapters not otherwise cited).
-  The BCO is copyrighted — never embed its text; link to pcaac.org instead.
+  teaser must never end mid-thought; `validate.mjs` enforces this).
+  3+-column Markdown tables are emitted with `class="md-stack"` + per-cell
+  `data-th` and stack into labeled row-blocks under 640px (`css/pca.css`).
+- **Semicolon walls:** multi-part answers chained with semicolons must render
+  as lists, not glued paragraphs (`SEMICOLON_CHAIN` class in `dev/audit.mjs`;
+  church-history glossary cards are bulletized structurally by
+  `bulletize_def()` in their builder). Verbatim standard quotations and
+  bio-card "epithet—dates; role" intro lines legitimately keep semicolons.
+- **Copyright:** never embed copyrighted text — the BCO (paraphrase only;
+  link to pcaac.org) and the R. S. Clark covenant-theology essay that was in
+  the church-history source. Multi-word BCO quotations beyond short wording
+  cues are not allowed even inside `BCO:` callouts.
+- **Content contract:** `js/data/subjects/<id>.js` files register into the
+  global `window.PCA_DATA` contract (see PROJECT_PLAN §4). Add a subject by
+  dropping a data file there, a `<script defer>` tag in `index.html`, and a
+  PRECACHE entry in `sw.js`. The BCO subject spans three files: `bco.js`
+  (2007 Q&A deck, orders 1–4), `bco_governance.js` (orders 5–6), and
+  `bco_comprehensive.js` (2025 quoted/labeled bundle, 165 cards in 8
+  sub-decks, orders 7–14); later files merge `setKeys` into the existing
+  subject, so load order in `index.html` matters (`bco.js` first).
+- **Standards data (public domain):** `js/data/catechisms.js`
+  (`window.PCA_CATECHISMS`, WSC 107 + WLC 196 with proof citations),
+  `js/data/wcf.js` (`window.PCA_WCF`, build-time artifact, not loaded by the
+  app), `js/data/subjects/theology_wcf.js` (a theology sub-deck quoting WCF
+  chapters not otherwise cited). Their builders need the Westminster PDFs
+  restored from git history to re-run.
 - **SRS engine (reused, content-agnostic):** `js/domain/srs/{constants,
   scheduler,confidence}.js`. Outcomes `again`/`pass`/`easy` =
   Hard/Uncertain/Easy. Do not edit lightly.
-- **Content:** `js/data/subjects/<id>.js` files register into the global
-  `window.PCA_DATA` contract (see PROJECT_PLAN §4). Add a subject by dropping a
-  data file there and a `<script defer>` tag in `index.html`.
-- **Markdown:** answers are Markdown rendered by `js/utils/markdown.js`
-  (escape-first; lists, GFM tables, blockquotes, inline emphasis).
-- **Validate content:** `node dev/validate.mjs` (card shape, Markdown render,
-  MCQ answer-length fairness). **Release check:** `node dev/check_sw.mjs`
-  (precache completeness + `?v=N`/CACHE agreement).
+- **Subject selector:** sub-decks render as one collapsible
+  `<details class="subdeck-group">` per subject (summary shows a selected
+  count); open/closed state lives in `openSubdeckGroups` (`pca.js`) so it
+  survives the re-render on every tile click. The modal scrolls as one unit —
+  don't reintroduce a nested scrollbox.
 - **Serve locally:** `python3 -m http.server 8137` then open `/`.
 
 ## Maintenance rules
 
 - Keep `PROJECT_PLAN.md` **Status** and **Next steps** current as phases land.
-- Asset URLs in `index.html` carry a `?v=N` cache-bust param. The service
-  worker (`sw.js`) is wired and auto-updates; on every release bump the `?v=N`
-  in `index.html` **and** `CACHE` in `sw.js` together so returning users
-  auto-refresh onto the new version.
-- When adding/removing a subject data file, update the `<script defer>` tags in
-  `index.html` and re-run `node dev/validate.mjs`.
+- **Release ritual:** asset URLs in `index.html` carry a `?v=N` cache-bust
+  param. The service worker (`sw.js`) auto-updates; on every release bump the
+  `?v=N` in `index.html` **and** `CACHE` in `sw.js` together so returning
+  users auto-refresh onto the new version. Verify with `node dev/check_sw.mjs`
+  (precache completeness + `?v=N`/CACHE agreement).
+- When adding/removing a subject data file, update the `<script defer>` tags
+  in `index.html` **and** the `sw.js` PRECACHE, then re-run
+  `node dev/validate.mjs` and `node dev/audit.mjs`.
+- Content edits go directly into `js/data/**` (small fixes) or through a
+  builder's `CURATE` layer with history-restored inputs (bulk work) — see
+  "How to update content" at the top.
