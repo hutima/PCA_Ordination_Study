@@ -341,14 +341,13 @@ function renderSelector() {
       : `${keys.length} sub-deck${keys.length === 1 ? '' : 's'} · ${total} cards`;
     return `<details class="subdeck-group ${onCount ? 'has-selected' : ''}" data-group="${subj.id}" ${openSubdeckGroups.has(subj.id) ? 'open' : ''}>
       <summary><span class="subdeck-group-title">${escapeText(subj.label)}</span>
-        <span class="subdeck-group-meta">${meta}</span></summary>
-      <div class="subdeck-rows">
-        <button class="subdeck-row subdeck-row-all" data-subject="${subj.id}" type="button">
-          ${allOn ? 'Deselect' : 'Select'} all ${escapeText(subj.label)}</button>
-        ${rows}
-      </div></details>`;
+        <span class="subdeck-group-meta">${meta}</span>
+        <button class="subdeck-group-select ${allOn ? 'selected' : ''}" data-subject="${subj.id}" type="button"
+          title="${allOn ? 'Deselect' : 'Select'} all of ${escapeText(subj.label)}">${allOn ? 'Deselect all' : 'Select all'}</button></summary>
+      <div class="subdeck-rows">${rows}</div></details>`;
   }).join('');
-  list.querySelectorAll('[data-subject]').forEach(btn => btn.addEventListener('click', () => {
+  list.querySelectorAll('[data-subject]').forEach(btn => btn.addEventListener('click', e => {
+    e.preventDefault(); // a click inside <summary> would also toggle the group open/closed
     const subj = DATA.subjects.find(s => s.id === btn.dataset.subject);
     const keys = subj.setKeys.filter(k => DATA.sets[k]);
     const allOn = keys.length > 0 && keys.every(k => state.selected.has(k));

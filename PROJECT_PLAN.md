@@ -223,14 +223,16 @@ KEEP modules + the HTML shell):**
       **Release ritual:** bump `?v=N` in `index.html` AND `CACHE` in `sw.js`
       together so returning users auto-refresh onto the new version.
 - [x] **Phase 17 — Full-width stacked subject selector (Duff-style rows).**
-      Release `?v=28`/`pca-v28`. The selector's two sections (subject tile
+      Releases `?v=28`/`pca-v28`, `?v=29`/`pca-v29`. The selector's two sections (subject tile
       grid + sub-deck grid inside each `<details>`) were replaced by one
       stacked list (`#subjectList` in `index.html`): each subject is a
       full-width collapsible `.subdeck-group` row (label left, "n/m selected ·
       N cards" meta right, gold title when anything is selected); expanding
-      reveals a centered "Select/Deselect all <subject>" row plus one
-      full-width `.subdeck-row` per sub-deck — mirroring the Greek app's
-      Week-row layout. `.pca-grid`/`.pca-tile`/`.pca-section-label` CSS
+      reveals one full-width `.subdeck-row` per sub-deck — mirroring the
+      Greek app's Week-row layout. A Select all/Deselect all toggle sits on
+      the collapsed summary row itself (`?v=29`: moved up from inside the
+      expanded body so whole subjects toggle without expanding; its click
+      handler `preventDefault()`s so it never opens/closes the group). `.pca-grid`/`.pca-tile`/`.pca-section-label` CSS
       removed; `openSubdeckGroups` open-state persistence unchanged.
       - **BCO ref chips deep-link per chapter:** `refLink()` (`refs.js`) maps
         `BCO <ch>[-<sec>]` to the pcaac.org part page + `#chapter_N` anchor
