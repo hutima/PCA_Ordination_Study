@@ -222,6 +222,16 @@ KEEP modules + the HTML shell):**
 
       **Release ritual:** bump `?v=N` in `index.html` AND `CACHE` in `sw.js`
       together so returning users auto-refresh onto the new version.
+- [x] **Phase 17 — Full-width stacked subject selector (Duff-style rows).**
+      Release `?v=28`/`pca-v28`. The selector's two sections (subject tile
+      grid + sub-deck grid inside each `<details>`) were replaced by one
+      stacked list (`#subjectList` in `index.html`): each subject is a
+      full-width collapsible `.subdeck-group` row (label left, "n/m selected ·
+      N cards" meta right, gold title when anything is selected); expanding
+      reveals a centered "Select/Deselect all <subject>" row plus one
+      full-width `.subdeck-row` per sub-deck — mirroring the Greek app's
+      Week-row layout. `.pca-grid`/`.pca-tile`/`.pca-section-label` CSS
+      removed; `openSubdeckGroups` open-state persistence unchanged.
 - [x] **Phase 16b — Semicolon-wall review + quoted/labeled BCO bundle +
       deeper slimming.** (Same release as 16, `?v=27`.)
       - **BCO comprehensive deck replaced** by the user's
