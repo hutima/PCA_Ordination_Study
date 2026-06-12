@@ -39,7 +39,8 @@ const BOOK_NAMES = {
   ezra: 'Ezra', neh: 'Nehemiah', nehemiah: 'Nehemiah', esth: 'Esther', esther: 'Esther',
   job: 'Job', ps: 'Psalm', psa: 'Psalm', psalm: 'Psalm', psalms: 'Psalm', pss: 'Psalm',
   prov: 'Proverbs', proverbs: 'Proverbs', eccl: 'Ecclesiastes', ecclesiastes: 'Ecclesiastes',
-  song: 'Song of Solomon', isa: 'Isaiah', isaiah: 'Isaiah', jer: 'Jeremiah', jeremiah: 'Jeremiah',
+  song: 'Song of Solomon', songofsolomon: 'Song of Solomon',
+  isa: 'Isaiah', isaiah: 'Isaiah', jer: 'Jeremiah', jeremiah: 'Jeremiah',
   lam: 'Lamentations', lamentations: 'Lamentations', ezek: 'Ezekiel', ezekiel: 'Ezekiel',
   dan: 'Daniel', daniel: 'Daniel', hos: 'Hosea', hosea: 'Hosea', joel: 'Joel', amos: 'Amos',
   obad: 'Obadiah', obadiah: 'Obadiah', jonah: 'Jonah', mic: 'Micah', micah: 'Micah',
@@ -62,17 +63,53 @@ const BOOK_NAMES = {
   rev: 'Revelation', revelation: 'Revelation',
 };
 
+// Surface spellings (full names + common abbreviations) used to spot references
+// inside prose. Longest-first so "Corinthians" wins over "Cor", "Psalms" over
+// "Ps", etc. The optional 1/2/3 prefix is matched separately in the patterns.
+const BOOK_TOKENS = [
+  'Song of Solomon', 'Genesis', 'Gen', 'Exodus', 'Exod', 'Ex', 'Leviticus', 'Lev',
+  'Numbers', 'Num', 'Deuteronomy', 'Deut', 'Joshua', 'Josh', 'Judges', 'Judg', 'Ruth',
+  'Samuel', 'Sam', 'Kings', 'Kgs', 'Chronicles', 'Chron', 'Chr', 'Ezra', 'Nehemiah', 'Neh',
+  'Esther', 'Esth', 'Job', 'Psalms', 'Psalm', 'Psa', 'Pss', 'Ps', 'Proverbs', 'Prov',
+  'Ecclesiastes', 'Eccl', 'Song', 'Isaiah', 'Isa', 'Jeremiah', 'Jer', 'Lamentations', 'Lam',
+  'Ezekiel', 'Ezek', 'Daniel', 'Dan', 'Hosea', 'Hos', 'Joel', 'Amos', 'Obadiah', 'Obad',
+  'Jonah', 'Micah', 'Mic', 'Nahum', 'Nah', 'Habakkuk', 'Hab', 'Zephaniah', 'Zeph', 'Haggai',
+  'Hag', 'Zechariah', 'Zech', 'Malachi', 'Mal', 'Matthew', 'Matt', 'Mt', 'Mark', 'Mk',
+  'Luke', 'Lk', 'John', 'Jn', 'Acts', 'Romans', 'Rom', 'Corinthians', 'Cor', 'Galatians',
+  'Gal', 'Ephesians', 'Eph', 'Philippians', 'Phil', 'Colossians', 'Col', 'Thessalonians',
+  'Thess', 'Timothy', 'Tim', 'Titus', 'Philemon', 'Philem', 'Phlm', 'Hebrews', 'Heb',
+  'James', 'Jas', 'Peter', 'Pet', 'Jude', 'Revelation', 'Rev',
+].sort((a, b) => b.length - a.length).map(b => b.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+
+const BOOK_ALT = BOOK_TOKENS.join('|');
+// Pull "<book> <numbers...>" off the front of a reference string.
+const REF_PARSE_RE = new RegExp(`^((?:[123]\\s+)?(?:${BOOK_ALT})\\.?)\\s+(\\d.*)$`);
+// Find a reference inside prose: chapter, optional :verse(-range) with a/b
+// markers. No bare chapter ranges or comma lists, so a cross-book range like
+// "1 Kings 19–2 Kings" or a list "Rom 16:3, 1 Cor 1:2" never swallows the next
+// reference's leading number.
+const INLINE_SCRIPTURE_RE = new RegExp(
+  `\\b(?:[123]\\s+)?(?:${BOOK_ALT})\\.?\\s+\\d+(?::\\d+[ab]?(?:[-–]\\d+[ab]?)?)?`, 'g');
+
+const ESV_SEARCH = 'https://www.biblegateway.com/passage/?version=ESV&search=';
+
 function scriptureLink(r) {
   // Drop trailing "ff."/following markers; normalize en/em dashes to hyphens.
   const ref = r.replace(/\s*ff\.?/gi, '').replace(/[–—]/g, '-').trim();
-  const m = /^(\d?\s?[A-Za-z][A-Za-z.]*)\s+(\d+:.+)$/.exec(ref);
-  if (!m) return null;
-  const book = BOOK_NAMES[m[1].replace(/[.\s]/g, '').toLowerCase()];
-  if (book) {
-    return 'https://www.esv.org/' + (book + ' ' + m[2].trim()).replace(/ /g, '+') + '/';
-  }
-  // Unrecognized abbreviation: fall back to a tolerant ESV search.
-  return 'https://www.biblegateway.com/passage/?version=ESV&search=' + encodeURIComponent(ref);
+  const m = REF_PARSE_RE.exec(ref);
+  const book = m && BOOK_NAMES[m[1].replace(/[.\s]/g, '').toLowerCase()];
+  if (book) return 'https://www.esv.org/' + (book + ' ' + m[2].trim()).replace(/ /g, '+') + '/';
+  // Unrecognized/ambiguous abbreviation (e.g. a bare "Cor"): tolerant ESV search.
+  return ESV_SEARCH + encodeURIComponent(ref);
+}
+
+// Wrap every Scripture reference found in already-escaped prose in an esv.org
+// link. Applied by the answer/teaser renderer so inline citations are tappable,
+// not just the reference chips. Operates on escaped text, so the matched span
+// (a plain book + chapter:verse) never contains markup.
+export function linkifyScripture(escaped) {
+  return escaped.replace(INLINE_SCRIPTURE_RE, m =>
+    `<a class="qa-ref-inline" href="${scriptureLink(m)}" target="_blank" rel="noopener noreferrer">${m}</a>`);
 }
 
 export function refLink(ref) {

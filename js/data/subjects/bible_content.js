@@ -957,7 +957,8 @@
         "id": "bc-149-resurrection-his-and-ours",
         "q": "Identify passages someone could read about: Resurrection (his and ours).",
         "a": "His Resurrection\n\n- Matthew 28:6\n  - \"He is not here; he has risen, just as he said. Come and see the place where he lay.\"\n- Acts 2:32\n  - \"God has raised this Jesus to life, and we are all witnesses of the fact.\"\n- 1 Corinthians 15:3-8:\n  - \"For what I received I passed on to you as of first importance: that Christ died for our sins according to the Scriptures, 4 that he was buried, that he was raised on the third day according to the Scriptures, 5 and that he appeared to Peter, and then to the Twelve. 6 After that, he appeared to more than five hundred of the brothers at the same time, most of whom are still living, though some have fallen asleep. 7 Then he appeared to James, then to all the apostles, 8 and last of all he appeared to me also, as to one abnormally born.\"\n\nOur Resurrection\n\n- Romans 6:5\n  - \"If we have been united with him like this in his death, we will certainly also be united with him in his resurrection.\"\n- 1 Corinthians 15:20-23\n  - \"But Christ has indeed been raised from the dead, the firstfruits of those who have fallen asleep. 21 For since death came through a man, the resurrection of the dead comes also through a man. 22 For as in Adam all die, so in Christ all will be made alive. 23 But each in his own turn: Christ, the firstfruits; then, when he comes, those who belong to him.\"\n- 2 Corinthians 4:13-14\n  - \"It is written: \"I believed; therefore I have spoken.\" With that same spirit of faith we also believe and therefore speak, 14 because we know that the one who raised the Lord Jesus from the dead will also raise us with Jesus and present us with you in his presence.\"",
-        "refs": []
+        "refs": [],
+        "summary": "- His Resurrection — Matthew 28:6, Acts 2:32, 1 Corinthians 15:3-8\n- Our Resurrection — Romans 6:5, 1 Corinthians 15:20-23, 2 Corinthians 4:13-14"
       },
       {
         "id": "bc-150-return-of-christ",
@@ -980,7 +981,7 @@
       {
         "id": "bc-153-civil-government",
         "q": "Identify passages someone could read about: Civil government.",
-        "a": "Matthew 22:15-17 (render to Caesar what is Caesar's)\n\nRomans 13:1-7 (submission to authority)\n\nTitus 3:1-2 (submissive to authority, be obedient, ready\n\nfor good work)\n\n1 Peter 2:13-17 (live as people who are free, honor\n\neveryone)",
+        "a": "Matthew 22:15-17 (render to Caesar what is Caesar's)\n\nRomans 13:1-7 (submission to authority)\n\nTitus 3:1-2 (submissive to authority, be obedient, ready for good work)\n\n1 Peter 2:13-17 (live as people who are free, honor everyone)",
         "refs": []
       },
       {
@@ -992,7 +993,7 @@
       {
         "id": "bc-155-the-ministry",
         "q": "Identify passages someone could read about: The ministry.",
-        "a": "Matthew 28:18-20: \"Go therefore make disciples,\n\nbaptizing/teaching\"\n\n2 Corinthians 5:17-21:\n\n- \"Therefore, if anyone is in Christ, he is a new creation; the old has gone, the new has come! 18 All this is from God, who reconciled us to himself through Christ and gave us the ministry of reconciliation: 19 that God was reconciling the world to himself in Christ, not counting men's sins against them. And he has committed to us the message of reconciliation. 20 We are therefore Christ's ambassadors, as though God were making his appeal through us. We implore you on Christ's behalf: Be reconciled to God. 21 God made him who had no sin to be sin for us, so that in him we might become the righteousness of God.\"\n\nPastoral Epistles (1 and 2 Timothy, Titus)\n\n1 Peter 5:1-4:\n\n- \"To the elders among you, I appeal as a fellow elder, a witness of Christ's sufferings and one who also will share in the glory to be revealed: 2 Be shepherds of God's flock that is under your care, serving as overseers-- not because you must, but because you are willing, as God wants you to be; not greedy for money, but eager to serve; 3 not lording it over those entrusted to you, but being examples to the flock. 4 And when the Chief Shepherd appears, you will receive the crown of glory that will never fade away.\"",
+        "a": "Matthew 28:18-20:\n\n- \"Go therefore make disciples, baptizing/teaching.\"\n\n2 Corinthians 5:17-21:\n\n- \"Therefore, if anyone is in Christ, he is a new creation; the old has gone, the new has come! 18 All this is from God, who reconciled us to himself through Christ and gave us the ministry of reconciliation: 19 that God was reconciling the world to himself in Christ, not counting men's sins against them. And he has committed to us the message of reconciliation. 20 We are therefore Christ's ambassadors, as though God were making his appeal through us. We implore you on Christ's behalf: Be reconciled to God. 21 God made him who had no sin to be sin for us, so that in him we might become the righteousness of God.\"\n\nPastoral Epistles (1 and 2 Timothy, Titus)\n\n1 Peter 5:1-4:\n\n- \"To the elders among you, I appeal as a fellow elder, a witness of Christ's sufferings and one who also will share in the glory to be revealed: 2 Be shepherds of God's flock that is under your care, serving as overseers-- not because you must, but because you are willing, as God wants you to be; not greedy for money, but eager to serve; 3 not lording it over those entrusted to you, but being examples to the flock. 4 And when the Chief Shepherd appears, you will receive the crown of glory that will never fade away.\"",
         "refs": []
       },
       {
@@ -1042,7 +1043,8 @@
         "id": "bc-163-divorce",
         "q": "Identify passages someone could read about: Divorce.",
         "a": "Matthew 19:3-12 // Mark 10:11-12 // Luke 16:18:\n\n- Jesus pronounces against divorce and remarriage, saying that Moses' permitted divorce due to hardness of heart. According to Matthew's version, Jesus permits divorce if pornei,a has occurred, that is, significant sexual sin.\n\n1 Corinthians 7:12-16\n\n- This is the so-called Pauline exception. In mixed marriages (Christian and non-Christian) Paul allows for divorce if the unbeliever deserts the believer.",
-        "refs": []
+        "refs": [],
+        "summary": "- Matthew 19:3-12 // Mark 10:11-12 // Luke 16:18 — Jesus on divorce and remarriage\n- 1 Corinthians 7:12-16 — the Pauline exception (desertion by an unbeliever)"
       },
       {
         "id": "bc-164-family",

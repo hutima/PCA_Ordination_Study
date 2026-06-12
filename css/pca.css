@@ -117,6 +117,13 @@ html[data-font-family="sans"] {
   border: 1px solid var(--gold-dim); border-radius: 999px; padding: 3px 11px;
 }
 
+/* Inline Scripture reference links inside answers/teasers (see linkifyScripture
+   in refs.js). Subtle gold underline so prose still reads cleanly. */
+a.qa-ref-inline {
+  color: var(--gold-light); text-decoration: underline;
+  text-decoration-color: var(--gold-dim); text-underline-offset: 2px;
+}
+
 .qa-reveal-hint { color: var(--muted); font-size: 13px; margin-top: 18px; font-style: italic; }
 
 /* Progressive disclosure: short summary first, full answer behind an expander.
@@ -377,6 +384,7 @@ html[data-theme="light"] .hm-l3 { background: rgba(142,108,30,0.70); }
   .quiz-choice:hover:not(:disabled) { border-color: var(--gold-dim); background: rgba(201,168,76,0.06); }
   .focus-row .mode-btn:disabled:hover { color: var(--muted); background: transparent; }
   a.qa-ref-chip:hover { background: rgba(201,168,76,0.20); border-color: var(--gold); }
+  a.qa-ref-inline:hover { color: var(--gold); text-decoration-color: var(--gold); }
   .browse-item:hover { border-color: var(--gold-dim); }
   .cat-controls select:hover { border-color: var(--gold-dim); outline: none; }
 }
