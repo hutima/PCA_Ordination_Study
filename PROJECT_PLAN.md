@@ -223,7 +223,7 @@ KEEP modules + the HTML shell):**
       **Release ritual:** bump `?v=N` in `index.html` AND `CACHE` in `sw.js`
       together so returning users auto-refresh onto the new version.
 - [x] **Phase 17 — Full-width stacked subject selector (Duff-style rows).**
-      Releases `?v=28`/`pca-v28`, `?v=29`/`pca-v29`. The selector's two sections (subject tile
+      Releases `?v=28`/`pca-v28`, `?v=29`/`pca-v29`, `?v=30`/`pca-v30`. The selector's two sections (subject tile
       grid + sub-deck grid inside each `<details>`) were replaced by one
       stacked list (`#subjectList` in `index.html`): each subject is a
       full-width collapsible `.subdeck-group` row (label left, "n/m selected ·
@@ -249,7 +249,15 @@ KEEP modules + the HTML shell):**
         BCO sub-decks register, no provenance-labeled (`BCO:` etc.) answers
         leak into auto-generated choices, and quiz ref chips pick up the new
         per-chapter BCO links.
-- [x] **Phase 16b — Semicolon-wall review + quoted/labeled BCO bundle +
+      - **Scripture ref chips link to esv.org** (`?v=30`): `scriptureLink()`
+        in `refs.js` normalizes the book to its full ESV name via a 66-book
+        abbreviation map (`Rom.`→Romans, `Ps.`→Psalm, `Matt.`→Matthew, etc.),
+        normalizes en/em dashes to hyphens, strips `ff.`, and builds
+        `https://www.esv.org/<Book>+<ch:vv>/` (e.g. `Matthew+28:19`). esv.org
+        403s bots but resolves in a browser. Verified all 73 distinct
+        Scripture refs in the card+quiz data produce clean esv.org URLs (zero
+        fallbacks); an unrecognized abbreviation still falls back to a
+        tolerant biblegateway ESV search.
       deeper slimming.** (Same release as 16, `?v=27`.)
       - **BCO comprehensive deck replaced** by the user's
         `pca_bco_comprehensive_quoted_labeled_bundle.zip` (committed to main):
