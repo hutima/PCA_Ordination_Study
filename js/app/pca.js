@@ -319,46 +319,48 @@ function closeSelector() {
 }
 const openSubdeckGroups = new Set();
 function renderSelector() {
-  const subjGrid = $('subjectGrid');
+  // One full-width collapsible <details> row per subject; expanding reveals a
+  // "Select all" row plus one full-width row per sub-deck. Open/closed state
+  // survives the re-render on each click.
+  const list = $('subjectList');
   const subjects = DATA.subjects.slice().sort((a, b) => (a.order || 0) - (b.order || 0));
-  subjGrid.innerHTML = subjects.map(subj => {
-    const total = subj.setKeys.reduce((n, k) => n + (DATA.sets[k] ? DATA.sets[k].cards.length : 0), 0);
-    const allOn = subj.setKeys.every(k => state.selected.has(k));
-    return `<button class="pca-tile ${allOn ? 'selected' : ''}" data-subject="${subj.id}" type="button">
-      <div class="pca-tile-title">${escapeText(subj.label)}</div>
-      <div class="pca-tile-meta">${total} cards</div></button>`;
-  }).join('');
-  subjGrid.querySelectorAll('[data-subject]').forEach(btn => btn.addEventListener('click', () => {
-    const subj = DATA.subjects.find(s => s.id === btn.dataset.subject);
-    const allOn = subj.setKeys.every(k => state.selected.has(k));
-    subj.setKeys.forEach(k => allOn ? state.selected.delete(k) : state.selected.add(k));
-    renderSelector();
-  }));
-
-  // Sub-decks are grouped under a collapsible <details> per subject so the
-  // modal stays short; open/closed state survives the re-render on each click.
-  const subdeckGrid = $('subdeckGrid');
-  subdeckGrid.innerHTML = subjects.map(subj => {
+  list.innerHTML = subjects.map(subj => {
     const keys = subj.setKeys.filter(k => DATA.sets[k]);
+    const total = keys.reduce((n, k) => n + DATA.sets[k].cards.length, 0);
     const onCount = keys.filter(k => state.selected.has(k)).length;
-    const tiles = keys.map(k => {
+    const allOn = keys.length > 0 && onCount === keys.length;
+    const rows = keys.map(k => {
       const set = DATA.sets[k];
       const on = state.selected.has(k);
-      return `<button class="pca-tile ${on ? 'selected' : ''}" data-set="${k}" type="button">
-        <div class="pca-tile-title">${escapeText(set.label)}</div>
-        <div class="pca-tile-meta">${set.cards.length} cards</div></button>`;
+      return `<button class="subdeck-row ${on ? 'selected' : ''}" data-set="${k}" type="button">
+        <span class="subdeck-row-title">${escapeText(set.label)}</span>
+        <span class="subdeck-row-meta">${set.cards.length} cards</span></button>`;
     }).join('');
-    return `<details class="subdeck-group" data-group="${subj.id}" ${openSubdeckGroups.has(subj.id) ? 'open' : ''}>
+    const meta = onCount
+      ? `${onCount}/${keys.length} selected · ${total} cards`
+      : `${keys.length} sub-deck${keys.length === 1 ? '' : 's'} · ${total} cards`;
+    return `<details class="subdeck-group ${onCount ? 'has-selected' : ''}" data-group="${subj.id}" ${openSubdeckGroups.has(subj.id) ? 'open' : ''}>
       <summary><span class="subdeck-group-title">${escapeText(subj.label)}</span>
-        <span class="subdeck-group-meta">${onCount ? `${onCount}/${keys.length} selected` : `${keys.length} sub-decks`}</span></summary>
-      <div class="pca-grid">${tiles}</div></details>`;
+        <span class="subdeck-group-meta">${meta}</span></summary>
+      <div class="subdeck-rows">
+        <button class="subdeck-row subdeck-row-all" data-subject="${subj.id}" type="button">
+          ${allOn ? 'Deselect' : 'Select'} all ${escapeText(subj.label)}</button>
+        ${rows}
+      </div></details>`;
   }).join('');
-  subdeckGrid.querySelectorAll('[data-set]').forEach(btn => btn.addEventListener('click', () => {
+  list.querySelectorAll('[data-subject]').forEach(btn => btn.addEventListener('click', () => {
+    const subj = DATA.subjects.find(s => s.id === btn.dataset.subject);
+    const keys = subj.setKeys.filter(k => DATA.sets[k]);
+    const allOn = keys.length > 0 && keys.every(k => state.selected.has(k));
+    keys.forEach(k => allOn ? state.selected.delete(k) : state.selected.add(k));
+    renderSelector();
+  }));
+  list.querySelectorAll('[data-set]').forEach(btn => btn.addEventListener('click', () => {
     const k = btn.dataset.set;
     state.selected.has(k) ? state.selected.delete(k) : state.selected.add(k);
     renderSelector();
   }));
-  subdeckGrid.querySelectorAll('details[data-group]').forEach(d => d.addEventListener('toggle', () => {
+  list.querySelectorAll('details[data-group]').forEach(d => d.addEventListener('toggle', () => {
     d.open ? openSubdeckGroups.add(d.dataset.group) : openSubdeckGroups.delete(d.dataset.group);
   }));
 }

@@ -222,6 +222,31 @@ KEEP modules + the HTML shell):**
 
       **Release ritual:** bump `?v=N` in `index.html` AND `CACHE` in `sw.js`
       together so returning users auto-refresh onto the new version.
+- [x] **Phase 17 — Full-width stacked subject selector (Duff-style rows).**
+      Release `?v=28`/`pca-v28`. The selector's two sections (subject tile
+      grid + sub-deck grid inside each `<details>`) were replaced by one
+      stacked list (`#subjectList` in `index.html`): each subject is a
+      full-width collapsible `.subdeck-group` row (label left, "n/m selected ·
+      N cards" meta right, gold title when anything is selected); expanding
+      reveals a centered "Select/Deselect all <subject>" row plus one
+      full-width `.subdeck-row` per sub-deck — mirroring the Greek app's
+      Week-row layout. `.pca-grid`/`.pca-tile`/`.pca-section-label` CSS
+      removed; `openSubdeckGroups` open-state persistence unchanged.
+      - **BCO ref chips deep-link per chapter:** `refLink()` (`refs.js`) maps
+        `BCO <ch>[-<sec>]` to the pcaac.org part page + `#chapter_N` anchor
+        (Part 1 Form of Government ch. 1–26, Part 2 Rules of Discipline
+        ch. 27–46, Part 3 Directory for Worship ch. 47–63); `BCO Preface …`
+        → `/book-of-church-order/preface/`, `BCO Directory for Worship
+        Preface` → the Part 3 page. Verified over all 180 distinct BCO refs
+        in the card data (all chapters in 1–63).
+      - **Quiz/mock-exam freshness audit (no code change needed):** both
+        modes build from `quizDeckCards()` at runtime — the authored bank
+        (`js/data/quiz/*.js`, 103 questions) plus auto-MCQs generated live
+        from the current short-answer cards — so card-content updates (16/16b
+        BCO bundles, hand edits) flow through automatically. Confirmed all 14
+        BCO sub-decks register, no provenance-labeled (`BCO:` etc.) answers
+        leak into auto-generated choices, and quiz ref chips pick up the new
+        per-chapter BCO links.
 - [x] **Phase 16b — Semicolon-wall review + quoted/labeled BCO bundle +
       deeper slimming.** (Same release as 16, `?v=27`.)
       - **BCO comprehensive deck replaced** by the user's

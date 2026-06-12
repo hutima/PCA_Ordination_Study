@@ -140,20 +140,21 @@ html[data-font-family="sans"] {
 .qa-full[open] > summary::before { content: '▾'; }
 .qa-full .qa-answer { margin-top: 10px; }
 
-/* ── Subject / sub-deck selector grids ────────────────────────────────── */
-.pca-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin: 12px 0 20px; }
-.pca-tile {
-  text-align: left; padding: 14px 16px; border-radius: 10px;
+/* ── Subject / sub-deck selector list ─────────────────────────────────── */
+/* Full-width stacked rows (one collapsible group per subject); expanding a
+   group reveals a "Select all" row plus one full-width row per sub-deck. */
+.subject-list { margin: 12px 0 20px; }
+.subdeck-rows { display: flex; flex-direction: column; gap: 8px; padding: 2px 10px 10px; }
+.subdeck-row {
+  display: flex; align-items: baseline; gap: 12px; width: 100%;
+  text-align: left; padding: 12px 14px; border-radius: 10px;
   border: 1px solid var(--border); background: var(--surface); color: var(--cream);
   cursor: pointer; transition: border-color .15s, background .15s;
 }
-.pca-tile.selected { border-color: var(--gold); background: rgba(201,168,76,0.10); }
-.pca-tile-title { font-family: var(--font-display); font-size: 15px; margin-bottom: 4px; }
-.pca-tile-meta { font-size: 12px; color: var(--muted); }
-.pca-section-label {
-  font-family: var(--font-display); font-size: 12px; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--gold-dim); margin: 8px 0 4px;
-}
+.subdeck-row.selected { border-color: var(--gold); background: rgba(201,168,76,0.10); }
+.subdeck-row-title { font-family: var(--font-display); font-size: 15px; }
+.subdeck-row-meta { margin-left: auto; font-size: 12px; color: var(--muted); white-space: nowrap; }
+.subdeck-row-all { justify-content: center; text-align: center; font-family: var(--font-display); font-size: 14px; }
 
 /* ── Quiz (MCQ) mode ──────────────────────────────────────────────────── */
 .quiz-choices { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
@@ -200,7 +201,7 @@ html[data-font-family="sans"] {
 .subdeck-group[open] > summary::before { content: '▾'; }
 .subdeck-group-title { font-family: var(--font-display); font-size: 14px; }
 .subdeck-group-meta { margin-left: auto; font-size: 12px; color: var(--muted); white-space: nowrap; }
-.subdeck-group .pca-grid { margin: 0; padding: 0 10px 10px; }
+.subdeck-group.has-selected > summary .subdeck-group-title { color: var(--gold); }
 
 /* ── Focus toggle (Due / Weak / In order / Flip deck) + Shuffle ───────── */
 .focus-row {
@@ -364,7 +365,7 @@ html[data-theme="light"] .hm-l3 { background: rgba(142,108,30,0.70); }
 @media (hover: hover) {
   .qa-card:hover { border-color: var(--gold-dim); }
   .qa-full > summary:hover { color: var(--gold); }
-  .pca-tile:hover { border-color: var(--gold-dim); }
+  .subdeck-row:hover { border-color: var(--gold-dim); }
   .quiz-choice:hover:not(:disabled) { border-color: var(--gold-dim); background: rgba(201,168,76,0.06); }
   .focus-row .mode-btn:disabled:hover { color: var(--muted); background: transparent; }
   a.qa-ref-chip:hover { background: rgba(201,168,76,0.20); border-color: var(--gold); }
