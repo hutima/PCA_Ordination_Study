@@ -29,7 +29,11 @@ with PCA ordination study material.
 
 ## 3. Source material (in `source_materials/`)
 
-Original docs + extracted text (`source_materials/extracted/*.txt`). The four
+Extracted text lives in `source_materials/extracted/*.txt` — that is what the
+`dev/build_*.py` generators read. The original `.doc/.docx` files and the
+Westminster PDFs were removed from the repo in Phase 16 to keep it small
+(`.gitignore` now blocks binaries); restore them locally only if you need to
+re-extract or re-run `dev/build_catechisms.py` / `dev/build_wcf.py`. The four
 docs map onto the six PCA exam areas:
 
 | Subject area | Source file(s) | Notes |
@@ -216,6 +220,29 @@ KEEP modules + the HTML shell):**
 
       **Release ritual:** bump `?v=N` in `index.html` AND `CACHE` in `sw.js`
       together so returning users auto-refresh onto the new version.
+- [x] **Phase 16 — BCO comprehensive deck + grouped selector + repo slimming.**
+      Release `?v=27`/`pca-v27`.
+      - **BCO comprehensive sub-decks:** user-supplied bundle
+        (`pca_bco_comprehensive_cards_bundle.zip`, generated from the 2025 BCO
+        as paraphrase) landed as `js/data/subjects/bco_comprehensive.js` —
+        165 cards in 8 sub-decks (orders 7–14 under the existing `bco`
+        subject): Foundations; Membership/Mission/Officers; Courts; Vocation &
+        Ordination; Discipline; Review/Appeals/Jurisdiction; Directory for
+        Worship ×2. Validated + audited clean; wired into `index.html` and the
+        `sw.js` precache.
+      - **Collapsible sub-deck selector:** the selector's flat sub-deck grid
+        (22 sets) became one `<details class="subdeck-group">` per subject
+        (duff-style outline) with a selected-count summary line; open state
+        survives re-renders (`openSubdeckGroups` in `pca.js`). Dropped the
+        nested `#subdeckGrid` scrollbox — the modal scrolls as one unit.
+      - **Repo slimming:** deleted the four Westminster PDFs (~1.6 MB), the
+        four `.doc/.docx` originals (~1.2 MB), and the card bundle zip from
+        the working tree; `.gitignore` now blocks `*.pdf/*.doc/*.docx/*.zip`.
+        The generated outputs (`js/data/catechisms.js`, `js/data/wcf.js`,
+        subject files, `source_materials/extracted/*.txt`) stay committed, so
+        the app and every `dev/build_*.py` that reads `extracted/` still run;
+        only `dev/build_catechisms.py` / `dev/build_wcf.py` would need the
+        PDFs restored to re-run.
 - [x] **Phase 15e — Bulleted multi-part teasers.** Release `?v=26`/`pca-v26`.
       Teasers render as Markdown (`renderAnswer(summarize(card))` + `.qa-summary`
       list styles): ~25 multi-part authored summaries rewritten as bullet

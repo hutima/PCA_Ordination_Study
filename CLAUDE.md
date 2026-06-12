@@ -52,8 +52,10 @@ architecture/reuse map, content contract, phase status, and next steps.
   labeled row-blocks under 640px (`css/pca.css`). Never embed copyrighted
   text (the BCO, the R. S. Clark covenant-theology essay in the church
   history source) — the curation layer cuts these.
-- **Standards data (public domain):** generated from the PDFs at the repo
-  root — `dev/build_catechisms.py` → `js/data/catechisms.js`
+- **Standards data (public domain):** generated from the four Westminster
+  PDFs (removed from the repo in Phase 16 to keep it small — restore them
+  locally to re-run these two builders; `.gitignore` now blocks
+  `*.pdf/*.doc/*.docx/*.zip`) — `dev/build_catechisms.py` → `js/data/catechisms.js`
   (`window.PCA_CATECHISMS`, WSC 107 + WLC 196 with proof citations);
   `dev/build_wcf.py` → `js/data/wcf.js` (`window.PCA_WCF`, 33 chapters /
   171 sections; build-time artifact, not loaded by the app);
@@ -65,7 +67,17 @@ architecture/reuse map, content contract, phase status, and next steps.
   Hard/Uncertain/Easy. Do not edit lightly.
 - **Content:** `js/data/subjects/<id>.js` files register into the global
   `window.PCA_DATA` contract (see PROJECT_PLAN §4). Add a subject by dropping a
-  data file there and a `<script defer>` tag in `index.html`.
+  data file there and a `<script defer>` tag in `index.html`. The BCO subject
+  spans three files: `bco.js` (2007 Q&A deck, orders 1–4), `bco_governance.js`
+  (orders 5–6), and `bco_comprehensive.js` (user-supplied 2025 paraphrase
+  bundle, 165 cards in 8 sub-decks, orders 7–14 — Foundations through the
+  Directory for Worship); later files merge `setKeys` into the existing
+  subject, so load order in `index.html` matters (`bco.js` first).
+- **Subject selector:** sub-decks render as one collapsible
+  `<details class="subdeck-group">` per subject (summary shows a selected
+  count); open/closed state lives in `openSubdeckGroups` (`pca.js`) so it
+  survives the re-render on every tile click. The modal scrolls as one unit —
+  don't reintroduce a nested scrollbox.
 - **Markdown:** answers are Markdown rendered by `js/utils/markdown.js`
   (escape-first; lists, GFM tables, blockquotes, inline emphasis).
 - **Validate content:** `node dev/validate.mjs` (card shape, Markdown render,

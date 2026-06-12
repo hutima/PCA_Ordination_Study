@@ -317,6 +317,7 @@ function closeSelector() {
   hideOverlay('studySelectorOverlay');
   applySelectorChanges();
 }
+const openSubdeckGroups = new Set();
 function renderSelector() {
   const subjGrid = $('subjectGrid');
   const subjects = DATA.subjects.slice().sort((a, b) => (a.order || 0) - (b.order || 0));
@@ -334,19 +335,31 @@ function renderSelector() {
     renderSelector();
   }));
 
+  // Sub-decks are grouped under a collapsible <details> per subject so the
+  // modal stays short; open/closed state survives the re-render on each click.
   const subdeckGrid = $('subdeckGrid');
-  subdeckGrid.innerHTML = subjects.map(subj =>
-    subj.setKeys.filter(k => DATA.sets[k]).map(k => {
+  subdeckGrid.innerHTML = subjects.map(subj => {
+    const keys = subj.setKeys.filter(k => DATA.sets[k]);
+    const onCount = keys.filter(k => state.selected.has(k)).length;
+    const tiles = keys.map(k => {
       const set = DATA.sets[k];
       const on = state.selected.has(k);
       return `<button class="pca-tile ${on ? 'selected' : ''}" data-set="${k}" type="button">
         <div class="pca-tile-title">${escapeText(set.label)}</div>
         <div class="pca-tile-meta">${set.cards.length} cards</div></button>`;
-    }).join('')).join('');
+    }).join('');
+    return `<details class="subdeck-group" data-group="${subj.id}" ${openSubdeckGroups.has(subj.id) ? 'open' : ''}>
+      <summary><span class="subdeck-group-title">${escapeText(subj.label)}</span>
+        <span class="subdeck-group-meta">${onCount ? `${onCount}/${keys.length} selected` : `${keys.length} sub-decks`}</span></summary>
+      <div class="pca-grid">${tiles}</div></details>`;
+  }).join('');
   subdeckGrid.querySelectorAll('[data-set]').forEach(btn => btn.addEventListener('click', () => {
     const k = btn.dataset.set;
     state.selected.has(k) ? state.selected.delete(k) : state.selected.add(k);
     renderSelector();
+  }));
+  subdeckGrid.querySelectorAll('details[data-group]').forEach(d => d.addEventListener('toggle', () => {
+    d.open ? openSubdeckGroups.add(d.dataset.group) : openSubdeckGroups.delete(d.dataset.group);
   }));
 }
 
