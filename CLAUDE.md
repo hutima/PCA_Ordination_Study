@@ -52,10 +52,15 @@ architecture/reuse map, content contract, phase status, and next steps.
   labeled row-blocks under 640px (`css/pca.css`). Never embed copyrighted
   text (the BCO, the R. S. Clark covenant-theology essay in the church
   history source) — the curation layer cuts these.
+- **Sources removed from the repo (Phase 16, size):** the Westminster PDFs,
+  the `.doc/.docx` study guides, `source_materials/` (including
+  `extracted/*.txt`, which every `dev/build_*.py` reads), and the BCO card
+  bundle zips. The generated `js/data/**` files are checked in and are now
+  the working source of truth; to re-run a builder, restore its inputs from
+  git history (e.g. `git show <pre-Phase-16-sha>:source_materials/extracted/
+  church_history.txt`). `.gitignore` blocks `*.pdf/*.doc/*.docx/*.zip`.
 - **Standards data (public domain):** generated from the four Westminster
-  PDFs (removed from the repo in Phase 16 to keep it small — restore them
-  locally to re-run these two builders; `.gitignore` now blocks
-  `*.pdf/*.doc/*.docx/*.zip`) — `dev/build_catechisms.py` → `js/data/catechisms.js`
+  PDFs — `dev/build_catechisms.py` → `js/data/catechisms.js`
   (`window.PCA_CATECHISMS`, WSC 107 + WLC 196 with proof citations);
   `dev/build_wcf.py` → `js/data/wcf.js` (`window.PCA_WCF`, 33 chapters /
   171 sections; build-time artifact, not loaded by the app);
@@ -69,10 +74,19 @@ architecture/reuse map, content contract, phase status, and next steps.
   `window.PCA_DATA` contract (see PROJECT_PLAN §4). Add a subject by dropping a
   data file there and a `<script defer>` tag in `index.html`. The BCO subject
   spans three files: `bco.js` (2007 Q&A deck, orders 1–4), `bco_governance.js`
-  (orders 5–6), and `bco_comprehensive.js` (user-supplied 2025 paraphrase
-  bundle, 165 cards in 8 sub-decks, orders 7–14 — Foundations through the
-  Directory for Worship); later files merge `setKeys` into the existing
-  subject, so load order in `index.html` matters (`bco.js` first).
+  (orders 5–6), and `bco_comprehensive.js` (user-supplied 2025
+  "quoted/labeled" bundle, 165 cards in 8 sub-decks, orders 7–14 — Foundations
+  through the Directory for Worship); later files merge `setKeys` into the
+  existing subject, so load order in `index.html` matters (`bco.js` first).
+  The comprehensive deck was adapted on import: its "Direct quotation:" lines
+  became `BCO:` provenance callouts (`STANDARD_LABELS` in `answer.js` — only
+  very short BCO wording cues), the "Paraphrase:" prefix was dropped, and
+  semicolon-chained answers were recast as lists.
+- **Semicolon walls:** multi-part answers chained with semicolons must render
+  as lists, not glued paragraphs (`SEMICOLON_CHAIN` in `dev/audit.mjs`;
+  church-history glossary cards are bulletized structurally by
+  `bulletize_def()` in the builder). Verbatim standard quotations and
+  bio-card "epithet—dates; role" intro lines keep their semicolons.
 - **Subject selector:** sub-decks render as one collapsible
   `<details class="subdeck-group">` per subject (summary shows a selected
   count); open/closed state lives in `openSubdeckGroups` (`pca.js`) so it

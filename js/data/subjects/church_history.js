@@ -24,7 +24,7 @@
       {
         "id": "ch-003-what-were-the-solas-of-the-reformati",
         "q": "What were the “solas” of the Reformation?",
-        "a": "Sola scriptura - Ultimate authority is scripture (history, assemblies, doctrine and interpretation are all helpful and important, but they are not on an equal footing) Don’t need the church to interpret scripture. Scripture defines the church, not the church defining scripture.\nSola gratia - Basis for salvation is entire grace; it is not God taking what I can offer and then adding his share to it; it isn’t a co-operative effort.\nSola fides - Means for salvation: How is grace delivered? Not by the sacraments (ala RCC) but by faith (which God also gives). Again notice it isn’t our faith, plus the things we do—works are an evidence of faith, not a means of salvation.\nSolus Christus - salvation is in Christ alone Soli Deo Gloria - God’s glory above all else Priesthood of all Believers - No hierarchy of access to God: all can come directly to him; we don’t need priestly mediator.\nNo one is closer to God based on office.\nWe all have a responsibility to minister to one another.",
+        "a": "- **Sola scriptura** — Ultimate authority is Scripture (history, assemblies, doctrine, and interpretation are all helpful and important, but not on an equal footing). We don't need the church to interpret Scripture: Scripture defines the church, not the church Scripture.\n- **Sola gratia** — The basis for salvation is entirely grace; not God taking what I can offer and adding His share to it — not a co-operative effort.\n- **Sola fide** — The means for salvation: how is grace delivered? Not by the sacraments (as Rome holds) but by faith (which God also gives). Not our faith plus the things we do — works are an evidence of faith, not a means of salvation.\n- **Solus Christus** — Salvation is in Christ alone.\n- **Soli Deo gloria** — God's glory above all else.\n- **The priesthood of all believers** — No hierarchy of access to God: all can come directly to Him without a priestly mediator; no one is closer to God based on office; we all have a responsibility to minister to one another.",
         "refs": [],
         "summary": "- Sola scriptura — Scripture the ultimate authority\n- Sola gratia — salvation entirely of grace, not a cooperative effort\n- Sola fide — grace received through faith alone, not sacraments or works\n- Solus Christus — salvation in Christ alone\n- Soli Deo gloria — God's glory above all\n…plus the priesthood of all believers."
       }
@@ -83,7 +83,7 @@
         "q": "Mennonite churches",
         "a": "Menno Simmons (ca. 1496-1561), Can trace tradition back to the Dutch or Swiss Anabaptists, practice adult baptism only (against Calvin and Luther paedo-baptism), reject oath-taking and military service, emphasize the doctrines of humility, nonresistance, and separation from the world, strongly conservative and have a strong sense of history, pietistic, desire for conversion and reformation of life, emphasis on the Bile and the renewal of the church, inward humility and yielding to God’s will; he held a Melchiorite view of the incarnation that Jesus was not “of Mary’s” flesh, rather a separate creation; also see the Brethren Church.",
         "refs": [],
-        "summary": "Menno Simons (c. 1496-1561), from Dutch/Swiss Anabaptism: adult baptism only, rejection of oaths and military service, humility, nonresistance, and separation from the world; pietistic, Bible-centered renewal of life; held a Melchiorite view of the incarnation."
+        "summary": "Menno Simons (c. 1496-1561), from Dutch/Swiss Anabaptism:\n- adult baptism only\n- rejection of oaths and military service\n- humility, nonresistance, and separation from the world\n- pietistic, Bible-centered renewal of life\n- a Melchiorite view of the incarnation"
       }
     ]
   },
@@ -95,7 +95,7 @@
       {
         "id": "ch-012-development-of-the-canon-of-scriptur",
         "q": "Development of the Canon of Scripture",
-        "a": "ca. 140, Marcion’s Canon presents problems (i.e. heresy) and a response is necessitated ca. 170-200, Muratorian [Fragment] Canon – which includes the four Gospels, the \"Acts of all Apostles\" and 13 of the Pauline Epistles (but not the anonymous Hebrews, 1 and 2 Peter, or James).\nEusebius in Ecclesiastical History has 22 of 27 NT books, some not included are debated 367, Athanasius Easter Letter includes all 27 books of NT 397, Synod of Hippo affirms what we have today Criteria for books:\nApostleship Recognition/use in early church Synthesis/agreement with teachings in the church",
+        "a": "- **ca. 140** — Marcion's canon presents problems (i.e. heresy) and a response is necessitated.\n- **ca. 170-200** — The Muratorian [Fragment] Canon: the four Gospels, the \"Acts of all Apostles,\" and 13 of the Pauline epistles (but not the anonymous Hebrews, 1 and 2 Peter, or James).\n- **Eusebius** (Ecclesiastical History) has 22 of 27 NT books; some omissions are debated.\n- **367** — Athanasius' Easter letter includes all 27 books of the NT.\n- **397** — The Synod of Hippo affirms what we have today.\n\nCriteria for books: apostleship; recognition/use in the early church; synthesis/agreement with the teachings in the church.",
         "refs": []
       },
       {
@@ -125,7 +125,7 @@
       {
         "id": "ch-017-reformation",
         "q": "Reformation",
-        "a": "1517-21 (95 Theses & Diet of Worms)—1643-49 (Westminster Assembly)—The widespread withdrawal from the Roman Catholic Church over doctrinal disagreements, esp. regarding the nature/authority of scripture (scripture alone vs. scripture as interpreted by the Pope) the nature of salvation (by grace, through faith vs. sacramental/works).\nLutheran/German reformation (Luther, Melanchthon), Reformed/Swiss reformation (Zwingli/Calvin), English reformation (English monarchs, Tyndale, Cranmer, Westminster Assembly).",
+        "a": "1517-21 (95 Theses & Diet of Worms)—1643-49 (Westminster Assembly)—The widespread withdrawal from the Roman Catholic Church over doctrinal disagreements, esp. regarding the nature/authority of scripture (scripture alone vs. scripture as interpreted by the Pope) the nature of salvation (by grace, through faith vs. sacramental/works).\n- Lutheran/German reformation (Luther, Melanchthon),\n- Reformed/Swiss reformation (Zwingli/Calvin),\n- English reformation (English monarchs, Tyndale, Cranmer, Westminster Assembly).",
         "refs": []
       },
       {
@@ -241,7 +241,7 @@
       {
         "id": "ch-035-neo-orthodoxy",
         "q": "Neo-orthodoxy",
-        "a": "Continental theological movement originating after WWI in which the dogmas of modernism/liberal theology were rejected in favor of a more conservative approach. Widely developed by Karl Barth and Emil Brunner, the movement stressed the importance of a real God, who works in time and history to save people from their sin. Criticized for by other conservatives for their doctrine of scripture which sought to sidestep the issues raised by higher criticism by stating that scripture was subjectively only God’s word (and thus infallible) when God chose to speak through it on specific occasions to individuals, though he did do this regularly. Conservatives though that scripture ought to be objectively and subjectively considered revelation. Brunner tended to be more open to natural revelation (Barth was staunchly opposed, “Nein!”), Barth favored universalism.\nKarl Barth (1886-1968)—the key leader in this. His groundbreaking word was Epistle to Romans (1919). His biggest work was Church Dogmatics. His key emphases were God as wholly other and Jesus Christ as the revealed word, with the Bible becoming God’s word as it speaks to us, and a rejection of natural theology. At the end of his life, seemed to see a shift to see Christ as man as well.\nBarmen Declaration (1934)—by the Confessing Church in Germany, written largely by Barth. It was a call to maintain theology of the Word instead of compromising with naturalism Reinhold Niebuhr—the key American theologian in movement. He became a leading teacher of the doctrine of sin after his experiences as a pastor in Detroit.\nPrinceton would become a place for this",
+        "a": "Continental theological movement originating after WWI in which the dogmas of modernism/liberal theology were rejected in favor of a more conservative approach. Widely developed by Karl Barth and Emil Brunner, the movement stressed the importance of a real God, who works in time and history to save people from their sin. Criticized for by other conservatives for their doctrine of scripture which sought to sidestep the issues raised by higher criticism by stating that scripture was subjectively only God’s word (and thus infallible) when God chose to speak through it on specific occasions to individuals, though he did do this regularly. Conservatives though that scripture ought to be objectively and subjectively considered revelation. Brunner tended to be more open to natural revelation (Barth was staunchly opposed, “Nein!”), Barth favored universalism.\n- Karl Barth (1886-1968)—the key leader in this. His groundbreaking word was Epistle to Romans (1919). His biggest work was Church Dogmatics. His key emphases were God as wholly other and Jesus Christ as the revealed word, with the Bible becoming God’s word as it speaks to us, and a rejection of natural theology. At the end of his life, seemed to see a shift to see Christ as man as well.\n- Barmen Declaration (1934)—by the Confessing Church in Germany, written largely by Barth. It was a call to maintain theology of the Word instead of compromising with naturalism\n- Reinhold Niebuhr—the key American theologian in movement. He became a leading teacher of the doctrine of sin after his experiences as a pastor in Detroit.\n- Princeton would become a place for this",
         "refs": []
       },
       {
@@ -266,279 +266,279 @@
       {
         "id": "ch-038-polycarp",
         "q": "Polycarp",
-        "a": "Apostolic Father—c. 2nd Century; Bishop of Smyrna early 100’s;\nstudent of Apostle John, Martyred in 155 as old man Roman governor tried to persuade Polycarp renounce Christ, “86 years I have been his servant and he has done me no wrong. How can I then blaspheme my king who saved me?”",
+        "a": "Apostolic Father—c. 2nd Century; Bishop of Smyrna early 100’s\n- student of Apostle John, Martyred in 155 as old man\n- Roman governor tried to persuade Polycarp renounce Christ, “86 years I have been his servant and he has done me no wrong. How can I then blaspheme my king who saved me?”",
         "refs": []
       },
       {
         "id": "ch-039-clement-of-rome",
         "q": "Clement of Rome",
-        "a": "Apostolic Father—c. 2nd Century; Leading figure in Church of Rome, bishop of Rome Author of I Clement (c. AD 96) rebuking Corinthians for removing their leaders;\nstressed unity of the church, orderly succession in ministry;\nrefers to bishop and presbyter as same office.\nReferences the deaths of Peter and Paul and doctrine of justification by faith",
+        "a": "Apostolic Father—c. 2nd Century; Leading figure in Church of Rome, bishop of Rome\n- Author of I Clement (c. AD 96) rebuking Corinthians for removing their leaders\n- stressed unity of the church, orderly succession in ministry\n- refers to bishop and presbyter as same office.\n- References the deaths of Peter and Paul and doctrine of justification by faith",
         "refs": []
       },
       {
         "id": "ch-040-ignatius-of-antioch",
         "q": "Ignatius of Antioch",
-        "a": "Apostolic Father—2nd Century; Bishop of Antioch in early 100’s From Syrian Antioch, where Paul launched his missionary travels Martyred in Rome Wrote 7 letters on way (3 to Asia Min., 1 Rome, 1 Polycarp) upholding 3-fold ministry/church government (1 bishop with other elders, deacons); unity of church against schism and heresy, e.g. Docetism and Gnosticism",
+        "a": "Apostolic Father—2nd Century; Bishop of Antioch in early 100’s\n- From Syrian Antioch, where Paul launched his missionary travels\n- Martyred in Rome\n- Wrote 7 letters on way (3 to Asia Min., 1 Rome, 1 Polycarp) upholding 3-fold ministry/church government (1 bishop with other elders, deacons)\n- unity of church against schism and heresy, e.g. Docetism and Gnosticism",
         "refs": []
       },
       {
         "id": "ch-041-justin-martyr",
         "q": "Justin Martyr",
-        "a": "Apostolic Father/Greek Apologist—2nd Century; mid 100’s; Martyred c. 160 in Rome Converted to Xty while seeking true philosophy (Dialogue With Trypho, I Apology, II Apology, ) Saw X as fulfillment of the best of Greek philosophy; argued for Xty on this basis “All truth is God’s Truth” Sets pattern for Greek theology (followed by Clement, Origen – the East) seeing continuity between philosophical tradition and Xty (opposed to paganism; syncretism) in I and II Apology (defending Christians to the emperor and Roman senate) Dialog with Trypho the Jew, the incarnation is not inconsistent with monotheism",
+        "a": "Apostolic Father/Greek Apologist—2nd Century; mid 100’s; Martyred c. 160 in Rome\n- Converted to Xty while seeking true philosophy (Dialogue With Trypho, I Apology, II Apology, )\n- Saw X as fulfillment of the best of Greek philosophy\n- argued for Xty on this basis\n- “All truth is God’s Truth”\n- Sets pattern for Greek theology (followed by Clement, Origen – the East) seeing continuity between philosophical tradition and Xty (opposed to paganism; syncretism) in I and II Apology (defending Christians to the emperor and Roman senate)\n- Dialog with Trypho the Jew, the incarnation is not inconsistent with monotheism",
         "refs": [],
         "summary": "Greek apologist, martyred c. 160 in Rome. Converted while seeking true philosophy; saw Christ as the fulfillment of the best of Greek thought (\"all truth is God's truth\"), setting the pattern for Greek theology (Clement, Origen). Works: I & II Apology, Dialogue with Trypho."
       },
       {
         "id": "ch-042-irenaeus",
         "q": "Irenaeus",
-        "a": "Apologist—c. 130-140; Bishop of Lyon 177 to early 200’s Apostle John // Polycarp // Irenaeus Rigorous opposition to Gnosticism (Against Heresies) and exposition of apostolic Xty.\nRefutation of G. by cataloging beliefs and showing in consistency; showing how Scriptures contain apostolic teaching, consistent and public back to Christ. Largely successful.\nBridge between Greek systems and Western; laid out NT as scripture next to OT.\nDuring the vile persecution under Marcus Aurelius",
+        "a": "Apologist—c. 130-140; Bishop of Lyon 177 to early 200’s\n- Apostle John // Polycarp // Irenaeus\n- Rigorous opposition to Gnosticism (Against Heresies) and exposition of apostolic Xty.\n- Refutation of G. by cataloging beliefs and showing in consistency\n- showing how Scriptures contain apostolic teaching, consistent and public back to Christ. Largely successful.\n- Bridge between Greek systems and Western\n- laid out NT as scripture next to OT.\n- During the vile persecution under Marcus Aurelius",
         "refs": []
       },
       {
         "id": "ch-043-marcion",
         "q": "Marcion",
-        "a": "Early Heretic—Middle 100’s; excommunicated in 144 Thought God of OT was entirely different than God of the NT (justice vs. mercy etc) Completely rejected entire OT and NT books which were heavily Jewish influence or which disagreed with is views; Rejected all Non-Pauline books Developed a truncated canon which pushed confirmation of the NT Canon we have today, ca. 140",
+        "a": "Early Heretic—Middle 100’s; excommunicated in 144\n- Thought God of OT was entirely different than God of the NT (justice vs. mercy etc)\n- Completely rejected entire OT and NT books which were heavily Jewish influence or which disagreed with is views\n- Rejected all Non-Pauline books\n- Developed a truncated canon which pushed confirmation of the NT Canon we have today, ca. 140",
         "refs": []
       },
       {
         "id": "ch-044-tertullian-the-west",
         "q": "Tertullian (the West)",
-        "a": "Father of Latin Theology—c. 160-220; Roman raised in Carthage, Africa; led the Western Xty movement in the Roman Empire; eventually Roman Catholic, more pragmatic approach (criticized as anti-intellectualism as was not a fan of the Athens and the East) 1st major father to write in Latin instead of Grk; Roman vs. Grk mindset;\nWrote apologetics, polemics and doctrine using his education to full extent; always attacking; fiery.\nOpposed Grk philosophy in theo as susceptible to Gnosticism; wrote from a Roman, legal frame work; Against Marcion, against Monarchianism (modalism) in Against Praxeas Possibly joined the Montanist Movement, the Phrygian Heresy (prophetic movement) “the blood of the martyrs is the seed of the church” “what does Athens have to do with Jerusalem” Cf. Cyprian who was influenced by Tertullian, Cyprian responded to Novatians during the Decian Persecution in the 250’s",
+        "a": "Father of Latin Theology—c. 160-220; Roman raised in Carthage, Africa; led the Western Xty movement in the Roman Empire; eventually Roman Catholic, more pragmatic approach (criticized as anti-intellectualism as was not a fan of the Athens and the East)\n- 1st major father to write in Latin instead of Grk\n- Roman vs. Grk mindset\n- Wrote apologetics, polemics and doctrine using his education to full extent\n- always attacking\n- fiery.\n- Opposed Grk philosophy in theo as susceptible to Gnosticism\n- wrote from a Roman, legal frame work\n- Against Marcion, against Monarchianism (modalism) in Against Praxeas\n- Possibly joined the Montanist Movement, the Phrygian Heresy (prophetic movement)\n- “the blood of the martyrs is the seed of the church”\n- “what does Athens have to do with Jerusalem”\n- Cf. Cyprian who was influenced by Tertullian, Cyprian responded to Novatians during the Decian Persecution in the 250’s",
         "refs": []
       },
       {
         "id": "ch-045-clement-of-alexandria-155-220-the-ea",
         "q": "Clement of Alexandria (155-220, the East)",
-        "a": "Founder of the School of Alexandria, Africa; Greek-speaking Egypt; influenced the Eastern region of Xty; eventually Eastern Orthodox; more speculative approach (was distrusted by the West) Sought intelligent orthodoxy Resisted the Gnostic movement in Alexandria/Egypt Fought Docetism (that Jesus only appeared human) Viewed God as impassible, God was beyond emotion, feeling, sympathy, etc.",
+        "a": "Founder of the School of Alexandria, Africa; Greek-speaking Egypt; influenced the Eastern region of Xty; eventually Eastern Orthodox; more speculative approach (was distrusted by the West)\n- Sought intelligent orthodoxy\n- Resisted the Gnostic movement in Alexandria/Egypt\n- Fought Docetism (that Jesus only appeared human)\n- Viewed God as impassible, God was beyond emotion, feeling, sympathy, etc.",
         "refs": []
       },
       {
         "id": "ch-046-cyprian-200-258-time-of-decian-perse",
         "q": "Cyprian—(200-258) time of Decian persecution",
-        "a": "Bishop of Carthage who would be martyred. Appointed as a young convert.\nHad to deal with the affects of the Decian persecution (249-251). He fled and had to explain that. He also had to deal with the issue of what to do about those who compromised during the persecution. Decided to let in those who lapsed with a period of penance. Part of the larger controversy (some though too strict, in Rome, Novatian thought too lax.\nHe was a defender of the unity of the church (church as your mother). Would emphasize the authority of the bishop and apostolic succession, but does not see the bishop of Rome as the central bishop.\nDonatists during Diocletian persecution (cf. Augustine) would maintain Cyprian’s position that those who apostatized needed to be rebaptized.",
+        "a": "Bishop of Carthage who would be martyred. Appointed as a young convert.\n- Had to deal with the affects of the Decian persecution (249-251). He fled and had to explain that. He also had to deal with the issue of what to do about those who compromised during the persecution. Decided to let in those who lapsed with a period of penance. Part of the larger controversy (some though too strict, in Rome, Novatian thought too lax.\n- He was a defender of the unity of the church (church as your mother). Would emphasize the authority of the bishop and apostolic succession, but does not see the bishop of Rome as the central bishop.\n- Donatists during Diocletian persecution (cf. Augustine) would maintain Cyprian’s position that those who apostatized needed to be rebaptized.",
         "refs": []
       },
       {
         "id": "ch-047-eusebius-of-caesarea-263-c-339",
         "q": "Eusebius of Caesarea (263-c. 339)",
-        "a": "Father of Church History—b. 260’s-340; Bishop of Caesarea History of the Church from earliest times until 324 (Constantine sole emperor) Ardent supporter of Origen, which lead to Arian leanings Attended Council of Nicea, signed creed somewhat disingenuously; much of our information about Nicea comes through Eusebius; suggested basic creed to work on",
+        "a": "Father of Church History—b. 260’s-340; Bishop of Caesarea\n- History of the Church from earliest times until 324 (Constantine sole emperor)\n- Ardent supporter of Origen, which lead to Arian leanings\n- Attended Council of Nicea, signed creed somewhat disingenuously\n- much of our information about Nicea comes through Eusebius\n- suggested basic creed to work on",
         "refs": []
       },
       {
         "id": "ch-048-constantine",
         "q": "Constantine",
-        "a": "Roman Emperor—converted to Xty in 312 (Milvian bridge) Made Xty the Roman state religion (Edict of Milan 313); state protection for church; influx of people;\n324 becomes ruler of East and Western empire; calls council of Nicea 325 Was the cause of one of the biggest shifts in the history of Xty—everything changed after his rule.",
+        "a": "Roman Emperor—converted to Xty in 312 (Milvian bridge)\n- Made Xty the Roman state religion (Edict of Milan 313)\n- state protection for church\n- influx of people\n- 324 becomes ruler of East and Western empire\n- calls council of Nicea 325\n- Was the cause of one of the biggest shifts in the history of Xty—everything changed after his rule.",
         "refs": []
       },
       {
         "id": "ch-049-chrysostom",
         "q": "Chrysostom",
-        "a": "“The Golden Mouthed”—c.340-50-407; Bishop of Antioch, later Constantinople Advocate for “literal” interpretation of bible, noted expositor, loved for his practical, devotional, textual preaching. (Antiochene approach to hermeneutics) Would preach through entire book, lectio continua; sermons then published as commentary.\n397 selected as Bishop of Const. b/c he was an outsider, but through political/eccl. intrigues was deposed, and exiled, eventually leading to his death.",
+        "a": "“The Golden Mouthed”—c.340-50-407; Bishop of Antioch, later Constantinople\n- Advocate for “literal” interpretation of bible, noted expositor, loved for his practical, devotional, textual preaching. (Antiochene approach to hermeneutics)\n- Would preach through entire book, lectio continua\n- sermons then published as commentary.\n- 397 selected as Bishop of Const. b/c he was an outsider, but through political/eccl. intrigues was deposed, and exiled, eventually leading to his death.",
         "refs": []
       },
       {
         "id": "ch-050-jerome",
         "q": "Jerome*",
-        "a": "The Bible into Latin; Vulgate—340’s-420; Italian, classically educated in Rome Well read and educated; socially inept; single with women aesthetics Learned to read Greek & Hebrew Translated all of OT and NT from originals into Latin; became the standard translation until the reformation; the Vulgate Founded a monastery and convent where he translated the Vulgate",
+        "a": "The Bible into Latin; Vulgate—340’s-420; Italian, classically educated in Rome\n- Well read and educated\n- socially inept\n- single with women aesthetics\n- Learned to read Greek & Hebrew\n- Translated all of OT and NT from originals into Latin\n- became the standard translation until the reformation\n- the Vulgate\n- Founded a monastery and convent where he translated the Vulgate",
         "refs": []
       },
       {
         "id": "ch-051-pelagius",
         "q": "Pelagius*",
-        "a": "Scots/Irish monk (cf. Lane)—350’s-early 420/440’s Persuasive speaker, aesthetic; not a cleric; based in Rome Affect of Adam’s sin was merely as a bad example to us; original sin not inevitable Augustine refuted Pelagianism, c. 411-418, helped form doctrine of sin and God’s necessary grace denounced at Council of Carthage in 418 Despite repudiation, version of his views became dominant in RCC by time of reformation",
+        "a": "Scots/Irish monk (cf. Lane)—350’s-early 420/440’s\n- Persuasive speaker, aesthetic\n- not a cleric\n- based in Rome\n- Affect of Adam’s sin was merely as a bad example to us\n- original sin not inevitable\n- Augustine refuted Pelagianism, c. 411-418, helped form doctrine of sin and God’s necessary grace denounced at Council of Carthage in 418\n- Despite repudiation, version of his views became dominant in RCC by time of reformation",
         "refs": []
       },
       {
         "id": "ch-052-ambrose-of-milan-340-397",
         "q": "Ambrose of Milan (340-397)",
-        "a": "Greatest leader in the Western Church of 4th century. Fought for deity of Christ.\nIntroduced the East to method of allegory, as well as the emphasis on the change of substance in communion. Influenced Augustine Most important contributions came from his dealing the government, as he sought the independence of the church and the duties of the Christian ruler Also introduced congregational hymn singing",
+        "a": "Greatest leader in the Western Church of 4th century. Fought for deity of Christ.\n- Introduced the East to method of allegory, as well as the emphasis on the change of substance in communion. Influenced Augustine\n- Most important contributions came from his dealing the government, as he sought the independence of the church and the duties of the Christian ruler\n- Also introduced congregational hymn singing",
         "refs": []
       },
       {
         "id": "ch-053-cyril-of-alexandria-378-444",
         "q": "Cyril of Alexandria (378-444)",
-        "a": "Opposed Nestorius, bishop of Constantinople, both politically and doctrinally over the person of Jesus Christ. Fought over the incarnation and whether Mary can be called God-bearer.\nNestorius basically held that God simply animated Jesus the man, a pantomime horse Affirmed that Jesus was one person. His battle lead to the Council of Ephesus 431. This council lead to sharp divisions between East and West.",
+        "a": "Opposed Nestorius, bishop of Constantinople, both politically and doctrinally over the person of Jesus Christ. Fought over the incarnation and whether Mary can be called God-bearer.\n- Nestorius basically held that God simply animated Jesus the man, a pantomime horse\n- Affirmed that Jesus was one person. His battle lead to the Council of Ephesus 431. This council lead to sharp divisions between East and West.",
         "refs": []
       },
       {
         "id": "ch-054-augustine",
         "q": "Augustine*",
-        "a": "The Father of the Western Church—354-430; Bishop of Hippo (N. Africa) “One writer has described the Reformation as Augustine’s doctrine of grace rebelling against Augustine’s doctrine of the church” (Lane, 40) Well educated, Roman pagan, converted by Ambrose while in Italy.\nBattles w: Donatists (over who the “real church” was); Pelagius (false view minimizing sin) Key ideas: invisible/visible church; original sin (concupiscence)/election—nec. of grace for all of salvation (as a result of the conversations with Pelagians); trinity (memory, understanding, love analogy); city of God (two destinies of men; love of God vs. self etc.) Freedom of the Will, Confessions, Against the Donatists, The Trinity, City of God Augustine turned to covenant theology against the Pelagians (who denied original sin) and against the semi-Pelagians, who affirmed original sin, but who argued that we could cooperate with divine grace for our righteousness before God",
+        "a": "The Father of the Western Church—354-430; Bishop of Hippo (N. Africa)\n- “One writer has described the Reformation as Augustine’s doctrine of grace rebelling against Augustine’s doctrine of the church” (Lane, 40)\n- Well educated, Roman pagan, converted by Ambrose while in Italy.\n- Battles w: Donatists (over who the “real church” was)\n- Pelagius (false view minimizing sin)\n- Key ideas: invisible/visible church\n- original sin (concupiscence)/election—nec. of grace for all of salvation (as a result of the conversations with Pelagians)\n- trinity (memory, understanding, love analogy)\n- city of God (two destinies of men; love of God vs. self etc.)\n- Freedom of the Will, Confessions, Against the Donatists, The Trinity, City of God\n- Augustine turned to covenant theology against the Pelagians (who denied original sin) and against the semi-Pelagians, who affirmed original sin, but who argued that we could cooperate with divine grace for our righteousness before God",
         "refs": []
       },
       {
         "id": "ch-055-gregory-the-great",
         "q": "Gregory the Great",
-        "a": "Servant of the Servants of God—540-604; b. Rome; monk, pope Last of 4 “Latin Fathers” (Ambrose, Augustine, Jerome, Gregory) Consolidates “western” Roman power; organizes, uniformity of worship/service; evangelization of England Elevated the doctrine of purgatory, rise of relics, seeds of Med Xty sown",
+        "a": "Servant of the Servants of God—540-604; b. Rome; monk, pope\n- Last of 4 “Latin Fathers” (Ambrose, Augustine, Jerome, Gregory)\n- Consolidates “western” Roman power\n- organizes, uniformity of worship/service\n- evangelization of England\n- Elevated the doctrine of purgatory, rise of relics, seeds of Med Xty sown",
         "refs": []
       },
       {
         "id": "ch-056-anselm-of-canterbury",
         "q": "Anselm of Canterbury",
-        "a": "Faith Seeking Understanding—1033-1109 prior/abbot of Bec (in Normandy France); Archbishop of Canterbury Considered the “father of scholasticism”; philosophy (Aristotle) played a real, but limited part of theology for Anselm.\nMonologion (proofs of God’s existence);\nProslogian (ontological argument; faith seeking understanding);\nCur Deus Homo (incarnation; satisfaction theory of atonement/objective view vs. Abelard’s subjective moral influence theory)",
+        "a": "Faith Seeking Understanding—1033-1109 prior/abbot of Bec (in Normandy France); Archbishop of Canterbury\n- Considered the “father of scholasticism”\n- philosophy (Aristotle) played a real, but limited part of theology for Anselm.\n- Monologion (proofs of God’s existence)\n- Proslogian (ontological argument; faith seeking understanding)\n- Cur Deus Homo (incarnation; satisfaction theory of atonement/objective view vs. Abelard’s subjective moral influence theory)",
         "refs": []
       },
       {
         "id": "ch-057-bernard-of-clairvaux",
         "q": "Bernard of Clairvaux",
-        "a": "Founder of Clairvaux; Cistercian order—1090-1153 Reformer of Benedictine monasticism (champion of Cistercian order) & rep of medieval monasticism Followed Augustinian tradition Rep. of early medieval theology & advocate for orthodoxy;\nopposed Peter Abelard & held wide influence in European Xty",
+        "a": "Founder of Clairvaux; Cistercian order—1090-1153\n- Reformer of Benedictine monasticism (champion of Cistercian order) & rep of medieval monasticism\n- Followed Augustinian tradition\n- Rep. of early medieval theology & advocate for orthodoxy\n- opposed Peter Abelard & held wide influence in European Xty",
         "refs": []
       },
       {
         "id": "ch-058-francis-of-assisi",
         "q": "Francis of Assisi",
-        "a": "Married to “Lady Poverty”—1181-1266; son of wealthy merchant in Assisi Founder of “Franciscan” order; dedicated to simplicity; poverty (author of the “rule” dictating it).\n1224, first to received the stigmata Reforming influence in a church that was wealthy and powerful Known for acts of mercy, generosity, simple faith and evangelism.\nFollowed by Bonaventure who brought in neo-Platonism, (contra Aristotelian)",
+        "a": "Married to “Lady Poverty”—1181-1266; son of wealthy merchant in Assisi\n- Founder of “Franciscan” order\n- dedicated to simplicity\n- poverty (author of the “rule” dictating it).\n- 1224, first to received the stigmata\n- Reforming influence in a church that was wealthy and powerful\n- Known for acts of mercy, generosity, simple faith and evangelism.\n- Followed by Bonaventure who brought in neo-Platonism, (contra Aristotelian)",
         "refs": []
       },
       {
         "id": "ch-059-thomas-aquinas",
         "q": "Thomas Aquinas*",
-        "a": "Aristotelian Synthesis—1225-1274; Dominican student of Albertus Magnus; Paris mainly 1st storey: philosophy/nature = foundation; 2nd storey: theology = completes;\nno contradiction between philosophy and theology Summa Theologica: using Aristotelian synth; scholastic methodology (contrary phil args/fathers/bible; pro phil args/fathers/bible; reply =’s synthesis & answer) Expounded transubstantiation; phil theory to explain decree of 4th Lateran Council in 1215",
+        "a": "Aristotelian Synthesis—1225-1274; Dominican student of Albertus Magnus; Paris mainly\n- 1st storey: philosophy/nature = foundation\n- 2nd storey: theology = completes\n- no contradiction between philosophy and theology\n- Summa Theologica: using Aristotelian synth\n- scholastic methodology (contrary phil args/fathers/bible; pro phil args/fathers/bible; reply =’s synthesis & answer)\n- Expounded transubstantiation\n- phil theory to explain decree of 4th Lateran Council in 1215",
         "refs": []
       },
       {
         "id": "ch-060-john-wycliffe",
         "q": "John Wycliffe*",
-        "a": "English (pre)Reformer, “Morning Star of Reformation”—1330-1384; Oxford theologian/philosopher Script is final authority; has all needed for salvation; all should read it (The Truth of Holy Script); translated Latin bible into English Three key places of doctrinal revision: final authority of the Scriptures (so all should read them), the power of the pope, and transubstantiation.\nOpposed papal abuses, transubstantiation; followers were the Lollards in England",
+        "a": "English (pre)Reformer, “Morning Star of Reformation”—1330-1384; Oxford theologian/philosopher\n- Script is final authority\n- has all needed for salvation\n- all should read it (The Truth of Holy Script)\n- translated Latin bible into English\n- Three key places of doctrinal revision: final authority of the Scriptures (so all should read them), the power of the pope, and transubstantiation.\n- Opposed papal abuses, transubstantiation\n- followers were the Lollards in England",
         "refs": []
       },
       {
         "id": "ch-061-john-hus",
         "q": "John Hus*",
-        "a": "Czech (pre)Reformer—1372-1415 (martyred) Likeminded with Wycliffe re: the invisible elect nature of “true church” vs. outward organization.\nPreached reform in Bohemia & Prague.\nFoundations for the Moravian Church under Zinzendorf Eventually excommunicated (1415) arrested and burnt at stake, despite assurances of safe passage from Rome",
+        "a": "Czech (pre)Reformer—1372-1415 (martyred)\n- Likeminded with Wycliffe re: the invisible elect nature of “true church” vs. outward organization.\n- Preached reform in Bohemia & Prague.\n- Foundations for the Moravian Church under Zinzendorf\n- Eventually excommunicated (1415)\n- arrested and burnt at stake, despite assurances of safe passage from Rome",
         "refs": []
       },
       {
         "id": "ch-062-william-tyndale",
         "q": "William Tyndale*",
-        "a": "English (pre)Reformer, Father of the English Bible—1490’s-1536 (martyred); Oxford/Cambridge educated First translation of bible from Grk/Heb into English; 90% of his words passed into KJV; 75% in RSV Translated in Germany, finished 1525 Sold out by a friend and martyred in Antwerp (had been living on Continent);\nCranmer/Henry VIII adopted much of Tyndale’s work an allowed Eng. Bible to be published.",
+        "a": "English (pre)Reformer, Father of the English Bible—1490’s-1536 (martyred); Oxford/Cambridge educated\n- First translation of bible from Grk/Heb into English\n- 90% of his words passed into KJV\n- 75% in RSV\n- Translated in Germany, finished 1525\n- Sold out by a friend and martyred in Antwerp (had been living on Continent)\n- Cranmer/Henry VIII adopted much of Tyndale’s work an allowed Eng. Bible to be published.",
         "refs": []
       },
       {
         "id": "ch-063-martin-luther",
         "q": "Martin Luther*",
-        "a": "Here I Stand—b. 1483; 1517-95 thesis; 1521-Worms, 1525-marries Katherine von Bora, d.1546 Augustinian monk (educated in scholastic thought);\n1517, Sparked reformation with posting of 95 theses on church door in Wittenberg 1520, Excommunicated;\n1521, Charles V at the Diet of Worms asked him to recant, replied: “Here I stand, I can do no other” Justification is righteousness, a gift given by God to believers by grace alone through faith; great breach of the Reformation 1525, Bondage of the Will (against Erasmus);\n1529, Marburg Colloquy (against Zwingli, agree on 14 of 15 points, disagree on spiritual presence)",
+        "a": "Here I Stand—b. 1483; 1517-95 theses; 1521-Worms, 1525-marries Katherine von Bora, d.1546\n- Augustinian monk (educated in scholastic thought)\n- 1517, Sparked reformation with posting of 95 theses on church door in Wittenberg\n- 1520, Excommunicated\n- 1521, Charles V at the Diet of Worms asked him to recant, replied: “Here I stand, I can do no other”\n- Justification is righteousness, a gift given by God to believers by grace alone through faith — the great breach of the Reformation\n- 1525, Bondage of the Will (against Erasmus)\n- 1529, Marburg Colloquy (against Zwingli, agree on 14 of 15 points, disagree on spiritual presence)",
         "refs": []
       },
       {
         "id": "ch-064-philip-melanchthon",
         "q": "Philip Melanchthon",
-        "a": "Teacher of Germany—1497-1560; Tubingen/Heidelberg ed.; faculty @ Wittenberg Humanist, influenced by Erasmus No. 2 man to Luther; teacher, supporter, very different temperament Common Places was his important work, 1521, 1535, 1555 Authored Augsburg Confession, 1530 (scrpt basis); Formula of Concord, 1577 favored Reformed rather than Lutheran view of communion reversed in Formula of Concord (1577) Creeds of the Lutheran church: Augsburg Confession, 1531; Formula of Concord, 1577; Apology",
+        "a": "Teacher of Germany—1497-1560; Tubingen/Heidelberg ed.; faculty @ Wittenberg\n- Humanist, influenced by Erasmus\n- No. 2 man to Luther\n- teacher, supporter, very different temperament\n- Common Places was his important work, 1521, 1535, 1555\n- Authored Augsburg Confession, 1530 (scrpt basis)\n- Formula of Concord, 1577 favored Reformed rather than Lutheran view of communion reversed in Formula of Concord (1577)\n- Creeds of the Lutheran church: Augsburg Confession, 1531\n- Formula of Concord, 1577\n- Apology",
         "refs": [],
         "summary": "\"Teacher of Germany\" (1497-1560), humanist, Luther's No. 2 at Wittenberg. Wrote the Loci Communes (1521) and authored the Augsburg Confession (1530); favored the Reformed rather than Lutheran view of communion — reversed by the Formula of Concord (1577)."
       },
       {
         "id": "ch-065-ulrich-zwingli",
         "q": "Ulrich Zwingli*",
-        "a": "The Swiss Reformer/1st Reformed Theologian—1484-1531(on battlefield); Zurich reform Bringing reform to Zurich. Came independently and through different means (Aquinas/humanism) Led reformation in Zurich; biblical exposition, ultimate authority of scripture, no mass etc. which lead to civil war in Switz (some cantons protest others catholic) Practiced lectio continua Argued for Paedo-baptism(but not regenerative; sign of covenant, of our faith) LS: rejects consubstantiation for memorialist view; Calvin builds upon.",
+        "a": "The Swiss Reformer/1st Reformed Theologian—1484-1531(on battlefield); Zurich reform\n- Bringing reform to Zurich. Came independently and through different means (Aquinas/humanism)\n- Led reformation in Zurich\n- biblical exposition, ultimate authority of scripture, no mass etc. which lead to civil war in Switz (some cantons protest others catholic)\n- Practiced lectio continua\n- Argued for Paedo-baptism(but not regenerative; sign of covenant, of our faith)\n- LS: rejects consubstantiation for memorialist view\n- Calvin builds upon.",
         "refs": []
       },
       {
         "id": "ch-066-john-calvin",
         "q": "John Calvin*",
-        "a": "Protestant Systematic Theologian—b.1509; 1530-conversion; 1536-1st ed. Inst;; 1542 Gen return; d.1564 Leading scholar, exegete, theologian of reformation; basis for “reformed” branch is Calvin.\nFled France under persecution, initial work in Geneva, expelled to Basel, returns 1538-41 Geneva exile (in Strassburg, married Idelette) Wrote Institutes as short intro and expanded; very whole-personed, finished 1559 Concerned for truth and discipline; also a man committed to mission, sending many pastors to France.\nInstitutes and Commentaries are complementary",
+        "a": "Protestant Systematic Theologian—b.1509; 1530-conversion; 1536-1st ed. Inst; 1542 Gen return; d.1564\n- Leading scholar, exegete, theologian of reformation\n- basis for “reformed” branch is Calvin.\n- Fled France under persecution, initial work in Geneva, expelled to Basel, returns\n- 1538-41 Geneva exile (in Strassburg, married Idelette)\n- Wrote Institutes as short intro and expanded\n- very whole-personed, finished 1559\n- Concerned for truth and discipline\n- also a man committed to mission, sending many pastors to France.\n- Institutes and Commentaries are complementary",
         "refs": []
       },
       {
         "id": "ch-067-john-knox",
         "q": "John Knox*",
-        "a": "Thundering Scot/Scot Reformer—1513-1572; priest, turned reformer, exile Convert to Protestantism under influence of George Wishart;\nworked for reform but had to flee to continent in 1553 under “Bloody Mary” Exile to Geneva, while there encounter Calvin’s Geneva (“most perfect school of Christ”) Returned in 1559 under Elizabeth to lead reformation of Scottish church (church with Christ’s face; not an English face).\nReturned to Scotland in 1559, helped draft Book of Discipline (1561) and Book of Common Order (1564). Helped draw up the Scots Confession (1560).\nFollowed by Andrew Melville in the Church of Scotland, learned man in languages, schools, etc.",
+        "a": "Thundering Scot/Scot Reformer—1513-1572; priest, turned reformer, exile\n- Convert to Protestantism under influence of George Wishart\n- worked for reform but had to flee to continent in 1553 under “Bloody Mary”\n- Exile to Geneva, while there encounter Calvin’s Geneva (“most perfect school of Christ”)\n- Returned in 1559 under Elizabeth to lead reformation of Scottish church (church with Christ’s face; not an English face).\n- Returned to Scotland in 1559, helped draft Book of Discipline (1561) and Book of Common Order (1564). Helped draw up the Scots Confession (1560).\n- Followed by Andrew Melville in the Church of Scotland, learned man in languages, schools, etc.",
         "refs": []
       },
       {
         "id": "ch-068-scottish-covenanters",
         "q": "Scottish Covenanters",
-        "a": "1638—Scottish National Covenant resisting Catholic theology and structure Those who signed/agreed National Covenant to resist Catholicism and Anglicanism in Scotland in favor of Reformed Presbyterianism. Rooted in 1581 agreement/covenant to keep their form of worship as the sole religion of Scotland against Charles I Members holding this view were reinstated and participated in Westminster Assembly Reformed Presbyterians – those that did no accede to Charles I as head of church, held a lack of religious tolerance Were persecuted under Charles I eventually leading to civil war, The National Covenant and the Solemn League and Covenant Some under persecution stated, some left for Ireland, South Africa, and America",
+        "a": "1638—Scottish National Covenant resisting Catholic theology and structure\n- Those who signed/agreed National Covenant to resist Catholicism and Anglicanism in Scotland in favor of Reformed Presbyterianism. Rooted in 1581 agreement/covenant to keep their form of worship as the sole religion of Scotland against Charles I\n- Members holding this view were reinstated and participated in Westminster Assembly\n- Reformed Presbyterians – those that did no accede to Charles I as head of church, held a lack of religious tolerance\n- Were persecuted under Charles I eventually leading to civil war, The National Covenant and the Solemn League and Covenant\n- Some under persecution stated, some left for Ireland, South Africa, and America",
         "refs": []
       },
       {
         "id": "ch-069-arminius",
         "q": "Arminius*",
-        "a": "Questioning Election—(pre)1560-1609; Dutch pastor/theologian; professor at Leiden 1602 After studying under Theodore Beza (student of Calvin) election to defend it, decided that grace allows humans rather to accept/reject God; salvation is possible, not secured.\nElection is based on God’s “foreknowledge” of who will choose to accept him.\nFollowers wrote, Remonstrance in 1610; Synod of Dordt responded in 1618-1619 with Canons of Dordt from where we get TULIP;\n“Arminian” theology comes from Remonstrance movement",
+        "a": "Questioning Election—(pre)1560-1609; Dutch pastor/theologian; professor at Leiden 1602\n- After studying under Theodore Beza (student of Calvin) election to defend it, decided that grace allows humans rather to accept/reject God\n- salvation is possible, not secured.\n- Election is based on God’s “foreknowledge” of who will choose to accept him.\n- Followers wrote, Remonstrance in 1610\n- Synod of Dordt responded in 1618-1619 with Canons of Dordt from where we get TULIP\n- “Arminian” theology comes from Remonstrance movement",
         "refs": []
       },
       {
         "id": "ch-070-moise-amyraut-and-the-school-of-saum",
         "q": "Moise Amyraut and the School of Saumur",
-        "a": "4 Point Calvinism—1596-1664; teacher and his followers “modified” view of Calvinism which seeks to reconcile particular/unconditional decree with universal/conditional decree.\nRejected limited atonement, but held to other 4 points; now often seen as 3 point Calvinism.\nR. Baxter (reformed, Puritan Pastor) liked it;\nTurretin, Hodge, Warfield reject it as inconsistent or unstable Calvinism.",
+        "a": "4 Point Calvinism—1596-1664; teacher and his followers\n- “modified” view of Calvinism which seeks to reconcile particular/unconditional decree with universal/conditional decree.\n- Rejected limited atonement, but held to other 4 points\n- now often seen as 3 point Calvinism.\n- R. Baxter (reformed, Puritan Pastor) liked it\n- Turretin, Hodge, Warfield reject it as inconsistent or unstable Calvinism.",
         "refs": []
       },
       {
         "id": "ch-071-richard-baxter",
         "q": "Richard Baxter",
-        "a": "The Reformed Pastor—1615-1691 English Puritan pastor;\nThe Reformed Pastor as puritan guide to pastoral care Involved in “nonconformist” controversies in England Held to Amyrauldian view of Calvinism, weak Calvinism",
+        "a": "The Reformed Pastor—1615-1691 English Puritan pastor\n- The Reformed Pastor as puritan guide to pastoral care\n- Involved in “nonconformist” controversies in England\n- Held to Amyrauldian view of Calvinism, weak Calvinism",
         "refs": []
       },
       {
         "id": "ch-072-count-von-zinzendorf",
         "q": "Count von Zinzendorf",
-        "a": "Moravian Church Founder—1700-1760 Lutheran Pietist; nobility; social reformer Built Moravian Church on history from Jan Hus Godson of Spener (leader of the pietistic German Lutheran movement) Outworking of Lutheran pietism in creating a place for Moravian refugees and founding of Hernnut Community on his estate.",
+        "a": "Moravian Church Founder—1700-1760 Lutheran Pietist; nobility; social reformer\n- Built Moravian Church on history from Jan Hus\n- Godson of Spener (leader of the pietistic German Lutheran movement)\n- Outworking of Lutheran pietism in creating a place for Moravian refugees and founding of Hernnut Community on his estate.",
         "refs": []
       },
       {
         "id": "ch-073-jonathan-edwards",
         "q": "Jonathan Edwards*",
-        "a": "Revivalist Preacher, Pastor and Philosopher—1703-1758; Yale educated; cong. pastor, theologian Preacher during 1st Grt Awakening (1735-43); both pro/con regarding revival Wrote: Sinners in the Hands of an Angry God, Wrote Religious Affections in response; + evidence of change/grace; --pure emotionalism with no change.\nUnique brand of “reformed” theology;\nAnti-Arminian, but…eventually opened door to Taylor’s New Haven (New School) theology of Edward’s son/Taylor/Finney re: human will/freedom President of Princeton for a year",
+        "a": "Revivalist Preacher, Pastor and Philosopher—1703-1758; Yale educated; cong. pastor, theologian\n- Preacher during 1st Grt Awakening (1735-43)\n- both pro/con regarding revival\n- Wrote: Sinners in the Hands of an Angry God,\n- Wrote Religious Affections in response\n- + evidence of change/grace\n- --pure emotionalism with no change.\n- Unique brand of “reformed” theology\n- Anti-Arminian, but…eventually opened door to Taylor’s New Haven (New School) theology of Edward’s son/Taylor/Finney re: human will/freedom\n- President of Princeton for a year",
         "refs": []
       },
       {
         "id": "ch-074-george-whitefield",
         "q": "George Whitefield",
-        "a": "English Puritan Evangelist—1714-1770 Major evangelist of the 1st Great Awakening (Great Britain and Colonies), one of the greatest protestant evangelists ever;\nRegular preaching tours of Wales, Scotland and 7 trips to American colonies.\nKnown for his outdoor preaching and strongly reformed doctrine (caused a split with the Wesleys whom he had partnered with for the Oxford “holy club”)",
+        "a": "English Puritan Evangelist—1714-1770\n- Major evangelist of the 1st Great Awakening (Great Britain and Colonies), one of the greatest protestant evangelists ever\n- Regular preaching tours of Wales, Scotland and 7 trips to American colonies.\n- Known for his outdoor preaching and strongly reformed doctrine (caused a split with the Wesleys whom he had partnered with for the Oxford “holy club”)",
         "refs": []
       },
       {
         "id": "ch-075-john-wesley",
         "q": "John Wesley",
-        "a": "Father of Methodism—1703-1791; Oxford educated, English evangelist Co-founder of “holy club” movement at Oxford 1720’s;\nconverted after life in ministry with assurance of salvation, drawn to the discipline of the Moravians in England 1738, Describes the Aldersgate experience, “heart strangely warmed” during the preaching of Romans Open air preaching and circuit riding: Rode up to 5,000 miles a year as evangelist;\nknown for many famous hymns",
+        "a": "Father of Methodism—1703-1791; Oxford educated, English evangelist\n- Co-founder of “holy club” movement at Oxford 1720’s\n- converted after life in ministry with assurance of salvation, drawn to the discipline of the Moravians in England\n- 1738, Describes the Aldersgate experience, “heart strangely warmed” during the preaching of Romans\n- Open air preaching and circuit riding: Rode up to 5,000 miles a year as evangelist\n- known for many famous hymns",
         "refs": []
       },
       {
         "id": "ch-076-marrow-controversy",
         "q": "Marrow controversy",
-        "a": "1717-22; Church of Scotland controversy over law/gospel in salvation “Marrow men”: evangelicals who said an immediate offer of the gospel could be made to all; only union with Christ could then make us holy. Thomas Boston, Erskine brothers; form Secession Church “Neonomian men”: prevailing view that Gospel was the NT law and thus the forsaking of sin was necessary before Christ could be received.",
+        "a": "1717-22; Church of Scotland controversy over law/gospel in salvation\n- “Marrow men”: evangelicals who said an immediate offer of the gospel could be made to all; only union with Christ could then make us holy. Thomas Boston, Erskine brothers; form Secession Church\n- “Neonomian men”: prevailing view that Gospel was the NT law and thus the forsaking of sin was necessary before Christ could be received.",
         "refs": []
       },
       {
         "id": "ch-077-william-carey",
         "q": "William Carey",
-        "a": "Father of Modern Missions—1761-1834 informally trained advocate for missions Called to lead Baptist Missionary Society in 1792 Missionary to India w. pioneering techniques: contextualization, bible translation, striving towards indigenous leadership etc.",
+        "a": "Father of Modern Missions—1761-1834 informally trained advocate for missions\n- Called to lead Baptist Missionary Society in 1792\n- Missionary to India w. pioneering techniques: contextualization, bible translation, striving towards indigenous leadership etc.",
         "refs": []
       },
       {
         "id": "ch-078-charles-hodge",
         "q": "Charles Hodge",
-        "a": "Defender of Historical Calvinism—1797-1878, American Old School Presbyterian Professor at Princeton Seminary Student of Archibald Alexander at Princeton Seminary; holds to Old School Theology Leading Princeton theologian in mid-1800’s America; known for defense of historical reformed faith, 3 volume ST, and theological method.\nHeld confessional standards in face of rising liberalism, but did little to constructively engage divergent theologies.\nFollowed by A.A. Hodge and B.B. Warfield",
+        "a": "Defender of Historical Calvinism—1797-1878, American Old School Presbyterian\n- Professor at Princeton Seminary\n- Student of Archibald Alexander at Princeton Seminary\n- holds to Old School Theology\n- Leading Princeton theologian in mid-1800’s America\n- known for defense of historical reformed faith, 3 volume ST, and theological method.\n- Held confessional standards in face of rising liberalism, but did little to constructively engage divergent theologies.\n- Followed by A.A. Hodge and B.B. Warfield",
         "refs": []
       },
       {
         "id": "ch-079-charles-finney",
         "q": "Charles Finney",
-        "a": "Father of American Revivalism—1792-1875; pastor, evangelist, theologian Chief evangelist of 2nd Great Awakening; New Haven theology proponent Known for “New Measures” anxious bench tactics;\nFollows New Haven Theology (Taylor); denies original sin, emphasizes free will, and teaches moral government theory.\nLectures on Religious Revivals (1835) and Lectures on Systematic Theology (1846-1847).",
+        "a": "Father of American Revivalism—1792-1875; pastor, evangelist, theologian\n- Chief evangelist of 2nd Great Awakening\n- New Haven theology proponent\n- Known for “New Measures” anxious bench tactics\n- Follows New Haven Theology (Taylor)\n- denies original sin, emphasizes free will, and teaches moral government theory.\n- Lectures on Religious Revivals (1835) and Lectures on Systematic Theology (1846-1847).",
         "refs": []
       },
       {
         "id": "ch-080-george-m-ller",
         "q": "George Müller",
-        "a": "Man of Faith—1805-1898 German Brethren living in England (Bristol) Founder of orphanages in Bristol which cared for working class orphans and ministered to significant social needs in Victorian/Industrial Rev.\nKnow for “ruthless” trust in God to provide for needs; did not fundraise; e.g. of sitting down to say thanks for meal before meal had yet been provided.\nPart of care during Victorian/Industrial Revolution",
+        "a": "Man of Faith—1805-1898 German Brethren living in England (Bristol)\n- Founder of orphanages in Bristol which cared for working class orphans and ministered to significant social needs in Victorian/Industrial Rev.\n- Know for “ruthless” trust in God to provide for needs\n- did not fundraise\n- e.g. of sitting down to say thanks for meal before meal had yet been provided.\n- Part of care during Victorian/Industrial Revolution",
         "refs": []
       },
       {
         "id": "ch-081-charles-h-spurgeon",
         "q": "Charles H. Spurgeon",
-        "a": "The Prince of Preachers—1834-1892; hugely popular English Baptist pastor Considered by may “the last great English puritan”;\nstrong Calvinist theologically, often involved in Baptist controversies;\npastor of 1st “mega-church” (Metropolitan Tabernacle) Widely read and very expositional; warm and stirring;\noften suffered from dark moods and sense of isolation, “fainting fits”",
+        "a": "The Prince of Preachers—1834-1892; hugely popular English Baptist pastor\n- Considered by may “the last great English puritan”\n- strong Calvinist theologically, often involved in Baptist controversies\n- pastor of 1st “mega-church” (Metropolitan Tabernacle)\n- Widely read and very expositional\n- warm and stirring\n- often suffered from dark moods and sense of isolation, “fainting fits”",
         "refs": []
       },
       {
         "id": "ch-082-b-b-warfield",
         "q": "B. B. Warfield",
-        "a": "Defending the Infallible Bible—1851-1921; 2nd generation successor to Hodge; American Old School Presby Professor at Princeton Seminary Best know for his exposition and defense of the infallibility of scripture (verbal inspiration) in the face of higher criticism and rising liberalism.\nExtremely able intellectually and his work became the touch stone of orthodoxy for the fundamentalist/modernist controversies to come in 20th century.\nRepresents best blend of scholarship/conservatism.",
+        "a": "Defending the Infallible Bible—1851-1921; 2nd generation successor to Hodge; American Old School Presby\n- Professor at Princeton Seminary\n- Best know for his exposition and defense of the infallibility of scripture (verbal inspiration) in the face of higher criticism and rising liberalism.\n- Extremely able intellectually and his work became the touch stone of orthodoxy for the fundamentalist/modernist controversies to come in 20th century.\n- Represents best blend of scholarship/conservatism.",
         "refs": []
       },
       {
         "id": "ch-083-d-l-moody",
         "q": "D. L. Moody",
-        "a": "Son of American Revivalism—1837-1899; semi-educated preacher/evangelist Known for well organized “campaigns” for evangelism/revival; teamed with Sankey; visit British Isles often Methods included volunteerism and lay organization.\n“Ruined by Sin, Redemption by Christ, Regeneration by the Spirit.” He was Arminian, premilliennial, and a preacher of holiness.\nSignificant ministry to inner city; founded MBI; theologically incoherent.",
+        "a": "Son of American Revivalism—1837-1899; semi-educated preacher/evangelist\n- Known for well organized “campaigns” for evangelism/revival\n- teamed with Sankey\n- visit British Isles often\n- Methods included volunteerism and lay organization.\n- “Ruined by Sin, Redemption by Christ, Regeneration by the Spirit.”\n- He was Arminian, premilliennial, and a preacher of holiness.\n- Significant ministry to inner city\n- founded MBI\n- theologically incoherent.",
         "refs": []
       },
       {
@@ -550,13 +550,13 @@
       {
         "id": "ch-085-vatican-ii-1962-1965",
         "q": "Vatican II (1962-1965)",
-        "a": "To bring the faith more in tune with the modern world, more pastoral and conciliatory, the need for aggiornamento to bring the church up to date – dogma does not change, but its form and expression must;\nprotestants are seen as separated brethren rather than wicked heretics.\nWritten products: The Church and Divine Revelation; Ineffabilis Deus and Munificentissimus Deus are reaffirmed",
+        "a": "To bring the faith more in tune with the modern world, more pastoral and conciliatory, the need for aggiornamento to bring the church up to date – dogma does not change, but its form and expression must\n- protestants are seen as separated brethren rather than wicked heretics.\n- Written products: The Church and Divine Revelation\n- Ineffabilis Deus and Munificentissimus Deus are reaffirmed",
         "refs": []
       },
       {
         "id": "ch-086-monastic-movements",
         "q": "Monastic Movements",
-        "a": "- Antony of Alexandria (251-356)\n- Benedict of Nursia (480-550): great reformer of Western monasticism; threefold vow—celibacy, poverty, obedience; work and pray (work of God, divine reading, manual work)\n- Basil the Great (330-379): Eastern monasticism; more focused on serving the community\n- Francis of Assisi (order founded 1209): poverty, penance, and preaching; should serve the world and hear confessions\n- Dominic (1216): theologians of the middle ages; convert people and condemn heretics\n- Bernard of Clairvaux (1090-1153)",
+        "a": "- Antony of Alexandria (251-356)\n- Benedict of Nursia (480-550): great reformer of Western monasticism\n- threefold vow—celibacy, poverty, obedience\n- work and pray (work of God, divine reading, manual work)\n- Basil the Great (330-379): Eastern monasticism\n- more focused on serving the community\n- Francis of Assisi (order founded 1209): poverty, penance, and preaching\n- should serve the world and hear confessions\n- Dominic (1216): theologians of the middle ages\n- convert people and condemn heretics\n- Bernard of Clairvaux (1090-1153)",
         "refs": []
       }
     ]
@@ -577,20 +577,20 @@
         "id": "ch-087b-modernism-fundamentalism",
         "q": "Discuss the controversy between modernism and fundamentalism. Identify the significance of the Five Fundamentals, the Auburn Affirmation, Fosdick, Machen, and Westminster Seminary.",
         "a": "The Fundamentalist–Modernist controversy: with urbanization and liberal trends in the church came pressure within the General Assembly to revise the Westminster Confession and accommodate liberal theology. J. Gresham Machen (professor of New Testament at Princeton) stood at the center of the conservative response.\n\n- **1910/1916 — the \"Five Essentials/Fundamentals,\"** outlined at General Assembly: the inerrancy of the Bible; the Virgin Birth; Christ's substitutionary atonement; Christ's bodily resurrection; the authenticity of miracles.\n- **1922 — Harry Emerson Fosdick,** \"Shall the Fundamentalists Win?\" — the liberal side of the argument (Union Theological Seminary; helped draft the Auburn Affirmation; pastor of Riverside Church, NY).\n- **1923 — J. Gresham Machen,** _Christianity and Liberalism_ — liberalism is not a variety of Christianity but a different religion.\n- **1924 — The Auburn Affirmation** — liberal presbyters nominally affirm but relativize the five fundamentals, to \"create room\" for non-orthodox views: liberalism and fundamentalism could co-exist in one church.\n- **1926** — Machen denied the Chair of Apologetics at Princeton.\n- **1929 — Westminster Theological Seminary** founded by Machen with Oswald Allis, Cornelius Van Til, and Robert Dick Wilson (John Murray joins the next year) after Princeton's boards were restructured — leading to the Independent Board for Presbyterian Foreign Missions (1933), Machen's suspension (1935), and the OPC (1936).",
-        "summary": "Liberal pressure to revise the Standards vs the Five Fundamentals (1910/16); Fosdick's \"Shall the Fundamentalists Win?\" (1922) vs Machen's Christianity and Liberalism (1923); the Auburn Affirmation (1924); Princeton reorganized → Westminster Seminary (1929) → OPC (1936).",
+        "summary": "- Liberal pressure to revise the Standards vs the Five Fundamentals (1910/16)\n- Fosdick's \"Shall the Fundamentalists Win?\" (1922) vs Machen's Christianity and Liberalism (1923)\n- the Auburn Affirmation (1924)\n- Princeton reorganized → Westminster Seminary (1929) → OPC (1936)",
         "refs": []
       },
       {
         "id": "ch-088-trace-the-historical-roots-of-the-rp",
         "q": "Trace the historical roots of the RPCES. From which major branch of Presbyterianism did the RPCES come? Why is the RPCES important in PCA history? Be sure in your answer to identify and explain the significance of:",
-        "a": "1922, Fosdick writes paper, “Shall the Fundamentalists Win?” 1923, Machen responds with Christianity and Liberalism 1924, Auburn Affirmation – effort by the liberals to resolve the 5 fundamentals with modernism, circulated at Auburn Seminary (NY) 1926, Chair of Apologetics denied to Machen 1929, reorganization of Princeton Seminary Trying to make it more theologically open Machen, Oswald Allis, Van Til, Robert Dick Wilson form Westminster, John Murray joins the next year 1933, Independent Board for Presbyterian Foreign Missions (missions agency of BPC, by Machen) 1935, Machen suspended from office 1936, formation of PC of A (becomes OPC) 1937, Machen Dies 1937, 3rd GA of PC of A—Division and formation of BPC, 3 major issues; conservatives want to eliminate alcohol and are more dispensational, McIntire, Buswell, Schaeffer:\nEschatology (some are pre-mil, want liberty) Liberty (some want to prohibit tobacco and alcohol) Separatism (some do not want to work with non-Presbyterians) 1939, PC of A changes to OPC 1955, dissention at Bible Presbyterian Church Columbus Synod (changes name to EPC)withdraws and creates new agencies, established by the EPC Covenant College, starts in CA but moves to St. Louis, 1955 Covenant Seminary, 1956 Rayburn as President Buswell as Dean Schaeffer to Switzerland at this time World Presbyterian Missions National Presbyterian Missions Carl McIntire – at Faith Theological Seminar, founded Shelton College, founded two councils in opposition to the National Council of Churches and the World Council of Churches J. Oliver Buswell – Wheaton College President (1929-36), taught at Faith Theological and Covenant Theological Seminary (dean under Rayburn); involved in 1936, 1937, 1958 schisms Robert Rayburn – president of Covenant Seminary Francis Schaeffer – a presuppositional apologist; founded L’Bri community in Switzerland, ordained in BPC at Faith Theological Seminary 1965, The Reformed Presbyterian Church, Evangelical Synod, had been formed in 1965 by a merger of the Evangelical Presbyterian Church and the Reformed Presbyterian Church in North America, General Synod (EPC + RPCGS = RPCES)",
+        "a": "The Bible Presbyterian / RPCES line out of the fundamentalist-modernist controversy:\n\n- **1922** — Fosdick, \"Shall the Fundamentalists Win?\"; **1923** — Machen responds with _Christianity and Liberalism_.\n- **1924** — The Auburn Affirmation: the liberals' effort to reconcile the five fundamentals with modernism (circulated at Auburn Seminary, NY).\n- **1926** — Machen denied the Chair of Apologetics at Princeton; **1929** — Princeton reorganized to be more theologically open: Machen, Oswald Allis, Van Til, and Robert Dick Wilson form Westminster Seminary (John Murray joins the next year).\n- **1933** — Independent Board for Presbyterian Foreign Missions (Machen); **1935** — Machen suspended from office.\n- **1936** — Formation of the Presbyterian Church of America — becomes the **OPC** (renamed 1939); **1937** — Machen dies.\n- **1937** — Division at the third GA forms the **Bible Presbyterian Church** (McIntire, Buswell, Schaeffer) over three issues: eschatology (some pre-mil, wanting liberty), liberty (some wanting to prohibit tobacco and alcohol), and separatism (some unwilling to work with non-Presbyterians).\n- **1955** — Dissent at the BPC's Columbus Synod: the withdrawing synod becomes the **Evangelical Presbyterian Church** and establishes its own agencies — Covenant College (starts in California, moves to St. Louis, 1955), Covenant Seminary (1956; Rayburn president, Buswell dean), World Presbyterian Missions, National Presbyterian Missions.\n- Key men: Carl McIntire (Faith Theological Seminary; founded Shelton College and two councils opposing the NCC and WCC); J. Oliver Buswell (Wheaton College president 1929-36; taught at Faith Theological and Covenant Seminary; involved in the 1936, 1937, and 1958 schisms); Robert Rayburn (president of Covenant Seminary); Francis Schaeffer (presuppositional apologist; founded the L'Abri community in Switzerland; ordained in the BPC).\n- **1965** — The EPC merges with the Reformed Presbyterian Church in North America, General Synod (EPC + RPCGS) to form the **RPCES** — joined and received by the PCA in 1982, bringing Covenant College and Covenant Seminary.",
         "refs": [],
         "summary": "Machen's Westminster (1929) and the OPC (1936) → Bible Presbyterian Church split (1937: eschatology, liberty, separatism — McIntire, Buswell, Schaeffer) → EPC (1955; Covenant College and Covenant Seminary, Rayburn) → merger with the RPCGS forms the RPCES (1965) → joined and received by the PCA in 1982, bringing both Covenant institutions."
       },
       {
         "id": "ch-089-when-where-and-why-did-the-pca-begin",
         "q": "When, where and why did the PCA begin?",
-        "a": "1900’s – In response the increasing liberalism in theology, morality, and the loss of the mission of the PCUS (the Southern Presbyterian Church); Doctrinal/Missional Problems in the PCUS “Fellowship of St. James”—liberal secret organization controlling structures Front was the Fellowship of the Concerned Ernest Trice Thompson Presbyterian Outlook the PCUS was interested in the World Council of Churches and the National Council of Churches and joining the UPCUSA (Northern Church) Plan of Union, defeated 1954 passing resolutions contra to Westminster and Scripture Several methods were employed to reject this movement, correct the church and bring it back to its moorings as established in the Old School/New School divide around the turn of the 20th century, the four groups and their functions were:\n1942, Presbyterian Journal– Aiken Taylor; set up to communicate to the PCUS the attempt by the liberals at GA to move away from the historic faith; Dr. Nelson Bell (editor), Aiken Taylor, Dr. Henry B. Dendy, 1958, Presbyterian Evangelistic Fellowship – William Hill; originally founded by Don Patterson, later formally organized by Rev. William E. Hill, Jr., became the sending agency for missionaries, the PCUS had stopped evangelistic efforts, similar to Machen’s move in 1933 1964, Concerned Presbyterians – Kenneth Keyes; the Journal board asked Kenneth Keyes to form and head this lay-led organization; members were: Jack Williamson, Col. Roy LeCraw, and J.M. Vroon; this organization was to actively combat the liberal movements 1968/9, Presbyterian Churchmen United – john Richards; 500 churches united, headed by Dr. John E. Richards and Paul E. Settle 1954, defeat in presbyteries of Plan of Union with Northern Presbyterian Church Other Continuing Presbyterian Church notables:\nMorton H. Smith – helped in the formation and persistence of the Presbyterian Prayer Men; was the stated clerk at the first GA W. Jack Williamson – an attorney and RE during the time of transition Kenneth Keyes – at the center of the PCA’s departure from the PCUS, founder of the Concerned Presbyterians, Inc G. Aiken Taylor – editor, writer for Presbyterian Journal 1971, Steering Committee – after the 1971 GA, members from these four organizations met and formed a steering committee (3 members from each) to set out founding a new church apart from the PCUS, the “Continuing Presbyterian Church”, Paul Settle elected chairman of committee Rev. Donald Patterson, Rev. James Baird, Rev. Kennedy Smartt, Dr. John Richards 1973, Convocation of Sessions – first of three Steering Committee established to discuss and plan the separation from the PCUS, 1973, Advisory Convention – held in Asheville, NC adopted resolutions:\nBCO 1933 WCF 1881 (with deletion of pope as antichrist) Only men ordained No synods 4 Committees, through commissioners (see below) Primary court is session December 4-7, 1973 – 260 churches, 41,000 people withdrew and formed the National Presbyterian Church, the first GA meeting at Briarwood Presbyterian Church (Birmingham, AL);\nJack Williamson, Moderator – RE, attorney Morton Smith, Stated Clerk – prof at RTS Formation of 4 Committees (all of which remain today, plus RUF, 2008):\nAdministrative (Administrative) Christian Ed and Publications (CE&P) MTW (MTW) MTUS (MNA) December 4, 1973 the National Presbyterian Church (the PCA) was born 1974, National Presbyterian Church is renamed to Presbyterian Church in America at GA 1982, the RPCES was joined and received by the PCA (Grand Rapids, MI) and brought with it Covenant College and Covenant Theological Seminary 1983, the PCUS joined the UPCUSA in the North 2000, there were 1700 churches and missions, and 335,000 members (via pcanet.org)",
+        "a": "In response to increasing liberalism in theology and morality and the loss of the mission of the PCUS (the Southern Presbyterian Church): the \"Fellowship of St. James\" — a liberal organization controlling denominational structures, fronted by the Fellowship of the Concerned (Ernest Trice Thompson, Presbyterian Outlook) — interest in joining the NCC/WCC and the UPCUSA (the Plan of Union, defeated in the presbyteries, 1954), and resolutions contrary to Westminster and Scripture.\n\nFour conservative organizations formed to correct the church:\n\n- **1942 — Presbyterian Journal** (G. Aiken Taylor; Dr. Nelson Bell editor, Dr. Henry B. Dendy): set up to communicate to the PCUS the liberals' attempt at GA to move away from the historic faith.\n- **1958 — Presbyterian Evangelistic Fellowship** (founded by Don Patterson, formally organized by Rev. William E. Hill, Jr.): a sending agency for missionaries after the PCUS stopped evangelistic efforts — similar to Machen's move in 1933.\n- **1964 — Concerned Presbyterians** (Kenneth Keyes, with Jack Williamson, Col. Roy LeCraw, and J. M. Vroon): a lay-led organization to actively combat the liberal movements.\n- **1968/9 — Presbyterian Churchmen United** (Dr. John E. Richards and Paul E. Settle): 500 churches united.\n\nFrom organization to a new church:\n\n- **1971** — After GA, three members from each of the four organizations form a Steering Committee toward a \"Continuing Presbyterian Church\" (Paul Settle chairman; Rev. Donald Patterson, Rev. James Baird, Rev. Kennedy Smartt, Dr. John Richards).\n- **1973** — Convocation of Sessions, then the Advisory Convention (Asheville, NC) adopts the founding resolutions: the 1933 BCO; the 1881 WCF (deleting the pope as antichrist); only men ordained; no synods; four committees governed through commissioners; the session as the primary court.\n- **December 4-7, 1973** — 260 churches and 41,000 members withdraw and form the **National Presbyterian Church**; first GA at Briarwood Presbyterian Church, Birmingham, AL (Jack Williamson, moderator — RE, attorney; Morton Smith, stated clerk — professor at RTS). Four committees formed, all remaining today (plus RUF, 2008): Administrative, Christian Education & Publications, MTW, MNA.\n- **1974** — Renamed the **Presbyterian Church in America** at GA.\n- **1982** — The RPCES joined and received (Grand Rapids, MI), bringing Covenant College and Covenant Theological Seminary. (**1983** — the PCUS joins the UPCUSA; by **2000** — 1,700 churches and missions, 335,000 members.)\n\nOther Continuing Church notables: Morton H. Smith (helped form the Presbyterian Prayer Men; first stated clerk), W. Jack Williamson (attorney and RE through the transition), Kenneth Keyes (founder of Concerned Presbyterians, Inc.), G. Aiken Taylor (editor and writer, Presbyterian Journal).",
         "refs": [
           "WCF 1881"
         ],

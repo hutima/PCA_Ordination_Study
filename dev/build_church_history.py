@@ -51,7 +51,8 @@ def blocks_of(text):
 def clean(t):
     # html.unescape decodes leftover HTML entities from the source extraction
     # (&quot; → ", &#39; → ', &amp; → &) that otherwise render literally.
-    return re.sub(r'\s+', ' ', html.unescape(t)).strip()
+    # the source has a stray ';;' (Calvin's dates line)
+    return re.sub(r';\s*;', ';', re.sub(r'\s+', ' ', html.unescape(t))).strip()
 
 def norm_para(lines):
     """Join wrapped lines into paragraphs; keep list markers separate."""
@@ -73,6 +74,60 @@ def norm_para(lines):
     # normalize bullets
     out = [re.sub(r'^[•]\s*', '- ', x) for x in out]
     return '\n'.join(out).strip()
+
+def top_semi_parts(line):
+    """Split on top-level semicolons — those outside parentheses and quotes."""
+    parts, cur, depth, inq = [], '', 0, False
+    for ch in line:
+        if ch == '(':
+            depth += 1
+        elif ch == ')':
+            depth = max(0, depth - 1)
+        elif ch == '“':
+            inq = True
+        elif ch == '”':
+            inq = False
+        elif ch == '"':
+            inq = not inq
+        if ch == ';' and depth == 0 and not inq:
+            parts.append(cur.strip()); cur = ''
+        else:
+            cur += ch
+    parts.append(cur.strip())
+    return [p for p in parts if p]
+
+def bulletize_def(lines):
+    """Glossary definitions are one fact per source line, glued into a single
+    paragraph by norm_para — on a phone that reads as a semicolon wall. Keep
+    the first line (the epithet/dates snapshot) as an intro paragraph, render
+    every further fact as a bullet, and split top-level '; ' chains into one
+    bullet per part. Falls back to norm_para for prose definitions (under two
+    bullets)."""
+    lines = [l for l in (x.strip() for x in lines) if l]
+    if not lines:
+        return ''
+    # Join only true wraps: a continuation starts lowercase while the previous
+    # line ended without terminal punctuation. Everything else is its own fact
+    # (the source ends most facts with ';' or nothing at all).
+    joined = []
+    for l in lines:
+        if joined and not re.search(r'[.;:?!)”"]\s*$', joined[-1]) and (l[:1].islower() or l[:1] in '&('):
+            joined[-1] += ' ' + l
+        else:
+            joined.append(clean(l))
+    bullets = []
+    for p in joined[1:]:
+        p = re.sub(r'^[-•]\s*', '', p).rstrip(';').strip()
+        if not p:
+            continue
+        if p[0] in '“"':          # a quotation stays whole
+            bullets.append(p)
+            continue
+        parts = top_semi_parts(p)
+        bullets.extend(parts if len(parts) > 1 else [p])
+    if len(bullets) < 2:
+        return norm_para(lines)
+    return joined[0].rstrip(';') + '\n' + '\n'.join('- ' + b for b in bullets)
 
 def extract_refs(text):
     refs = []
@@ -190,10 +245,62 @@ Cf. Morton Smith, _How the Gold Became Dim_.
 - **Limited polity** in church matters; power with the laity.
 - **Against the PCUS trends:** women teaching, exhorting, or leading in public assemblies; the social gospel; the "one church movement" (National and World Councils of Churches)."""
 
+RPCES_TIMELINE = """\
+The Bible Presbyterian / RPCES line out of the fundamentalist-modernist controversy:
+
+- **1922** — Fosdick, "Shall the Fundamentalists Win?"; **1923** — Machen responds with _Christianity and Liberalism_.
+- **1924** — The Auburn Affirmation: the liberals' effort to reconcile the five fundamentals with modernism (circulated at Auburn Seminary, NY).
+- **1926** — Machen denied the Chair of Apologetics at Princeton; **1929** — Princeton reorganized to be more theologically open: Machen, Oswald Allis, Van Til, and Robert Dick Wilson form Westminster Seminary (John Murray joins the next year).
+- **1933** — Independent Board for Presbyterian Foreign Missions (Machen); **1935** — Machen suspended from office.
+- **1936** — Formation of the Presbyterian Church of America — becomes the **OPC** (renamed 1939); **1937** — Machen dies.
+- **1937** — Division at the third GA forms the **Bible Presbyterian Church** (McIntire, Buswell, Schaeffer) over three issues: eschatology (some pre-mil, wanting liberty), liberty (some wanting to prohibit tobacco and alcohol), and separatism (some unwilling to work with non-Presbyterians).
+- **1955** — Dissent at the BPC's Columbus Synod: the withdrawing synod becomes the **Evangelical Presbyterian Church** and establishes its own agencies — Covenant College (starts in California, moves to St. Louis, 1955), Covenant Seminary (1956; Rayburn president, Buswell dean), World Presbyterian Missions, National Presbyterian Missions.
+- Key men: Carl McIntire (Faith Theological Seminary; founded Shelton College and two councils opposing the NCC and WCC); J. Oliver Buswell (Wheaton College president 1929-36; taught at Faith Theological and Covenant Seminary; involved in the 1936, 1937, and 1958 schisms); Robert Rayburn (president of Covenant Seminary); Francis Schaeffer (presuppositional apologist; founded the L'Abri community in Switzerland; ordained in the BPC).
+- **1965** — The EPC merges with the Reformed Presbyterian Church in North America, General Synod (EPC + RPCGS) to form the **RPCES** — joined and received by the PCA in 1982, bringing Covenant College and Covenant Seminary."""
+
+PCA_ORIGIN = """\
+In response to increasing liberalism in theology and morality and the loss of the mission of the PCUS (the Southern Presbyterian Church): the "Fellowship of St. James" — a liberal organization controlling denominational structures, fronted by the Fellowship of the Concerned (Ernest Trice Thompson, Presbyterian Outlook) — interest in joining the NCC/WCC and the UPCUSA (the Plan of Union, defeated in the presbyteries, 1954), and resolutions contrary to Westminster and Scripture.
+
+Four conservative organizations formed to correct the church:
+
+- **1942 — Presbyterian Journal** (G. Aiken Taylor; Dr. Nelson Bell editor, Dr. Henry B. Dendy): set up to communicate to the PCUS the liberals' attempt at GA to move away from the historic faith.
+- **1958 — Presbyterian Evangelistic Fellowship** (founded by Don Patterson, formally organized by Rev. William E. Hill, Jr.): a sending agency for missionaries after the PCUS stopped evangelistic efforts — similar to Machen's move in 1933.
+- **1964 — Concerned Presbyterians** (Kenneth Keyes, with Jack Williamson, Col. Roy LeCraw, and J. M. Vroon): a lay-led organization to actively combat the liberal movements.
+- **1968/9 — Presbyterian Churchmen United** (Dr. John E. Richards and Paul E. Settle): 500 churches united.
+
+From organization to a new church:
+
+- **1971** — After GA, three members from each of the four organizations form a Steering Committee toward a "Continuing Presbyterian Church" (Paul Settle chairman; Rev. Donald Patterson, Rev. James Baird, Rev. Kennedy Smartt, Dr. John Richards).
+- **1973** — Convocation of Sessions, then the Advisory Convention (Asheville, NC) adopts the founding resolutions: the 1933 BCO; the 1881 WCF (deleting the pope as antichrist); only men ordained; no synods; four committees governed through commissioners; the session as the primary court.
+- **December 4-7, 1973** — 260 churches and 41,000 members withdraw and form the **National Presbyterian Church**; first GA at Briarwood Presbyterian Church, Birmingham, AL (Jack Williamson, moderator — RE, attorney; Morton Smith, stated clerk — professor at RTS). Four committees formed, all remaining today (plus RUF, 2008): Administrative, Christian Education & Publications, MTW, MNA.
+- **1974** — Renamed the **Presbyterian Church in America** at GA.
+- **1982** — The RPCES joined and received (Grand Rapids, MI), bringing Covenant College and Covenant Theological Seminary. (**1983** — the PCUS joins the UPCUSA; by **2000** — 1,700 churches and missions, 335,000 members.)
+
+Other Continuing Church notables: Morton H. Smith (helped form the Presbyterian Prayer Men; first stated clerk), W. Jack Williamson (attorney and RE through the transition), Kenneth Keyes (founder of Concerned Presbyterians, Inc.), G. Aiken Taylor (editor and writer, Presbyterian Journal)."""
+
 CURATE = {
-    # An enumeration question: the teaser must name all the solas, not
-    # expound the first one.
+    # An enumeration question: the answer arrives as glued semicolon
+    # paragraphs — recast as one bullet per sola; the teaser must name all
+    # the solas, not expound the first one.
     'ch-003-what-were-the-solas-of-the-reformati': {
+        'a': ('- **Sola scriptura** — Ultimate authority is Scripture (history, '
+              'assemblies, doctrine, and interpretation are all helpful and '
+              'important, but not on an equal footing). We don\'t need the '
+              'church to interpret Scripture: Scripture defines the church, '
+              'not the church Scripture.\n'
+              '- **Sola gratia** — The basis for salvation is entirely grace; '
+              'not God taking what I can offer and adding His share to it — '
+              'not a co-operative effort.\n'
+              '- **Sola fide** — The means for salvation: how is grace '
+              'delivered? Not by the sacraments (as Rome holds) but by faith '
+              '(which God also gives). Not our faith plus the things we do — '
+              'works are an evidence of faith, not a means of salvation.\n'
+              '- **Solus Christus** — Salvation is in Christ alone.\n'
+              '- **Soli Deo gloria** — God\'s glory above all else.\n'
+              '- **The priesthood of all believers** — No hierarchy of access '
+              'to God: all can come directly to Him without a priestly '
+              'mediator; no one is closer to God based on office; we all have '
+              'a responsibility to minister to one another.'),
         'summary': ('- Sola scriptura — Scripture the ultimate authority\n'
                     '- Sola gratia — salvation entirely of grace, not a cooperative '
                     'effort\n'
@@ -218,10 +325,12 @@ CURATE = {
                     'doctrine of perfection. Francis Asbury led in America.'),
     },
     'ch-011-mennonite-churches': {
-        'summary': ('Menno Simons (c. 1496-1561), from Dutch/Swiss Anabaptism: adult baptism '
-                    'only, rejection of oaths and military service, humility, nonresistance, '
-                    'and separation from the world; pietistic, Bible-centered renewal of '
-                    'life; held a Melchiorite view of the incarnation.'),
+        'summary': ('Menno Simons (c. 1496-1561), from Dutch/Swiss Anabaptism:\n'
+                    '- adult baptism only\n'
+                    '- rejection of oaths and military service\n'
+                    '- humility, nonresistance, and separation from the world\n'
+                    '- pietistic, Bible-centered renewal of life\n'
+                    '- a Melchiorite view of the incarnation'),
     },
     'ch-025-compare-the-first-and-second-great-a': {
         'summary': ("- 1st (c. 1735–43): Calvinist — Frelinghuysen, Tennent, Edwards, "
@@ -234,6 +343,24 @@ CURATE = {
                     'philosophy; saw Christ as the fulfillment of the best of Greek thought '
                     '("all truth is God\'s truth"), setting the pattern for Greek theology '
                     '(Clement, Origen). Works: I & II Apology, Dialogue with Trypho.'),
+    },
+    # The source ran "…through faith; great breach of the Reformation" as one
+    # line — the bulletizer's top-level-semicolon split orphans the fragment.
+    'ch-063-martin-luther': {
+        'a': ('Here I Stand—b. 1483; 1517-95 theses; 1521-Worms, 1525-marries '
+              'Katherine von Bora, d.1546\n'
+              '- Augustinian monk (educated in scholastic thought)\n'
+              '- 1517, Sparked reformation with posting of 95 theses on church '
+              'door in Wittenberg\n'
+              '- 1520, Excommunicated\n'
+              '- 1521, Charles V at the Diet of Worms asked him to recant, '
+              'replied: “Here I stand, I can do no other”\n'
+              '- Justification is righteousness, a gift given by God to '
+              'believers by grace alone through faith — the great breach of '
+              'the Reformation\n'
+              '- 1525, Bondage of the Will (against Erasmus)\n'
+              '- 1529, Marburg Colloquy (against Zwingli, agree on 14 of 15 '
+              'points, disagree on spiritual presence)'),
     },
     'ch-064-philip-melanchthon': {
         'summary': ('"Teacher of Germany" (1497-1560), humanist, Luther\'s No. 2 at '
@@ -257,14 +384,34 @@ CURATE = {
                'significance of the Five Fundamentals, the Auburn Affirmation, Fosdick, '
                'Machen, and Westminster Seminary.'),
          'a': MODERNISM_CARD_A,
-         'summary': ('Liberal pressure to revise the Standards vs the Five Fundamentals '
-                     '(1910/16); Fosdick\'s "Shall the Fundamentalists Win?" (1922) vs '
-                     'Machen\'s Christianity and Liberalism (1923); the Auburn Affirmation '
-                     '(1924); Princeton reorganized → Westminster Seminary (1929) → '
-                     'OPC (1936).'),
+         'summary': ('- Liberal pressure to revise the Standards vs the Five '
+                     'Fundamentals (1910/16)\n'
+                     '- Fosdick\'s "Shall the Fundamentalists Win?" (1922) vs Machen\'s '
+                     'Christianity and Liberalism (1923)\n'
+                     '- the Auburn Affirmation (1924)\n'
+                     '- Princeton reorganized → Westminster Seminary (1929) → OPC (1936)'),
          'refs': []},
     ]},
+    # The canon card's first paragraph glues two dated milestones; recast the
+    # whole development as a dated list plus the criteria.
+    'ch-012-development-of-the-canon-of-scriptur': {
+        'a': ('- **ca. 140** — Marcion\'s canon presents problems (i.e. '
+              'heresy) and a response is necessitated.\n'
+              '- **ca. 170-200** — The Muratorian [Fragment] Canon: the four '
+              'Gospels, the "Acts of all Apostles," and 13 of the Pauline '
+              'epistles (but not the anonymous Hebrews, 1 and 2 Peter, or '
+              'James).\n'
+              '- **Eusebius** (Ecclesiastical History) has 22 of 27 NT books; '
+              'some omissions are debated.\n'
+              '- **367** — Athanasius\' Easter letter includes all 27 books of '
+              'the NT.\n'
+              '- **397** — The Synod of Hippo affirms what we have today.\n'
+              '\n'
+              'Criteria for books: apostleship; recognition/use in the early '
+              'church; synthesis/agreement with the teachings in the church.'),
+    },
     'ch-088-trace-the-historical-roots-of-the-rp': {
+        'a': RPCES_TIMELINE,
         'summary': ('Machen\'s Westminster (1929) and the OPC (1936) → Bible Presbyterian '
                     'Church split (1937: eschatology, liberty, separatism — McIntire, '
                     'Buswell, Schaeffer) → EPC (1955; Covenant College and Covenant Seminary, '
@@ -272,6 +419,7 @@ CURATE = {
                     'received by the PCA in 1982, bringing both Covenant institutions.'),
     },
     'ch-089-when-where-and-why-did-the-pca-begin': {
+        'a': PCA_ORIGIN,
         'summary': ('In response to liberalism and lost mission in the PCUS, conservatives '
                     'organized (Presbyterian Journal 1942, PEF 1958, Concerned Presbyterians '
                     '1964, Presbyterian Churchmen United 1968), formed a steering committee '
@@ -367,7 +515,7 @@ def main():
                     continue
             if looks_like_term(blk):
                 term = clean(blk[0])
-                defn = norm_para(blk[1:]) if len(blk) > 1 else ''
+                defn = bulletize_def(blk[1:]) if len(blk) > 1 else ''
                 if defn:
                     add(gloss, term, defn)
             # else: stray (e.g. URL) — skip

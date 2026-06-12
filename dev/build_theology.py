@@ -465,11 +465,13 @@ CURATE = {
                     'that we are God\'s children (Eph 1:13-14)'),
     },
     'th-098-what-is-christian-liberty-explain': {
-        'summary': ('The freedom Christ purchased (WCF XX.1): from the guilt of sin, God\'s '
-                    'condemning wrath, and the curse of the law (Rom 8:1-2; Gal 3:13); free '
-                    'access to God (Eph 2:18); obedience from childlike love, not slavish '
-                    'fear; under the gospel, freedom too from the ceremonial yoke — and from '
-                    'the judgment of others (Rom 14:4).'),
+        'summary': ('The freedom Christ purchased (WCF XX.1):\n'
+                    '- from the guilt of sin, God\'s condemning wrath, and the curse of '
+                    'the law (Rom 8:1-2; Gal 3:13)\n'
+                    '- free access to God (Eph 2:18)\n'
+                    '- obedience from childlike love, not slavish fear\n'
+                    '- under the gospel, freedom too from the ceremonial yoke — and from '
+                    'the judgment of others (Rom 14:4)'),
     },
     'th-113-under-what-circumstances-is-divorc': {
         'summary': ('Nothing but adultery (Mat 19:9) or willful desertion that neither church '
@@ -561,11 +563,13 @@ CURATE = {
     },
     'th-145-what-is-your-view-of-the-millenniu': {
         'strip_after': '2 Other Questions',
-        'summary': ('Amillennial: the NT interprets the OT\'s pictures of the Messianic age '
-                    '(the church is the new Israel); Revelation 20\'s millennium is the '
-                    'present heavenly reign of Christ with the saints between his comings, '
-                    'Satan bound at the cross; "all Israel will be saved" (Rom 11:26) means '
-                    'the totality of the elect among Israel gathered throughout history.'),
+        'summary': ('Amillennial:\n'
+                    '- the NT interprets the OT\'s pictures of the Messianic age (the '
+                    'church is the new Israel)\n'
+                    '- Revelation 20\'s millennium is the present heavenly reign of Christ '
+                    'with the saints between his comings, Satan bound at the cross\n'
+                    '- "all Israel will be saved" (Rom 11:26) means the totality of the '
+                    'elect among Israel gathered throughout history'),
     },
 }
 

@@ -29,12 +29,14 @@ with PCA ordination study material.
 
 ## 3. Source material (in `source_materials/`)
 
-Extracted text lives in `source_materials/extracted/*.txt` — that is what the
-`dev/build_*.py` generators read. The original `.doc/.docx` files and the
-Westminster PDFs were removed from the repo in Phase 16 to keep it small
-(`.gitignore` now blocks binaries); restore them locally only if you need to
-re-extract or re-run `dev/build_catechisms.py` / `dev/build_wcf.py`. The four
-docs map onto the six PCA exam areas:
+**Removed from the repo in Phase 16/16b to keep it small** (`.gitignore` now
+blocks binaries): the original `.doc/.docx` files, the Westminster PDFs, and
+the whole `source_materials/` tree including `extracted/*.txt` — the inputs
+the `dev/build_*.py` generators read. The generated `js/data/**` files are
+checked in and are the working source of truth; to re-run a builder, restore
+its inputs from git history first (e.g.
+`git show <pre-Phase-16-sha>:"source_materials/extracted/church_history.txt"`).
+The four docs map onto the six PCA exam areas:
 
 | Subject area | Source file(s) | Notes |
 |---|---|---|
@@ -220,6 +222,40 @@ KEEP modules + the HTML shell):**
 
       **Release ritual:** bump `?v=N` in `index.html` AND `CACHE` in `sw.js`
       together so returning users auto-refresh onto the new version.
+- [x] **Phase 16b — Semicolon-wall review + quoted/labeled BCO bundle +
+      deeper slimming.** (Same release as 16, `?v=27`.)
+      - **BCO comprehensive deck replaced** by the user's
+        `pca_bco_comprehensive_quoted_labeled_bundle.zip` (committed to main):
+        same 165 cards, but answers explicitly mark quoted BCO wording.
+        Adapted on import (one-shot transform): "Direct quotation:" →
+        `BCO:` provenance callouts (`BCO` added to `STANDARD_LABELS` and
+        `LABEL_STRIP_RE` in `answer.js`, label "Book of Church Order (quoted
+        wording)"); redundant "Paraphrase:" prefix dropped; nine
+        semicolon-chained answers recast as lists (033 deacon duties, 039
+        courts, 043 Session powers, 048 Presbytery powers, 053 GA business,
+        066 licensure exams, 079 officer exams, 090 discipline steps as an
+        ordered list, 127 dissent/protest/objection).
+      - **Semicolon-wall review (user-reported, e.g. the Anselm card):**
+        multi-part answers glued with semicolons now render as bullets.
+        Church-history glossary cards (Key People etc.) are bulletized
+        structurally — `bulletize_def()` in `dev/build_church_history.py`
+        keeps the "epithet—dates; role" first line as the intro, makes each
+        further source fact a bullet, and splits top-level '; ' chains
+        (semicolons inside parens/quotes protected); curated rebuilds for
+        ch-003 (solas), ch-012 (canon), ch-063 (Luther), ch-088 (RPCES
+        timeline), ch-089 (PCA origin). Sacraments: sac-004 bulletized,
+        sac-011 four-views given bold per-view headers (hand-edited in the
+        generated file — the sacraments builder has no curation layer).
+        Five enumeration teasers became bullet lists (ch-011, ch-087b,
+        ht-004, th-098, th-145); compact prose teasers and verbatim WCF
+        quotations keep their semicolons. New `SEMICOLON_CHAIN` audit class
+        in `dev/audit.mjs` (≥3 top-level semicolons in a plain line; first
+        lines, quotes, and provenance-labeled lines exempt) — baseline clean.
+      - **Deeper slimming (user-requested):** both BCO bundle zips and the
+        whole `source_materials/` tree (extracted `.txt` included) removed.
+        The generated `js/data/**` files are now the working source of truth;
+        builder inputs are recoverable from git history when a re-run is
+        needed.
 - [x] **Phase 16 — BCO comprehensive deck + grouped selector + repo slimming.**
       Release `?v=27`/`pca-v27`.
       - **BCO comprehensive sub-decks:** user-supplied bundle
@@ -229,7 +265,7 @@ KEEP modules + the HTML shell):**
         subject): Foundations; Membership/Mission/Officers; Courts; Vocation &
         Ordination; Discipline; Review/Appeals/Jurisdiction; Directory for
         Worship ×2. Validated + audited clean; wired into `index.html` and the
-        `sw.js` precache.
+        `sw.js` precache. (Superseded by the quoted/labeled bundle in 16b.)
       - **Collapsible sub-deck selector:** the selector's flat sub-deck grid
         (22 sets) became one `<details class="subdeck-group">` per subject
         (duff-style outline) with a selected-count summary line; open state

@@ -1,7 +1,11 @@
 // PCA Ordination & Licensure Study — BCO comprehensive supplemental cards.
-// Generated from the 2025 PCA Book of Church Order for educational ordination study.
-// Copyright guardrail: answers are paraphrases with only occasional short BCO phrases; verify exact wording against the official BCO.
-// Drop this file at js/data/subjects/bco_comprehensive.js and add it after bco_governance.js in index.html.
+// Source: user-supplied "quoted/labeled" bundle generated from the 2025 PCA
+// Book of Church Order for educational ordination study. Adapted for this app:
+// "Direct quotation:" lines became "BCO:" provenance callouts (renderAnswer),
+// the redundant "Paraphrase:" prefix is dropped (all non-quoted BCO content
+// here is paraphrase by policy), and semicolon-chained multi-part answers are
+// recast as lists. Only very short BCO wording cues are quoted; verify exact
+// wording against the official BCO (pcaac.org).
 
 (function (global) {
   const SETS = {
@@ -13,20 +17,21 @@
       {
         "id": "bco-comp-001",
         "q": "What is the governing theme of the BCO preface?",
-        "a": "Christ is the only King and Head of the Church. The church’s doctrine, government, discipline, and worship are received from Him by Scripture, not invented by church courts.",
+        "a": "BCO: “only Lawgiver in Zion.”\nChrist is the only King and Head of the Church. The church’s doctrine, government, discipline, and worship are received from Him by Scripture, not invented by church courts.",
         "refs": [
           "BCO Preface I"
         ],
         "summary": "Christ rules His church by Word and Spirit; all church order is subordinate to Scripture.",
         "tags": [
           "form-government",
-          "principles"
+          "principles",
+          "direct-quote"
         ]
       },
       {
         "id": "bco-comp-002",
         "q": "What does the BCO mean by saying church power is “ministerial and declarative”?",
-        "a": "Church courts minister and declare what Christ has revealed in Scripture. They do not create new divine law or bind the conscience apart from the Word.",
+        "a": "BCO: “ministerial and declarative.”\nChurch courts minister and declare what Christ has revealed in Scripture. They do not create new divine law or bind the conscience apart from the Word.",
         "refs": [
           "BCO Preface II.7",
           "BCO 11-2"
@@ -34,7 +39,8 @@
         "summary": "Church courts apply Scripture; they do not legislate for the conscience.",
         "tags": [
           "principles",
-          "courts"
+          "courts",
+          "direct-quote"
         ]
       },
       {
@@ -46,7 +52,8 @@
         ],
         "summary": "Scripture is supreme; the Constitution contains the Standards and BCO.",
         "tags": [
-          "constitution"
+          "constitution",
+          "paraphrase"
         ]
       },
       {
@@ -58,19 +65,21 @@
         ],
         "summary": "Five heads: church, members, officers, courts, orders.",
         "tags": [
-          "form-government"
+          "form-government",
+          "paraphrase"
         ]
       },
       {
         "id": "bco-comp-005",
         "q": "How does BCO 1 describe the visible church?",
-        "a": "Christ erected the visible church for gathering and perfecting the saints; it is His visible kingdom of grace and is one across all ages.",
+        "a": "BCO: “visible kingdom of grace.”\nChrist erected the visible church for gathering and perfecting the saints; it is His visible kingdom of grace and is one across all ages.",
         "refs": [
           "BCO 1-2"
         ],
         "summary": "The church is Christ’s visible kingdom of grace, one in all ages.",
         "tags": [
-          "church"
+          "church",
+          "direct-quote"
         ]
       },
       {
@@ -84,7 +93,8 @@
         "summary": "Professing believers and their children.",
         "tags": [
           "membership",
-          "church"
+          "church",
+          "paraphrase"
         ]
       },
       {
@@ -97,7 +107,8 @@
         ],
         "summary": "The ordinary officers are elders and deacons; elders include teaching and ruling elders.",
         "tags": [
-          "officers"
+          "officers",
+          "paraphrase"
         ]
       },
       {
@@ -111,7 +122,8 @@
         "summary": "Church courts are mutually related organs of one church, not independent tribunals.",
         "tags": [
           "courts",
-          "polity"
+          "polity",
+          "paraphrase"
         ]
       },
       {
@@ -123,7 +135,8 @@
         ],
         "summary": "Presbyterian order perfects church order but is not of the essence of being a true church.",
         "tags": [
-          "polity"
+          "polity",
+          "paraphrase"
         ]
       },
       {
@@ -135,19 +148,21 @@
         ],
         "summary": "True branches maintain Word and Sacraments in fundamental integrity.",
         "tags": [
-          "ecclesiology"
+          "ecclesiology",
+          "paraphrase"
         ]
       },
       {
         "id": "bco-comp-011",
         "q": "What is the twofold distinction in ecclesiastical power?",
-        "a": "The power of order is exercised severally by officers in preaching, sacraments, reproof, visitation, and comfort. The power of jurisdiction is exercised jointly in church courts.",
+        "a": "BCO: “power of order.”\nThe power of order is exercised severally by officers in preaching, sacraments, reproof, visitation, and comfort. The power of jurisdiction is exercised jointly in church courts.",
         "refs": [
           "BCO 3-2"
         ],
         "summary": "Order: officer acts severally. Jurisdiction: courts act jointly.",
         "tags": [
-          "church-power"
+          "church-power",
+          "direct-quote"
         ]
       },
       {
@@ -159,7 +174,8 @@
         ],
         "summary": "Proclaim, administer, and enforce Christ’s revealed law.",
         "tags": [
-          "church-power"
+          "church-power",
+          "paraphrase"
         ]
       },
       {
@@ -171,7 +187,8 @@
         ],
         "summary": "Church: spiritual. State: includes force.",
         "tags": [
-          "church-state"
+          "church-state",
+          "paraphrase"
         ]
       },
       {
@@ -183,7 +200,8 @@
         ],
         "summary": "A local congregation ordered for worship, godly living, and Christ’s government.",
         "tags": [
-          "particular-church"
+          "particular-church",
+          "paraphrase"
         ]
       },
       {
@@ -196,7 +214,8 @@
         ],
         "summary": "Local jurisdiction is lodged in the Session.",
         "tags": [
-          "session"
+          "session",
+          "paraphrase"
         ]
       },
       {
@@ -209,7 +228,8 @@
         "summary": "BCO 4-4 is the compact map of ordinary church ordinances.",
         "tags": [
           "worship",
-          "ordinances"
+          "ordinances",
+          "paraphrase"
         ]
       }
     ]
@@ -229,7 +249,8 @@
         ],
         "summary": "Mission churches lack a permanent governing body and aim toward organization.",
         "tags": [
-          "mission-church"
+          "mission-church",
+          "paraphrase"
         ]
       },
       {
@@ -242,7 +263,8 @@
         "summary": "Ordinarily, Presbytery establishes the mission church.",
         "tags": [
           "mission-church",
-          "presbytery"
+          "presbytery",
+          "paraphrase"
         ]
       },
       {
@@ -254,7 +276,8 @@
         ],
         "summary": "Evangelist, mother Session, or temporary-session commission.",
         "tags": [
-          "mission-church"
+          "mission-church",
+          "paraphrase"
         ]
       },
       {
@@ -267,7 +290,8 @@
         "summary": "Petition, Presbytery approval, organizing commission, officers, covenant, declaration.",
         "tags": [
           "mission-church",
-          "particularization"
+          "particularization",
+          "paraphrase"
         ]
       },
       {
@@ -280,7 +304,8 @@
         "summary": "Covenant children are non-communing members.",
         "tags": [
           "membership",
-          "children"
+          "children",
+          "paraphrase"
         ]
       },
       {
@@ -292,7 +317,8 @@
         ],
         "summary": "Profession, Baptism, and admission to the Table.",
         "tags": [
-          "membership"
+          "membership",
+          "paraphrase"
         ]
       },
       {
@@ -304,7 +330,8 @@
         ],
         "summary": "Communing members have all rights and privileges.",
         "tags": [
-          "membership"
+          "membership",
+          "paraphrase"
         ]
       },
       {
@@ -316,7 +343,8 @@
         ],
         "summary": "Two classes of ordinary office: elders and deacons.",
         "tags": [
-          "officers"
+          "officers",
+          "paraphrase"
         ]
       },
       {
@@ -329,7 +357,8 @@
         ],
         "summary": "Elders rule and oversee; deacons serve mercy and practical needs.",
         "tags": [
-          "officers"
+          "officers",
+          "paraphrase"
         ]
       },
       {
@@ -341,7 +370,8 @@
         ],
         "summary": "Do not title unordained persons as ordained officers.",
         "tags": [
-          "officers"
+          "officers",
+          "paraphrase"
         ]
       },
       {
@@ -353,7 +383,8 @@
         ],
         "summary": "Learning, life, doctrine, teaching aptitude, household, reputation, purity.",
         "tags": [
-          "elder"
+          "elder",
+          "paraphrase"
         ]
       },
       {
@@ -365,7 +396,8 @@
         ],
         "summary": "Elders shepherd doctrine, morals, discipline, visitation, instruction, prayer, and example.",
         "tags": [
-          "elder"
+          "elder",
+          "paraphrase"
         ]
       },
       {
@@ -377,7 +409,8 @@
         ],
         "summary": "Teaching elders preach the Word and administer sacraments.",
         "tags": [
-          "teaching-elder"
+          "teaching-elder",
+          "paraphrase"
         ]
       },
       {
@@ -390,7 +423,8 @@
         "summary": "Same office and court authority; different functions.",
         "tags": [
           "elder",
-          "parity"
+          "parity",
+          "paraphrase"
         ]
       },
       {
@@ -403,31 +437,34 @@
         "summary": "Evangelists may receive extraordinary delegated powers for mission-church work.",
         "tags": [
           "evangelist",
-          "mission-church"
+          "mission-church",
+          "paraphrase"
         ]
       },
       {
         "id": "bco-comp-032",
         "q": "What is the character of the deacon’s office?",
-        "a": "It is an ordinary, perpetual office of sympathy and service, reflecting the communion of saints and mutual help in need.",
+        "a": "BCO: “sympathy and service.”\nIt is an ordinary, perpetual office of sympathy and service, reflecting the communion of saints and mutual help in need.",
         "refs": [
           "BCO 9-1"
         ],
         "summary": "Deacon = sympathy, service, mercy.",
         "tags": [
-          "deacon"
+          "deacon",
+          "direct-quote"
         ]
       },
       {
         "id": "bco-comp-033",
         "q": "What are the chief duties of deacons?",
-        "a": "To minister to the needy, sick, friendless, and distressed; promote liberality; collect and distribute gifts; and care for church property under Session oversight.",
+        "a": "Deacons are to:\n- minister to the needy, sick, friendless, and distressed\n- promote liberality\n- collect and distribute gifts\n- care for church property under Session oversight",
         "refs": [
           "BCO 9-2"
         ],
         "summary": "Mercy, liberality, collections, distribution, and property care.",
         "tags": [
-          "deacon"
+          "deacon",
+          "paraphrase"
         ]
       },
       {
@@ -439,7 +476,8 @@
         ],
         "summary": "A local diaconate is organized as a Board under Session oversight.",
         "tags": [
-          "deacon"
+          "deacon",
+          "paraphrase"
         ]
       },
       {
@@ -452,7 +490,8 @@
         "summary": "Deacon assistants may be appointed but are not ordained officers.",
         "tags": [
           "deacon",
-          "mercy"
+          "mercy",
+          "paraphrase"
         ]
       }
     ]
@@ -471,7 +510,8 @@
         ],
         "summary": "Session, Presbytery, General Assembly.",
         "tags": [
-          "courts"
+          "courts",
+          "paraphrase"
         ]
       },
       {
@@ -484,7 +524,8 @@
         ],
         "summary": "Courts have moderators and clerks.",
         "tags": [
-          "courts"
+          "courts",
+          "paraphrase"
         ]
       },
       {
@@ -498,19 +539,21 @@
         "summary": "Church courts exercise spiritual, not civil, jurisdiction.",
         "tags": [
           "courts",
-          "jurisdiction"
+          "jurisdiction",
+          "paraphrase"
         ]
       },
       {
         "id": "bco-comp-039",
         "q": "How do the three courts differ in sphere?",
-        "a": "Session governs a single church; Presbytery governs what is common to ministers, Sessions, and churches within a district; General Assembly governs matters concerning the whole church.",
+        "a": "BCO: “regular gradation.”\n- **Session** governs a single church.\n- **Presbytery** governs what is common to ministers, Sessions, and churches within a district.\n- **General Assembly** governs matters concerning the whole church.",
         "refs": [
           "BCO 11-4"
         ],
         "summary": "Local, regional, whole-church spheres.",
         "tags": [
-          "courts"
+          "courts",
+          "direct-quote"
         ]
       },
       {
@@ -522,7 +565,8 @@
         ],
         "summary": "Pastor/associate pastors plus ruling elders; assistants no vote.",
         "tags": [
-          "session"
+          "session",
+          "paraphrase"
         ]
       },
       {
@@ -535,7 +579,8 @@
         "summary": "With pastor: pastor + two REs if 4+ REs; pastor + one RE if fewer.",
         "tags": [
           "session",
-          "quorum"
+          "quorum",
+          "paraphrase"
         ]
       },
       {
@@ -548,19 +593,21 @@
         "summary": "No pastor: 3 if 5+ REs; 2 if fewer; one RE is not a Session.",
         "tags": [
           "session",
-          "quorum"
+          "quorum",
+          "paraphrase"
         ]
       },
       {
         "id": "bco-comp-043",
         "q": "What are some specific powers of the Session?",
-        "a": "The Session receives, dismisses, disciplines, and oversees members; examines, ordains, and installs ruling elders and deacons; reviews deacon records; approves the budget; controls worship and church property uses; calls congregational meetings; and appoints representatives to higher courts.",
+        "a": "The Session:\n- receives, dismisses, disciplines, and oversees members\n- examines, ordains, and installs ruling elders and deacons\n- reviews deacon records\n- approves the budget\n- controls worship and church property uses\n- calls congregational meetings\n- appoints representatives to higher courts",
         "refs": [
           "BCO 12-5"
         ],
         "summary": "Membership, discipline, officers, worship, budget, property uses, meetings, representatives.",
         "tags": [
-          "session"
+          "session",
+          "paraphrase"
         ]
       },
       {
@@ -575,7 +622,8 @@
         "summary": "At least quarterly; records annually reviewed by Presbytery.",
         "tags": [
           "session",
-          "records"
+          "records",
+          "paraphrase"
         ]
       },
       {
@@ -587,7 +635,8 @@
         ],
         "summary": "Regional court of TEs and RE representatives of churches.",
         "tags": [
-          "presbytery"
+          "presbytery",
+          "paraphrase"
         ]
       },
       {
@@ -600,7 +649,8 @@
         "summary": "Two REs for first 350; one more per additional 500 or fraction.",
         "tags": [
           "presbytery",
-          "representation"
+          "representation",
+          "paraphrase"
         ]
       },
       {
@@ -613,19 +663,21 @@
         "summary": "3 TEs + 3 REs minimum.",
         "tags": [
           "presbytery",
-          "quorum"
+          "quorum",
+          "paraphrase"
         ]
       },
       {
         "id": "bco-comp-048",
         "q": "What are core powers of Presbytery?",
-        "a": "Presbytery oversees ministers, candidates, Sessions, and churches; examines and receives ministers; licenses, ordains, installs, transfers, judges, and removes teaching elders; organizes and dissolves churches; reviews Session records; resolves references, appeals, and complaints; and promotes mission.",
+        "a": "Presbytery:\n- oversees ministers, candidates, Sessions, and churches\n- examines and receives ministers\n- licenses, ordains, installs, transfers, judges, and removes teaching elders\n- organizes and dissolves churches\n- reviews Session records\n- resolves references, appeals, and complaints\n- promotes mission",
         "refs": [
           "BCO 13-9"
         ],
         "summary": "Presbytery governs what is common to ministers, Sessions, and churches.",
         "tags": [
-          "presbytery"
+          "presbytery",
+          "paraphrase"
         ]
       },
       {
@@ -638,7 +690,8 @@
         "summary": "Transfer exams include experience, character/family, theology, sacraments, government, and stated differences.",
         "tags": [
           "presbytery",
-          "ministers"
+          "ministers",
+          "paraphrase"
         ]
       },
       {
@@ -650,7 +703,8 @@
         ],
         "summary": "The highest court and bond of union among PCA churches.",
         "tags": [
-          "general-assembly"
+          "general-assembly",
+          "paraphrase"
         ]
       },
       {
@@ -662,7 +716,8 @@
         ],
         "summary": "TEs in good standing plus RE commissioners from Sessions.",
         "tags": [
-          "general-assembly"
+          "general-assembly",
+          "paraphrase"
         ]
       },
       {
@@ -675,19 +730,21 @@
         "summary": "100 commissioners: 50 TEs, 50 REs, one-third of Presbyteries.",
         "tags": [
           "general-assembly",
-          "quorum"
+          "quorum",
+          "paraphrase"
         ]
       },
       {
         "id": "bco-comp-053",
         "q": "What kinds of business may General Assembly handle?",
-        "a": "Appeals, references, and complaints; doctrinal and disciplinary controversies; review of Presbytery records; measures for church growth; erecting, uniting, and dividing Presbyteries; superintending agencies; suppressing schism; correspondence with other churches; and constitutional amendment proposals.",
+        "a": "- appeals, references, and complaints\n- doctrinal and disciplinary controversies\n- review of Presbytery records\n- measures for church growth\n- erecting, uniting, and dividing Presbyteries\n- superintending agencies\n- suppressing schism\n- correspondence with other churches\n- constitutional amendment proposals",
         "refs": [
           "BCO 14-6"
         ],
         "summary": "GA handles whole-church doctrine, discipline, review, mission, presbyteries, agencies, correspondence, amendments.",
         "tags": [
-          "general-assembly"
+          "general-assembly",
+          "paraphrase"
         ]
       },
       {
@@ -699,7 +756,8 @@
         ],
         "summary": "GA actions deserve serious consideration; judicial decisions bind parties.",
         "tags": [
-          "general-assembly"
+          "general-assembly",
+          "paraphrase"
         ]
       },
       {
@@ -711,7 +769,8 @@
         ],
         "summary": "Committee reports; commission acts for the court.",
         "tags": [
-          "commissions"
+          "commissions",
+          "paraphrase"
         ]
       },
       {
@@ -724,7 +783,8 @@
         ],
         "summary": "Commissions may act in ordination, installation, testimony, visitation, organization, and judicial matters.",
         "tags": [
-          "commissions"
+          "commissions",
+          "paraphrase"
         ]
       },
       {
@@ -737,7 +797,8 @@
         "summary": "At least 2 TEs + 2 REs; judicial/ordination quorum at least the same.",
         "tags": [
           "commissions",
-          "quorum"
+          "quorum",
+          "paraphrase"
         ]
       },
       {
@@ -750,7 +811,8 @@
         "summary": "SJC handles GA judicial cases under BCO 15.",
         "tags": [
           "sjc",
-          "general-assembly"
+          "general-assembly",
+          "paraphrase"
         ]
       }
     ]
@@ -769,7 +831,8 @@
         ],
         "summary": "Inward call, church recognition, court judgment.",
         "tags": [
-          "vocation"
+          "vocation",
+          "paraphrase"
         ]
       },
       {
@@ -783,7 +846,8 @@
         "summary": "Election and court approval are ordinary parts of calling.",
         "tags": [
           "vocation",
-          "election"
+          "election",
+          "paraphrase"
         ]
       },
       {
@@ -796,7 +860,8 @@
         ],
         "summary": "Ordination authoritatively admits to office after testing and election/call.",
         "tags": [
-          "ordination"
+          "ordination",
+          "paraphrase"
         ]
       },
       {
@@ -811,7 +876,8 @@
         "summary": "Ordination once; installation for a specific charge.",
         "tags": [
           "ordination",
-          "installation"
+          "installation",
+          "paraphrase"
         ]
       },
       {
@@ -823,7 +889,8 @@
         ],
         "summary": "A candidate is a communing member under Presbytery care for ministry preparation.",
         "tags": [
-          "candidates"
+          "candidates",
+          "paraphrase"
         ]
       },
       {
@@ -836,7 +903,8 @@
         ],
         "summary": "Membership, Session endorsement, application, personal appearance, examination.",
         "tags": [
-          "candidates"
+          "candidates",
+          "paraphrase"
         ]
       },
       {
@@ -848,19 +916,21 @@
         ],
         "summary": "Licensure authorizes regular preaching before ordination.",
         "tags": [
-          "licensure"
+          "licensure",
+          "paraphrase"
         ]
       },
       {
         "id": "bco-comp-066",
         "q": "What examinations are required for licensure?",
-        "a": "Christian experience and inward call; theology; English Bible; the BCO; oral examination in the same areas; plus a written and delivered sermon.",
+        "a": "- Christian experience and inward call\n- theology\n- English Bible\n- the BCO\n- oral examination in the same areas\n- plus a written and delivered sermon",
         "refs": [
           "BCO 19-2"
         ],
         "summary": "Experience/call, theology, Bible, BCO, oral exam, sermon.",
         "tags": [
-          "licensure"
+          "licensure",
+          "paraphrase"
         ]
       },
       {
@@ -872,7 +942,8 @@
         ],
         "summary": "At least one year testing gifts and duties.",
         "tags": [
-          "internship"
+          "internship",
+          "paraphrase"
         ]
       },
       {
@@ -886,7 +957,8 @@
         "summary": "Congregation elects; Presbytery approves and installs.",
         "tags": [
           "pastor",
-          "congregation"
+          "congregation",
+          "paraphrase"
         ]
       },
       {
@@ -900,7 +972,8 @@
         "summary": "Search committees recommend; congregations vote; Presbytery approves.",
         "tags": [
           "pastor",
-          "search-committee"
+          "search-committee",
+          "paraphrase"
         ]
       },
       {
@@ -913,7 +986,8 @@
         "summary": "Pastoral election is by congregational ballot, ordinarily majority.",
         "tags": [
           "pastor",
-          "election"
+          "election",
+          "paraphrase"
         ]
       },
       {
@@ -926,7 +1000,8 @@
         "summary": "Ordination trials cover experience, doctrine, Bible, sacraments, government, history, languages, sermon/papers.",
         "tags": [
           "ordination",
-          "exams"
+          "exams",
+          "paraphrase"
         ]
       },
       {
@@ -940,7 +1015,8 @@
         "summary": "The court, not the candidate alone, judges stated differences.",
         "tags": [
           "subscription",
-          "ordination"
+          "ordination",
+          "paraphrase"
         ]
       },
       {
@@ -953,7 +1029,8 @@
         "summary": "TE vows bind him to Scripture, Westminster Standards, and PCA polity.",
         "tags": [
           "ordination",
-          "vows"
+          "vows",
+          "paraphrase"
         ]
       },
       {
@@ -966,7 +1043,8 @@
         "summary": "Submission, zeal, faithfulness, and pastoral charge.",
         "tags": [
           "ordination",
-          "vows"
+          "vows",
+          "paraphrase"
         ]
       },
       {
@@ -979,7 +1057,8 @@
         "summary": "Receive, heed, submit in the Lord, encourage, and support.",
         "tags": [
           "pastor",
-          "vows"
+          "vows",
+          "paraphrase"
         ]
       },
       {
@@ -993,7 +1072,8 @@
         ],
         "summary": "Congregation calls pastor/associate; Session calls assistant.",
         "tags": [
-          "pastoral-relations"
+          "pastoral-relations",
+          "paraphrase"
         ]
       },
       {
@@ -1005,7 +1085,8 @@
         ],
         "summary": "Presbytery has the final action on dissolution.",
         "tags": [
-          "pastoral-relations"
+          "pastoral-relations",
+          "paraphrase"
         ]
       },
       {
@@ -1021,19 +1102,21 @@
         "tags": [
           "ruling-elder",
           "deacon",
-          "election"
+          "election",
+          "paraphrase"
         ]
       },
       {
         "id": "bco-comp-079",
         "q": "What does the Session examine in ruling elder and deacon nominees?",
-        "a": "Christian experience, especially personal character; knowledge of doctrine, government, and discipline; the duties of the office; and willingness to assent to ordination questions.",
+        "a": "- Christian experience, especially personal character\n- knowledge of doctrine, government, and discipline\n- the duties of the office\n- willingness to assent to ordination questions",
         "refs": [
           "BCO 24-1"
         ],
         "summary": "Character, doctrine, polity, duties, vows.",
         "tags": [
-          "officer-exam"
+          "officer-exam",
+          "paraphrase"
         ]
       },
       {
@@ -1046,7 +1129,8 @@
         "summary": "RE/deacon vows parallel TE subscription and office faithfulness.",
         "tags": [
           "ordination",
-          "vows"
+          "vows",
+          "paraphrase"
         ]
       },
       {
@@ -1058,7 +1142,8 @@
         ],
         "summary": "Communing members vote.",
         "tags": [
-          "congregational-meetings"
+          "congregational-meetings",
+          "paraphrase"
         ]
       },
       {
@@ -1070,7 +1155,8 @@
         ],
         "summary": "One week notice; business limited to the notice.",
         "tags": [
-          "congregational-meetings"
+          "congregational-meetings",
+          "paraphrase"
         ]
       },
       {
@@ -1082,7 +1168,8 @@
         ],
         "summary": "Local church owns its property.",
         "tags": [
-          "property"
+          "property",
+          "paraphrase"
         ]
       },
       {
@@ -1094,7 +1181,8 @@
         ],
         "summary": "GA majority → 2/3 Presbyteries → next GA majority.",
         "tags": [
-          "amendment"
+          "amendment",
+          "paraphrase"
         ]
       },
       {
@@ -1107,7 +1195,8 @@
         "summary": "3/4 GA → 3/4 Presbyteries → next GA 3/4.",
         "tags": [
           "amendment",
-          "standards"
+          "standards",
+          "paraphrase"
         ]
       }
     ]
@@ -1126,20 +1215,22 @@
         ],
         "summary": "Discipline broadly trains and governs; narrowly, it is judicial process.",
         "tags": [
-          "discipline"
+          "discipline",
+          "paraphrase"
         ]
       },
       {
         "id": "bco-comp-087",
         "q": "Who is subject to church discipline?",
-        "a": "All baptized persons, because they are members of the church, are subject to discipline and entitled to its benefits.",
+        "a": "BCO: “exercise of authority.”\nAll baptized persons, because they are members of the church, are subject to discipline and entitled to its benefits.",
         "refs": [
           "BCO 27-2"
         ],
         "summary": "All baptized members are under discipline.",
         "tags": [
           "discipline",
-          "membership"
+          "membership",
+          "direct-quote"
         ]
       },
       {
@@ -1151,7 +1242,8 @@
         ],
         "summary": "Glory of God, purity of church, reclaiming sinners.",
         "tags": [
-          "discipline"
+          "discipline",
+          "paraphrase"
         ]
       },
       {
@@ -1165,20 +1257,22 @@
         "summary": "Discipline is remedial and pastoral, not merely punitive.",
         "tags": [
           "discipline",
-          "pastoral"
+          "pastoral",
+          "paraphrase"
         ]
       },
       {
         "id": "bco-comp-090",
         "q": "What are the ordinary Scriptural steps before court action?",
-        "a": "Instruction in the Word; private admonition; one or more witnesses if rejected; then the church acting through her court if rejection persists.",
+        "a": "1. Instruction in the Word\n2. private admonition\n3. one or more witnesses if rejected\n4. then the church acting through her court if rejection persists",
         "refs": [
           "BCO 27-5"
         ],
         "summary": "Word, admonition, witnesses, court action.",
         "tags": [
           "discipline",
-          "matthew-18"
+          "matthew-18",
+          "paraphrase"
         ]
       },
       {
@@ -1192,7 +1286,8 @@
         "summary": "Parents have primary responsibility, with Session oversight.",
         "tags": [
           "discipline",
-          "children"
+          "children",
+          "paraphrase"
         ]
       },
       {
@@ -1204,7 +1299,8 @@
         ],
         "summary": "An offense is doctrine or practice contrary to Scripture.",
         "tags": [
-          "offenses"
+          "offenses",
+          "paraphrase"
         ]
       },
       {
@@ -1218,7 +1314,8 @@
         "summary": "Private offenses ordinarily start privately before court action.",
         "tags": [
           "discipline",
-          "offenses"
+          "offenses",
+          "paraphrase"
         ]
       },
       {
@@ -1230,20 +1327,22 @@
         ],
         "summary": "Admonition, suspension, deposition, excommunication.",
         "tags": [
-          "censures"
+          "censures",
+          "paraphrase"
         ]
       },
       {
         "id": "bco-comp-095",
         "q": "What is admonition?",
-        "a": "A formal reproof by a church court, warning the offender and calling him to repentance.",
+        "a": "BCO: “judicial process.”\nA formal reproof by a church court, warning the offender and calling him to repentance.",
         "refs": [
           "BCO 30-2",
           "BCO 36"
         ],
         "summary": "Formal reproof and warning.",
         "tags": [
-          "censures"
+          "censures",
+          "direct-quote"
         ]
       },
       {
@@ -1256,7 +1355,8 @@
         ],
         "summary": "Temporary exclusion from privilege or office.",
         "tags": [
-          "censures"
+          "censures",
+          "paraphrase"
         ]
       },
       {
@@ -1269,7 +1369,8 @@
         ],
         "summary": "Deposition removes office; excommunication excludes from communion.",
         "tags": [
-          "censures"
+          "censures",
+          "paraphrase"
         ]
       },
       {
@@ -1282,7 +1383,8 @@
         ],
         "summary": "In process, the church prosecutes; the accused answers.",
         "tags": [
-          "process"
+          "process",
+          "paraphrase"
         ]
       },
       {
@@ -1294,7 +1396,8 @@
         ],
         "summary": "Investigate reports; institute process only on strong presumption of guilt.",
         "tags": [
-          "process"
+          "process",
+          "paraphrase"
         ]
       },
       {
@@ -1307,7 +1410,8 @@
         "summary": "Charge = offense; specifications = facts supporting it.",
         "tags": [
           "process",
-          "charges"
+          "charges",
+          "paraphrase"
         ]
       },
       {
@@ -1321,7 +1425,8 @@
         "summary": "Notice, preparation, objections, representation, evidence, appeal.",
         "tags": [
           "process",
-          "rights"
+          "rights",
+          "paraphrase"
         ]
       },
       {
@@ -1334,7 +1439,8 @@
         ],
         "summary": "Proper citation matters; refusal does not necessarily stop process.",
         "tags": [
-          "process"
+          "process",
+          "paraphrase"
         ]
       },
       {
@@ -1347,7 +1453,8 @@
         "summary": "Judicial fairness includes opportunity to object to partial judges.",
         "tags": [
           "process",
-          "court-members"
+          "court-members",
+          "paraphrase"
         ]
       },
       {
@@ -1361,7 +1468,8 @@
         "summary": "Session ordinarily tries members of the local church.",
         "tags": [
           "session",
-          "process"
+          "process",
+          "paraphrase"
         ]
       },
       {
@@ -1374,7 +1482,8 @@
         "summary": "Presbytery tries its ministers.",
         "tags": [
           "presbytery",
-          "process"
+          "process",
+          "paraphrase"
         ]
       },
       {
@@ -1387,7 +1496,8 @@
         "summary": "Ministerial process belongs to Presbytery and may include temporary restrictions.",
         "tags": [
           "minister",
-          "process"
+          "process",
+          "paraphrase"
         ]
       },
       {
@@ -1399,7 +1509,8 @@
         ],
         "summary": "Evidence must be competent, relevant, and fairly received.",
         "tags": [
-          "evidence"
+          "evidence",
+          "paraphrase"
         ]
       },
       {
@@ -1411,7 +1522,8 @@
         ],
         "summary": "More than one witness, or one plus corroboration.",
         "tags": [
-          "evidence"
+          "evidence",
+          "paraphrase"
         ]
       },
       {
@@ -1423,7 +1535,8 @@
         ],
         "summary": "Witnesses testify solemnly and may be examined and cross-examined.",
         "tags": [
-          "evidence"
+          "evidence",
+          "paraphrase"
         ]
       },
       {
@@ -1436,7 +1549,8 @@
         "summary": "Censures should be solemn, tender, and restorative.",
         "tags": [
           "censures",
-          "pastoral"
+          "pastoral",
+          "paraphrase"
         ]
       },
       {
@@ -1448,7 +1562,8 @@
         ],
         "summary": "Repentance and court action remove censure.",
         "tags": [
-          "restoration"
+          "restoration",
+          "paraphrase"
         ]
       },
       {
@@ -1460,7 +1575,8 @@
         ],
         "summary": "Some actions affect status without a trial or censure.",
         "tags": [
-          "cases-without-process"
+          "cases-without-process",
+          "paraphrase"
         ]
       },
       {
@@ -1474,7 +1590,8 @@
         "summary": "Office may be removed without censure in non-punitive cases.",
         "tags": [
           "office",
-          "cases-without-process"
+          "cases-without-process",
+          "paraphrase"
         ]
       },
       {
@@ -1488,7 +1605,8 @@
         "summary": "Some roll removals occur without judicial process.",
         "tags": [
           "membership",
-          "cases-without-process"
+          "cases-without-process",
+          "paraphrase"
         ]
       }
     ]
@@ -1507,7 +1625,8 @@
         ],
         "summary": "Records, reference, appeal, complaint, jurisdiction.",
         "tags": [
-          "higher-courts"
+          "higher-courts",
+          "paraphrase"
         ]
       },
       {
@@ -1520,7 +1639,8 @@
         ],
         "summary": "Annual record review protects order connectionally.",
         "tags": [
-          "review-control"
+          "review-control",
+          "paraphrase"
         ]
       },
       {
@@ -1532,7 +1652,8 @@
         ],
         "summary": "Review can lead to exceptions, corrections, and redress.",
         "tags": [
-          "review-control"
+          "review-control",
+          "paraphrase"
         ]
       },
       {
@@ -1544,7 +1665,8 @@
         ],
         "summary": "Reference = lower court asks higher court for advice/action.",
         "tags": [
-          "reference"
+          "reference",
+          "paraphrase"
         ]
       },
       {
@@ -1556,7 +1678,8 @@
         ],
         "summary": "References seek guidance before final disposition.",
         "tags": [
-          "reference"
+          "reference",
+          "paraphrase"
         ]
       },
       {
@@ -1568,7 +1691,8 @@
         ],
         "summary": "Appeal = judicial case carried up after judgment.",
         "tags": [
-          "appeal"
+          "appeal",
+          "paraphrase"
         ]
       },
       {
@@ -1580,7 +1704,8 @@
         ],
         "summary": "Appeal grounds challenge procedure, evidence, haste, injustice, or error.",
         "tags": [
-          "appeal"
+          "appeal",
+          "paraphrase"
         ]
       },
       {
@@ -1593,7 +1718,8 @@
         "summary": "Appeal deadline: 30 days.",
         "tags": [
           "appeal",
-          "deadlines"
+          "deadlines",
+          "paraphrase"
         ]
       },
       {
@@ -1605,7 +1731,8 @@
         ],
         "summary": "Affirm, reverse, render, or remand.",
         "tags": [
-          "appeal"
+          "appeal",
+          "paraphrase"
         ]
       },
       {
@@ -1617,7 +1744,8 @@
         ],
         "summary": "Complaint = challenge to a court action or decision.",
         "tags": [
-          "complaint"
+          "complaint",
+          "paraphrase"
         ]
       },
       {
@@ -1630,7 +1758,8 @@
         "summary": "Complaint deadline: 30 days.",
         "tags": [
           "complaint",
-          "deadlines"
+          "deadlines",
+          "paraphrase"
         ]
       },
       {
@@ -1644,20 +1773,22 @@
         "summary": "Appeal = judicial party after judgment; complaint = court act/decision.",
         "tags": [
           "appeal",
-          "complaint"
+          "complaint",
+          "paraphrase"
         ]
       },
       {
         "id": "bco-comp-127",
         "q": "What are dissents, protests, and objections?",
-        "a": "Ways members of a court record disagreement or objection to an action. Dissent records disagreement; protest records disagreement with reasons; objection may be entered to preserve a procedural or substantive objection.",
+        "a": "Ways members of a court record disagreement or objection to an action.\n- **Dissent** records disagreement.\n- **Protest** records disagreement with reasons.\n- **Objection** may be entered to preserve a procedural or substantive objection.",
         "refs": [
           "BCO 45"
         ],
         "summary": "Dissent/protest/objection preserve disagreement in the record.",
         "tags": [
           "courts",
-          "dissent"
+          "dissent",
+          "paraphrase"
         ]
       },
       {
@@ -1670,7 +1801,8 @@
         "summary": "Jurisdiction continues until the transfer is completed.",
         "tags": [
           "jurisdiction",
-          "membership"
+          "membership",
+          "paraphrase"
         ]
       },
       {
@@ -1683,7 +1815,8 @@
         "summary": "Temporary member with privileges except vote/office.",
         "tags": [
           "membership",
-          "jurisdiction"
+          "jurisdiction",
+          "paraphrase"
         ]
       },
       {
@@ -1696,7 +1829,8 @@
         "summary": "Dismissal certificates generally expire after one year.",
         "tags": [
           "jurisdiction",
-          "membership"
+          "membership",
+          "paraphrase"
         ]
       },
       {
@@ -1709,7 +1843,8 @@
         "summary": "Presbytery jurisdiction continues until reception.",
         "tags": [
           "jurisdiction",
-          "presbytery"
+          "presbytery",
+          "paraphrase"
         ]
       }
     ]
@@ -1729,7 +1864,8 @@
         "summary": "Directory is a serious guide; 56, 57, 58, and 59-3 are constitutional.",
         "tags": [
           "worship",
-          "directory"
+          "directory",
+          "paraphrase"
         ]
       },
       {
@@ -1741,7 +1877,8 @@
         ],
         "summary": "Worship is governed by Scripture.",
         "tags": [
-          "worship"
+          "worship",
+          "paraphrase"
         ]
       },
       {
@@ -1754,7 +1891,8 @@
         ],
         "summary": "Word, prayer, praise, sacraments, offerings, confession, and appointed occasions.",
         "tags": [
-          "worship"
+          "worship",
+          "paraphrase"
         ]
       },
       {
@@ -1768,7 +1906,8 @@
         "summary": "The Session oversees local worship.",
         "tags": [
           "worship",
-          "session"
+          "session",
+          "paraphrase"
         ]
       },
       {
@@ -1781,7 +1920,8 @@
         "summary": "Lord’s Day: worship, rest, necessity, mercy.",
         "tags": [
           "lord-day",
-          "worship"
+          "worship",
+          "paraphrase"
         ]
       },
       {
@@ -1794,7 +1934,8 @@
         "summary": "Order serves Scriptural worship and edification.",
         "tags": [
           "worship",
-          "order"
+          "order",
+          "paraphrase"
         ]
       },
       {
@@ -1808,7 +1949,8 @@
         "summary": "Scripture reading is an appointed element under Session oversight.",
         "tags": [
           "scripture-reading",
-          "worship"
+          "worship",
+          "paraphrase"
         ]
       },
       {
@@ -1822,7 +1964,8 @@
         "summary": "Congregational singing is under Session oversight and should edify.",
         "tags": [
           "singing",
-          "worship"
+          "worship",
+          "paraphrase"
         ]
       },
       {
@@ -1835,7 +1978,8 @@
         "summary": "Public prayer includes praise, confession, thanks, petitions, and intercession.",
         "tags": [
           "prayer",
-          "worship"
+          "worship",
+          "paraphrase"
         ]
       },
       {
@@ -1848,7 +1992,8 @@
         "summary": "Preaching explains and applies Scripture for conversion and edification.",
         "tags": [
           "preaching",
-          "worship"
+          "worship",
+          "paraphrase"
         ]
       },
       {
@@ -1862,7 +2007,8 @@
         "summary": "Session guards the pulpit.",
         "tags": [
           "preaching",
-          "session"
+          "session",
+          "paraphrase"
         ]
       },
       {
@@ -1876,7 +2022,8 @@
         "summary": "Offerings are worship and service.",
         "tags": [
           "offerings",
-          "worship"
+          "worship",
+          "paraphrase"
         ]
       },
       {
@@ -1889,7 +2036,8 @@
         "summary": "Confession of faith publicly teaches and unites the church.",
         "tags": [
           "confession",
-          "worship"
+          "worship",
+          "paraphrase"
         ]
       },
       {
@@ -1903,7 +2051,8 @@
         "summary": "Circumstances must serve Scriptural worship, not human invention.",
         "tags": [
           "worship",
-          "circumstances"
+          "circumstances",
+          "paraphrase"
         ]
       },
       {
@@ -1916,7 +2065,8 @@
         "summary": "Take the Directory seriously, while noting its constitutional distinctions.",
         "tags": [
           "worship",
-          "directory"
+          "directory",
+          "paraphrase"
         ]
       }
     ]
@@ -1937,7 +2087,8 @@
         "summary": "Teaching elders administer sacraments.",
         "tags": [
           "baptism",
-          "sacraments"
+          "sacraments",
+          "paraphrase"
         ]
       },
       {
@@ -1950,7 +2101,8 @@
         ],
         "summary": "Baptize professing believers and covenant children.",
         "tags": [
-          "baptism"
+          "baptism",
+          "paraphrase"
         ]
       },
       {
@@ -1963,7 +2115,8 @@
         "summary": "Parents profess covenant faith and promise Christian nurture.",
         "tags": [
           "baptism",
-          "vows"
+          "vows",
+          "paraphrase"
         ]
       },
       {
@@ -1976,7 +2129,8 @@
         "summary": "The church shares responsibility for covenant nurture.",
         "tags": [
           "baptism",
-          "congregation"
+          "congregation",
+          "paraphrase"
         ]
       },
       {
@@ -1989,7 +2143,8 @@
         "summary": "Session admits persons to the sacraments.",
         "tags": [
           "membership",
-          "sacraments"
+          "sacraments",
+          "paraphrase"
         ]
       },
       {
@@ -2002,7 +2157,8 @@
         "summary": "Sin, Christ, obedience, support, submission/purity/peace.",
         "tags": [
           "membership",
-          "vows"
+          "vows",
+          "paraphrase"
         ]
       },
       {
@@ -2014,7 +2170,8 @@
         ],
         "summary": "Profession, reaffirmation, transfer, and related Session actions.",
         "tags": [
-          "membership"
+          "membership",
+          "paraphrase"
         ]
       },
       {
@@ -2029,7 +2186,8 @@
         "summary": "Not the ignorant or scandalous; Session governs the invitation practice.",
         "tags": [
           "lord-supper",
-          "membership"
+          "membership",
+          "paraphrase"
         ]
       },
       {
@@ -2041,7 +2199,8 @@
         ],
         "summary": "Fence the Table with invitation, warning, and gospel direction.",
         "tags": [
-          "lord-supper"
+          "lord-supper",
+          "paraphrase"
         ]
       },
       {
@@ -2055,7 +2214,8 @@
         "summary": "Session determines frequency for edification.",
         "tags": [
           "lord-supper",
-          "session"
+          "session",
+          "paraphrase"
         ]
       },
       {
@@ -2068,7 +2228,8 @@
         ],
         "summary": "BCO 59-3 constitutionally defines marriage as man and woman.",
         "tags": [
-          "marriage"
+          "marriage",
+          "paraphrase"
         ]
       },
       {
@@ -2081,7 +2242,8 @@
         "summary": "Marriage requires lawful eligibility and biblical instruction.",
         "tags": [
           "marriage",
-          "pastoral"
+          "pastoral",
+          "paraphrase"
         ]
       },
       {
@@ -2094,7 +2256,8 @@
         "summary": "Visit the sick with Word, prayer, comfort, counsel, and hope.",
         "tags": [
           "pastoral-care",
-          "sick"
+          "sick",
+          "paraphrase"
         ]
       },
       {
@@ -2107,7 +2270,8 @@
         "summary": "Christian burial is sober, hopeful, and Word-centered.",
         "tags": [
           "burial",
-          "pastoral-care"
+          "pastoral-care",
+          "paraphrase"
         ]
       },
       {
@@ -2120,7 +2284,8 @@
         "summary": "Fasting humbles; thanksgiving gratefully acknowledges mercies.",
         "tags": [
           "fasting",
-          "thanksgiving"
+          "thanksgiving",
+          "paraphrase"
         ]
       },
       {
@@ -2133,7 +2298,8 @@
         "summary": "Courts may appoint church occasions; civil occasions are observed religiously under God.",
         "tags": [
           "fasting",
-          "thanksgiving"
+          "thanksgiving",
+          "paraphrase"
         ]
       },
       {
@@ -2147,7 +2313,8 @@
         "summary": "Home discipleship is essential to church discipline and nurture.",
         "tags": [
           "home",
-          "discipleship"
+          "discipleship",
+          "paraphrase"
         ]
       },
       {
@@ -2163,7 +2330,8 @@
         "summary": "Baptism, admission, and the Supper are constitutionally binding chapters.",
         "tags": [
           "sacraments",
-          "ordination-study"
+          "ordination-study",
+          "paraphrase"
         ]
       },
       {
@@ -2179,7 +2347,8 @@
         "summary": "Baptism, profession, Session admission, and discipline structure sacramental access.",
         "tags": [
           "sacraments",
-          "membership"
+          "membership",
+          "paraphrase"
         ]
       }
     ]
