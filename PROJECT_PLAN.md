@@ -280,6 +280,18 @@ KEEP modules + the HTML shell):**
         (bc-155 inline-quoted first passage; bc-153 parenthetical wrapped
         across blank lines) and authored explicit summaries for the two
         irregular cards (bc-149 section-grouped, bc-163 `//`-joined refs).
+- [x] **Phase 18 — Self-contained question wording (user-reported via the
+      Baptism card).** Two Baptism-deck questions only parsed in deck order
+      because they referred back to an earlier card: `sac-008` ("Where in
+      Scripture are *these terms* used?") and `sac-009` ("How does *the latter
+      term* relate to paedo-baptism?"), both leaning on `sac-007`'s sign/seal
+      definition. Out of order (Due/Weak/Shuffle decks, Quiz) they were
+      unreadable. Rewrote both to name their referents: `sac-008` → "Where in
+      Scripture are the terms \"sign\" and \"seal\" used of baptism?",
+      `sac-009` → "How does baptism as a sign and seal relate to paedo-baptism
+      (infant baptism)?". Hand-edited in the generated `sacraments.js` (the
+      sacraments builder has no curation layer); ids unchanged so SRS progress
+      survives. Gates clean (`validate` 0 problems, `audit` baseline 8).
       deeper slimming.** (Same release as 16, `?v=27`.)
       - **BCO comprehensive deck replaced** by the user's
         `pca_bco_comprehensive_quoted_labeled_bundle.zip` (committed to main):

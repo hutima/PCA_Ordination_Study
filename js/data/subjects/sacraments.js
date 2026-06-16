@@ -63,13 +63,13 @@
       },
       {
         "id": "sac-008-where-in-scripture-are-these-terms-used",
-        "q": "Where in Scripture are these terms used?",
+        "q": "Where in Scripture are the terms \"sign\" and \"seal\" used of baptism?",
         "a": "The terms sign and seal are used in Romans 4:11-12, Abraham received the sign of circumcision, the seal of righteousness by faith; Ephesians 1:13.",
         "refs": []
       },
       {
         "id": "sac-009-how-does-the-latter-term-relate-to-paedo",
-        "q": "How does the latter term relate to paedo-baptism?",
+        "q": "How does baptism as a sign and seal relate to paedo-baptism (infant baptism)?",
         "a": "As the sign and seal of the Old Covenant was circumcision, the sign and seal of the New Covenant is baptism, cf. Romans 4:11-12 and Col. 2:11-12; cf. 1 Cor. 7:14",
         "refs": []
       },
