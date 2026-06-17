@@ -5,7 +5,7 @@
 // install a fresh worker, which the page promotes immediately (see the
 // registration block in js/app/pca.js) so users auto-refresh onto the new
 // version without a manual reload.
-const CACHE = 'pca-v32';
+const CACHE = 'pca-v33';
 
 const PRECACHE = [
   './',
@@ -26,6 +26,7 @@ const PRECACHE = [
   'js/utils/markdown.js',
   'js/utils/text.js',
   'js/utils/helpers.js',
+  'js/utils/clickShield.js',
   'js/domain/srs/constants.js',
   'js/domain/srs/scheduler.js',
   'js/domain/srs/confidence.js',

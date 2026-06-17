@@ -49,17 +49,17 @@ html[data-font-family="sans"] {
 .qa-card::after  { bottom: 12px; right: 12px; border-width: 0 1px 1px 0; }
 
 .qa-deck-label {
-  font-family: var(--font-display); font-size: 11px; letter-spacing: 2px;
+  font-family: var(--font-display); font-size: calc((11px) * var(--text-scale, 1)); letter-spacing: 2px;
   text-transform: uppercase; color: var(--gold-dim); margin-bottom: 14px;
 }
 .qa-question {
-  font-family: var(--font-display); font-size: 21px; line-height: 1.45;
+  font-family: var(--font-display); font-size: calc((21px) * var(--text-scale, 1)); line-height: 1.45;
   color: var(--cream); margin-bottom: 8px;
 }
 .qa-divider { height: 1px; background: var(--border); margin: 20px 0; opacity: 0.7; }
 
 /* Rendered Markdown answer body. */
-.qa-answer { color: var(--cream); font-size: 16px; line-height: 1.6; }
+.qa-answer { color: var(--cream); font-size: calc((16px) * var(--text-scale, 1)); line-height: 1.6; }
 .qa-answer p { margin: 0 0 12px; }
 .qa-answer ul, .qa-answer ol { margin: 0 0 12px 22px; }
 .qa-answer li { margin: 4px 0; }
@@ -71,7 +71,7 @@ html[data-font-family="sans"] {
   color: var(--cream); font-style: italic; border-radius: 0 6px 6px 0;
 }
 .qa-answer table {
-  border-collapse: collapse; width: 100%; margin: 14px 0; font-size: 14px;
+  border-collapse: collapse; width: 100%; margin: 14px 0; font-size: calc((14px) * var(--text-scale, 1));
 }
 .qa-answer th, .qa-answer td {
   border: 1px solid var(--border); padding: 7px 10px; text-align: left;
@@ -100,7 +100,7 @@ html[data-font-family="sans"] {
     color: var(--gold-light); font-weight: 600;
   }
   .qa-answer table.md-stack td[data-th]::before, .browse-a table.md-stack td[data-th]::before {
-    content: attr(data-th); display: block; font-size: 11px; letter-spacing: 0.5px;
+    content: attr(data-th); display: block; font-size: calc((11px) * var(--text-scale, 1)); letter-spacing: 0.5px;
     text-transform: uppercase; color: var(--muted); font-weight: 400; margin-bottom: 1px;
   }
 }
@@ -112,7 +112,7 @@ html[data-font-family="sans"] {
 /* Reference chips. */
 .qa-refs { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px; }
 .qa-ref-chip {
-  font-family: var(--font-display); font-size: 12px; letter-spacing: 0.5px;
+  font-family: var(--font-display); font-size: calc((12px) * var(--text-scale, 1)); letter-spacing: 0.5px;
   color: var(--gold-light); background: rgba(201,168,76,0.10);
   border: 1px solid var(--gold-dim); border-radius: 999px; padding: 3px 11px;
 }
@@ -124,22 +124,22 @@ a.qa-ref-inline {
   text-decoration-color: var(--gold-dim); text-underline-offset: 2px;
 }
 
-.qa-reveal-hint { color: var(--muted); font-size: 13px; margin-top: 18px; font-style: italic; }
+.qa-reveal-hint { color: var(--muted); font-size: calc((13px) * var(--text-scale, 1)); margin-top: 18px; font-style: italic; }
 
 /* Progressive disclosure: short summary first, full answer behind an expander.
    The teaser renders as Markdown so multi-part summaries can be bullet lists. */
 .qa-summary {
-  color: var(--cream); font-size: 17px; line-height: 1.55; margin: 2px 0 4px;
+  color: var(--cream); font-size: calc((17px) * var(--text-scale, 1)); line-height: 1.55; margin: 2px 0 4px;
 }
 .qa-summary p { margin: 0 0 8px; }
 .qa-summary p:last-child { margin-bottom: 0; }
 .qa-summary ul, .qa-summary ol { margin: 4px 0 8px 22px; }
 .qa-summary li { margin: 4px 0; }
-.qa-summary em { color: var(--muted); font-size: 14px; }
+.qa-summary em { color: var(--muted); font-size: calc((14px) * var(--text-scale, 1)); }
 .qa-full { margin-top: 14px; border-top: 1px solid var(--border); padding-top: 10px; }
 .qa-full > summary {
   cursor: pointer; list-style: none; color: var(--gold-light);
-  font-family: var(--font-display); font-size: 13px; letter-spacing: 0.5px;
+  font-family: var(--font-display); font-size: calc((13px) * var(--text-scale, 1)); letter-spacing: 0.5px;
   padding: 4px 0; user-select: none; display: inline-flex; align-items: center; gap: 6px;
 }
 .qa-full > summary::-webkit-details-marker { display: none; }
@@ -159,15 +159,15 @@ a.qa-ref-inline {
   cursor: pointer; transition: border-color .15s, background .15s;
 }
 .subdeck-row.selected { border-color: var(--gold); background: rgba(201,168,76,0.10); }
-.subdeck-row-title { font-family: var(--font-display); font-size: 15px; }
-.subdeck-row-meta { margin-left: auto; font-size: 12px; color: var(--muted); white-space: nowrap; }
+.subdeck-row-title { font-family: var(--font-display); font-size: calc((15px) * var(--text-scale, 1)); }
+.subdeck-row-meta { margin-left: auto; font-size: calc((12px) * var(--text-scale, 1)); color: var(--muted); white-space: nowrap; }
 
 /* ── Quiz (MCQ) mode ──────────────────────────────────────────────────── */
 .quiz-choices { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
 .quiz-choice {
   text-align: left; padding: 13px 16px; border-radius: 10px;
   border: 1px solid var(--border); background: var(--surface); color: var(--cream);
-  font-family: var(--font-body); font-size: 15px; line-height: 1.4;
+  font-family: var(--font-body); font-size: calc((15px) * var(--text-scale, 1)); line-height: 1.4;
   cursor: pointer; transition: border-color .12s, background .12s;
 }
 .quiz-choice:disabled { cursor: default; }
@@ -175,13 +175,13 @@ a.qa-ref-inline {
 .quiz-choice.wrong { border-color: var(--accent-red); background: rgba(140,58,58,0.16); color: #d98d8d; }
 .quiz-choice.dim { opacity: 0.5; }
 .quiz-feedback {
-  margin-top: 16px; font-family: var(--font-display); font-size: 15px; letter-spacing: 0.5px;
+  margin-top: 16px; font-family: var(--font-display); font-size: calc((15px) * var(--text-scale, 1)); letter-spacing: 0.5px;
 }
 .quiz-feedback.correct { color: #7ab88a; }
 .quiz-feedback.wrong { color: #c77070; }
 
 /* Deck meta line above the card. */
-.qa-deck-meta { text-align: center; color: var(--muted); font-size: 13px; margin-bottom: 14px; }
+.qa-deck-meta { text-align: center; color: var(--muted); font-size: calc((13px) * var(--text-scale, 1)); margin-bottom: 14px; }
 .qa-deck-meta strong { color: var(--gold-light); }
 
 /* Modals can grow taller than the viewport (the subject selector has two
@@ -207,15 +207,15 @@ a.qa-ref-inline {
   flex-wrap: wrap; row-gap: 6px;
 }
 .subdeck-group > summary::-webkit-details-marker { display: none; }
-.subdeck-group > summary::before { content: '▸'; color: var(--gold-dim); font-size: 12px; }
+.subdeck-group > summary::before { content: '▸'; color: var(--gold-dim); font-size: calc((12px) * var(--text-scale, 1)); }
 .subdeck-group[open] > summary::before { content: '▾'; }
-.subdeck-group-title { font-family: var(--font-display); font-size: 14px; }
-.subdeck-group-meta { margin-left: auto; font-size: 12px; color: var(--muted); white-space: nowrap; }
+.subdeck-group-title { font-family: var(--font-display); font-size: calc((14px) * var(--text-scale, 1)); }
+.subdeck-group-meta { margin-left: auto; font-size: calc((12px) * var(--text-scale, 1)); color: var(--muted); white-space: nowrap; }
 .subdeck-group.has-selected > summary .subdeck-group-title { color: var(--gold); }
 /* Top-level select-all toggle on the summary row (its click handler calls
    preventDefault so it never toggles the group open/closed). */
 .subdeck-group-select {
-  flex: none; padding: 5px 10px; border-radius: 8px; font-size: 12px;
+  flex: none; padding: 5px 10px; border-radius: 8px; font-size: calc((12px) * var(--text-scale, 1));
   border: 1px solid var(--border); background: transparent; color: var(--muted);
   cursor: pointer; white-space: nowrap; transition: border-color .15s, color .15s, background .15s;
 }
@@ -230,7 +230,7 @@ a.qa-ref-inline {
 /* Shuffle toggle is parked while "In order" is the focus. */
 .focus-row .mode-btn:disabled { opacity: 0.4; cursor: default; }
 .focus-label {
-  font-family: var(--font-display); font-size: 11px; letter-spacing: 2px;
+  font-family: var(--font-display); font-size: calc((11px) * var(--text-scale, 1)); letter-spacing: 2px;
   text-transform: uppercase; color: var(--gold-dim);
 }
 
@@ -241,7 +241,7 @@ a.qa-ref-inline {
 }
 .qa-callout p:last-child, .qa-callout ul:last-child, .qa-callout ol:last-child { margin-bottom: 8px; }
 .qa-prov-label {
-  font-family: var(--font-display); font-size: 10px; letter-spacing: 1.5px;
+  font-family: var(--font-display); font-size: calc((10px) * var(--text-scale, 1)); letter-spacing: 1.5px;
   text-transform: uppercase; margin-bottom: 6px;
 }
 .qa-standard { background: rgba(201,168,76,0.07); border-left-color: var(--gold); }
@@ -262,7 +262,7 @@ a.qa-ref-chip { text-decoration: none; transition: background .12s, border-color
 .browse-controls { display: flex; gap: 8px; justify-content: flex-end; max-width: 760px; margin: 0 auto 14px; }
 .browse-group { max-width: 760px; margin: 0 auto 18px; }
 .browse-group-title {
-  font-family: var(--font-display); font-size: 12px; letter-spacing: 2px;
+  font-family: var(--font-display); font-size: calc((12px) * var(--text-scale, 1)); letter-spacing: 2px;
   text-transform: uppercase; color: var(--gold-dim); margin: 0 0 8px;
 }
 .browse-item {
@@ -271,21 +271,21 @@ a.qa-ref-chip { text-decoration: none; transition: background .12s, border-color
 }
 .browse-item summary {
   cursor: pointer; padding: 12px 16px; list-style: none;
-  font-family: var(--font-display); font-size: 16px; line-height: 1.4; color: var(--cream);
+  font-family: var(--font-display); font-size: calc((16px) * var(--text-scale, 1)); line-height: 1.4; color: var(--cream);
   position: relative; padding-right: 36px;
 }
 .browse-item summary::-webkit-details-marker { display: none; }
 .browse-item summary::after {
   content: '+'; position: absolute; right: 16px; top: 11px;
-  color: var(--gold-dim); font-size: 18px;
+  color: var(--gold-dim); font-size: calc((18px) * var(--text-scale, 1));
 }
 .browse-item[open] summary::after { content: '–'; }
 .browse-item[open] summary { border-bottom: 1px solid var(--border); }
-.browse-a { padding: 14px 16px; color: var(--cream); font-size: 15px; line-height: 1.6; }
+.browse-a { padding: 14px 16px; color: var(--cream); font-size: calc((15px) * var(--text-scale, 1)); line-height: 1.6; }
 .browse-a p { margin: 0 0 10px; }
 .browse-a ul, .browse-a ol { margin: 0 0 10px 22px; }
 .browse-a strong { color: var(--gold-light); }
-.browse-a table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 14px; }
+.browse-a table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: calc((14px) * var(--text-scale, 1)); }
 .browse-a th, .browse-a td { border: 1px solid var(--border); padding: 7px 10px; text-align: left; vertical-align: top; }
 .browse-a th { background: rgba(201,168,76,0.08); color: var(--gold-light); }
 .browse-a blockquote {
@@ -301,20 +301,20 @@ a.qa-ref-chip { text-decoration: none; transition: background .12s, border-color
 .cat-controls select {
   background: var(--surface); color: var(--cream);
   border: 1px solid var(--border); border-radius: 10px;
-  padding: 9px 12px; font-family: var(--font-body); font-size: 14px;
+  padding: 9px 12px; font-family: var(--font-body); font-size: calc((14px) * var(--text-scale, 1));
   max-width: min(92vw, 420px); cursor: pointer;
 }
 .cat-source {
-  text-align: center; color: var(--muted); font-size: 12px;
+  text-align: center; color: var(--muted); font-size: calc((12px) * var(--text-scale, 1));
   font-style: italic; margin-top: 14px;
 }
 
 /* ── Mock exam results ────────────────────────────────────────────────── */
 .exam-results .exam-score {
-  font-family: var(--font-display); font-size: 38px; color: var(--gold-light);
+  font-family: var(--font-display); font-size: calc((38px) * var(--text-scale, 1)); color: var(--gold-light);
   text-align: center; margin: 6px 0 18px;
 }
-.exam-results .exam-score-pct { font-size: 20px; color: var(--muted); margin-left: 8px; }
+.exam-results .exam-score-pct { font-size: calc((20px) * var(--text-scale, 1)); color: var(--muted); margin-left: 8px; }
 
 /* ── Progress overlay: hero, forecast, mastery bars, heatmap ──────────── */
 .prog-hero { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 4px 0 18px; }
@@ -322,18 +322,18 @@ a.qa-ref-chip { text-decoration: none; transition: background .12s, border-color
   text-align: center; padding: 12px 6px; border: 1px solid var(--border);
   border-radius: 10px; background: var(--surface);
 }
-.prog-stat-num { font-family: var(--font-display); font-size: 26px; color: var(--gold-light); line-height: 1.1; }
-.prog-stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+.prog-stat-num { font-family: var(--font-display); font-size: calc((26px) * var(--text-scale, 1)); color: var(--gold-light); line-height: 1.1; }
+.prog-stat-label { font-size: calc((11px) * var(--text-scale, 1)); color: var(--muted); margin-top: 4px; }
 .prog-section-title {
-  font-family: var(--font-display); font-size: 12px; letter-spacing: 2px;
+  font-family: var(--font-display); font-size: calc((12px) * var(--text-scale, 1)); letter-spacing: 2px;
   text-transform: uppercase; color: var(--gold-dim); margin: 18px 0 8px;
 }
-.prog-forecast { display: flex; flex-wrap: wrap; gap: 14px; color: var(--muted); font-size: 14px; }
+.prog-forecast { display: flex; flex-wrap: wrap; gap: 14px; color: var(--muted); font-size: calc((14px) * var(--text-scale, 1)); }
 .prog-forecast strong { color: var(--gold-light); font-family: var(--font-display); }
 
 .mastery-row { margin-bottom: 10px; }
-.mastery-head { display: flex; justify-content: space-between; font-size: 14px; color: var(--cream); margin-bottom: 4px; }
-.mastery-meta { color: var(--muted); font-size: 12px; }
+.mastery-head { display: flex; justify-content: space-between; font-size: calc((14px) * var(--text-scale, 1)); color: var(--cream); margin-bottom: 4px; }
+.mastery-meta { color: var(--muted); font-size: calc((12px) * var(--text-scale, 1)); }
 .mastery-bar { height: 8px; background: rgba(255,255,255,0.06); border-radius: 999px; overflow: hidden; }
 .mastery-fill { height: 100%; background: linear-gradient(90deg, var(--gold-dim), var(--gold)); border-radius: 999px; }
 
@@ -346,12 +346,12 @@ a.qa-ref-chip { text-decoration: none; transition: background .12s, border-color
 .hm-l4 { background: var(--gold); }
 
 /* ── Sources & official texts panel ───────────────────────────────────── */
-.sources-body { font-size: 14px; line-height: 1.6; color: var(--cream); }
+.sources-body { font-size: calc((14px) * var(--text-scale, 1)); line-height: 1.6; color: var(--cream); }
 .sources-body p { margin: 0 0 12px; }
 .sources-list { margin: 0 0 12px 18px; }
 .sources-list li { margin: 6px 0; }
 .sources-list a { color: var(--gold-light); }
-.sources-note { color: var(--muted); font-size: 13px; font-style: italic; }
+.sources-note { color: var(--muted); font-size: calc((13px) * var(--text-scale, 1)); font-style: italic; }
 
 /* ── Light theme overrides ────────────────────────────────────────────────
    The colors above are tuned for the dark theme; a handful are hard-coded
