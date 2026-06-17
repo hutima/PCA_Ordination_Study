@@ -14,6 +14,7 @@
 import { formatRemainingForTable } from '../domain/srs/scheduler.js';
 import { getConfidencePct } from '../domain/srs/confidence.js';
 import { escapeHtml } from '../utils/text.js';
+import { installClickShield, shieldClicksBriefly } from '../utils/clickShield.js';
 import {
   DATA, state, loadProgress, saveProgress, loadSelection, saveSelection, loadActivity,
   loadShuffle, saveShuffle, recordActivity,
@@ -377,11 +378,15 @@ function setFont(f) {
   document.documentElement.setAttribute('data-font-family', f);
   try { localStorage.setItem('pca_font', f); } catch (e) {}
   syncToggleActive('[data-font]', 'data-font', f);
+  // The font swap reflows the page; absorb the iOS ghost click so it can't land
+  // on whatever control slid under the finger (see js/utils/clickShield.js).
+  shieldClicksBriefly();
 }
 function setSize(s) {
   document.documentElement.setAttribute('data-text-size', s);
   try { localStorage.setItem('pca_text_size', s); } catch (e) {}
   syncToggleActive('[data-size]', 'data-size', s);
+  shieldClicksBriefly(); // text-size change reflows the page — guard the ghost click
 }
 function syncToggleActive(selector, attr, value) {
   document.querySelectorAll(selector).forEach(b =>
@@ -483,6 +488,7 @@ function init() {
   loadSelection();
   loadActivity();
   loadShuffle();
+  installClickShield();
 
   document.querySelectorAll('[data-theme-mode]').forEach(b =>
     b.addEventListener('click', () => setTheme(b.getAttribute('data-theme-mode'))));

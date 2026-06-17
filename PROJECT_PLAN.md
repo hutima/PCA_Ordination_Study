@@ -292,6 +292,29 @@ KEEP modules + the HTML shell):**
       (infant baptism)?". Hand-edited in the generated `sacraments.js` (the
       sacraments builder has no curation layer); ids unchanged so SRS progress
       survives. Gates clean (`validate` 0 problems, `audit` baseline 8).
+- [x] **Phase 19 — iOS text-zoom + reflow ghost-click fixes** (ported from the
+      Duff tool, commit `85761d3` and its issue #259). Release `?v=33`/`pca-v33`.
+      - **Text size now scales glyphs on iOS.** The size control set `zoom` on
+        `<body>` (`html[data-text-size="…"] body { zoom }`), but iOS Safari
+        applies zoom to layout boxes without scaling rendered glyphs, so
+        Large/X-Large only added whitespace. Replaced with a `--text-scale`
+        custom property on `<html>` (1 / 1.12 / 1.25) and wrapped every
+        `font-size` in both stylesheets (285 declarations) as
+        `calc((…) * var(--text-scale, 1))`; the 4 bare `em` sizes are left
+        unwrapped so they scale once via the already-scaled parent instead of
+        doubling. `--text-scale` is defined on `<html>`, so it reaches
+        `css/pca.css` too.
+      - **Reflow ghost-click guard (issue #259).** Changing text size or font
+        reflows the page, so on iOS the synthetic ~300 ms ghost click can land
+        on a control that slid under the finger. Ported
+        `js/utils/clickShield.js` (`shieldClicksBriefly()` + a capture-phase
+        `installClickShield()`), installed once at startup and armed at the end
+        of `setSize()` and `setFont()` (not `setTheme()` — a color swap doesn't
+        reflow). Added to the `sw.js` precache.
+      - The commit's toggle-label-wrap / `closeToggleInfoModal()` part does not
+        apply here: that `.toggle-label` switch and modal are Duff-only (dead in
+        this app). Gates clean (`validate` 0 problems, `audit` baseline 8,
+        `check_sw` consistent).
       deeper slimming.** (Same release as 16, `?v=27`.)
       - **BCO comprehensive deck replaced** by the user's
         `pca_bco_comprehensive_quoted_labeled_bundle.zip` (committed to main):
