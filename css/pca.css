@@ -234,6 +234,33 @@ a.qa-ref-inline {
   text-transform: uppercase; color: var(--gold-dim);
 }
 
+/* ── 12-week study plan row ────────────────────────────────────────────── */
+.plan-row {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  flex-wrap: wrap;
+  margin: -2px 0 8px;
+}
+.plan-row #planWeeks { flex-wrap: wrap; gap: 4px; justify-content: center; }
+/* Fixed-size, wrapping week chips — never the full-width flex:1 the mobile
+   mode-group rule would otherwise impose on 13 buttons. */
+.plan-row #planWeeks .mode-btn { flex: 0 0 auto; min-width: 34px; padding: 5px 9px; }
+.plan-caption {
+  max-width: 640px; margin: 0 auto 12px; padding: 12px 16px;
+  background: rgba(201,168,76,0.06);
+  border: 1px solid var(--gold-dim); border-radius: 12px;
+}
+.plan-caption-title {
+  font-family: var(--font-display); font-size: calc((15px) * var(--text-scale, 1));
+  color: var(--gold-light); margin-bottom: 4px;
+}
+.plan-caption-deck { color: var(--muted); font-size: calc((13px) * var(--text-scale, 1)); margin-bottom: 8px; }
+.plan-caption-deck strong { color: var(--cream); }
+.plan-caption-list {
+  margin: 0; padding-left: 18px; color: var(--cream);
+  font-size: calc((13px) * var(--text-scale, 1)); line-height: 1.6;
+}
+.plan-caption-list strong { color: var(--gold-light); }
+
 /* ── Provenance callouts in answers ───────────────────────────────────── */
 .qa-callout {
   margin: 12px 0; padding: 10px 14px 4px; border-radius: 0 8px 8px 0;
@@ -391,4 +418,59 @@ html[data-theme="light"] .hm-l3 { background: rgba(142,108,30,0.70); }
   a.qa-ref-inline:hover { color: var(--gold); text-decoration-color: var(--gold); }
   .browse-item:hover { border-color: var(--gold-dim); }
   .cat-controls select:hover { border-color: var(--gold-dim); outline: none; }
+}
+
+/* Update-available banner — fixed bottom bar; shown only when a new service
+   worker is waiting. Refresh is user-initiated (iOS PWAs freeze on an
+   automatic reload at launch). */
+.update-banner {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%) translateY(140%);
+  z-index: 1100;
+  display: none;
+  align-items: center;
+  gap: 12px;
+  max-width: calc(100vw - 24px);
+  padding: 10px 12px 10px 16px;
+  background: linear-gradient(180deg, #1b1d28 0%, #14161f 100%);
+  border: 1px solid var(--gold-dim);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+.update-banner.show {
+  display: flex;
+  animation: update-banner-in 0.28s ease-out forwards;
+}
+@keyframes update-banner-in {
+  to { transform: translateX(-50%) translateY(0); }
+}
+.update-banner-text {
+  color: var(--cream);
+  font-size: calc((14px) * var(--text-scale, 1));
+}
+.update-banner-btn {
+  font-family: var(--font-display);
+  font-size: calc((13px) * var(--text-scale, 1));
+  letter-spacing: 0.5px;
+  color: #14161f;
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+.update-banner-dismiss {
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  font-size: calc((20px) * var(--text-scale, 1));
+  line-height: 1;
+  padding: 2px 6px;
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .update-banner-btn:hover { background: var(--gold-light); border-color: var(--gold-light); }
+  .update-banner-dismiss:hover { color: var(--cream); }
 }

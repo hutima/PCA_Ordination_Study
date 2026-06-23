@@ -16,8 +16,8 @@ import { getConfidencePct } from '../domain/srs/confidence.js';
 import { escapeHtml } from '../utils/text.js';
 import { installClickShield, shieldClicksBriefly } from '../utils/clickShield.js';
 import {
-  DATA, state, loadProgress, saveProgress, loadSelection, saveSelection, loadActivity,
-  loadShuffle, saveShuffle, recordActivity,
+  DATA, state, WEEKS, loadProgress, saveProgress, loadSelection, saveSelection, loadActivity,
+  loadShuffle, saveShuffle, loadWeek, saveWeek, recordActivity,
 } from './store.js';
 import {
   effectiveSetKeys, cardsForKeys, shuffle, isWeak,
@@ -226,6 +226,81 @@ function updateShuffleButton() {
   b.setAttribute('aria-pressed', String(state.shuffleOn));
 }
 
+// ── 12-week study plan (Schedule of Assignments) ───────────────────────
+// A "Week N" button is a selection shortcut: it loads exactly that week's
+// sub-decks into state.selected (Duff-style week grouping). "All" leaves the
+// user's own selection alone, and any manual selection edit drops back to it.
+function renderPlanRow() {
+  const host = $('planWeeks');
+  const row = $('planRow');
+  if (!host || !WEEKS.length) { if (row) row.style.display = 'none'; return; }
+  const btn = (val, label, title) =>
+    `<button class="mode-btn ${String(state.week) === String(val) ? 'active' : ''}" type="button" data-week="${val}" title="${escapeText(title)}">${label}</button>`;
+  let html = btn('all', 'All', 'Study your own subject selection (no weekly plan)');
+  for (const w of WEEKS) {
+    const label = w.week >= 13 ? 'Final' : String(w.week);
+    html += btn(w.week, label, `Week ${w.week}: ${w.theme}`);
+  }
+  host.innerHTML = html;
+  host.querySelectorAll('[data-week]').forEach(b => b.addEventListener('click', () => setWeek(b.dataset.week)));
+  renderPlanCaption();
+}
+function renderPlanCaption() {
+  const cap = $('planCaption');
+  if (!cap) return;
+  const w = state.week !== 'all' && WEEKS.find(x => x.week === state.week);
+  if (!w) { cap.hidden = true; cap.innerHTML = ''; return; }
+  const r = w.reading || {};
+  const items = [];
+  if (r.catechism) items.push(`<strong>Catechism:</strong> ${escapeText(r.catechism)}`);
+  if (r.outlines) items.push(`<strong>Book outlines:</strong> ${escapeText(r.outlines)}`);
+  if (r.contents) items.push(`<strong>Book contents:</strong> ${escapeText(r.contents)}`);
+  if (r.doctrines) items.push(`<strong>Doctrines &amp; proofs:</strong> ${escapeText(r.doctrines)}`);
+  if (r.bibleContent) items.push(`<strong>Bible content:</strong> ${escapeText(r.bibleContent)}`);
+  if (r.history) items.push(`<strong>History:</strong> ${escapeText(r.history)}`);
+  if (r.hotTopic) items.push(`<strong>Hot topic:</strong> ${escapeText(r.hotTopic)}`);
+  if (r.focus) items.push(escapeText(r.focus));
+  const deckNote = w.sets.length
+    ? `Loaded <strong>${w.sets.length}</strong> sub-deck${w.sets.length === 1 ? '' : 's'} into your selection.`
+    : `No card decks this week.`;
+  cap.innerHTML =
+    `<div class="plan-caption-title">Week ${w.week} — ${escapeText(w.theme)}</div>` +
+    `<div class="plan-caption-deck">${deckNote}</div>` +
+    (items.length ? `<ul class="plan-caption-list"><li>${items.join('</li><li>')}</li></ul>` : '');
+  cap.hidden = false;
+}
+function setWeek(val) {
+  if (val === 'all') {
+    state.week = 'all';
+    saveWeek();
+    syncToggleActive('[data-week]', 'data-week', 'all');
+    renderPlanCaption();
+    return;
+  }
+  const num = Number(val);
+  const w = WEEKS.find(x => x.week === num);
+  if (!w) return;
+  state.week = num;
+  saveWeek();
+  state.selected = new Set(w.sets.filter(k => DATA.sets[k]));
+  saveSelection();
+  state.flipArchived.clear();
+  syncToggleActive('[data-week]', 'data-week', String(num));
+  renderPlanCaption();
+  const overlay = $('studySelectorOverlay');
+  if (overlay && overlay.classList.contains('show')) renderSelector();
+  buildDeck();
+  renderCard();
+}
+// Manual selection edits drop the plan back to "All" (a custom selection).
+function markSelectionCustom() {
+  if (state.week === 'all') return;
+  state.week = 'all';
+  saveWeek();
+  syncToggleActive('[data-week]', 'data-week', 'all');
+  renderPlanCaption();
+}
+
 // ── Top-level render ───────────────────────────────────────────────────
 function renderCard() {
   const area = $('cardArea');
@@ -353,11 +428,13 @@ function renderSelector() {
     const keys = subj.setKeys.filter(k => DATA.sets[k]);
     const allOn = keys.length > 0 && keys.every(k => state.selected.has(k));
     keys.forEach(k => allOn ? state.selected.delete(k) : state.selected.add(k));
+    markSelectionCustom();
     renderSelector();
   }));
   list.querySelectorAll('[data-set]').forEach(btn => btn.addEventListener('click', () => {
     const k = btn.dataset.set;
     state.selected.has(k) ? state.selected.delete(k) : state.selected.add(k);
+    markSelectionCustom();
     renderSelector();
   }));
   list.querySelectorAll('details[data-group]').forEach(d => d.addEventListener('toggle', () => {
@@ -488,6 +565,7 @@ function init() {
   loadSelection();
   loadActivity();
   loadShuffle();
+  loadWeek();
   installClickShield();
 
   document.querySelectorAll('[data-theme-mode]').forEach(b =>
@@ -505,9 +583,10 @@ function init() {
   $('selectorDoneTopBtn').addEventListener('click', closeSelector);
   $('selectorAllBtn').addEventListener('click', () => {
     DATA.subjects.forEach(s => s.setKeys.forEach(k => { if (DATA.sets[k]) state.selected.add(k); }));
+    markSelectionCustom();
     renderSelector();
   });
-  $('selectorClearBtn').addEventListener('click', () => { state.selected.clear(); renderSelector(); });
+  $('selectorClearBtn').addEventListener('click', () => { state.selected.clear(); markSelectionCustom(); renderSelector(); });
   $('startStudyingBtn').addEventListener('click', () => { state.flipArchived.clear(); buildDeck(); renderCard(); });
   $('progressBtn').addEventListener('click', openProgress);
   $('progressCloseBtn').addEventListener('click', () => hideOverlay('progressOverlay'));
@@ -519,6 +598,7 @@ function init() {
   syncToggleActive('[data-focus]', 'data-focus', state.focus);
   $('shuffleBtn').addEventListener('click', toggleShuffle);
   updateShuffleButton();
+  renderPlanRow();
   updateFocusVisibility();
 
   $('exportBtn').addEventListener('click', exportProgress);
@@ -533,28 +613,64 @@ function init() {
   registerServiceWorker();
 }
 
-// Service worker: offline cache + auto-update. A new worker (after a deploy that
-// bumped the cache name) is promoted immediately and the page reloads once so
-// the user is always on the latest version — no manual refresh.
+// Service worker: offline cache + user-triggered update. When a new worker
+// (after a deploy that bumped the cache name) finishes installing, it stays in
+// the "waiting" state and we surface an "Update available" banner instead of
+// promoting it automatically. The old code auto-posted SKIP_WAITING and reloaded
+// at launch, which freezes iOS standalone PWAs; now the reload only happens
+// inside the user's "Refresh now" tap (or the next cold start). Ported from the
+// Duff study tool (commit 3a9ef43).
 function registerServiceWorker() {
   if (!('serviceWorker' in navigator)) return;
-  // Only reload when an existing controller is *replaced* (i.e. an update).
-  // On first install, clients.claim() also fires controllerchange — reloading
-  // then would needlessly restart a first-time visitor's session.
-  const hadController = !!navigator.serviceWorker.controller;
-  let refreshing = false;
+
+  let refreshAccepted = false;
+  let reloading = false;
+  let pendingWorker = null;
+
+  // Only reload once the user has accepted the update — never automatically.
   navigator.serviceWorker.addEventListener('controllerchange', () => {
-    if (!hadController || refreshing) return;
-    refreshing = true;
+    if (!refreshAccepted || reloading) return;
+    reloading = true;
     window.location.reload();
   });
+
+  const banner = document.getElementById('updateBanner');
+  function showUpdateBanner(worker) {
+    pendingWorker = worker || pendingWorker;
+    if (!banner) return;
+    banner.classList.add('show');
+    banner.setAttribute('aria-hidden', 'false');
+  }
+  function hideUpdateBanner() {
+    if (!banner) return;
+    banner.classList.remove('show');
+    banner.setAttribute('aria-hidden', 'true');
+  }
+  function acceptUpdate() {
+    refreshAccepted = true;
+    hideUpdateBanner();
+    const worker = pendingWorker || (navigator.serviceWorker.controller && navigator.serviceWorker.controller);
+    try { if (worker) worker.postMessage('SKIP_WAITING'); } catch (_) {}
+    // Fallback in case controllerchange never fires (e.g. no waiting worker yet).
+    setTimeout(() => {
+      if (!reloading) { reloading = true; window.location.reload(); }
+    }, 1500);
+  }
+
+  const refreshBtn = document.getElementById('updateRefreshBtn');
+  if (refreshBtn) refreshBtn.addEventListener('click', acceptUpdate);
+  const dismissBtn = document.getElementById('updateDismissBtn');
+  if (dismissBtn) dismissBtn.addEventListener('click', hideUpdateBanner);
+
   navigator.serviceWorker.register('sw.js').then((reg) => {
-    if (reg.waiting && navigator.serviceWorker.controller) reg.waiting.postMessage('SKIP_WAITING');
+    // A worker already waiting (alongside an active controller) means an update
+    // was installed on a previous visit — offer it immediately.
+    if (reg.waiting && navigator.serviceWorker.controller) showUpdateBanner(reg.waiting);
     reg.addEventListener('updatefound', () => {
       const next = reg.installing;
       if (!next) return;
       next.addEventListener('statechange', () => {
-        if (next.state === 'installed' && navigator.serviceWorker.controller) next.postMessage('SKIP_WAITING');
+        if (next.state === 'installed' && navigator.serviceWorker.controller) showUpdateBanner(next);
       });
     });
     reg.update();
