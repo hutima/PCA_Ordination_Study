@@ -16,10 +16,12 @@
 //  - Some syllabus decks span two weeks (e.g. NT Key Passages, Key People);
 //    the whole deck is attached to the first week it appears and the caption
 //    notes the continuation.
-//  - The BCO column is distributed across the weeks in the BCO's own order
-//    (Form of Government → Discipline → Directory for Worship) rather than by
-//    exact chapter-letter, because the app's BCO decks are grouped differently
-//    from the syllabus's A–J chapter blocks.
+//  - The BCO column is distributed across the weeks following the app's
+//    canonical BCO sub-deck order (officers → courts → discipline → worship →
+//    governance → the comprehensive Form of Government → Discipline → Directory
+//    for Worship decks), so walking the weeks never shows BCO out of order.
+//    It is not aligned to the syllabus's exact A–J chapter-letter blocks,
+//    because the app groups the BCO into 14 decks rather than those blocks.
 //  - Week 1 is the syllabus's orientation class (no content row); it is used
 //    here for the Personal Religion & Call material. Week 13 is the final exam.
 
@@ -41,7 +43,7 @@
     {
       week: 2,
       theme: 'Whole Bible · Doctrine of Scripture & God',
-      sets: ['bc-whole', 'th-a', 'theo-wcf', 'ch-overview', 'bco-comp-foundations'],
+      sets: ['bc-whole', 'th-a', 'theo-wcf', 'ch-overview', 'bco-officers'],
       reading: {
         outlines: 'Genesis–Exodus',
         contents: 'Joshua–Ruth',
@@ -52,7 +54,7 @@
     {
       week: 3,
       theme: 'God & His world · Church history overview',
-      sets: ['th-b', 'ch-denominations', 'bco-officers'],
+      sets: ['th-b', 'ch-denominations', 'bco-courts'],
       reading: {
         outlines: 'Leviticus–Deuteronomy',
         contents: '1 Samuel–2 Chronicles',
@@ -64,7 +66,7 @@
     {
       week: 4,
       theme: 'Humankind · the Five Points (TULIP)',
-      sets: ['bc-ot-people', 'th-c', 'dp-tulip', 'ch-events', 'bco-comp-members-officers'],
+      sets: ['bc-ot-people', 'th-c', 'dp-tulip', 'ch-events', 'bco-discipline'],
       reading: {
         outlines: 'Isaiah–Jeremiah',
         contents: 'Ezra–Esther',
@@ -76,7 +78,7 @@
     {
       week: 5,
       theme: "God's way of salvation",
-      sets: ['bc-ot-passages', 'th-d', 'ch-terms', 'bco-courts'],
+      sets: ['bc-ot-passages', 'th-d', 'ch-terms', 'bco-worship'],
       reading: {
         outlines: 'Ezekiel–Daniel',
         contents: 'Job–Proverbs',
@@ -87,7 +89,7 @@
     {
       week: 6,
       theme: 'Salvation accomplished · Key People',
-      sets: ['bc-ot-events', 'th-e', 'ch-people', 'bco-comp-courts'],
+      sets: ['bc-ot-events', 'th-e', 'ch-people', 'bco-gov-courts'],
       reading: {
         outlines: 'Matthew–Mark',
         contents: 'Ecclesiastes, Song of Songs, Lamentations',
@@ -99,7 +101,7 @@
     {
       week: 7,
       theme: 'Salvation applied · the Ordo Salutis',
-      sets: ['bc-nt-general', 'th-f', 'dp-ordo', 'bco-comp-vocation'],
+      sets: ['bc-nt-general', 'th-f', 'dp-ordo', 'bco-gov-ministry'],
       reading: {
         outlines: 'Luke–John',
         contents: 'Hosea–Obadiah',
@@ -111,7 +113,7 @@
     {
       week: 8,
       theme: 'The Christian life',
-      sets: ['bc-nt-people', 'th-g', 'bco-gov-courts'],
+      sets: ['bc-nt-people', 'th-g', 'bco-comp-foundations'],
       reading: {
         outlines: 'Acts',
         contents: 'Jonah–Habakkuk',
@@ -122,7 +124,7 @@
     {
       week: 9,
       theme: 'The Church · discipline',
-      sets: ['bc-nt-passages', 'th-h', 'bco-discipline', 'bco-comp-discipline'],
+      sets: ['bc-nt-passages', 'th-h', 'bco-comp-members-officers', 'bco-comp-courts'],
       reading: {
         outlines: 'Romans',
         contents: 'Zephaniah–Malachi',
@@ -134,7 +136,7 @@
     {
       week: 10,
       theme: 'Last things · the gospel (evangelism)',
-      sets: ['th-i', 'dp-gospel', 'bco-comp-review'],
+      sets: ['th-i', 'dp-gospel', 'bco-comp-vocation', 'bco-comp-discipline'],
       reading: {
         outlines: '1–2 Corinthians, Galatians',
         contents: '1–2 Thessalonians, the Pastoral Epistles',
@@ -146,7 +148,7 @@
     {
       week: 11,
       theme: 'The Holy Spirit & apologetics · worship · PCA history',
-      sets: ['bc-nt-topics', 'th-k', 'ch-pca', 'bco-worship', 'bco-comp-worship-principles'],
+      sets: ['bc-nt-topics', 'th-k', 'ch-pca', 'bco-comp-review', 'bco-comp-worship-principles'],
       reading: {
         outlines: 'Ephesians–Colossians',
         contents: 'James, 1–2 Peter',
@@ -158,7 +160,7 @@
     {
       week: 12,
       theme: 'The Sacraments',
-      sets: ['sac-general', 'sac-baptism', 'sac-supper', 'bco-gov-ministry', 'bco-comp-sacraments-pastoral'],
+      sets: ['sac-general', 'sac-baptism', 'sac-supper', 'bco-comp-sacraments-pastoral'],
       reading: {
         outlines: 'Hebrews, Revelation',
         contents: '1–3 John, Jude',
