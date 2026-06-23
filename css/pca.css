@@ -218,7 +218,7 @@ a.qa-ref-inline {
   letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold-dim);
 }
 .group-sub { font-style: italic; color: var(--muted); font-size: calc((12px) * var(--text-scale, 1)); }
-.subdeck-group-meta { margin-left: auto; font-size: calc((12px) * var(--text-scale, 1)); color: var(--muted); white-space: nowrap; }
+.subdeck-group-meta { align-self: flex-end; margin-left: auto; font-size: calc((12px) * var(--text-scale, 1)); color: var(--muted); white-space: nowrap; }
 .subdeck-group.has-selected > summary .subdeck-group-title { color: var(--gold); }
 /* Top-level select-all toggle on the summary row (its click handler calls
    preventDefault so it never toggles the group open/closed). */
