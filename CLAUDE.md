@@ -80,17 +80,18 @@ That changes the update workflow:
   outlines/contents) in a "week-assign" caption. Both views share `groupHtml()`
   / `deckRowHtml()`. When adding a subject/sub-deck, consider whether it belongs
   in a week's `sets`. BCO sub-decks are assigned to weeks in canonical order.
-- **Subjects (9):** Bible Content, **Bible Book Summaries** (66 per-book
-  overviews — author/date/theme/outline/Christ — in 8 division sub-decks
-  `bk-*`, backing the schedule's Book Outlines / Book Contents drills),
+- **Subjects (9):** Bible Content, **Bible Book Summaries** (229 cards in 8
+  division sub-decks `bk-*`: a per-book overview — author/date/theme/outline/
+  Christ — plus chapter-range "Book Contents" cards for every book of 5+
+  chapters, backing the schedule's Book Outlines / Book Contents drills),
   Theology (incl. `th-k` Holy Spirit & apologetics + `theo-wcf`), Sacraments,
   Church History, BCO (14 sub-decks), Hot Topics (each card cites the relevant
   PCA GA action), **Doctrines & Proofs** (TULIP/ordo/gospel with proof texts),
   and **Personal Religion & Call** (office qualifications + a flagged
   self-examination card). The Bible Book Summaries subject is built by
-  `dev/build_bible_books.mjs` from `dev/data/bible_books/*.json` (one file per
-  division); the generated `js/data/subjects/bible_books.js` is the working
-  source of truth.
+  `dev/build_bible_books.mjs` from `dev/data/bible_books/*.json` (overviews) and
+  `*.sections.json` (chapter ranges), one pair per division; the generated
+  `js/data/subjects/bible_books.js` is the working source of truth.
 - **Answer rendering:** answers are Markdown (`js/utils/markdown.js`,
   escape-first; lists, GFM tables, blockquotes, inline emphasis) and are
   provenance-tagged by `renderAnswer()` (`answer.js`): a line starting
