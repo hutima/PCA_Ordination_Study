@@ -159,8 +159,8 @@ a.qa-ref-inline {
   cursor: pointer; transition: border-color .15s, background .15s;
 }
 .subdeck-row.selected { border-color: var(--gold); background: rgba(201,168,76,0.10); }
-.subdeck-row-title { font-family: var(--font-display); font-size: calc((15px) * var(--text-scale, 1)); }
-.subdeck-row-meta { margin-left: auto; font-size: calc((12px) * var(--text-scale, 1)); color: var(--muted); white-space: nowrap; }
+.subdeck-row-title { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; font-family: var(--font-display); font-size: calc((15px) * var(--text-scale, 1)); }
+.subdeck-row-meta { flex: 0 1 auto; text-align: right; overflow-wrap: anywhere; font-size: calc((12px) * var(--text-scale, 1)); color: var(--muted); }
 
 /* ── Quiz (MCQ) mode ──────────────────────────────────────────────────── */
 .quiz-choices { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
