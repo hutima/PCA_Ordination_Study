@@ -5,11 +5,19 @@
 // the syllabus assigns work across several columns — Book Outlines, Book
 // Contents, Bible Content, Doctrines & Proofs, Theology, Catechism, History,
 // the BCO, and a "Hot Topic." This file maps each week onto the app's
-// sub-decks (`sets`) plus the reading/memory assignments that have no card deck
-// (catechism question numbers, the week's hot topic, and the book
-// outline/contents drills), which are shown as guidance.
+// sub-decks (`sets`) plus the reading/memory assignments shown as guidance
+// (catechism question numbers and the week's hot topic).
 //
 // Notes on the mapping:
+//  - The "Book Outlines / Book Contents" columns are backed by the Bible Book
+//    Summaries subject (js/data/subjects/bible_books.js): one card per book
+//    (author, date, theme, outline, Christ & significance), grouped into eight
+//    division sub-decks (bk-*). Each division deck is attached to the first
+//    week its books are read (Pentateuch + OT History → wk 2, Major Prophets →
+//    wk 4, OT Poetry → wk 5, Gospels & Acts → wk 6, Minor Prophets → wk 7,
+//    Pauline Epistles → wk 9, General Epistles & Revelation → wk 11). The
+//    week's `reading.outlines` / `reading.contents` captions still name the
+//    specific books due that week.
 //  - The app's theology sub-decks merge the syllabus's "A. Introduction" into
 //    "A. The Bible," so the lettered theology columns are shifted by one and
 //    land on th-a … th-k here.
@@ -43,7 +51,7 @@
     {
       week: 2,
       theme: 'Whole Bible · Doctrine of Scripture & God',
-      sets: ['bc-whole', 'th-a', 'theo-wcf', 'ch-overview', 'bco-officers'],
+      sets: ['bc-whole', 'bk-pentateuch', 'bk-ot-history', 'th-a', 'theo-wcf', 'ch-overview', 'bco-officers'],
       reading: {
         outlines: 'Genesis–Exodus',
         contents: 'Joshua–Ruth',
@@ -66,7 +74,7 @@
     {
       week: 4,
       theme: 'Humankind · the Five Points (TULIP)',
-      sets: ['bc-ot-people', 'th-c', 'dp-tulip', 'ch-events', 'bco-discipline'],
+      sets: ['bc-ot-people', 'bk-ot-major', 'th-c', 'dp-tulip', 'ch-events', 'bco-discipline'],
       reading: {
         outlines: 'Isaiah–Jeremiah',
         contents: 'Ezra–Esther',
@@ -78,7 +86,7 @@
     {
       week: 5,
       theme: "God's way of salvation",
-      sets: ['bc-ot-passages', 'th-d', 'ch-terms', 'bco-worship'],
+      sets: ['bc-ot-passages', 'bk-ot-poetry', 'th-d', 'ch-terms', 'bco-worship'],
       reading: {
         outlines: 'Ezekiel–Daniel',
         contents: 'Job–Proverbs',
@@ -89,7 +97,7 @@
     {
       week: 6,
       theme: 'Salvation accomplished · Key People',
-      sets: ['bc-ot-events', 'th-e', 'ch-people', 'bco-gov-courts'],
+      sets: ['bc-ot-events', 'bk-gospels-acts', 'th-e', 'ch-people', 'bco-gov-courts'],
       reading: {
         outlines: 'Matthew–Mark',
         contents: 'Ecclesiastes, Song of Songs, Lamentations',
@@ -101,7 +109,7 @@
     {
       week: 7,
       theme: 'Salvation applied · the Ordo Salutis',
-      sets: ['bc-nt-general', 'th-f', 'dp-ordo', 'bco-gov-ministry'],
+      sets: ['bc-nt-general', 'bk-ot-minor', 'th-f', 'dp-ordo', 'bco-gov-ministry'],
       reading: {
         outlines: 'Luke–John',
         contents: 'Hosea–Obadiah',
@@ -124,7 +132,7 @@
     {
       week: 9,
       theme: 'The Church · discipline',
-      sets: ['bc-nt-passages', 'th-h', 'bco-comp-members-officers', 'bco-comp-courts'],
+      sets: ['bc-nt-passages', 'bk-paul', 'th-h', 'bco-comp-members-officers', 'bco-comp-courts'],
       reading: {
         outlines: 'Romans',
         contents: 'Zephaniah–Malachi',
@@ -148,7 +156,7 @@
     {
       week: 11,
       theme: 'The Holy Spirit & apologetics · worship · PCA history',
-      sets: ['bc-nt-topics', 'th-k', 'ch-pca', 'bco-comp-review', 'bco-comp-worship-principles'],
+      sets: ['bc-nt-topics', 'bk-general', 'th-k', 'ch-pca', 'bco-comp-review', 'bco-comp-worship-principles'],
       reading: {
         outlines: 'Ephesians–Colossians',
         contents: 'James, 1–2 Peter',
