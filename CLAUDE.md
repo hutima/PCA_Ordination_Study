@@ -68,6 +68,20 @@ That changes the update workflow:
   An empty subject selection means an empty deck — there is no implicit
   "study everything" fallback. Card re-renders run through `withCardAnchor()`
   (pca.js) so reveal/hide/next never jumps the page.
+- **12-week study plan (Week filter):** a "Week" row (`#planWeeks` + a caption)
+  under the Focus row, driven by `js/data/week_plan.js` (`window.PCA_WEEKS`,
+  the Chapell/Meek "Schedule of Assignments"). Each Week N button is a
+  *selection shortcut* — it replaces `state.selected` with exactly that week's
+  sub-decks; "All" keeps a custom selection, and any manual tile edit drops the
+  week back to All (`markSelectionCustom()` in pca.js). Persists to
+  `pca_week_v1` (`state.week`). The caption also shows the week's non-deck
+  assignments (catechism #s, hot topic, book outlines/contents). When adding a
+  subject/sub-deck, consider whether it belongs in a week's `sets`.
+- **Subjects (8):** Bible Content, Theology (incl. `th-k` Holy Spirit &
+  apologetics + `theo-wcf`), Sacraments, Church History, BCO (14 sub-decks),
+  Hot Topics (each card cites the relevant PCA GA action), **Doctrines &
+  Proofs** (TULIP/ordo/gospel with proof texts), and **Personal Religion &
+  Call** (office qualifications + a flagged self-examination card).
 - **Answer rendering:** answers are Markdown (`js/utils/markdown.js`,
   escape-first; lists, GFM tables, blockquotes, inline emphasis) and are
   provenance-tagged by `renderAnswer()` (`answer.js`): a line starting
@@ -127,9 +141,11 @@ That changes the update workflow:
 
 - Keep `PROJECT_PLAN.md` **Status** and **Next steps** current as phases land.
 - **Release ritual:** asset URLs in `index.html` carry a `?v=N` cache-bust
-  param. The service worker (`sw.js`) auto-updates; on every release bump the
-  `?v=N` in `index.html` **and** `CACHE` in `sw.js` together so returning
-  users auto-refresh onto the new version. Verify with `node dev/check_sw.mjs`
+  param. On every release bump the `?v=N` in `index.html` **and** `CACHE` in
+  `sw.js` together. The new worker then *waits*; the page shows an "Update
+  available" banner and only reloads when the user taps "Refresh now" (or
+  cold-starts) — never automatically (that froze iOS PWAs). See
+  `registerServiceWorker()` in `pca.js`. Verify with `node dev/check_sw.mjs`
   (precache completeness + `?v=N`/CACHE agreement).
 - When adding/removing a subject data file, update the `<script defer>` tags
   in `index.html` **and** the `sw.js` PRECACHE, then re-run

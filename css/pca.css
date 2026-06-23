@@ -234,6 +234,33 @@ a.qa-ref-inline {
   text-transform: uppercase; color: var(--gold-dim);
 }
 
+/* ── 12-week study plan row ────────────────────────────────────────────── */
+.plan-row {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  flex-wrap: wrap;
+  margin: -2px 0 8px;
+}
+.plan-row #planWeeks { flex-wrap: wrap; gap: 4px; justify-content: center; }
+/* Fixed-size, wrapping week chips — never the full-width flex:1 the mobile
+   mode-group rule would otherwise impose on 13 buttons. */
+.plan-row #planWeeks .mode-btn { flex: 0 0 auto; min-width: 34px; padding: 5px 9px; }
+.plan-caption {
+  max-width: 640px; margin: 0 auto 12px; padding: 12px 16px;
+  background: rgba(201,168,76,0.06);
+  border: 1px solid var(--gold-dim); border-radius: 12px;
+}
+.plan-caption-title {
+  font-family: var(--font-display); font-size: calc((15px) * var(--text-scale, 1));
+  color: var(--gold-light); margin-bottom: 4px;
+}
+.plan-caption-deck { color: var(--muted); font-size: calc((13px) * var(--text-scale, 1)); margin-bottom: 8px; }
+.plan-caption-deck strong { color: var(--cream); }
+.plan-caption-list {
+  margin: 0; padding-left: 18px; color: var(--cream);
+  font-size: calc((13px) * var(--text-scale, 1)); line-height: 1.6;
+}
+.plan-caption-list strong { color: var(--gold-light); }
+
 /* ── Provenance callouts in answers ───────────────────────────────────── */
 .qa-callout {
   margin: 12px 0; padding: 10px 14px 4px; border-radius: 0 8px 8px 0;

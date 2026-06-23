@@ -1,11 +1,12 @@
 // PCA Ordination & Licensure Study — service worker.
 //
-// Offline shell cache + auto-update. Bump CACHE (and the ?v=N params in
-// index.html) together on every release: a new CACHE name makes the browser
-// install a fresh worker, which the page promotes immediately (see the
-// registration block in js/app/pca.js) so users auto-refresh onto the new
-// version without a manual reload.
-const CACHE = 'pca-v34';
+// Offline shell cache + user-triggered update. Bump CACHE (and the ?v=N params
+// in index.html) together on every release: a new CACHE name makes the browser
+// install a fresh worker, which then waits. The page surfaces an "Update
+// available" banner (see registerServiceWorker in js/app/pca.js); the worker is
+// promoted (skipWaiting) and the page reloads only when the user taps "Refresh
+// now" — never automatically, which would freeze iOS standalone PWAs.
+const CACHE = 'pca-v36';
 
 const PRECACHE = [
   './',
@@ -38,6 +39,10 @@ const PRECACHE = [
   'js/data/subjects/church_history.js',
   'js/data/subjects/theology.js',
   'js/data/subjects/theology_wcf.js',
+  'js/data/subjects/theology_other.js',
+  'js/data/subjects/doctrines_proofs.js',
+  'js/data/subjects/personal_call.js',
+  'js/data/week_plan.js',
   'js/data/catechisms.js',
   'js/data/catechisms_bco.js',
   'js/data/quiz/bible_content.js',

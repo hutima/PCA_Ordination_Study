@@ -315,6 +315,58 @@ KEEP modules + the HTML shell):**
         apply here: that `.toggle-label` switch and modal are Duff-only (dead in
         this app). Gates clean (`validate` 0 problems, `audit` baseline 8,
         `check_sw` consistent).
+- [x] **Phase 20 — Auto-update banner, 12-week plan, and missing syllabus
+      content** (user-requested from the Chapell/Meek source PDF). Releases
+      `?v=34` (banner) → `?v=35` (content) → `?v=36` (week filter).
+      - **User-triggered update banner** (ported from Duff `3a9ef43`). Replaced
+        the auto-`SKIP_WAITING` + reload-at-launch (which freezes iOS standalone
+        PWAs) with an "Update available" banner: a new worker now waits, and the
+        page only promotes it + reloads inside the user's "Refresh now" tap (or
+        a cold start). `registerServiceWorker()` in `pca.js` rewritten with a
+        `refreshAccepted` gate; `#updateBanner` markup + `.update-banner` CSS.
+        `sw.js` already message-gated, so only its header comment changed.
+      - **Missing content authored** (citable only; subjective items flagged):
+        - New **Doctrines & Proofs** subject (`doctrines_proofs.js`, 10 cards,
+          order 2.5): the five points (TULIP), the ordo salutis, and a gospel/
+          evangelism plan — each with Scripture proof texts + WCF/Heidelberg.
+        - New **Theology K** sub-deck (`theology_other.js`, `th-k`, 7 cards):
+          the Holy Spirit (OT/today/Pentecost), gifts vs. fruit, the
+          cessationist/continuationist question, answering Mormon/JW claims.
+        - New **Personal Religion & Call** subject (`personal_call.js`, 6 cards,
+          order 0.5): biblical office qualifications (1 Tim 3; Titus 1; 1 Pet
+          5), inward/outward call, BCO 18–21 process; the genuinely subjective
+          prompts gathered into one card flagged `flagged-subjective`.
+        - All three hand-authored via a one-shot generator (`gen_decks.mjs`,
+          kept in scratch) emitting JSON-escaped `.js` — the `.js` is the
+          committed source of truth.
+      - **Hot Topics → PCA GA actions.** Each controversy card now carries a
+        `Note:` citing the relevant General Assembly action by GA #, year, and
+        title (28th GA 2000 Creation; 2nd GA 1974 Holy Spirit pastoral letter;
+        45th GA 2017 Women in Ministry; 15th GA 1987 baptism validity; 16th GA
+        1988 Paedocommunion; 20th GA 1992 Divorce/Remarriage; 30th GA 2002
+        good-faith subscription; etc.), verified by web research. Six
+        high-confidence reports link directly to the pcahistory.org PDF.
+      - **Markdown links.** `renderInline()` (`markdown.js`) gained
+        `[label](https://…)` support (placeholder-protected from the Scripture
+        linkify pass) so the GA report links render as `qa-ref-inline` anchors.
+      - **12-week study plan / Week filter** (`js/data/week_plan.js` →
+        `window.PCA_WEEKS`). A "Week" row (`#planRow`/`#planWeeks` + caption)
+        under the Focus row: each Week N button is a selection shortcut that
+        loads exactly that week's sub-decks into `state.selected` (Duff-style
+        week grouping); "All" leaves a custom selection alone, and any manual
+        tile edit drops back to it (`markSelectionCustom()`). Persisted to
+        `localStorage['pca_week_v1']` (`loadWeek`/`saveWeek`, `state.week`). The
+        caption shows the week's full official assignment (catechism #s, hot
+        topic, book outlines/contents, doctrines) — including the non-deck
+        reading items. Mapping notes live in `week_plan.js` (theology letters
+        shifted by one; big decks attach to their first week; BCO distributed in
+        the BCO's own order). Gates clean (`validate` 0, `audit` baseline 8,
+        `check_sw` consistent); 804 cards, 8 subjects.
+      - **Still flagged as missing** (not authored — uncitable or out of scope):
+        per-book *Book Outlines / Book Contents* memory drills (the syllabus
+        wants the student to produce these); the deeply personal Christian-
+        experience/marriage answers (subjective by nature); and verbatim PCA GA
+        report wording (copyright + the proxy blocks pcahistory.org fetches).
       deeper slimming.** (Same release as 16, `?v=27`.)
       - **BCO comprehensive deck replaced** by the user's
         `pca_bco_comprehensive_quoted_labeled_bundle.zip` (committed to main):
