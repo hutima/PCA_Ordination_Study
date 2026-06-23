@@ -349,19 +349,25 @@ KEEP modules + the HTML shell):**
       - **Markdown links.** `renderInline()` (`markdown.js`) gained
         `[label](https://…)` support (placeholder-protected from the Scripture
         linkify pass) so the GA report links render as `qa-ref-inline` anchors.
-      - **12-week study plan / Week filter** (`js/data/week_plan.js` →
-        `window.PCA_WEEKS`). A "Week" row (`#planRow`/`#planWeeks` + caption)
-        under the Focus row: each Week N button is a selection shortcut that
-        loads exactly that week's sub-decks into `state.selected` (Duff-style
-        week grouping); "All" leaves a custom selection alone, and any manual
-        tile edit drops back to it (`markSelectionCustom()`). Persisted to
-        `localStorage['pca_week_v1']` (`loadWeek`/`saveWeek`, `state.week`). The
-        caption shows the week's full official assignment (catechism #s, hot
-        topic, book outlines/contents, doctrines) — including the non-deck
-        reading items. Mapping notes live in `week_plan.js` (theology letters
-        shifted by one; big decks attach to their first week; BCO distributed in
-        the BCO's own order). Gates clean (`validate` 0, `audit` baseline 8,
-        `check_sw` consistent); 804 cards, 8 subjects.
+      - **12-week study plan / By-week selector** (`js/data/week_plan.js` →
+        `window.PCA_WEEKS`). First shipped (`?v=36`) as an inline number-chip
+        "Week" row, then redesigned (`?v=38`, user-reported "really ugly") into
+        a **By subject / By week** toggle inside the "Choose subjects" modal,
+        modeled on the Duff session selector. *By week* renders one collapsible
+        group per week: the collapsed row is a Duff-style session card (a
+        "Week N" tag, the theme, and a books subtitle — `Genesis–Exodus ·
+        Joshua–Ruth`); a Select-all toggles the whole week; expanding lists each
+        sub-deck as a subject-tagged topic link plus a "week-assign" caption of
+        the non-deck assignments (catechism #s, hot topic, outlines/contents,
+        doctrines). Both views share `groupHtml()`/`deckRowHtml()`;
+        `state.selectorGroupBy` persists to `pca_selector_group_v1`. The
+        throwaway inline-strip state (`state.week`, `pca_week_v1`,
+        `renderPlanRow`/`setWeek`/`markSelectionCustom`) was removed. BCO
+        sub-decks are assigned to weeks in canonical order (officers → … →
+        Directory for Worship) so the weeks never show BCO out of order. Mapping
+        notes live in `week_plan.js` (theology letters shifted by one; big decks
+        attach to their first week). Gates clean (`validate` 0, `audit` baseline
+        8, `check_sw` consistent); 804 cards, 8 subjects.
       - **Still flagged as missing** (not authored — uncitable or out of scope):
         per-book *Book Outlines / Book Contents* memory drills (the syllabus
         wants the student to produce these); the deeply personal Christian-

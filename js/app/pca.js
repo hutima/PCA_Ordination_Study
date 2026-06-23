@@ -17,7 +17,7 @@ import { escapeHtml } from '../utils/text.js';
 import { installClickShield, shieldClicksBriefly } from '../utils/clickShield.js';
 import {
   DATA, state, WEEKS, loadProgress, saveProgress, loadSelection, saveSelection, loadActivity,
-  loadShuffle, saveShuffle, loadWeek, saveWeek, recordActivity,
+  loadShuffle, saveShuffle, loadSelectorGroup, saveSelectorGroup, recordActivity,
 } from './store.js';
 import {
   effectiveSetKeys, cardsForKeys, shuffle, isWeak,
@@ -227,29 +227,14 @@ function updateShuffleButton() {
 }
 
 // ── 12-week study plan (Schedule of Assignments) ───────────────────────
-// A "Week N" button is a selection shortcut: it loads exactly that week's
-// sub-decks into state.selected (Duff-style week grouping). "All" leaves the
-// user's own selection alone, and any manual selection edit drops back to it.
-function renderPlanRow() {
-  const host = $('planWeeks');
-  const row = $('planRow');
-  if (!host || !WEEKS.length) { if (row) row.style.display = 'none'; return; }
-  const btn = (val, label, title) =>
-    `<button class="mode-btn ${String(state.week) === String(val) ? 'active' : ''}" type="button" data-week="${val}" title="${escapeText(title)}">${label}</button>`;
-  let html = btn('all', 'All', 'Study your own subject selection (no weekly plan)');
-  for (const w of WEEKS) {
-    const label = w.week >= 13 ? 'Final' : String(w.week);
-    html += btn(w.week, label, `Week ${w.week}: ${w.theme}`);
-  }
-  host.innerHTML = html;
-  host.querySelectorAll('[data-week]').forEach(b => b.addEventListener('click', () => setWeek(b.dataset.week)));
-  renderPlanCaption();
-}
-function renderPlanCaption() {
-  const cap = $('planCaption');
-  if (!cap) return;
-  const w = state.week !== 'all' && WEEKS.find(x => x.week === state.week);
-  if (!w) { cap.hidden = true; cap.innerHTML = ''; return; }
+// The week plan is shown inside the selector modal as a "By week" grouping —
+// each week is a collapsible card (select-all on the header) that expands to
+// its sub-decks as individual topic links, plus the week's reading/memory
+// assignments. See renderWeekGroups().
+//
+// Build the small "Also this week" caption for a week (the non-deck items:
+// catechism numbers, hot topic, book outlines/contents, doctrines).
+function weekReadingHtml(w) {
   const r = w.reading || {};
   const items = [];
   if (r.catechism) items.push(`<strong>Catechism:</strong> ${escapeText(r.catechism)}`);
@@ -260,45 +245,15 @@ function renderPlanCaption() {
   if (r.history) items.push(`<strong>History:</strong> ${escapeText(r.history)}`);
   if (r.hotTopic) items.push(`<strong>Hot topic:</strong> ${escapeText(r.hotTopic)}`);
   if (r.focus) items.push(escapeText(r.focus));
-  const deckNote = w.sets.length
-    ? `Loaded <strong>${w.sets.length}</strong> sub-deck${w.sets.length === 1 ? '' : 's'} into your selection.`
-    : `No card decks this week.`;
-  cap.innerHTML =
-    `<div class="plan-caption-title">Week ${w.week} — ${escapeText(w.theme)}</div>` +
-    `<div class="plan-caption-deck">${deckNote}</div>` +
-    (items.length ? `<ul class="plan-caption-list"><li>${items.join('</li><li>')}</li></ul>` : '');
-  cap.hidden = false;
+  if (!items.length) return '';
+  return `<div class="week-assign"><span class="week-assign-label">Also this week (reading &amp; memory)</span>` +
+    `<ul class="week-assign-list"><li>${items.join('</li><li>')}</li></ul></div>`;
 }
-function setWeek(val) {
-  if (val === 'all') {
-    state.week = 'all';
-    saveWeek();
-    syncToggleActive('[data-week]', 'data-week', 'all');
-    renderPlanCaption();
-    return;
-  }
-  const num = Number(val);
-  const w = WEEKS.find(x => x.week === num);
-  if (!w) return;
-  state.week = num;
-  saveWeek();
-  state.selected = new Set(w.sets.filter(k => DATA.sets[k]));
-  saveSelection();
-  state.flipArchived.clear();
-  syncToggleActive('[data-week]', 'data-week', String(num));
-  renderPlanCaption();
-  const overlay = $('studySelectorOverlay');
-  if (overlay && overlay.classList.contains('show')) renderSelector();
-  buildDeck();
-  renderCard();
-}
-// Manual selection edits drop the plan back to "All" (a custom selection).
-function markSelectionCustom() {
-  if (state.week === 'all') return;
-  state.week = 'all';
-  saveWeek();
-  syncToggleActive('[data-week]', 'data-week', 'all');
-  renderPlanCaption();
+function setSelectorGroup(mode) {
+  state.selectorGroupBy = mode === 'week' ? 'week' : 'subject';
+  saveSelectorGroup();
+  syncToggleActive('[data-groupby]', 'data-groupby', state.selectorGroupBy);
+  renderSelector();
 }
 
 // ── Top-level render ───────────────────────────────────────────────────
@@ -394,52 +349,100 @@ function closeSelector() {
   applySelectorChanges();
 }
 const openSubdeckGroups = new Set();
+// One sub-deck as a selectable full-width row ("topic link"). In the by-week
+// view we also tag each topic with its subject, since a week mixes subjects.
+function deckRowHtml(k, showSubject) {
+  const set = DATA.sets[k];
+  if (!set) return '';
+  const on = state.selected.has(k);
+  let meta = `${set.cards.length} cards`;
+  if (showSubject) {
+    const subj = DATA.subjects.find(s => s.setKeys.includes(k));
+    if (subj) meta = `${escapeText(subj.label)} · ${meta}`;
+  }
+  return `<button class="subdeck-row ${on ? 'selected' : ''}" data-set="${k}" type="button">
+    <span class="subdeck-row-title">${escapeText(set.label)}</span>
+    <span class="subdeck-row-meta">${meta}</span></button>`;
+}
+// A collapsible group (subject or week): summary with title, a select/deselect-
+// all toggle, and a card-count; the expanded body holds the topic rows. Weeks
+// pass a `tag` ("Week N") + `subtitle` (the books it covers) so the collapsed
+// row reads like a Duff session card.
+function groupHtml({ id, tag, title, subtitle, keys, selAttr, selVal, showSubject, extraBody }) {
+  const real = keys.filter(k => DATA.sets[k]);
+  const total = real.reduce((n, k) => n + DATA.sets[k].cards.length, 0);
+  const onCount = real.filter(k => state.selected.has(k)).length;
+  const allOn = real.length > 0 && onCount === real.length;
+  const meta = !real.length ? 'reading only'
+    : onCount ? `${onCount}/${real.length} selected · ${total} cards`
+    : `${real.length} sub-deck${real.length === 1 ? '' : 's'} · ${total} cards`;
+  const selBtn = real.length
+    ? `<button class="subdeck-group-select ${allOn ? 'selected' : ''}" ${selAttr}="${selVal}" type="button"
+        title="${allOn ? 'Deselect' : 'Select'} all">${allOn ? 'Deselect all' : 'Select all'}</button>`
+    : '';
+  const titleBlock = tag
+    ? `<span class="group-titlewrap"><span class="group-tag">${escapeText(tag)}</span>
+        <span class="subdeck-group-title">${escapeText(title)}</span>
+        ${subtitle ? `<span class="group-sub">${escapeText(subtitle)}</span>` : ''}</span>`
+    : `<span class="subdeck-group-title">${escapeText(title)}</span>`;
+  return `<details class="subdeck-group ${onCount ? 'has-selected' : ''}" data-group="${id}" ${openSubdeckGroups.has(id) ? 'open' : ''}>
+    <summary>${titleBlock}<span class="subdeck-group-meta">${meta}</span>${selBtn}</summary>
+    <div class="subdeck-rows">${extraBody || ''}${real.map(k => deckRowHtml(k, showSubject)).join('')}</div></details>`;
+}
+// Subtitle for a week card: the books it covers (outlines · contents).
+function weekChaptersSubtitle(w) {
+  const r = w.reading || {};
+  return [r.outlines, r.contents].filter(Boolean).join(' · ');
+}
 function renderSelector() {
-  // One full-width collapsible <details> row per subject; expanding reveals a
-  // "Select all" row plus one full-width row per sub-deck. Open/closed state
-  // survives the re-render on each click.
   const list = $('subjectList');
-  const subjects = DATA.subjects.slice().sort((a, b) => (a.order || 0) - (b.order || 0));
-  list.innerHTML = subjects.map(subj => {
-    const keys = subj.setKeys.filter(k => DATA.sets[k]);
-    const total = keys.reduce((n, k) => n + DATA.sets[k].cards.length, 0);
-    const onCount = keys.filter(k => state.selected.has(k)).length;
-    const allOn = keys.length > 0 && onCount === keys.length;
-    const rows = keys.map(k => {
-      const set = DATA.sets[k];
-      const on = state.selected.has(k);
-      return `<button class="subdeck-row ${on ? 'selected' : ''}" data-set="${k}" type="button">
-        <span class="subdeck-row-title">${escapeText(set.label)}</span>
-        <span class="subdeck-row-meta">${set.cards.length} cards</span></button>`;
-    }).join('');
-    const meta = onCount
-      ? `${onCount}/${keys.length} selected · ${total} cards`
-      : `${keys.length} sub-deck${keys.length === 1 ? '' : 's'} · ${total} cards`;
-    return `<details class="subdeck-group ${onCount ? 'has-selected' : ''}" data-group="${subj.id}" ${openSubdeckGroups.has(subj.id) ? 'open' : ''}>
-      <summary><span class="subdeck-group-title">${escapeText(subj.label)}</span>
-        <span class="subdeck-group-meta">${meta}</span>
-        <button class="subdeck-group-select ${allOn ? 'selected' : ''}" data-subject="${subj.id}" type="button"
-          title="${allOn ? 'Deselect' : 'Select'} all of ${escapeText(subj.label)}">${allOn ? 'Deselect all' : 'Select all'}</button></summary>
-      <div class="subdeck-rows">${rows}</div></details>`;
-  }).join('');
-  list.querySelectorAll('[data-subject]').forEach(btn => btn.addEventListener('click', e => {
-    e.preventDefault(); // a click inside <summary> would also toggle the group open/closed
-    const subj = DATA.subjects.find(s => s.id === btn.dataset.subject);
-    const keys = subj.setKeys.filter(k => DATA.sets[k]);
-    const allOn = keys.length > 0 && keys.every(k => state.selected.has(k));
-    keys.forEach(k => allOn ? state.selected.delete(k) : state.selected.add(k));
-    markSelectionCustom();
-    renderSelector();
-  }));
+  if (state.selectorGroupBy === 'week') {
+    list.innerHTML = WEEKS.map(w => groupHtml({
+      id: `week:${w.week}`,
+      tag: `Week ${w.week}`,
+      title: w.theme || `Week ${w.week}`,
+      subtitle: weekChaptersSubtitle(w),
+      keys: w.sets,
+      selAttr: 'data-week-select', selVal: String(w.week),
+      showSubject: true,
+      extraBody: weekReadingHtml(w),
+    })).join('');
+  } else {
+    list.innerHTML = DATA.subjects.slice().sort((a, b) => (a.order || 0) - (b.order || 0))
+      .map(subj => groupHtml({
+        id: subj.id,
+        title: subj.label,
+        keys: subj.setKeys.filter(k => DATA.sets[k]),
+        selAttr: 'data-subject', selVal: subj.id,
+        showSubject: false,
+      })).join('');
+  }
+  // Toggle one topic.
   list.querySelectorAll('[data-set]').forEach(btn => btn.addEventListener('click', () => {
     const k = btn.dataset.set;
     state.selected.has(k) ? state.selected.delete(k) : state.selected.add(k);
-    markSelectionCustom();
     renderSelector();
+  }));
+  // Select / deselect a whole subject.
+  list.querySelectorAll('[data-subject]').forEach(btn => btn.addEventListener('click', e => {
+    e.preventDefault(); // a click inside <summary> would also toggle the group open/closed
+    const subj = DATA.subjects.find(s => s.id === btn.dataset.subject);
+    toggleKeys(subj.setKeys.filter(k => DATA.sets[k]));
+  }));
+  // Select / deselect a whole week.
+  list.querySelectorAll('[data-week-select]').forEach(btn => btn.addEventListener('click', e => {
+    e.preventDefault();
+    const w = WEEKS.find(x => String(x.week) === btn.dataset.weekSelect);
+    if (w) toggleKeys(w.sets.filter(k => DATA.sets[k]));
   }));
   list.querySelectorAll('details[data-group]').forEach(d => d.addEventListener('toggle', () => {
     d.open ? openSubdeckGroups.add(d.dataset.group) : openSubdeckGroups.delete(d.dataset.group);
   }));
+}
+function toggleKeys(keys) {
+  const allOn = keys.length > 0 && keys.every(k => state.selected.has(k));
+  keys.forEach(k => allOn ? state.selected.delete(k) : state.selected.add(k));
+  renderSelector();
 }
 
 // ── Theme / font / size ────────────────────────────────────────────────
@@ -565,7 +568,7 @@ function init() {
   loadSelection();
   loadActivity();
   loadShuffle();
-  loadWeek();
+  loadSelectorGroup();
   installClickShield();
 
   document.querySelectorAll('[data-theme-mode]').forEach(b =>
@@ -583,10 +586,12 @@ function init() {
   $('selectorDoneTopBtn').addEventListener('click', closeSelector);
   $('selectorAllBtn').addEventListener('click', () => {
     DATA.subjects.forEach(s => s.setKeys.forEach(k => { if (DATA.sets[k]) state.selected.add(k); }));
-    markSelectionCustom();
     renderSelector();
   });
-  $('selectorClearBtn').addEventListener('click', () => { state.selected.clear(); markSelectionCustom(); renderSelector(); });
+  $('selectorClearBtn').addEventListener('click', () => { state.selected.clear(); renderSelector(); });
+  document.querySelectorAll('[data-groupby]').forEach(b =>
+    b.addEventListener('click', () => setSelectorGroup(b.getAttribute('data-groupby'))));
+  syncToggleActive('[data-groupby]', 'data-groupby', state.selectorGroupBy);
   $('startStudyingBtn').addEventListener('click', () => { state.flipArchived.clear(); buildDeck(); renderCard(); });
   $('progressBtn').addEventListener('click', openProgress);
   $('progressCloseBtn').addEventListener('click', () => hideOverlay('progressOverlay'));
@@ -598,7 +603,6 @@ function init() {
   syncToggleActive('[data-focus]', 'data-focus', state.focus);
   $('shuffleBtn').addEventListener('click', toggleShuffle);
   updateShuffleButton();
-  renderPlanRow();
   updateFocusVisibility();
 
   $('exportBtn').addEventListener('click', exportProgress);

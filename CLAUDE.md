@@ -68,15 +68,18 @@ That changes the update workflow:
   An empty subject selection means an empty deck — there is no implicit
   "study everything" fallback. Card re-renders run through `withCardAnchor()`
   (pca.js) so reveal/hide/next never jumps the page.
-- **12-week study plan (Week filter):** a "Week" row (`#planWeeks` + a caption)
-  under the Focus row, driven by `js/data/week_plan.js` (`window.PCA_WEEKS`,
-  the Chapell/Meek "Schedule of Assignments"). Each Week N button is a
-  *selection shortcut* — it replaces `state.selected` with exactly that week's
-  sub-decks; "All" keeps a custom selection, and any manual tile edit drops the
-  week back to All (`markSelectionCustom()` in pca.js). Persists to
-  `pca_week_v1` (`state.week`). The caption also shows the week's non-deck
-  assignments (catechism #s, hot topic, book outlines/contents). When adding a
-  subject/sub-deck, consider whether it belongs in a week's `sets`.
+- **12-week study plan (By-week selector):** the "Choose subjects" modal has a
+  **By subject / By week** toggle (`#groupBySubjectBtn`/`#groupByWeekBtn`,
+  `state.selectorGroupBy`, persisted `pca_selector_group_v1`). In *By week* mode
+  `renderSelector()` renders one collapsible group per week (driven by
+  `js/data/week_plan.js` → `window.PCA_WEEKS`, the Chapell/Meek "Schedule of
+  Assignments"): the collapsed row is a Duff-style session card (a "Week N" tag,
+  the week's theme, and a books subtitle); a **Select all** toggles the whole
+  week; expanding shows each sub-deck as a topic link (tagged with its subject)
+  plus the week's non-deck assignments (catechism #s, hot topic, book
+  outlines/contents) in a "week-assign" caption. Both views share `groupHtml()`
+  / `deckRowHtml()`. When adding a subject/sub-deck, consider whether it belongs
+  in a week's `sets`. BCO sub-decks are assigned to weeks in canonical order.
 - **Subjects (8):** Bible Content, Theology (incl. `th-k` Holy Spirit &
   apologetics + `theo-wcf`), Sacraments, Church History, BCO (14 sub-decks),
   Hot Topics (each card cites the relevant PCA GA action), **Doctrines &
