@@ -11,7 +11,7 @@ export const PROGRESS_KEY = 'pca_progress_v1';
 export const SELECTION_KEY = 'pca_selection_v1';
 export const ACTIVITY_KEY = 'pca_activity_v1';
 export const SHUFFLE_KEY = 'pca_shuffle_v1';
-export const WEEK_KEY = 'pca_week_v1';
+export const SELECTOR_GROUP_KEY = 'pca_selector_group_v1';
 
 // The official 12-week study plan (Chapell/Meek "Schedule of Assignments").
 export const WEEKS = (typeof window !== 'undefined' && window.PCA_WEEKS) || [];
@@ -19,7 +19,7 @@ export const WEEKS = (typeof window !== 'undefined' && window.PCA_WEEKS) || [];
 export const state = {
   mode: 'review',          // see modes.js registry for valid ids
   focus: 'due',            // 'due' (default) | 'weak' (low-confidence) | 'order' (unspaced book order) | 'flip' (non-spaced flip deck)
-  week: 'all',             // 'all' (custom selection) | week number (1..N) from the study plan
+  selectorGroupBy: 'subject', // selector modal grouping: 'subject' | 'week'
   shuffleOn: true,         // shuffle deck order (persisted)
   flipArchived: new Set(), // card ids retired ("Easy") this flip-deck session
   selected: new Set(),     // selected set keys
@@ -56,14 +56,12 @@ export function loadShuffle() {
 export function saveShuffle() {
   try { localStorage.setItem(SHUFFLE_KEY, state.shuffleOn ? 'on' : 'off'); } catch (e) {}
 }
-export function loadWeek() {
-  try {
-    const v = localStorage.getItem(WEEK_KEY);
-    state.week = v && v !== 'all' && WEEKS.some(w => String(w.week) === v) ? Number(v) : 'all';
-  } catch (e) { state.week = 'all'; }
+export function loadSelectorGroup() {
+  try { state.selectorGroupBy = localStorage.getItem(SELECTOR_GROUP_KEY) === 'week' ? 'week' : 'subject'; }
+  catch (e) { state.selectorGroupBy = 'subject'; }
 }
-export function saveWeek() {
-  try { localStorage.setItem(WEEK_KEY, String(state.week)); } catch (e) {}
+export function saveSelectorGroup() {
+  try { localStorage.setItem(SELECTOR_GROUP_KEY, state.selectorGroupBy); } catch (e) {}
 }
 export function loadActivity() {
   try { state.activity = JSON.parse(localStorage.getItem(ACTIVITY_KEY)) || {}; }
