@@ -533,28 +533,64 @@ function init() {
   registerServiceWorker();
 }
 
-// Service worker: offline cache + auto-update. A new worker (after a deploy that
-// bumped the cache name) is promoted immediately and the page reloads once so
-// the user is always on the latest version — no manual refresh.
+// Service worker: offline cache + user-triggered update. When a new worker
+// (after a deploy that bumped the cache name) finishes installing, it stays in
+// the "waiting" state and we surface an "Update available" banner instead of
+// promoting it automatically. The old code auto-posted SKIP_WAITING and reloaded
+// at launch, which freezes iOS standalone PWAs; now the reload only happens
+// inside the user's "Refresh now" tap (or the next cold start). Ported from the
+// Duff study tool (commit 3a9ef43).
 function registerServiceWorker() {
   if (!('serviceWorker' in navigator)) return;
-  // Only reload when an existing controller is *replaced* (i.e. an update).
-  // On first install, clients.claim() also fires controllerchange — reloading
-  // then would needlessly restart a first-time visitor's session.
-  const hadController = !!navigator.serviceWorker.controller;
-  let refreshing = false;
+
+  let refreshAccepted = false;
+  let reloading = false;
+  let pendingWorker = null;
+
+  // Only reload once the user has accepted the update — never automatically.
   navigator.serviceWorker.addEventListener('controllerchange', () => {
-    if (!hadController || refreshing) return;
-    refreshing = true;
+    if (!refreshAccepted || reloading) return;
+    reloading = true;
     window.location.reload();
   });
+
+  const banner = document.getElementById('updateBanner');
+  function showUpdateBanner(worker) {
+    pendingWorker = worker || pendingWorker;
+    if (!banner) return;
+    banner.classList.add('show');
+    banner.setAttribute('aria-hidden', 'false');
+  }
+  function hideUpdateBanner() {
+    if (!banner) return;
+    banner.classList.remove('show');
+    banner.setAttribute('aria-hidden', 'true');
+  }
+  function acceptUpdate() {
+    refreshAccepted = true;
+    hideUpdateBanner();
+    const worker = pendingWorker || (navigator.serviceWorker.controller && navigator.serviceWorker.controller);
+    try { if (worker) worker.postMessage('SKIP_WAITING'); } catch (_) {}
+    // Fallback in case controllerchange never fires (e.g. no waiting worker yet).
+    setTimeout(() => {
+      if (!reloading) { reloading = true; window.location.reload(); }
+    }, 1500);
+  }
+
+  const refreshBtn = document.getElementById('updateRefreshBtn');
+  if (refreshBtn) refreshBtn.addEventListener('click', acceptUpdate);
+  const dismissBtn = document.getElementById('updateDismissBtn');
+  if (dismissBtn) dismissBtn.addEventListener('click', hideUpdateBanner);
+
   navigator.serviceWorker.register('sw.js').then((reg) => {
-    if (reg.waiting && navigator.serviceWorker.controller) reg.waiting.postMessage('SKIP_WAITING');
+    // A worker already waiting (alongside an active controller) means an update
+    // was installed on a previous visit — offer it immediately.
+    if (reg.waiting && navigator.serviceWorker.controller) showUpdateBanner(reg.waiting);
     reg.addEventListener('updatefound', () => {
       const next = reg.installing;
       if (!next) return;
       next.addEventListener('statechange', () => {
-        if (next.state === 'installed' && navigator.serviceWorker.controller) next.postMessage('SKIP_WAITING');
+        if (next.state === 'installed' && navigator.serviceWorker.controller) showUpdateBanner(next);
       });
     });
     reg.update();
