@@ -369,10 +369,46 @@ KEEP modules + the HTML shell):**
         attach to their first week). Gates clean (`validate` 0, `audit` baseline
         8, `check_sw` consistent); 804 cards, 8 subjects.
       - **Still flagged as missing** (not authored — uncitable or out of scope):
-        per-book *Book Outlines / Book Contents* memory drills (the syllabus
-        wants the student to produce these); the deeply personal Christian-
-        experience/marriage answers (subjective by nature); and verbatim PCA GA
-        report wording (copyright + the proxy blocks pcahistory.org fetches).
+        the deeply personal Christian-experience/marriage answers (subjective by
+        nature); and verbatim PCA GA report wording (copyright + the proxy
+        blocks pcahistory.org fetches). *(The per-book Book Outlines / Book
+        Contents drills, formerly listed here, were authored in Phase 21.)*
+- [x] **Phase 21 — Bible Book Summaries (per-book outlines + chapter-range
+      contents).** Release `?v=43` / `pca-v43`. The syllabus's weekly *Book
+      Outlines / Book Contents* columns had no card deck; authored a new **Bible
+      Book Summaries** subject (id `bible_books`, order 1.5) covering all 66
+      books — **229 cards total**:
+      - **66 overview cards** (one per book): Author & date / Genre / Theme /
+        Outline / Christ & significance, in a confessional, conservative
+        register (Mosaic Pentateuch, single Isaiah, Danielic Daniel, Pauline
+        authorship of all 13 incl. the Pastorals, anonymous Hebrews). These are
+        the "Book Outlines" drill.
+      - **163 chapter-range "Book Contents" cards** for every book of 5+
+        chapters, walking the book section by section (e.g. Genesis 1–11,
+        12–25, 26–36, 37–50). Coverage is contiguous and complete (chapter 1 →
+        last chapter) for each book; books of ≤4 chapters keep just the overview.
+        Each book's overview is immediately followed by its section cards in
+        chapter order.
+      - Grouped into eight division sub-decks (`bk-pentateuch`, `bk-ot-history`,
+        `bk-ot-poetry`, `bk-ot-major`, `bk-ot-minor`, `bk-gospels-acts`,
+        `bk-paul`, `bk-general`). Every card carries 1–3 esv.org Scripture refs
+        and an authored summary; outlines render as bullets (no tables), answers
+        stay short so no audit flags.
+      - **Reproducible build:** `dev/build_bible_books.mjs` reads
+        `dev/data/bible_books/<n>-<div>.json` (overviews) +
+        `<n>-<div>.sections.json` (chapter ranges), interleaves overview→sections
+        per book, and emits `js/data/subjects/bible_books.js` (the working source
+        of truth; JSON inputs committed for re-runs).
+      - **Wired into the schedule:** each division deck is added to the first
+        week its books are read in `week_plan.js` (Pentateuch + OT History → wk
+        2, Major Prophets → wk 4, OT Poetry → wk 5, Gospels & Acts → wk 6, Minor
+        Prophets → wk 7, Pauline Epistles → wk 9, General Epistles & Revelation →
+        wk 11), so the By-week selector's outline/contents rows are selectable
+        decks; the week captions still name the specific books due.
+      - Registered like any subject (`<script defer>` in `index.html` after
+        `bible_content.js`, `sw.js` precache, `?v=43`/`pca-v43`). Gates clean
+        (`validate` 0 problems / 1033 cards / 9 subjects, `audit` baseline 8,
+        `check_sw` consistent).
       deeper slimming.** (Same release as 16, `?v=27`.)
       - **BCO comprehensive deck replaced** by the user's
         `pca_bco_comprehensive_quoted_labeled_bundle.zip` (committed to main):
