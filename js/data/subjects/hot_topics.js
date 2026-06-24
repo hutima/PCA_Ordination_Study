@@ -444,14 +444,75 @@
       {
         "id": "ht-017-christian-nationalism",
         "q": "Christian nationalism: what is it, and how has the PCA addressed it?",
-        "a": "\"Christian nationalism\" is a contested label for ideologies that fuse Christian and national identity and look to the civil state to establish or privilege the Christian religion. Because the term is used so many ways, careful definition matters before either embracing or condemning it.\n\nThe PCA's **51st General Assembly (2024)** erected an **Ad Interim Study Committee on Christian Nationalism** (Overture 47) to weigh it — along with ethno-nationalism, Kinism, and related teachings — against Scripture and the Westminster Standards. The committee issued a **partial (interim) report to the 53rd General Assembly (2026)** — a pastoral letter with a set of affirmations and denials — and asked that its work continue toward a final report at a later Assembly.\n\nIts thrust upholds the **spirituality of the church**: church and state are both ordained by God but for distinct spheres, so the church does not wield the sword or bind consciences on political questions, even as it may address the civil magistrate \"in cases extraordinary\" (WCF 31). It rejects any nationalism marked by ethnic partiality, racism, or antisemitism as contrary to the gospel, in which there is neither Jew nor Greek (Gal 3:28), and it weighs the original (1646) against the American (1788) revision of WCF 23 on the civil magistrate.\n\nNote: Ad Interim Committee on Christian Nationalism — erected at the 51st General Assembly (2024, Overture 47); partial/interim report delivered to the 53rd General Assembly (2026), with a final report anticipated at a later Assembly. See the [Partial Report of the Ad Interim Committee on Christian Nationalism (2026)](https://pcaga.org/wp-content/uploads/2026/06/AICReport_CN.pdf).",
+        "a": "\"Christian nationalism\" is a contested label for ideologies that fuse Christian and national identity and look to the civil state to establish or privilege the Christian religion. Because the term is used so many ways, careful definition matters before either embracing or condemning it.\n\nThe PCA's **52nd General Assembly (2025)** erected an **Ad Interim Study Committee on Christian Nationalism** (Overtures 3, 4, and 47) to weigh it — along with ethno-nationalism, Kinism, and related teachings — against Scripture and the Westminster Standards. The committee issued a **partial (interim) report to the 53rd General Assembly (2026)** — a pastoral letter with a set of affirmations and denials — and asked that its work continue toward a final report at the 54th General Assembly (2027).\n\nIts thrust upholds the **spirituality of the church**: church and state are both ordained by God but for distinct spheres, so the church does not wield the sword or bind consciences on political questions, even as it may address the civil magistrate \"in cases extraordinary\" (WCF 31). It rejects any nationalism marked by ethnic partiality, racism, or antisemitism as contrary to the gospel, in which there is neither Jew nor Greek (Gal 3:28), and it weighs the original (1646) against the American (1788) revision of WCF 23 on the civil magistrate.\n\nNote: Ad Interim Committee on Christian Nationalism — erected at the 52nd General Assembly (2025); partial/interim report delivered to the 53rd General Assembly (2026), with a final report anticipated at the 54th General Assembly (2027). See the [Partial Report of the Ad Interim Committee on Christian Nationalism (2026)](https://pcaga.org/wp-content/uploads/2026/06/AICReport_CN.pdf).",
         "refs": [
           "WCF 23",
           "WCF 31",
           "Romans 13:1-7",
           "Galatians 3:28"
         ],
-        "summary": "A contested label for fusing Christian and national identity and looking to the state to establish Christianity. The PCA's 51st GA (2024) erected an Ad Interim Committee on Christian Nationalism; its interim report to the 53rd GA (2026) upholds the spirituality of the church (church and state in distinct spheres, WCF 23, 31) and rejects ethno-nationalism, antisemitism, and racism (Gal 3:28)."
+        "summary": "A contested label for fusing Christian and national identity and looking to the state to establish Christianity. The PCA's 52nd GA (2025) erected an Ad Interim Committee on Christian Nationalism; its interim report to the 53rd GA (2026) upholds the spirituality of the church (church and state in distinct spheres, WCF 23, 31) and rejects ethno-nationalism, antisemitism, and racism (Gal 3:28)."
+      },
+      {
+        "id": "ht-018-racism",
+        "q": "Racism and racial reconciliation: how has the PCA addressed them?",
+        "a": "The PCA holds that racism is sin — a denial of the image of God in every person (Gen 1:27) and of the gospel's reconciling work, which makes one new humanity of Jew and Gentile (Eph 2:14-16; Gal 3:28). At its **44th General Assembly (2016)** the PCA adopted **Overture 43, \"Pursuing Racial Reconciliation and the Advancement of the Gospel,\"** confessing and repenting of corporate and historical sins of the civil-rights era — including segregating worship, excluding members and officers by race, and teaching that Scripture sanctioned segregation. The same Assembly erected an **Ad Interim Committee on Racial and Ethnic Reconciliation**, whose report (with a survey of PCA elders) came to the **46th General Assembly (2018)** with affirmations, denials, biblical foundations, and practical steps for congregations and presbyteries to pursue reconciliation and diversity.\n\nNote: Overture 43 adopted by the 44th General Assembly (2016); the Ad Interim Committee on Racial and Ethnic Reconciliation report received and its recommendations adopted by the 46th General Assembly (2018). See the [Report on Racial and Ethnic Reconciliation (46th GA, 2018)](https://www.pcahistory.org/topical/race/2018_report_ethnic_and_racial_reconciliation.pdf).",
+        "refs": [
+          "Genesis 1:27",
+          "Galatians 3:28",
+          "Ephesians 2:14-16",
+          "Revelation 7:9-10"
+        ],
+        "summary": "The PCA holds racism to be sin against the image of God and the gospel (Gen 1:27; Eph 2:14-16). The 44th GA (2016) adopted Overture 43, confessing and repenting of civil-rights-era racial sins, and erected a committee whose Racial and Ethnic Reconciliation report came to the 46th GA (2018)."
+      },
+      {
+        "id": "ht-019-human-sexuality",
+        "q": "Human sexuality: what does the PCA's Ad Interim Committee report affirm?",
+        "a": "The PCA affirms that God designed sexuality for the covenant of marriage between one man and one woman, and that all sexual activity outside it — including homosexual practice — is sin (Gen 2:24; 1 Cor 6:9-11; WCF 24.1). The **Ad Interim Committee on Human Sexuality**, erected by the 47th GA (2019), reported to the **48th General Assembly (2021)** with a preamble and **Twelve Statements** (on marriage, the image of God, original sin, desire, concupiscence, temptation, sanctification, impeccability, identity, language, friendship, and repentance).\n\nIts thrust is that same-sex attraction is not morally neutral but an expression of indwelling sin to be repented of and mortified, that believers \"name our sins, but are not named by them\" so that identity rests in Christ and not in sexual desire, and that officers and members are wise to avoid self-identifying as a \"gay Christian.\" It rejects celibate same-sex (\"Side B\") partnerships while urging compassion toward those who struggle.\n\nNote: Report of the Ad Interim Committee on Human Sexuality — erected by the 47th General Assembly (2019), commended as biblically faithful by the 48th General Assembly (2021). See the [Report of the Ad Interim Committee on Human Sexuality](https://www.pcaac.org/aicreport/).",
+        "refs": [
+          "Genesis 2:24",
+          "1 Corinthians 6:9-11",
+          "Romans 1:26-27",
+          "WCF 24",
+          "WLC 139"
+        ],
+        "summary": "The PCA affirms marriage as one man and one woman and homosexual practice as sin (Gen 2:24; 1 Cor 6:9-11). The Ad Interim Committee on Human Sexuality (commended by the 48th GA, 2021) and its Twelve Statements call same-sex attraction sin to be mortified and locate identity in Christ, not in sexuality."
+      },
+      {
+        "id": "ht-020-domestic-abuse",
+        "q": "Domestic abuse and sexual assault: how should the church respond?",
+        "a": "The PCA teaches that domestic abuse and sexual assault are grievous sins and abuses of God-given authority, condemned by the moral law — the sixth and seventh commandments (WLC 135, 139). The **Ad Interim Committee on Domestic Abuse and Sexual Assault**, erected by the 47th GA (2019), reported to the **49th General Assembly (2022)** with a biblical and confessional theology of abuse and best-practice guidance for child sexual abuse, adult sexual assault, domestic abuse, and the misuse of spiritual authority.\n\nIt calls the church to be a refuge for victims — prioritizing their safety and care, and never using the rules of discipline to pressure the abused — and calls sessions to protect the vulnerable, pursue discipline against abusers, and report crimes to the civil authorities. An addendum concludes that abuse-driven abandonment can constitute biblical desertion (1 Cor 7:15), which may furnish grounds for divorce.\n\nNote: Report of the Ad Interim Committee on Domestic Abuse and Sexual Assault — erected by the 47th General Assembly (2019), received and commended for study by the 49th General Assembly (2022). See the [Report of the Ad Interim Committee on Domestic Abuse and Sexual Assault](https://www.pcaac.org/aic-report-abuse/).",
+        "refs": [
+          "Psalm 11:5",
+          "Malachi 2:16",
+          "1 Corinthians 7:15",
+          "WLC 135",
+          "WLC 139"
+        ],
+        "summary": "The PCA condemns domestic abuse and sexual assault as grievous sins (WLC 135, 139). The Ad Interim Committee report to the 49th GA (2022) calls the church to protect and care for victims, discipline abusers, report crimes, and recognizes abuse-driven abandonment as possible grounds for divorce (1 Cor 7:15)."
+      },
+      {
+        "id": "ht-021-federal-vision",
+        "q": "The Federal Vision: what is it, and how did the PCA respond?",
+        "a": "\"Federal Vision\" (with the related \"New Perspective on Paul\" and Auburn Avenue theology) is a movement that reframed the covenant, baptism, and justification in ways the PCA judged to conflict with the Westminster Standards — for example, treating all the baptized as covenantally \"united to Christ\" and able to fall away, blurring the law/gospel and faith/works distinctions, and denying the imputation of Christ's active obedience.\n\nThe **Ad Interim Study Committee on Federal Vision, New Perspective, and Auburn Avenue Theology**, erected by the 34th GA (2006), reported to the **35th General Assembly (2007)**, which **adopted** its report and **nine declarations** — affirming the covenant of works, justification by faith alone, the imputation of Christ's righteousness, and the visible/invisible church distinction, and declaring the contrary Federal Vision views out of accord with the Standards. It is the modern test case for the limits of confessional subscription.\n\nNote: Report of the Ad Interim Study Committee on Federal Vision, New Perspective, and Auburn Avenue Theology — adopted by the 35th General Assembly (2007). See the [Federal Vision / New Perspective Report (35th GA, 2007)](https://www.pcahistory.org/pca/studies/07-fvreport.pdf).",
+        "refs": [
+          "WCF 11",
+          "Galatians 2:16",
+          "Romans 5:18-19",
+          "WLC 73"
+        ],
+        "summary": "Federal Vision (with the New Perspective and Auburn Avenue theology) reframed covenant, baptism, and justification against the Westminster Standards. The 35th GA (2007) adopted a report with nine declarations upholding justification by faith alone and the imputation of Christ’s righteousness, and judged the contrary views out of accord."
+      },
+      {
+        "id": "ht-022-insider-movements",
+        "q": "Insider Movements: what did the PCA decide about translating 'Son of God'?",
+        "a": "\"Insider Movements\" is a missiological approach that encourages converts (especially from Islam) to remain within their birth religious community, and that sometimes renders the divine familial terms — \"Father\" and \"Son of God\" — with non-familial words in Bible translations to avoid offense.\n\nThe PCA's **Study Committee on Insider Movements** produced \"A Call to Faithful Witness.\" Part One, adopted by the **40th General Assembly (2012)**, defended retaining the literal familial language for the persons of the Trinity in translation; Part Two, adopted by the **43rd General Assembly (2015)**, addressed the wider Insider-Movement paradigm. The PCA holds that faithful translation must preserve \"Father\" and \"Son,\" since the eternal Father-Son relation is essential to the doctrine of the Trinity and the gospel (Matt 28:19; John 1:14).\n\nNote: \"A Call to Faithful Witness,\" the Study Committee on Insider Movements — Part One adopted by the 40th General Assembly (2012), Part Two by the 43rd General Assembly (2015); published by the PCA Historical Center (pcahistory.org).",
+        "refs": [
+          "Matthew 28:19",
+          "John 1:14",
+          "Matthew 11:27"
+        ],
+        "summary": "Insider Movements keep converts within their birth religion and sometimes drop \"Father\" and \"Son of God\" in translation. The PCA’s \"A Call to Faithful Witness\" (40th GA 2012; 43rd GA 2015) requires preserving the familial Trinitarian language, essential to the Trinity and the gospel (Matt 28:19)."
       }
     ]
   },

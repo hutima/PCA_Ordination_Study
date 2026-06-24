@@ -485,6 +485,23 @@ KEEP modules + the HTML shell):**
         overture* reaffirming BCO 58-4). Gates clean (`validate` 0 problems /
         1059 cards, `audit` baseline 8 — the 24 new cards add no flags,
         `check_sw` consistent).
+      - **Recent Ad Interim Committee hot topics** (`?v=47`/`pca-v47`,
+        user-requested): the major PCA study reports the 1993 Chapell/Meek guide
+        predates, added as cards and surfaced as "second hot topics" in the
+        most-matching week (`hotTopic.related` in `week_plan.js`): **racism /
+        racial reconciliation** (Overture 43 adopted 44th GA 2016; RER report
+        46th GA 2018) → wk 8; **human sexuality** (AIC report commended 48th GA
+        2021, the Twelve Statements) → wk 5; **domestic abuse & sexual assault**
+        (AIC report 49th GA 2022) → wk 5; the **Federal Vision / NPP** report
+        (adopted 35th GA 2007, nine declarations) → wk 9; and **Insider
+        Movements** ("A Call to Faithful Witness," 40th GA 2012 / 43rd GA 2015)
+        → wk 3. +5 cards (Hot Topics 48 → 53), each citing its GA action with an
+        official link. **Also corrected `ht-017`:** the Christian Nationalism
+        committee was erected by the **52nd GA (2025)**, not the 51st GA (2024) —
+        the moderator who appointed its members (Kevin DeYoung) chaired the 52nd
+        GA, and the partial report (53rd GA 2026) / final (54th GA 2027) timeline
+        fits a 2025 erection. Gates clean (`validate` 0 problems / 1064 cards,
+        `audit` baseline 8, `check_sw` consistent).
       deeper slimming.** (Same release as 16, `?v=27`.)
       - **BCO comprehensive deck replaced** by the user's
         `pca_bco_comprehensive_quoted_labeled_bundle.zip` (committed to main):

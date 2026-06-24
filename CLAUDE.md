@@ -101,12 +101,15 @@ That changes the update workflow:
   Theology (incl. `th-k` Holy Spirit & apologetics + `theo-wcf`), Sacraments,
   Church History, BCO (14 sub-decks; `subject.groups` orders them by chapter
   block for the By-subject view, while week_plan groups the same keys by the
-  syllabus's A–J blocks), Hot Topics (48 cards; each topic cites the relevant
+  syllabus's A–J blocks), Hot Topics (53 cards; each topic cites the relevant
   PCA GA action, and the multi-view topics — creation, gifts, the Sabbath,
   the regulative principle, re-baptism, theonomy, paedo-communion, divorce/
   remarriage, subscription, fencing the table — are split into one card per
-  named view, each PCA-sourced; plus women in church office and Christian
-  nationalism),
+  named view, each PCA-sourced; plus the post-1993 Ad Interim Committee topics
+  the Chapell/Meek guide predates — women in church office, Christian
+  nationalism, racism/racial reconciliation, human sexuality, domestic abuse,
+  the Federal Vision, and Insider Movements — surfaced as "second hot topics"
+  in the most-matching week via `hotTopic.related`),
   **Doctrines & Proofs** (TULIP/ordo/gospel with proof texts),
   and **Personal Religion & Call** (office qualifications + a flagged
   self-examination card). The Bible Book Summaries subject is built by
