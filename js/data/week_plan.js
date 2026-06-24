@@ -72,7 +72,11 @@
       catechism: 'WSC 4–11',
       history: { sub: 'B. Denominations', sets: ['ch-denominations'] },
       bco: { sub: 'B. The Church & Its Members (ch. 2–6)', sets: ['bco-officers'] },
-      hotTopic: { topic: 'Sabbath / the Lord’s Day', card: 'ht-004-sabbath' },
+      hotTopic: {
+        topic: 'Sabbath / the Lord’s Day',
+        card: 'ht-004-sabbath',
+        related: [{ topic: 'Insider Movements (translating “Son of God”)', card: 'ht-022-insider-movements' }],
+      },
     },
     {
       week: 4,
@@ -99,7 +103,14 @@
       catechism: 'WSC 20–28',
       history: { sub: 'D. Definitions', sets: ['ch-terms'] },
       bco: { sub: 'D. Church Courts (ch. 10–15)', sets: ['bco-comp-courts', 'bco-gov-courts'] },
-      hotTopic: { topic: 'Divorce and Remarriage', card: 'ht-010-divorce-and-remarriage' },
+      hotTopic: {
+        topic: 'Divorce and Remarriage',
+        card: 'ht-010-divorce-and-remarriage',
+        related: [
+          { topic: 'Human sexuality (same-sex attraction & identity)', card: 'ht-019-human-sexuality' },
+          { topic: 'Domestic abuse & sexual assault', card: 'ht-020-domestic-abuse' },
+        ],
+      },
     },
     {
       week: 6,
@@ -146,7 +157,10 @@
       hotTopic: {
         topic: 'Civil Disobedience',
         card: 'ht-008-civil-disobedience',
-        related: [{ topic: 'Christian nationalism', card: 'ht-017-christian-nationalism' }],
+        related: [
+          { topic: 'Christian nationalism', card: 'ht-017-christian-nationalism' },
+          { topic: 'Racism & racial reconciliation', card: 'ht-018-racism' },
+        ],
       },
     },
     {
@@ -159,7 +173,11 @@
       theology: { sub: 'I. The Church', sets: ['th-h'] },
       history: { sub: 'E. Key People (26–34)', sets: ['ch-people'] },
       bco: { sub: 'H. The Process of Discipline (ch. 31–38)', sets: ['bco-discipline'] },
-      hotTopic: { topic: 'Confessional Subscription', card: 'ht-011-confessional-subscription' },
+      hotTopic: {
+        topic: 'Confessional Subscription',
+        card: 'ht-011-confessional-subscription',
+        related: [{ topic: 'The Federal Vision controversy', card: 'ht-021-federal-vision' }],
+      },
     },
     {
       week: 10,
