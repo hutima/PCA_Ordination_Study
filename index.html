@@ -7,7 +7,7 @@
 <meta name="description" content="Spaced-repetition review for PCA licensure and ordination exams — Bible Content, Theology, Sacraments, Church History, and the Book of Church Order.">
 <meta name="theme-color" content="#0e0f14">
 <link rel="icon" href="favicon.svg">
-<link rel="manifest" href="manifest.json?v=52">
+<link rel="manifest" href="manifest.json?v=53">
 
 <!-- Pre-paint: set theme/font/size before first paint to avoid a flash. -->
 <script>
@@ -28,8 +28,8 @@
 })();
 </script>
 
-<link rel="stylesheet" href="styles.css?v=52">
-<link rel="stylesheet" href="css/pca.css?v=52">
+<link rel="stylesheet" href="styles.css?v=53">
+<link rel="stylesheet" href="css/pca.css?v=53">
 </head>
 <body>
 <div class="app">
@@ -77,22 +77,22 @@
 
   <details class="utility-section">
     <summary>Advanced settings</summary>
-    <div class="adv-settings" role="group" aria-label="Study engine settings">
-      <div class="adv-row">
-        <span class="adv-row-text"><span class="adv-row-label">Shuffle</span>
-          <span class="adv-row-desc">On randomises the deck each build; off keeps a fixed order (subject, then book order). Parked while “In order” is the focus.</span></span>
-        <button class="mode-btn adv-toggle" id="shuffleBtn" type="button" role="switch" aria-pressed="true">On</button>
-      </div>
-      <div class="adv-row">
-        <span class="adv-row-text"><span class="adv-row-label">Spaced repetition</span>
-          <span class="adv-row-desc">On schedules each card by how well you know it (the 2-month / 14-day cadence). Off is unspaced: study the whole selection ignoring the schedule, logging reps only.</span></span>
-        <button class="mode-btn adv-toggle" id="spacedBtn" type="button" role="switch" aria-pressed="true">On</button>
-      </div>
-      <div class="adv-row">
-        <span class="adv-row-text"><span class="adv-row-label">Unspaced daily reset</span>
-          <span class="adv-row-desc">When spaced repetition is off, re-present every card again each new day. Off keeps retired cards retired until you reset.</span></span>
-        <button class="mode-btn adv-toggle" id="unspacedResetBtn" type="button" role="switch" aria-pressed="true">On</button>
-      </div>
+    <div class="adv-settings" id="advSettings" role="group" aria-label="Study engine settings">
+      <button class="toggle-label" id="shuffleToggle" type="button" role="switch" aria-checked="true"
+        title="On randomises the deck each time it's built or reshuffled; off keeps a fixed order (by subject, then book order). Parked while “In order” is the focus.">
+        <span class="toggle-switch on" id="shuffleBtn" aria-hidden="true"></span>
+        <span class="toggle-text">Shuffle</span>
+      </button>
+      <button class="toggle-label" id="spacedToggle" type="button" role="switch" aria-checked="true"
+        title="Spaced repetition. On schedules each card by how well you know it and only resurfaces it when it's due — the 2-month / 14-day cadence. Off is unspaced: study the whole selection ignoring the schedule, marking cards until they're cleared (reps are still logged for your streak and XP).">
+        <span class="toggle-switch on" id="spacedBtn" aria-hidden="true"></span>
+        <span class="toggle-text">Spaced repetition</span>
+      </button>
+      <button class="toggle-label" id="unspacedResetToggle" type="button" role="switch" aria-checked="true"
+        title="When spaced repetition is off, re-present every card again each new day so the selection comes back fresh. Off keeps the cards you've cleared retired until you reset.">
+        <span class="toggle-switch on" id="unspacedResetBtn" aria-hidden="true"></span>
+        <span class="toggle-text">Unspaced daily reset</span>
+      </button>
     </div>
   </details>
 
@@ -205,6 +205,17 @@
   </div>
 </div>
 
+<!-- Setting describe-modal (opened by the (i) on an Advanced-settings toggle) -->
+<div class="consent-overlay" id="toggleInfoOverlay" aria-hidden="true">
+  <div class="consent-modal" role="dialog" aria-modal="true" aria-labelledby="toggleInfoTitle">
+    <h2 id="toggleInfoTitle">Setting</h2>
+    <div id="toggleInfoBody" class="toggle-info-body"></div>
+    <div style="display:flex; justify-content:flex-end; margin-top:14px;">
+      <button class="quick-btn quick-primary" type="button" id="toggleInfoCloseBtn">Got it</button>
+    </div>
+  </div>
+</div>
+
 <!-- Update-available banner (user-triggered refresh; avoids iOS auto-reload freeze) -->
 <div class="update-banner" id="updateBanner" role="status" aria-hidden="true">
   <span class="update-banner-text">A new version is available.</span>
@@ -213,37 +224,37 @@
 </div>
 
 <!-- Subject data (plain defer globals → window.PCA_DATA) -->
-<script defer src="js/data/subjects/bible_content.js?v=52"></script>
-<script defer src="js/data/subjects/bible_books.js?v=52"></script>
-<script defer src="js/data/subjects/bco.js?v=52"></script>
-<script defer src="js/data/subjects/bco_governance.js?v=52"></script>
-<script defer src="js/data/subjects/bco_comprehensive.js?v=52"></script>
-<script defer src="js/data/subjects/sacraments.js?v=52"></script>
-<script defer src="js/data/subjects/church_history.js?v=52"></script>
-<script defer src="js/data/subjects/hot_topics.js?v=52"></script>
-<script defer src="js/data/subjects/theology.js?v=52"></script>
-<script defer src="js/data/subjects/theology_wcf.js?v=52"></script>
-<script defer src="js/data/subjects/theology_other.js?v=52"></script>
-<script defer src="js/data/subjects/doctrines_proofs.js?v=52"></script>
-<script defer src="js/data/subjects/personal_call.js?v=52"></script>
-<script defer src="js/data/subjects/catechism_wsc.js?v=52"></script>
+<script defer src="js/data/subjects/bible_content.js?v=53"></script>
+<script defer src="js/data/subjects/bible_books.js?v=53"></script>
+<script defer src="js/data/subjects/bco.js?v=53"></script>
+<script defer src="js/data/subjects/bco_governance.js?v=53"></script>
+<script defer src="js/data/subjects/bco_comprehensive.js?v=53"></script>
+<script defer src="js/data/subjects/sacraments.js?v=53"></script>
+<script defer src="js/data/subjects/church_history.js?v=53"></script>
+<script defer src="js/data/subjects/hot_topics.js?v=53"></script>
+<script defer src="js/data/subjects/theology.js?v=53"></script>
+<script defer src="js/data/subjects/theology_wcf.js?v=53"></script>
+<script defer src="js/data/subjects/theology_other.js?v=53"></script>
+<script defer src="js/data/subjects/doctrines_proofs.js?v=53"></script>
+<script defer src="js/data/subjects/personal_call.js?v=53"></script>
+<script defer src="js/data/subjects/catechism_wsc.js?v=53"></script>
 
 <!-- 12-week study plan (Schedule of Assignments) → window.PCA_WEEKS -->
-<script defer src="js/data/week_plan.js?v=52"></script>
+<script defer src="js/data/week_plan.js?v=53"></script>
 
 <!-- Westminster catechisms full text (defer global → window.PCA_CATECHISMS) -->
-<script defer src="js/data/catechisms.js?v=52"></script>
-<script defer src="js/data/catechisms_bco.js?v=52"></script>
+<script defer src="js/data/catechisms.js?v=53"></script>
+<script defer src="js/data/catechisms_bco.js?v=53"></script>
 
 <!-- Hand-authored quiz bank (defer globals → window.PCA_QUIZ) -->
-<script defer src="js/data/quiz/bible_content.js?v=52"></script>
-<script defer src="js/data/quiz/bco.js?v=52"></script>
-<script defer src="js/data/quiz/sacraments.js?v=52"></script>
-<script defer src="js/data/quiz/church_history.js?v=52"></script>
-<script defer src="js/data/quiz/theology.js?v=52"></script>
-<script defer src="js/data/quiz/hot_topics.js?v=52"></script>
+<script defer src="js/data/quiz/bible_content.js?v=53"></script>
+<script defer src="js/data/quiz/bco.js?v=53"></script>
+<script defer src="js/data/quiz/sacraments.js?v=53"></script>
+<script defer src="js/data/quiz/church_history.js?v=53"></script>
+<script defer src="js/data/quiz/theology.js?v=53"></script>
+<script defer src="js/data/quiz/hot_topics.js?v=53"></script>
 
 <!-- Entry point -->
-<script type="module" src="js/app/pca.js?v=52"></script>
+<script type="module" src="js/app/pca.js?v=53"></script>
 </body>
 </html>
