@@ -463,6 +463,28 @@ KEEP modules + the HTML shell):**
         — no flipping to the Catechisms mode. Ranges + singletons (e.g.
         "WSC 88, 91–98") parse to the explicit question list; open-state persists
         like any selector group. Verified in jsdom (weeks 2/8/12).
+      - **Per-view hot-topic cards** (`?v=46`/`pca-v46`, user-requested):
+        the nine multi-view hot topics are now split into one card per named
+        view (like the Creation set), each grounded in the PCA's own
+        documents/GA actions: charismatic gifts (cessationist / continuationist /
+        open-but-cautious; 2nd GA 1974, BCO 7-1), the regulative principle
+        (regulative vs. normative; WCF 21, BCO 47-1), the Sabbath
+        (Puritan/Westminster / Continental / fulfilled-in-Christ; WCF 21.7-8),
+        re-baptism (Hodge's broad validity vs. Thornwell's narrow; 15th GA 1987
+        *received*, not adopted), theonomy (theonomic vs. general-equity; WCF
+        19.4, 7th GA 1979), paedo-communion (paedocommunion vs.
+        discerning-the-body; 16th GA 1988 *adopted*), divorce & remarriage
+        (no-remarriage / Westminster / constructive-desertion; WCF 24.5-6, 20th
+        GA 1992), confessional subscription (strict / good-faith / system /
+        loose; 30th GA 2002, BCO 21-4), and fencing the table (open / close /
+        closed; BCO 58-4, WLC 173, 21st GA 1993 reaffirmed the wording). +24
+        cards (Hot Topics 24 → 48). Inserted after each parent via a deterministic
+        text patch (kept in scratch). Three research agents verified the GA
+        numbers/years and corrected two nuances (1987 baptism *received* not
+        adopted → left to the courts; the 1993 fencing action was a *denied
+        overture* reaffirming BCO 58-4). Gates clean (`validate` 0 problems /
+        1059 cards, `audit` baseline 8 — the 24 new cards add no flags,
+        `check_sw` consistent).
       deeper slimming.** (Same release as 16, `?v=27`.)
       - **BCO comprehensive deck replaced** by the user's
         `pca_bco_comprehensive_quoted_labeled_bundle.zip` (committed to main):
