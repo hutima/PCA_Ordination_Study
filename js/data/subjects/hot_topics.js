@@ -178,6 +178,30 @@
           "WLC 173"
         ],
         "summary": "Settled at GA in 1993: per BCO 58-4b the warning before the Supper must require communicants to be enrolled members of an evangelical church — a mere profession is not enough. The underlying question: does profession of faith or church membership make one eligible? (WCF XXV.3, XXIX.8; 1 Cor 11:27ff.)"
+      },
+      {
+        "id": "ht-016-women-in-office",
+        "q": "Women in church office: may women serve as elders or deacons in the PCA?",
+        "a": "In the PCA the ordained offices of **ruling elder, teaching elder, and deacon are open to qualified men only** (BCO 7-2: \"In accord with Scripture, these offices are open to men only\"; cf. BCO 9-3, 24). The grounds are the creation order and the apostolic instruction that an overseer be \"the husband of one wife,\" apt to teach and to exercise authority in the gathered church (1 Tim 2:12; 3:1-7; Titus 1:6).\n\nWomen are not ordained, yet Scripture calls them to broad and vital service. Under **BCO 9-7** a Session may appoint **godly men and women as assistants to the deacons** in caring for the sick, the poor, the widow, and the orphan — such assistants are *not* officers and are not ordained. The PCA does not ordain or commission women as deacons or deaconesses; the women who served the early church (e.g. Phoebe, Priscilla, the women who labored with Paul) did so in unordained ministries of mercy, hospitality, teaching of women, and missions.\n\nNote: The 45th General Assembly (2017) received the Report of the Ad Interim Committee on Women Serving in the Ministry of the Church, which — within a complementarian framework — reaffirmed male-only ordination while urging fuller, intentional use of women's gifts in unordained ministry; the committee was uniform on the eldership, noting only internal disagreement over female deacons, and proposed no change to the ordination standards. A later amendment to BCO 7-3 (approved 2023, ratified 2024) further bars giving unordained persons the title of an ordained office. See the [Report on Women Serving in the Ministry of the Church (45th GA, 2017)](https://www.pcahistory.org/pca/digest/studies/2017_WIM.pdf).",
+        "refs": [
+          "BCO 7-2",
+          "BCO 9-7",
+          "1 Timothy 2:12",
+          "1 Timothy 3:1-7"
+        ],
+        "summary": "The ordained offices of elder and deacon are open to qualified men only (BCO 7-2), on the creation order and 1 Tim 2-3. Women are not ordained but serve vitally in unordained ministry; under BCO 9-7 a Session may appoint godly men and women as assistants to the deacons. The 2017 Ad Interim Committee on Women in Ministry reaffirmed male-only ordination while encouraging fuller use of women's gifts."
+      },
+      {
+        "id": "ht-017-christian-nationalism",
+        "q": "Christian nationalism: what is it, and how has the PCA addressed it?",
+        "a": "\"Christian nationalism\" is a contested label for ideologies that fuse Christian and national identity and look to the civil state to establish or privilege the Christian religion. Because the term is used so many ways, careful definition matters before either embracing or condemning it.\n\nThe PCA's **51st General Assembly (2024)** erected an **Ad Interim Study Committee on Christian Nationalism** (Overture 47) to weigh it — along with ethno-nationalism, Kinism, and related teachings — against Scripture and the Westminster Standards. The committee issued a **partial (interim) report to the 53rd General Assembly (2026)** — a pastoral letter with a set of affirmations and denials — and asked that its work continue toward a final report at a later Assembly.\n\nIts thrust upholds the **spirituality of the church**: church and state are both ordained by God but for distinct spheres, so the church does not wield the sword or bind consciences on political questions, even as it may address the civil magistrate \"in cases extraordinary\" (WCF 31). It rejects any nationalism marked by ethnic partiality, racism, or antisemitism as contrary to the gospel, in which there is neither Jew nor Greek (Gal 3:28), and it weighs the original (1646) against the American (1788) revision of WCF 23 on the civil magistrate.\n\nNote: Ad Interim Committee on Christian Nationalism — erected at the 51st General Assembly (2024, Overture 47); partial/interim report delivered to the 53rd General Assembly (2026), with a final report anticipated at a later Assembly. See the [Partial Report of the Ad Interim Committee on Christian Nationalism (2026)](https://pcaga.org/wp-content/uploads/2026/06/AICReport_CN.pdf).",
+        "refs": [
+          "WCF 23",
+          "WCF 31",
+          "Romans 13:1-7",
+          "Galatians 3:28"
+        ],
+        "summary": "A contested label for fusing Christian and national identity and looking to the state to establish Christianity. The PCA's 51st GA (2024) erected an Ad Interim Committee on Christian Nationalism; its interim report to the 53rd GA (2026) upholds the spirituality of the church (church and state in distinct spheres, WCF 23, 31) and rejects ethno-nationalism, antisemitism, and racism (Gal 3:28)."
       }
     ]
   },

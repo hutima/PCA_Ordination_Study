@@ -409,6 +409,53 @@ KEEP modules + the HTML shell):**
         `bible_content.js`, `sw.js` precache, `?v=43`/`pca-v43`). Gates clean
         (`validate` 0 problems / 1033 cards / 9 subjects, `audit` baseline 8,
         `check_sw` consistent).
+- [x] **Phase 22 — Schedule-aligned By-week selector + per-book decks + GA hot
+      topics** (user-requested from the Licensure/Ordination Notebook PDF +
+      the Schedule of Assignments screenshot). Release `?v=44`/`pca-v44`.
+      - **Per-book Bible sets.** `dev/build_bible_books.mjs` now emits **one set
+        per book** (`bk-<slug>`, 66 sets, 229 cards — card ids unchanged so SRS
+        progress survives) instead of 8 division decks. The subject keeps all 66
+        `setKeys` plus a `groups` array (8 divisions) for nested display. This
+        lets the By-week selector assign **individual books** to the week they
+        are read (matching the schedule's per-book Book Outlines / Book Contents
+        columns); every one of the 66 books is assigned to exactly one week
+        (verified), Philemon read with the Prison Epistles in week 11.
+      - **Category-structured weeks.** `js/data/week_plan.js` rewritten from a
+        flat `sets` list into the schedule's nine columns per week (Book
+        Outlines, Book Contents, Bible Content, Doctrines & Proofs, Theology,
+        Catechism, History, BCO, Hot Topic) + `personal`/`focus`. The By-week
+        selector now expands a week into a **second level of collapsibles, one
+        per column** (`WEEK_COLUMNS` in `pca.js`), matching the printed table;
+        Catechism + Hot Topic render as note captions, empty columns hide. BCO
+        is mapped to the syllabus's Preface/A–J chapter blocks (all 14 decks
+        placed in chapter order); Theology/Bible Content/History/Doctrines/
+        Catechism realigned to the table; spanning decks (NT Key Passages,
+        NT Key Topics, Key People) listed in both their weeks.
+      - **Recursive selector.** `groupHtml()`/`renderSelector()` generalized to
+        nested sub-groups (`groupLeafKeys()`, a single `[data-keys]` Select-all
+        handler, `.subdeck-subgroup` styling, `.week-cat-note` captions). The
+        **By-subject** view now nests Bible Book Summaries by division and the
+        **BCO by chapter block** (`subject.groups` in `bco.js`) — same deck keys
+        as the week view, ordered differently.
+      - **New hot topics, official PCA GA sources.** Added
+        `ht-016-women-in-office` (women in church office — BCO 7-2/9-7; the 45th
+        GA 2017 Ad Interim Committee on Women in Ministry; the BCO 7-3 amendment
+        ratified 2024) and `ht-017-christian-nationalism` (the Ad Interim
+        Committee erected at the 51st GA 2024, Overture 47; partial report to the
+        53rd GA 2026), each linking the official report PDF (pcahistory.org /
+        pcaga.org). Surfaced in the most-matching weeks (7 women, 8 Christian
+        nationalism) as "see also" hot-topic notes. Hot Topics now 24 cards.
+      - **Per-book outline links.** Each book overview card gains a TGC
+        commentary link (`dev/data/bible_books/outline_links.json` →
+        `thegospelcoalition.org/commentary/<slug>/`, rendered as a `Note:`
+        callout). Chosen over GotQuestions for reputability (named Reformed
+        scholars).
+      - **Selector UX.** By week is now the default (`loadSelectorGroup()`); a
+        second **Clear** button added to the modal header.
+      - Verified end-to-end in jsdom against the real module (week categories,
+        per-book rows, nested subject groups, Select-all, edge weeks 1/7/8/13).
+        Gates clean (`validate` 0 problems / 1035 cards / 9 subjects, `audit`
+        baseline 8, `check_sw` consistent).
       deeper slimming.** (Same release as 16, `?v=27`.)
       - **BCO comprehensive deck replaced** by the user's
         `pca_bco_comprehensive_quoted_labeled_bundle.zip` (committed to main):

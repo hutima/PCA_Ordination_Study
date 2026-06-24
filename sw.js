@@ -6,7 +6,7 @@
 // available" banner (see registerServiceWorker in js/app/pca.js); the worker is
 // promoted (skipWaiting) and the page reloads only when the user taps "Refresh
 // now" — never automatically, which would freeze iOS standalone PWAs.
-const CACHE = 'pca-v43';
+const CACHE = 'pca-v44';
 
 const PRECACHE = [
   './',

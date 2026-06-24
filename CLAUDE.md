@@ -70,27 +70,45 @@ That changes the update workflow:
   (pca.js) so reveal/hide/next never jumps the page.
 - **12-week study plan (By-week selector):** the "Choose subjects" modal has a
   **By subject / By week** toggle (`#groupBySubjectBtn`/`#groupByWeekBtn`,
-  `state.selectorGroupBy`, persisted `pca_selector_group_v1`). In *By week* mode
-  `renderSelector()` renders one collapsible group per week (driven by
-  `js/data/week_plan.js` → `window.PCA_WEEKS`, the Chapell/Meek "Schedule of
-  Assignments"): the collapsed row is a Duff-style session card (a "Week N" tag,
-  the week's theme, and a books subtitle); a **Select all** toggles the whole
-  week; expanding shows each sub-deck as a topic link (tagged with its subject)
-  plus the week's non-deck assignments (catechism #s, hot topic, book
-  outlines/contents) in a "week-assign" caption. Both views share `groupHtml()`
-  / `deckRowHtml()`. When adding a subject/sub-deck, consider whether it belongs
-  in a week's `sets`. BCO sub-decks are assigned to weeks in canonical order.
-- **Subjects (9):** Bible Content, **Bible Book Summaries** (229 cards in 8
-  division sub-decks `bk-*`: a per-book overview — author/date/theme/outline/
-  Christ — plus chapter-range "Book Contents" cards for every book of 5+
-  chapters, backing the schedule's Book Outlines / Book Contents drills),
+  `state.selectorGroupBy`, persisted `pca_selector_group_v1`). **By week is the
+  default** (`loadSelectorGroup()` returns `'week'` unless `'subject'` was
+  explicitly saved). In *By week* mode `renderSelector()` renders one collapsible
+  per week (driven by `js/data/week_plan.js` → `window.PCA_WEEKS`, the
+  Chapell/Meek "Schedule of Assignments"): the collapsed row is a Duff-style
+  session card (a "Week N" tag, theme, and books subtitle). Expanding a week
+  shows a **second level of collapsibles — one per syllabus column** in the
+  printed order (`WEEK_COLUMNS` in `pca.js`): Book Outlines, Book Contents, Bible
+  Content, Doctrines & Proofs, Theology, Catechism, History, BCO, Hot Topic.
+  Book Outlines/Contents list **individual books** (each Bible book is its own
+  set — see below); the deck columns list their sub-decks; Catechism and Hot
+  Topic render as non-selectable note captions (`.week-cat-note`). An empty
+  column is hidden. A week's per-category and per-week **Select all** toggles
+  every selectable deck/book it governs. The week_plan schema is category-shaped
+  (`outlines`/`contents`/`bible`/`doctrines`/`theology`/`catechism`/`history`/
+  `bco`/`hotTopic`/`personal`/`focus` per week); BCO follows the syllabus's
+  Preface/A–J chapter blocks. Decks the syllabus spreads over two weeks (NT Key
+  Passages, NT Key Topics, Church History Key People) are listed in both weeks
+  (selection de-dupes). `renderSelector()`/`groupHtml()` are now **recursive**
+  (a group holds nested sub-groups and/or rows); `groupLeafKeys()` gathers a
+  group's keys for its Select-all (a single `[data-keys]` handler).
+- **Subjects (9):** Bible Content, **Bible Book Summaries** (66 books / 229
+  cards — **one selectable set per book**, `bk-<slug>`: a per-book overview
+  — author/date/theme/outline/Christ, with a TGC commentary link — plus
+  chapter-range "Book Contents" cards for every book of 5+ chapters, backing the
+  schedule's per-book Book Outlines / Book Contents drills; the 66 sets are
+  presented under one subject, grouped for display into eight division groups
+  via `subject.groups`),
   Theology (incl. `th-k` Holy Spirit & apologetics + `theo-wcf`), Sacraments,
-  Church History, BCO (14 sub-decks), Hot Topics (each card cites the relevant
-  PCA GA action), **Doctrines & Proofs** (TULIP/ordo/gospel with proof texts),
+  Church History, BCO (14 sub-decks; `subject.groups` orders them by chapter
+  block for the By-subject view, while week_plan groups the same keys by the
+  syllabus's A–J blocks), Hot Topics (each card cites the relevant
+  PCA GA action — incl. women in church office and Christian nationalism),
+  **Doctrines & Proofs** (TULIP/ordo/gospel with proof texts),
   and **Personal Religion & Call** (office qualifications + a flagged
   self-examination card). The Bible Book Summaries subject is built by
-  `dev/build_bible_books.mjs` from `dev/data/bible_books/*.json` (overviews) and
-  `*.sections.json` (chapter ranges), one pair per division; the generated
+  `dev/build_bible_books.mjs` from `dev/data/bible_books/*.json` (overviews),
+  `*.sections.json` (chapter ranges), and `outline_links.json` (per-book TGC
+  links), emitting one set per book; the generated
   `js/data/subjects/bible_books.js` is the working source of truth.
 - **Answer rendering:** answers are Markdown (`js/utils/markdown.js`,
   escape-first; lists, GFM tables, blockquotes, inline emphasis) and are
@@ -142,9 +160,15 @@ That changes the update workflow:
   Hard/Uncertain/Easy. Do not edit lightly.
 - **Subject selector:** sub-decks render as one collapsible
   `<details class="subdeck-group">` per subject (summary shows a selected
-  count); open/closed state lives in `openSubdeckGroups` (`pca.js`) so it
-  survives the re-render on every tile click. The modal scrolls as one unit —
-  don't reintroduce a nested scrollbox.
+  count); subjects that define `subject.groups` (Bible Book Summaries by
+  division, BCO by chapter block) render a **second level** of
+  `<details class="subdeck-subgroup">` inside, nesting their rows. Open/closed
+  state lives in `openSubdeckGroups` (`pca.js`), keyed by each group's
+  `data-group`, so it survives the re-render on every tile click. The modal
+  scrolls as one unit — don't reintroduce a nested scrollbox. The "Choose what
+  to study" header carries a **Clear** + Done pair (`#selectorClearTopBtn`,
+  `#selectorDoneTopBtn`) mirroring the Select all / Clear / Done row at the
+  bottom.
 - **Serve locally:** `python3 -m http.server 8137` then open `/`.
 
 ## Maintenance rules
