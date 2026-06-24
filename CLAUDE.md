@@ -80,18 +80,20 @@ That changes the update workflow:
   printed order (`WEEK_COLUMNS` in `pca.js`): Book Outlines, Book Contents, Bible
   Content, Doctrines & Proofs, Theology, Catechism, History, BCO, Hot Topic.
   Book Outlines/Contents list **individual books** (each Bible book is its own
-  set — see below); the deck columns list their sub-decks; Catechism and Hot
-  Topic render as non-selectable note captions (`.week-cat-note`). An empty
-  column is hidden. A week's per-category and per-week **Select all** toggles
-  every selectable deck/book it governs. The week_plan schema is category-shaped
-  (`outlines`/`contents`/`bible`/`doctrines`/`theology`/`catechism`/`history`/
-  `bco`/`hotTopic`/`personal`/`focus` per week); BCO follows the syllabus's
+  set — see below); the other columns list selectable decks. **Every column is a
+  set of decks** — Catechism points at the per-week Westminster Shorter Catechism
+  sub-deck (`wsc-wk<N>`) and Hot Topic at the week's one or two per-topic Hot
+  Topics decks (`ht-<slug>`). An empty column is hidden. A week's per-category and
+  per-week **Select all** toggles every deck/book it governs. The week_plan schema
+  is category-shaped (`outlines`/`contents`/`bible`/`doctrines`/`theology`/
+  `catechism`/`history`/`bco`/`hotTopic`/`personal`/`focus`, each `{ sub?, sets|books }`);
+  BCO follows the syllabus's
   Preface/A–J chapter blocks. Decks the syllabus spreads over two weeks (NT Key
   Passages, NT Key Topics, Church History Key People) are listed in both weeks
   (selection de-dupes). `renderSelector()`/`groupHtml()` are now **recursive**
   (a group holds nested sub-groups and/or rows); `groupLeafKeys()` gathers a
   group's keys for its Select-all (a single `[data-keys]` handler).
-- **Subjects (9):** Bible Content, **Bible Book Summaries** (66 books / 229
+- **Subjects (10):** Bible Content, **Bible Book Summaries** (66 books / 229
   cards — **one selectable set per book**, `bk-<slug>`: a per-book overview
   — author/date/theme/outline/Christ, with a TGC commentary link — plus
   chapter-range "Book Contents" cards for every book of 5+ chapters, backing the
@@ -101,15 +103,19 @@ That changes the update workflow:
   Theology (incl. `th-k` Holy Spirit & apologetics + `theo-wcf`), Sacraments,
   Church History, BCO (14 sub-decks; `subject.groups` orders them by chapter
   block for the By-subject view, while week_plan groups the same keys by the
-  syllabus's A–J blocks), Hot Topics (53 cards; each topic cites the relevant
-  PCA GA action, and the multi-view topics — creation, gifts, the Sabbath,
-  the regulative principle, re-baptism, theonomy, paedo-communion, divorce/
-  remarriage, subscription, fencing the table — are split into one card per
-  named view, each PCA-sourced; plus the post-1993 Ad Interim Committee topics
-  the Chapell/Meek guide predates — women in church office, Christian
+  syllabus's A–J blocks),
+  **Westminster Shorter Catechism** (`shorter_catechism`, 56 cards — the WSC
+  questions the plan assigns, WSC 1–39 & 82–98, as flashcards grouped into
+  per-week sub-decks `wsc-wk<N>`; built by `dev/build_catechism_wsc.mjs` from
+  `js/data/catechisms.js`. The full WSC+WLC text still lives in the Catechisms
+  study mode),
+  Hot Topics (53 cards in **one selectable deck per topic** — the parent
+  overview + a card per named view + the PCA / confessional position; grouped via
+  `subject.groups` into syllabus topics and the post-1993 Ad Interim Committee
+  topics the Chapell/Meek guide predates: women in church office, Christian
   nationalism, racism/racial reconciliation, human sexuality, domestic abuse,
-  the Federal Vision, and Insider Movements — surfaced as "second hot topics"
-  in the most-matching week via `hotTopic.related`),
+  the Federal Vision, and Insider Movements. A week links its one or two hot-topic
+  decks via `hotTopic.sets`),
   **Doctrines & Proofs** (TULIP/ordo/gospel with proof texts),
   and **Personal Religion & Call** (office qualifications + a flagged
   self-examination card). The Bible Book Summaries subject is built by

@@ -6,7 +6,7 @@
 // available" banner (see registerServiceWorker in js/app/pca.js); the worker is
 // promoted (skipWaiting) and the page reloads only when the user taps "Refresh
 // now" — never automatically, which would freeze iOS standalone PWAs.
-const CACHE = 'pca-v47';
+const CACHE = 'pca-v48';
 
 const PRECACHE = [
   './',
@@ -43,6 +43,7 @@ const PRECACHE = [
   'js/data/subjects/theology_other.js',
   'js/data/subjects/doctrines_proofs.js',
   'js/data/subjects/personal_call.js',
+  'js/data/subjects/catechism_wsc.js',
   'js/data/week_plan.js',
   'js/data/catechisms.js',
   'js/data/catechisms_bco.js',

@@ -234,63 +234,23 @@ function updateShuffleButton() {
 // Topic), matching the printed schedule. Per-week data lives in
 // js/data/week_plan.js; this is the fixed column order + labels.
 const WEEK_COLUMNS = [
-  { key: 'personal',  label: 'Personal Religion & Call', kind: 'sets',  noun: 'sub-deck' },
-  { key: 'outlines',  label: 'Book Outlines',            kind: 'books', noun: 'book' },
-  { key: 'contents',  label: 'Book Contents',            kind: 'books', noun: 'book' },
-  { key: 'bible',     label: 'Bible Content',            kind: 'sets',  noun: 'sub-deck' },
-  { key: 'doctrines', label: 'Doctrines & Proofs',       kind: 'sets',  noun: 'sub-deck' },
-  { key: 'theology',  label: 'Theology',                 kind: 'sets',  noun: 'sub-deck' },
-  { key: 'catechism', label: 'Catechism',                kind: 'catechism' },
-  { key: 'history',   label: 'History',                  kind: 'sets',  noun: 'sub-deck' },
-  { key: 'bco',       label: 'Book of Church Order',      kind: 'sets',  noun: 'sub-deck' },
-  { key: 'hotTopic',  label: 'Hot Topic',                kind: 'hotTopic' },
+  { key: 'personal',  label: 'Personal Religion & Call', noun: 'sub-deck' },
+  { key: 'outlines',  label: 'Book Outlines',            noun: 'book' },
+  { key: 'contents',  label: 'Book Contents',            noun: 'book' },
+  { key: 'bible',     label: 'Bible Content',            noun: 'sub-deck' },
+  { key: 'doctrines', label: 'Doctrines & Proofs',       noun: 'sub-deck' },
+  { key: 'theology',  label: 'Theology',                 noun: 'sub-deck' },
+  { key: 'catechism', label: 'Catechism',                noun: 'deck' },
+  { key: 'history',   label: 'History',                  noun: 'sub-deck' },
+  { key: 'bco',       label: 'Book of Church Order',      noun: 'sub-deck' },
+  { key: 'hotTopic',  label: 'Hot Topic',                noun: 'deck' },
 ];
-// A non-selectable assignment line inside a week (catechism #s, hot topic).
-function weekNoteHtml(label, noteHtml) {
-  return `<div class="week-cat-note"><span class="week-cat-label">${escapeText(label)}</span> ${noteHtml}</div>`;
-}
-// Parse a week's catechism assignment ("WSC 1–3, 89–90") into a catechism short
-// name + the explicit list of question numbers it covers.
-function parseCatechismSpec(spec) {
-  const m = String(spec).match(/^\s*([A-Za-z]+)\s+(.+)$/);
-  if (!m) return null;
-  const nums = [];
-  for (const part of m[2].split(',')) {
-    const r = part.trim().match(/^(\d+)\s*[–—-]\s*(\d+)$/);
-    if (r) { for (let i = +r[1]; i <= +r[2]; i++) nums.push(i); }
-    else { const n = parseInt(part, 10); if (!Number.isNaN(n)) nums.push(n); }
-  }
-  return { short: m[1].toUpperCase(), nums };
-}
-function catechismByShort(short) {
-  const C = (typeof window !== 'undefined' && window.PCA_CATECHISMS) || {};
-  return Object.values(C).find(c => (c.short || '').toUpperCase() === short) || null;
-}
-// Render a week's catechism assignment as an expandable block holding the actual
-// Q&A pulled from the catechism data — so you can read the questions in place
-// without switching to the Catechisms mode and flipping to each one.
-function weekCatechismHtml(weekNum, spec) {
-  const parsed = parseCatechismSpec(spec);
-  const cat = parsed && catechismByShort(parsed.short);
-  if (!cat) return weekNoteHtml('Catechism', `Memorize <strong>${escapeText(spec)}</strong> — study the text in the Catechisms mode.`);
-  const byN = new Map(cat.items.map(it => [it.n, it]));
-  const qa = parsed.nums.map(n => {
-    const it = byN.get(n);
-    if (!it) return '';
-    return `<div class="cat-qa"><p class="cat-qa-q"><span class="cat-qa-n">Q${n}.</span> ${escapeText(it.q)}</p>` +
-      `<p class="cat-qa-a"><span class="cat-qa-label">A.</span> ${escapeText(it.a)}</p></div>`;
-  }).join('');
-  const id = `week:${weekNum}:catechism`;
-  return `<details class="subdeck-group subdeck-subgroup week-cat-qa" data-group="${id}" ${openSubdeckGroups.has(id) ? 'open' : ''}>
-    <summary><span class="group-titlewrap"><span class="subdeck-group-title">Catechism</span>
-      <span class="group-sub">${escapeText(spec)} — read here, no need to flip</span></span>
-      <span class="subdeck-group-meta">${parsed.nums.length} Q&amp;A</span></summary>
-    <div class="subdeck-rows cat-qa-list">${qa}</div></details>`;
-}
 // Build a week's expanded body: a leading focus note (weeks 1/13), then one
-// nested group per populated column (in schedule order), with catechism + hot
-// topic rendered as notes. Returns { body, allKeys } so the week's header
-// "Select all" toggles every selectable deck/book the week assigns.
+// nested collapsible per populated column (in schedule order). Every column is a
+// set of selectable decks (`cat.books` for the per-book columns, `cat.sets`
+// otherwise — incl. the per-week catechism sub-deck and its one or two hot-topic
+// decks). Returns { body, allKeys } so the week header's "Select all" toggles
+// every deck/book the week assigns.
 function weekBodyHtml(w) {
   let body = '';
   const allKeys = [];
@@ -301,23 +261,14 @@ function weekBodyHtml(w) {
   for (const col of WEEK_COLUMNS) {
     const cat = w[col.key];
     if (!cat) continue;
-    if (col.kind === 'books' || col.kind === 'sets') {
-      const keys = (cat.books || cat.sets || []).filter(k => DATA.sets[k]);
-      if (!keys.length) continue;
-      allKeys.push(...keys);
-      body += groupHtml({
-        id: `week:${w.week}:${col.key}`,
-        title: col.label, subtitle: cat.sub, keys,
-        showSubject: true, noun: col.noun, level: 2,
-      });
-    } else if (col.kind === 'catechism') {
-      body += weekCatechismHtml(w.week, cat);
-    } else if (col.kind === 'hotTopic') {
-      const extra = (cat.related || []).map(r => escapeText(r.topic)).join('; ');
-      body += weekNoteHtml(col.label,
-        `<strong>${escapeText(cat.topic)}</strong>${extra ? ` &middot; see also <strong>${extra}</strong>` : ''}` +
-        ` — prepare your view; study it in the Hot Topics subject.`);
-    }
+    const keys = (cat.books || cat.sets || []).filter(k => DATA.sets[k]);
+    if (!keys.length) continue;
+    allKeys.push(...keys);
+    body += groupHtml({
+      id: `week:${w.week}:${col.key}`,
+      title: col.label, subtitle: cat.sub, keys,
+      showSubject: true, noun: col.noun, level: 2,
+    });
   }
   return { body, allKeys };
 }
