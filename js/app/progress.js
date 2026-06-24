@@ -2,9 +2,10 @@
 // GitHub-style activity heatmap, per-subject mastery bars, a due forecast, and
 // a weak-spots list. Reads from the shared store; writes nothing.
 
-import { DATA, state, dayKey, currentStreak } from './store.js';
+import { DATA, state, dayKey } from './store.js';
 import { getConfidencePct } from '../domain/srs/confidence.js';
 import { escapeHtml } from '../utils/text.js';
+import { computeXpAndLevel, computeStreaks, computeBadges } from './gamification.js';
 
 // A ~17-week heatmap, columns = weeks, rows = days (Sun→Sat), shaded by volume.
 function heatmapHtml() {
@@ -61,10 +62,27 @@ export function progressBodyHtml() {
   const newCount = totalCards - seen;
   const coverage = totalCards ? Math.round((seen / totalCards) * 100) : 0;
   const today = state.activity[dayKey(now)] || 0;
-  const streak = currentStreak();
+  const streaks = computeStreaks(state.activity);
+
+  // ── Level / XP banner ─────────────────────────────────────────────────
+  const { totalXp, currentLevel, nextLevel, levelProgress } = computeXpAndLevel(state.xp);
+  const xpToNext = nextLevel ? nextLevel.threshold - totalXp : 0;
+  const levelBanner = `<div class="prog-level">
+      <div class="prog-level-head">
+        <span class="prog-level-badge">Lv ${currentLevel.level}</span>
+        <span class="prog-level-title">${escapeHtml(currentLevel.title)}</span>
+        <span class="prog-level-xp">${totalXp.toLocaleString()} XP</span>
+      </div>
+      <div class="prog-level-flav">${escapeHtml(currentLevel.flav)}</div>
+      <div class="prog-level-bar"><div class="prog-level-fill" style="width:${Math.round(levelProgress * 100)}%"></div></div>
+      <div class="prog-level-next">${nextLevel
+        ? `${xpToNext.toLocaleString()} XP to <strong>${escapeHtml(nextLevel.title)}</strong>`
+        : 'Top level reached — well done.'}</div>
+    </div>`;
 
   const hero = `<div class="prog-hero">
-      <div class="prog-stat"><div class="prog-stat-num">${streak}</div><div class="prog-stat-label">day streak</div></div>
+      <div class="prog-stat"><div class="prog-stat-num">${streaks.current}</div><div class="prog-stat-label">day streak</div></div>
+      <div class="prog-stat"><div class="prog-stat-num">${streaks.longest}</div><div class="prog-stat-label">longest</div></div>
       <div class="prog-stat"><div class="prog-stat-num">${today}</div><div class="prog-stat-label">today</div></div>
       <div class="prog-stat"><div class="prog-stat-num">${coverage}%</div><div class="prog-stat-label">coverage</div></div>
       <div class="prog-stat"><div class="prog-stat-num">${seen}</div><div class="prog-stat-label">of ${totalCards} seen</div></div>
@@ -92,5 +110,15 @@ export function progressBodyHtml() {
       `<button class="quick-btn" id="studyWeakBtn" type="button" style="margin-top:10px">Study weak spots</button>`
     : '';
 
-  return { html: hero + forecast + bars + heat + weakHtml, hasWeak: !!weak.length };
+  // ── Badges ────────────────────────────────────────────────────────────
+  const badges = computeBadges({ streaks, todayCount: today });
+  const earnedCount = badges.filter(b => b.earned).length;
+  const badgesHtml = `<div class="prog-section-title">Badges (${earnedCount}/${badges.length})</div>
+    <div class="badge-grid">` +
+    badges.map(b => `<div class="badge ${b.earned ? 'earned' : 'locked'}" title="${escapeHtml(b.name)} — ${escapeHtml(b.desc)}">
+        <span class="badge-icon">${b.earned ? b.icon : '·'}</span>
+        <span class="badge-name">${escapeHtml(b.name)}</span>
+      </div>`).join('') + `</div>`;
+
+  return { html: levelBanner + hero + forecast + bars + heat + weakHtml + badgesHtml, hasWeak: !!weak.length };
 }

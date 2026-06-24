@@ -11,10 +11,12 @@ export const PROGRESS_KEY = 'pca_progress_v1';
 export const SELECTION_KEY = 'pca_selection_v1';
 export const ACTIVITY_KEY = 'pca_activity_v1';
 export const SHUFFLE_KEY = 'pca_shuffle_v1';
+export const SHUFFLE_MIGRATED_KEY = 'pca_shuffle_migrated_v1';
 export const SELECTOR_GROUP_KEY = 'pca_selector_group_v1';
 export const SPACED_KEY = 'pca_spaced_v1';
 export const UNSPACED_RESET_KEY = 'pca_unspaced_reset_v1';
 export const UNSPACED_KEY = 'pca_unspaced_v1';
+export const XP_KEY = 'pca_xp_v1';
 
 // The official 12-week study plan (Chapell/Meek "Schedule of Assignments").
 export const WEEKS = (typeof window !== 'undefined' && window.PCA_WEEKS) || [];
@@ -30,6 +32,10 @@ export const state = {
   flipArchived: new Set(), // card ids retired ("Easy") this flip-deck session
   selected: new Set(),     // selected set keys
   deck: [],                // ordered array of card objects for this session
+  spacedActiveIds: [],     // in-flight "active" pile ids (spaced session continuity)
+  lastStudyAt: 0,          // ms of the last grade — drives the idle-gap fresh start
+  lastSeenId: null,        // last graded card id — avoid showing it first next cycle
+  xp: 0,                   // accumulated experience points (persisted)
   pos: 0,
   revealed: false,
   expanded: false,         // review card: is the full answer/quotations open
@@ -57,10 +63,35 @@ export function saveSelection() {
   try { localStorage.setItem(SELECTION_KEY, JSON.stringify([...state.selected])); } catch (e) {}
 }
 export function loadShuffle() {
-  try { state.shuffleOn = localStorage.getItem(SHUFFLE_KEY) !== 'off'; } catch (e) {}
+  try {
+    // One-time migration (shipped with the three-deck spaced ordering): on the
+    // first load after this release, force shuffle ON for everyone so the new
+    // due-now/unseen shuffling takes effect — even for users who had turned it
+    // off under the old model. After that, the saved value is respected, so a
+    // manual toggle-off sticks.
+    if (localStorage.getItem(SHUFFLE_MIGRATED_KEY) !== '1') {
+      state.shuffleOn = true;
+      localStorage.setItem(SHUFFLE_KEY, 'on');
+      localStorage.setItem(SHUFFLE_MIGRATED_KEY, '1');
+      return;
+    }
+    state.shuffleOn = localStorage.getItem(SHUFFLE_KEY) !== 'off';
+  } catch (e) {}
 }
 export function saveShuffle() {
   try { localStorage.setItem(SHUFFLE_KEY, state.shuffleOn ? 'on' : 'off'); } catch (e) {}
+}
+export function loadXp() {
+  try { state.xp = Math.max(0, Number(localStorage.getItem(XP_KEY)) || 0); } catch (e) { state.xp = 0; }
+}
+export function saveXp() {
+  try { localStorage.setItem(XP_KEY, String(state.xp)); } catch (e) {}
+}
+export function addXp(n) {
+  const amt = Number(n) || 0;
+  if (amt <= 0) return;
+  state.xp = (state.xp || 0) + amt;
+  saveXp();
 }
 export function loadSpaced() {
   // Default ON; only an explicit saved 'off' disables spaced repetition.

@@ -6,16 +6,29 @@ import { SRS_AGAIN_MS } from '../domain/srs/constants.js';
 import {
   setProgressDelay, getUncertainDelayMs, getNextEasyIntervalDays, msFromDays,
 } from '../domain/srs/scheduler.js';
-import { recordConfidenceSample } from '../domain/srs/confidence.js';
-import { state, getProgress, saveProgress, recordActivity } from './store.js';
+import { recordConfidenceSample, getConfidencePct, computeCardXpAward } from '../domain/srs/confidence.js';
+import { state, getProgress, saveProgress, recordActivity, addXp } from './store.js';
 
 export function applyOutcome(card, outcome) {
   // Unspaced mode: no SRS writes — the rep is logged for the streak/heatmap
-  // only. Deck shaping (retire/recycle) is handled by the controller.
-  if (!state.spacedOn) { recordActivity(); return; }
+  // (plus a little XP). Deck shaping (retire/recycle) is handled by the controller.
+  if (!state.spacedOn) {
+    addXp(computeCardXpAward(outcome, false, false));
+    recordActivity();
+    return;
+  }
   const p = getProgress(card.id);
   const now = Date.now();
+  const wasConfirmed = !!p.firstConfirmedAt;
   recordConfidenceSample(p, outcome);
+  // First time the card crosses into "confirmed" (rolling confidence ≥ 70%):
+  // stamp it so the gamification layer can count confirmations and award a
+  // first-confirmation XP bonus.
+  if (!p.firstConfirmedAt) {
+    const pct = getConfidencePct(p);
+    if (pct !== null && pct >= 70) p.firstConfirmedAt = now;
+  }
+  addXp(computeCardXpAward(outcome, !wasConfirmed && !!p.firstConfirmedAt, true));
   if (outcome === 'again') {
     setProgressDelay(p, SRS_AGAIN_MS, now);
     p.failCount = (p.failCount || 0) + 1;

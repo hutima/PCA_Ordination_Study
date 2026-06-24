@@ -12,13 +12,15 @@
 // See PROJECT_PLAN.md for the full plan and CLAUDE.md for extension points.
 
 import { formatRemainingForTable } from '../domain/srs/scheduler.js';
-import { getConfidencePct } from '../domain/srs/confidence.js';
+import { SRS_NEAR_WINDOW_MS, SESSION_IDLE_RESET_MS } from '../domain/srs/constants.js';
+import { getConfidencePct, computeCardXpAward } from '../domain/srs/confidence.js';
 import { escapeHtml } from '../utils/text.js';
 import { installClickShield, shieldClicksBriefly } from '../utils/clickShield.js';
 import {
   DATA, state, WEEKS, loadProgress, saveProgress, loadSelection, saveSelection, loadActivity,
   loadShuffle, saveShuffle, loadSelectorGroup, saveSelectorGroup, recordActivity,
   loadSpaced, saveSpaced, loadUnspacedReset, saveUnspacedReset, loadUnspaced, saveUnspaced,
+  loadXp, saveXp, addXp,
 } from './store.js';
 import {
   effectiveSetKeys, cardsForKeys, shuffle, isWeak,
@@ -45,7 +47,20 @@ function bookOrder(cards) {
     .sort((x, y) => rankOf(x[0]) - rankOf(y[0]) || x[1] - y[1])
     .map(x => x[0]);
 }
-function buildDeck() {
+// Sort cards by their next-due timestamp (soonest first), stable on ties. New
+// cards (no progress) sort to the front as "due now".
+function dueOrder(cards) {
+  const at = (c) => { const p = state.progress[c.id]; return p && p.dueAt ? p.dueAt : 0; };
+  return cards.map((c, i) => [c, i]).sort((x, y) => at(x[0]) - at(y[0]) || x[1] - y[1]).map(x => x[0]);
+}
+// Keep the just-graded card from reappearing as the very first card of the next
+// cycle: if it lands at the head, swap it into a random later slot.
+function avoidHeadCollision(deck) {
+  if (!state.lastSeenId || deck.length < 2 || deck[0].id !== state.lastSeenId) return;
+  const j = 1 + Math.floor(Math.random() * (deck.length - 1));
+  [deck[0], deck[j]] = [deck[j], deck[0]];
+}
+function buildDeck(opts = {}) {
   const now = Date.now();
   let cards = state.mode === 'quiz' ? quizDeckCards() : cardsForKeys(effectiveSetKeys());
   if (state.focus === 'weak') cards = cards.filter(isWeak);
@@ -81,13 +96,63 @@ function buildDeck() {
     syncCardState();
     return;
   }
-  const due = [];
-  const later = [];
-  for (const c of cards) (isDue(c) ? due : later).push(c);
-  const dueOrdered = state.shuffleOn ? shuffle(due) : bookOrder(due);
-  later.sort((a, b) => state.progress[a.id].dueAt - state.progress[b.id].dueAt);
-  state.deck = dueOrdered.concat(later);
-  state.dueCount = due.length;
+
+  // ── Three-section spaced deck (ported from the Duff tool) ──────────────
+  //   active   — due-now cards in the in-flight rotation; order is preserved
+  //              across rebuilds (`state.spacedActiveIds`) so reviewing one
+  //              card doesn't reshuffle the rest of the session.
+  //   middle   — cards that became due mid-session (their timer expired or an
+  //              "Again" pushed them back); parked behind active so they don't
+  //              interrupt the rotation, promoted into active on the next
+  //              fresh start.
+  //   deferred — not due yet (dueAt in the future). With shuffle on these are
+  //              shuffled too (the user asked for unseen cards to be shuffled),
+  //              otherwise ordered by soonest-due.
+  let due = cards.filter(isDue);
+  let deferred = cards.filter(c => !isDue(c));
+
+  // Backstop: if nothing is due but cards come due within 30 minutes, pull them
+  // forward so the user never lands on a dead deck.
+  if (!due.length && deferred.length) {
+    const near = deferred.filter(c => { const p = state.progress[c.id]; return p && p.dueAt && p.dueAt <= now + SRS_NEAR_WINDOW_MS; });
+    if (near.length) {
+      near.forEach(c => { const p = state.progress[c.id]; p.dueAt = now; p.intervalDays = 0; });
+      saveProgress();
+      due = cards.filter(isDue);
+      deferred = cards.filter(c => !isDue(c));
+    }
+  }
+
+  const dueIds = new Set(due.map(c => c.id));
+  const carried = (state.spacedActiveIds || []).filter(id => dueIds.has(id));
+  const idleReset = state.lastStudyAt && (now - state.lastStudyAt > SESSION_IDLE_RESET_MS);
+  // Fresh start: collapse everything due into a freshly-ordered active pile.
+  const freshStart = opts.forceShuffle || idleReset || carried.length === 0;
+
+  let active, middle;
+  if (freshStart) {
+    active = state.shuffleOn ? shuffle([...due]) : dueOrder(due);
+    middle = [];
+  } else {
+    // Resume: preserve the in-flight active order from the previous deck;
+    // newly-due cards collect in middle.
+    const carriedSet = new Set(carried);
+    const seen = new Set();
+    const fromPrev = [];
+    for (const c of state.deck) {
+      if (!c || !carriedSet.has(c.id) || seen.has(c.id)) continue;
+      const m = due.find(d => d.id === c.id);
+      if (m) { fromPrev.push(m); seen.add(c.id); }
+    }
+    const orphans = carried.filter(id => !seen.has(id)).map(id => due.find(d => d.id === id)).filter(Boolean);
+    active = [...fromPrev, ...orphans];
+    middle = dueOrder(due.filter(c => !carriedSet.has(c.id)));
+  }
+  avoidHeadCollision(active);
+  state.spacedActiveIds = active.map(c => c.id);
+  const orderedDeferred = state.shuffleOn ? shuffle([...deferred]) : dueOrder(deferred);
+  state.deck = [...active, ...middle, ...orderedDeferred];
+  state.dueCount = active.length + middle.length;
   state.pos = 0;
   syncCardState();
 }
@@ -162,6 +227,7 @@ function move(delta) {
 }
 function mark(outcome) {
   if (!state.deck.length) return;
+  state.lastSeenId = state.deck[state.pos] ? state.deck[state.pos].id : null;
   if (state.focus === 'flip' && state.mode === 'review') { flipMark(outcome); return; }
   if (!state.spacedOn && state.mode === 'review') { unspacedMark(outcome); return; }
   applyOutcome(state.deck[state.pos], outcome);
@@ -179,6 +245,8 @@ function unspacedMark(outcome) {
     state.unspacedDone.add(card.id);
     saveUnspaced();
   }
+  state.lastStudyAt = Date.now();
+  addXp(computeCardXpAward(outcome, false, false));
   recordActivity();
   if (state.pos >= state.deck.length) {
     if (state.shuffleOn && state.focus !== 'order') shuffle(state.deck);
@@ -190,7 +258,7 @@ function unspacedMark(outcome) {
 function resetUnspaced() {
   state.unspacedDone.clear();
   saveUnspaced();
-  buildDeck();
+  buildDeck({ forceShuffle: true });
   renderCard();
 }
 // Flip-deck grading (non-spaced, ported from the Duff tool): Hard/Uncertain
@@ -200,6 +268,8 @@ function flipMark(outcome) {
   const [card] = state.deck.splice(state.pos, 1);
   if (outcome === 'easy') state.flipArchived.add(card.id);
   else state.deck.push(card);
+  state.lastStudyAt = Date.now();
+  addXp(computeCardXpAward(outcome, false, false));
   recordActivity();
   if (state.pos >= state.deck.length) {
     // End of a pass — reshuffle what's still in play and start over.
@@ -211,12 +281,18 @@ function flipMark(outcome) {
 }
 function resetFlipDeck() {
   state.flipArchived.clear();
-  buildDeck();
+  buildDeck({ forceShuffle: true });
   renderCard();
 }
-// Move to the next card after grading; rebuild at the end to pick up newly-due.
+// Move to the next card after grading. In spaced mode the user cycles the
+// active+middle "due" set; once it's exhausted we rebuild (reviewed cards have
+// scheduled forward and drop out; middle promotes into active). When nothing is
+// due we walk the deferred deck and rebuild at the very end. Resuming uses the
+// preserved active order (no forceShuffle).
 function advance() {
-  if (state.pos + 1 >= state.deck.length) buildDeck();
+  state.lastStudyAt = Date.now();
+  const limit = (state.spacedOn && state.dueCount > 0) ? state.dueCount : state.deck.length;
+  if (state.pos + 1 >= Math.min(limit, state.deck.length)) buildDeck();
   else { state.pos += 1; syncCardState(); }
   withCardAnchor(renderCard);
 }
@@ -238,7 +314,7 @@ function setMode(modeId) {
     b.classList.toggle('active', b.getAttribute('data-mode') === modeId));
   updateFocusVisibility();
   if (mode.start) mode.start();
-  else if (mode.usesDeck) buildDeck();
+  else if (mode.usesDeck) buildDeck({ forceShuffle: true });
   renderCard();
 }
 
@@ -251,14 +327,14 @@ function setFocus(f) {
   state.focus = (f === 'weak' || f === 'order' || f === 'flip') ? f : 'due';
   syncToggleActive('[data-focus]', 'data-focus', state.focus);
   updateAdvancedButtons();
-  buildDeck();
+  buildDeck({ forceShuffle: true });
   renderCard();
 }
 function toggleShuffle() {
   state.shuffleOn = !state.shuffleOn;
   saveShuffle();
   updateAdvancedButtons();
-  buildDeck();
+  buildDeck({ forceShuffle: true });
   renderCard();
 }
 // Spaced repetition master switch. Off = unspaced: ignore the SRS schedule,
@@ -269,7 +345,7 @@ function toggleSpaced() {
   saveSpaced();
   updateAdvancedButtons();
   updateResetLabels();
-  buildDeck();
+  buildDeck({ forceShuffle: true });
   renderCard();
 }
 function toggleUnspacedReset() {
@@ -438,7 +514,7 @@ function applySelectorChanges() {
   if (selectionFingerprint() === selectionAtOpen) return;
   selectionAtOpen = selectionFingerprint();
   state.flipArchived.clear(); // a new selection starts a fresh flip-deck pass
-  buildDeck();
+  buildDeck({ forceShuffle: true });
   renderCard();
 }
 function closeSelector() {
@@ -597,7 +673,7 @@ function importProgress(file) {
     try {
       const data = JSON.parse(reader.result);
       if (data && data.progress && typeof data.progress === 'object') {
-        state.progress = data.progress; saveProgress(); buildDeck(); renderCard();
+        state.progress = data.progress; saveProgress(); buildDeck({ forceShuffle: true }); renderCard();
         alert('Progress imported.');
       } else { alert('Unrecognized progress file.'); }
     } catch (e) { alert('Could not read that file.'); }
@@ -623,13 +699,14 @@ function resetSelectionProgress() {
     ids.forEach(id => state.unspacedDone.delete(id));
     saveUnspaced();
   }
-  buildDeck(); renderCard();
+  buildDeck({ forceShuffle: true }); renderCard();
 }
 function resetAllProgress() {
   if (!confirm('Erase ALL study progress on this device (spaced and unspaced)? This cannot be undone.')) return;
   state.progress = {}; saveProgress();
   state.unspacedDone.clear(); saveUnspaced();
-  buildDeck(); renderCard();
+  state.xp = 0; saveXp();
+  buildDeck({ forceShuffle: true }); renderCard();
 }
 // The reset buttons name what they clear so the action matches the active mode.
 function updateResetLabels() {
@@ -711,6 +788,7 @@ function init() {
   loadSpaced();
   loadUnspacedReset();
   loadUnspaced(); // applies the daily reset using the loaded reset flag
+  loadXp();
   loadSelectorGroup();
   installClickShield();
 
@@ -737,7 +815,7 @@ function init() {
   document.querySelectorAll('[data-groupby]').forEach(b =>
     b.addEventListener('click', () => setSelectorGroup(b.getAttribute('data-groupby'))));
   syncToggleActive('[data-groupby]', 'data-groupby', state.selectorGroupBy);
-  $('startStudyingBtn').addEventListener('click', () => { state.flipArchived.clear(); buildDeck(); renderCard(); });
+  $('startStudyingBtn').addEventListener('click', () => { state.flipArchived.clear(); buildDeck({ forceShuffle: true }); renderCard(); });
   $('progressBtn').addEventListener('click', openProgress);
   $('progressCloseBtn').addEventListener('click', () => hideOverlay('progressOverlay'));
 
