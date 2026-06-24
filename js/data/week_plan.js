@@ -9,35 +9,33 @@
 // printed schedule. The renderer (renderSelector in js/app/pca.js) walks a
 // fixed column order (see WEEK_COLUMNS there) and renders each category.
 //
-// Per-category shape:
-//   outlines / contents : { sub, books: ['bk-…'] }   one selectable set per book
-//                         (Bible Book Summaries is now one set per book, so a
-//                          week shows exactly the books it assigns).
-//   bible/doctrines/theology/history/bco : { sub, sets: ['…'] }  selectable decks
-//   catechism           : 'WSC …'        memory assignment (rendered as a note)
-//   hotTopic            : { topic, card, related? }  rendered as a note; `card`
-//                         is the Hot Topics deck card to study for it
+// Every column is a set of selectable study decks:
+//   outlines / contents : { sub, books: ['bk-…'] }  one selectable set per book
+//   bible/doctrines/theology/history/bco/catechism/hotTopic : { sub?, sets: ['…'] }
 //   personal            : { sub, sets }   week 1 only (orientation)
 //   focus               : '…'             a leading note (weeks 1 and 13)
 //   A null/absent category is hidden for that week.
 //
 // Mapping notes:
-//  - Book Outlines / Book Contents are per-book: each book is its own set
-//    (bk-<slug>) under the Bible Book Summaries subject, so a week lists exactly
-//    the books due that week (the schedule's column wording is preserved in
-//    `sub`). Philemon (not named in the printed schedule) is read with the
-//    Prison Epistles in week 11.
-//  - Theology letters are shifted by one vs. the syllabus because the app folds
-//    the syllabus's "A. Introduction" into "A. The Bible" (th-a). Week 12's
-//    Theology column ("L. Sacraments") points at the Sacraments subject decks.
-//  - The BCO column follows the syllabus's Preface/A–J chapter blocks, mapped to
-//    the app's 14 BCO sub-decks in chapter order. (The "By subject" selector
-//    groups the same decks differently — see SUBJECT.groups in bco.js.)
-//  - Decks the syllabus spreads over two weeks are listed in BOTH weeks with a
-//    range in `sub` (selection de-dupes): NT Key Passages (weeks 9–10), NT Key
-//    Topics (weeks 11–12), and Church History "Key People" (weeks 6–10).
-//  - Week 1 is the syllabus's orientation class (Personal Religion & Call); week
-//    13 is the final exam.
+//  - Book Outlines / Book Contents are per-book (each book its own bk-<slug> set).
+//    Philemon (not named in the printed schedule) is read with the Prison
+//    Epistles in week 11.
+//  - Catechism points at the per-week Westminster Shorter Catechism sub-deck
+//    (js/data/subjects/catechism_wsc.js) — the WSC questions the plan assigns,
+//    as flashcards. Weeks 9 and 11 assign no new catechism.
+//  - Hot Topic points at one or two per-topic Hot Topics decks
+//    (js/data/subjects/hot_topics.js) — the syllabus's hot topic plus, where it
+//    fits the week, one of the post-1993 Ad Interim Committee topics the guide
+//    predates (women in office wk7, Christian nationalism wk8, racism wk11,
+//    human sexuality wk4, domestic abuse wk5, Federal Vision wk9, Insider
+//    Movements wk3). Each deck drills the competing views + the PCA position.
+//  - Theology letters are shifted by one vs. the syllabus (the app folds "A.
+//    Introduction" into "A. The Bible"); week 12's Theology points at Sacraments.
+//  - The BCO column follows the syllabus's Preface/A–J chapter blocks; the
+//    "By subject" selector groups the same decks by chapter (SUBJECT.groups in
+//    bco.js). Decks spread over two weeks (NT Key Passages 9–10, NT Key Topics
+//    11–12, Church History Key People 6–10) are listed in both (selection
+//    de-dupes). Week 1 is orientation; week 13 is the final exam.
 
 (function (global) {
   const WEEKS = [
@@ -56,10 +54,10 @@
       contents: { sub: 'Joshua–Ruth', books: ['bk-joshua', 'bk-judges', 'bk-ruth'] },
       bible: { sub: 'A. Whole Bible', sets: ['bc-whole'] },
       theology: { sub: 'A–B. Introduction & the Bible', sets: ['th-a', 'theo-wcf'] },
-      catechism: 'WSC 1–3, 89–90',
+      catechism: { sub: 'WSC 1–3, 89–90', sets: ['wsc-wk2'] },
       history: { sub: 'A. General', sets: ['ch-overview'] },
       bco: { sub: 'A. Preface & Principles (Preface, ch. 1)', sets: ['bco-comp-foundations'] },
-      hotTopic: { topic: 'Creation', card: 'ht-001-creation' },
+      hotTopic: { sets: ['ht-creation'] },
     },
     {
       week: 3,
@@ -69,14 +67,10 @@
       contents: { sub: '1 Samuel–2 Chronicles', books: ['bk-1-samuel', 'bk-2-samuel', 'bk-1-kings', 'bk-2-kings', 'bk-1-chronicles', 'bk-2-chronicles'] },
       bible: { sub: 'B. OT: General — divisions of the OT & outline of OT history', sets: ['bc-whole'] },
       theology: { sub: 'C. God & His World', sets: ['th-b'] },
-      catechism: 'WSC 4–11',
+      catechism: { sub: 'WSC 4–11', sets: ['wsc-wk3'] },
       history: { sub: 'B. Denominations', sets: ['ch-denominations'] },
       bco: { sub: 'B. The Church & Its Members (ch. 2–6)', sets: ['bco-officers'] },
-      hotTopic: {
-        topic: 'Sabbath / the Lord’s Day',
-        card: 'ht-004-sabbath',
-        related: [{ topic: 'Insider Movements (translating “Son of God”)', card: 'ht-022-insider-movements' }],
-      },
+      hotTopic: { sets: ['ht-sabbath', 'ht-insider-movements'] },
     },
     {
       week: 4,
@@ -87,10 +81,10 @@
       bible: { sub: 'C. OT: Key People', sets: ['bc-ot-people'] },
       doctrines: { sub: 'TULIP — the Five Points', sets: ['dp-tulip'] },
       theology: { sub: 'D. Humankind', sets: ['th-c'] },
-      catechism: 'WSC 12–19',
+      catechism: { sub: 'WSC 12–19', sets: ['wsc-wk4'] },
       history: { sub: 'C. Events', sets: ['ch-events'] },
       bco: { sub: 'C. Church Officers (ch. 7–9)', sets: ['bco-comp-members-officers'] },
-      hotTopic: { topic: 'Theonomy', card: 'ht-007-theonomy' },
+      hotTopic: { sets: ['ht-theonomy', 'ht-sexuality'] },
     },
     {
       week: 5,
@@ -100,17 +94,10 @@
       contents: { sub: 'Job–Proverbs', books: ['bk-job', 'bk-psalms', 'bk-proverbs'] },
       bible: { sub: 'D. OT: Key Passages', sets: ['bc-ot-passages'] },
       theology: { sub: 'E. God’s Way of Salvation', sets: ['th-d'] },
-      catechism: 'WSC 20–28',
+      catechism: { sub: 'WSC 20–28', sets: ['wsc-wk5'] },
       history: { sub: 'D. Definitions', sets: ['ch-terms'] },
       bco: { sub: 'D. Church Courts (ch. 10–15)', sets: ['bco-comp-courts', 'bco-gov-courts'] },
-      hotTopic: {
-        topic: 'Divorce and Remarriage',
-        card: 'ht-010-divorce-and-remarriage',
-        related: [
-          { topic: 'Human sexuality (same-sex attraction & identity)', card: 'ht-019-human-sexuality' },
-          { topic: 'Domestic abuse & sexual assault', card: 'ht-020-domestic-abuse' },
-        ],
-      },
+      hotTopic: { sets: ['ht-divorce', 'ht-abuse'] },
     },
     {
       week: 6,
@@ -120,10 +107,10 @@
       contents: { sub: 'Ecclesiastes, Song of Songs, Lamentations', books: ['bk-ecclesiastes', 'bk-song-of-songs', 'bk-lamentations'] },
       bible: { sub: 'E. OT: Key Events', sets: ['bc-ot-events'] },
       theology: { sub: 'F. Salvation Accomplished', sets: ['th-e'] },
-      catechism: 'WSC 29–36',
+      catechism: { sub: 'WSC 29–36', sets: ['wsc-wk6'] },
       history: { sub: 'E. Key People (1–9)', sets: ['ch-people'] },
       bco: { sub: 'E. Church Orders (ch. 16–24)', sets: ['bco-comp-vocation', 'bco-courts'] },
-      hotTopic: { topic: 'Charismatic Gifts', card: 'ht-002-charismatic-gifts' },
+      hotTopic: { sets: ['ht-gifts'] },
     },
     {
       week: 7,
@@ -134,14 +121,10 @@
       bible: { sub: 'F. NT: General', sets: ['bc-nt-general'] },
       doctrines: { sub: 'ORDO — the Ordo Salutis', sets: ['dp-ordo'] },
       theology: { sub: 'G. Salvation Applied', sets: ['th-f'] },
-      catechism: 'WSC 85–87',
+      catechism: { sub: 'WSC 85–87', sets: ['wsc-wk7'] },
       history: { sub: 'E. Key People (10–17)', sets: ['ch-people'] },
       bco: { sub: 'F. Congregational Meetings; Amending the Constitution (ch. 25–26)', sets: ['bco-gov-ministry'] },
-      hotTopic: {
-        topic: 'The Role of Women in the Church',
-        card: 'ht-005-role-of-women-in-the-church',
-        related: [{ topic: 'Women in church office (elders & deacons)', card: 'ht-016-women-in-office' }],
-      },
+      hotTopic: { sets: ['ht-women-role', 'ht-women-office'] },
     },
     {
       week: 8,
@@ -151,17 +134,10 @@
       contents: { sub: 'Jonah–Habakkuk', books: ['bk-jonah', 'bk-micah', 'bk-nahum', 'bk-habakkuk'] },
       bible: { sub: 'G. NT: Key People', sets: ['bc-nt-people'] },
       theology: { sub: 'H. The Christian Life', sets: ['th-g'] },
-      catechism: 'WSC 39, 82–84',
+      catechism: { sub: 'WSC 39, 82–84', sets: ['wsc-wk8'] },
       history: { sub: 'E. Key People (18–25)', sets: ['ch-people'] },
       bco: { sub: 'G. Principles of Discipline (ch. 27–30)', sets: ['bco-comp-discipline'] },
-      hotTopic: {
-        topic: 'Civil Disobedience',
-        card: 'ht-008-civil-disobedience',
-        related: [
-          { topic: 'Christian nationalism', card: 'ht-017-christian-nationalism' },
-          { topic: 'Racism & racial reconciliation', card: 'ht-018-racism' },
-        ],
-      },
+      hotTopic: { sets: ['ht-civil', 'ht-christian-nationalism'] },
     },
     {
       week: 9,
@@ -173,11 +149,7 @@
       theology: { sub: 'I. The Church', sets: ['th-h'] },
       history: { sub: 'E. Key People (26–34)', sets: ['ch-people'] },
       bco: { sub: 'H. The Process of Discipline (ch. 31–38)', sets: ['bco-discipline'] },
-      hotTopic: {
-        topic: 'Confessional Subscription',
-        card: 'ht-011-confessional-subscription',
-        related: [{ topic: 'The Federal Vision controversy', card: 'ht-021-federal-vision' }],
-      },
+      hotTopic: { sets: ['ht-subscription', 'ht-federal-vision'] },
     },
     {
       week: 10,
@@ -188,10 +160,10 @@
       bible: { sub: 'H. NT: Key Passages (31–59)', sets: ['bc-nt-passages'] },
       doctrines: { sub: 'Evangelism Plan — explain the gospel', sets: ['dp-gospel'] },
       theology: { sub: 'J. The Last Things', sets: ['th-i'] },
-      catechism: 'WSC 37–38',
+      catechism: { sub: 'WSC 37–38', sets: ['wsc-wk10'] },
       history: { sub: 'E. Key People (35–41)', sets: ['ch-people'] },
       bco: { sub: 'I. Review & Control; Jurisdiction (ch. 39–46)', sets: ['bco-comp-review'] },
-      hotTopic: { topic: 'The Regulative Principle of Worship', card: 'ht-003-regulative-principle' },
+      hotTopic: { sets: ['ht-rpw'] },
     },
     {
       week: 11,
@@ -203,7 +175,7 @@
       theology: { sub: 'K. Other Questions (Holy Spirit & apologetics)', sets: ['th-k'] },
       history: { sub: 'F. The History of the PCA', sets: ['ch-pca'] },
       bco: { sub: 'J. The Directory for Worship (ch. 47–63)', sets: ['bco-comp-worship-principles', 'bco-comp-sacraments-pastoral', 'bco-worship'] },
-      hotTopic: { topic: 'Re-Baptism', card: 'ht-006-re-baptism' },
+      hotTopic: { sets: ['ht-rebaptism', 'ht-racism'] },
     },
     {
       week: 12,
@@ -213,15 +185,15 @@
       contents: { sub: '1–3 John, Jude', books: ['bk-1-john', 'bk-2-john', 'bk-3-john', 'bk-jude'] },
       bible: { sub: 'I. NT: Key Topics (16–30)', sets: ['bc-nt-topics'] },
       theology: { sub: 'L. Sacraments', sets: ['sac-general', 'sac-baptism', 'sac-supper'] },
-      catechism: 'WSC 88, 91–98',
-      hotTopic: { topic: 'Paedo-Communion', card: 'ht-009-paedo-communion' },
+      catechism: { sub: 'WSC 88, 91–98', sets: ['wsc-wk12'] },
+      hotTopic: { sets: ['ht-paedocommunion'] },
     },
     {
       week: 13,
       theme: 'Final exam',
       books: '',
       focus: 'Review every preceding week; the final exam draws questions from all of them.',
-      hotTopic: { topic: 'Fencing the Lord’s Table', card: 'ht-012-fencing-the-lord-s-table' },
+      hotTopic: { sets: ['ht-fencing'] },
     },
   ];
 

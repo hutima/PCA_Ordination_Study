@@ -271,29 +271,8 @@ a.qa-ref-inline {
 .subdeck-subgroup > summary { padding: 9px 12px; }
 .subdeck-subgroup > summary .subdeck-group-title { font-size: calc((13px) * var(--text-scale, 1)); }
 
-/* Note-only week columns (Catechism, Hot Topic): a labeled caption, not a deck. */
-.week-cat-note {
-  margin: 0; padding: 9px 12px; border-radius: 9px;
-  background: rgba(201,168,76,0.045); border: 1px dashed var(--gold-dim);
-  font-size: calc((13px) * var(--text-scale, 1)); line-height: 1.55; color: var(--cream);
-}
-.week-cat-note .week-cat-label {
-  font-family: var(--font-display); color: var(--gold-dim); white-space: nowrap;
-  text-transform: uppercase; letter-spacing: 1px; font-size: calc((10px) * var(--text-scale, 1)); margin-right: 6px;
-}
-.week-cat-note strong { color: var(--gold-light); }
-.week-cat-note a { color: var(--gold-light); }
-
 /* Top-of-modal actions (Clear + Done) beside the heading. */
 .selector-head-actions { display: flex; gap: 8px; align-items: center; flex: none; }
-
-/* A week's Catechism column expands to the actual Q&A inline (read in place). */
-.cat-qa-list { gap: 12px; }
-.cat-qa { padding: 1px 0; }
-.cat-qa-q { margin: 0 0 3px; font-family: var(--font-display); font-size: calc((13px) * var(--text-scale, 1)); color: var(--cream); line-height: 1.45; }
-.cat-qa-a { margin: 0; font-size: calc((13px) * var(--text-scale, 1)); color: var(--muted); line-height: 1.5; }
-.cat-qa-n { color: var(--gold-light); font-weight: 600; }
-.cat-qa-label { color: var(--gold-dim); }
 
 /* ── Provenance callouts in answers ───────────────────────────────────── */
 .qa-callout {

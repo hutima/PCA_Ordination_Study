@@ -502,6 +502,28 @@ KEEP modules + the HTML shell):**
         GA, and the partial report (53rd GA 2026) / final (54th GA 2027) timeline
         fits a 2025 erection. Gates clean (`validate` 0 problems / 1064 cards,
         `audit` baseline 8, `check_sw` consistent).
+      - **Catechism & hot topics as selectable decks** (`?v=48`/`pca-v48`,
+        user-requested). Two related changes so a week's Catechism and Hot Topic
+        columns are real study decks (not the inline Q&A / note captions):
+        - **New `shorter_catechism` subject** (`js/data/subjects/catechism_wsc.js`,
+          built by `dev/build_catechism_wsc.mjs` from `js/data/catechisms.js`): the
+          WSC questions the schedule assigns (WSC 1–39 & 82–98, 56 cards) as
+          flashcards, grouped into per-week sub-decks (`wsc-wk<N>`). Appears as its
+          own By-subject category; the inline week catechism Q&A
+          (`weekCatechismHtml`/`parseCatechismSpec`) was removed.
+        - **Hot Topics restructured into one set per topic** (20 sets, same 53
+          cards/ids), grouped via `subject.groups` into "Syllabus" and "Recent GA
+          committee" topics. Each topic deck = parent overview + per-view cards +
+          PCA position.
+        - **week_plan** `catechism` and `hotTopic` are now `{ sub?, sets }` deck
+          columns; `WEEK_COLUMNS`/`weekBodyHtml` simplified (every column is a deck
+          set, so the special note/inline branches and `.week-cat-note`/`.cat-qa`
+          CSS are gone). Each week links one or two hot-topic decks via
+          `hotTopic.sets` (e.g. wk5 Divorce + Domestic Abuse, wk8 Civil Disobedience
+          + Christian Nationalism). Verified in jsdom (week 2/5/9 deck rows,
+          Select-all, By-subject catechism + hot-topic groups). Gates clean
+          (`validate` 0 problems / 1120 cards / 10 subjects, `audit` baseline 8,
+          `check_sw` consistent).
       deeper slimming.** (Same release as 16, `?v=27`.)
       - **BCO comprehensive deck replaced** by the user's
         `pca_bco_comprehensive_quoted_labeled_bundle.zip` (committed to main):
