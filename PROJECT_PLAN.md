@@ -456,6 +456,13 @@ KEEP modules + the HTML shell):**
         per-book rows, nested subject groups, Select-all, edge weeks 1/7/8/13).
         Gates clean (`validate` 0 problems / 1035 cards / 9 subjects, `audit`
         baseline 8, `check_sw` consistent).
+      - **Inline catechism in the week view** (`?v=45`/`pca-v45`): the week's
+        Catechism column now expands to the actual WSC Q&A pulled from
+        `window.PCA_CATECHISMS` (`weekCatechismHtml()` / `parseCatechismSpec()`
+        in `pca.js`, `.cat-qa-*` styles), so the assigned questions read in place
+        — no flipping to the Catechisms mode. Ranges + singletons (e.g.
+        "WSC 88, 91–98") parse to the explicit question list; open-state persists
+        like any selector group. Verified in jsdom (weeks 2/8/12).
       deeper slimming.** (Same release as 16, `?v=27`.)
       - **BCO comprehensive deck replaced** by the user's
         `pca_bco_comprehensive_quoted_labeled_bundle.zip` (committed to main):

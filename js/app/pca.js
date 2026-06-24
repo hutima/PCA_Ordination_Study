@@ -249,6 +249,44 @@ const WEEK_COLUMNS = [
 function weekNoteHtml(label, noteHtml) {
   return `<div class="week-cat-note"><span class="week-cat-label">${escapeText(label)}</span> ${noteHtml}</div>`;
 }
+// Parse a week's catechism assignment ("WSC 1–3, 89–90") into a catechism short
+// name + the explicit list of question numbers it covers.
+function parseCatechismSpec(spec) {
+  const m = String(spec).match(/^\s*([A-Za-z]+)\s+(.+)$/);
+  if (!m) return null;
+  const nums = [];
+  for (const part of m[2].split(',')) {
+    const r = part.trim().match(/^(\d+)\s*[–—-]\s*(\d+)$/);
+    if (r) { for (let i = +r[1]; i <= +r[2]; i++) nums.push(i); }
+    else { const n = parseInt(part, 10); if (!Number.isNaN(n)) nums.push(n); }
+  }
+  return { short: m[1].toUpperCase(), nums };
+}
+function catechismByShort(short) {
+  const C = (typeof window !== 'undefined' && window.PCA_CATECHISMS) || {};
+  return Object.values(C).find(c => (c.short || '').toUpperCase() === short) || null;
+}
+// Render a week's catechism assignment as an expandable block holding the actual
+// Q&A pulled from the catechism data — so you can read the questions in place
+// without switching to the Catechisms mode and flipping to each one.
+function weekCatechismHtml(weekNum, spec) {
+  const parsed = parseCatechismSpec(spec);
+  const cat = parsed && catechismByShort(parsed.short);
+  if (!cat) return weekNoteHtml('Catechism', `Memorize <strong>${escapeText(spec)}</strong> — study the text in the Catechisms mode.`);
+  const byN = new Map(cat.items.map(it => [it.n, it]));
+  const qa = parsed.nums.map(n => {
+    const it = byN.get(n);
+    if (!it) return '';
+    return `<div class="cat-qa"><p class="cat-qa-q"><span class="cat-qa-n">Q${n}.</span> ${escapeText(it.q)}</p>` +
+      `<p class="cat-qa-a"><span class="cat-qa-label">A.</span> ${escapeText(it.a)}</p></div>`;
+  }).join('');
+  const id = `week:${weekNum}:catechism`;
+  return `<details class="subdeck-group subdeck-subgroup week-cat-qa" data-group="${id}" ${openSubdeckGroups.has(id) ? 'open' : ''}>
+    <summary><span class="group-titlewrap"><span class="subdeck-group-title">Catechism</span>
+      <span class="group-sub">${escapeText(spec)} — read here, no need to flip</span></span>
+      <span class="subdeck-group-meta">${parsed.nums.length} Q&amp;A</span></summary>
+    <div class="subdeck-rows cat-qa-list">${qa}</div></details>`;
+}
 // Build a week's expanded body: a leading focus note (weeks 1/13), then one
 // nested group per populated column (in schedule order), with catechism + hot
 // topic rendered as notes. Returns { body, allKeys } so the week's header
@@ -273,8 +311,7 @@ function weekBodyHtml(w) {
         showSubject: true, noun: col.noun, level: 2,
       });
     } else if (col.kind === 'catechism') {
-      body += weekNoteHtml(col.label,
-        `Memorize <strong>${escapeText(cat)}</strong> — study the text in the Catechisms mode.`);
+      body += weekCatechismHtml(w.week, cat);
     } else if (col.kind === 'hotTopic') {
       const extra = (cat.related || []).map(r => escapeText(r.topic)).join('; ');
       body += weekNoteHtml(col.label,
