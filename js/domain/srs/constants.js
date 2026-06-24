@@ -14,10 +14,6 @@ export const SRS_UNSPACED_RECOVERY_MS = 60 * 60 * 1000;    // 1h
 // ramps 1 → 3 → 8 → 14 at top confidence rather than jumping to the cap.
 export const SRS_MAX_INTERVAL_DAYS = 14;
 export const SRS_NEAR_WINDOW_MS = 30 * 60 * 1000;
-// An idle gap this long ends the in-flight "active" rotation: the next deck
-// build is treated as a fresh start (everything due collapses back into active
-// and reshuffles) instead of resuming the previous session's order.
-export const SESSION_IDLE_RESET_MS = 5 * 60 * 60 * 1000;
 export const SRS_CYCLE_ADVANCE_MS = 60 * 60 * 1000;
 // Idle gap that ends a study session. Used by spaced-mode buildStudyDeck to
 // decide "fresh start" (middle → active dump + reshuffle), and by the
