@@ -371,7 +371,39 @@ a.qa-ref-chip { text-decoration: none; transition: background .12s, border-color
 .exam-results .exam-score-pct { font-size: calc((20px) * var(--text-scale, 1)); color: var(--muted); margin-left: 8px; }
 
 /* ── Progress overlay: hero, forecast, mastery bars, heatmap ──────────── */
-.prog-hero { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 4px 0 18px; }
+.prog-hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(62px, 1fr)); gap: 10px; margin: 4px 0 18px; }
+
+/* ── Level / XP banner ─────────────────────────────────────────────────── */
+.prog-level {
+  border: 1px solid var(--gold-dim); border-radius: 12px;
+  background: linear-gradient(180deg, rgba(201,168,76,0.10), rgba(201,168,76,0.02));
+  padding: 14px 16px; margin: 4px 0 16px;
+}
+.prog-level-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.prog-level-badge {
+  font-family: var(--font-display); font-size: calc((12px) * var(--text-scale, 1));
+  letter-spacing: 1px; text-transform: uppercase; color: var(--ink, #1a1206);
+  background: var(--gold-light); border-radius: 999px; padding: 2px 9px;
+}
+.prog-level-title { font-family: var(--font-display); font-size: calc((20px) * var(--text-scale, 1)); color: var(--gold-light); }
+.prog-level-xp { margin-left: auto; color: var(--muted); font-size: calc((13px) * var(--text-scale, 1)); }
+.prog-level-flav { color: var(--muted); font-style: italic; font-size: calc((13px) * var(--text-scale, 1)); margin: 4px 0 10px; }
+.prog-level-bar { height: 8px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); overflow: hidden; }
+.prog-level-fill { height: 100%; background: linear-gradient(90deg, var(--gold-dim), var(--gold-light)); }
+.prog-level-next { margin-top: 6px; font-size: calc((12px) * var(--text-scale, 1)); color: var(--muted); }
+.prog-level-next strong { color: var(--gold-light); }
+
+/* ── Badges ────────────────────────────────────────────────────────────── */
+.badge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; }
+.badge {
+  display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center;
+  padding: 10px 6px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface);
+}
+.badge.earned { border-color: var(--gold-dim); background: rgba(201,168,76,0.07); }
+.badge.locked { opacity: 0.45; }
+.badge-icon { font-size: calc((22px) * var(--text-scale, 1)); line-height: 1; color: var(--gold-light); }
+.badge.locked .badge-icon { color: var(--muted); }
+.badge-name { font-size: calc((11px) * var(--text-scale, 1)); color: var(--cream); line-height: 1.25; }
 .prog-stat {
   text-align: center; padding: 12px 6px; border: 1px solid var(--border);
   border-radius: 10px; background: var(--surface);

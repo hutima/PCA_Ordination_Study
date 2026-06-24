@@ -44,9 +44,22 @@ That changes the update workflow:
   access), `quiz.js` (MCQ generation), `answer.js` (provenance rendering +
   summaries), `refs.js` (citation → official-source links), `srs.js` (outcome
   application), `modes.js` (study-mode registry), `progress.js` (analytics
-  overlay). Styling: `styles.css` (base tokens) + `css/pca.css`. Progress
+  overlay), `gamification.js` (XP→level ladder, current/longest streaks, badges).
+  Styling: `styles.css` (base tokens) + `css/pca.css`. Progress
   persists to `localStorage['pca_progress_v1']`, selection to
-  `['pca_selection_v1']`, daily-activity log to `['pca_activity_v1']`.
+  `['pca_selection_v1']`, daily-activity log to `['pca_activity_v1']`, XP to
+  `['pca_xp_v1']`.
+- **Spaced deck ordering (three sections, ported from Duff's `buildStudyDeck`):**
+  `buildDeck()` in `pca.js` builds `[active, middle, deferred]`. *active* =
+  due-now cards in the in-flight rotation, order preserved across rebuilds via
+  `state.spacedActiveIds`; *middle* = cards that fall due mid-session; *deferred*
+  = not-yet-due (shuffled when Shuffle is on, else soonest-due first). A fresh
+  start (`opts.forceShuffle`, a ≥5h idle gap, or no carry-over) reshuffles all due
+  into active; user-initiated rebuilds pass `forceShuffle`, the end-of-pass
+  rebuild in `advance()` resumes (preserves order). `avoidHeadCollision` +
+  `state.lastSeenId` keep the just-graded card off the next head; a 30-min
+  near-due backstop avoids a dead deck. `advance()` rebuilds when the due set is
+  exhausted. A one-time `pca_shuffle_migrated_v1` migration forces Shuffle on once.
 - **Adding a study mode:** add a descriptor in `js/app/modes.js`
   (`createModes`), a `<button data-mode="id">` in `index.html`, and any new
   files to the `sw.js` PRECACHE. The controller wires clicks/keyboard/render
@@ -180,7 +193,11 @@ That changes the update workflow:
   restored from git history to re-run.
 - **SRS engine (reused, content-agnostic):** `js/domain/srs/{constants,
   scheduler,confidence}.js`. Outcomes `again`/`pass`/`easy` =
-  Hard/Uncertain/Easy. Do not edit lightly.
+  Hard/Uncertain/Easy. Do not edit lightly. `confidence.js` also holds
+  `computeCardXpAward`; `applyOutcome` (`srs.js`) stamps `firstConfirmedAt`
+  (rolling confidence ≥70%) and accrues XP into `pca_xp_v1` — feeding the
+  level/streak/badge gamification in `js/app/gamification.js` + the Progress
+  overlay.
 - **Subject selector:** sub-decks render as one collapsible
   `<details class="subdeck-group">` per subject (summary shows a selected
   count); subjects that define `subject.groups` (Bible Book Summaries by

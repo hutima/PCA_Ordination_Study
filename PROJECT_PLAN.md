@@ -559,6 +559,45 @@ KEEP modules + the HTML shell):**
         week-priority default reads clearly (the order was By subject / By week).
       - Gates clean (`validate` 0 problems, `audit` baseline 8, `check_sw`
         consistent — no new precached files).
+- [x] **Phase 24 — Three-deck spaced ordering + richer gamification
+      (user-requested).** Release `?v=50`/`pca-v50`. Ported the Duff tool's
+      session-aware deck ordering and a fuller progress/gamification layer.
+      - **Shuffle forced on once.** A one-time migration (`pca_shuffle_migrated_v1`
+        in `loadShuffle`) sets Shuffle on for everyone on the first load after this
+        release — even users who had turned it off under the old model — then
+        respects the saved value, so a later manual toggle-off still sticks.
+      - **Three-section spaced deck** (`buildDeck` in `pca.js`, ported from Duff's
+        `buildStudyDeck`): `[active, middle, deferred]`. *active* = due-now cards in
+        the in-flight rotation, order preserved across rebuilds via
+        `state.spacedActiveIds`; *middle* = cards that come due mid-session, parked
+        behind active and promoted on the next fresh start; *deferred* = not-yet-due,
+        sorted by soonest-due (or shuffled when Shuffle is on — the user asked for
+        unseen cards to be shuffled too). A fresh start (`opts.forceShuffle`, a ≥5h
+        idle gap via `SESSION_IDLE_RESET_MS`, or no carry-over) collapses everything
+        due into a freshly-(re)shuffled active pile. A 30-min near-due backstop
+        (`SRS_NEAR_WINDOW_MS`) keeps the deck from going dead. `avoidHeadCollision`
+        keeps the just-graded card (`state.lastSeenId`) off the head of the next
+        cycle. `advance()` rebuilds when the due set is exhausted (study-ahead into
+        deferred only when nothing is due). User-initiated rebuilds pass
+        `forceShuffle`; the end-of-pass rebuild resumes (preserves order).
+      - **XP + levels.** `applyOutcome` now stamps `firstConfirmedAt` (rolling
+        confidence ≥70%) and accrues XP via the existing `computeCardXpAward`
+        (again 1 / pass 3 / first easy 10 / later easy 5 / unspaced 1), persisted to
+        `pca_xp_v1` (`addXp`/`loadXp` in store; unspaced/flip grading award XP too).
+        New `js/app/gamification.js`: a 14-level ladder tailored to ~1.1k cards with
+        a PCA register (Inquirer → Catechumen → … → Licentiate → Teaching Elder →
+        Doctor of the Church), `computeXpAndLevel`, `computeStreaks` (current +
+        longest), `isConfirmed`/`confirmationTotals`, and `computeBadges`.
+      - **Progress overlay enriched** (`progress.js`): a level/XP banner (level
+        badge, title, flavour, progress bar, "XP to next"), a longest-streak hero
+        stat alongside current, and a badges grid (daily, card-count milestones,
+        streak tiers, and one completion badge per subject). Existing heatmap,
+        mastery bars, forecast, and weak-spots retained. New `.prog-level`/`.badge`
+        CSS; hero grid is now responsive (`auto-fit`). `gamification.js` added to the
+        `sw.js` precache.
+      - Verified gamification math in Node (level thresholds, current/longest
+        streaks). Gates clean (`validate` 0, `audit` baseline 8, `check_sw`
+        consistent — 48 precached / 17 modules).
       deeper slimming.** (Same release as 16, `?v=27`.)
       - **BCO comprehensive deck replaced** by the user's
         `pca_bco_comprehensive_quoted_labeled_bundle.zip` (committed to main):
