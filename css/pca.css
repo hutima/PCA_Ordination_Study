@@ -287,6 +287,14 @@ a.qa-ref-inline {
 /* Top-of-modal actions (Clear + Done) beside the heading. */
 .selector-head-actions { display: flex; gap: 8px; align-items: center; flex: none; }
 
+/* A week's Catechism column expands to the actual Q&A inline (read in place). */
+.cat-qa-list { gap: 12px; }
+.cat-qa { padding: 1px 0; }
+.cat-qa-q { margin: 0 0 3px; font-family: var(--font-display); font-size: calc((13px) * var(--text-scale, 1)); color: var(--cream); line-height: 1.45; }
+.cat-qa-a { margin: 0; font-size: calc((13px) * var(--text-scale, 1)); color: var(--muted); line-height: 1.5; }
+.cat-qa-n { color: var(--gold-light); font-weight: 600; }
+.cat-qa-label { color: var(--gold-dim); }
+
 /* ── Provenance callouts in answers ───────────────────────────────────── */
 .qa-callout {
   margin: 12px 0; padding: 10px 14px 4px; border-radius: 0 8px 8px 0;
