@@ -1,12 +1,15 @@
 // PCA Ordination & Licensure Study — service worker.
 //
-// Offline shell cache + user-triggered update. Bump CACHE (and the ?v=N params
+// Offline shell cache + a self-healing update. Bump CACHE (and the ?v=N params
 // in index.html) together on every release: a new CACHE name makes the browser
-// install a fresh worker, which then waits. The page surfaces an "Update
-// available" banner (see registerServiceWorker in js/app/pca.js); the worker is
-// promoted (skipWaiting) and the page reloads only when the user taps "Refresh
-// now" — never automatically, which would freeze iOS standalone PWAs.
-const CACHE = 'pca-v51';
+// install a fresh worker. The worker now skipWaiting()s on install and claims
+// clients on activate, so a new release takes over on the browser's own sw.js
+// refresh — it does NOT depend on the page promoting it (the old "promote on
+// Refresh-now tap" model deadlocked when the cached app JS was broken). The page
+// surfaces an "Update available" banner (see registerServiceWorker in
+// js/app/pca.js) and reloads only when the user taps "Refresh now" — never
+// automatically, which would freeze iOS standalone PWAs.
+const CACHE = 'pca-v52';
 
 const PRECACHE = [
   './',
@@ -61,6 +64,14 @@ const PRECACHE = [
 ];
 
 self.addEventListener('install', (event) => {
+  // Activate as soon as we're installed, WITHOUT waiting for the page to ask.
+  // The page-driven "promote on Refresh-now tap" model deadlocks if the
+  // currently-cached app JS is broken: it can never run the code that promotes
+  // the fix. The browser updates sw.js on its own (on navigation), so letting
+  // the new worker skip waiting here is what lets a bad release self-heal on a
+  // plain refresh. We still NEVER auto-reload the page (that froze iOS
+  // standalone PWAs) — the page only reloads on a user tap.
+  self.skipWaiting();
   // cache: 'reload' bypasses the HTTP cache so a new worker never precaches
   // stale copies of assets the browser had cached from the previous release.
   event.waitUntil(
