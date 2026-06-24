@@ -331,6 +331,7 @@ function setFocus(f) {
   renderCard();
 }
 function toggleShuffle() {
+  if (state.focus === 'order') return; // parked while In order is the focus
   state.shuffleOn = !state.shuffleOn;
   saveShuffle();
   updateAdvancedButtons();
@@ -349,25 +350,56 @@ function toggleSpaced() {
   renderCard();
 }
 function toggleUnspacedReset() {
+  if (state.spacedOn) return; // meaningful only while spaced repetition is off
   state.unspacedDailyReset = !state.unspacedDailyReset;
   saveUnspacedReset();
   updateAdvancedButtons();
 }
-// Sync the three advanced-settings toggle buttons. "In order" is by definition
-// unshuffled, so the shuffle toggle is parked while it's the focus; the daily-
-// reset toggle is meaningful only while spaced repetition is off.
-function setToggleButton(id, on, disabled) {
-  const b = $(id);
+// Reflect a toggle's state: slide the switch pill, sync aria on the row button,
+// and dim/park it when disabled. `btnId` = the `.toggle-label` button, `switchId`
+// = its `.toggle-switch` pill. "In order" is by definition unshuffled, so the
+// shuffle toggle is parked while it's the focus; the daily-reset toggle is
+// meaningful only while spaced repetition is off.
+function setToggle(btnId, switchId, on, disabled) {
+  const sw = $(switchId);
+  if (sw) sw.classList.toggle('on', on);
+  const b = $(btnId);
   if (!b) return;
-  b.classList.toggle('active', on);
-  b.disabled = !!disabled;
-  b.setAttribute('aria-pressed', String(on));
-  b.textContent = on ? 'On' : 'Off';
+  b.setAttribute('aria-checked', String(on));
+  b.classList.toggle('is-disabled', !!disabled);
+  b.setAttribute('aria-disabled', String(!!disabled));
 }
 function updateAdvancedButtons() {
-  setToggleButton('shuffleBtn', state.shuffleOn, state.focus === 'order');
-  setToggleButton('spacedBtn', state.spacedOn, false);
-  setToggleButton('unspacedResetBtn', state.unspacedDailyReset, state.spacedOn);
+  setToggle('shuffleToggle', 'shuffleBtn', state.shuffleOn, state.focus === 'order');
+  setToggle('spacedToggle', 'spacedBtn', state.spacedOn, false);
+  setToggle('unspacedResetToggle', 'unspacedResetBtn', state.unspacedDailyReset, state.spacedOn);
+}
+// Inject a circled (i) into each Advanced-settings toggle that opens a
+// describe-modal with the toggle's full title text — so the row itself stays a
+// short label + switch instead of a wall of inline description (ported from the
+// Duff tool). The (i) stops propagation so it never flips the switch.
+function installToggleInfo() {
+  const container = $('advSettings');
+  if (!container) return;
+  container.querySelectorAll('.toggle-label[title]').forEach(label => {
+    if (label.querySelector('.toggle-info')) return;
+    const info = document.createElement('span');
+    info.className = 'toggle-info';
+    info.setAttribute('role', 'button');
+    info.setAttribute('tabindex', '0');
+    info.setAttribute('aria-label', 'What this setting does');
+    info.textContent = 'i';
+    const open = (e) => { e.preventDefault(); e.stopPropagation(); showToggleInfo(label); };
+    info.addEventListener('click', open);
+    info.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') open(e); });
+    label.appendChild(info);
+  });
+}
+function showToggleInfo(label) {
+  const textEl = label.querySelector('.toggle-text');
+  const t = $('toggleInfoTitle'); if (t) t.textContent = textEl ? textEl.textContent.trim() : 'Setting';
+  const body = $('toggleInfoBody'); if (body) body.textContent = label.getAttribute('title') || '';
+  showOverlay('toggleInfoOverlay');
 }
 
 // ── 12-week study plan (Schedule of Assignments) ───────────────────────
@@ -824,9 +856,12 @@ function init() {
   document.querySelectorAll('[data-focus]').forEach(b =>
     b.addEventListener('click', () => setFocus(b.getAttribute('data-focus'))));
   syncToggleActive('[data-focus]', 'data-focus', state.focus);
-  $('shuffleBtn').addEventListener('click', toggleShuffle);
-  $('spacedBtn').addEventListener('click', toggleSpaced);
-  $('unspacedResetBtn').addEventListener('click', toggleUnspacedReset);
+  $('shuffleToggle').addEventListener('click', toggleShuffle);
+  $('spacedToggle').addEventListener('click', toggleSpaced);
+  $('unspacedResetToggle').addEventListener('click', toggleUnspacedReset);
+  installToggleInfo();
+  const tic = $('toggleInfoCloseBtn');
+  if (tic) tic.addEventListener('click', () => hideOverlay('toggleInfoOverlay'));
   updateAdvancedButtons();
   updateResetLabels();
   updateFocusVisibility();

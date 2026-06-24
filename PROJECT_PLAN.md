@@ -598,6 +598,33 @@ KEEP modules + the HTML shell):**
       - Verified gamification math in Node (level thresholds, current/longest
         streaks). Gates clean (`validate` 0, `audit` baseline 8, `check_sw`
         consistent — 48 precached / 17 modules).
+- [x] **Phase 25 — Advanced-settings toggle UX + self-healing SW
+      (user-reported).** Releases `?v=51`→`?v=53`.
+      - **Startup-crash hotfix (`v51`):** v50 added a duplicate
+        `export const SESSION_IDLE_RESET_MS` to `js/domain/srs/constants.js` (it
+        already existed) — an ESM `SyntaxError` that stopped `pca.js` loading, so
+        no buttons worked. Removed the dup. `node --check` parses `.js` as a
+        script and missed it; added an ESM-import + DOM-stub smoke test
+        (`scratchpad/smoke.mjs`-style) that runs `init()` and catches it.
+      - **Self-healing service worker (`v52`):** the old SW only promoted a new
+        worker when the page posted `SKIP_WAITING` from the Refresh-now tap, so a
+        broken cached build deadlocked (the page that would promote never ran) and
+        refresh did nothing. `sw.js` now `skipWaiting()`s on install (+ existing
+        `clients.claim()`), so a release self-activates on the browser's own sw.js
+        refresh, independent of page JS. `registerServiceWorker` no longer posts
+        SKIP_WAITING; it shows the banner when a new worker takes control and
+        reloads only on the user's tap (still never auto-reloads — the iOS freeze
+        cause).
+      - **Duff-style toggle rows (`v53`):** the Advanced-settings toggles were a
+        wall of inline description. Replaced with Duff's pattern — a pill
+        `.toggle-switch` on the left + a short uppercase `.toggle-text` label + an
+        injected circled `.toggle-info` (ⓘ) that opens a describe-modal
+        (`#toggleInfoOverlay`) with the toggle's full `title`. `installToggleInfo()`
+        injects the (i) and `showToggleInfo()` fills the modal; the (i) stops
+        propagation so it never flips the switch. Toggles are now
+        `#shuffleToggle`/`#spacedToggle`/`#unspacedResetToggle` buttons wrapping
+        `#shuffleBtn`/`#spacedBtn`/`#unspacedResetBtn` switch pills; `setToggle`
+        slides the pill + syncs `aria-checked` + dims parked rows (`.is-disabled`).
       deeper slimming.** (Same release as 16, `?v=27`.)
       - **BCO comprehensive deck replaced** by the user's
         `pca_bco_comprehensive_quoted_labeled_bundle.zip` (committed to main):

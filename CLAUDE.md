@@ -76,6 +76,10 @@ That changes the update workflow:
   in book order; Flip deck = non-spaced, ported from Duff: Hard/Uncertain
   recycle to the back of the pile, Easy retires for the session — no SRS
   writes, only the activity log). **Advanced settings** (a `<details>` section)
+  render as Duff-style rows — a `.toggle-switch` pill + short `.toggle-text`
+  label + an injected `.toggle-info` (ⓘ) that opens a describe-modal
+  (`#toggleInfoOverlay`, `installToggleInfo`/`showToggleInfo` in `pca.js`) with
+  the toggle's full `title`, instead of inline description text — and
   hold three On/Off toggles ported from Duff: a persisted **Shuffle**
   (`pca_shuffle_v1`, default on, disabled under In order) controlling deck order;
   a **Spaced repetition** master switch (`state.spacedOn`/`pca_spaced_v1`,
