@@ -844,31 +844,27 @@ function init() {
   registerServiceWorker();
 }
 
-// Service worker: offline cache + user-triggered update. When a new worker
-// (after a deploy that bumped the cache name) finishes installing, it stays in
-// the "waiting" state and we surface an "Update available" banner instead of
-// promoting it automatically. The old code auto-posted SKIP_WAITING and reloaded
-// at launch, which freezes iOS standalone PWAs; now the reload only happens
-// inside the user's "Refresh now" tap (or the next cold start). Ported from the
-// Duff study tool (commit 3a9ef43).
+// Service worker: offline cache + a non-blocking update prompt.
+//
+// The worker now activates itself on install (skipWaiting in sw.js), so a new
+// release takes over on the browser's own sw.js refresh — it does NOT depend on
+// this page running to promote it. That's deliberate: the previous model only
+// promoted the new worker when the page posted SKIP_WAITING from the "Refresh
+// now" tap, which deadlocked when the cached app JS was broken (the page that
+// would do the promoting never ran). With self-activation a bad release
+// self-heals on a plain refresh.
+//
+// We still NEVER reload the page automatically (that froze iOS standalone PWAs).
+// When the new worker takes control we just surface a banner; the page reloads
+// only inside the user's "Refresh now" tap.
 function registerServiceWorker() {
   if (!('serviceWorker' in navigator)) return;
 
-  let refreshAccepted = false;
-  let reloading = false;
-  let pendingWorker = null;
-
-  // Only reload once the user has accepted the update — never automatically.
-  navigator.serviceWorker.addEventListener('controllerchange', () => {
-    if (!refreshAccepted || reloading) return;
-    reloading = true;
-    window.location.reload();
-  });
-
   const banner = document.getElementById('updateBanner');
-  function showUpdateBanner(worker) {
-    pendingWorker = worker || pendingWorker;
-    if (!banner) return;
+  let shown = false;
+  function showUpdateBanner() {
+    if (shown || !banner) return;
+    shown = true;
     banner.classList.add('show');
     banner.setAttribute('aria-hidden', 'false');
   }
@@ -877,31 +873,30 @@ function registerServiceWorker() {
     banner.classList.remove('show');
     banner.setAttribute('aria-hidden', 'true');
   }
-  function acceptUpdate() {
-    refreshAccepted = true;
-    hideUpdateBanner();
-    const worker = pendingWorker || (navigator.serviceWorker.controller && navigator.serviceWorker.controller);
-    try { if (worker) worker.postMessage('SKIP_WAITING'); } catch (_) {}
-    // Fallback in case controllerchange never fires (e.g. no waiting worker yet).
-    setTimeout(() => {
-      if (!reloading) { reloading = true; window.location.reload(); }
-    }, 1500);
-  }
 
   const refreshBtn = document.getElementById('updateRefreshBtn');
-  if (refreshBtn) refreshBtn.addEventListener('click', acceptUpdate);
+  if (refreshBtn) refreshBtn.addEventListener('click', () => window.location.reload());
   const dismissBtn = document.getElementById('updateDismissBtn');
   if (dismissBtn) dismissBtn.addEventListener('click', hideUpdateBanner);
 
+  // A new worker claiming control fires controllerchange. The very first one on
+  // a fresh install (no controller yet at registration) is initial control, not
+  // an update — skip the banner for it; any later one means a new release is
+  // live and the page is still on the old assets, so offer a refresh.
+  let initialControl = !navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (initialControl) { initialControl = false; return; }
+    showUpdateBanner();
+  });
+
   navigator.serviceWorker.register('sw.js').then((reg) => {
-    // A worker already waiting (alongside an active controller) means an update
-    // was installed on a previous visit — offer it immediately.
-    if (reg.waiting && navigator.serviceWorker.controller) showUpdateBanner(reg.waiting);
+    // A newer worker that installed on a previous visit is ready right away.
+    if (reg.waiting && navigator.serviceWorker.controller) showUpdateBanner();
     reg.addEventListener('updatefound', () => {
       const next = reg.installing;
       if (!next) return;
       next.addEventListener('statechange', () => {
-        if (next.state === 'installed' && navigator.serviceWorker.controller) showUpdateBanner(next);
+        if (next.state === 'installed' && navigator.serviceWorker.controller) showUpdateBanner();
       });
     });
     reg.update();
