@@ -77,6 +77,38 @@
         "summary": "Every believer receives spiritual gifts for ministry and edification (Rom 12; 1 Cor 12; Eph 4). The PCA holds that the office of apostle has ceased, urges caution about tongues, miracles, and healing in public worship, and the General Assembly urges forbearance among differing views."
       },
       {
+        "id": "ht-002a-cessationism",
+        "q": "Charismatic gifts — the cessationist view",
+        "a": "The revelatory and sign gifts — apostleship, prophecy, tongues, and the gift of miraculous healing — were given to authenticate the apostles' message and lay the foundation of the church, and **ceased** with the close of the apostolic age and the completion of the canon. The ordinary gifts (teaching, mercy, giving, leadership) continue.\n\n- **Grounds:** the apostles and prophets are the church's foundation (Eph 2:20); the canon is complete (WCF 1.1, 1.6); the sign-gifts confirmed the Word (Heb 2:3-4).\n- **Proponents:** B. B. Warfield, Richard Gaffin, and the historic Reformed mainstream.\n\nThis is essentially the PCA's constitutional stance — BCO 7-1 says the extraordinary offices and the gifts tied to new revelation have no successors.",
+        "refs": [
+          "Ephesians 2:20",
+          "Hebrews 2:3-4",
+          "BCO 7-1"
+        ],
+        "summary": "The revelatory and sign gifts (apostleship, prophecy, tongues, miraculous healing) authenticated the apostles and ceased with the close of the canon, while ordinary gifts continue (Eph 2:20; Heb 2:3-4). Close to the PCA’s BCO 7-1 stance."
+      },
+      {
+        "id": "ht-002b-continuationism",
+        "q": "Charismatic gifts — the continuationist view",
+        "a": "All the spiritual gifts, including prophecy, tongues, and healing, **continue** and are normative until Christ returns, and no New Testament text teaches their cessation. The \"perfect\" of 1 Cor 13:10 is Christ's return, not the completed canon. Many continuationists distinguish a **fallible, non-authoritative** New Testament prophecy from inscripturated Scripture.\n\n- **Grounds:** 1 Cor 12-14 commands the church to desire and not forbid the gifts (1 Cor 14:1, 39); Pentecost inaugurates the \"last days\" (Acts 2:17-18).\n- **Proponents:** Wayne Grudem, Sam Storms, and John Piper, and the Pentecostal and charismatic traditions.",
+        "refs": [
+          "1 Corinthians 13:8-10",
+          "1 Corinthians 14:39-40",
+          "Acts 2:17-18"
+        ],
+        "summary": "All the gifts, including prophecy, tongues, and healing, continue until Christ returns — 1 Cor 13:10’s \"perfect\" is the consummation, not the canon (1 Cor 14:1, 39). Many hold a fallible, non-authoritative NT prophecy distinct from Scripture."
+      },
+      {
+        "id": "ht-002c-open-but-cautious",
+        "q": "Charismatic gifts — the 'open but cautious' view",
+        "a": "Holds that no text decisively proves the gifts have ceased, so one should remain **open** to their possibility, while staying **cautious** about charismatic excess, not expecting or seeking them as normative, and upholding the sufficiency and finality of Scripture and good order in public worship.\n\n- **Grounds:** the Spirit gives gifts \"as he wills\" (1 Cor 12:11); \"do not quench the Spirit... do not despise prophecies, but test everything\" (1 Thess 5:19-21).\n- **Proponents:** Robert Saucy, and often D. A. Carson.\n\nThis is close to the PCA's mediating posture — the 1974 Pastoral Letter urges forbearance among brethren who differ.",
+        "refs": [
+          "1 Corinthians 12:11",
+          "1 Thessalonians 5:19-21"
+        ],
+        "summary": "No text decisively proves cessation, so remain open to the gifts while wary of excess, upholding Scripture’s sufficiency and order in worship (1 Cor 12:11; 1 Thess 5:19-21). Close to the PCA’s forbearance posture."
+      },
+      {
         "id": "ht-003-regulative-principle",
         "q": "Regulative Principle",
         "a": "a. The Regulative Principle was given its classical and definitive statement in the reformed Confessions formulated in the 17th century. It is stated in Chapter 21 paragraph 1 in the Westminster Confession:\nThe light of nature showeth that there is a God, who hath lordship and sovereignty over all, is good, and doth good unto all, and is therefore to be feared, loved, praised, called upon, trusted in, and served, with all the heart, and with all the soul, and with all the might. But the acceptable way of worshiping the true God is instituted by himself, and so limited by his own revealed will, that he may not be worshiped according to the imaginations and devices of men, or the suggestions of Satan, under any visible representation, or any other way not prescribed in the Holy Scripture.\n1. Rom. 1:20; Psa. 19:1-4a; 50:6; 86:8-10; 89:5-7; 95:1-6; 97:6; 104:1-35; 145:9-12; Acts 14:17; Deut. 6:4-5\n2. Deut. 4:15-20; 12:32; Matt. 4:9-10; 15:9; Acts 17:23-25; Exod. 20:4-6, John 4:23-24; Col. 2:18-23 c. Simply the Regulative Principle States this: True worship is only commanded by God; false worship is anything not commanded.\n\nNote: There is no separate PCA study report on the regulative principle; it is governed by the Westminster Standards (WCF 21) and the BCO Directory for Worship.",
@@ -87,6 +119,27 @@
         "summary": "True worship is only what God commands; anything not commanded is false worship. WCF 21.1: God \"may not be worshiped according to the imaginations and devices of men, or the suggestions of Satan… or any other way not prescribed in the Holy Scripture.\""
       },
       {
+        "id": "ht-003a-regulative",
+        "q": "Worship — the regulative principle (Reformed)",
+        "a": "God may be worshiped publicly **only** in the ways He has instituted in Scripture — by command, approved example, or good and necessary inference — and whatever lacks such warrant is forbidden (WCF 21.1). The principle distinguishes the **elements** of worship (the prescribed parts: reading and preaching the Word, prayer, sung praise, the sacraments, oaths and vows) from the **circumstances** (time, place, posture), which are ordered by Christian prudence and the general rules of the Word (WCF 1.6).\n\n- **Proponents:** Calvin, the Westminster divines, and the Presbyterian and Reformed churches.\n\nThis is the PCA's position — BCO 47-1 is titled \"The Regulative Principle.\"",
+        "refs": [
+          "WCF 21.1",
+          "WCF 1.6",
+          "BCO 47-1"
+        ],
+        "summary": "Worship is limited to what God has commanded in Scripture, and whatever lacks warrant is forbidden (WCF 21.1). The prescribed elements are fixed, while circumstances are ordered by Christian prudence (WCF 1.6). The PCA’s position (BCO 47-1)."
+      },
+      {
+        "id": "ht-003b-normative",
+        "q": "Worship — the normative principle (Lutheran / Anglican)",
+        "a": "Holds that whatever Scripture does **not forbid** is permitted in worship, leaving the church liberty to add forms and ceremonies not commanded, so long as they are not prohibited and serve edification and good order (1 Cor 14:40).\n\n- **Proponents:** Lutheran and Anglican churches, and much of broad evangelicalism in practice.\n\nThe Reformed reject this as opening worship to \"the imaginations and devices of men\" (WCF 21.1).",
+        "refs": [
+          "1 Corinthians 14:40",
+          "WCF 21.1"
+        ],
+        "summary": "Whatever Scripture does not forbid is permitted in worship (Lutheran/Anglican), giving liberty for human forms that edify and keep order (1 Cor 14:40). The Reformed reject this as opening worship to human invention (WCF 21.1)."
+      },
+      {
         "id": "ht-004-sabbath",
         "q": "Sabbath",
         "a": "a. The Sabbath is a creation ordinance (Gen 2:1-3). Though Hebrews has often been interpreted to mean that Jesus fulfilled the Sabbath (Heb 4:3) it is worth noting that the writer later exhorts readers to make every effort to enter that rest (Heb 4:11). Thus it would seem that in Christ we are given a proleptic participation in the rest of God to be fulfilled at the consummation. Moreover, the NT changes the Sabbath to the Lord's Day (e.g. Acts 20:7) and Jesus' principle that the Sabbath was made for man and not man for the Sabbath (Mark 2:27) seems to militate against an overly legalistic interpretation of the Sabbath (Mat 12:1-14). b. We need to distinguish between strict/literal sabbatariansim and semisabbatarianism.\n1. Strict/Liter Sabbatariansim i. \"Strict or literal sabbatariansim contends that God's directive concerning the OT sabbath law is natural, universal, and moral; consequently the sabbath requires mankind to abstain from all labor except those tasks necessary for the welfare of society.\" . E.g. the Seventh Day Adventists hold to this.\n2. Semisabbatariansim i. \"Semisabbatarianism holds a view essentially the same as strict sabbatarianism but transfers its demands from Saturday, the seventh day, to Sunday, the first day of the week.\" . \"Eusebius's interpretation of Ps. 91 (ca. 320) greatly influenced the ultimate transfer of sabbath assertions and prohibitions to the first day of the week.\" . \"It was Albertus Magnus who first suggested a structured semisabbatarianism by dividing the sabbath command into (1) the moral command to observe a day of rest after six days of labor and (2) the ceremonial symbol that applied only to the Jews in a literal sense.\" c. Westminster vs. Continental view of the Sabbath\n1. Westminster view of the Sabbath is reflected in WCF XXI.8: \"This Sabbath is then kept holy unto the Lord, when men, after a due preparing of their hearts, and ordering of their common affairs before-hand, do not only observe an holy rest all the day from their own works, words, and thoughts about their worldly employments and recreations, but also are taken up, the whole time, in the public and private exercises of His worship, and in the duties of necessity and mercy.\" What is particularly controversial is that Christians are to rest from \"recreations.\" Biblical support for this assertion is claimed from Isaiah 58:13-14: \"'If you keep your feet from breaking the Sabbath and from doing as you please on my holy day, if you call the Sabbath a delight and the LORD's holy day honorable, and if you honor it by not going your own way and not doing as you please or speaking idle words, 14 then you will find your joy in the LORD, and I will cause you to ride on the heights of the land and to feast on the inheritance of your father Jacob.' The mouth of the LORD has spoken.\"\n2. The Continental view of the Sabbath is reflected in the Heidelberg Catechism as well as in Calvin. i. Heidelberg Catechism: . Question 103: \"What does God require in the fourth commandment?\" . Answer: \"In the first place, that the ministry of the Gospel and schools be maintained; and that I, especially on the day of rest, diligently attend church, to learn the Word of God, to use the holy Sacraments, to call publicly upon the Lord, and to give Christian alms. In the second place, that all the days of my life I rest from my evil works, allow the Lord to work in me by his Spirit, and thus begin in this life everlasting Sabbath.\" ii. Calvin's Catechism of the Church of Geneva: . \"M[inister]: Let us come to the fourth commandment.\" . \"C[hild]: Remember the Sabbath day, to keep it holy. Six days shalt thou labour and do all thy work: But the seventh is the Sabbath of the Lord thy God: in it thou shalt not do any work, thou, nor thy son, nor thy daughter, nor thy manservant, nor thy maidservant, nor thy cattle, nor thy stranger that is within thy gates: For in six days the Lord made heaven and earth, the sea, and all that in them is, and rested the seventh day: wherefore the Lord blessed the Sabbath day, and hallowed it.\" . \"M: Does he order us to labour six day, in order that we may rest on the seventh?\" . \"C: Not exactly: but he permits six days for men's labours, and excludes the seventh, that it may be devoted to rest.\" . \"M: From what kind of labour are we barred?\" . \"C: This commandment has a distinct and peculiar ground. Since the observation of rest is part of the old ceremonies, it was therefore by the advent of Christ abrogated.\" . \"M: Do you mean that this precept properly refers to the Jews, and so was merely temporary?\" . \"C: Yes, so far as ceremonial is concerned.\" . \"M: What then? Is anything besides ceremonial subsumed under it?\" . \"C: It was given for three reasons.\" . \"M: Give them to me.\" . \"C: To symbolize spiritual rest; for the preservation of the ecclesiastical polity; for the relief of servants.\" . \"M: What do you mean by spiritual rest?\" . \"C: When we keep holiday from our own works, that God may perform his works in us.\" . \"M: How then is this carried out?\" . \"C: By crucifying the flesh; that is, we renounce our own inclination, that we may be guided by the Spirit of God.\" . \"M: Is it enough that this be done on the seventh day?\" . \"C: No: continually. For when we have once begun, we must continue through the whole course of life.\" . \"M: Why then is a certain day appointed to symbolize it?\" . \"C: There is no need for the reality to agree at all points with the symbol, if only it suit sufficiently for the purpose of symbolizing.\" . \"M: Why, then, is the seventh rather than any other day prescribed?\" . \"C: This number denotes perfection in Scripture. Therefore it is suitable to indicate perpetuity. At the same time, it suggests that this spiritual rest only begins in this life, and does not reach perfection until we depart this world.\" . \"M: But what is the meaning of the Lord exhorting us by his own example to rest?\" . \"C: When he finished the creation of the world in six days, he dedicated the seventh to the contemplation of his works. To incite us more strongly to this, he sets before us his own example. For nothing is more to be desired [than] that we be formed in his image.\" . \"M: But our meditation [on] the works of God ought to be continuous. Is it sufficient that one day out of seven be devoted to it?\" . \"C: It is right for us to be employed in it every day. But because of our weakness one special day is appointed. And this is the arrangement that I have mentioned.\" . \"M: What then is the order to be observed on this day?\" . \"C: The people are to meet for the hearing of Christian doctrine, for the offering of public prayers, and for the profession of their faith.\" . \"M: Now explain what you meant by saying that the Lord in this commandment wished to offer relief to servants.\" . \"C: That some kind of relaxation might be given to those who are in power of others. Indeed this also contributes to maintain a common polity. For when one day is assigned for rest, everyone accustoms himself to work the rest of the time.\" . \"M: Let us see now how far this command refers to us.\" . \"C: As to ceremony, since its reality existed in Christ, I hold it to be abrogated (Col. 2:20).\" . \"M: How?\" . \"C: Just because our old nature is by virtue of his death crucified, and we are raised up to newness of life.\" . \"M: How much of the commandment then remains for us?\" . \"C: Not to neglect the sacred ordinances which contribute to the spiritual polity of the Church; especially to attend the sacred assemblies for the hearing of the Word of God, the celebration of the mysteries, and the regular prayers as they will be ordained.\" . \"M: But does the symbol lead us no further?\" . \"C: Certainly: for it recalls us to the reality behind it, namely, that being grafted into the body of Christ and made members of his, we cease from our own works and so resign ourselves to the government of God.\"\n\nNote: There is no PCA study report adopting a position on Sabbath recreations; the 43rd General Assembly (2015) declined to form a study committee on the WCF 21.8 'recreations' clause, noting that an ordinand may register a difference under good-faith subscription (pcahistory.org).",
@@ -95,6 +148,38 @@
           "WCF 21.7-8"
         ],
         "summary": "The Sabbath is a creation ordinance (Gen 2:1-3), moved to the Lord's Day in the NT.\n- Strict sabbatarianism keeps the seventh day; semisabbatarianism transfers its demands to Sunday\n- The Westminster view (WCF 21.8) requires rest even from recreations\n- The Continental view (Heidelberg, Calvin) stresses worship, spiritual rest, and relief of servants"
+      },
+      {
+        "id": "ht-004a-puritan",
+        "q": "The Sabbath — the Puritan / Westminster view",
+        "a": "The fourth commandment is **moral and perpetual**: one whole day in seven is the Christian Sabbath, changed from the seventh day to the first (the Lord's Day) at Christ's resurrection, to continue to the end of the world (WCF 21.7). The day is kept as a holy rest from worldly employments **and recreations**, taken up wholly in public and private worship and in works of necessity and mercy (WCF 21.8; Isa 58:13-14).\n\n- **Proponents:** the Westminster divines and the Puritans, and the Presbyterian and Reformed churches.\n\nThis is the PCA's confessional standard (WLC 115-121; WSC 57-62). A candidate may register a difference on the \"recreations\" clause under good-faith subscription.",
+        "refs": [
+          "WCF 21.7-8",
+          "Isaiah 58:13-14",
+          "Exodus 20:8-11"
+        ],
+        "summary": "The fourth commandment is moral and perpetual, the Sabbath moved to the Lord’s Day at the resurrection (WCF 21.7); the whole day is a holy rest — even from recreations — given to worship and works of necessity and mercy (WCF 21.8). The PCA’s confessional standard."
+      },
+      {
+        "id": "ht-004b-continental",
+        "q": "The Sabbath — the Continental Reformed view",
+        "a": "Reflected in Calvin and the Heidelberg Catechism (Q&A 103): the Lord's Day is honored for corporate worship and rest, but the day's **ceremonial** Old-Covenant specifics are treated as fulfilled in Christ (Col 2:16-17), so it is less strict about forbidding all recreation. The stress falls on maintaining the ministry of the Word, resting from one's own evil works so God may work in us, and giving relief to servants.\n\n- **Proponents:** Calvin and Ursinus, and the Three Forms of Unity churches.\n\nHeld within Reformed orthodoxy, but distinct from the stricter Westminster formulation.",
+        "refs": [
+          "Colossians 2:16-17",
+          "Romans 14:5"
+        ],
+        "summary": "Calvin and the Heidelberg Catechism (Q103) honor the Lord’s Day for worship and rest but treat its ceremonial specifics as fulfilled in Christ (Col 2:16-17), stressing the Word, spiritual rest, and relief for servants over a strict ban on recreations."
+      },
+      {
+        "id": "ht-004c-fulfillment",
+        "q": "The Sabbath — the non-Sabbatarian (fulfilled-in-Christ) view",
+        "a": "Holds that the weekly Sabbath was a ceremonial shadow now **fulfilled and abrogated in Christ**, our rest (Heb 4:9-10), so no particular day is binding; believers may freely gather on the Lord's Day as a matter of order and liberty, not as a renewed fourth-commandment obligation (Rom 14:5-6; Col 2:16-17).\n\n- **Proponents:** much of broad evangelicalism and dispensationalism, and some New-Covenant-theology writers.\n\nThis lies outside the Westminster Standards, which treat the Sabbath as a moral, perpetual command.",
+        "refs": [
+          "Hebrews 4:9-10",
+          "Romans 14:5-6",
+          "Colossians 2:16-17"
+        ],
+        "summary": "The weekly Sabbath was a ceremonial shadow fulfilled in Christ our rest (Heb 4:9-10), so no day binds the conscience; believers gather on the Lord’s Day by liberty, not fourth-commandment obligation (Rom 14:5-6). This lies outside the Westminster Standards."
       },
       {
         "id": "ht-005-role-of-women-in-the-church",
@@ -118,6 +203,28 @@
         "summary": "There is one baptism (Eph 4:5): one baptized as an infant of professing parents, or on a profession later judged false, ought not be re-baptized. A previous baptism judged invalid (the PCA paper, against Hodge, counts Roman Catholic baptism invalid) may be followed by Christian baptism — which is then not a re-baptism."
       },
       {
+        "id": "ht-006a-broad-validity",
+        "q": "Baptism validity — the broad view (Hodge / Old Princeton)",
+        "a": "Charles Hodge held a baptism valid if it has (1) washing with water, (2) the name of the Trinity, and (3) intent to signify and seal union with Christ. On this basis even **Roman Catholic** baptism is valid, so a convert from Rome is **not** re-baptized. Hodge argued this against the 1845 Old School Assembly's vote to declare Romish baptism invalid.\n\n- **Grounds:** the objectivity of the sacrament; \"one Lord, one faith, one baptism\" (Eph 4:5); the definition of baptism (WSC 94).\n- **Proponents:** Charles Hodge and the Old Princeton tradition, and Calvin.\n\nThis is the position of the PCA 1987 committee's minority report.",
+        "refs": [
+          "Ephesians 4:5",
+          "WCF 28.7",
+          "WSC 94"
+        ],
+        "summary": "Charles Hodge: a baptism with water, the Trinitarian name, and intent to seal union with Christ is valid — so even Roman Catholic baptism counts and is not repeated (Eph 4:5; WSC 94). The PCA 1987 minority report."
+      },
+      {
+        "id": "ht-006b-narrow-validity",
+        "q": "Baptism validity — the narrow view (Thornwell)",
+        "a": "Because Rome is apostate and its priesthood is no lawful gospel ministry, its \"baptism\" is **not Christian baptism** at all; a convert who then receives Trinitarian water baptism in a true church is not being re-baptized but baptized for the first time (by analogy to Acts 19:1-7).\n\n- **Grounds:** sacraments are to be dispensed by a lawfully ordained minister (WCF 27.4); the marks of a true visible church (WCF 25.4-5).\n- **Proponents:** James Henley Thornwell, the 1845 Old School Assembly, and the **majority** of the PCA's 1987 study committee.\n\nBoth sides agree a genuinely valid baptism is unrepeatable (WCF 28.7) and differ only on what counts as valid. The 15th GA (1987) **received** both reports without adopting either, leaving the question to the lower courts.",
+        "refs": [
+          "Acts 19:1-7",
+          "WCF 27.4",
+          "WCF 28.7"
+        ],
+        "summary": "Thornwell: Rome is apostate with no lawful ministry, so its \"baptism\" is not Christian baptism, and baptizing such a convert is a first valid baptism, not a re-baptism (Acts 19:1-7; WCF 27.4). The PCA’s 1987 majority leaned this way, but the GA only received the reports — the matter is left to the courts."
+      },
+      {
         "id": "ht-007-theonomy",
         "q": "Theonomy",
         "a": "a. Definition\n1. \"A school of thought bearing the label 'Christian Reconstruction' and characteristically using the term theonomy (literally, the law of God) has been making an impact on American religious and political life in recent years. Since the publication of Rousas John Rushdoony's Institutes of Biblical Law...and of Greg L. Bahnsen's Theonomy in Christian Ethics...this school of thought has produced a vast amount of literature....\" Other theonomists include Gary North, David Chilton, and Ray Sutton. Though not quite a single movement, the leading characteristics of theonomy \"are an emphasis on the Old Testament law; stress on the continued normativity not only of the moral law but also of the judicial law of Old Testament Israel, including its penal sanctions; and belief that the Old Testament judicial law applies not only to Israel, but also to Gentile nations, including modern America, so that it is the duty of the civil government to enforce the law and execute its penalties.\" b. Critique of Theonomy\n1. In short, theonomists overemphasize the continuity between the Old and New Covenants at the expense of their discontinuity.\n2. Israel, unlike any other modern-day nation, even America, was God's chosen nation in a unique way (Deut 7:6). Given its uniqueness it would seems likely that Israel's civil law would undergo some modification in applying it today.\n3. In 1 Corinthians 5:1-13 Paul deals with the case of a man sleeping with his father's wife. He calls for this man to be put out of the church and quotes the penal sanction of expulsion of the wicked person from them found in Deut 17:7 (also found in 17:12; 19:19; 21:21). In the OT this verse is found in the context of a call for stoning a person to purge the evil from Israel. But Paul, by quoting this in 1 Cor 5:13 seems to be equating the penal sanction of death with being put out of the church.\n\nNote: PCA action: there is no dedicated ad interim report on theonomy. A constitutional inquiry in the early 1980s (regarding WCF 19.4, the 'general equity' of the judicial law) concluded that no particular view of the application of the civil/judicial law should be made a test of orthodoxy or treated as heresy — diversity is permitted (pcahistory.org).",
@@ -125,6 +232,26 @@
           "WCF 19.4"
         ],
         "summary": "The \"Christian Reconstruction\" school (Rushdoony, Bahnsen, North) holds that the OT judicial law and its penal sanctions still bind all nations. Critique: it overstresses continuity between the covenants — Israel was uniquely God's nation, and Paul turns a death-penalty text into excommunication (1 Cor 5:13 quoting Deut 17:7)."
+      },
+      {
+        "id": "ht-007a-theonomy",
+        "q": "Theonomy — the theonomic / reconstructionist view",
+        "a": "Holds that the Old Testament **judicial law**, including its penal sanctions, remains morally binding on civil governments today unless the New Testament abrogates it, so the magistrate should enforce God's law. It is usually paired with postmillennial optimism about reconstructing family, church, and state under biblical law.\n\n- **Grounds:** Christ did not abolish the law (Matt 5:17-19); the justice of God's statutes among the nations (Deut 4:5-8).\n- **Proponents:** Greg Bahnsen, R. J. Rushdoony, and Gary North, centered in the Chalcedon Foundation.\n\nA minority view in the PCA.",
+        "refs": [
+          "Matthew 5:17-19",
+          "Deuteronomy 4:5-8"
+        ],
+        "summary": "Bahnsen, Rushdoony, and North: the OT judicial law and its penal sanctions still bind civil governments unless the NT abrogates them, so the magistrate enforces God’s law (Matt 5:17-19). A minority view in the PCA."
+      },
+      {
+        "id": "ht-007b-general-equity",
+        "q": "Theonomy — the 'general equity' (confessional) view",
+        "a": "The mainstream Reformed position (WCF 19.4): the judicial laws given to Israel \"as a body politic\" **expired** with that state and bind no nation now further than their **general equity** — the underlying principle of justice — may require. Israel was a unique, typological people, so its civil code is not transferred wholesale to modern states, and the magistrate is bound by the moral and natural law.\n\n- **Proponents:** the Westminster divines and the confessional Reformed mainstream, and critics of theonomy such as Meredith Kline.\n\nThe PCA has never made any particular view of the judicial law a test of orthodoxy — the 7th GA (1979) held that all views not contrary to WCF 19.4 are acceptable.",
+        "refs": [
+          "WCF 19.4",
+          "2 Corinthians 3:7-11"
+        ],
+        "summary": "WCF 19.4: Israel’s judicial laws expired with that body politic, binding now only in their \"general equity.\" Israel was a unique typological nation, so its civil code does not transfer wholesale. The 7th GA (1979) ruled all views not contrary to WCF 19.4 acceptable."
       },
       {
         "id": "ht-008-civil-disobedience",
@@ -148,6 +275,27 @@
         "summary": "Advocates argue from the Passover parallel, but there is no evidence infants took the Passover (Murray). Baptism signs initiation and happens once; the Supper signs continuation, is repeated, and requires conscious participation in its fellowship (1 Cor 10-11) — so infants are not admitted."
       },
       {
+        "id": "ht-009a-paedocommunion",
+        "q": "Paedo-communion — the paedocommunion view",
+        "a": "Argues that covenant children, admitted to the covenant by baptism (as infants were included in the Passover by analogy to circumcision), should likewise be admitted to the Lord's Supper **from infancy**, without a separate profession. It reads the self-examination texts as addressed to the adult and the disorderly, not as a universal age bar.\n\n- **Grounds:** covenant inclusion, the Passover (Exod 12) and circumcision (Gen 17), and the one loaf shared by the body (1 Cor 10:16-17).\n- **Proponents:** Robert Rayburn and Tim Gallant, and the broader Federal Vision orbit.\n\nRejected by the PCA.",
+        "refs": [
+          "Exodus 12:26-27",
+          "1 Corinthians 10:16-17"
+        ],
+        "summary": "Covenant children, baptized into the covenant, should also be admitted to the Supper from infancy by analogy to the Passover and circumcision (Exod 12; 1 Cor 10:16-17). It stresses covenant inclusion — rejected by the PCA."
+      },
+      {
+        "id": "ht-009b-discerning",
+        "q": "Paedo-communion — the PCA / 'discerning the body' view",
+        "a": "The Lord's Supper is to be administered \"only to such as are of years and ability to **examine themselves**\" and to **discern the Lord's body** (WLC 177; WSC 97; 1 Cor 11:28-29), which infants cannot yet do; so covenant children are admitted only after a credible profession of faith examined by the session (BCO 57). There is no evidence infants took the Passover (Murray), and the Supper signs continuation, not initiation.\n\n- **Proponents:** the Westminster Standards and the confessional Reformed mainstream (PCA, OPC).\n\nThe **16th GA (1988)** adopted its committee's report rejecting paedocommunion — a settled PCA position.",
+        "refs": [
+          "1 Corinthians 11:28-29",
+          "WLC 177",
+          "WSC 97"
+        ],
+        "summary": "The Supper is only for those able to examine themselves and discern the body (WLC 177; WSC 97; 1 Cor 11:28-29), which infants cannot do, so children commune only after a session-examined profession (BCO 57). The 16th GA (1988) adopted this, rejecting paedocommunion."
+      },
+      {
         "id": "ht-010-divorce-and-remarriage",
         "q": "Divorce and Remarriage",
         "a": "a. Divorce is due to the hardness of the human heart (Mat 19:8a). Moreover, it is abhorred by God (Mal 2:16) and contrary to his creational intent (Mat 19:8b). Re-marriage should only be allowed upon the death of a spouse or when a biblically justified divorce has occurred (for adultery, Mat 19:9; for desertion, 1 Cor 7:15) and the one trying to get re-married is not the offending party.\n\nNote: PCA position: the 20th General Assembly (1992) adopted the Report of the Ad Interim Committee on Divorce and Remarriage (begun 1988), recognizing biblical grounds for divorce — adultery, and desertion by an unbelieving spouse — with pastoral and disciplinary guidance (cf. WCF 24.5-6). See the [Report on Divorce and Remarriage (20th GA, 1992)](https://www.pcahistory.org/pca/studies/2-188.pdf).",
@@ -157,6 +305,38 @@
           "WCF 24.5-6"
         ],
         "summary": "Divorce stems from hardness of heart and is contrary to God's creational intent (Mat 19:8). Remarriage is allowed only after a spouse's death or a biblically justified divorce (adultery, Mat 19:9; desertion, 1 Cor 7:15), and not for the offending party."
+      },
+      {
+        "id": "ht-010a-no-remarriage",
+        "q": "Divorce & remarriage — the permanence / no-remarriage view",
+        "a": "Holds that the marriage bond is dissolved **only by death**, so even where separation or \"divorce\" is permitted (for example, for adultery), **remarriage** while the former spouse lives is adultery. A stricter sub-form allows no divorce at all.\n\n- **Grounds:** what God has joined, let no one separate (Matt 19:6); a wife is bound as long as her husband lives (Rom 7:2-3); cf. Luke 16:18.\n- **Proponents:** Roman Catholic indissolubility, and among Protestants Gordon Wenham and J. Carl Laney.\n\nStricter than the Westminster Standards.",
+        "refs": [
+          "Matthew 19:6",
+          "Romans 7:2-3",
+          "Mark 10:11-12"
+        ],
+        "summary": "The marriage bond is dissolved only by death, so remarriage while a former spouse lives is adultery (Matt 19:6; Rom 7:2-3) — even where separation is allowed. Stricter than the Westminster Standards."
+      },
+      {
+        "id": "ht-010b-westminster",
+        "q": "Divorce & remarriage — the Westminster (adultery & desertion) view",
+        "a": "The confessional Reformed position (WCF 24.5-6): there are **two** biblical grounds on which the innocent party may divorce and then remarry — **adultery** (Matt 19:9; 5:32) and **willful desertion** that cannot be remedied by the church or the civil magistrate, classically by an unbelieving spouse (1 Cor 7:15). Divorce is otherwise contrary to God's design (Mal 2:16).\n\n- **Proponents:** Calvin and Beza, the Westminster divines, and John Murray, with the confessional Presbyterian mainstream.\n\nThis is the PCA's confessional standard.",
+        "refs": [
+          "WCF 24.5-6",
+          "Matthew 19:9",
+          "1 Corinthians 7:15"
+        ],
+        "summary": "WCF 24.5-6: the innocent party may divorce and remarry on two grounds — adultery (Matt 19:9) and irremediable willful desertion, classically by an unbelieving spouse (1 Cor 7:15). The PCA’s confessional standard."
+      },
+      {
+        "id": "ht-010c-abuse",
+        "q": "Divorce & remarriage — the expanded-grounds (constructive desertion) view",
+        "a": "Accepts the two Westminster grounds but reads \"desertion\" (1 Cor 7:15) **broadly** to cover cases — persistent physical abuse, attempted murder, willful non-support — in which a spouse has so abandoned the covenant obligations of marriage as to have effectively deserted it, freeing the innocent party. It is a live pastoral debate, not the PCA's settled standard.\n\n- **Grounds:** desertion read broadly (1 Cor 7:15); the basic duties of marriage (Exod 21:10-11).\n- **Proponents:** David Instone-Brewer, and the later Wayne Grudem on abuse.\n\nThe PCA's 1992 report judged abuse not a freestanding ground, though severe cases may fall pastorally under willful desertion; a 2022 Domestic Abuse study treats it more fully.",
+        "refs": [
+          "1 Corinthians 7:15",
+          "Exodus 21:10-11"
+        ],
+        "summary": "Reads \"desertion\" (1 Cor 7:15) broadly to cover grave abuse, attempted murder, or willful non-support that effectively deserts the marriage, freeing the innocent party. A live debate; the PCA’s 1992 report did not make abuse a freestanding ground."
       },
       {
         "id": "ht-011-confessional-subscription",
@@ -169,6 +349,45 @@
         "summary": "How a candidate \"receives and adopts\" the Westminster standards (BCO 21-5). Four views:\n- Substance of doctrine — not acceptable\n- Vital to the system — the \"loose\" view\n- Very doctrines of the Word — the \"strict\" view\n- Very word of doctrine — ruled out\nThe live debate is between the loose and strict views."
       },
       {
+        "id": "ht-011a-strict",
+        "q": "Subscription — strict / full subscription",
+        "a": "The officer must affirm **every doctrine and proposition** of the Westminster Standards, with no exceptions or scruples to any teaching. It is argued as taking the Standards and the ordination vow with full seriousness, and is read from the 1729 Adopting Act.\n\n- **Proponents:** Morton H. Smith (*The Case for Full Subscription to the Westminster Standards in the PCA*) and the historic Southern Presbyterian tradition.\n\nNot the PCA's adopted practice.",
+        "refs": [
+          "BCO 21-5"
+        ],
+        "summary": "The officer affirms every proposition of the Standards, with no exceptions (the \"full\" view; Morton Smith), read from the 1729 Adopting Act. Not the PCA’s adopted practice."
+      },
+      {
+        "id": "ht-011b-good-faith",
+        "q": "Subscription — good-faith subscription (the PCA's view)",
+        "a": "The PCA's adopted view (30th GA, 2002; BCO 21-4, 24-6): full subscription is the baseline, but a candidate **states any differences** with the Standards, and the court records and judges each as (a) none stated, (b) merely **semantic**, or (c) more than semantic but **not out of accord** with any fundamental of the system. An exception is granted only if it is neither hostile to the system nor strikes at the vitals of religion, and is often \"allowed to hold but not to teach.\"\n\nIt is a middle path between strict and loose subscription; the ordination vow (BCO 21-5) is to receive the Standards \"as containing the system of doctrine taught in the Holy Scriptures.\"",
+        "refs": [
+          "BCO 21-4",
+          "BCO 24-6",
+          "BCO 21-5"
+        ],
+        "summary": "The PCA’s adopted view (2002): the candidate states his differences and the court judges each as none, semantic, or an allowable exception not out of accord with the system’s fundamentals (BCO 21-4, 24-6). A middle path between strict and loose subscription."
+      },
+      {
+        "id": "ht-011c-system",
+        "q": "Subscription — system subscription",
+        "a": "The officer subscribes to the **\"system of doctrine\"** — the substance of the Reformed faith taught in the Standards — rather than to every individual proposition, with scruples allowed on points not essential and necessary to that system. It is traced to the \"system of doctrine\" language of the 1729 Adopting Act and of the ordination vow.\n\nThe PCA's good-faith procedure is, in effect, how it disciplines this idea, judging which stated differences strike at the system and which do not.",
+        "refs": [
+          "BCO 21-5"
+        ],
+        "summary": "Subscription to the \"system of doctrine\" in the Standards rather than every proposition, allowing scruples on non-essentials (the 1729 Adopting Act language). The PCA’s good-faith procedure governs how exceptions to the system are judged."
+      },
+      {
+        "id": "ht-011d-loose",
+        "q": "Subscription — loose ('substance of doctrine') subscription",
+        "a": "The loosest view: the officer subscribes only to the **general substance or spirit** of the Standards, allowing wide latitude. It is rejected by the PCA and confessional Presbyterians as tending toward latitudinarianism — the good-faith provision (BCO 21-4) was adopted precisely to foreclose it.\n\nAt the opposite extreme, a \"very word of doctrine\" view that would put the Standards on a par with Scripture is also ruled out, since Scripture alone is the rule of faith (WCF 1.10).",
+        "refs": [
+          "BCO 21-4",
+          "WCF 1.10"
+        ],
+        "summary": "Subscription only to the general substance of the Standards, with wide latitude — rejected in the PCA as tending to latitudinarianism (BCO 21-4 forecloses it). The opposite \"Standards on a par with Scripture\" extreme is also ruled out (WCF 1.10)."
+      },
+      {
         "id": "ht-012-fencing-the-lord-s-table",
         "q": "Fencing the Lord's Table",
         "a": "a. The issue here, settled for the time being at GA in 1993, is whether or not a PCA pastor giving the [1 Cor. 11:27ff.] warning prior to the Supper must verbally require all communicants to be \"enrolled as members of an evangelical church.\" As seen from the specific language in BCO 58-4b, the PCA sustained the requirement. This means that technically you have to at least be on the rolls of an \"evangelical\" church to take the Supper in a PCA church (or be a member of a PCA church). This presupposes baptism. A mere \"profession of the true religion\" is not enough. The idea is that if you are a true member of the visible church, you will be in submission to the leadership of a particular church-baptized on its rolls. b. The 1992 committee, which included Edmund Clowney and David Jones among others, questioned the ambiguity of the phrase \"evangelical church\" and argued that the requirement of actual enrollment went beyond the WCF (XXIX.8). On reading this section, they seem correct in saying the WCF says a profession of faith makes an individual a member of the visible church, not the fact of his name being on the rolls. The counter argument regarding rolls [Position papers, p. 299] has some merit, however (otherwise, how would officers in the NT church have known who was in their charge?). c. In terms of the way this issue has been framed, it seems that you have to decide whether it is a public profession of faith that makes one eligible for the Supper, or membership in a particular church. See WCF XXV.3 on the definition of a visible church. 1 Corinthians 11:27ff. must also be interpreted.\n\nNote: PCA practice: BCO 58-4 lets the session 'fence' the table by either open communion (any communicant in good standing in an evangelical church) or close communion (only those examined and approved by the session). See WLC 173 on who may be kept from the table (pcaac.org).",
@@ -178,6 +397,37 @@
           "WLC 173"
         ],
         "summary": "Settled at GA in 1993: per BCO 58-4b the warning before the Supper must require communicants to be enrolled members of an evangelical church — a mere profession is not enough. The underlying question: does profession of faith or church membership make one eligible? (WCF XXV.3, XXIX.8; 1 Cor 11:27ff.)"
+      },
+      {
+        "id": "ht-012a-open",
+        "q": "Fencing the table — open communion",
+        "a": "The table is open to any professing Christian who examines himself, with no church-membership requirement; the minister exhorts but does not gate admission. It rests on the claim that a credible profession of faith — not enrollment on a particular roll — makes one a member of the visible church (1 Cor 11:28).\n\n- **Proponents:** broad evangelicalism, Baptist \"free communion,\" and non-denominational settings.\n\nThe PCA's 1992 committee questioned the BCO's enrollment requirement on this ground, but the wording was retained.",
+        "refs": [
+          "1 Corinthians 11:28",
+          "WCF 29.7-8"
+        ],
+        "summary": "Admits any professing believer who examines himself, with no membership requirement (1 Cor 11:28) — profession, not enrollment, makes one a church member. The basis on which the 1992 committee questioned the BCO’s enrollment wording."
+      },
+      {
+        "id": "ht-012b-close",
+        "q": "Fencing the table — close communion (the PCA's practice)",
+        "a": "Open to communicants in good standing of **any evangelical church** who profess the true religion and are not under scandal; the session fences the table by authoritative **invitation and warning** rather than by interviewing every visitor. The minister invites \"all those who profess the true religion, and are communicants in good standing in any evangelical church\" and warns the ignorant and scandalous to refrain (BCO 58-4; WLC 173).\n\nThis is the PCA's ordinary practice — note the \"-e\" spelling. The 21st GA (1993) **declined** an overture to delete the \"good standing in any evangelical church\" wording, thereby reaffirming it. It is distinct from \"closed\" communion.",
+        "refs": [
+          "BCO 58-4",
+          "WLC 173",
+          "1 Corinthians 11:27-29"
+        ],
+        "summary": "Admits communicants in good standing of any evangelical church; the session fences by invitation and warning, not by interviewing visitors (BCO 58-4; WLC 173). The PCA’s ordinary practice — the 21st GA (1993) declined to weaken the wording."
+      },
+      {
+        "id": "ht-012c-closed",
+        "q": "Fencing the table — closed communion",
+        "a": "The strictest practice: admission is restricted to members of the local congregation or of the same denomination, and visitors must present themselves to and be **approved by the session** beforehand (BCO 58-4 permits this stricter option as a standing rule). It guards the table most tightly against unworthy participation (WLC 173; WCF 29).\n\n- **Proponents:** the RPCNA and some strict confessional Presbyterians, and the historic Scottish \"communion token.\"\n\nBCO 58-4 lets a session choose either this or the broader \"close\" approach.",
+        "refs": [
+          "BCO 58-4",
+          "WLC 173"
+        ],
+        "summary": "Admission is limited to members of the congregation or denomination, with visitors examined and approved by the session beforehand (BCO 58-4) — the strictest fencing. BCO 58-4 lets a session choose this or the broader \"close\" approach."
       },
       {
         "id": "ht-016-women-in-office",
