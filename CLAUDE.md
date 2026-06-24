@@ -71,7 +71,11 @@ That changes the update workflow:
   `js/data/catechisms_bco.js`, as flip cards — dropdown per set + per
   question, proofs/references in a collapsed section; position persists to
   `pca_catechism_v1`; a set with `verbatim: false` renders a paraphrase
-  callout instead of the confessional one). A Due/Weak/In-order/Flip-deck
+  callout instead of the confessional one. The reader is **self-gradable** —
+  Hard/Uncertain/Easy (or 1/2/3) feed `applyCatechismOutcome` (`srs.js`) into a
+  separate `cat:<cat>:<n>` progress namespace, independent of the global spaced
+  toggle and of the subject decks; the deck-meta shows an `n/total confirmed`
+  count and the Progress overlay a "Catechism mastery" section). A Due/Weak/In-order/Flip-deck
   focus toggle shapes the Review/Quiz deck (In order = unspaced read-through
   in book order; Flip deck = non-spaced, ported from Duff: Hard/Uncertain
   recycle to the back of the pile, Easy retires for the session — no SRS

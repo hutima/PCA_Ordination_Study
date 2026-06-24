@@ -625,6 +625,26 @@ KEEP modules + the HTML shell):**
         `#shuffleToggle`/`#spacedToggle`/`#unspacedResetToggle` buttons wrapping
         `#shuffleBtn`/`#spacedBtn`/`#unspacedResetBtn` switch pills; `setToggle`
         slides the pill + syncs `aria-checked` + dims parked rows (`.is-disabled`).
+- [x] **Phase 26 — Catechism-mode progress (user-requested).** Release
+      `?v=54`/`pca-v54`. The Catechisms reader (full WSC/WLC flip cards) was
+      non-graded; made it self-gradable with its **own** progress, separate from
+      the subject decks / week plan.
+      - **Grading.** The catechism card now shows Hard/Uncertain/Easy buttons
+        (and 1/2/3 keys); grading advances to the next question. Reuses the
+        confidence/XP/confirmation engine directly via a new
+        `applyCatechismOutcome(id, outcome)` (`srs.js`) that records confidence, a
+        confirmation stamp (rolling ≥70%), XP, and the activity rep — but **no**
+        SRS `dueAt` scheduling, and **independent of the global spaced/unspaced
+        toggle** (the reader is a straight read-through, not a scheduled deck).
+      - **Separate namespace.** Progress is keyed `cat:<cat>:<n>` (e.g.
+        `cat:wsc:1`), so it lives in the same `pca_progress_v1` store yet never
+        mixes with the subject decks (nothing iterating `DATA.subjects` sees it).
+        XP/streak/badges still accrue from it.
+      - **Surfaced.** The reader's deck-meta shows `WSC · n/107 confirmed` and a
+        per-question status badge (`✓ confirmed` / live `%`); the Progress overlay
+        gains a **Catechism mastery** section (WSC + WLC confirmed bars) distinct
+        from the subject mastery bars. Gates clean (`validate` 0, `audit` baseline
+        8, `check_sw` consistent); init + grading verified in Node.
       deeper slimming.** (Same release as 16, `?v=27`.)
       - **BCO comprehensive deck replaced** by the user's
         `pca_bco_comprehensive_quoted_labeled_bundle.zip` (committed to main):

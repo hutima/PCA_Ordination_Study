@@ -7,6 +7,29 @@ import { getConfidencePct } from '../domain/srs/confidence.js';
 import { escapeHtml } from '../utils/text.js';
 import { computeXpAndLevel, computeStreaks, computeBadges } from './gamification.js';
 
+const CATECHISMS = (typeof window !== 'undefined' && window.PCA_CATECHISMS) || null;
+
+// Catechism-mode mastery (the Catechisms reader's own progress namespace,
+// `cat:<cat>:<n>`), kept separate from the subject-deck mastery bars / week plan.
+function catechismMasteryHtml() {
+  if (!CATECHISMS) return '';
+  const rows = Object.values(CATECHISMS).map(c => {
+    const items = c.items || [];
+    if (!items.length) return '';
+    const confirmed = items.filter(it => {
+      const p = state.progress[`cat:${c.id}:${it.n}`];
+      return p && p.firstConfirmedAt;
+    }).length;
+    const pct = Math.round((confirmed / items.length) * 100);
+    return `<div class="mastery-row">
+        <div class="mastery-head"><span>${escapeHtml(c.short || c.label)}</span>
+          <span class="mastery-meta">${confirmed}/${items.length} confirmed · ${pct}%</span></div>
+        <div class="mastery-bar"><div class="mastery-fill" style="width:${pct}%"></div></div>
+      </div>`;
+  }).filter(Boolean).join('');
+  return rows ? `<div class="prog-section-title">Catechism mastery</div>${rows}` : '';
+}
+
 // A ~17-week heatmap, columns = weeks, rows = days (Sun→Sat), shaded by volume.
 function heatmapHtml() {
   const DAYS = 119;
@@ -120,5 +143,5 @@ export function progressBodyHtml() {
         <span class="badge-name">${escapeHtml(b.name)}</span>
       </div>`).join('') + `</div>`;
 
-  return { html: levelBanner + hero + forecast + bars + heat + weakHtml + badgesHtml, hasWeak: !!weak.length };
+  return { html: levelBanner + hero + forecast + bars + catechismMasteryHtml() + heat + weakHtml + badgesHtml, hasWeak: !!weak.length };
 }

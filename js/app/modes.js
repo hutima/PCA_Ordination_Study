@@ -13,7 +13,7 @@
 export function createModes(ctx) {
   const {
     state, DATA, escapeHtml, renderAnswer, summarize, hasMoreThanSummary, directAnswer, renderRefs,
-    buildQuiz, applyOutcome, rerender, mark, move, toggleReveal, withCardAnchor,
+    buildQuiz, applyOutcome, applyCatechismOutcome, getConfidencePct, rerender, mark, move, toggleReveal, withCardAnchor,
     effectiveSetKeys, quizDeckCards, shuffle, emptyState, navRowHtml, wireNav,
     setDeckMeta, EXAM_SIZE,
   } = ctx;
@@ -255,6 +255,12 @@ export function createModes(ctx) {
     const c = CATECHISMS && CATECHISMS[catState.cat];
     return c ? c.items : [];
   }
+  // Catechism-mode progress lives under a namespaced id so it tracks separately
+  // from the subject decks / week plan (these flip cards aren't in PCA_DATA).
+  function catKey(catId, n) { return `cat:${catId}:${n}`; }
+  function catProgress(catId, n) { return state.progress[catKey(catId, n)]; }
+  function catConfirmed(catId, n) { const p = catProgress(catId, n); return !!(p && p.firstConfirmedAt); }
+  function catConfirmedCount(catId, items) { return items.reduce((acc, it) => acc + (catConfirmed(catId, it.n) ? 1 : 0), 0); }
   const catechism = {
     id: 'catechism', label: 'Catechisms', usesDeck: false, focusable: false,
     title: 'The Westminster Larger & Shorter Catechisms, question by question',
@@ -277,9 +283,23 @@ export function createModes(ctx) {
       withCardAnchor(rerender);
     },
     toggle() { catState.revealed = !catState.revealed; withCardAnchor(rerender); },
+    // Self-grade the current question (Hard/Uncertain/Easy), then advance — the
+    // same flip-card grading as Review, but written to the catechism-only
+    // progress namespace and independent of the global spaced toggle.
+    grade(outcome) {
+      const items = catItems();
+      if (!items.length) return;
+      const item = items[Math.min(catState.n, items.length) - 1];
+      if (!item) return;
+      applyCatechismOutcome(catKey(catState.cat, item.n), outcome);
+      catechism.go(catState.n + 1);
+    },
     onKey(e) {
       if (e.key === 'ArrowRight') { catechism.go(catState.n + 1); return true; }
       if (e.key === 'ArrowLeft') { catechism.go(catState.n - 1); return true; }
+      if (e.key === '1') { catechism.grade('again'); return true; }
+      if (e.key === '2') { catechism.grade('pass'); return true; }
+      if (e.key === '3') { catechism.grade('easy'); return true; }
       if (e.code === 'Space' || e.key === 'Enter') {
         e.preventDefault();
         catechism.toggle();
@@ -344,19 +364,36 @@ export function createModes(ctx) {
            ${proofs}
            <div class="qa-reveal-hint qa-tap-hint">Tap card to hide</div>`
         : `<div class="qa-reveal-hint qa-tap-hint">Tap card to reveal the answer</div>`;
+      // Per-question status (self-graded, catechism-only namespace).
+      const prog = catProgress(catState.cat, item.n);
+      const pct = prog && prog.reps ? getConfidencePct(prog) : null;
+      const statusBadge = catConfirmed(catState.cat, item.n)
+        ? `<span class="cat-status confirmed">✓ confirmed</span>`
+        : (pct != null ? `<span class="cat-status">${pct}%</span>` : '');
+      // Grade buttons (mirroring Review) so the catechism reader builds its own
+      // progress; grading advances to the next question.
+      const markRow = `<div class="mark-row" style="display:flex">
+             <button class="mark-btn mark-again" data-outcome="again" type="button">✗ Hard</button>
+             <button class="mark-btn mark-pass" data-outcome="pass" type="button">~ Uncertain</button>
+             <button class="mark-btn mark-easy" data-outcome="easy" type="button">✓ Easy</button>
+           </div>`;
       area.querySelector('#catBody').innerHTML = `
         <div class="qa-card ${catState.revealed ? 'revealed' : ''}" id="catCard" role="button" tabindex="0" aria-pressed="${catState.revealed}">
-          <div class="qa-deck-label">${escapeHtml(cat.short)} · Question ${item.n} of ${items.length}</div>
+          <div class="qa-deck-label"><span>${escapeHtml(cat.short)} · Question ${item.n} of ${items.length}</span>${statusBadge}</div>
           <div class="qa-question">${escapeHtml(item.q)}</div>
           ${answerBlock}
-        </div>`;
+        </div>
+        ${markRow}`;
       area.querySelector('#catSource').textContent = cat.source;
-      setDeckMeta(`<strong>${escapeHtml(cat.label)}</strong> · ${items.length} questions`);
+      const confirmedCount = catConfirmedCount(catState.cat, items);
+      setDeckMeta(`<strong>${escapeHtml(cat.label)}</strong> · ${confirmedCount}/${items.length} confirmed`);
       area.querySelector('#catCard').addEventListener('click', (e) => {
         if (e.target.closest('a, select, button, summary, details')) return;
         if (typeof getSelection === 'function' && String(getSelection()).length) return;
         catechism.toggle();
       });
+      area.querySelectorAll('#catBody .mark-btn').forEach(btn =>
+        btn.addEventListener('click', () => catechism.grade(btn.dataset.outcome)));
     },
   };
 
