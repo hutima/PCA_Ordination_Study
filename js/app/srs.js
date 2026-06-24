@@ -7,9 +7,12 @@ import {
   setProgressDelay, getUncertainDelayMs, getNextEasyIntervalDays, msFromDays,
 } from '../domain/srs/scheduler.js';
 import { recordConfidenceSample } from '../domain/srs/confidence.js';
-import { getProgress, saveProgress, recordActivity } from './store.js';
+import { state, getProgress, saveProgress, recordActivity } from './store.js';
 
 export function applyOutcome(card, outcome) {
+  // Unspaced mode: no SRS writes — the rep is logged for the streak/heatmap
+  // only. Deck shaping (retire/recycle) is handled by the controller.
+  if (!state.spacedOn) { recordActivity(); return; }
   const p = getProgress(card.id);
   const now = Date.now();
   recordConfidenceSample(p, outcome);

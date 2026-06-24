@@ -62,9 +62,19 @@ That changes the update workflow:
   focus toggle shapes the Review/Quiz deck (In order = unspaced read-through
   in book order; Flip deck = non-spaced, ported from Duff: Hard/Uncertain
   recycle to the back of the pile, Easy retires for the session — no SRS
-  writes, only the activity log). A persisted Shuffle toggle
-  (`pca_shuffle_v1`, default on) controls deck order; it is disabled under
-  In order. Review grade buttons show on both hidden and revealed states.
+  writes, only the activity log). **Advanced settings** (a `<details>` section)
+  hold three On/Off toggles ported from Duff: a persisted **Shuffle**
+  (`pca_shuffle_v1`, default on, disabled under In order) controlling deck order;
+  a **Spaced repetition** master switch (`state.spacedOn`/`pca_spaced_v1`,
+  default on) — off = *unspaced*: `buildDeck` ignores the SRS schedule, Review
+  retires graded cards for the day (`unspacedMark`: Hard recycles, Uncertain/Easy
+  retire to the day-stamped `pca_unspaced_v1` pile) and `applyOutcome` logs the
+  rep to the activity heatmap only (no SRS writes); and **Unspaced daily reset**
+  (`pca_unspaced_reset_v1`, default on, disabled while spaced is on) which clears
+  a stale day-stamped pile on load so the selection re-presents each new day. The
+  SRS engine uses Duff's *intensive* 2-month cadence (14-day cap) only — the
+  8-month relaxed preset/toggle is deliberately not imported. Review grade buttons
+  show on both hidden and revealed states.
   An empty subject selection means an empty deck — there is no implicit
   "study everything" fallback. Card re-renders run through `withCardAnchor()`
   (pca.js) so reveal/hide/next never jumps the page.

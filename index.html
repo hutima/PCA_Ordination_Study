@@ -7,7 +7,7 @@
 <meta name="description" content="Spaced-repetition review for PCA licensure and ordination exams — Bible Content, Theology, Sacraments, Church History, and the Book of Church Order.">
 <meta name="theme-color" content="#0e0f14">
 <link rel="icon" href="favicon.svg">
-<link rel="manifest" href="manifest.json?v=48">
+<link rel="manifest" href="manifest.json?v=49">
 
 <!-- Pre-paint: set theme/font/size before first paint to avoid a flash. -->
 <script>
@@ -17,19 +17,19 @@
     if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
     else document.documentElement.setAttribute('data-theme', window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
     var f = localStorage.getItem('pca_font');
-    document.documentElement.setAttribute('data-font-family', f === 'sans' ? 'sans' : 'serif');
+    document.documentElement.setAttribute('data-font-family', f === 'serif' ? 'serif' : 'sans');
     var s = localStorage.getItem('pca_text_size') || 'medium';
     document.documentElement.setAttribute('data-text-size', s);
   } catch (e) {
     document.documentElement.setAttribute('data-theme', 'dark');
-    document.documentElement.setAttribute('data-font-family', 'serif');
+    document.documentElement.setAttribute('data-font-family', 'sans');
     document.documentElement.setAttribute('data-text-size', 'medium');
   }
 })();
 </script>
 
-<link rel="stylesheet" href="styles.css?v=48">
-<link rel="stylesheet" href="css/pca.css?v=48">
+<link rel="stylesheet" href="styles.css?v=49">
+<link rel="stylesheet" href="css/pca.css?v=49">
 </head>
 <body>
 <div class="app">
@@ -73,10 +73,28 @@
       <button class="mode-btn" id="focusOrderBtn" type="button" data-focus="order" title="Unspaced: read straight through the whole selection in book order, ignoring the schedule">In order</button>
       <button class="mode-btn" id="focusFlipBtn" type="button" data-focus="flip" title="Non-spaced flip deck: Hard/Uncertain send the card to the back of the pile, Easy retires it for this session">Flip deck</button>
     </div>
-    <div class="mode-group">
-      <button class="mode-btn" id="shuffleBtn" type="button" aria-pressed="true" title="Shuffle the deck order (off = book order). Ignored by In order.">⤮ Shuffle</button>
-    </div>
   </div>
+
+  <details class="utility-section">
+    <summary>Advanced settings</summary>
+    <div class="adv-settings" role="group" aria-label="Study engine settings">
+      <div class="adv-row">
+        <span class="adv-row-text"><span class="adv-row-label">Shuffle</span>
+          <span class="adv-row-desc">On randomises the deck each build; off keeps a fixed order (subject, then book order). Parked while “In order” is the focus.</span></span>
+        <button class="mode-btn adv-toggle" id="shuffleBtn" type="button" role="switch" aria-pressed="true">On</button>
+      </div>
+      <div class="adv-row">
+        <span class="adv-row-text"><span class="adv-row-label">Spaced repetition</span>
+          <span class="adv-row-desc">On schedules each card by how well you know it (the 2-month / 14-day cadence). Off is unspaced: study the whole selection ignoring the schedule, logging reps only.</span></span>
+        <button class="mode-btn adv-toggle" id="spacedBtn" type="button" role="switch" aria-pressed="true">On</button>
+      </div>
+      <div class="adv-row">
+        <span class="adv-row-text"><span class="adv-row-label">Unspaced daily reset</span>
+          <span class="adv-row-desc">When spaced repetition is off, re-present every card again each new day. Off keeps retired cards retired until you reset.</span></span>
+        <button class="mode-btn adv-toggle" id="unspacedResetBtn" type="button" role="switch" aria-pressed="true">On</button>
+      </div>
+    </div>
+  </details>
 
   <details class="utility-section">
     <summary>Settings</summary>
@@ -100,7 +118,8 @@
     <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
       <button class="ctrl-btn" type="button" id="exportBtn">Export progress</button>
       <button class="ctrl-btn" type="button" id="importBtn">Import progress</button>
-      <button class="ctrl-btn" type="button" id="resetProgressBtn">Reset progress…</button>
+      <button class="ctrl-btn" type="button" id="resetSelectionBtn">Reset this selection</button>
+      <button class="ctrl-btn" type="button" id="resetAllBtn">Reset everything…</button>
       <input type="file" id="importFile" accept="application/json" style="display:none">
     </div>
   </details>
@@ -163,8 +182,8 @@
       </div>
     </div>
     <div class="selector-groupby theme-switcher" role="group" aria-label="Group decks by">
-      <button class="theme-btn" id="groupBySubjectBtn" type="button" data-groupby="subject">By subject</button>
       <button class="theme-btn active" id="groupByWeekBtn" type="button" data-groupby="week" title="The 12-week study plan (Chapell &amp; Meek, “Schedule of Assignments”)">By week</button>
+      <button class="theme-btn" id="groupBySubjectBtn" type="button" data-groupby="subject">By subject</button>
     </div>
     <div class="subject-list" id="subjectList"></div>
     <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:8px;">
@@ -194,37 +213,37 @@
 </div>
 
 <!-- Subject data (plain defer globals → window.PCA_DATA) -->
-<script defer src="js/data/subjects/bible_content.js?v=48"></script>
-<script defer src="js/data/subjects/bible_books.js?v=48"></script>
-<script defer src="js/data/subjects/bco.js?v=48"></script>
-<script defer src="js/data/subjects/bco_governance.js?v=48"></script>
-<script defer src="js/data/subjects/bco_comprehensive.js?v=48"></script>
-<script defer src="js/data/subjects/sacraments.js?v=48"></script>
-<script defer src="js/data/subjects/church_history.js?v=48"></script>
-<script defer src="js/data/subjects/hot_topics.js?v=48"></script>
-<script defer src="js/data/subjects/theology.js?v=48"></script>
-<script defer src="js/data/subjects/theology_wcf.js?v=48"></script>
-<script defer src="js/data/subjects/theology_other.js?v=48"></script>
-<script defer src="js/data/subjects/doctrines_proofs.js?v=48"></script>
-<script defer src="js/data/subjects/personal_call.js?v=48"></script>
-<script defer src="js/data/subjects/catechism_wsc.js?v=48"></script>
+<script defer src="js/data/subjects/bible_content.js?v=49"></script>
+<script defer src="js/data/subjects/bible_books.js?v=49"></script>
+<script defer src="js/data/subjects/bco.js?v=49"></script>
+<script defer src="js/data/subjects/bco_governance.js?v=49"></script>
+<script defer src="js/data/subjects/bco_comprehensive.js?v=49"></script>
+<script defer src="js/data/subjects/sacraments.js?v=49"></script>
+<script defer src="js/data/subjects/church_history.js?v=49"></script>
+<script defer src="js/data/subjects/hot_topics.js?v=49"></script>
+<script defer src="js/data/subjects/theology.js?v=49"></script>
+<script defer src="js/data/subjects/theology_wcf.js?v=49"></script>
+<script defer src="js/data/subjects/theology_other.js?v=49"></script>
+<script defer src="js/data/subjects/doctrines_proofs.js?v=49"></script>
+<script defer src="js/data/subjects/personal_call.js?v=49"></script>
+<script defer src="js/data/subjects/catechism_wsc.js?v=49"></script>
 
 <!-- 12-week study plan (Schedule of Assignments) → window.PCA_WEEKS -->
-<script defer src="js/data/week_plan.js?v=48"></script>
+<script defer src="js/data/week_plan.js?v=49"></script>
 
 <!-- Westminster catechisms full text (defer global → window.PCA_CATECHISMS) -->
-<script defer src="js/data/catechisms.js?v=48"></script>
-<script defer src="js/data/catechisms_bco.js?v=48"></script>
+<script defer src="js/data/catechisms.js?v=49"></script>
+<script defer src="js/data/catechisms_bco.js?v=49"></script>
 
 <!-- Hand-authored quiz bank (defer globals → window.PCA_QUIZ) -->
-<script defer src="js/data/quiz/bible_content.js?v=48"></script>
-<script defer src="js/data/quiz/bco.js?v=48"></script>
-<script defer src="js/data/quiz/sacraments.js?v=48"></script>
-<script defer src="js/data/quiz/church_history.js?v=48"></script>
-<script defer src="js/data/quiz/theology.js?v=48"></script>
-<script defer src="js/data/quiz/hot_topics.js?v=48"></script>
+<script defer src="js/data/quiz/bible_content.js?v=49"></script>
+<script defer src="js/data/quiz/bco.js?v=49"></script>
+<script defer src="js/data/quiz/sacraments.js?v=49"></script>
+<script defer src="js/data/quiz/church_history.js?v=49"></script>
+<script defer src="js/data/quiz/theology.js?v=49"></script>
+<script defer src="js/data/quiz/hot_topics.js?v=49"></script>
 
 <!-- Entry point -->
-<script type="module" src="js/app/pca.js?v=48"></script>
+<script type="module" src="js/app/pca.js?v=49"></script>
 </body>
 </html>

@@ -12,6 +12,9 @@ export const SELECTION_KEY = 'pca_selection_v1';
 export const ACTIVITY_KEY = 'pca_activity_v1';
 export const SHUFFLE_KEY = 'pca_shuffle_v1';
 export const SELECTOR_GROUP_KEY = 'pca_selector_group_v1';
+export const SPACED_KEY = 'pca_spaced_v1';
+export const UNSPACED_RESET_KEY = 'pca_unspaced_reset_v1';
+export const UNSPACED_KEY = 'pca_unspaced_v1';
 
 // The official 12-week study plan (Chapell/Meek "Schedule of Assignments").
 export const WEEKS = (typeof window !== 'undefined' && window.PCA_WEEKS) || [];
@@ -21,6 +24,9 @@ export const state = {
   focus: 'due',            // 'due' (default) | 'weak' (low-confidence) | 'order' (unspaced book order) | 'flip' (non-spaced flip deck)
   selectorGroupBy: 'week', // selector modal grouping: 'subject' | 'week' (defaults to week)
   shuffleOn: true,         // shuffle deck order (persisted)
+  spacedOn: true,          // spaced-repetition master switch (persisted); off = unspaced
+  unspacedDailyReset: true,// re-present the unspaced deck each new day (persisted)
+  unspacedDone: new Set(), // card ids retired in the current unspaced run (persisted, day-stamped)
   flipArchived: new Set(), // card ids retired ("Easy") this flip-deck session
   selected: new Set(),     // selected set keys
   deck: [],                // ordered array of card objects for this session
@@ -55,6 +61,35 @@ export function loadShuffle() {
 }
 export function saveShuffle() {
   try { localStorage.setItem(SHUFFLE_KEY, state.shuffleOn ? 'on' : 'off'); } catch (e) {}
+}
+export function loadSpaced() {
+  // Default ON; only an explicit saved 'off' disables spaced repetition.
+  try { state.spacedOn = localStorage.getItem(SPACED_KEY) !== 'off'; } catch (e) {}
+}
+export function saveSpaced() {
+  try { localStorage.setItem(SPACED_KEY, state.spacedOn ? 'on' : 'off'); } catch (e) {}
+}
+export function loadUnspacedReset() {
+  // Default ON; only an explicit saved 'off' keeps retired cards across days.
+  try { state.unspacedDailyReset = localStorage.getItem(UNSPACED_RESET_KEY) !== 'off'; } catch (e) {}
+}
+export function saveUnspacedReset() {
+  try { localStorage.setItem(UNSPACED_RESET_KEY, state.unspacedDailyReset ? 'on' : 'off'); } catch (e) {}
+}
+// Unspaced retirements are stamped with the day they were earned. With the
+// daily-reset toggle on, a stamp older than today is cleared so the whole
+// selection re-presents each new day; off, retirements persist until reset.
+export function loadUnspaced() {
+  let stored = { day: '', done: [] };
+  try { stored = JSON.parse(localStorage.getItem(UNSPACED_KEY)) || stored; } catch (e) {}
+  const today = dayKey(Date.now());
+  if (state.unspacedDailyReset && stored.day !== today) state.unspacedDone = new Set();
+  else state.unspacedDone = new Set(Array.isArray(stored.done) ? stored.done : []);
+}
+export function saveUnspaced() {
+  try {
+    localStorage.setItem(UNSPACED_KEY, JSON.stringify({ day: dayKey(Date.now()), done: [...state.unspacedDone] }));
+  } catch (e) {}
 }
 export function loadSelectorGroup() {
   // Default to the by-week view; only an explicit saved 'subject' overrides it.

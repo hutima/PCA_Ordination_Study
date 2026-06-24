@@ -524,6 +524,41 @@ KEEP modules + the HTML shell):**
           Select-all, By-subject catechism + hot-topic groups). Gates clean
           (`validate` 0 problems / 1120 cards / 10 subjects, `audit` baseline 8,
           `check_sw` consistent).
+- [x] **Phase 23 — Duff-aligned study-engine settings (user-requested).**
+      Release `?v=49`/`pca-v49`. Aligned the deck controls to the Duff study tool
+      and tuned the spacing for a 3-month class.
+      - **Advanced settings panel.** New `<details>` "Advanced settings" section
+        (between the Focus row and Settings) holding three On/Off toggle buttons
+        (`.adv-row`/`.adv-toggle` in `css/pca.css`): **Shuffle** (moved out of the
+        Focus row — same `#shuffleBtn`/`pca_shuffle_v1`, still parked under "In
+        order"), **Spaced repetition**, and **Unspaced daily reset**. The Focus
+        row now holds only the four focus buttons.
+      - **Spaced-repetition master switch** (`state.spacedOn`, `pca_spaced_v1`,
+        default on). Off = **unspaced**: `buildDeck()` ignores the SRS schedule
+        (every card is "due"); in Review the deck retires graded cards for the day
+        (`unspacedMark`: Hard recycles to the back, Uncertain/Easy retire) and
+        `applyOutcome` (srs.js) skips all SRS writes, logging the rep to the
+        activity heatmap only. Retirements are day-stamped in `pca_unspaced_v1`.
+      - **Unspaced daily reset** (`state.unspacedDailyReset`, `pca_unspaced_reset_v1`,
+        default on; toggle disabled while spaced is on). On = a day-stamp older
+        than today clears the retired pile on load, re-presenting the whole
+        selection each new day; off keeps retirements until a manual reset. An
+        "Unspaced deck finished" empty state offers a Restart button.
+      - **2-month cadence only.** Confirmed the SRS scheduler already uses Duff's
+        *intensive* preset (14-day `SRS_MAX_INTERVAL_DAYS`, identical easy-curve
+        multipliers) — the "2-month" logic, appropriate for a 3-month course — so
+        the Duff *relaxed* (8-month) cadence and its toggle were intentionally
+        **not** imported.
+      - **Mode-aware reset.** Replaced the single "Reset progress…" with
+        **Reset this selection** (scoped to the chosen sub-decks) + **Reset
+        everything…** (`resetSelectionProgress`/`resetAllProgress`); in unspaced
+        mode a reset clears the retired pile instead of SRS progress, and the
+        selection-reset button relabels accordingly (`updateResetLabels`).
+      - **Sans is the default font** (pre-paint script + `pca.js` init fallbacks).
+      - **By week is first** in the selector's By-week/By-subject toggle so the
+        week-priority default reads clearly (the order was By subject / By week).
+      - Gates clean (`validate` 0 problems, `audit` baseline 8, `check_sw`
+        consistent — no new precached files).
       deeper slimming.** (Same release as 16, `?v=27`.)
       - **BCO comprehensive deck replaced** by the user's
         `pca_bco_comprehensive_quoted_labeled_bundle.zip` (committed to main):
