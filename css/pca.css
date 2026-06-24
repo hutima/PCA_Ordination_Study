@@ -290,6 +290,10 @@ a.qa-ref-inline {
 }
 .toggle-info-body { color: var(--cream); font-size: calc((15px) * var(--text-scale, 1)); line-height: 1.55; }
 
+/* Per-question self-grade status in the Catechisms reader's deck label. */
+.cat-status { float: right; font-family: var(--font-display); font-size: calc((11px) * var(--text-scale, 1)); letter-spacing: 1px; color: var(--muted); }
+.cat-status.confirmed { color: var(--gold-light); }
+
 /* ── Selector grouping toggle (By subject / By week) ───────────────────── */
 .selector-groupby { margin: 0 0 12px; }
 .selector-groupby .theme-btn { flex: 1; }

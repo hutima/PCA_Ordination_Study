@@ -46,3 +46,27 @@ export function applyOutcome(card, outcome) {
   saveProgress();
   recordActivity();
 }
+
+// Catechism-mode grading: a self-contained per-question progress signal for the
+// Catechisms reader, kept independent of the global spaced/unspaced toggle (the
+// mode is a straight read-through, not a scheduled deck). Records confidence, a
+// confirmation stamp (rolling ≥70%), XP, and the activity rep — but no SRS
+// dueAt scheduling. Keyed by a namespaced id (`cat:<cat>:<n>`) so it lives in
+// the same progress store yet never mixes with the subject decks.
+export function applyCatechismOutcome(id, outcome) {
+  const p = getProgress(id);
+  const now = Date.now();
+  const wasConfirmed = !!p.firstConfirmedAt;
+  recordConfidenceSample(p, outcome);
+  if (!p.firstConfirmedAt) {
+    const pct = getConfidencePct(p);
+    if (pct !== null && pct >= 70) p.firstConfirmedAt = now;
+  }
+  if (outcome === 'easy') p.passCount = (p.passCount || 0) + 1;
+  else if (outcome === 'again') p.failCount = (p.failCount || 0) + 1;
+  p.reps = (p.reps || 0) + 1;
+  p.lastReviewedAt = now;
+  addXp(computeCardXpAward(outcome, !wasConfirmed && !!p.firstConfirmedAt, true));
+  saveProgress();
+  recordActivity();
+}

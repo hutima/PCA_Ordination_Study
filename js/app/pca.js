@@ -28,7 +28,7 @@ import {
 import { buildQuiz, quizDeckCards } from './quiz.js';
 import { renderAnswer, summarize, hasMoreThanSummary, directAnswer } from './answer.js';
 import { renderRefs } from './refs.js';
-import { applyOutcome } from './srs.js';
+import { applyOutcome, applyCatechismOutcome } from './srs.js';
 import { createModes } from './modes.js';
 import { progressBodyHtml } from './progress.js';
 
@@ -301,7 +301,7 @@ function advance() {
 const MODES = createModes({
   state, DATA, escapeHtml,
   renderAnswer, summarize, hasMoreThanSummary, directAnswer, renderRefs,
-  buildQuiz, applyOutcome, rerender: renderCard, mark, move, toggleReveal,
+  buildQuiz, applyOutcome, applyCatechismOutcome, getConfidencePct, rerender: renderCard, mark, move, toggleReveal,
   withCardAnchor, effectiveSetKeys, quizDeckCards, shuffle,
   emptyState, navRowHtml, wireNav, setDeckMeta, EXAM_SIZE,
 });
