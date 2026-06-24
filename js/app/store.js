@@ -19,7 +19,7 @@ export const WEEKS = (typeof window !== 'undefined' && window.PCA_WEEKS) || [];
 export const state = {
   mode: 'review',          // see modes.js registry for valid ids
   focus: 'due',            // 'due' (default) | 'weak' (low-confidence) | 'order' (unspaced book order) | 'flip' (non-spaced flip deck)
-  selectorGroupBy: 'subject', // selector modal grouping: 'subject' | 'week'
+  selectorGroupBy: 'week', // selector modal grouping: 'subject' | 'week' (defaults to week)
   shuffleOn: true,         // shuffle deck order (persisted)
   flipArchived: new Set(), // card ids retired ("Easy") this flip-deck session
   selected: new Set(),     // selected set keys
@@ -57,8 +57,9 @@ export function saveShuffle() {
   try { localStorage.setItem(SHUFFLE_KEY, state.shuffleOn ? 'on' : 'off'); } catch (e) {}
 }
 export function loadSelectorGroup() {
-  try { state.selectorGroupBy = localStorage.getItem(SELECTOR_GROUP_KEY) === 'week' ? 'week' : 'subject'; }
-  catch (e) { state.selectorGroupBy = 'subject'; }
+  // Default to the by-week view; only an explicit saved 'subject' overrides it.
+  try { state.selectorGroupBy = localStorage.getItem(SELECTOR_GROUP_KEY) === 'subject' ? 'subject' : 'week'; }
+  catch (e) { state.selectorGroupBy = 'week'; }
 }
 export function saveSelectorGroup() {
   try { localStorage.setItem(SELECTOR_GROUP_KEY, state.selectorGroupBy); } catch (e) {}

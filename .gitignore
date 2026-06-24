@@ -6,3 +6,6 @@ __pycache__/
 *.doc
 *.docx
 *.zip
+
+# Local-only dev deps (e.g. jsdom for render tests)
+node_modules/

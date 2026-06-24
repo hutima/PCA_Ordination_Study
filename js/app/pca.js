@@ -228,26 +228,61 @@ function updateShuffleButton() {
 
 // ── 12-week study plan (Schedule of Assignments) ───────────────────────
 // The week plan is shown inside the selector modal as a "By week" grouping —
-// each week is a collapsible card (select-all on the header) that expands to
-// its sub-decks as individual topic links, plus the week's reading/memory
-// assignments. See renderWeekGroups().
-//
-// Build the small "Also this week" caption for a week (the non-deck items:
-// catechism numbers, hot topic, book outlines/contents, doctrines).
-function weekReadingHtml(w) {
-  const r = w.reading || {};
-  const items = [];
-  if (r.catechism) items.push(`<strong>Catechism:</strong> ${escapeText(r.catechism)}`);
-  if (r.outlines) items.push(`<strong>Book outlines:</strong> ${escapeText(r.outlines)}`);
-  if (r.contents) items.push(`<strong>Book contents:</strong> ${escapeText(r.contents)}`);
-  if (r.doctrines) items.push(`<strong>Doctrines &amp; proofs:</strong> ${escapeText(r.doctrines)}`);
-  if (r.bibleContent) items.push(`<strong>Bible content:</strong> ${escapeText(r.bibleContent)}`);
-  if (r.history) items.push(`<strong>History:</strong> ${escapeText(r.history)}`);
-  if (r.hotTopic) items.push(`<strong>Hot topic:</strong> ${escapeText(r.hotTopic)}`);
-  if (r.focus) items.push(escapeText(r.focus));
-  if (!items.length) return '';
-  return `<div class="week-assign"><span class="week-assign-label">Also this week (reading &amp; memory)</span>` +
-    `<ul class="week-assign-list"><li>${items.join('</li><li>')}</li></ul></div>`;
+// each week is a collapsible card (select-all on its header) that expands to
+// one nested collapsible per syllabus column (Book Outlines, Book Contents,
+// Bible Content, Doctrines & Proofs, Theology, Catechism, History, BCO, Hot
+// Topic), matching the printed schedule. Per-week data lives in
+// js/data/week_plan.js; this is the fixed column order + labels.
+const WEEK_COLUMNS = [
+  { key: 'personal',  label: 'Personal Religion & Call', kind: 'sets',  noun: 'sub-deck' },
+  { key: 'outlines',  label: 'Book Outlines',            kind: 'books', noun: 'book' },
+  { key: 'contents',  label: 'Book Contents',            kind: 'books', noun: 'book' },
+  { key: 'bible',     label: 'Bible Content',            kind: 'sets',  noun: 'sub-deck' },
+  { key: 'doctrines', label: 'Doctrines & Proofs',       kind: 'sets',  noun: 'sub-deck' },
+  { key: 'theology',  label: 'Theology',                 kind: 'sets',  noun: 'sub-deck' },
+  { key: 'catechism', label: 'Catechism',                kind: 'catechism' },
+  { key: 'history',   label: 'History',                  kind: 'sets',  noun: 'sub-deck' },
+  { key: 'bco',       label: 'Book of Church Order',      kind: 'sets',  noun: 'sub-deck' },
+  { key: 'hotTopic',  label: 'Hot Topic',                kind: 'hotTopic' },
+];
+// A non-selectable assignment line inside a week (catechism #s, hot topic).
+function weekNoteHtml(label, noteHtml) {
+  return `<div class="week-cat-note"><span class="week-cat-label">${escapeText(label)}</span> ${noteHtml}</div>`;
+}
+// Build a week's expanded body: a leading focus note (weeks 1/13), then one
+// nested group per populated column (in schedule order), with catechism + hot
+// topic rendered as notes. Returns { body, allKeys } so the week's header
+// "Select all" toggles every selectable deck/book the week assigns.
+function weekBodyHtml(w) {
+  let body = '';
+  const allKeys = [];
+  if (w.focus) {
+    body += `<div class="week-assign"><span class="week-assign-label">This week</span>` +
+      `<p class="week-focus">${escapeText(w.focus)}</p></div>`;
+  }
+  for (const col of WEEK_COLUMNS) {
+    const cat = w[col.key];
+    if (!cat) continue;
+    if (col.kind === 'books' || col.kind === 'sets') {
+      const keys = (cat.books || cat.sets || []).filter(k => DATA.sets[k]);
+      if (!keys.length) continue;
+      allKeys.push(...keys);
+      body += groupHtml({
+        id: `week:${w.week}:${col.key}`,
+        title: col.label, subtitle: cat.sub, keys,
+        showSubject: true, noun: col.noun, level: 2,
+      });
+    } else if (col.kind === 'catechism') {
+      body += weekNoteHtml(col.label,
+        `Memorize <strong>${escapeText(cat)}</strong> — study the text in the Catechisms mode.`);
+    } else if (col.kind === 'hotTopic') {
+      const extra = (cat.related || []).map(r => escapeText(r.topic)).join('; ');
+      body += weekNoteHtml(col.label,
+        `<strong>${escapeText(cat.topic)}</strong>${extra ? ` &middot; see also <strong>${extra}</strong>` : ''}` +
+        ` — prepare your view; study it in the Hot Topics subject.`);
+    }
+  }
+  return { body, allKeys };
 }
 function setSelectorGroup(mode) {
   state.selectorGroupBy = mode === 'week' ? 'week' : 'subject';
@@ -349,8 +384,9 @@ function closeSelector() {
   applySelectorChanges();
 }
 const openSubdeckGroups = new Set();
-// One sub-deck as a selectable full-width row ("topic link"). In the by-week
-// view we also tag each topic with its subject, since a week mixes subjects.
+// One sub-deck/book as a selectable full-width row ("topic link"). In views
+// that mix subjects (by-week, the BCO chapter groups) we tag the row with its
+// subject.
 function deckRowHtml(k, showSubject) {
   const set = DATA.sets[k];
   if (!set) return '';
@@ -364,58 +400,74 @@ function deckRowHtml(k, showSubject) {
     <span class="subdeck-row-title">${escapeText(set.label)}</span>
     <span class="subdeck-row-meta">${meta}</span></button>`;
 }
-// A collapsible group (subject or week): summary with title, a select/deselect-
-// all toggle, and a card-count; the expanded body holds the topic rows. Weeks
-// pass a `tag` ("Week N") + `subtitle` (the books it covers) so the collapsed
-// row reads like a Duff session card.
-function groupHtml({ id, tag, title, subtitle, keys, selAttr, selVal, showSubject, extraBody }) {
-  const real = keys.filter(k => DATA.sets[k]);
-  const total = real.reduce((n, k) => n + DATA.sets[k].cards.length, 0);
-  const onCount = real.filter(k => state.selected.has(k)).length;
-  const allOn = real.length > 0 && onCount === real.length;
-  const meta = !real.length ? 'reading only'
-    : onCount ? `${onCount}/${real.length} selected · ${total} cards`
-    : `${real.length} sub-deck${real.length === 1 ? '' : 's'} · ${total} cards`;
-  const selBtn = real.length
-    ? `<button class="subdeck-group-select ${allOn ? 'selected' : ''}" ${selAttr}="${selVal}" type="button"
+// Every loaded set key under a group descriptor — its own rows plus any nested
+// sub-groups — for the "Select all" toggle and the selected-count meta.
+function groupLeafKeys(desc) {
+  const keys = (desc.keys || []).filter(k => DATA.sets[k]);
+  for (const g of desc.groups || []) keys.push(...groupLeafKeys(g));
+  return keys;
+}
+// A collapsible group. The summary shows an optional "Week N" tag, a title +
+// subtitle, a selected-count meta, and a Select-all toggle; the body holds
+// nested sub-groups and/or selectable rows. A group may instead supply a
+// ready-made `bodyHtml` (weeks, whose columns interleave groups and notes) with
+// `selectAllKeys` naming the keys its Select-all governs. `level: 2` styles a
+// nested sub-group (a week column, a Bible division, a BCO chapter block).
+function groupHtml(desc) {
+  const leaf = desc.selectAllKeys || groupLeafKeys(desc);
+  const onCount = leaf.filter(k => state.selected.has(k)).length;
+  const allOn = leaf.length > 0 && onCount === leaf.length;
+  const total = leaf.reduce((n, k) => n + DATA.sets[k].cards.length, 0);
+  const noun = desc.noun || 'sub-deck';
+  const meta = !leaf.length ? (desc.emptyMeta || 'reading only')
+    : onCount ? `${onCount}/${leaf.length} selected · ${total} cards`
+    : `${leaf.length} ${noun}${leaf.length === 1 ? '' : 's'} · ${total} cards`;
+  const selBtn = leaf.length
+    ? `<button class="subdeck-group-select ${allOn ? 'selected' : ''}" data-keys="${leaf.join(',')}" type="button"
         title="${allOn ? 'Deselect' : 'Select'} all">${allOn ? 'Deselect all' : 'Select all'}</button>`
     : '';
-  const titleBlock = tag
-    ? `<span class="group-titlewrap"><span class="group-tag">${escapeText(tag)}</span>
-        <span class="subdeck-group-title">${escapeText(title)}</span>
-        ${subtitle ? `<span class="group-sub">${escapeText(subtitle)}</span>` : ''}</span>`
-    : `<span class="subdeck-group-title">${escapeText(title)}</span>`;
-  return `<details class="subdeck-group ${onCount ? 'has-selected' : ''}" data-group="${id}" ${openSubdeckGroups.has(id) ? 'open' : ''}>
+  const titleBlock = desc.tag
+    ? `<span class="group-titlewrap"><span class="group-tag">${escapeText(desc.tag)}</span>
+        <span class="subdeck-group-title">${escapeText(desc.title)}</span>
+        ${desc.subtitle ? `<span class="group-sub">${escapeText(desc.subtitle)}</span>` : ''}</span>`
+    : `<span class="group-titlewrap"><span class="subdeck-group-title">${escapeText(desc.title)}</span>
+        ${desc.subtitle ? `<span class="group-sub">${escapeText(desc.subtitle)}</span>` : ''}</span>`;
+  const body = desc.bodyHtml != null ? desc.bodyHtml
+    : (desc.groups || []).map(g => groupHtml(g)).join('')
+      + (desc.keys || []).filter(k => DATA.sets[k]).map(k => deckRowHtml(k, desc.showSubject)).join('');
+  const cls = `subdeck-group${desc.level === 2 ? ' subdeck-subgroup' : ''}${onCount ? ' has-selected' : ''}`;
+  return `<details class="${cls}" data-group="${desc.id}" ${openSubdeckGroups.has(desc.id) ? 'open' : ''}>
     <summary>${titleBlock}<span class="subdeck-group-meta">${meta}</span>${selBtn}</summary>
-    <div class="subdeck-rows">${extraBody || ''}${real.map(k => deckRowHtml(k, showSubject)).join('')}</div></details>`;
-}
-// Subtitle for a week card: the books it covers (outlines · contents).
-function weekChaptersSubtitle(w) {
-  const r = w.reading || {};
-  return [r.outlines, r.contents].filter(Boolean).join(' · ');
+    <div class="subdeck-rows">${body}</div></details>`;
 }
 function renderSelector() {
   const list = $('subjectList');
   if (state.selectorGroupBy === 'week') {
-    list.innerHTML = WEEKS.map(w => groupHtml({
-      id: `week:${w.week}`,
-      tag: `Week ${w.week}`,
-      title: w.theme || `Week ${w.week}`,
-      subtitle: weekChaptersSubtitle(w),
-      keys: w.sets,
-      selAttr: 'data-week-select', selVal: String(w.week),
-      showSubject: true,
-      extraBody: weekReadingHtml(w),
-    })).join('');
+    list.innerHTML = WEEKS.map(w => {
+      const { body, allKeys } = weekBodyHtml(w);
+      return groupHtml({
+        id: `week:${w.week}`,
+        tag: `Week ${w.week}`,
+        title: w.theme || `Week ${w.week}`,
+        subtitle: w.books || '',
+        bodyHtml: body, selectAllKeys: allKeys, noun: 'deck',
+        emptyMeta: w.week === 13 ? 'review only' : 'reading only',
+      });
+    }).join('');
   } else {
     list.innerHTML = DATA.subjects.slice().sort((a, b) => (a.order || 0) - (b.order || 0))
-      .map(subj => groupHtml({
-        id: subj.id,
-        title: subj.label,
-        keys: subj.setKeys.filter(k => DATA.sets[k]),
-        selAttr: 'data-subject', selVal: subj.id,
-        showSubject: false,
-      })).join('');
+      .map(subj => {
+        // Subjects with display `groups` (Bible Book Summaries by division, the
+        // BCO by chapter block) render as nested sub-groups; the rest are flat.
+        if (subj.groups && subj.groups.length) {
+          const noun = subj.id === 'bible_books' ? 'book' : 'sub-deck';
+          const groups = subj.groups
+            .map(g => ({ id: g.id, title: g.label, keys: g.keys, showSubject: false, noun, level: 2 }))
+            .filter(g => groupLeafKeys(g).length);
+          return groupHtml({ id: subj.id, title: subj.label, groups, showSubject: false, noun });
+        }
+        return groupHtml({ id: subj.id, title: subj.label, keys: subj.setKeys.filter(k => DATA.sets[k]), showSubject: false });
+      }).join('');
   }
   // Toggle one topic.
   list.querySelectorAll('[data-set]').forEach(btn => btn.addEventListener('click', () => {
@@ -423,25 +475,21 @@ function renderSelector() {
     state.selected.has(k) ? state.selected.delete(k) : state.selected.add(k);
     renderSelector();
   }));
-  // Select / deselect a whole subject.
-  list.querySelectorAll('[data-subject]').forEach(btn => btn.addEventListener('click', e => {
+  // Select / deselect every leaf key under a group (subject, week, division,
+  // chapter block, or week column) — one handler for all of them.
+  list.querySelectorAll('[data-keys]').forEach(btn => btn.addEventListener('click', e => {
     e.preventDefault(); // a click inside <summary> would also toggle the group open/closed
-    const subj = DATA.subjects.find(s => s.id === btn.dataset.subject);
-    toggleKeys(subj.setKeys.filter(k => DATA.sets[k]));
+    toggleKeys(btn.dataset.keys.split(',').filter(Boolean));
   }));
-  // Select / deselect a whole week.
-  list.querySelectorAll('[data-week-select]').forEach(btn => btn.addEventListener('click', e => {
-    e.preventDefault();
-    const w = WEEKS.find(x => String(x.week) === btn.dataset.weekSelect);
-    if (w) toggleKeys(w.sets.filter(k => DATA.sets[k]));
-  }));
+  // Persist each group's open/closed state across the re-render on every click.
   list.querySelectorAll('details[data-group]').forEach(d => d.addEventListener('toggle', () => {
     d.open ? openSubdeckGroups.add(d.dataset.group) : openSubdeckGroups.delete(d.dataset.group);
   }));
 }
 function toggleKeys(keys) {
-  const allOn = keys.length > 0 && keys.every(k => state.selected.has(k));
-  keys.forEach(k => allOn ? state.selected.delete(k) : state.selected.add(k));
+  const real = keys.filter(k => DATA.sets[k]);
+  const allOn = real.length > 0 && real.every(k => state.selected.has(k));
+  real.forEach(k => allOn ? state.selected.delete(k) : state.selected.add(k));
   renderSelector();
 }
 
@@ -588,7 +636,9 @@ function init() {
     DATA.subjects.forEach(s => s.setKeys.forEach(k => { if (DATA.sets[k]) state.selected.add(k); }));
     renderSelector();
   });
-  $('selectorClearBtn').addEventListener('click', () => { state.selected.clear(); renderSelector(); });
+  const clearSelection = () => { state.selected.clear(); renderSelector(); };
+  $('selectorClearBtn').addEventListener('click', clearSelection);
+  $('selectorClearTopBtn').addEventListener('click', clearSelection);
   document.querySelectorAll('[data-groupby]').forEach(b =>
     b.addEventListener('click', () => setSelectorGroup(b.getAttribute('data-groupby'))));
   syncToggleActive('[data-groupby]', 'data-groupby', state.selectorGroupBy);

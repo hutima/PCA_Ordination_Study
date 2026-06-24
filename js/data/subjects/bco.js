@@ -579,7 +579,22 @@
     label: 'Book of Church Order',
     blurb: 'Government, officers, courts, discipline, and worship (BCO).',
     order: 5,
-    setKeys: ["bco-officers", "bco-courts", "bco-discipline", "bco-worship"]
+    setKeys: ["bco-officers", "bco-courts", "bco-discipline", "bco-worship"],
+    // Display groups for the "By subject" selector — the 14 BCO sub-decks
+    // ordered by BCO chapter range (the three source files register sub-decks
+    // in load order, which is not chapter order). The "By week" selector groups
+    // the same deck keys differently, by the syllabus's Preface/A–J blocks
+    // (see js/data/week_plan.js). Keys not yet loaded are filtered at render.
+    groups: [
+      { id: 'bcogrp-foundations', label: 'Foundations & Principles (Preface, ch. 1)', keys: ['bco-comp-foundations'] },
+      { id: 'bcogrp-officers', label: 'The Church, Its Power, Members & Officers (ch. 2–9)', keys: ['bco-officers', 'bco-comp-members-officers'] },
+      { id: 'bcogrp-courts', label: 'Church Courts (ch. 10–15)', keys: ['bco-comp-courts', 'bco-gov-courts'] },
+      { id: 'bcogrp-orders', label: 'Church Orders: Calling, Licensure, Ordination & Congregational Action (ch. 16–26)', keys: ['bco-comp-vocation', 'bco-courts'] },
+      { id: 'bcogrp-discipline', label: 'Discipline, Offenses & Judicial Process (ch. 27–38)', keys: ['bco-comp-discipline', 'bco-discipline'] },
+      { id: 'bcogrp-review', label: 'Review, Control & Jurisdiction (ch. 39–46)', keys: ['bco-comp-review'] },
+      { id: 'bcogrp-worship', label: 'The Directory for Worship (ch. 47–63)', keys: ['bco-comp-worship-principles', 'bco-comp-sacraments-pastoral', 'bco-worship'] },
+      { id: 'bcogrp-practice', label: 'Ministry, Members & Worship in Practice', keys: ['bco-gov-ministry'] },
+    ],
   };
 
   const data = (global.PCA_DATA = global.PCA_DATA || { subjects: [], sets: {} });
