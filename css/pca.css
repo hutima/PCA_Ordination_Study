@@ -242,6 +242,20 @@ a.qa-ref-inline {
   text-transform: uppercase; color: var(--gold-dim);
 }
 
+/* ── Advanced settings (shuffle / spaced / unspaced toggles) ───────────── */
+.adv-settings { display: flex; flex-direction: column; gap: 14px; }
+.adv-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.adv-row-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.adv-row-label {
+  font-family: var(--font-display); font-size: calc((14px) * var(--text-scale, 1));
+  color: var(--cream); letter-spacing: 0.3px;
+}
+.adv-row-desc {
+  font-size: calc((12px) * var(--text-scale, 1)); line-height: 1.45; color: var(--muted);
+}
+.adv-toggle { flex: 0 0 auto; min-width: 56px; }
+.adv-toggle:disabled { opacity: 0.4; cursor: default; }
+
 /* ── Selector grouping toggle (By subject / By week) ───────────────────── */
 .selector-groupby { margin: 0 0 12px; }
 .selector-groupby .theme-btn { flex: 1; }

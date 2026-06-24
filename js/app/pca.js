@@ -18,6 +18,7 @@ import { installClickShield, shieldClicksBriefly } from '../utils/clickShield.js
 import {
   DATA, state, WEEKS, loadProgress, saveProgress, loadSelection, saveSelection, loadActivity,
   loadShuffle, saveShuffle, loadSelectorGroup, saveSelectorGroup, recordActivity,
+  loadSpaced, saveSpaced, loadUnspacedReset, saveUnspacedReset, loadUnspaced, saveUnspaced,
 } from './store.js';
 import {
   effectiveSetKeys, cardsForKeys, shuffle, isWeak,
@@ -48,7 +49,19 @@ function buildDeck() {
   const now = Date.now();
   let cards = state.mode === 'quiz' ? quizDeckCards() : cardsForKeys(effectiveSetKeys());
   if (state.focus === 'weak') cards = cards.filter(isWeak);
-  const isDue = (c) => { const p = state.progress[c.id]; return !p || !p.dueAt || p.dueAt <= now; };
+  // Unspaced mode (spaced repetition off): the SRS schedule is ignored, so
+  // every card counts as due. The review deck additionally retires graded
+  // cards for the day (see unspacedMark) and re-presents them per the
+  // daily-reset toggle.
+  const isDue = (c) => { if (!state.spacedOn) return true; const p = state.progress[c.id]; return !p || !p.dueAt || p.dueAt <= now; };
+  if (!state.spacedOn && state.mode === 'review') {
+    cards = cards.filter(c => !state.unspacedDone.has(c.id));
+    state.deck = (state.shuffleOn && state.focus !== 'order') ? shuffle(cards) : bookOrder(cards);
+    state.dueCount = 0;
+    state.pos = 0;
+    syncCardState();
+    return;
+  }
   if (state.focus === 'order') {
     // Unspaced read-through: the whole selection in subject/sub-deck order,
     // ignoring the SRS schedule. Grading still records progress as usual.
@@ -100,6 +113,10 @@ function renderSessionMeta() {
     setDeckMeta(`<strong>${total}</strong> in the pile · <strong>${state.flipArchived.size}</strong> retired · card ${state.pos + 1} of ${total}`);
     return;
   }
+  if (!state.spacedOn && state.mode === 'review') {
+    setDeckMeta(`<strong>${total}</strong> in the pile · <strong>${state.unspacedDone.size}</strong> retired · card ${state.pos + 1} of ${total} · unspaced`);
+    return;
+  }
   const due = state.dueCount || 0;
   setDeckMeta(`<strong>${due}</strong> due · <strong>${total}</strong> in session · card ${state.pos + 1} of ${total}`);
 }
@@ -146,8 +163,35 @@ function move(delta) {
 function mark(outcome) {
   if (!state.deck.length) return;
   if (state.focus === 'flip' && state.mode === 'review') { flipMark(outcome); return; }
+  if (!state.spacedOn && state.mode === 'review') { unspacedMark(outcome); return; }
   applyOutcome(state.deck[state.pos], outcome);
   advance();
+}
+// Unspaced grading (spaced repetition off): the SRS schedule is untouched and
+// only the activity log records the rep. "Hard" recycles the card to the back
+// of the pile; "Uncertain"/"Easy" retire it for the day (persisted, day-stamped
+// so the daily-reset toggle can re-present it). buildDeck filters retired cards.
+function unspacedMark(outcome) {
+  const [card] = state.deck.splice(state.pos, 1);
+  if (outcome === 'again') {
+    state.deck.push(card);
+  } else {
+    state.unspacedDone.add(card.id);
+    saveUnspaced();
+  }
+  recordActivity();
+  if (state.pos >= state.deck.length) {
+    if (state.shuffleOn && state.focus !== 'order') shuffle(state.deck);
+    state.pos = 0;
+  }
+  syncCardState();
+  withCardAnchor(renderCard);
+}
+function resetUnspaced() {
+  state.unspacedDone.clear();
+  saveUnspaced();
+  buildDeck();
+  renderCard();
 }
 // Flip-deck grading (non-spaced, ported from the Duff tool): Hard/Uncertain
 // send the card to the back of the pile, Easy retires it for this session.
@@ -206,24 +250,48 @@ function updateFocusVisibility() {
 function setFocus(f) {
   state.focus = (f === 'weak' || f === 'order' || f === 'flip') ? f : 'due';
   syncToggleActive('[data-focus]', 'data-focus', state.focus);
-  updateShuffleButton();
+  updateAdvancedButtons();
   buildDeck();
   renderCard();
 }
 function toggleShuffle() {
   state.shuffleOn = !state.shuffleOn;
   saveShuffle();
-  updateShuffleButton();
+  updateAdvancedButtons();
   buildDeck();
   renderCard();
 }
-// "In order" is by definition unshuffled — the toggle is parked while it's on.
-function updateShuffleButton() {
-  const b = $('shuffleBtn');
+// Spaced repetition master switch. Off = unspaced: ignore the SRS schedule,
+// log reps to the activity heatmap only, and shape the deck by the unspaced
+// retire/recycle rules (see unspacedMark) with an optional daily reset.
+function toggleSpaced() {
+  state.spacedOn = !state.spacedOn;
+  saveSpaced();
+  updateAdvancedButtons();
+  updateResetLabels();
+  buildDeck();
+  renderCard();
+}
+function toggleUnspacedReset() {
+  state.unspacedDailyReset = !state.unspacedDailyReset;
+  saveUnspacedReset();
+  updateAdvancedButtons();
+}
+// Sync the three advanced-settings toggle buttons. "In order" is by definition
+// unshuffled, so the shuffle toggle is parked while it's the focus; the daily-
+// reset toggle is meaningful only while spaced repetition is off.
+function setToggleButton(id, on, disabled) {
+  const b = $(id);
   if (!b) return;
-  b.classList.toggle('active', state.shuffleOn);
-  b.disabled = state.focus === 'order';
-  b.setAttribute('aria-pressed', String(state.shuffleOn));
+  b.classList.toggle('active', on);
+  b.disabled = !!disabled;
+  b.setAttribute('aria-pressed', String(on));
+  b.textContent = on ? 'On' : 'Off';
+}
+function updateAdvancedButtons() {
+  setToggleButton('shuffleBtn', state.shuffleOn, state.focus === 'order');
+  setToggleButton('spacedBtn', state.spacedOn, false);
+  setToggleButton('unspacedResetBtn', state.unspacedDailyReset, state.spacedOn);
 }
 
 // ── 12-week study plan (Schedule of Assignments) ───────────────────────
@@ -295,6 +363,10 @@ function renderCard() {
     } else if (state.focus === 'flip' && state.flipArchived.size) {
       msg = `Flip deck finished — you've retired all <strong>${state.flipArchived.size}</strong> cards. 🎉<br>
         <button class="quick-btn" id="flipResetBtn" type="button" style="margin-top:12px">↻ Restart the deck</button>`;
+    } else if (!state.spacedOn && state.mode === 'review' && state.unspacedDone.size) {
+      const note = state.unspacedDailyReset ? ' They come back tomorrow (daily reset is on).' : '';
+      msg = `Unspaced deck finished — you've retired all <strong>${state.unspacedDone.size}</strong> cards. 🎉${note}<br>
+        <button class="quick-btn" id="unspacedResetBtnInline" type="button" style="margin-top:12px">↻ Restart the deck</button>`;
     } else if (state.focus === 'weak') {
       msg = `No weak spots in this selection yet. Weak spots are cards you've studied and scored under 60% on — keep reviewing and they'll collect here. Switch back to <strong>Due first</strong> to keep studying.`;
     } else if (state.mode === 'quiz') {
@@ -305,6 +377,8 @@ function renderCard() {
     area.innerHTML = emptyState(msg);
     const fr = $('flipResetBtn');
     if (fr) fr.addEventListener('click', resetFlipDeck);
+    const ur = $('unspacedResetBtnInline');
+    if (ur) ur.addEventListener('click', resetUnspaced);
     renderSessionMeta();
     renderReviewPanel();
     return;
@@ -530,9 +604,39 @@ function importProgress(file) {
   };
   reader.readAsText(file);
 }
-function resetProgress() {
-  if (!confirm('Erase all study progress on this device? This cannot be undone.')) return;
-  state.progress = {}; saveProgress(); buildDeck(); renderCard();
+// Granular, mode-aware reset. In spaced mode a reset clears SRS progress; in
+// unspaced mode it clears the retired-cards pile (so cards re-present). "This
+// selection" is scoped to the cards in the currently chosen sub-decks; "all"
+// wipes everything on the device.
+function selectedCardIds() {
+  return new Set(cardsForKeys(effectiveSetKeys()).map(c => c.id));
+}
+function resetSelectionProgress() {
+  if (!state.selected.size) { alert('Choose some subjects first.'); return; }
+  const what = state.spacedOn ? 'spaced progress' : 'retired (unspaced) cards';
+  if (!confirm(`Reset ${what} for the cards in your current selection? This cannot be undone.`)) return;
+  const ids = selectedCardIds();
+  if (state.spacedOn) {
+    ids.forEach(id => { delete state.progress[id]; });
+    saveProgress();
+  } else {
+    ids.forEach(id => state.unspacedDone.delete(id));
+    saveUnspaced();
+  }
+  buildDeck(); renderCard();
+}
+function resetAllProgress() {
+  if (!confirm('Erase ALL study progress on this device (spaced and unspaced)? This cannot be undone.')) return;
+  state.progress = {}; saveProgress();
+  state.unspacedDone.clear(); saveUnspaced();
+  buildDeck(); renderCard();
+}
+// The reset buttons name what they clear so the action matches the active mode.
+function updateResetLabels() {
+  const sel = $('resetSelectionBtn');
+  const all = $('resetAllBtn');
+  if (sel) sel.textContent = state.spacedOn ? 'Reset this selection' : 'Reset selection (unspaced)';
+  if (all) all.textContent = 'Reset everything…';
 }
 
 // ── Wiring ─────────────────────────────────────────────────────────────
@@ -604,6 +708,9 @@ function init() {
   loadSelection();
   loadActivity();
   loadShuffle();
+  loadSpaced();
+  loadUnspacedReset();
+  loadUnspaced(); // applies the daily reset using the loaded reset flag
   loadSelectorGroup();
   installClickShield();
 
@@ -614,7 +721,7 @@ function init() {
   document.querySelectorAll('[data-size]').forEach(b =>
     b.addEventListener('click', () => setSize(b.getAttribute('data-size'))));
   syncToggleActive('[data-theme-mode]', 'data-theme-mode', localStorage.getItem('pca_theme') || 'system');
-  syncToggleActive('[data-font]', 'data-font', localStorage.getItem('pca_font') || 'serif');
+  syncToggleActive('[data-font]', 'data-font', localStorage.getItem('pca_font') || 'sans');
   syncToggleActive('[data-size]', 'data-size', localStorage.getItem('pca_text_size') || 'medium');
 
   $('chooseSubjectBtn').addEventListener('click', openSelector);
@@ -640,13 +747,17 @@ function init() {
     b.addEventListener('click', () => setFocus(b.getAttribute('data-focus'))));
   syncToggleActive('[data-focus]', 'data-focus', state.focus);
   $('shuffleBtn').addEventListener('click', toggleShuffle);
-  updateShuffleButton();
+  $('spacedBtn').addEventListener('click', toggleSpaced);
+  $('unspacedResetBtn').addEventListener('click', toggleUnspacedReset);
+  updateAdvancedButtons();
+  updateResetLabels();
   updateFocusVisibility();
 
   $('exportBtn').addEventListener('click', exportProgress);
   $('importBtn').addEventListener('click', () => $('importFile').click());
   $('importFile').addEventListener('change', (e) => { if (e.target.files[0]) importProgress(e.target.files[0]); });
-  $('resetProgressBtn').addEventListener('click', resetProgress);
+  $('resetSelectionBtn').addEventListener('click', resetSelectionProgress);
+  $('resetAllBtn').addEventListener('click', resetAllProgress);
 
   initKeyboard();
   initOverlayDismiss();
