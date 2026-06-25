@@ -879,7 +879,7 @@ function init() {
   registerServiceWorker();
 }
 
-// Service worker: offline cache + a non-blocking update prompt.
+// Service worker: offline cache + a blocking update prompt.
 //
 // The worker now activates itself on install (skipWaiting in sw.js), so a new
 // release takes over on the browser's own sw.js refresh — it does NOT depend on
@@ -890,48 +890,41 @@ function init() {
 // self-heals on a plain refresh.
 //
 // We still NEVER reload the page automatically (that froze iOS standalone PWAs).
-// When the new worker takes control we just surface a banner; the page reloads
-// only inside the user's "Refresh now" tap.
+// When the new worker takes control we surface a blocking modal
+// (#refreshAvailableOverlay) — the old corner banner was easy to ignore, so
+// users lingered on a stale cached version. The page reloads only inside the
+// user's "Refresh now" tap.
 function registerServiceWorker() {
   if (!('serviceWorker' in navigator)) return;
 
-  const banner = document.getElementById('updateBanner');
   let shown = false;
-  function showUpdateBanner() {
-    if (shown || !banner) return;
+  function showUpdatePrompt() {
+    if (shown || !$('refreshAvailableOverlay')) return;
     shown = true;
-    banner.classList.add('show');
-    banner.setAttribute('aria-hidden', 'false');
-  }
-  function hideUpdateBanner() {
-    if (!banner) return;
-    banner.classList.remove('show');
-    banner.setAttribute('aria-hidden', 'true');
+    showOverlay('refreshAvailableOverlay');
   }
 
   const refreshBtn = document.getElementById('updateRefreshBtn');
   if (refreshBtn) refreshBtn.addEventListener('click', () => window.location.reload());
-  const dismissBtn = document.getElementById('updateDismissBtn');
-  if (dismissBtn) dismissBtn.addEventListener('click', hideUpdateBanner);
 
   // A new worker claiming control fires controllerchange. The very first one on
   // a fresh install (no controller yet at registration) is initial control, not
-  // an update — skip the banner for it; any later one means a new release is
+  // an update — skip the prompt for it; any later one means a new release is
   // live and the page is still on the old assets, so offer a refresh.
   let initialControl = !navigator.serviceWorker.controller;
   navigator.serviceWorker.addEventListener('controllerchange', () => {
     if (initialControl) { initialControl = false; return; }
-    showUpdateBanner();
+    showUpdatePrompt();
   });
 
   navigator.serviceWorker.register('sw.js').then((reg) => {
     // A newer worker that installed on a previous visit is ready right away.
-    if (reg.waiting && navigator.serviceWorker.controller) showUpdateBanner();
+    if (reg.waiting && navigator.serviceWorker.controller) showUpdatePrompt();
     reg.addEventListener('updatefound', () => {
       const next = reg.installing;
       if (!next) return;
       next.addEventListener('statechange', () => {
-        if (next.state === 'installed' && navigator.serviceWorker.controller) showUpdateBanner();
+        if (next.state === 'installed' && navigator.serviceWorker.controller) showUpdatePrompt();
       });
     });
     reg.update();
