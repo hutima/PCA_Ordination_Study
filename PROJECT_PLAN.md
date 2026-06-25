@@ -645,6 +645,20 @@ KEEP modules + the HTML shell):**
         gains a **Catechism mastery** section (WSC + WLC confirmed bars) distinct
         from the subject mastery bars. Gates clean (`validate` 0, `audit` baseline
         8, `check_sw` consistent); init + grading verified in Node.
+- [x] **Phase 27 — Update prompt as a blocking modal** (ported from the Mounce
+      study tool, PR #100). Release `?v=55`/`pca-v55`. The Phase-20 corner
+      "Update available" banner sat in the bottom-left and was easy to ignore, so
+      users lingered on a stale cached version. Replaced it with a blocking modal
+      `#refreshAvailableOverlay` reusing the shared `.consent-overlay`/
+      `.consent-modal` styles (`<h2>` + `.consent-copy` + a single
+      `quick-btn quick-primary` "Refresh now"). `registerServiceWorker()` in
+      `pca.js` now calls `showOverlay('refreshAvailableOverlay')` instead of the
+      banner show/hide; the self-activation reload semantics are unchanged
+      (no `SKIP_WAITING` — sw.js self-activates and the tap just reloads). Removed
+      the bespoke `.update-banner*` CSS (now shared-modal styles) and the
+      `#updateBanner` markup + dismiss button. Backdrop/Escape dismiss via
+      `initOverlayDismiss()` still applies, consistent with the other modals.
+      Gates clean (`validate` 0, `audit` baseline 8, `check_sw` consistent v55).
       deeper slimming.** (Same release as 16, `?v=27`.)
       - **BCO comprehensive deck replaced** by the user's
         `pca_bco_comprehensive_quoted_labeled_bundle.zip` (committed to main):

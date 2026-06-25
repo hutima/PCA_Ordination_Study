@@ -517,57 +517,7 @@ html[data-theme="light"] .hm-l3 { background: rgba(142,108,30,0.70); }
   .cat-controls select:hover { border-color: var(--gold-dim); outline: none; }
 }
 
-/* Update-available banner — fixed bottom bar; shown only when a new service
-   worker is waiting. Refresh is user-initiated (iOS PWAs freeze on an
+/* The update prompt is a blocking modal (#refreshAvailableOverlay in
+   index.html) reusing the shared .consent-overlay/.consent-modal styles — no
+   bespoke banner CSS. Refresh stays user-initiated (iOS PWAs freeze on an
    automatic reload at launch). */
-.update-banner {
-  position: fixed;
-  left: 50%;
-  bottom: 16px;
-  transform: translateX(-50%) translateY(140%);
-  z-index: 1100;
-  display: none;
-  align-items: center;
-  gap: 12px;
-  max-width: calc(100vw - 24px);
-  padding: 10px 12px 10px 16px;
-  background: linear-gradient(180deg, #1b1d28 0%, #14161f 100%);
-  border: 1px solid var(--gold-dim);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-}
-.update-banner.show {
-  display: flex;
-  animation: update-banner-in 0.28s ease-out forwards;
-}
-@keyframes update-banner-in {
-  to { transform: translateX(-50%) translateY(0); }
-}
-.update-banner-text {
-  color: var(--cream);
-  font-size: calc((14px) * var(--text-scale, 1));
-}
-.update-banner-btn {
-  font-family: var(--font-display);
-  font-size: calc((13px) * var(--text-scale, 1));
-  letter-spacing: 0.5px;
-  color: #14161f;
-  background: var(--gold);
-  border: 1px solid var(--gold);
-  border-radius: 999px;
-  padding: 6px 14px;
-  cursor: pointer;
-}
-.update-banner-dismiss {
-  color: var(--muted);
-  background: transparent;
-  border: none;
-  font-size: calc((20px) * var(--text-scale, 1));
-  line-height: 1;
-  padding: 2px 6px;
-  cursor: pointer;
-}
-@media (hover: hover) {
-  .update-banner-btn:hover { background: var(--gold-light); border-color: var(--gold-light); }
-  .update-banner-dismiss:hover { color: var(--cream); }
-}

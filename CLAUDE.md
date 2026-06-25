@@ -224,10 +224,11 @@ That changes the update workflow:
 - Keep `PROJECT_PLAN.md` **Status** and **Next steps** current as phases land.
 - **Release ritual:** asset URLs in `index.html` carry a `?v=N` cache-bust
   param. On every release bump the `?v=N` in `index.html` **and** `CACHE` in
-  `sw.js` together. The new worker then *waits*; the page shows an "Update
-  available" banner and only reloads when the user taps "Refresh now" (or
-  cold-starts) — never automatically (that froze iOS PWAs). See
-  `registerServiceWorker()` in `pca.js`. Verify with `node dev/check_sw.mjs`
+  `sw.js` together. The new worker then *waits*; the page shows a blocking
+  "Update available" modal (`#refreshAvailableOverlay`, reusing the shared
+  `.consent-overlay`/`.consent-modal` styles) and only reloads when the user
+  taps "Refresh now" (or cold-starts) — never automatically (that froze iOS
+  PWAs). See `registerServiceWorker()` in `pca.js`. Verify with `node dev/check_sw.mjs`
   (precache completeness + `?v=N`/CACHE agreement).
 - When adding/removing a subject data file, update the `<script defer>` tags
   in `index.html` **and** the `sw.js` PRECACHE, then re-run

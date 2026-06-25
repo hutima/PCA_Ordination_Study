@@ -7,7 +7,7 @@
 <meta name="description" content="Spaced-repetition review for PCA licensure and ordination exams — Bible Content, Theology, Sacraments, Church History, and the Book of Church Order.">
 <meta name="theme-color" content="#0e0f14">
 <link rel="icon" href="favicon.svg">
-<link rel="manifest" href="manifest.json?v=54">
+<link rel="manifest" href="manifest.json?v=55">
 
 <!-- Pre-paint: set theme/font/size before first paint to avoid a flash. -->
 <script>
@@ -28,8 +28,8 @@
 })();
 </script>
 
-<link rel="stylesheet" href="styles.css?v=54">
-<link rel="stylesheet" href="css/pca.css?v=54">
+<link rel="stylesheet" href="styles.css?v=55">
+<link rel="stylesheet" href="css/pca.css?v=55">
 </head>
 <body>
 <div class="app">
@@ -216,45 +216,53 @@
   </div>
 </div>
 
-<!-- Update-available banner (user-triggered refresh; avoids iOS auto-reload freeze) -->
-<div class="update-banner" id="updateBanner" role="status" aria-hidden="true">
-  <span class="update-banner-text">A new version is available.</span>
-  <button class="update-banner-btn" type="button" id="updateRefreshBtn">Refresh now</button>
-  <button class="update-banner-dismiss" type="button" id="updateDismissBtn" aria-label="Dismiss">×</button>
+<!-- Update-available modal (blocking; user-triggered refresh avoids the iOS PWA
+     auto-reload freeze). Replaces the old corner banner, which was easy to ignore
+     so users lingered on a stale cached version. -->
+<div class="consent-overlay" id="refreshAvailableOverlay" aria-hidden="true">
+  <div class="consent-modal" role="dialog" aria-modal="true" aria-labelledby="refreshAvailableTitle">
+    <h2 id="refreshAvailableTitle">A new version is ready</h2>
+    <div class="consent-copy">
+      <p>A newer version of the app has been downloaded. Tap <strong>Refresh now</strong> to switch to it — or fully close the app and reopen it. Your saved progress and settings stay on this device and aren’t affected.</p>
+    </div>
+    <div style="display:flex; justify-content:flex-end; margin-top:14px;">
+      <button class="quick-btn quick-primary" type="button" id="updateRefreshBtn">Refresh now</button>
+    </div>
+  </div>
 </div>
 
 <!-- Subject data (plain defer globals → window.PCA_DATA) -->
-<script defer src="js/data/subjects/bible_content.js?v=54"></script>
-<script defer src="js/data/subjects/bible_books.js?v=54"></script>
-<script defer src="js/data/subjects/bco.js?v=54"></script>
-<script defer src="js/data/subjects/bco_governance.js?v=54"></script>
-<script defer src="js/data/subjects/bco_comprehensive.js?v=54"></script>
-<script defer src="js/data/subjects/sacraments.js?v=54"></script>
-<script defer src="js/data/subjects/church_history.js?v=54"></script>
-<script defer src="js/data/subjects/hot_topics.js?v=54"></script>
-<script defer src="js/data/subjects/theology.js?v=54"></script>
-<script defer src="js/data/subjects/theology_wcf.js?v=54"></script>
-<script defer src="js/data/subjects/theology_other.js?v=54"></script>
-<script defer src="js/data/subjects/doctrines_proofs.js?v=54"></script>
-<script defer src="js/data/subjects/personal_call.js?v=54"></script>
-<script defer src="js/data/subjects/catechism_wsc.js?v=54"></script>
+<script defer src="js/data/subjects/bible_content.js?v=55"></script>
+<script defer src="js/data/subjects/bible_books.js?v=55"></script>
+<script defer src="js/data/subjects/bco.js?v=55"></script>
+<script defer src="js/data/subjects/bco_governance.js?v=55"></script>
+<script defer src="js/data/subjects/bco_comprehensive.js?v=55"></script>
+<script defer src="js/data/subjects/sacraments.js?v=55"></script>
+<script defer src="js/data/subjects/church_history.js?v=55"></script>
+<script defer src="js/data/subjects/hot_topics.js?v=55"></script>
+<script defer src="js/data/subjects/theology.js?v=55"></script>
+<script defer src="js/data/subjects/theology_wcf.js?v=55"></script>
+<script defer src="js/data/subjects/theology_other.js?v=55"></script>
+<script defer src="js/data/subjects/doctrines_proofs.js?v=55"></script>
+<script defer src="js/data/subjects/personal_call.js?v=55"></script>
+<script defer src="js/data/subjects/catechism_wsc.js?v=55"></script>
 
 <!-- 12-week study plan (Schedule of Assignments) → window.PCA_WEEKS -->
-<script defer src="js/data/week_plan.js?v=54"></script>
+<script defer src="js/data/week_plan.js?v=55"></script>
 
 <!-- Westminster catechisms full text (defer global → window.PCA_CATECHISMS) -->
-<script defer src="js/data/catechisms.js?v=54"></script>
-<script defer src="js/data/catechisms_bco.js?v=54"></script>
+<script defer src="js/data/catechisms.js?v=55"></script>
+<script defer src="js/data/catechisms_bco.js?v=55"></script>
 
 <!-- Hand-authored quiz bank (defer globals → window.PCA_QUIZ) -->
-<script defer src="js/data/quiz/bible_content.js?v=54"></script>
-<script defer src="js/data/quiz/bco.js?v=54"></script>
-<script defer src="js/data/quiz/sacraments.js?v=54"></script>
-<script defer src="js/data/quiz/church_history.js?v=54"></script>
-<script defer src="js/data/quiz/theology.js?v=54"></script>
-<script defer src="js/data/quiz/hot_topics.js?v=54"></script>
+<script defer src="js/data/quiz/bible_content.js?v=55"></script>
+<script defer src="js/data/quiz/bco.js?v=55"></script>
+<script defer src="js/data/quiz/sacraments.js?v=55"></script>
+<script defer src="js/data/quiz/church_history.js?v=55"></script>
+<script defer src="js/data/quiz/theology.js?v=55"></script>
+<script defer src="js/data/quiz/hot_topics.js?v=55"></script>
 
 <!-- Entry point -->
-<script type="module" src="js/app/pca.js?v=54"></script>
+<script type="module" src="js/app/pca.js?v=55"></script>
 </body>
 </html>
