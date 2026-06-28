@@ -659,6 +659,60 @@ KEEP modules + the HTML shell):**
       `#updateBanner` markup + dismiss button. Backdrop/Escape dismiss via
       `initOverlayDismiss()` still applies, consistent with the other modals.
       Gates clean (`validate` 0, `audit` baseline 8, `check_sw` consistent v55).
+- [x] **Phase 28 — PWA "install to Home Screen" nudge + scrollable modals**
+      (ported from the Mounce study tool, PR #107). Release `?v=56`/`pca-v56`.
+      New self-contained module `js/app/pwaInstall.js` (imported by `pca.js`,
+      which calls `initPwaInstall()` + `maybeScheduleInstallPrompt()` at the end
+      of `init()`). Exports `initPwaInstall`, `maybeScheduleInstallPrompt`,
+      `triggerInstall`, `openInstallInstructions`, `closeInstallInstructions`,
+      `isInstallInstructionsOpen`, `dontShowInstallAgain`, `showInstallPrompt`.
+      - **For all non-dismissed phone users, not just new ones** (user-specified
+        deviation from the Mounce port). This app has no consent/disclaimer gate
+        to hook acceptance onto, so the banner is simply *scheduled on init*
+        (~2s) for every phone user who hasn't dismissed it. `tryShowScheduled()`
+        re-arms (~2s) while any `.consent-overlay.show` is open so the banner
+        lands on a clear screen after the selector/progress/update modal closes.
+      - **Persistent top banner** `#pwaInstallHost` (created on demand) modelled
+        on the achievement toast (`.level-toast`) but it never auto-hides — only
+        Install or ✕ clears it. Download icon, "Get the best experience" copy, an
+        Install button, and a ✕. `z-index: 950` sits below the `.consent-overlay`
+        modals (1000) so an open how-to/selector covers it.
+      - **Phone-only, never-after-dismissal.** `isLikelyPhone()` (iPhone/iPod UA,
+        or Android+Mobile UA, or coarse-pointer + min screen edge ≤ 480px); skips
+        if `isStandalone()`. The banner ✕ and the modal "Don't show again" both
+        persist a **module-local** `localStorage` flag
+        (`pca_install_prompt_dismissed_v1`) — deliberately *not* a `store.js`
+        export, to avoid the "frozen on update" SW failure mode; app-specific key
+        so it never collides with the Duff/Mounce apps sharing a `*.github.io`
+        origin. `beforeinstallprompt` is captured (preventDefault + stash);
+        `appinstalled` marks dismissed and tears down.
+      - **`triggerInstall()`**: fires the captured `.prompt()` on Android/Chromium
+        (only an *accepted* outcome marks dismissed); otherwise opens
+        `openInstallInstructions()` — a `#installInstructionsOverlay`
+        (`.consent-modal install-modal`) with platform-detected numbered steps
+        (iOS Safari 4-step, Android Chrome 3-step, generic fallback), a
+        `.modal-close-x`, and `.consent-actions install-actions` footer (Got it! /
+        Don't show again). Opening the how-to auto-hides the banner. Backdrop/Esc
+        dismiss is the existing generic `.consent-overlay` handling (a soft close —
+        the banner can return next session); only ✕/"Don't show again" persist the
+        flag. A **Settings → "Install app"** button (`#installAppBtn`, hidden when
+        standalone or non-phone) is the standing re-install path (analog of
+        Mounce's user-guide button).
+      - **Scrollable modals** (independent fix): `.consent-modal` gains
+        `max-height: calc(100dvh - 32px); overflow-y: auto; overscroll-behavior:
+        contain` so tall modals (the install how-to, the selector on small phones)
+        scroll within the viewport instead of overflowing off-screen.
+      - **CSS** in `styles.css`: `.pwa-install*` banner (mirrors `.level-toast`,
+        z-index 950, persistent multi-line body, pill Install button, ✕);
+        `.install-steps/.install-step/.install-step-num` (circled number badge —
+        white text in light theme since light `--gold` is a dark umber);
+        `.consent-actions.install-actions` (left-aligned, side-by-side
+        auto-width `.ctrl-btn`); `.modal-close-x`.
+      - **Cache-bust:** `pwaInstall.js` added to the `sw.js` precache; `CACHE`
+        bumped `pca-v55` → `pca-v56` and all `?v=55` → `?v=56` in `index.html`.
+        Gates clean (`validate` 0, `audit` baseline 8, `check_sw` consistent v56 —
+        49 precached / 18 runtime modules); ES-module syntax compile-checked and a
+        16-assertion DOM-stub smoke of the module's flows passed.
       deeper slimming.** (Same release as 16, `?v=27`.)
       - **BCO comprehensive deck replaced** by the user's
         `pca_bco_comprehensive_quoted_labeled_bundle.zip` (committed to main):

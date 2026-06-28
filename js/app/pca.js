@@ -31,6 +31,7 @@ import { renderRefs } from './refs.js';
 import { applyOutcome, applyCatechismOutcome } from './srs.js';
 import { createModes } from './modes.js';
 import { progressBodyHtml } from './progress.js';
+import { initPwaInstall, maybeScheduleInstallPrompt } from './pwaInstall.js';
 
 const EXAM_SIZE = 25;
 const $ = (id) => document.getElementById(id);
@@ -877,6 +878,12 @@ function init() {
   buildDeck();
   renderCard();
   registerServiceWorker();
+
+  // PWA "install to Home Screen" nudge: offered to every phone user who hasn't
+  // dismissed it (not just new users). The banner is scheduled with a short
+  // delay and re-arms while a modal is open so it lands on a clear screen.
+  initPwaInstall();
+  maybeScheduleInstallPrompt();
 }
 
 // Service worker: offline cache + a blocking update prompt.
