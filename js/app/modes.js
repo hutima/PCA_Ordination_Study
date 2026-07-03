@@ -10,6 +10,8 @@
 // operations). It is injected so modes never import the controller — keeping the
 // dependency graph acyclic.
 
+import { createPsalmReader } from './psalms.js';
+
 export function createModes(ctx) {
   const {
     state, DATA, escapeHtml, renderAnswer, summarize, hasMoreThanSummary, directAnswer, renderRefs,
@@ -245,6 +247,11 @@ export function createModes(ctx) {
   // catechism and a question, recall the answer, tap to check yourself.
   // Non-graded; proof citations render as chips linking to the source.
   const CATECHISMS = (typeof window !== 'undefined' && window.PCA_CATECHISMS) || null;
+  // The Psalms category (cat.kind === 'psalms') renders through a dedicated
+  // reader (verse-toggle rows, KJV/ESV switch) instead of the flip card; the
+  // catechism descriptor branches to it. Whole-psalm grading still flows through
+  // the shared grade() → applyCatechismOutcome path below.
+  const psalmReader = createPsalmReader({ escapeHtml, withCardAnchor, rerender });
   const CAT_KEY = 'pca_catechism_v1';
   const catState = { cat: 'wsc', n: 1, revealed: false };
   try { Object.assign(catState, JSON.parse(localStorage.getItem(CAT_KEY)) || {}); } catch (e) {}
@@ -301,6 +308,10 @@ export function createModes(ctx) {
       if (e.key === '2') { catechism.grade('pass'); return true; }
       if (e.key === '3') { catechism.grade('easy'); return true; }
       if (e.code === 'Space' || e.key === 'Enter') {
+        // Psalms: Space/Enter toggles reveal-all/hide-all, but the reader lets a
+        // focused verse/button activate natively (returns false), so don't flip.
+        const cat = CATECHISMS && CATECHISMS[catState.cat];
+        if (psalmReader.isPsalms(cat)) return psalmReader.onKey(e);
         e.preventDefault();
         catechism.toggle();
         return true;
@@ -341,12 +352,43 @@ export function createModes(ctx) {
       const catSel = area.querySelector('#catSelect');
       const qSel = area.querySelector('#catQSelect');
       if (qSel.dataset.cat !== catState.cat) {
-        qSel.innerHTML = items.map(it =>
-          `<option value="${it.n}">Q${it.n}. ${escapeHtml(it.q.slice(0, 60))}${it.q.length > 60 ? '…' : ''}</option>`).join('');
+        // Psalms read "Psalm N"; catechism questions read "QN. <text>…".
+        qSel.innerHTML = psalmReader.isPsalms(cat)
+          ? items.map(it => `<option value="${it.n}">Psalm ${it.n}</option>`).join('')
+          : items.map(it =>
+              `<option value="${it.n}">Q${it.n}. ${escapeHtml(it.q.slice(0, 60))}${it.q.length > 60 ? '…' : ''}</option>`).join('');
         qSel.dataset.cat = catState.cat;
       }
       catSel.value = catState.cat;
       qSel.value = String(item.n);
+      // Per-question status (self-graded, catechism-only namespace) — shared by
+      // the catechism flip card and the psalm reader alike.
+      const prog = catProgress(catState.cat, item.n);
+      const pct = prog && prog.reps ? getConfidencePct(prog) : null;
+      const statusBadge = catConfirmed(catState.cat, item.n)
+        ? `<span class="cat-status confirmed">✓ confirmed</span>`
+        : (pct != null ? `<span class="cat-status">${pct}%</span>` : '');
+      // Grade buttons (mirroring Review) so the reader builds its own progress;
+      // grading advances to the next question/psalm.
+      const markRow = `<div class="mark-row" style="display:flex">
+             <button class="mark-btn mark-again" data-outcome="again" type="button">✗ Hard</button>
+             <button class="mark-btn mark-pass" data-outcome="pass" type="button">~ Uncertain</button>
+             <button class="mark-btn mark-easy" data-outcome="easy" type="button">✓ Easy</button>
+           </div>`;
+      // ── Psalms: dedicated verse-toggle reader (not a flip card) ──────────
+      // Whole-psalm grading reuses catechism.grade → applyCatechismOutcome
+      // (cat:psalms:<n>); verse reveal/hide never grades.
+      if (psalmReader.isPsalms(cat)) {
+        const body = area.querySelector('#catBody');
+        body.innerHTML = psalmReader.bodyHtml(cat, item, { total: items.length, statusBadge, markRow });
+        psalmReader.wire(body, cat, item);
+        area.querySelector('#catSource').textContent = psalmReader.sourceText(cat);
+        area.querySelectorAll('#catBody .mark-btn').forEach(btn =>
+          btn.addEventListener('click', () => catechism.grade(btn.dataset.outcome)));
+        setDeckMeta(`<strong>${escapeHtml(cat.label)}</strong> · ${catConfirmedCount(catState.cat, items)}/${items.length} confirmed`);
+        return;
+      }
+      // ── Catechisms (WSC / WLC / BCO): flip card (unchanged) ──────────────
       const paraphrase = cat.verbatim === false;
       const proofs = (item.refs && item.refs.length)
         ? `<details class="qa-full"><summary class="qa-full-toggle">${paraphrase ? 'References' : 'Scripture proofs'} (${item.refs.length})</summary>
@@ -364,19 +406,6 @@ export function createModes(ctx) {
            ${proofs}
            <div class="qa-reveal-hint qa-tap-hint">Tap card to hide</div>`
         : `<div class="qa-reveal-hint qa-tap-hint">Tap card to reveal the answer</div>`;
-      // Per-question status (self-graded, catechism-only namespace).
-      const prog = catProgress(catState.cat, item.n);
-      const pct = prog && prog.reps ? getConfidencePct(prog) : null;
-      const statusBadge = catConfirmed(catState.cat, item.n)
-        ? `<span class="cat-status confirmed">✓ confirmed</span>`
-        : (pct != null ? `<span class="cat-status">${pct}%</span>` : '');
-      // Grade buttons (mirroring Review) so the catechism reader builds its own
-      // progress; grading advances to the next question.
-      const markRow = `<div class="mark-row" style="display:flex">
-             <button class="mark-btn mark-again" data-outcome="again" type="button">✗ Hard</button>
-             <button class="mark-btn mark-pass" data-outcome="pass" type="button">~ Uncertain</button>
-             <button class="mark-btn mark-easy" data-outcome="easy" type="button">✓ Easy</button>
-           </div>`;
       area.querySelector('#catBody').innerHTML = `
         <div class="qa-card ${catState.revealed ? 'revealed' : ''}" id="catCard" role="button" tabindex="0" aria-pressed="${catState.revealed}">
           <div class="qa-deck-label"><span>${escapeHtml(cat.short)} · Question ${item.n} of ${items.length}</span>${statusBadge}</div>
