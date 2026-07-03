@@ -521,3 +521,76 @@ html[data-theme="light"] .hm-l3 { background: rgba(142,108,30,0.70); }
    index.html) reusing the shared .consent-overlay/.consent-modal styles — no
    bespoke banner CSS. Refresh stays user-initiated (iOS PWAs freeze on an
    automatic reload at launch). */
+
+/* ── Psalms devotional reader (Catechisms mode, cat.kind === 'psalms') ──────
+   The verse rows are the interactive controls (the card itself never flips),
+   so everything here is sized to sit natively beside the catechism flip cards
+   and to hold together at 360px with no horizontal scroll. */
+.psalm-versions { display: inline-flex; margin: 2px 0 14px; }
+/* Summary block doubles its header as a show/hide toggle. */
+.psalm-summary { margin-bottom: 16px; }
+.psalm-summary-toggle {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  width: 100%; background: transparent; border: 0; padding: 0; cursor: pointer;
+  text-align: left; color: inherit;
+}
+.psalm-summary-toggle .qa-prov-label { margin: 0; }
+.psalm-summary-hint {
+  flex: 0 0 auto; font-family: var(--font-display); letter-spacing: 1px;
+  text-transform: uppercase; color: var(--muted);
+  font-size: calc((11px) * var(--text-scale, 1));
+}
+@media (hover: hover) { .psalm-summary-toggle:hover .psalm-summary-hint { color: var(--gold); } }
+.psalm-summary-body { margin-top: 8px; }
+.psalm-summary-body p { margin: 0; }
+.psalm-apply {
+  margin: 10px 0 0; padding-left: 20px; color: var(--cream);
+  font-size: calc((15px) * var(--text-scale, 1)); line-height: 1.55;
+}
+.psalm-apply li { margin: 3px 0; overflow-wrap: anywhere; }
+.psalm-controls { display: flex; gap: 10px; flex-wrap: wrap; margin: 0 0 12px; }
+.psalm-verses { display: flex; flex-direction: column; gap: 6px; }
+/* A verse row: number in a fixed muted slot on the left, text flowing right;
+   the textless (hidden) state stays compact with a faint reveal affordance. */
+.psalm-verse {
+  display: flex; align-items: baseline; gap: 12px; width: 100%;
+  text-align: left; background: var(--surface); color: var(--cream);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 10px 12px; cursor: pointer; font-family: var(--font-body);
+  font-size: calc((16px) * var(--text-scale, 1)); line-height: 1.6;
+  transition: border-color .1s, background .1s;
+}
+.psalm-verse:not(.revealed) { padding: 8px 12px; }
+.psalm-verse-num {
+  flex: 0 0 auto; min-width: 26px; text-align: right;
+  font-family: var(--font-display); color: var(--gold-dim);
+  font-size: calc((13px) * var(--text-scale, 1));
+}
+.psalm-verse.revealed { border-color: var(--gold-dim); }
+.psalm-verse.revealed .psalm-verse-num { color: var(--gold-light); }
+.psalm-verse-text { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
+/* Subtle "tap to reveal" affordance filling the empty row of a hidden verse. */
+.psalm-verse:not(.revealed)::after {
+  content: ''; flex: 1 1 auto; align-self: center; height: 0;
+  border-bottom: 1px dashed var(--border); opacity: 0.7;
+}
+@media (hover: hover) { .psalm-verse:hover { border-color: var(--gold-dim); } }
+.psalm-verse:focus-visible { outline: 2px solid var(--gold-dim); outline-offset: 2px; }
+.psalm-verses-status {
+  color: var(--muted); font-style: italic; padding: 10px 2px;
+  font-size: calc((14px) * var(--text-scale, 1));
+}
+.psalm-error {
+  color: var(--cream); font-size: calc((15px) * var(--text-scale, 1));
+  line-height: 1.55; padding: 6px 2px;
+}
+.psalm-error-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+/* ESV token modal input (#esvTokenOverlay). */
+.esv-token-input {
+  width: 100%; box-sizing: border-box; margin: 4px 0;
+  background: var(--surface); color: var(--cream);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 10px 12px; font-family: var(--font-body);
+  font-size: calc((15px) * var(--text-scale, 1));
+}
+.esv-token-input:focus { border-color: var(--gold-dim); outline: none; }

@@ -129,4 +129,44 @@ try {
   console.log('\nCatechisms: data file not present (js/data/catechisms.js)');
 }
 
-process.exit(problems + quizProblems + catProblems ? 1 : 0);
+// ── Psalms (the KJV reader category in the Catechisms mode) ────────────
+// KJV only may be bundled (public domain). ESV text must never be committed
+// (it is fetched at runtime through the user's own API token), and no
+// token-like secret may appear in the app source.
+let psalmProblems = 0;
+try {
+  await import(new URL('../js/data/psalms_kjv.js', import.meta.url));
+  const p = (globalThis.PCA_CATECHISMS || {}).psalms;
+  if (!p) { console.error('FAIL psalms: category not registered'); psalmProblems++; }
+  else {
+    if (p.kind !== 'psalms') { console.error('FAIL psalms: kind must be "psalms"'); psalmProblems++; }
+    if (p.items.length !== 150) { console.error(`FAIL psalms: expected 150, got ${p.items.length}`); psalmProblems++; }
+    let verses = 0;
+    p.items.forEach((it, i) => {
+      if (it.n !== i + 1) { console.error(`FAIL psalms: numbering breaks at ${i + 1}`); psalmProblems++; }
+      if (!it.summary || !String(it.summary).trim()) { console.error(`FAIL Psalm ${it.n}: missing summary`); psalmProblems++; }
+      if (!Array.isArray(it.apply) || !it.apply.length || it.apply.some(b => !b || !String(b).trim())) { console.error(`FAIL Psalm ${it.n}: missing application bullets`); psalmProblems++; }
+      if (!Array.isArray(it.verses) || !it.verses.length) { console.error(`FAIL Psalm ${it.n}: no verses`); psalmProblems++; return; }
+      it.verses.forEach((v, j) => {
+        if (v.num !== j + 1) { console.error(`FAIL Psalm ${it.n}: verse numbering breaks at ${j + 1}`); psalmProblems++; }
+        if (!v.text || !v.text.trim()) { console.error(`FAIL Psalm ${it.n}:${v.num}: empty verse`); psalmProblems++; }
+      });
+      verses += it.verses.length;
+    });
+    if (p.items.length === 150 && verses !== 2461) { console.error(`FAIL psalms: expected 2461 KJV verses, got ${verses}`); psalmProblems++; }
+    console.log(`\nPsalms: ${p.items.length} psalms, ${verses} KJV verses, ${psalmProblems} problem(s)`);
+  }
+  // No bundled ESV / no committed token: the psalm modules must not contain a
+  // token-like literal, and the only api.esv.org reference is the runtime URL.
+  const { readFileSync } = await import('node:fs');
+  for (const f of ['../js/data/psalms_kjv.js', '../js/app/psalms.js']) {
+    let src = '';
+    try { src = readFileSync(new URL(f, import.meta.url), 'utf8'); } catch (e) { continue; }
+    if (/['"`][a-f0-9]{32,}['"`]/i.test(src)) { console.error(`FAIL ${f}: token-like hex literal committed`); psalmProblems++; }
+    if (/Authorization:\s*['"`]Token\s+[A-Za-z0-9]/.test(src)) { console.error(`FAIL ${f}: hard-coded Authorization token`); psalmProblems++; }
+  }
+} catch (e) {
+  console.log('\nPsalms: data file not present (js/data/psalms_kjv.js)');
+}
+
+process.exit(problems + quizProblems + catProblems + psalmProblems ? 1 : 0);

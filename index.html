@@ -7,7 +7,7 @@
 <meta name="description" content="Spaced-repetition review for PCA licensure and ordination exams — Bible Content, Theology, Sacraments, Church History, and the Book of Church Order.">
 <meta name="theme-color" content="#0e0f14">
 <link rel="icon" href="favicon.svg">
-<link rel="manifest" href="manifest.json?v=56">
+<link rel="manifest" href="manifest.json?v=57">
 
 <!-- Pre-paint: set theme/font/size before first paint to avoid a flash. -->
 <script>
@@ -28,8 +28,8 @@
 })();
 </script>
 
-<link rel="stylesheet" href="styles.css?v=56">
-<link rel="stylesheet" href="css/pca.css?v=56">
+<link rel="stylesheet" href="styles.css?v=57">
+<link rel="stylesheet" href="css/pca.css?v=57">
 </head>
 <body>
 <div class="app">
@@ -217,6 +217,25 @@
   </div>
 </div>
 
+<!-- ESV API token modal (Psalms reader). The ESV is copyrighted, so its text is
+     never bundled — the reader fetches it live using the user's OWN free
+     Crossway token, stored only on this device. Version only flips to ESV on an
+     explicit "Save & use ESV"; a backdrop/Escape dismiss leaves it on KJV. -->
+<div class="consent-overlay" id="esvTokenOverlay" aria-hidden="true">
+  <div class="consent-modal" role="dialog" aria-modal="true" aria-labelledby="esvTokenTitle">
+    <h2 id="esvTokenTitle">ESV API token</h2>
+    <div class="consent-copy">
+      <p>The ESV is copyrighted, so this app can’t ship its text. To read the Psalms in the ESV it uses <strong>your own</strong> free API token from Crossway, stored only on this device.</p>
+      <p><a href="https://api.esv.org/account/create-application/" target="_blank" rel="noopener">Get a free ESV API token →</a></p>
+    </div>
+    <input type="password" id="esvTokenInput" class="esv-token-input" placeholder="Paste your ESV API token" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="ESV API token">
+    <div class="consent-actions">
+      <button class="ctrl-btn" type="button" id="esvTokenKjvBtn">Use King James</button>
+      <button class="quick-btn quick-primary" type="button" id="esvTokenSaveBtn">Save &amp; use ESV</button>
+    </div>
+  </div>
+</div>
+
 <!-- Update-available modal (blocking; user-triggered refresh avoids the iOS PWA
      auto-reload freeze). Replaces the old corner banner, which was easy to ignore
      so users lingered on a stale cached version. -->
@@ -248,37 +267,40 @@
 </div>
 
 <!-- Subject data (plain defer globals → window.PCA_DATA) -->
-<script defer src="js/data/subjects/bible_content.js?v=56"></script>
-<script defer src="js/data/subjects/bible_books.js?v=56"></script>
-<script defer src="js/data/subjects/bco.js?v=56"></script>
-<script defer src="js/data/subjects/bco_governance.js?v=56"></script>
-<script defer src="js/data/subjects/bco_comprehensive.js?v=56"></script>
-<script defer src="js/data/subjects/sacraments.js?v=56"></script>
-<script defer src="js/data/subjects/church_history.js?v=56"></script>
-<script defer src="js/data/subjects/hot_topics.js?v=56"></script>
-<script defer src="js/data/subjects/theology.js?v=56"></script>
-<script defer src="js/data/subjects/theology_wcf.js?v=56"></script>
-<script defer src="js/data/subjects/theology_other.js?v=56"></script>
-<script defer src="js/data/subjects/doctrines_proofs.js?v=56"></script>
-<script defer src="js/data/subjects/personal_call.js?v=56"></script>
-<script defer src="js/data/subjects/catechism_wsc.js?v=56"></script>
+<script defer src="js/data/subjects/bible_content.js?v=57"></script>
+<script defer src="js/data/subjects/bible_books.js?v=57"></script>
+<script defer src="js/data/subjects/bco.js?v=57"></script>
+<script defer src="js/data/subjects/bco_governance.js?v=57"></script>
+<script defer src="js/data/subjects/bco_comprehensive.js?v=57"></script>
+<script defer src="js/data/subjects/sacraments.js?v=57"></script>
+<script defer src="js/data/subjects/church_history.js?v=57"></script>
+<script defer src="js/data/subjects/hot_topics.js?v=57"></script>
+<script defer src="js/data/subjects/theology.js?v=57"></script>
+<script defer src="js/data/subjects/theology_wcf.js?v=57"></script>
+<script defer src="js/data/subjects/theology_other.js?v=57"></script>
+<script defer src="js/data/subjects/doctrines_proofs.js?v=57"></script>
+<script defer src="js/data/subjects/personal_call.js?v=57"></script>
+<script defer src="js/data/subjects/catechism_wsc.js?v=57"></script>
 
 <!-- 12-week study plan (Schedule of Assignments) → window.PCA_WEEKS -->
-<script defer src="js/data/week_plan.js?v=56"></script>
+<script defer src="js/data/week_plan.js?v=57"></script>
 
 <!-- Westminster catechisms full text (defer global → window.PCA_CATECHISMS) -->
-<script defer src="js/data/catechisms.js?v=56"></script>
-<script defer src="js/data/catechisms_bco.js?v=56"></script>
+<script defer src="js/data/catechisms.js?v=57"></script>
+<script defer src="js/data/catechisms_bco.js?v=57"></script>
+<!-- The 150 Psalms, KJV (public domain) — the Psalms reader category in the
+     Catechisms mode. Must load AFTER catechisms.js (which assigns the global). -->
+<script defer src="js/data/psalms_kjv.js?v=57"></script>
 
 <!-- Hand-authored quiz bank (defer globals → window.PCA_QUIZ) -->
-<script defer src="js/data/quiz/bible_content.js?v=56"></script>
-<script defer src="js/data/quiz/bco.js?v=56"></script>
-<script defer src="js/data/quiz/sacraments.js?v=56"></script>
-<script defer src="js/data/quiz/church_history.js?v=56"></script>
-<script defer src="js/data/quiz/theology.js?v=56"></script>
-<script defer src="js/data/quiz/hot_topics.js?v=56"></script>
+<script defer src="js/data/quiz/bible_content.js?v=57"></script>
+<script defer src="js/data/quiz/bco.js?v=57"></script>
+<script defer src="js/data/quiz/sacraments.js?v=57"></script>
+<script defer src="js/data/quiz/church_history.js?v=57"></script>
+<script defer src="js/data/quiz/theology.js?v=57"></script>
+<script defer src="js/data/quiz/hot_topics.js?v=57"></script>
 
 <!-- Entry point -->
-<script type="module" src="js/app/pca.js?v=56"></script>
+<script type="module" src="js/app/pca.js?v=57"></script>
 </body>
 </html>
