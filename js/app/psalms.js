@@ -196,16 +196,42 @@ export function createPsalmReader({ escapeHtml, withCardAnchor, rerender }) {
     if (version === 'esv' && esv.state === 'ok' && esv.verses) return esv.verses;
     return item.verses || [];
   }
+  function verseAriaLabel(num, isRev) {
+    return isRev
+      ? 'Verse ' + num + ' revealed; tap to hide'
+      : 'Verse ' + num + ' hidden; tap to reveal';
+  }
+  // A verse row renders the verse text in BOTH a hidden reserve span (always
+  // present, aria-hidden, preserves row height) and a visible span (shown only
+  // when revealed), so revealing/hiding never changes the row's height — the
+  // page can't jump. See setVerseRowState() for the in-place toggle.
   function versesList(verses) {
     if (!verses || !verses.length) return '<div class="psalm-verses-status">No verses to show.</div>';
     const rows = verses.map(v => {
       const isRev = revealed.has(v.num);
-      const text = isRev ? '<span class="psalm-verse-text">' + escapeHtml(v.text) + '</span>' : '';
+      const t = escapeHtml(v.text);
       return '<button type="button" class="psalm-verse' + (isRev ? ' revealed' : '') + '"' +
-        ' data-verse="' + v.num + '" aria-expanded="' + isRev + '">' +
-        '<span class="psalm-verse-num">' + v.num + '</span>' + text + '</button>';
+        ' data-verse="' + v.num + '" aria-expanded="' + isRev + '"' +
+        ' aria-label="' + verseAriaLabel(v.num, isRev) + '">' +
+        '<span class="psalm-verse-num">' + v.num + '</span>' +
+        '<span class="psalm-verse-content">' +
+          '<span class="psalm-verse-reserve" aria-hidden="true">' + t + '</span>' +
+          '<span class="psalm-verse-text">' + t + '</span>' +
+          '<span class="psalm-verse-placeholder" aria-hidden="true"></span>' +
+        '</span>' +
+      '</button>';
     }).join('');
     return '<div class="psalm-verses">' + rows + '</div>';
+  }
+  // Toggle a single verse row in place (no rerender): keeps the interacted row
+  // fixed under the finger and never disturbs surrounding layout.
+  function setVerseRowState(button, revealedNow) {
+    if (!button) return;
+    const num = Number(button.dataset.verse);
+    if (revealedNow) revealed.add(num); else revealed.delete(num);
+    button.classList.toggle('revealed', revealedNow);
+    button.setAttribute('aria-expanded', String(revealedNow));
+    button.setAttribute('aria-label', verseAriaLabel(num, revealedNow));
   }
   function esvErrorHtml() {
     const kjvBtn = '<button type="button" class="ctrl-btn" data-psalm-action="use-kjv">Use King James</button>';
@@ -298,20 +324,29 @@ export function createPsalmReader({ escapeHtml, withCardAnchor, rerender }) {
     body.querySelectorAll('[data-version]').forEach(b =>
       b.addEventListener('click', () => onSelectVersion(b.dataset.version)));
     body.querySelectorAll('.psalm-verse').forEach(b =>
-      b.addEventListener('click', () => toggleVerse(Number(b.dataset.verse))));
+      b.addEventListener('click', () => toggleVerse(Number(b.dataset.verse), b)));
     body.querySelectorAll('[data-psalm-action]').forEach(b =>
       b.addEventListener('click', () => doAction(b.dataset.psalmAction, item)));
     // If ESV is selected but not yet loaded/cached for this psalm, fetch it now.
     maybeFetch(item.n);
   }
-  function toggleVerse(num) {
-    if (revealed.has(num)) revealed.delete(num); else revealed.add(num);
-    withCardAnchor(rerender);
+  // Per-verse toggle is DOM-local — mutate only the clicked row so the viewport
+  // stays anchored where the user tapped (no withCardAnchor/rerender).
+  function toggleVerse(num, button) {
+    setVerseRowState(button, !revealed.has(num));
+  }
+  // Reveal all / Hide all iterate the existing rows in place. Because reserve
+  // spans hold row height constant, toggling every row shifts nothing above the
+  // fold, so no scroll compensation is needed.
+  function setAllVerses(revealedNow) {
+    const body = typeof document !== 'undefined' && document.getElementById('catBody');
+    if (!body) return;
+    body.querySelectorAll('.psalm-verse').forEach(b => setVerseRowState(b, revealedNow));
   }
   function doAction(action, item) {
     if (action === 'toggle-summary') { summaryVisible = !summaryVisible; withCardAnchor(rerender); return; }
-    if (action === 'reveal-all') { displayedVerses(item).forEach(v => revealed.add(v.num)); withCardAnchor(rerender); return; }
-    if (action === 'hide-all') { revealed.clear(); withCardAnchor(rerender); return; }
+    if (action === 'reveal-all') { setAllVerses(true); return; }
+    if (action === 'hide-all') { setAllVerses(false); return; }
     if (action === 'use-kjv') { version = 'kjv'; saveVersion(); withCardAnchor(rerender); return; }
     if (action === 'reenter-token') { openTokenModal(); return; }
   }
@@ -327,9 +362,7 @@ export function createPsalmReader({ escapeHtml, withCardAnchor, rerender }) {
     if (/BUTTON|A|SELECT|INPUT/.test(tag)) return false;
     e.preventDefault();
     const allRevealed = currentVerseNums.length > 0 && currentVerseNums.every(n => revealed.has(n));
-    if (allRevealed) revealed.clear();
-    else currentVerseNums.forEach(n => revealed.add(n));
-    withCardAnchor(rerender);
+    setAllVerses(!allRevealed);
     return true;
   }
 
