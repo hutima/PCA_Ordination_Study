@@ -550,8 +550,10 @@ html[data-theme="light"] .hm-l3 { background: rgba(142,108,30,0.70); }
 .psalm-apply li { margin: 3px 0; overflow-wrap: anywhere; }
 .psalm-controls { display: flex; gap: 10px; flex-wrap: wrap; margin: 0 0 12px; }
 .psalm-verses { display: flex; flex-direction: column; gap: 6px; }
-/* A verse row: number in a fixed muted slot on the left, text flowing right;
-   the textless (hidden) state stays compact with a faint reveal affordance. */
+/* A verse row: number in a fixed muted slot on the left, text flowing right.
+   The verse text is always present in a hidden reserve span so hidden and
+   revealed states share the SAME row height — revealing/hiding never changes
+   layout, so the page can't scroll-jump (see .psalm-verse-content). */
 .psalm-verse {
   display: flex; align-items: baseline; gap: 12px; width: 100%;
   text-align: left; background: var(--surface); color: var(--cream);
@@ -560,7 +562,6 @@ html[data-theme="light"] .hm-l3 { background: rgba(142,108,30,0.70); }
   font-size: calc((16px) * var(--text-scale, 1)); line-height: 1.6;
   transition: border-color .1s, background .1s;
 }
-.psalm-verse:not(.revealed) { padding: 8px 12px; }
 .psalm-verse-num {
   flex: 0 0 auto; min-width: 26px; text-align: right;
   font-family: var(--font-display); color: var(--gold-dim);
@@ -568,10 +569,19 @@ html[data-theme="light"] .hm-l3 { background: rgba(142,108,30,0.70); }
 }
 .psalm-verse.revealed { border-color: var(--gold-dim); }
 .psalm-verse.revealed .psalm-verse-num { color: var(--gold-light); }
-.psalm-verse-text { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
-/* Subtle "tap to reveal" affordance filling the empty row of a hidden verse. */
-.psalm-verse:not(.revealed)::after {
-  content: ''; flex: 1 1 auto; align-self: center; height: 0;
+/* Reserve, visible text and placeholder overlap in one grid cell so the row is
+   always as tall as the revealed text. */
+.psalm-verse-content { flex: 1 1 auto; min-width: 0; display: grid; }
+.psalm-verse-reserve,
+.psalm-verse-text,
+.psalm-verse-placeholder { grid-area: 1 / 1; overflow-wrap: anywhere; }
+/* The reserve holds height but is never seen or read. */
+.psalm-verse-reserve { visibility: hidden; pointer-events: none; }
+.psalm-verse:not(.revealed) .psalm-verse-text { display: none; }
+.psalm-verse.revealed .psalm-verse-placeholder { display: none; }
+/* Subtle "tap to reveal" affordance centered in a hidden verse row. */
+.psalm-verse-placeholder {
+  align-self: center; height: 0;
   border-bottom: 1px dashed var(--border); opacity: 0.7;
 }
 @media (hover: hover) { .psalm-verse:hover { border-color: var(--gold-dim); } }
