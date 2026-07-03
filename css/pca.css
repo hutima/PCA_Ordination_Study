@@ -548,7 +548,17 @@ html[data-theme="light"] .hm-l3 { background: rgba(142,108,30,0.70); }
   font-size: calc((15px) * var(--text-scale, 1)); line-height: 1.55;
 }
 .psalm-apply li { margin: 3px 0; overflow-wrap: anywhere; }
-.psalm-controls { display: flex; gap: 10px; flex-wrap: wrap; margin: 0 0 12px; }
+/* The Reveal all / Hide all row pins to the top of the viewport while a long
+   psalm scrolls under it. It bleeds over the card's 30px side padding (so
+   verse text never peeks out beside the pinned row) and repaints the card
+   background underneath itself; `top` respects the iOS notch in standalone. */
+.psalm-controls {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--card-front);
+  margin: 0 -30px 12px; padding: 10px 30px;
+  border-bottom: 1px solid var(--border);
+}
 .psalm-verses { display: flex; flex-direction: column; gap: 6px; }
 /* A verse row: number in a fixed muted slot on the left, text flowing right.
    The verse text is always present in a hidden reserve span so hidden and

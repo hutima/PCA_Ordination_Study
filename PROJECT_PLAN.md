@@ -709,6 +709,15 @@ KEEP modules + the HTML shell):**
         modal / 401 / cache / reload persistence, exactly-one-psalm fetching,
         whole-psalm grading, WSC/WLC/BCO + Review/Browse/Quiz/Mock-exam
         regression, and no horizontal scroll at 360px.
+      - **Sticky Reveal/Hide-all controls** (`?v=58`/`pca-v58`, user-requested,
+        after the #43 scroll-jump fix): `.psalm-controls` is now
+        `position: sticky` — the Reveal all / Hide all row pins to the top of
+        the viewport while a long psalm scrolls under it (top respects
+        `env(safe-area-inset-top)` for the iOS notch; the row bleeds over the
+        card's side padding and repaints `--card-front` under itself so verse
+        text never shows through). Verified in Chromium on Psalm 119 at
+        desktop + 360px: pinned at 0px while 6–12k px deep, buttons clickable
+        while pinned, back in normal flow at page top, no horizontal overflow.
 - [x] **Phase 28 — PWA "install to Home Screen" nudge + scrollable modals**
       (ported from the Mounce study tool, PR #107). Release `?v=56`/`pca-v56`.
       New self-contained module `js/app/pwaInstall.js` (imported by `pca.js`,
