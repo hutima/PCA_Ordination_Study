@@ -21,6 +21,11 @@
 const VERSION_KEY = 'pca_psalm_version_v1';   // 'kjv' | 'esv'
 const TOKEN_KEY   = 'pca_esv_token_v1';
 const CACHE_KEY   = 'pca_esv_psalm_cache_v1';
+// Cap the on-device ESV cache at 500 verses total (across all cached psalms).
+// The longest psalm (119, 176 verses) fits comfortably, so a single psalm is
+// never too big to store; when adding one would exceed the cap we evict the
+// oldest-viewed psalms until we're back under it.
+const VERSE_CAP   = 500;
 
 const ESV_COPYRIGHT_LINE =
   'Scripture text: ESV®, via your ESV API token — not stored in the app beyond your local cache.';
@@ -46,9 +51,31 @@ export function createPsalmReader({ escapeHtml, withCardAnchor, rerender }) {
   function readCache() {
     try { return JSON.parse(localStorage.getItem(CACHE_KEY)) || {}; } catch (e) { return {}; }
   }
+  // Total verses currently held across every cached psalm.
+  function totalCachedVerses(cache) {
+    let total = 0;
+    for (const key in cache) {
+      const v = cache[key] && cache[key].verses;
+      if (v && v.length) total += v.length;
+    }
+    return total;
+  }
+  // Evict the oldest-viewed psalms (never `keepN`, the one just written) until
+  // the cache holds at most VERSE_CAP verses.
+  function evictToCap(cache, keepN) {
+    const evictable = Object.entries(cache)
+      .filter(([k]) => Number(k) !== Number(keepN))
+      .sort((a, b) => (a[1].ts || 0) - (b[1].ts || 0)); // oldest first
+    let i = 0;
+    while (totalCachedVerses(cache) > VERSE_CAP && i < evictable.length) {
+      delete cache[evictable[i][0]];
+      i++;
+    }
+  }
   function writeCache(n, verses) {
     const cache = readCache();
     cache[n] = { verses, ts: Date.now() };
+    evictToCap(cache, n); // honour the 500-verse cap before persisting
     try { localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); }
     catch (e) {
       // Quota exceeded — evict the oldest cached psalm by timestamp, retry once.
@@ -58,6 +85,13 @@ export function createPsalmReader({ escapeHtml, withCardAnchor, rerender }) {
         localStorage.setItem(CACHE_KEY, JSON.stringify(cache));
       } catch (e2) { /* give up silently — the reader still works from network */ }
     }
+  }
+  // Settings-panel helpers: report and empty the ESV cache on demand.
+  function cachedVerseCount() { return totalCachedVerses(readCache()); }
+  function clearCache() {
+    try { localStorage.removeItem(CACHE_KEY); } catch (e) {}
+    // Drop the in-memory copy for the current psalm too, so an ESV view reloads.
+    if (version === 'esv') esv = { state: 'idle', kind: null, verses: null, n: currentN };
   }
 
   // ── ESV text parsing (adapted from Lectio, not imported) ────────────────
@@ -368,5 +402,5 @@ export function createPsalmReader({ escapeHtml, withCardAnchor, rerender }) {
 
   function isPsalms(cat) { return !!cat && cat.kind === 'psalms'; }
 
-  return { isPsalms, bodyHtml, wire, onSelectVersion, sourceText, onKey };
+  return { isPsalms, bodyHtml, wire, onSelectVersion, sourceText, onKey, cachedVerseCount, clearCache };
 }

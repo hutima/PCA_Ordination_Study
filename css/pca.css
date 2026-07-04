@@ -400,6 +400,29 @@ a.qa-ref-chip { text-decoration: none; transition: background .12s, border-color
   text-align: center; color: var(--muted); font-size: calc((12px) * var(--text-scale, 1));
   font-style: italic; margin-top: 14px;
 }
+/* Catechism-module Settings panel (holds the "Clear ESV cache" control). Styled
+   width-independently here since .utility-section's box styling is scoped to the
+   ≤600px media query; this panel lives inside the study area at any width. */
+.cat-settings {
+  max-width: 720px; margin: 22px auto 0;
+  border: 1px solid var(--border); background: var(--surface);
+  border-radius: 10px; padding: 10px 14px;
+}
+.cat-settings > summary {
+  cursor: pointer; list-style: none;
+  font-family: var(--font-display); color: var(--gold-dim);
+  letter-spacing: 1px; text-transform: uppercase;
+  font-size: calc((11px) * var(--text-scale, 1));
+}
+.cat-settings > summary::-webkit-details-marker { display: none; }
+.cat-settings[open] > summary { margin-bottom: 12px; }
+.cat-settings-note {
+  color: var(--muted); font-size: calc((13px) * var(--text-scale, 1));
+  line-height: 1.5; margin: 0 0 12px;
+}
+.cat-settings-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.cat-cache-count { color: var(--muted); font-size: calc((12px) * var(--text-scale, 1)); }
+.cat-settings .ctrl-btn:disabled { opacity: 0.5; cursor: default; }
 
 /* ── Mock exam results ────────────────────────────────────────────────── */
 .exam-results .exam-score {
