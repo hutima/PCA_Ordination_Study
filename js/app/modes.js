@@ -268,6 +268,16 @@ export function createModes(ctx) {
   function catProgress(catId, n) { return state.progress[catKey(catId, n)]; }
   function catConfirmed(catId, n) { const p = catProgress(catId, n); return !!(p && p.firstConfirmedAt); }
   function catConfirmedCount(catId, items) { return items.reduce((acc, it) => acc + (catConfirmed(catId, it.n) ? 1 : 0), 0); }
+  // Reflect the ESV cache size in the catechism Settings panel and disable the
+  // clear button when there's nothing to clear.
+  function updateCacheCount(area) {
+    const count = area.querySelector('#esvCacheCount');
+    const btn = area.querySelector('#esvClearCacheBtn');
+    if (!count || !btn) return;
+    const n = psalmReader.cachedVerseCount();
+    count.textContent = n ? `${n} / 500 verses cached` : 'No verses cached';
+    btn.disabled = !n;
+  }
   const catechism = {
     id: 'catechism', label: 'Catechisms', usesDeck: false, focusable: false,
     title: 'The Westminster Larger & Shorter Catechisms, question by question',
@@ -343,12 +353,29 @@ export function createModes(ctx) {
             <button class="nav-btn nav-prev" id="catPrevBtn" type="button">‹ Prev</button>
             <button class="nav-btn nav-next" id="catNextBtn" type="button">Next ›</button>
           </div>
-          <div class="cat-source" id="catSource"></div>`;
+          <div class="cat-source" id="catSource"></div>
+          <details class="utility-section cat-settings">
+            <summary>Settings</summary>
+            <div class="cat-settings-body">
+              <p class="cat-settings-note">The optional ESV Psalms reader stores the
+                verses it fetches on this device (up to 500 verses) so viewed psalms
+                load instantly and work offline. Clear it to free space or refresh.</p>
+              <div class="cat-settings-row">
+                <button class="ctrl-btn" type="button" id="esvClearCacheBtn">Clear ESV cache</button>
+                <span class="cat-cache-count" id="esvCacheCount"></span>
+              </div>
+            </div>
+          </details>`;
         area.querySelector('#catSelect').addEventListener('change', (e) => catechism.setCat(e.target.value));
         area.querySelector('#catQSelect').addEventListener('change', (e) => catechism.go(Number(e.target.value)));
         area.querySelector('#catPrevBtn').addEventListener('click', () => catechism.go(catState.n - 1));
         area.querySelector('#catNextBtn').addEventListener('click', () => catechism.go(catState.n + 1));
+        area.querySelector('#esvClearCacheBtn').addEventListener('click', () => {
+          psalmReader.clearCache();
+          updateCacheCount(area);
+        });
       }
+      updateCacheCount(area);
       const catSel = area.querySelector('#catSelect');
       const qSel = area.querySelector('#catQSelect');
       if (qSel.dataset.cat !== catState.cat) {
