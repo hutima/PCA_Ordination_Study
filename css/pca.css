@@ -526,7 +526,7 @@ html[data-theme="light"] .hm-l3 { background: rgba(142,108,30,0.70); }
    The verse rows are the interactive controls (the card itself never flips),
    so everything here is sized to sit natively beside the catechism flip cards
    and to hold together at 360px with no horizontal scroll. */
-.psalm-versions { display: inline-flex; margin: 2px 0 14px; }
+.psalm-versions { display: inline-flex; align-self: flex-start; margin: 2px 0 14px; }
 /* Summary block doubles its header as a show/hide toggle. */
 .psalm-summary { margin-bottom: 16px; }
 .psalm-summary-toggle {
