@@ -354,6 +354,11 @@ a.qa-ref-chip { text-decoration: none; transition: background .12s, border-color
 .browse-controls { display: flex; gap: 8px; justify-content: flex-end; max-width: 760px; margin: 0 auto 14px; flex-wrap: wrap; align-items: center; }
 /* Selection mode (Print / Export): left-aligned toolbar + inline hint/warning. */
 .browse-export-controls { justify-content: flex-start; }
+/* Master select/deselect-all checkbox at the top of the selection toolbar. */
+.browse-selectall { display: inline-flex; align-items: center; gap: 7px; cursor: pointer;
+  font-family: var(--font-display); font-size: calc((13px) * var(--text-scale, 1));
+  letter-spacing: 0.5px; color: var(--cream); user-select: none; }
+.browse-selectall input { width: 18px; height: 18px; accent-color: var(--gold); cursor: pointer; }
 .browse-export-hint { color: var(--muted); font-size: calc((13px) * var(--text-scale, 1)); flex-basis: 100%; }
 .browse-warn { color: #e0555a; font-size: calc((13px) * var(--text-scale, 1)); flex-basis: 100%; font-weight: 600; }
 #browsePrintBtn { margin-left: auto; }
@@ -648,46 +653,9 @@ html[data-theme="light"] .hm-l3 { background: rgba(142,108,30,0.70); }
 .esv-token-input:focus { border-color: var(--gold-dim); outline: none; }
 
 /* ── Browse card export / print ───────────────────────────────────────── */
-/* The print-only area is built on demand by js/app/browsePrint.js and is
-   hidden on screen; @media print swaps it in for the rest of the app so only
-   the selected cards print. Long WCF quotations may break across pages. */
-#browsePrintArea { display: none; }
-@media print {
-  body.printing-browse > *:not(#browsePrintArea) { display: none !important; }
-  /* Plain white page. */
-  html, body, body.printing-browse { background: #fff !important; }
-  body.printing-browse #browsePrintArea {
-    display: block !important; background: #fff !important; color: #000 !important;
-    /* 14pt readable body. */
-    font-family: Georgia, 'Times New Roman', serif; font-size: 14pt; line-height: 1.32;
-    max-width: 100%; padding: 0;
-  }
-  /* Standard 1-inch page margins on plain white paper. */
-  @page { margin: 1in; }
-  /* Strip every screen tint/shadow/theme colour so nothing prints as a grey box
-     and force black type — the confession sits as plain black text on white. */
-  #browsePrintArea * { background: transparent !important; box-shadow: none !important; color: #000 !important; }
-  #browsePrintArea .print-head { border-bottom: 1pt solid #000; padding-bottom: 5pt; margin-bottom: 10pt; }
-  #browsePrintArea .print-head h1 { font-size: 15pt; margin: 0 0 2pt; }
-  #browsePrintArea .print-meta, #browsePrintArea .print-sets { margin: 1pt 0; font-size: 10pt; color: #000; }
-  /* Compact cards: no box, small gap, bold question — long WCF quotations may
-     break across pages (break-inside: auto). */
-  #browsePrintArea .print-card { margin: 0 0 9pt; padding: 0; border: 0; break-inside: auto; }
-  #browsePrintArea .print-q { font-size: 14pt; font-weight: 700; margin: 0 0 2pt; break-after: avoid; }
-  #browsePrintArea .print-a { margin: 0; }
-  #browsePrintArea .print-a p { margin: 0 0 4pt; }
-  #browsePrintArea .print-a ul, #browsePrintArea .print-a ol { margin: 0 0 4pt 18pt; }
-  /* Provenance callouts (WCF:, Note:) → compact plain text with a small label,
-     no box, no border. */
-  #browsePrintArea .qa-callout { border: 0; padding: 0; margin: 0 0 3pt; }
-  #browsePrintArea .qa-prov-label { font-size: 8.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5pt; color: #000; margin: 0 0 1pt; }
-  /* References as a compact dot-separated line, not bordered pills. */
-  #browsePrintArea .qa-refs { margin-top: 2pt; font-size: 10.5pt; }
-  #browsePrintArea .qa-ref-inline { color: #000; text-decoration: none; }
-  #browsePrintArea .qa-refs .qa-ref-chip { display: inline; border: 0; border-radius: 0; padding: 0; margin: 0; color: #000; }
-  #browsePrintArea .qa-refs .qa-ref-chip::after { content: ' · '; }
-  #browsePrintArea .qa-refs .qa-ref-chip:last-child::after { content: ''; }
-  #browsePrintArea table { border-collapse: collapse; width: 100%; margin: 5pt 0; font-size: 11pt; }
-  #browsePrintArea th, #browsePrintArea td { border: 1px solid #000; padding: 3pt 6pt; text-align: left; vertical-align: top; }
-  #browsePrintArea blockquote { border-left: 2pt solid #000; margin: 4pt 0; padding-left: 8pt; }
-}
+/* The printable document is built and printed from a self-contained hidden
+   iframe by js/app/browsePrint.js (its PRINT_CSS holds the 14pt / 1in /
+   white-page styling). Printing from a separate document — rather than an
+   @media-print region inside the app — avoids Chrome's blank-page bug and the
+   iOS text-size-adjust / theme inheritance that mis-sized the earlier version.
+   No print styles are needed here. */

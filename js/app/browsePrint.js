@@ -37,8 +37,8 @@ export function createBrowsePrint(ctx) {
         </div>`;
     }
     return `<div class="browse-controls browse-export-controls">
-        <button class="ctrl-btn" id="browseSelectAllBtn" type="button">Select all visible</button>
-        <button class="ctrl-btn" id="browseClearSelBtn" type="button">Clear selection</button>
+        <label class="browse-selectall" title="Select or deselect every visible card">
+          <input type="checkbox" id="browseSelectAllChk"> Select / deselect all</label>
         <button class="ctrl-btn" id="browseCancelExportBtn" type="button">Cancel</button>
         <button class="ctrl-btn" id="browseTxtBtn" type="button">Export .txt</button>
         <button class="quick-btn quick-primary" id="browsePrintSelectedBtn" type="button">Print selected <span id="browseSelCount">(0)</span></button>
@@ -61,6 +61,18 @@ export function createBrowsePrint(ctx) {
     if (c) c.textContent = `(${bp.selected.size})`;
     const warn = area.querySelector('#browseWarn');
     if (warn && bp.selected.size) warn.hidden = true;
+    syncMaster(area);
+  }
+
+  // Reflect the selection in the top "Select / deselect all" master checkbox:
+  // checked when all visible cards are selected, indeterminate when only some.
+  function syncMaster(area) {
+    const master = area.querySelector('#browseSelectAllChk');
+    if (!master) return;
+    const visible = bp.getVisibleBrowseCards(area).map(c => c.cardId);
+    const on = visible.filter(id => bp.selected.has(id)).length;
+    master.checked = on > 0 && on === visible.length;
+    master.indeterminate = on > 0 && on < visible.length;
   }
 
   // Every card currently rendered in the outline (its stable id + set key).
@@ -83,22 +95,14 @@ export function createBrowsePrint(ctx) {
     const cancel = area.querySelector('#browseCancelExportBtn');
     if (cancel) cancel.addEventListener('click', () => { bp.exportMode = false; bp.selected.clear(); rerenderBrowse(); });
 
-    const selectAll = area.querySelector('#browseSelectAllBtn');
-    if (selectAll) selectAll.addEventListener('click', () => {
-      // Toggle: if everything visible is already selected, clear; else select all.
-      const visible = bp.getVisibleBrowseCards(area).map(c => c.cardId);
-      const allOn = visible.length > 0 && visible.every(id => bp.selected.has(id));
-      visible.forEach(id => allOn ? bp.selected.delete(id) : bp.selected.add(id));
-      area.querySelectorAll('input[data-browse-check]').forEach(cb => {
-        cb.checked = bp.selected.has(cb.getAttribute('data-browse-check'));
-      });
-      updateCount(area);
-    });
-
-    const clearSel = area.querySelector('#browseClearSelBtn');
-    if (clearSel) clearSel.addEventListener('click', () => {
-      bp.selected.clear();
-      area.querySelectorAll('input[data-browse-check]').forEach(cb => { cb.checked = false; });
+    // Master "Select / deselect all" checkbox at the top: checked → select every
+    // visible card, unchecked → deselect all.
+    const master = area.querySelector('#browseSelectAllChk');
+    if (master) master.addEventListener('change', () => {
+      const on = master.checked;
+      bp.getVisibleBrowseCards(area).forEach(c => on ? bp.selected.add(c.cardId) : bp.selected.delete(c.cardId));
+      area.querySelectorAll('input[data-browse-check]').forEach(cb => { cb.checked = on; });
+      master.indeterminate = false;
       updateCount(area);
     });
 
@@ -165,28 +169,74 @@ export function createBrowsePrint(ctx) {
     return `${head}<div class="print-cards">${body}</div>`;
   };
 
-  // Render into a print-only DOM area (hidden on screen, shown only for print
-  // via @media print in css/pca.css) and invoke the browser's native print
-  // dialog. No popup window (so it can't be popup-blocked) and no PDF library.
+  // Self-contained print stylesheet for the print document (below). Because the
+  // document is a separate iframe, it inherits NONE of the app's CSS — no theme
+  // colours, no --text-scale, no iOS text-size-adjust — so the 14pt sizing and
+  // white page are honoured exactly on every browser. Compact layout; long WCF
+  // quotations may break across pages.
+  const PRINT_CSS = `
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    html, body { background: #fff; color: #000; }
+    body { font-family: Georgia, 'Times New Roman', serif; font-size: 14pt; line-height: 1.32; }
+    @page { margin: 1in; }
+    .print-head { border-bottom: 1pt solid #000; padding-bottom: 5pt; margin-bottom: 10pt; }
+    .print-head h1 { font-size: 15pt; margin: 0 0 2pt; }
+    .print-meta, .print-sets { font-size: 10pt; margin: 1pt 0; }
+    .print-card { margin: 0 0 9pt; }
+    .print-q { font-size: 14pt; font-weight: 700; margin: 0 0 2pt; break-after: avoid; }
+    .print-a { font-size: 14pt; }
+    .print-a p { margin: 0 0 4pt; }
+    .print-a ul, .print-a ol { margin: 0 0 4pt 20pt; }
+    .print-a li { margin: 0 0 1pt; }
+    .qa-callout { margin: 0 0 3pt; }
+    .qa-prov-label { font-size: 8.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5pt; margin: 0 0 1pt; }
+    .qa-refs { margin-top: 2pt; font-size: 10.5pt; }
+    .qa-ref-chip { color: #000; }
+    .qa-ref-chip::after { content: ' \\00B7 '; }
+    .qa-ref-chip:last-child::after { content: ''; }
+    a, .qa-ref-inline { color: #000; text-decoration: none; }
+    table { border-collapse: collapse; width: 100%; margin: 5pt 0; font-size: 11pt; }
+    th, td { border: 1px solid #000; padding: 3pt 6pt; text-align: left; vertical-align: top; }
+    blockquote { border-left: 2pt solid #000; margin: 4pt 0; padding-left: 8pt; }
+  `;
+
+  // Print via a hidden, off-screen iframe that holds a complete standalone
+  // document. This is reliable across browsers — Chrome desktop renders a
+  // display:none-then-@media-print region as a BLANK page, and an in-page region
+  // inherits the app's font scaling on iOS; a dedicated iframe document avoids
+  // both. No popup (can't be blocked), no PDF library, static-site compatible.
   bp.openBrowsePrint = function (cards) {
-    const html = bp.buildBrowsePrintHtml(cards);
-    let host = document.getElementById('browsePrintArea');
-    if (!host) {
-      host = document.createElement('div');
-      host.id = 'browsePrintArea';
-      document.body.appendChild(host);
-    }
-    host.innerHTML = html;
-    document.body.classList.add('printing-browse');
-    const cleanup = () => {
-      document.body.classList.remove('printing-browse');
-      window.removeEventListener('afterprint', cleanup);
+    const docHtml = `<!doctype html><html><head><meta charset="utf-8">`
+      + `<meta name="viewport" content="width=device-width, initial-scale=1">`
+      + `<title>PCA Ordination &amp; Licensure Study — cards</title>`
+      + `<style>${PRINT_CSS}</style></head><body>${bp.buildBrowsePrintHtml(cards)}</body></html>`;
+    const old = document.getElementById('browsePrintFrame');
+    if (old) old.remove();
+    const frame = document.createElement('iframe');
+    frame.id = 'browsePrintFrame';
+    frame.setAttribute('aria-hidden', 'true');
+    // Off-screen but NOT display:none / visibility:hidden (those can suppress
+    // printing in some browsers).
+    frame.style.cssText = 'position:fixed; right:0; bottom:0; width:0; height:0; border:0;';
+    document.body.appendChild(frame);
+    const fdoc = frame.contentWindow.document;
+    fdoc.open();
+    fdoc.write(docHtml);
+    fdoc.close();
+    let printed = false;
+    const doPrint = () => {
+      if (printed) return;
+      printed = true;
+      try { frame.contentWindow.focus(); frame.contentWindow.print(); } catch (e) {}
+      const remove = () => setTimeout(() => { if (frame.parentNode) frame.remove(); }, 400);
+      try { frame.contentWindow.addEventListener('afterprint', remove); } catch (e) {}
+      setTimeout(remove, 60000); // fallback cleanup where afterprint doesn't fire
     };
-    window.addEventListener('afterprint', cleanup);
-    // Give layout a tick before printing (Safari/iOS need the reflow).
-    setTimeout(() => window.print(), 60);
-    // Fallback cleanup in case afterprint doesn't fire (some mobile browsers).
-    setTimeout(cleanup, 60000);
+    // Print once the iframe document has laid out. A written document is usually
+    // 'complete' immediately; the load listener + timeout fallback cover the rest.
+    frame.addEventListener('load', () => setTimeout(doPrint, 80));
+    setTimeout(doPrint, 300);
   };
 
   // ── Plain-text (.txt) export ───────────────────────────────────────────
