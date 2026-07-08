@@ -66,7 +66,8 @@ That changes the update workflow:
   through the registry.
 - **Study modes:** Review (self-check; short summary first, full answer &
   quotations behind an expander), Quiz (MCQ), Browse (collapsible outline,
-  non-graded), Mock exam (finite scored MCQ session), Catechisms (WSC/WLC
+  non-graded, **with card export/print** — see below), Mock exam (finite scored
+  MCQ session), Catechisms (WSC/WLC
   full text plus a hand-authored BCO-paraphrase set in
   `js/data/catechisms_bco.js`, as flip cards — dropdown per set + per
   question, proofs/references in a collapsed section; position persists to
@@ -134,17 +135,26 @@ That changes the update workflow:
   (selection de-dupes). `renderSelector()`/`groupHtml()` are now **recursive**
   (a group holds nested sub-groups and/or rows); `groupLeafKeys()` gathers a
   group's keys for its Select-all (a single `[data-keys]` handler).
-- **Subjects (10):** Bible Content, **Bible Book Summaries** (66 books / 229
+- **Subjects (11):** Bible Content, **Bible Book Summaries** (66 books / 229
   cards — **one selectable set per book**, `bk-<slug>`: a per-book overview
   — author/date/theme/outline/Christ, with a TGC commentary link — plus
   chapter-range "Book Contents" cards for every book of 5+ chapters, backing the
   schedule's per-book Book Outlines / Book Contents drills; the 66 sets are
   presented under one subject, grouped for display into eight division groups
   via `subject.groups`),
-  Theology (incl. `th-k` Holy Spirit & apologetics + `theo-wcf`), Sacraments,
+  Theology (incl. `th-k` Holy Spirit & apologetics), Sacraments,
   Church History, BCO (14 sub-decks; `subject.groups` orders them by chapter
   block for the By-subject view, while week_plan groups the same keys by the
   syllabus's A–J blocks),
+  **Westminster Confession of Faith** (`wcf`, 33 chapter sets `wcf-01`…`wcf-33`,
+  173 cards — one card per section, a few long sections split into parts; built
+  by `dev/build_wcf_subject.mjs` from `js/data/wcf.js`. Each card carries BOTH
+  the full confession wording (`a`, `WCF:`-labeled) and an authored concise
+  `summary`, plus `wcf: true`; the **WCF card detail** setting picks which is
+  shown — see below. `subject.groups` orders the 33 chapters into six
+  theological divisions for the By-subject view; week_plan places every chapter
+  once across weeks 2–12 in a `confession` column. Replaces the old `theo-wcf`
+  §1-only theology sub-deck),
   **Westminster Shorter Catechism** (`shorter_catechism`, 56 cards — the WSC
   questions the plan assigns, WSC 1–39 & 82–98, as flashcards grouped into
   per-week sub-decks `wsc-wk<N>`; built by `dev/build_catechism_wsc.mjs` from
@@ -205,10 +215,33 @@ That changes the update workflow:
   subject, so load order in `index.html` matters (`bco.js` first).
 - **Standards data (public domain):** `js/data/catechisms.js`
   (`window.PCA_CATECHISMS`, WSC 107 + WLC 196 with proof citations),
-  `js/data/wcf.js` (`window.PCA_WCF`, build-time artifact, not loaded by the
-  app), `js/data/subjects/theology_wcf.js` (a theology sub-deck quoting WCF
-  chapters not otherwise cited). Their builders need the Westminster PDFs
-  restored from git history to re-run.
+  `js/data/wcf.js` (`window.PCA_WCF`, the canonical American-revision WCF text —
+  33 chapters / 171 sections with proof refs; a build-time source for the WCF
+  subject, cleaned + verified against an authoritative reference export by
+  `dev/build_wcf_subject.mjs`). `js/data/catechisms.js`'s builder needs the
+  Westminster PDFs restored from git history to re-run; the WCF subject builder
+  reads the already-checked-in `wcf.js` (it re-cleans it in place — idempotent —
+  and regenerates `js/data/subjects/wcf.js`).
+- **WCF card detail setting (`state.wcfDetail`, `pca_wcf_detail_v1`, default
+  `'full'`):** a **normal Settings** row (Full text / Summary — `[data-wcf-detail]`
+  in `index.html`, not Advanced settings). Only affects cards with `wcf: true`
+  (the WCF subject). `resolveCardDetail(card)` (`answer.js`, reads `state`)
+  returns a display clone: **full** → renders `card.a` (the full section)
+  directly, no teaser/expander (`_wcfFull`); **summary** → shows the concise
+  `card.summary` as the main answer with a "Full WCF text" expander over `card.a`
+  (`_wcfSummaryMode`). Review + Browse call it; grading still targets the raw
+  deck card by position. `setWcfDetail()` in `pca.js` persists + re-renders. Full
+  text is the default so WCF questions contain the whole section.
+- **Browse card export/print (`js/app/browsePrint.js`, `createBrowsePrint(ctx)`):**
+  a "Print / Export" button in Browse enters a local selection mode (per-card
+  checkboxes + Select all visible / Clear / Cancel / Print selected). Print
+  selected builds a print-only DOM area (`#browsePrintArea`, hidden on screen,
+  shown via `@media print` in `css/pca.css`) from the chosen cards and calls
+  `window.print()` — native browser print/save-as-PDF, no PDF library, no popup.
+  State is Browse-local (`exportMode` + `selected`) and never touches SRS; it
+  resets on mode switch. WCF cards export in the current detail mode. Reuses
+  `renderAnswer`/`renderRefs`/`escapeHtml`; browse `.browse-item`s carry stable
+  `data-card-id`/`data-set-key`.
 - **SRS engine (reused, content-agnostic):** `js/domain/srs/{constants,
   scheduler,confidence}.js`. Outcomes `again`/`pass`/`easy` =
   Hard/Uncertain/Easy. Do not edit lightly. `confidence.js` also holds
