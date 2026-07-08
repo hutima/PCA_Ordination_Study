@@ -654,27 +654,40 @@ html[data-theme="light"] .hm-l3 { background: rgba(142,108,30,0.70); }
 #browsePrintArea { display: none; }
 @media print {
   body.printing-browse > *:not(#browsePrintArea) { display: none !important; }
+  /* Plain white page. */
+  html, body, body.printing-browse { background: #fff !important; }
   body.printing-browse #browsePrintArea {
-    display: block !important; color: #000; background: #fff;
-    font-family: Georgia, 'Times New Roman', serif; font-size: 12pt; line-height: 1.5;
+    display: block !important; background: #fff !important; color: #000 !important;
+    /* 14pt readable body. */
+    font-family: Georgia, 'Times New Roman', serif; font-size: 14pt; line-height: 1.32;
     max-width: 100%; padding: 0;
   }
-  @page { margin: 18mm 16mm; }
-  #browsePrintArea .print-head { border-bottom: 2px solid #000; padding-bottom: 8px; margin-bottom: 16px; }
-  #browsePrintArea .print-head h1 { font-size: 18pt; margin: 0 0 4px; }
-  #browsePrintArea .print-meta, #browsePrintArea .print-sets { margin: 2px 0; font-size: 10pt; color: #333; }
-  #browsePrintArea .print-card { margin: 0 0 16px; padding: 0 0 8px; border-bottom: 1px solid #bbb; }
-  #browsePrintArea .print-q { font-size: 13pt; font-weight: 700; margin: 0 0 6px; break-after: avoid; }
-  #browsePrintArea .print-a { margin: 0 0 6px; }
-  #browsePrintArea .print-a p { margin: 0 0 6px; }
-  #browsePrintArea .print-a ul, #browsePrintArea .print-a ol { margin: 0 0 6px 20px; }
-  /* Provenance callouts (WCF:, Note:) → simple print blocks. */
-  #browsePrintArea .qa-callout { border-left: 3px solid #666; padding: 2px 0 2px 10px; margin: 0 0 6px; }
-  #browsePrintArea .qa-prov-label { font-size: 9pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #444; margin-bottom: 2px; }
-  #browsePrintArea .qa-refs { margin-top: 4px; }
-  #browsePrintArea .qa-ref-chip, #browsePrintArea .qa-ref-inline { color: #000; text-decoration: none; }
-  #browsePrintArea .qa-refs .qa-ref-chip { display: inline-block; border: 1px solid #999; border-radius: 4px; padding: 1px 6px; margin: 0 4px 4px 0; font-size: 9.5pt; }
-  #browsePrintArea table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 10.5pt; }
-  #browsePrintArea th, #browsePrintArea td { border: 1px solid #999; padding: 4px 7px; text-align: left; vertical-align: top; }
-  #browsePrintArea blockquote { border-left: 3px solid #999; margin: 6px 0; padding-left: 10px; color: #222; }
+  /* Standard 1-inch page margins on plain white paper. */
+  @page { margin: 1in; }
+  /* Strip every screen tint/shadow/theme colour so nothing prints as a grey box
+     and force black type — the confession sits as plain black text on white. */
+  #browsePrintArea * { background: transparent !important; box-shadow: none !important; color: #000 !important; }
+  #browsePrintArea .print-head { border-bottom: 1pt solid #000; padding-bottom: 5pt; margin-bottom: 10pt; }
+  #browsePrintArea .print-head h1 { font-size: 15pt; margin: 0 0 2pt; }
+  #browsePrintArea .print-meta, #browsePrintArea .print-sets { margin: 1pt 0; font-size: 10pt; color: #000; }
+  /* Compact cards: no box, small gap, bold question — long WCF quotations may
+     break across pages (break-inside: auto). */
+  #browsePrintArea .print-card { margin: 0 0 9pt; padding: 0; border: 0; break-inside: auto; }
+  #browsePrintArea .print-q { font-size: 14pt; font-weight: 700; margin: 0 0 2pt; break-after: avoid; }
+  #browsePrintArea .print-a { margin: 0; }
+  #browsePrintArea .print-a p { margin: 0 0 4pt; }
+  #browsePrintArea .print-a ul, #browsePrintArea .print-a ol { margin: 0 0 4pt 18pt; }
+  /* Provenance callouts (WCF:, Note:) → compact plain text with a small label,
+     no box, no border. */
+  #browsePrintArea .qa-callout { border: 0; padding: 0; margin: 0 0 3pt; }
+  #browsePrintArea .qa-prov-label { font-size: 8.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5pt; color: #000; margin: 0 0 1pt; }
+  /* References as a compact dot-separated line, not bordered pills. */
+  #browsePrintArea .qa-refs { margin-top: 2pt; font-size: 10.5pt; }
+  #browsePrintArea .qa-ref-inline { color: #000; text-decoration: none; }
+  #browsePrintArea .qa-refs .qa-ref-chip { display: inline; border: 0; border-radius: 0; padding: 0; margin: 0; color: #000; }
+  #browsePrintArea .qa-refs .qa-ref-chip::after { content: ' · '; }
+  #browsePrintArea .qa-refs .qa-ref-chip:last-child::after { content: ''; }
+  #browsePrintArea table { border-collapse: collapse; width: 100%; margin: 5pt 0; font-size: 11pt; }
+  #browsePrintArea th, #browsePrintArea td { border: 1px solid #000; padding: 3pt 6pt; text-align: left; vertical-align: top; }
+  #browsePrintArea blockquote { border-left: 2pt solid #000; margin: 4pt 0; padding-left: 8pt; }
 }

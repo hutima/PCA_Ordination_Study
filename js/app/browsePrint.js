@@ -40,9 +40,10 @@ export function createBrowsePrint(ctx) {
         <button class="ctrl-btn" id="browseSelectAllBtn" type="button">Select all visible</button>
         <button class="ctrl-btn" id="browseClearSelBtn" type="button">Clear selection</button>
         <button class="ctrl-btn" id="browseCancelExportBtn" type="button">Cancel</button>
+        <button class="ctrl-btn" id="browseTxtBtn" type="button">Export .txt</button>
         <button class="quick-btn quick-primary" id="browsePrintSelectedBtn" type="button">Print selected <span id="browseSelCount">(0)</span></button>
-        <span class="browse-export-hint">Tick the cards to include, then Print selected.</span>
-        <span class="browse-warn" id="browseWarn" role="alert" hidden>Select at least one card to print.</span>
+        <span class="browse-export-hint">Tick the cards to include, then Print selected or Export .txt.</span>
+        <span class="browse-warn" id="browseWarn" role="alert" hidden>Select at least one card first.</span>
       </div>`;
   };
 
@@ -113,20 +114,30 @@ export function createBrowsePrint(ctx) {
       });
     });
 
-    const printSel = area.querySelector('#browsePrintSelectedBtn');
-    if (printSel) printSel.addEventListener('click', () => {
+    // Selected cards in outline order (each { card, setKey }); shows the inline
+    // warning and returns null if nothing is ticked. Shared by print + txt.
+    const gather = () => {
       if (!bp.selected.size) {
         const warn = area.querySelector('#browseWarn');
         if (warn) warn.hidden = false;
-        return;
+        return null;
       }
-      // Gather selected cards in outline order (respecting the current WCF
-      // display setting), then print.
-      const cards = bp.getVisibleBrowseCards(area)
+      return bp.getVisibleBrowseCards(area)
         .filter(c => bp.selected.has(c.cardId))
         .map(c => ({ card: findCard(c.setKey, c.cardId), setKey: c.setKey }))
         .filter(x => x.card);
-      bp.openBrowsePrint(cards);
+    };
+
+    const printSel = area.querySelector('#browsePrintSelectedBtn');
+    if (printSel) printSel.addEventListener('click', () => {
+      const cards = gather();
+      if (cards) bp.openBrowsePrint(cards);
+    });
+
+    const txtBtn = area.querySelector('#browseTxtBtn');
+    if (txtBtn) txtBtn.addEventListener('click', () => {
+      const cards = gather();
+      if (cards) bp.downloadTxt(bp.buildBrowseTxt(cards));
     });
   };
 
@@ -176,6 +187,56 @@ export function createBrowsePrint(ctx) {
     setTimeout(() => window.print(), 60);
     // Fallback cleanup in case afterprint doesn't fire (some mobile browsers).
     setTimeout(cleanup, 60000);
+  };
+
+  // ── Plain-text (.txt) export ───────────────────────────────────────────
+  // For users who want to format the cards themselves. Markdown is flattened to
+  // plain text: bare standard labels (WCF:, WSC:…) are dropped, "Note:" is kept,
+  // **bold**/`code`/blockquote markers are stripped, list markers are preserved.
+  const STRIP_LABEL = /^(WSC|WLC|WCF|WSA|BCO|Calvin|Luther|Augustine|Turretin|Heidelberg):\s*/;
+  function mdToText(md) {
+    return String(md == null ? '' : md).replace(/\r\n?/g, '\n').split('\n').map(line => {
+      let l = line.replace(/\s+$/, '');
+      l = l.replace(STRIP_LABEL, '');           // drop "WCF:" etc. (keep "Note:")
+      l = l.replace(/^\s*>\s?/, '');             // blockquote marker
+      l = l.replace(/\*\*(.+?)\*\*/g, '$1');     // bold
+      l = l.replace(/`([^`]+)`/g, '$1');         // code
+      l = l.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '$1 ($2)'); // links → "label (url)"
+      return l;
+    }).join('\n').replace(/\n{3,}/g, '\n\n').trim();
+  }
+
+  bp.buildBrowseTxt = function (cards) {
+    const now = new Date();
+    const dateStr = now.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    const setLabels = [...new Set(cards.map(x => (DATA.sets[x.setKey] || {}).label).filter(Boolean))];
+    const lines = [
+      'PCA Ordination & Licensure Study',
+      `${cards.length} card${cards.length === 1 ? '' : 's'} · Generated ${dateStr}`,
+    ];
+    if (setLabels.length) lines.push(setLabels.join(' · '));
+    lines.push('='.repeat(60), '');
+    cards.forEach(({ card }, i) => {
+      const rc = resolveCardDetail(card);
+      const answerMd = rc._wcfSummaryMode ? rc.summary : rc.a;
+      lines.push(card.q, '', mdToText(answerMd));
+      if (card.refs && card.refs.length) lines.push('', `Refs: ${card.refs.join(' · ')}`);
+      if (i < cards.length - 1) lines.push('', '-'.repeat(60), '');
+    });
+    return lines.join('\n') + '\n';
+  };
+
+  // Download the text as a .txt file (Blob + object URL; no library, static-safe).
+  bp.downloadTxt = function (text) {
+    const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'pca-study-cards.txt';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
 
   // Leaving Browse for another mode resets the local export state so re-entering
