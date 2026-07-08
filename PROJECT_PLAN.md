@@ -199,6 +199,15 @@ KEEP modules + the HTML shell):**
         popup). Empty selection → inline warning, no dialog. Reuses
         `renderAnswer`/`renderRefs`/`escapeHtml`; Browse-local state, no SRS
         effect. Exports respect the WCF detail mode.
+      - **Print layout + .txt export** (`?v=62`/`pca-v62`, user follow-up): the
+        print stylesheet is a compact **white page** — 14pt body, 1in margins,
+        forced black-on-white (theme tints/boxes stripped), refs on one
+        dot-separated line, long WCF quotations break across pages. Added an
+        **Export .txt** button (`buildBrowseTxt`/`downloadTxt`) that downloads the
+        same selection as `pca-study-cards.txt` (Markdown flattened, standard
+        labels dropped) for self-formatting. Verified in Chromium (9/9: white page
+        from dark theme, 14pt, txt content/filename/warning) + the 27/27 behavior
+        suite still green.
       - Removed `js/data/subjects/theology_wcf.js` + `dev/build_theology_wcf.mjs`;
         added `wcf.js` + `browsePrint.js` to `index.html`/`sw.js`; bumped `?v=61`
         / `pca-v61`. Gates: `validate` 0 problems (1267 cards / 11 subjects, WCF

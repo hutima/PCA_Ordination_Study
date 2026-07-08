@@ -238,8 +238,15 @@ That changes the update workflow:
   selected builds a print-only DOM area (`#browsePrintArea`, hidden on screen,
   shown via `@media print` in `css/pca.css`) from the chosen cards and calls
   `window.print()` — native browser print/save-as-PDF, no PDF library, no popup.
-  State is Browse-local (`exportMode` + `selected`) and never touches SRS; it
-  resets on mode switch. WCF cards export in the current detail mode. Reuses
+  The print stylesheet is a **compact white page**: 14pt body, 1in margins, black
+  type, no callout boxes/tints (theme colours forced off), refs on a dot-
+  separated line, long WCF quotations allowed to break across pages. **Export
+  .txt** (`buildBrowseTxt`/`downloadTxt`) offers the same selection as a plain-
+  text file (`pca-study-cards.txt`, Blob download) for users who want to format
+  it themselves — Markdown flattened, bare standard labels dropped. Empty
+  selection shows an inline warning (no dialog/download). State is Browse-local
+  (`exportMode` + `selected`) and never touches SRS; it resets on mode switch.
+  WCF cards export in the current detail mode. Reuses
   `renderAnswer`/`renderRefs`/`escapeHtml`; browse `.browse-item`s carry stable
   `data-card-id`/`data-set-key`.
 - **SRS engine (reused, content-agnostic):** `js/domain/srs/{constants,
