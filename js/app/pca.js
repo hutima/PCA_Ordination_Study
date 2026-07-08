@@ -20,16 +20,17 @@ import {
   DATA, state, WEEKS, loadProgress, saveProgress, loadSelection, saveSelection, loadActivity,
   loadShuffle, saveShuffle, loadSelectorGroup, saveSelectorGroup, recordActivity,
   loadSpaced, saveSpaced, loadUnspacedReset, saveUnspacedReset, loadUnspaced, saveUnspaced,
-  loadXp, saveXp, addXp,
+  loadXp, saveXp, addXp, loadWcfDetail, saveWcfDetail,
 } from './store.js';
 import {
   effectiveSetKeys, cardsForKeys, shuffle, isWeak,
 } from './content.js';
 import { buildQuiz, quizDeckCards } from './quiz.js';
-import { renderAnswer, summarize, hasMoreThanSummary, directAnswer } from './answer.js';
+import { renderAnswer, summarize, hasMoreThanSummary, directAnswer, resolveCardDetail } from './answer.js';
 import { renderRefs } from './refs.js';
 import { applyOutcome, applyCatechismOutcome } from './srs.js';
 import { createModes } from './modes.js';
+import { createBrowsePrint } from './browsePrint.js';
 import { progressBodyHtml } from './progress.js';
 import { initPwaInstall, maybeScheduleInstallPrompt } from './pwaInstall.js';
 
@@ -298,18 +299,25 @@ function advance() {
   withCardAnchor(renderCard);
 }
 
+// ── Browse card export/print (selection mode + native window.print) ────
+const browsePrint = createBrowsePrint({
+  escapeHtml, renderAnswer, renderRefs, resolveCardDetail, DATA,
+  rerenderBrowse: () => renderCard(),
+});
+
 // ── Mode registry ──────────────────────────────────────────────────────
 const MODES = createModes({
   state, DATA, escapeHtml,
-  renderAnswer, summarize, hasMoreThanSummary, directAnswer, renderRefs,
+  renderAnswer, summarize, hasMoreThanSummary, directAnswer, renderRefs, resolveCardDetail,
   buildQuiz, applyOutcome, applyCatechismOutcome, getConfidencePct, rerender: renderCard, mark, move, toggleReveal,
   withCardAnchor, effectiveSetKeys, quizDeckCards, shuffle,
-  emptyState, navRowHtml, wireNav, setDeckMeta, EXAM_SIZE,
+  emptyState, navRowHtml, wireNav, setDeckMeta, EXAM_SIZE, browsePrint,
 });
 
 function setMode(modeId) {
   const mode = MODES.byId[modeId];
   if (!mode) return;
+  if (modeId !== 'browse') browsePrint.reset(); // leaving Browse ends any export selection
   state.mode = modeId;
   document.querySelectorAll('[data-mode]').forEach(b =>
     b.classList.toggle('active', b.getAttribute('data-mode') === modeId));
@@ -417,6 +425,7 @@ const WEEK_COLUMNS = [
   { key: 'bible',     label: 'Bible Content',            noun: 'sub-deck' },
   { key: 'doctrines', label: 'Doctrines & Proofs',       noun: 'sub-deck' },
   { key: 'theology',  label: 'Theology',                 noun: 'sub-deck' },
+  { key: 'confession', label: 'Westminster Confession',  noun: 'chapter' },
   { key: 'catechism', label: 'Catechism',                noun: 'deck' },
   { key: 'history',   label: 'History',                  noun: 'sub-deck' },
   { key: 'bco',       label: 'Book of Church Order',      noun: 'sub-deck' },
@@ -631,7 +640,7 @@ function renderSelector() {
         // Subjects with display `groups` (Bible Book Summaries by division, the
         // BCO by chapter block) render as nested sub-groups; the rest are flat.
         if (subj.groups && subj.groups.length) {
-          const noun = subj.id === 'bible_books' ? 'book' : 'sub-deck';
+          const noun = subj.id === 'bible_books' ? 'book' : subj.id === 'wcf' ? 'chapter' : 'sub-deck';
           const groups = subj.groups
             .map(g => ({ id: g.id, title: g.label, keys: g.keys, showSubject: false, noun, level: 2 }))
             .filter(g => groupLeafKeys(g).length);
@@ -686,6 +695,15 @@ function setSize(s) {
   try { localStorage.setItem('pca_text_size', s); } catch (e) {}
   syncToggleActive('[data-size]', 'data-size', s);
   shieldClicksBriefly(); // text-size change reflows the page — guard the ghost click
+}
+// WCF card detail (Full text / Summary). Full is the default so WCF questions
+// contain the full confession section; Summary is the opt-in concise view. The
+// change re-renders the current card/outline so WCF cards flip form immediately.
+function setWcfDetail(mode) {
+  state.wcfDetail = mode === 'summary' ? 'summary' : 'full';
+  saveWcfDetail();
+  syncToggleActive('[data-wcf-detail]', 'data-wcf-detail', state.wcfDetail);
+  renderCard();
 }
 function syncToggleActive(selector, attr, value) {
   document.querySelectorAll(selector).forEach(b =>
@@ -822,6 +840,7 @@ function init() {
   loadUnspacedReset();
   loadUnspaced(); // applies the daily reset using the loaded reset flag
   loadXp();
+  loadWcfDetail();
   loadSelectorGroup();
   installClickShield();
 
@@ -831,9 +850,12 @@ function init() {
     b.addEventListener('click', () => setFont(b.getAttribute('data-font'))));
   document.querySelectorAll('[data-size]').forEach(b =>
     b.addEventListener('click', () => setSize(b.getAttribute('data-size'))));
+  document.querySelectorAll('[data-wcf-detail]').forEach(b =>
+    b.addEventListener('click', () => setWcfDetail(b.getAttribute('data-wcf-detail'))));
   syncToggleActive('[data-theme-mode]', 'data-theme-mode', localStorage.getItem('pca_theme') || 'system');
   syncToggleActive('[data-font]', 'data-font', localStorage.getItem('pca_font') || 'sans');
   syncToggleActive('[data-size]', 'data-size', localStorage.getItem('pca_text_size') || 'medium');
+  syncToggleActive('[data-wcf-detail]', 'data-wcf-detail', state.wcfDetail);
 
   $('chooseSubjectBtn').addEventListener('click', openSelector);
   $('selectorDoneBtn').addEventListener('click', closeSelector);
