@@ -208,6 +208,20 @@ KEEP modules + the HTML shell):**
         labels dropped) for self-formatting. Verified in Chromium (9/9: white page
         from dark theme, 14pt, txt content/filename/warning) + the 27/27 behavior
         suite still green.
+      - **Cross-browser print + master checkbox** (`?v=63`/`pca-v63`, user-reported:
+        Chrome desktop printed a blank page; iOS printed at the wrong font size).
+        Root cause: an `@media print` region *inside* the app document — Chrome
+        renders a `display:none`→print-shown region blank, and iOS inherited the
+        app's `--text-scale`/text-size-adjust. Fix: `openBrowsePrint` now writes the
+        cards into a **self-contained hidden iframe** (`#browsePrintFrame`) with its
+        own `PRINT_CSS` (14pt, 1in, white, `text-size-adjust:100%`) and prints that
+        document — inheriting none of the app CSS. Removed the old `#browsePrintArea`
+        + `@media print` block from `css/pca.css`. Also replaced the "Select all
+        visible"/"Clear" buttons with a single top **Select / deselect all**
+        checkbox (`#browseSelectAllChk`, indeterminate on partial). Verified in
+        Chromium 12/12 (master checkbox select/clear/indeterminate; iframe non-blank
+        with body + question computed at 14pt / 18.667px on white; .txt still
+        downloads; no console errors).
       - Removed `js/data/subjects/theology_wcf.js` + `dev/build_theology_wcf.mjs`;
         added `wcf.js` + `browsePrint.js` to `index.html`/`sw.js`; bumped `?v=61`
         / `pca-v61`. Gates: `validate` 0 problems (1267 cards / 11 subjects, WCF
