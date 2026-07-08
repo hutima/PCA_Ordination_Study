@@ -351,7 +351,16 @@ a.qa-ref-inline {
 a.qa-ref-chip { text-decoration: none; transition: background .12s, border-color .12s; }
 
 /* ── Browse / outline mode ────────────────────────────────────────────── */
-.browse-controls { display: flex; gap: 8px; justify-content: flex-end; max-width: 760px; margin: 0 auto 14px; }
+.browse-controls { display: flex; gap: 8px; justify-content: flex-end; max-width: 760px; margin: 0 auto 14px; flex-wrap: wrap; align-items: center; }
+/* Selection mode (Print / Export): left-aligned toolbar + inline hint/warning. */
+.browse-export-controls { justify-content: flex-start; }
+.browse-export-hint { color: var(--muted); font-size: calc((13px) * var(--text-scale, 1)); flex-basis: 100%; }
+.browse-warn { color: #e0555a; font-size: calc((13px) * var(--text-scale, 1)); flex-basis: 100%; font-weight: 600; }
+#browsePrintBtn { margin-left: auto; }
+/* Per-card select checkbox, sitting beside the question in the summary row. */
+.browse-check { display: inline-flex; align-items: center; vertical-align: middle; margin-right: 10px; }
+.browse-check input { width: 18px; height: 18px; accent-color: var(--gold); cursor: pointer; }
+.browse-q { vertical-align: middle; }
 .browse-group { max-width: 760px; margin: 0 auto 18px; }
 .browse-group-title {
   font-family: var(--font-display); font-size: calc((12px) * var(--text-scale, 1)); letter-spacing: 2px;
@@ -637,3 +646,35 @@ html[data-theme="light"] .hm-l3 { background: rgba(142,108,30,0.70); }
   font-size: calc((15px) * var(--text-scale, 1));
 }
 .esv-token-input:focus { border-color: var(--gold-dim); outline: none; }
+
+/* ── Browse card export / print ───────────────────────────────────────── */
+/* The print-only area is built on demand by js/app/browsePrint.js and is
+   hidden on screen; @media print swaps it in for the rest of the app so only
+   the selected cards print. Long WCF quotations may break across pages. */
+#browsePrintArea { display: none; }
+@media print {
+  body.printing-browse > *:not(#browsePrintArea) { display: none !important; }
+  body.printing-browse #browsePrintArea {
+    display: block !important; color: #000; background: #fff;
+    font-family: Georgia, 'Times New Roman', serif; font-size: 12pt; line-height: 1.5;
+    max-width: 100%; padding: 0;
+  }
+  @page { margin: 18mm 16mm; }
+  #browsePrintArea .print-head { border-bottom: 2px solid #000; padding-bottom: 8px; margin-bottom: 16px; }
+  #browsePrintArea .print-head h1 { font-size: 18pt; margin: 0 0 4px; }
+  #browsePrintArea .print-meta, #browsePrintArea .print-sets { margin: 2px 0; font-size: 10pt; color: #333; }
+  #browsePrintArea .print-card { margin: 0 0 16px; padding: 0 0 8px; border-bottom: 1px solid #bbb; }
+  #browsePrintArea .print-q { font-size: 13pt; font-weight: 700; margin: 0 0 6px; break-after: avoid; }
+  #browsePrintArea .print-a { margin: 0 0 6px; }
+  #browsePrintArea .print-a p { margin: 0 0 6px; }
+  #browsePrintArea .print-a ul, #browsePrintArea .print-a ol { margin: 0 0 6px 20px; }
+  /* Provenance callouts (WCF:, Note:) → simple print blocks. */
+  #browsePrintArea .qa-callout { border-left: 3px solid #666; padding: 2px 0 2px 10px; margin: 0 0 6px; }
+  #browsePrintArea .qa-prov-label { font-size: 9pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #444; margin-bottom: 2px; }
+  #browsePrintArea .qa-refs { margin-top: 4px; }
+  #browsePrintArea .qa-ref-chip, #browsePrintArea .qa-ref-inline { color: #000; text-decoration: none; }
+  #browsePrintArea .qa-refs .qa-ref-chip { display: inline-block; border: 1px solid #999; border-radius: 4px; padding: 1px 6px; margin: 0 4px 4px 0; font-size: 9.5pt; }
+  #browsePrintArea table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 10.5pt; }
+  #browsePrintArea th, #browsePrintArea td { border: 1px solid #999; padding: 4px 7px; text-align: left; vertical-align: top; }
+  #browsePrintArea blockquote { border-left: 3px solid #999; margin: 6px 0; padding-left: 10px; color: #222; }
+}
