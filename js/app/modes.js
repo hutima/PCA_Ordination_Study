@@ -15,9 +15,9 @@ import { createPsalmReader } from './psalms.js';
 export function createModes(ctx) {
   const {
     state, DATA, escapeHtml, renderAnswer, summarize, hasMoreThanSummary, directAnswer, renderRefs,
-    buildQuiz, applyOutcome, applyCatechismOutcome, getConfidencePct, rerender, mark, move, toggleReveal, withCardAnchor,
+    resolveCardDetail, buildQuiz, applyOutcome, applyCatechismOutcome, getConfidencePct, rerender, mark, move, toggleReveal, withCardAnchor,
     effectiveSetKeys, quizDeckCards, shuffle, emptyState, navRowHtml, wireNav,
-    setDeckMeta, EXAM_SIZE,
+    setDeckMeta, EXAM_SIZE, browsePrint,
   } = ctx;
 
   // ── Review (self-check, progressive disclosure) ──────────────────────
@@ -25,15 +25,19 @@ export function createModes(ctx) {
     id: 'review', label: 'Review', usesDeck: true, focusable: true,
     title: 'Self-check flashcards: recall, reveal, grade yourself',
     render(area) {
-      const card = state.deck[state.pos];
+      // WCF cards resolve to Full-text or Summary form per the "WCF card detail"
+      // setting before rendering (grading still targets the raw deck card).
+      const card = resolveCardDetail(state.deck[state.pos]);
       const refsHtml = renderRefs(card.refs);
       // Short answers (memory verses etc.) render in full on reveal; longer
       // ones show a short summary first, with the full answer + quotations
-      // behind a tap-to-open expander so long card backs stay scannable.
-      const direct = directAnswer(card);
+      // behind a tap-to-open expander so long card backs stay scannable. WCF
+      // cards in Full-text mode always render the full section directly.
+      const direct = directAnswer(card) || card._wcfFull;
       const more = !direct && hasMoreThanSummary(card);
+      const fullLabel = card._wcfSummaryMode ? 'Full WCF text' : 'Full answer &amp; quotations';
       const fullBlock = more
-        ? `<details class="qa-full"><summary class="qa-full-toggle">Full answer &amp; quotations</summary>
+        ? `<details class="qa-full"><summary class="qa-full-toggle">${fullLabel}</summary>
              <div class="qa-answer">${renderAnswer(card.a)}</div></details>`
         : '';
       const revealBody = direct
@@ -118,7 +122,20 @@ export function createModes(ctx) {
     },
   };
 
-  // ── Browse (non-graded outline) ──────────────────────────────────────
+  // ── Browse (non-graded outline; card export/print) ───────────────────
+  // Each card is rendered with a WCF-detail-aware answer and stable
+  // data-card-id / data-set-key so the Print / Export selection workflow
+  // (js/app/browsePrint.js) can gather exactly the chosen cards.
+  function browseAnswerHtml(card) {
+    const rc = resolveCardDetail(card);
+    if (rc._wcfSummaryMode) {
+      // Summary mode: concise answer up front, full WCF text behind an expander.
+      return `<div class="qa-summary">${renderAnswer(rc.summary)}</div>
+        <details class="qa-full"><summary class="qa-full-toggle">Full WCF text</summary>
+          <div class="qa-answer">${renderAnswer(rc.a)}</div></details>`;
+    }
+    return renderAnswer(rc.a);
+  }
   const browse = {
     id: 'browse', label: 'Browse', usesDeck: false, focusable: false,
     title: 'Read a subject as an outline — tap a question to expand the answer',
@@ -127,25 +144,23 @@ export function createModes(ctx) {
       setDeckMeta('');
       if (!keys.length) { area.innerHTML = emptyState('Choose one or more subjects, then browse them here as an outline.'); return; }
       let total = 0;
-      let html = `<div class="browse-controls">
-          <button class="ctrl-btn" id="browseExpandBtn" type="button">Expand all</button>
-          <button class="ctrl-btn" id="browseCollapseBtn" type="button">Collapse all</button>
-        </div>`;
+      let html = browsePrint.controlsHtml();
       for (const k of keys) {
         const set = DATA.sets[k];
         if (!set) continue;
         html += `<div class="browse-group"><div class="browse-group-title">${escapeHtml(set.label)} · ${set.cards.length}</div>`;
         for (const c of set.cards) {
           total++;
-          html += `<details class="browse-item"><summary>${escapeHtml(c.q)}</summary>
-            <div class="browse-a">${renderAnswer(c.a)}${renderRefs(c.refs)}</div></details>`;
+          html += `<details class="browse-item" data-card-id="${escapeHtml(c.id)}" data-set-key="${escapeHtml(k)}">
+            <summary>${browsePrint.checkboxHtml(c.id)}<span class="browse-q">${escapeHtml(c.q)}</span></summary>
+            <div class="browse-a">${browseAnswerHtml(c)}${renderRefs(c.refs)}</div></details>`;
         }
         html += `</div>`;
       }
       area.innerHTML = html;
-      setDeckMeta(`Browsing <strong>${total}</strong> cards across <strong>${keys.length}</strong> sub-decks`);
-      area.querySelector('#browseExpandBtn').addEventListener('click', () => area.querySelectorAll('details').forEach(d => { d.open = true; }));
-      area.querySelector('#browseCollapseBtn').addEventListener('click', () => area.querySelectorAll('details').forEach(d => { d.open = false; }));
+      const modeNote = browsePrint.exportMode ? ' · <strong>select cards to print</strong>' : '';
+      setDeckMeta(`Browsing <strong>${total}</strong> cards across <strong>${keys.length}</strong> sub-decks${modeNote}`);
+      browsePrint.wire(area);
     },
   };
 

@@ -9,8 +9,28 @@
 import { renderMarkdown } from '../utils/markdown.js';
 import { escapeHtml } from '../utils/text.js';
 import { linkifyScripture } from './refs.js';
+import { state } from './store.js';
 
 const MD_OPTS = { linkify: linkifyScripture };
+
+// ── WCF card detail (Full text / Summary) ───────────────────────────────
+// Dedicated Westminster Confession cards (card.wcf === true) carry BOTH the
+// full confession section (card.a, provenance-labeled `WCF:`) and an authored
+// concise `card.summary`. The "WCF card detail" setting (state.wcfDetail,
+// default 'full') decides which is the MAIN answer. Returns a display-ready
+// shallow clone; non-WCF cards pass through untouched. Grading is unaffected —
+// the controller grades the raw deck card by position, not this clone.
+//   full    → render card.a (full text) directly, no teaser/expander.
+//   summary → concise summary is the main answer, with the full text available
+//             behind a "Full WCF text" expander (flagged _wcfSummaryMode).
+export function resolveCardDetail(card) {
+  if (!card || !card.wcf) return card;
+  if (state.wcfDetail === 'summary') return { ...card, _wcfSummaryMode: true };
+  const clone = { ...card };
+  delete clone.summary; // full mode: no teaser — the full text is the answer
+  clone._wcfFull = true;
+  return clone;
+}
 
 const STANDARD_LABELS = {
   WSC: 'Westminster Shorter Catechism', WLC: 'Westminster Larger Catechism',

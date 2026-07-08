@@ -2,7 +2,8 @@
 
 > **Resume doc.** This file is the source of truth for the build so work can
 > continue in a fresh chat. Update the **Status** and **Next steps** sections
-> as phases complete. Work happens on branch `claude/upbeat-edison-dz4in0`.
+> as phases complete. Latest work: branch `claude/wcf-coverage-browse-export-r37y4i`
+> (Phase 30 — full WCF coverage + card-detail setting + Browse export/print).
 
 ## 1. Goal
 
@@ -150,6 +151,65 @@ KEEP modules + the HTML shell):**
 
 ## 7. Phases & status
 
+- [x] **Phase 30 — Full WCF coverage + Full/Summary setting + Browse export
+      (user-requested).** Release `?v=61`/`pca-v61`. Replaced the old §1-only
+      `theo-wcf` theology sub-deck (26 chapter cards, each quoting only §1 with an
+      "open the chip for the rest" note) with a dedicated **Westminster Confession
+      of Faith** subject covering every section in full.
+      - **Source cleaned + verified (`js/data/wcf.js`).** The original PDF pull had
+        real defects: kerning splits (`per mission`, `infir mities`, `tur n`,
+        `deter mine`, `inter meddle`, `ser pent`), glued proof-marker letters
+        (`angelsf`, `Fatherg`, `familiesf`, `salvationa`, `perishb`), glued words
+        (`allthings`×11, `becalled`, `incases`, `beworshiped`, `bepreached`), the
+        two-column-scrambled **1.2 canon list**, **six sections with proof-text
+        prose spliced into the confession text** (3.8, 8.1, 11.6, 15.6, 16.7,
+        19.6 — 8.1's Eph 2 bleed had no inline citation, so an early citation-scan
+        missed it), and a **truncated 33.2**. All repaired and **cross-checked
+        word-for-word against the user-supplied authoritative "WCF text with proof
+        references" export** — 171/171 sections match (the only intentional
+        divergence is the de-scrambled 1.2 order). "unexcusable" is the
+        authoritative spelling and is kept.
+      - **Dedicated subject** `js/data/subjects/wcf.js` (id `wcf`, order 2.7, 33
+        chapter sets `wcf-01`…`wcf-33`, **173 cards**), built by
+        `dev/build_wcf_subject.mjs` (which also re-cleans `wcf.js` in place —
+        idempotent). Each card carries the full section (`a`, `WCF:`-labeled) + an
+        **authored concise `summary`** + base ref `WCF <ch>.<sec>` + proof refs +
+        `wcf: true`. `subject.groups` = six theological divisions for By-subject.
+      - **Sections split (Part D):** only **WCF 19.6** and **23.3** — after the
+        proof-text bleed was excised these were the sole sections still >1200
+        chars with multiple distinct claims. Each → two cards (`wcf-19-6a`/`b`,
+        `wcf-23-3a`/`b`), question labeled "(Part N of 2)", a "part N of 2" note,
+        base ref `WCF 19.6`/`23.3` on both, coverage contiguous and complete.
+        (The apparent length of 3.8/11.6/15.6/16.7 was proof-text bleed, not real
+        length — they stay single cards.)
+      - **WCF card detail setting (Part E):** a **normal Settings** row (Full text /
+        Summary), default **Full text**, `state.wcfDetail`/`pca_wcf_detail_v1`.
+        `resolveCardDetail()` (`answer.js`) resolves WCF cards at render — full =
+        the whole section shown directly; summary = the concise paraphrase with a
+        "Full WCF text" expander. Only affects `wcf: true` cards; ordinary cards
+        that merely cite the WCF are untouched.
+      - **Week plan (Part F):** new `confession` column in `WEEK_COLUMNS` +
+        per-week `confession` categories in `week_plan.js`; all 33 chapters placed
+        once across weeks 2–12 (2:1–2, 3:3–5, 4:6&9, 5:7–8, 6:10–13, 7:14–18,
+        8:19–24, 9:25–26&30–31, 10:32–33, 12:27–29). No duplicates.
+      - **Browse export/print (Part G):** `js/app/browsePrint.js` — Print/Export →
+        selection mode (checkboxes + Select all visible / Clear / Cancel / Print
+        selected). Builds a print-only `#browsePrintArea` (hidden on screen, shown
+        via `@media print`) and calls `window.print()` (native, no PDF lib, no
+        popup). Empty selection → inline warning, no dialog. Reuses
+        `renderAnswer`/`renderRefs`/`escapeHtml`; Browse-local state, no SRS
+        effect. Exports respect the WCF detail mode.
+      - Removed `js/data/subjects/theology_wcf.js` + `dev/build_theology_wcf.mjs`;
+        added `wcf.js` + `browsePrint.js` to `index.html`/`sw.js`; bumped `?v=61`
+        / `pca-v61`. Gates: `validate` 0 problems (1267 cards / 11 subjects, WCF
+        173/33), `audit` baseline 8 (no new flags), `check_sw` consistent (52
+        precached / 20 modules). Chromium smoke: **27/27** (load, setting default/
+        persist, full-vs-summary render, split coverage, week column, full Browse
+        export flow, Review/Quiz/Mock regression); print output verified visually.
+      - **Known limitation:** the new WCF cards have new ids (`wcf-<ch>-<sec>`), so
+        SRS progress on the 26 old `theo-wcf-*` cards does not carry over (the deck
+        was fundamentally restructured from per-chapter §1 to per-section full
+        coverage).
 - [x] **Phase 0 — Import baseline.** Duff app copied into repo, serves cleanly,
       committed. Source docs → `source_materials/`. (commit: Phase 0)
 - [x] **Phase 1 — Content model proven on BCO.** `js/data/subjects/bco.js`

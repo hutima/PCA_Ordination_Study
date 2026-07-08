@@ -17,6 +17,7 @@ export const SPACED_KEY = 'pca_spaced_v1';
 export const UNSPACED_RESET_KEY = 'pca_unspaced_reset_v1';
 export const UNSPACED_KEY = 'pca_unspaced_v1';
 export const XP_KEY = 'pca_xp_v1';
+export const WCF_DETAIL_KEY = 'pca_wcf_detail_v1';
 
 // The official 12-week study plan (Chapell/Meek "Schedule of Assignments").
 export const WEEKS = (typeof window !== 'undefined' && window.PCA_WEEKS) || [];
@@ -27,6 +28,7 @@ export const state = {
   selectorGroupBy: 'week', // selector modal grouping: 'subject' | 'week' (defaults to week)
   shuffleOn: true,         // shuffle deck order (persisted)
   spacedOn: true,          // spaced-repetition master switch (persisted); off = unspaced
+  wcfDetail: 'full',       // WCF card detail: 'full' (default) shows the full confession text, 'summary' a concise paraphrase (persisted)
   unspacedDailyReset: true,// re-present the unspaced deck each new day (persisted)
   unspacedDone: new Set(), // card ids retired in the current unspaced run (persisted, day-stamped)
   flipArchived: new Set(), // card ids retired ("Easy") this flip-deck session
@@ -99,6 +101,16 @@ export function loadSpaced() {
 }
 export function saveSpaced() {
   try { localStorage.setItem(SPACED_KEY, state.spacedOn ? 'on' : 'off'); } catch (e) {}
+}
+// WCF card detail. Default 'full' (the user wants WCF questions to contain the
+// full confession section); only an explicit saved 'summary' switches to the
+// concise view.
+export function loadWcfDetail() {
+  try { state.wcfDetail = localStorage.getItem(WCF_DETAIL_KEY) === 'summary' ? 'summary' : 'full'; }
+  catch (e) { state.wcfDetail = 'full'; }
+}
+export function saveWcfDetail() {
+  try { localStorage.setItem(WCF_DETAIL_KEY, state.wcfDetail === 'summary' ? 'summary' : 'full'); } catch (e) {}
 }
 export function loadUnspacedReset() {
   // Default ON; only an explicit saved 'off' keeps retired cards across days.

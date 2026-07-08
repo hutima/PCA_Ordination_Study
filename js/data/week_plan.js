@@ -11,7 +11,10 @@
 //
 // Every column is a set of selectable study decks:
 //   outlines / contents : { sub, books: ['bk-…'] }  one selectable set per book
-//   bible/doctrines/theology/history/bco/catechism/hotTopic : { sub?, sets: ['…'] }
+//   bible/doctrines/theology/confession/history/bco/catechism/hotTopic : { sub?, sets: ['…'] }
+//   confession          : { sub, sets: ['wcf-NN'] } the Westminster Confession
+//                         chapters assigned that week (js/data/subjects/wcf.js);
+//                         all 33 chapters are placed across weeks 2–12, once each.
 //   personal            : { sub, sets }   week 1 only (orientation)
 //   focus               : '…'             a leading note (weeks 1 and 13)
 //   A null/absent category is hidden for that week.
@@ -53,7 +56,8 @@
       outlines: { sub: 'Genesis–Exodus', books: ['bk-genesis', 'bk-exodus'] },
       contents: { sub: 'Joshua–Ruth', books: ['bk-joshua', 'bk-judges', 'bk-ruth'] },
       bible: { sub: 'A. Whole Bible', sets: ['bc-whole'] },
-      theology: { sub: 'A–B. Introduction & the Bible', sets: ['th-a', 'theo-wcf'] },
+      theology: { sub: 'A–B. Introduction & the Bible', sets: ['th-a'] },
+      confession: { sub: 'WCF 1–2 · Scripture; God & the Trinity', sets: ['wcf-01', 'wcf-02'] },
       catechism: { sub: 'WSC 1–3, 89–90', sets: ['wsc-wk2'] },
       history: { sub: 'A. General', sets: ['ch-overview'] },
       bco: { sub: 'A. Preface & Principles (Preface, ch. 1)', sets: ['bco-comp-foundations'] },
@@ -67,6 +71,7 @@
       contents: { sub: '1 Samuel–2 Chronicles', books: ['bk-1-samuel', 'bk-2-samuel', 'bk-1-kings', 'bk-2-kings', 'bk-1-chronicles', 'bk-2-chronicles'] },
       bible: { sub: 'B. OT: General — divisions of the OT & outline of OT history', sets: ['bc-whole'] },
       theology: { sub: 'C. God & His World', sets: ['th-b'] },
+      confession: { sub: 'WCF 3–5 · Decree, Creation, Providence', sets: ['wcf-03', 'wcf-04', 'wcf-05'] },
       catechism: { sub: 'WSC 4–11', sets: ['wsc-wk3'] },
       history: { sub: 'B. Denominations', sets: ['ch-denominations'] },
       bco: { sub: 'B. The Church & Its Members (ch. 2–6)', sets: ['bco-officers'] },
@@ -81,6 +86,7 @@
       bible: { sub: 'C. OT: Key People', sets: ['bc-ot-people'] },
       doctrines: { sub: 'TULIP — the Five Points', sets: ['dp-tulip'] },
       theology: { sub: 'D. Humankind', sets: ['th-c'] },
+      confession: { sub: 'WCF 6, 9 · Sin & Free Will', sets: ['wcf-06', 'wcf-09'] },
       catechism: { sub: 'WSC 12–19', sets: ['wsc-wk4'] },
       history: { sub: 'C. Events', sets: ['ch-events'] },
       bco: { sub: 'C. Church Officers (ch. 7–9)', sets: ['bco-comp-members-officers'] },
@@ -94,6 +100,7 @@
       contents: { sub: 'Job–Proverbs', books: ['bk-job', 'bk-psalms', 'bk-proverbs'] },
       bible: { sub: 'D. OT: Key Passages', sets: ['bc-ot-passages'] },
       theology: { sub: 'E. God’s Way of Salvation', sets: ['th-d'] },
+      confession: { sub: 'WCF 7–8 · Covenant & Christ the Mediator', sets: ['wcf-07', 'wcf-08'] },
       catechism: { sub: 'WSC 20–28', sets: ['wsc-wk5'] },
       history: { sub: 'D. Definitions', sets: ['ch-terms'] },
       bco: { sub: 'D. Church Courts (ch. 10–15)', sets: ['bco-comp-courts', 'bco-gov-courts'] },
@@ -107,6 +114,7 @@
       contents: { sub: 'Ecclesiastes, Song of Songs, Lamentations', books: ['bk-ecclesiastes', 'bk-song-of-songs', 'bk-lamentations'] },
       bible: { sub: 'E. OT: Key Events', sets: ['bc-ot-events'] },
       theology: { sub: 'F. Salvation Accomplished', sets: ['th-e'] },
+      confession: { sub: 'WCF 10–13 · Calling, Justification, Adoption, Sanctification', sets: ['wcf-10', 'wcf-11', 'wcf-12', 'wcf-13'] },
       catechism: { sub: 'WSC 29–36', sets: ['wsc-wk6'] },
       history: { sub: 'E. Key People (1–9)', sets: ['ch-people'] },
       bco: { sub: 'E. Church Orders (ch. 16–24)', sets: ['bco-comp-vocation', 'bco-courts'] },
@@ -121,6 +129,7 @@
       bible: { sub: 'F. NT: General', sets: ['bc-nt-general'] },
       doctrines: { sub: 'ORDO — the Ordo Salutis', sets: ['dp-ordo'] },
       theology: { sub: 'G. Salvation Applied', sets: ['th-f'] },
+      confession: { sub: 'WCF 14–18 · Faith, Repentance, Good Works, Perseverance, Assurance', sets: ['wcf-14', 'wcf-15', 'wcf-16', 'wcf-17', 'wcf-18'] },
       catechism: { sub: 'WSC 85–87', sets: ['wsc-wk7'] },
       history: { sub: 'E. Key People (10–17)', sets: ['ch-people'] },
       bco: { sub: 'F. Congregational Meetings; Amending the Constitution (ch. 25–26)', sets: ['bco-gov-ministry'] },
@@ -134,6 +143,7 @@
       contents: { sub: 'Jonah–Habakkuk', books: ['bk-jonah', 'bk-micah', 'bk-nahum', 'bk-habakkuk'] },
       bible: { sub: 'G. NT: Key People', sets: ['bc-nt-people'] },
       theology: { sub: 'H. The Christian Life', sets: ['th-g'] },
+      confession: { sub: 'WCF 19–24 · Law, Liberty, Worship, Vows, Magistrate, Marriage', sets: ['wcf-19', 'wcf-20', 'wcf-21', 'wcf-22', 'wcf-23', 'wcf-24'] },
       catechism: { sub: 'WSC 39, 82–84', sets: ['wsc-wk8'] },
       history: { sub: 'E. Key People (18–25)', sets: ['ch-people'] },
       bco: { sub: 'G. Principles of Discipline (ch. 27–30)', sets: ['bco-comp-discipline'] },
@@ -147,6 +157,7 @@
       contents: { sub: 'Zephaniah–Malachi', books: ['bk-zephaniah', 'bk-haggai', 'bk-zechariah', 'bk-malachi'] },
       bible: { sub: 'H. NT: Key Passages (1–30)', sets: ['bc-nt-passages'] },
       theology: { sub: 'I. The Church', sets: ['th-h'] },
+      confession: { sub: 'WCF 25–26, 30–31 · Church, Communion, Censures, Synods', sets: ['wcf-25', 'wcf-26', 'wcf-30', 'wcf-31'] },
       history: { sub: 'E. Key People (26–34)', sets: ['ch-people'] },
       bco: { sub: 'H. The Process of Discipline (ch. 31–38)', sets: ['bco-discipline'] },
       hotTopic: { sets: ['ht-subscription', 'ht-federal-vision'] },
@@ -160,6 +171,7 @@
       bible: { sub: 'H. NT: Key Passages (31–59)', sets: ['bc-nt-passages'] },
       doctrines: { sub: 'Evangelism Plan — explain the gospel', sets: ['dp-gospel'] },
       theology: { sub: 'J. The Last Things', sets: ['th-i'] },
+      confession: { sub: 'WCF 32–33 · State after Death, Resurrection, Last Judgment', sets: ['wcf-32', 'wcf-33'] },
       catechism: { sub: 'WSC 37–38', sets: ['wsc-wk10'] },
       history: { sub: 'E. Key People (35–41)', sets: ['ch-people'] },
       bco: { sub: 'I. Review & Control; Jurisdiction (ch. 39–46)', sets: ['bco-comp-review'] },
@@ -185,6 +197,7 @@
       contents: { sub: '1–3 John, Jude', books: ['bk-1-john', 'bk-2-john', 'bk-3-john', 'bk-jude'] },
       bible: { sub: 'I. NT: Key Topics (16–30)', sets: ['bc-nt-topics'] },
       theology: { sub: 'L. Sacraments', sets: ['sac-general', 'sac-baptism', 'sac-supper'] },
+      confession: { sub: 'WCF 27–29 · Sacraments, Baptism, the Lord’s Supper', sets: ['wcf-27', 'wcf-28', 'wcf-29'] },
       catechism: { sub: 'WSC 88, 91–98', sets: ['wsc-wk12'] },
       hotTopic: { sets: ['ht-paedocommunion'] },
     },
