@@ -233,22 +233,25 @@ That changes the update workflow:
   deck card by position. `setWcfDetail()` in `pca.js` persists + re-renders. Full
   text is the default so WCF questions contain the whole section.
 - **Browse card export/print (`js/app/browsePrint.js`, `createBrowsePrint(ctx)`):**
-  a "Print / Export" button in Browse enters a local selection mode (per-card
-  checkboxes + Select all visible / Clear / Cancel / Print selected). Print
-  selected builds a print-only DOM area (`#browsePrintArea`, hidden on screen,
-  shown via `@media print` in `css/pca.css`) from the chosen cards and calls
-  `window.print()` — native browser print/save-as-PDF, no PDF library, no popup.
-  The print stylesheet is a **compact white page**: 14pt body, 1in margins, black
-  type, no callout boxes/tints (theme colours forced off), refs on a dot-
-  separated line, long WCF quotations allowed to break across pages. **Export
-  .txt** (`buildBrowseTxt`/`downloadTxt`) offers the same selection as a plain-
-  text file (`pca-study-cards.txt`, Blob download) for users who want to format
-  it themselves — Markdown flattened, bare standard labels dropped. Empty
-  selection shows an inline warning (no dialog/download). State is Browse-local
-  (`exportMode` + `selected`) and never touches SRS; it resets on mode switch.
-  WCF cards export in the current detail mode. Reuses
-  `renderAnswer`/`renderRefs`/`escapeHtml`; browse `.browse-item`s carry stable
-  `data-card-id`/`data-set-key`.
+  a "Print / Export" button in Browse enters a local selection mode: a top
+  **master Select/deselect-all checkbox** (`#browseSelectAllChk`, with an
+  indeterminate state for partial selection) + per-card checkboxes, Cancel, Print
+  selected, and Export .txt. **Print** renders the chosen cards into a
+  **self-contained hidden iframe** (`#browsePrintFrame`) whose own inline
+  `PRINT_CSS` gives a **compact white page** — 14pt body, 1in margins, black type,
+  no callout boxes/tints, refs on a dot-separated line, `text-size-adjust:100%`,
+  long WCF quotations allowed to break across pages — then calls the iframe
+  window's `print()`. Printing from a *separate document* (not an `@media print`
+  region in the app) is deliberate: an in-app region printed **blank on Chrome
+  desktop** and inherited the app's `--text-scale`/iOS text-size-adjust (wrong
+  font size on iOS); the iframe inherits none of the app CSS. No PDF library, no
+  popup. **Export .txt** (`buildBrowseTxt`/`downloadTxt`) offers the same
+  selection as a plain-text file (`pca-study-cards.txt`, Blob download) — Markdown
+  flattened, bare standard labels dropped. Empty selection shows an inline warning
+  (no dialog/download). State is Browse-local (`exportMode` + `selected`), never
+  touches SRS, resets on mode switch. WCF cards export in the current detail mode.
+  Reuses `renderAnswer`/`renderRefs`/`escapeHtml`; browse `.browse-item`s carry
+  stable `data-card-id`/`data-set-key`.
 - **SRS engine (reused, content-agnostic):** `js/domain/srs/{constants,
   scheduler,confidence}.js`. Outcomes `again`/`pass`/`easy` =
   Hard/Uncertain/Easy. Do not edit lightly. `confidence.js` also holds
