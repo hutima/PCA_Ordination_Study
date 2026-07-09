@@ -34,7 +34,6 @@ import { createBrowsePrint } from './browsePrint.js';
 import { progressBodyHtml } from './progress.js';
 import { initPwaInstall, maybeScheduleInstallPrompt } from './pwaInstall.js';
 
-const EXAM_SIZE = 25;
 const $ = (id) => document.getElementById(id);
 const escapeText = escapeHtml; // template-literal alias
 
@@ -310,8 +309,8 @@ const MODES = createModes({
   state, DATA, escapeHtml,
   renderAnswer, summarize, hasMoreThanSummary, directAnswer, renderRefs, resolveCardDetail,
   buildQuiz, applyOutcome, applyCatechismOutcome, getConfidencePct, rerender: renderCard, mark, move, toggleReveal,
-  withCardAnchor, effectiveSetKeys, quizDeckCards, shuffle,
-  emptyState, navRowHtml, wireNav, setDeckMeta, EXAM_SIZE, browsePrint,
+  withCardAnchor, effectiveSetKeys, shuffle,
+  emptyState, navRowHtml, wireNav, setDeckMeta, browsePrint,
 });
 
 function setMode(modeId) {
@@ -791,22 +790,13 @@ function initKeyboard() {
     if (/INPUT|TEXTAREA|SELECT/.test(tag)) return;
     if (document.querySelector('.consent-overlay.show')) return; // a modal is open
     if (state.mode === 'browse') return; // native <details> handles keyboard
-    // A mode may handle its own keys (e.g. catechism prev/next/reveal).
+    // A mode may handle its own keys (exam pick/reveal/grade/next, catechism
+    // prev/next/reveal).
     const activeMode = MODES.byId[state.mode];
     if (activeMode && activeMode.onKey && activeMode.onKey(e)) return;
-    if (state.mode === 'exam') {
-      const ex = state.exam;
-      if (!ex || ex.done) return;
-      const q = ex.quizzes[ex.pos];
-      if (/^[1-9]$/.test(e.key) && q.picked < 0) {
-        const i = Number(e.key) - 1;
-        if (i < q.choices.length) MODES.byId.exam.pick(i);
-      } else if ((e.code === 'Space' || e.key === 'Enter' || e.key === 'ArrowRight') && q.picked >= 0) {
-        if (/BUTTON|A/.test(tag)) return;
-        e.preventDefault(); MODES.byId.exam.next();
-      }
-      return;
-    }
+    // The exam doesn't use the shared deck; unhandled keys must not leak into
+    // deck navigation (state.deck still holds the previous mode's deck).
+    if (state.mode === 'exam') return;
     if (!state.deck.length) return;
     if (e.key === 'ArrowRight') { move(1); return; }
     if (e.key === 'ArrowLeft') { move(-1); return; }

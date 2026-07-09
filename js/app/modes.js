@@ -11,13 +11,14 @@
 // dependency graph acyclic.
 
 import { createPsalmReader } from './psalms.js';
+import { createExamMode } from './exam.js';
 
 export function createModes(ctx) {
   const {
     state, DATA, escapeHtml, renderAnswer, summarize, hasMoreThanSummary, directAnswer, renderRefs,
     resolveCardDetail, buildQuiz, applyOutcome, applyCatechismOutcome, getConfidencePct, rerender, mark, move, toggleReveal, withCardAnchor,
-    effectiveSetKeys, quizDeckCards, shuffle, emptyState, navRowHtml, wireNav,
-    setDeckMeta, EXAM_SIZE, browsePrint,
+    effectiveSetKeys, emptyState, navRowHtml, wireNav,
+    setDeckMeta, browsePrint,
   } = ctx;
 
   // ── Review (self-check, progressive disclosure) ──────────────────────
@@ -164,98 +165,8 @@ export function createModes(ctx) {
     },
   };
 
-  // ── Mock exam (finite, mixed, scored) ────────────────────────────────
-  const exam = {
-    id: 'exam', label: 'Mock exam', usesDeck: false, focusable: false,
-    title: 'A timed-style mixed mock exam with a scored summary',
-    start() {
-      const pool = quizDeckCards();
-      shuffle(pool);
-      const cards = pool.slice(0, Math.min(EXAM_SIZE, pool.length));
-      state.exam = { cards, quizzes: cards.map(buildQuiz), pos: 0, done: false };
-    },
-    pick(idx) {
-      const ex = state.exam;
-      if (!ex || ex.done) return;
-      const q = ex.quizzes[ex.pos];
-      if (q.picked >= 0) return;
-      q.picked = idx;
-      applyOutcome(ex.cards[ex.pos], idx === q.correctIndex ? 'easy' : 'again');
-      rerender();
-    },
-    next() {
-      const ex = state.exam;
-      if (!ex) return;
-      if (ex.pos + 1 >= ex.cards.length) ex.done = true;
-      else ex.pos += 1;
-      rerender();
-    },
-    render(area) {
-      const ex = state.exam;
-      if (!ex || !ex.cards.length) {
-        setDeckMeta('');
-        area.innerHTML = emptyState('Not enough quiz-ready material for a mock exam in this selection. Choose one or more subjects first, or pick more of them.');
-        return;
-      }
-      if (ex.done) return renderResults(area);
-      const card = ex.cards[ex.pos];
-      const q = ex.quizzes[ex.pos];
-      const feedback = q.picked >= 0
-        ? `<div class="quiz-feedback ${q.picked === q.correctIndex ? 'correct' : 'wrong'}">${q.picked === q.correctIndex ? '✓ Correct' : '✗ Not quite'}</div>${renderRefs(card.refs)}`
-        : '';
-      const last = ex.pos + 1 >= ex.cards.length;
-      area.innerHTML = `
-        <div class="qa-card revealed">
-          <div class="qa-deck-label">Mock exam · ${escapeHtml(card._setLabel)}</div>
-          <div class="qa-question">${escapeHtml(card.q)}</div>
-          <div class="quiz-choices">${renderChoices(q)}</div>
-          ${feedback}
-        </div>
-        <div class="nav-row">
-          <button class="nav-btn nav-next" id="examNextBtn" type="button" ${q.picked >= 0 ? '' : 'disabled'}>${last ? 'See results ›' : 'Next ›'}</button>
-        </div>`;
-      setDeckMeta(`Mock exam — question <strong>${ex.pos + 1}</strong> of <strong>${ex.cards.length}</strong>`);
-      area.querySelectorAll('.quiz-choice').forEach(btn =>
-        btn.addEventListener('click', () => exam.pick(Number(btn.dataset.choice))));
-      const nb = area.querySelector('#examNextBtn');
-      if (nb) nb.addEventListener('click', () => exam.next());
-    },
-  };
-  function renderResults(area) {
-    const ex = state.exam;
-    const total = ex.cards.length;
-    const correct = ex.quizzes.filter(q => q.picked === q.correctIndex).length;
-    const pct = total ? Math.round((correct / total) * 100) : 0;
-    const bySub = new Map();
-    ex.cards.forEach((c, i) => {
-      const key = c._setLabel || 'Other';
-      const rec = bySub.get(key) || { c: 0, n: 0 };
-      rec.n += 1;
-      if (ex.quizzes[i].picked === ex.quizzes[i].correctIndex) rec.c += 1;
-      bySub.set(key, rec);
-    });
-    const subHtml = [...bySub.entries()].map(([label, r]) =>
-      `<div class="review-item">${escapeHtml(label)}<span style="float:right;color:var(--muted)">${r.c}/${r.n}</span></div>`).join('');
-    const missed = ex.cards.map((c, i) => ({ c, q: ex.quizzes[i] })).filter(x => x.q.picked !== x.q.correctIndex);
-    const missedHtml = missed.length
-      ? `<div class="prog-section-title">Review these (${missed.length})</div>` + missed.map(x =>
-          `<div class="review-item">${escapeHtml(x.c.q)}
-             <div style="color:var(--gold-light);margin-top:4px;font-size:14px">${escapeHtml(x.q.choices[x.q.correctIndex])}</div></div>`).join('')
-      : `<div class="prog-section-title">Perfect score — every question correct.</div>`;
-    setDeckMeta('');
-    area.innerHTML = `
-      <div class="qa-card revealed exam-results">
-        <div class="qa-deck-label">Mock exam · results</div>
-        <div class="exam-score">${correct} / ${total} <span class="exam-score-pct">${pct}%</span></div>
-        <div class="prog-section-title">By subject</div>
-        ${subHtml}
-        ${missedHtml}
-        <div class="nav-row" style="margin-top:18px">
-          <button class="nav-btn nav-next" id="examRetakeBtn" type="button">Take another ›</button>
-        </div>
-      </div>`;
-    area.querySelector('#examRetakeBtn').addEventListener('click', () => { exam.start(); rerender(); });
-  }
+  // ── Mock exam (written-exam practice; see js/app/exam.js) ────────────
+  const exam = createExamMode(ctx);
 
   // ── Catechisms (WSC / WLC full text, dropdown-driven recall) ─────────
   // Q&A straight through the public-domain Westminster catechisms: pick a

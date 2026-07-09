@@ -179,6 +179,42 @@ a.qa-ref-inline {
 }
 .quiz-feedback.correct { color: #7ab88a; }
 .quiz-feedback.wrong { color: #c77070; }
+/* One-line explanation under a True/False verdict. */
+.quiz-note { margin-top: 8px; color: var(--muted); font-size: calc((14px) * var(--text-scale, 1)); line-height: 1.5; }
+/* True/False renders as a side-by-side pair. */
+.quiz-choices-tf { flex-direction: row; }
+.quiz-choices-tf .quiz-choice { flex: 1; text-align: center; }
+
+/* ── Mock exam (written-exam practice) ────────────────────────────────── */
+.exam-intro { color: var(--muted); font-size: calc((14px) * var(--text-scale, 1)); line-height: 1.55; margin: 0 0 14px; text-align: center; }
+.exam-sections { display: flex; flex-direction: column; gap: 10px; }
+.exam-section-card {
+  display: flex; flex-direction: column; align-items: stretch; gap: 4px; width: 100%;
+  text-align: left; padding: 14px 16px; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--surface); color: var(--cream);
+  cursor: pointer; transition: border-color .15s, background .15s;
+}
+.exam-section-card:disabled { opacity: 0.55; cursor: default; }
+.exam-section-title { font-family: var(--font-display); font-size: calc((16px) * var(--text-scale, 1)); color: var(--gold-light); }
+.exam-section-kinds { font-size: calc((13px) * var(--text-scale, 1)); letter-spacing: 0.4px; }
+.exam-section-desc { font-size: calc((13px) * var(--text-scale, 1)); color: var(--muted); line-height: 1.5; }
+.exam-section-meta { font-size: calc((12px) * var(--text-scale, 1)); color: var(--muted); margin-top: 2px; }
+.exam-section-note { font-size: calc((12px) * var(--text-scale, 1)); color: var(--gold-dim); font-style: italic; }
+/* Short/written answer typing box (optional; never graded automatically). */
+.exam-answer-input {
+  width: 100%; margin-top: 16px; padding: 12px 14px; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--surface); color: var(--cream);
+  font-family: var(--font-body); font-size: calc((15px) * var(--text-scale, 1)); line-height: 1.5;
+  resize: vertical; box-sizing: border-box;
+}
+.exam-typed {
+  margin-top: 14px; padding: 10px 14px; border-left: 3px solid var(--gold-dim);
+  color: var(--muted); font-size: calc((14px) * var(--text-scale, 1)); line-height: 1.55; white-space: pre-wrap;
+}
+.exam-typed-label { display: block; font-family: var(--font-display); font-size: calc((12px) * var(--text-scale, 1)); letter-spacing: 0.5px; color: var(--gold-dim); margin-bottom: 4px; }
+.exam-self-score { margin-top: 8px; font-size: calc((15px) * var(--text-scale, 1)); }
+.exam-self-score strong { color: var(--gold-light); }
+.exam-target-note { color: var(--muted); font-size: calc((13px) * var(--text-scale, 1)); margin: 8px 0 0; }
 
 /* Deck meta line above the card. */
 .qa-deck-meta { text-align: center; color: var(--muted); font-size: calc((13px) * var(--text-scale, 1)); margin-bottom: 14px; }

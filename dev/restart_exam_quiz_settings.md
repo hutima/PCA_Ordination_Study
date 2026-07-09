@@ -26,7 +26,7 @@ all sections are done and the PR is clean/mergeable.
 ## Section status
 
 - [x] A — orientation + this doc
-- [ ] B — mock exam redesign (`js/app/exam.js`, `js/data/quiz/bco_tf.js`)
+- [x] B — mock exam redesign (`js/app/exam.js`, `js/data/quiz/bco_tf.js`)
 - [ ] C — quiz/focus behavior (`quizOutcome` via ctx, flip-aware, deck meta)
 - [ ] D — UX copy + version bump (v63 → v64) + validation
 
@@ -85,6 +85,15 @@ all sections are done and the PR is clean/mergeable.
 - Baseline `node dev/validate.mjs` → PASS (103 authored quiz questions, 0
   problems; exit 0).
 - Baseline `node dev/audit.mjs` → 8 flags (the known baseline).
+- After Section B: `node dev/validate.mjs` → PASS (103 MCQ + 52 T/F, 0
+  problems); `node dev/audit.mjs` → 8 flags (unchanged); `node --check` clean
+  on exam.js/modes.js/pca.js/bco_tf.js.
+- After Section B: headless-Chromium smoke test (python http.server :8137 +
+  playwright-core): chooser shows 4 sections ("96 available of the
+  100-question written section", "426 prompts · 20 sampled per run", 52 T/F,
+  mixed); BCO T/F run + feedback + Finish now + results OK; Bible mixed run
+  incl. short-answer typed capture + self-grade OK; Theology written run OK;
+  no JS errors (only the sandbox-blocked Google Analytics fetch).
 - (Update this list before each later commit.)
 
 ## Known risks / manual tests still needed

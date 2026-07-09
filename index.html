@@ -70,7 +70,7 @@
       <button class="mode-btn" id="modeBrowseBtn" type="button" data-mode="browse" title="Read a subject as an outline — tap a question to expand the answer">Browse</button>
       <button class="mode-btn" id="modeCatechismBtn" type="button" data-mode="catechism" title="The Westminster Larger &amp; Shorter Catechisms, question by question">Catechisms</button>
       <button class="mode-btn" id="modeQuizBtn" type="button" data-mode="quiz" title="Multiple-choice quiz on fact-style cards (passages, events, key facts)">Quiz</button>
-      <button class="mode-btn" id="modeExamBtn" type="button" data-mode="exam" title="A timed-style mixed mock exam with a scored summary">Mock exam</button>
+      <button class="mode-btn" id="modeExamBtn" type="button" data-mode="exam" title="Written-exam practice modeled on your committee's study guidelines — Bible Knowledge, Theology, and BCO sections">Mock exam</button>
     </div>
     <button class="quick-btn" type="button" id="progressBtn">Progress</button>
   </div>
@@ -317,6 +317,8 @@
 <script defer src="js/data/quiz/church_history.js?v=63"></script>
 <script defer src="js/data/quiz/theology.js?v=63"></script>
 <script defer src="js/data/quiz/hot_topics.js?v=63"></script>
+<!-- Authored BCO True/False bank (defer global → window.PCA_QUIZ_TF; Mock exam only) -->
+<script defer src="js/data/quiz/bco_tf.js?v=63"></script>
 
 <!-- Entry point -->
 <script type="module" src="js/app/pca.js?v=63"></script>

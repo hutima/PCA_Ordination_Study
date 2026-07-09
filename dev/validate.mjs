@@ -108,6 +108,21 @@ console.log('\nQuiz bank:');
 for (const id of [...subjectIds]) if (bySubject[id]) console.log(`  ${id.padEnd(14)} ${String(bySubject[id]).padStart(3)} questions`);
 console.log(`${bank.length} authored quiz questions, ${quizProblems} problem(s)`);
 
+// ── True/False bank (window.PCA_QUIZ_TF — Mock exam BCO section) ───────
+// Statements must be paraphrase (the BCO is copyrighted): flag anything that
+// looks like a long verbatim quotation (quotation marks around 8+ words).
+const tfBank = globalThis.PCA_QUIZ_TF || [];
+let tfProblems = 0;
+for (const t of tfBank) {
+  if (!t.id || seenIds.has(t.id)) { console.error(`FAIL tf: missing/duplicate id ${t.id}`); tfProblems++; }
+  seenIds.add(t.id);
+  if (!t.q || !t.q.trim()) { console.error(`FAIL ${t.id}: empty statement`); tfProblems++; }
+  if (typeof t.answer !== 'boolean') { console.error(`FAIL ${t.id}: answer must be boolean`); tfProblems++; }
+  const quoted = /["“”']([^"“”']{40,})["“”']/.exec(t.q || '');
+  if (quoted && quoted[1].split(/\s+/).length >= 8) { console.error(`FAIL ${t.id}: long quotation — BCO must be paraphrased`); tfProblems++; }
+}
+console.log(`${tfBank.length} authored True/False questions, ${tfProblems} problem(s)`);
+
 // ── Catechisms (window.PCA_CATECHISMS) ─────────────────────────────────
 let catProblems = 0;
 try {
@@ -169,4 +184,4 @@ try {
   console.log('\nPsalms: data file not present (js/data/psalms_kjv.js)');
 }
 
-process.exit(problems + quizProblems + catProblems + psalmProblems ? 1 : 0);
+process.exit(problems + quizProblems + tfProblems + catProblems + psalmProblems ? 1 : 0);
