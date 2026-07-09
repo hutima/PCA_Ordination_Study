@@ -7,7 +7,7 @@
 <meta name="description" content="Spaced-repetition review for PCA licensure and ordination exams — Bible Content, Theology, Sacraments, Church History, and the Book of Church Order.">
 <meta name="theme-color" content="#0e0f14">
 <link rel="icon" href="favicon.svg">
-<link rel="manifest" href="manifest.json?v=63">
+<link rel="manifest" href="manifest.json?v=64">
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y49JRJH39Q"></script>
@@ -38,8 +38,8 @@
 })();
 </script>
 
-<link rel="stylesheet" href="styles.css?v=63">
-<link rel="stylesheet" href="css/pca.css?v=63">
+<link rel="stylesheet" href="styles.css?v=64">
+<link rel="stylesheet" href="css/pca.css?v=64">
 </head>
 <body>
 <div class="app">
@@ -69,7 +69,7 @@
       <button class="mode-btn active" id="modeReviewBtn" type="button" data-mode="review" title="Self-check flashcards: recall, reveal, grade yourself">Review</button>
       <button class="mode-btn" id="modeBrowseBtn" type="button" data-mode="browse" title="Read a subject as an outline — tap a question to expand the answer">Browse</button>
       <button class="mode-btn" id="modeCatechismBtn" type="button" data-mode="catechism" title="The Westminster Larger &amp; Shorter Catechisms, question by question">Catechisms</button>
-      <button class="mode-btn" id="modeQuizBtn" type="button" data-mode="quiz" title="Multiple-choice quiz on fact-style cards (passages, events, key facts)">Quiz</button>
+      <button class="mode-btn" id="modeQuizBtn" type="button" data-mode="quiz" title="Multiple-choice quiz on fact-style cards (passages, events, key facts) — longer self-check cards are covered in Review &amp; Browse">Quiz</button>
       <button class="mode-btn" id="modeExamBtn" type="button" data-mode="exam" title="Written-exam practice modeled on your committee's study guidelines — Bible Knowledge, Theology, and BCO sections">Mock exam</button>
     </div>
     <button class="quick-btn" type="button" id="progressBtn">Progress</button>
@@ -81,7 +81,7 @@
       <button class="mode-btn active" id="focusDueBtn" type="button" data-focus="due" title="Cards that are due, soonest first">Due first</button>
       <button class="mode-btn" id="focusWeakBtn" type="button" data-focus="weak" title="Only cards you've studied and scored under 60%">Weak spots</button>
       <button class="mode-btn" id="focusOrderBtn" type="button" data-focus="order" title="Unspaced: read straight through the whole selection in book order, ignoring the schedule">In order</button>
-      <button class="mode-btn" id="focusFlipBtn" type="button" data-focus="flip" title="Non-spaced flip deck: Hard/Uncertain send the card to the back of the pile, Easy retires it for this session">Flip deck</button>
+      <button class="mode-btn" id="focusFlipBtn" type="button" data-focus="flip" title="Non-spaced flip deck. Review: Hard/Uncertain send the card to the back of the pile, Easy retires it for this session. Quiz: a correct answer retires the card, a wrong one recycles it.">Flip deck</button>
     </div>
   </div>
 
@@ -285,42 +285,42 @@
 </div>
 
 <!-- Subject data (plain defer globals → window.PCA_DATA) -->
-<script defer src="js/data/subjects/bible_content.js?v=63"></script>
-<script defer src="js/data/subjects/bible_books.js?v=63"></script>
-<script defer src="js/data/subjects/bco.js?v=63"></script>
-<script defer src="js/data/subjects/bco_governance.js?v=63"></script>
-<script defer src="js/data/subjects/bco_comprehensive.js?v=63"></script>
-<script defer src="js/data/subjects/sacraments.js?v=63"></script>
-<script defer src="js/data/subjects/church_history.js?v=63"></script>
-<script defer src="js/data/subjects/hot_topics.js?v=63"></script>
-<script defer src="js/data/subjects/theology.js?v=63"></script>
-<script defer src="js/data/subjects/theology_other.js?v=63"></script>
-<script defer src="js/data/subjects/wcf.js?v=63"></script>
-<script defer src="js/data/subjects/doctrines_proofs.js?v=63"></script>
-<script defer src="js/data/subjects/personal_call.js?v=63"></script>
-<script defer src="js/data/subjects/catechism_wsc.js?v=63"></script>
+<script defer src="js/data/subjects/bible_content.js?v=64"></script>
+<script defer src="js/data/subjects/bible_books.js?v=64"></script>
+<script defer src="js/data/subjects/bco.js?v=64"></script>
+<script defer src="js/data/subjects/bco_governance.js?v=64"></script>
+<script defer src="js/data/subjects/bco_comprehensive.js?v=64"></script>
+<script defer src="js/data/subjects/sacraments.js?v=64"></script>
+<script defer src="js/data/subjects/church_history.js?v=64"></script>
+<script defer src="js/data/subjects/hot_topics.js?v=64"></script>
+<script defer src="js/data/subjects/theology.js?v=64"></script>
+<script defer src="js/data/subjects/theology_other.js?v=64"></script>
+<script defer src="js/data/subjects/wcf.js?v=64"></script>
+<script defer src="js/data/subjects/doctrines_proofs.js?v=64"></script>
+<script defer src="js/data/subjects/personal_call.js?v=64"></script>
+<script defer src="js/data/subjects/catechism_wsc.js?v=64"></script>
 
 <!-- 12-week study plan (Schedule of Assignments) → window.PCA_WEEKS -->
-<script defer src="js/data/week_plan.js?v=63"></script>
+<script defer src="js/data/week_plan.js?v=64"></script>
 
 <!-- Westminster catechisms full text (defer global → window.PCA_CATECHISMS) -->
-<script defer src="js/data/catechisms.js?v=63"></script>
-<script defer src="js/data/catechisms_bco.js?v=63"></script>
+<script defer src="js/data/catechisms.js?v=64"></script>
+<script defer src="js/data/catechisms_bco.js?v=64"></script>
 <!-- The 150 Psalms, KJV (public domain) — the Psalms reader category in the
      Catechisms mode. Must load AFTER catechisms.js (which assigns the global). -->
-<script defer src="js/data/psalms_kjv.js?v=63"></script>
+<script defer src="js/data/psalms_kjv.js?v=64"></script>
 
 <!-- Hand-authored quiz bank (defer globals → window.PCA_QUIZ) -->
-<script defer src="js/data/quiz/bible_content.js?v=63"></script>
-<script defer src="js/data/quiz/bco.js?v=63"></script>
-<script defer src="js/data/quiz/sacraments.js?v=63"></script>
-<script defer src="js/data/quiz/church_history.js?v=63"></script>
-<script defer src="js/data/quiz/theology.js?v=63"></script>
-<script defer src="js/data/quiz/hot_topics.js?v=63"></script>
+<script defer src="js/data/quiz/bible_content.js?v=64"></script>
+<script defer src="js/data/quiz/bco.js?v=64"></script>
+<script defer src="js/data/quiz/sacraments.js?v=64"></script>
+<script defer src="js/data/quiz/church_history.js?v=64"></script>
+<script defer src="js/data/quiz/theology.js?v=64"></script>
+<script defer src="js/data/quiz/hot_topics.js?v=64"></script>
 <!-- Authored BCO True/False bank (defer global → window.PCA_QUIZ_TF; Mock exam only) -->
-<script defer src="js/data/quiz/bco_tf.js?v=63"></script>
+<script defer src="js/data/quiz/bco_tf.js?v=64"></script>
 
 <!-- Entry point -->
-<script type="module" src="js/app/pca.js?v=63"></script>
+<script type="module" src="js/app/pca.js?v=64"></script>
 </body>
 </html>

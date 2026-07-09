@@ -65,9 +65,24 @@ That changes the update workflow:
   files to the `sw.js` PRECACHE. The controller wires clicks/keyboard/render
   through the registry.
 - **Study modes:** Review (self-check; short summary first, full answer &
-  quotations behind an expander), Quiz (MCQ), Browse (collapsible outline,
-  non-graded, **with card export/print** — see below), Mock exam (finite scored
-  MCQ session), Catechisms (WSC/WLC
+  quotations behind an expander), Quiz (MCQ over quiz-ready cards — answers
+  flow through the controller's `quizOutcome()` in `pca.js`, never
+  `applyOutcome` directly, so the focus rules apply: under Flip deck a correct
+  answer retires the card and a wrong one recycles it, no SRS writes; the deck
+  meta names quiz-ready vs selected counts and points long cards at
+  Review/Browse), Browse (collapsible outline,
+  non-graded, **with card export/print** — see below), Mock exam
+  (written-exam practice per the C&C committee study guidelines, `js/app/exam.js`:
+  a section chooser — Bible Knowledge targets 100 mixed MCQ/short-answer,
+  Theology is written self-graded practice with **no fixed count** (the guide
+  states none — don't fabricate one; 20 sampled per run), BCO targets ~50
+  True/False from the hand-authored paraphrase bank `js/data/quiz/bco_tf.js`
+  (`window.PCA_QUIZ_TF`, validated by its own `validate.mjs` block), plus a
+  mixed sampler. Pools draw from the whole card bank independent of the study
+  selection; when a pool is under target the run says so honestly.
+  Short/written items: optional type-your-answer box → reveal →
+  Incorrect/Partial/Correct self-grade → the usual again/pass/easy outcomes),
+  Catechisms (WSC/WLC
   full text plus a hand-authored BCO-paraphrase set in
   `js/data/catechisms_bco.js`, as flip cards — dropdown per set + per
   question, proofs/references in a collapsed section; position persists to

@@ -28,7 +28,7 @@ all sections are done and the PR is clean/mergeable.
 - [x] A — orientation + this doc
 - [x] B — mock exam redesign (`js/app/exam.js`, `js/data/quiz/bco_tf.js`)
 - [x] C — quiz/focus behavior (`quizOutcome` via ctx, flip-aware, deck meta)
-- [ ] D — UX copy + version bump (v63 → v64) + validation
+- [x] D — UX copy + version bump (v63 → v64) + validation
 
 ## Diagnosis (Section A findings)
 
@@ -107,7 +107,18 @@ all sections are done and the PR is clean/mergeable.
   - Review flip regression: Easy retires, meta counts correct.
   - WCF-only selection in Quiz: "None of the 10 cards in this selection are
     quiz-ready…" empty state.
-- (Update this list before each later commit.)
+- After Section D: version bump `?v=64`/`pca-v64` (29 refs in index.html,
+  CACHE in sw.js); `node dev/check_sw.mjs` → "OK — sw cache pca-v64, 54
+  precached files, 21 runtime modules, versions consistent";
+  `node dev/validate.mjs` → PASS; `node dev/audit.mjs` → 8 flags (baseline).
+- Final headless-Chromium regression: Review reveal+grade OK; Browse renders,
+  WCF detail Full = direct text / Summary = expander; exam chooser (4
+  sections) OK post-bump; focus row hidden in exam, shown in quiz; no JS
+  errors.
+
+## Remaining
+
+- Push, open PR, confirm mergeable, then delete this file in a final commit.
 
 ## Known risks / manual tests still needed
 
