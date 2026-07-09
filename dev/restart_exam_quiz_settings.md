@@ -27,7 +27,7 @@ all sections are done and the PR is clean/mergeable.
 
 - [x] A — orientation + this doc
 - [x] B — mock exam redesign (`js/app/exam.js`, `js/data/quiz/bco_tf.js`)
-- [ ] C — quiz/focus behavior (`quizOutcome` via ctx, flip-aware, deck meta)
+- [x] C — quiz/focus behavior (`quizOutcome` via ctx, flip-aware, deck meta)
 - [ ] D — UX copy + version bump (v63 → v64) + validation
 
 ## Diagnosis (Section A findings)
@@ -94,6 +94,19 @@ all sections are done and the PR is clean/mergeable.
   mixed); BCO T/F run + feedback + Finish now + results OK; Bible mixed run
   incl. short-answer typed capture + self-grade OK; Theology written run OK;
   no JS errors (only the sandbox-blocked Google Analytics fetch).
+- After Section C: `node --check` clean; headless-Chromium QA:
+  - Quiz meta: "24 quiz questions · 24 due · question 1 of 24" (Due first),
+    counts under In order, "16 fact-style questions from your 31 selected
+    cards" note when eligible < selected (theology sets).
+  - Weak spots: fresh profile shows the explanatory empty state; 5 wrong quiz
+    answers → weak deck of 5.
+  - Flip deck under Quiz: correct retires (pile 24→23, retired 1), wrong
+    recycles (pile stays, hint text shown), full run ends at "Flip deck
+    finished — you've retired all 24 cards" + working restart; retired counts
+    are scoped to the active mode's card universe (quiz bank vs review cards).
+  - Review flip regression: Easy retires, meta counts correct.
+  - WCF-only selection in Quiz: "None of the 10 cards in this selection are
+    quiz-ready…" empty state.
 - (Update this list before each later commit.)
 
 ## Known risks / manual tests still needed

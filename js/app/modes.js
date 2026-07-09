@@ -16,7 +16,7 @@ import { createExamMode } from './exam.js';
 export function createModes(ctx) {
   const {
     state, DATA, escapeHtml, renderAnswer, summarize, hasMoreThanSummary, directAnswer, renderRefs,
-    resolveCardDetail, buildQuiz, applyOutcome, applyCatechismOutcome, getConfidencePct, rerender, mark, move, toggleReveal, withCardAnchor,
+    resolveCardDetail, buildQuiz, applyCatechismOutcome, getConfidencePct, rerender, mark, quizOutcome, move, toggleReveal, withCardAnchor,
     effectiveSetKeys, emptyState, navRowHtml, wireNav,
     setDeckMeta, browsePrint,
   } = ctx;
@@ -100,14 +100,22 @@ export function createModes(ctx) {
       const q = state.quiz;
       if (!q || q.picked >= 0) return;
       q.picked = idx;
-      applyOutcome(state.deck[state.pos], idx === q.correctIndex ? 'easy' : 'again');
+      // Mode-aware grading via the controller (flip deck retires/recycles, the
+      // other focuses feed the SRS) — never call applyOutcome directly here.
+      quizOutcome(idx === q.correctIndex);
       rerender();
     },
     render(area) {
       const card = state.deck[state.pos];
       const q = state.quiz || (state.quiz = buildQuiz(card));
+      // Under Flip deck, say what the grade will do so retirement is visible.
+      const flipHint = q.picked >= 0 && state.focus === 'flip'
+        ? `<div class="quiz-note">${q.picked === q.correctIndex
+            ? 'Retires from this flip session on Next.'
+            : 'Goes to the back of the pile on Next.'}</div>`
+        : '';
       const feedback = q.picked >= 0
-        ? `<div class="quiz-feedback ${q.picked === q.correctIndex ? 'correct' : 'wrong'}">${q.picked === q.correctIndex ? '✓ Correct' : '✗ Not quite'}</div>${renderRefs(card.refs)}`
+        ? `<div class="quiz-feedback ${q.picked === q.correctIndex ? 'correct' : 'wrong'}">${q.picked === q.correctIndex ? '✓ Correct' : '✗ Not quite'}</div>${flipHint}${renderRefs(card.refs)}`
         : '';
       area.innerHTML = `
         <div class="qa-card revealed">
