@@ -838,6 +838,99 @@
       'Good-faith subscription',
       'System subscription',
     ], answerIndex: 0 },
+
+    // ── hot_topics — Fencing the Lord’s Table ──────────────────────────────
+    'ht-012-fencing-the-lord-s-table': { q: 'Per BCO 58-4b (settled at the 1993 GA), what must the pre-Supper warning require of communicants?', choices: [
+      'That they be enrolled as members of an evangelical church, not merely a profession of the true religion',
+      'That they be examined individually by the session before every celebration of the Supper',
+      'That they be members of the local PCA congregation specifically, not any evangelical church',
+      'That they simply make a public profession of faith, regardless of any church membership',
+    ], answerIndex: 0 },
+    'ht-012a-open': { q: 'Which practice admits any professing Christian who examines himself, without any church-membership requirement?', choices: [
+      'Open communion',
+      'Close communion',
+      'Closed communion',
+    ], answerIndex: 0 },
+    'ht-012b-close': { q: 'Which practice — the PCA’s ordinary practice — admits communicants in good standing of any evangelical church, fenced by invitation and warning rather than by interviewing visitors?', choices: [
+      'Close communion',
+      'Open communion',
+      'Closed communion',
+    ], answerIndex: 0 },
+    'ht-012c-closed': { q: 'Which practice restricts admission to members of the local congregation or denomination, requiring visitors to be approved by the session beforehand?', choices: [
+      'Closed communion',
+      'Open communion',
+      'Close communion',
+    ], answerIndex: 0 },
+
+    // ── hot_topics — post-1993 GA committee topics ────────────────────────
+    'ht-016-women-in-office': { q: 'Per BCO 7-2, who may be ordained as ruling elder, teaching elder, or deacon in the PCA?', choices: [
+      'Qualified men only, though a Session may appoint men and women as unordained assistants to the deacons',
+      'Qualified men and women equally, since BCO 9-7 opened all three offices to both sexes',
+      'Qualified men only, with no provision anywhere in the BCO for women’s service of any kind',
+      'Qualified women only for deacon, while elder remains restricted to qualified men alone',
+    ], answerIndex: 0 },
+    'ht-017-christian-nationalism': { q: 'Per the PCA’s Ad Interim Committee’s interim report (2026), what does it uphold regarding church and state?', choices: [
+      'The spirituality of the church — church and state are distinct spheres, so the church does not wield the sword',
+      'A fusion of church and state — the civil magistrate should enforce the church’s doctrinal standards',
+      'A strict separation with no address to the state at all, even in cases the Standards call extraordinary',
+      'An endorsement of ethnic nationalism, provided it is tempered by broadly Christian civic values',
+    ], answerIndex: 0 },
+    'ht-018-racism': { q: 'What did the PCA’s 44th GA (2016) Overture 43 do?', choices: [
+      'Confessed and repented of corporate, historical sins of the civil-rights era, such as segregating worship',
+      'Declined any corporate confession, referring the matter instead to individual congregations',
+      'Commended the church’s civil-rights-era record as a faithful application of biblical principle',
+      'Postponed any statement pending a further decade of study by a new committee',
+    ], answerIndex: 0 },
+    'ht-019-human-sexuality': { q: 'Per the Ad Interim Committee on Human Sexuality’s Twelve Statements, how should believers regard same-sex attraction?', choices: [
+      'As an expression of indwelling sin to be repented of and mortified, not a neutral identity',
+      'As a morally neutral orientation, provided it is never acted upon in practice',
+      'As a unique calling to celibate “Side B” partnership within the church’s fellowship',
+      'As a matter left entirely to each officer’s private conscience, without any confessional guidance',
+    ], answerIndex: 0 },
+    'ht-020-domestic-abuse': { q: 'Per the Ad Interim Committee on Domestic Abuse and Sexual Assault, what may abuse-driven abandonment constitute?', choices: [
+      'Biblical desertion (1 Cor 7:15), which may furnish grounds for divorce',
+      'Merely a private pastoral matter, never grounds for divorce under any circumstance',
+      'Automatic grounds for immediate excommunication of the abusive spouse alone',
+      'A civil matter only, outside the concern or jurisdiction of the church courts',
+    ], answerIndex: 0 },
+    'ht-021-federal-vision': { q: 'What did the PCA’s 35th GA (2007) do regarding the Federal Vision report?', choices: [
+      'Adopted nine declarations upholding justification by faith alone and Christ’s imputed righteousness',
+      'Declined to adopt any declarations, leaving the questions open to each presbytery',
+      'Adopted the Federal Vision’s covenant theology as an allowable exception to the Standards',
+      'Postponed judgment, referring the whole matter back for a decade of further study',
+    ], answerIndex: 0 },
+    'ht-022-insider-movements': { q: 'What does the PCA’s “A Call to Faithful Witness” require of Bible translation?', choices: [
+      'Preserving the literal familial terms “Father” and “Son” for the persons of the Trinity',
+      'Preferring non-familial terms for “Father” and “Son” to avoid offense among Muslim readers',
+      'Leaving the choice of familial or non-familial terms to each individual translator’s judgment',
+      'Requiring converts to abandon their birth religious community before any Bible translation is used',
+    ], answerIndex: 0 },
+
+    // ── hot_topics — Reference Lists ───────────────────────────────────────
+    'ht-013-what-were-created-on-the-seven-day': { q: 'On the seven days of creation, what happens on Day 4, per this card?', choices: [
+      'The light bearers — sun, moon, and stars — are created, filling what Day 1 had formed',
+      'Light and darkness are separated, forming what Day 4 would later come to fill',
+      'Birds of the air and water creatures are created, filling what Day 2 had formed',
+      'Land creatures and humankind are created, filling what Day 3 had formed',
+    ], answerIndex: 0 },
+    'ht-014-ten-plagues-exodus-7-12': { q: 'Which of the ten plagues (Exodus 7–12) left the Israelites in light while Egypt lay in darkness?', choices: [
+      'The plague of darkness',
+      'The plague of hail',
+      'The plague on livestock',
+      'The plague of boils',
+    ], answerIndex: 0 },
+    'ht-015a-kings-of-israel': { q: 'Which dynasty ruled Israel the longest, per this card — spanning Jehu through Zechariah?', choices: [
+      'The house of Jehu',
+      'The house of Omri',
+      'The house of Jeroboam',
+      'The house of Menahem',
+    ], answerIndex: 0 },
+    'ht-015b-kings-of-judah': { q: 'Which two kings of Judah does this card mark “G” (godly), unlike most others marked “B”?', choices: [
+      'Hezekiah and Josiah',
+      'Asa and Jehoshaphat',
+      'Uzziah and Jotham',
+      'Manasseh and Amon',
+    ], answerIndex: 0 },
   };
   global.PCA_CARD_QUIZ = Object.assign(global.PCA_CARD_QUIZ || {}, Q);
 })(typeof window !== 'undefined' ? window : globalThis);
