@@ -764,6 +764,80 @@
       'When the state’s leaders lack personal godliness, our duty is to withdraw all civic cooperation',
       'When the state’s taxes seem unjust, our duty is to withhold payment until laws are reformed',
     ], answerIndex: 0 },
+
+    // ── hot_topics — Paedo-Communion ──────────────────────────────────────
+    'ht-009-paedo-communion': { q: 'Per Murray’s argument (cited on this card), why is the Passover-infant analogy for paedocommunion weak?', choices: [
+      'There is no evidence infants took the Passover, and its diet was hardly suitable for them',
+      'There is clear evidence infants took the Passover, but only ate a specially prepared portion',
+      'The Passover was open to any onlooker regardless of age, so the analogy proves too much',
+      'The Passover required years of prior fasting, which infants obviously could not perform',
+    ], answerIndex: 0 },
+    'ht-009a-paedocommunion': { q: 'Which view holds covenant children should be admitted to the Lord’s Supper from infancy, without a separate profession of faith?', choices: [
+      'The paedocommunion view',
+      'The PCA / “discerning the body” view',
+    ], answerIndex: 0 },
+    'ht-009b-discerning': { q: 'Which view holds the Supper is only for those able to examine themselves and discern the Lord’s body, so children commune only after a session-examined profession?', choices: [
+      'The PCA / “discerning the body” view',
+      'The paedocommunion view',
+    ], answerIndex: 0 },
+
+    // ── hot_topics — Divorce & Remarriage ──────────────────────────────────
+    'ht-010-divorce-and-remarriage': { q: 'Per this card, when is remarriage permitted?', choices: [
+      'Only after a spouse’s death or a biblically justified divorce, and not for the offending party',
+      'After any divorce for any reason, so long as both former spouses eventually consent',
+      'Only after a spouse’s death, since Scripture permits no remarriage following any divorce',
+      'After a biblically justified divorce, even for the offending party, if genuinely repentant',
+    ], answerIndex: 0 },
+    'ht-010a-no-remarriage': { q: 'Which view holds the marriage bond is dissolved only by death, so remarriage while a divorced spouse lives is adultery, even after a permitted separation?', choices: [
+      'The permanence / no-remarriage view',
+      'The Westminster (adultery & desertion) view',
+      'The expanded-grounds (constructive desertion) view',
+      'The loose (no-fault) view',
+    ], answerIndex: 0 },
+    'ht-010b-westminster': { q: 'Which view (WCF 24.5-6) holds the innocent party may divorce and remarry on two grounds — adultery and irremediable willful desertion?', choices: [
+      'The Westminster (adultery & desertion) view',
+      'The permanence / no-remarriage view',
+      'The expanded-grounds (constructive desertion) view',
+      'The loose (no-fault) view',
+    ], answerIndex: 0 },
+    'ht-010c-abuse': { q: 'Which view reads “desertion” broadly to include grave abuse or willful non-support that effectively deserts the marriage, freeing the innocent party?', choices: [
+      'The expanded-grounds (constructive desertion) view',
+      'The permanence / no-remarriage view',
+      'The Westminster (adultery & desertion) view',
+      'The loose (no-fault) view',
+    ], answerIndex: 0 },
+
+    // ── hot_topics — Confessional Subscription ─────────────────────────────
+    'ht-011-confessional-subscription': { q: 'Per BCO 21-5’s ordination vow, what must a candidate do if he later finds himself out of accord with a fundamental of the system of doctrine?', choices: [
+      'On his own initiative, make known to his presbytery the change that has taken place in his views',
+      'Resign his office immediately, without any further hearing before his presbytery',
+      'Say nothing unless directly asked, since the vow only binds him at the moment of ordination',
+      'Publish his change of views openly before the whole denomination for public debate',
+    ], answerIndex: 0 },
+    'ht-011a-strict': { q: 'Which view of subscription requires the officer to affirm every doctrine and proposition of the Westminster Standards, with no exceptions?', choices: [
+      'Strict subscription',
+      'Good-faith subscription',
+      'System subscription',
+      'Loose subscription',
+    ], answerIndex: 0 },
+    'ht-011b-good-faith': { q: 'Which view — the PCA’s adopted practice since 2002 — has the candidate state his differences for the court to judge as none, merely semantic, or an allowable exception?', choices: [
+      'Good-faith subscription',
+      'Strict subscription',
+      'System subscription',
+      'Loose subscription',
+    ], answerIndex: 0 },
+    'ht-011c-system': { q: 'Which view has the officer subscribe to the “system of doctrine” as a whole rather than to every individual proposition, allowing scruples on non-essentials?', choices: [
+      'System subscription',
+      'Strict subscription',
+      'Good-faith subscription',
+      'Loose subscription',
+    ], answerIndex: 0 },
+    'ht-011d-loose': { q: 'Which view — rejected by the PCA as tending toward latitudinarianism — has the officer subscribe only to the Standards’ general substance or spirit, with wide latitude?', choices: [
+      'Loose subscription',
+      'Strict subscription',
+      'Good-faith subscription',
+      'System subscription',
+    ], answerIndex: 0 },
   };
   global.PCA_CARD_QUIZ = Object.assign(global.PCA_CARD_QUIZ || {}, Q);
 })(typeof window !== 'undefined' ? window : globalThis);
