@@ -488,6 +488,72 @@
       'Disciplining a member for a moral offense',
       'Calling a pastor and electing ruling elders and deacons',
     ], answerIndex: 3 },
+    'bco-gov-013-subscription': { q: 'What does “good faith” subscription mean for a candidate’s stated differences with the Standards?', choices: [
+      'The court alone judges whether each stated difference is acceptable',
+      'The candidate himself alone decides which differences he may hold',
+      'The presbytery automatically rejects any difference he states',
+      'The General Assembly must formally approve every stated difference',
+    ], answerIndex: 0 },
+    'bco-gov-014-membership-vows': { q: 'Which of these is among the membership vows a professing believer takes?', choices: [
+      'A pledge to attend every worship service without exception',
+      'Resting on Christ alone for salvation, as offered in the gospel',
+      'A pledge to serve as a Sunday school teacher if asked',
+      'A promise to tithe a set percentage of one’s income',
+    ], answerIndex: 1 },
+    'bco-gov-015-reception-modes': { q: 'Which of these is a recognized way to be received into church membership?', choices: [
+      'Self-enrollment, by simply signing the church’s guest register',
+      'Automatic reception, upon moving into the congregation’s area',
+      'Transfer, by letter of dismission from another like-minded church',
+      'Sponsorship, by an existing member vouching for him informally',
+    ], answerIndex: 2 },
+    'bco-gov-016-restoration': { q: 'How is a censured person restored, per the BCO?', choices: [
+      'Automatically, once a fixed waiting period has fully elapsed',
+      'By the next higher court, upon the offender’s written appeal',
+      'Only by a unanimous vote of the whole congregation',
+      'By the same court, upon evidence of the offender’s repentance',
+    ], answerIndex: 3 },
+    'bco-gov-017-without-process': { q: 'When may a court act in discipline without full judicial process?', choices: [
+      'When the offender comes forward and voluntarily confesses',
+      'Whenever the session’s clerk recommends skipping a trial',
+      'Whenever three or more members request a quick resolution',
+      'When the offense involves only a first-time occurrence',
+    ], answerIndex: 0 },
+    'bco-gov-018-officer-censures': { q: 'Which censures apply only to officers, not to members generally?', choices: [
+      'Admonition and excommunication, applied to officers only',
+      'Suspension from office and formal deposition from that office',
+      'Suspension from the sacraments and a formal public rebuke',
+      'Censure delivered by letter and a formal public apology',
+    ], answerIndex: 1 },
+    'bco-gov-019-baptism-admin': { q: 'Who administers baptism, and how, per the Directory?', choices: [
+      'Any communing member, privately at the family’s convenience',
+      'A deacon, at a separate ceremony apart from public worship',
+      'A minister of the Word, ordinarily during public worship',
+      'A ruling elder, but only when no minister is available',
+    ], answerIndex: 2 },
+    'bco-gov-020-marriage': { q: 'What does the BCO teach about marriage, and a minister’s role in it?', choices: [
+      'Marriage is left entirely undefined; ministers must marry all who ask',
+      'Marriage is treated as a private civil matter with no church role',
+      'Marriage requires presbytery’s formal approval for every single ceremony',
+      'Marriage is one man and one woman; a minister may decline any wedding',
+    ], answerIndex: 3 },
+    'bco-gov-021-dfw-authority': { q: 'Which chapters of the Directory for Worship carry full constitutional authority (per this card)?', choices: [
+      'Baptism, profession of faith, the Supper, and marriage',
+      'Only the chapter on public worship’s proper elements',
+      'Only the chapter governing funerals and burial rites',
+      'The entire Directory, chapter by chapter, without exception',
+    ], answerIndex: 0 },
+    'bco-gov-022-out-of-bounds': { q: 'May a teaching elder labor outside his presbytery’s bounds?', choices: [
+      'No, a minister’s call is always confined to his home presbytery',
+      'Yes, but only with presbytery’s approval and continued oversight',
+      'Yes, entirely freely, without any presbytery involvement at all',
+      'No, unless the General Assembly grants a special exception',
+    ], answerIndex: 1 },
+    'bco-gov-023-deacon-assistants': { q: 'May a church function without ordained deacons, and may others assist in mercy ministry?', choices: [
+      'No, a church may never operate without ordained deacons in place',
+      'Yes, but only ordained officers may ever assist in mercy work',
+      'Yes, the session carries out those duties until deacons are elected',
+      'No, mercy ministry must always wait until deacons are ordained',
+    ], answerIndex: 2 },
   };
   global.PCA_CARD_QUIZ = Object.assign(global.PCA_CARD_QUIZ || {}, Q);
 })(typeof window !== 'undefined' ? window : globalThis);
