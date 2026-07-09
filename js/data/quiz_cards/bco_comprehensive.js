@@ -105,7 +105,7 @@
       'Prayer, praise, Scripture reading, preaching, sacraments, discipline, and ordination.'
     ], answerIndex: 3 },
     'bco-comp-017': { choices: [
-      'It lacks a permanent governing body and is temporarily overseen by Presbytery, a mother Session, or an evangelist.',
+      'It lacks a permanent governing body, being overseen temporarily by Presbytery.',
       'It has a permanent Session but no ordained deacons serving its members.',
       'It is governed by a bishop appointed directly by the General Assembly.',
       'It cannot ever call a pastor until fifty years after its founding date.'
