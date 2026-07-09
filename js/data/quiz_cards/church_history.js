@@ -354,8 +354,8 @@
       answerIndex: 0
     },
     'ch-070-moise-amyraut-and-the-school-of-saum': {
-      q: 'Which teacher and his followers held a “modified” four-point Calvinism that rejected limited atonement while affirming the other points?',
-      choices: ['Arminius', 'Moise Amyraut and the School of Saumur', 'Richard Baxter', 'Theodore Beza'],
+      q: 'Which teacher of the School of Saumur held a “modified” four-point Calvinism that rejected limited atonement while affirming the other points?',
+      choices: ['Arminius', 'Moise Amyraut', 'Richard Baxter', 'Theodore Beza'],
       answerIndex: 1
     },
     'ch-071-richard-baxter': {
