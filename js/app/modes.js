@@ -120,7 +120,7 @@ export function createModes(ctx) {
       area.innerHTML = `
         <div class="qa-card revealed">
           <div class="qa-deck-label">${escapeHtml(card._setLabel)} · Quiz</div>
-          <div class="qa-question">${escapeHtml(card.q)}</div>
+          <div class="qa-question">${escapeHtml(q.prompt || card.q)}</div>
           <div class="quiz-choices">${renderChoices(q)}</div>
           ${feedback}
         </div>

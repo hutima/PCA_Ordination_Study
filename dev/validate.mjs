@@ -123,6 +123,56 @@ for (const t of tfBank) {
 }
 console.log(`${tfBank.length} authored True/False questions, ${tfProblems} problem(s)`);
 
+// ── Per-card MCQ overlay (window.PCA_CARD_QUIZ) + MCQ coverage ─────────
+// Overlay files in js/data/quiz_cards/ map card id → { q?, choices,
+// answerIndex } so every review card can be quizzed as an MCQ without
+// hand-editing the generated subject files. Coverage is a hard gate: every
+// card must have at least one possible MCQ (inline quiz block, overlay entry,
+// or auto-generation from short-answer siblings).
+const QUIZ_CARDS_DIR = new URL('../js/data/quiz_cards/', import.meta.url);
+let qcFiles = [];
+try { qcFiles = readdirSync(QUIZ_CARDS_DIR).filter(f => f.endsWith('.js')); } catch (e) {}
+for (const f of qcFiles) await import(new URL(f, QUIZ_CARDS_DIR));
+const cardQuizBank = globalThis.PCA_CARD_QUIZ || {};
+let cqProblems = 0;
+const allCardIds = new Set();
+for (const s of data.subjects) for (const k of s.setKeys) {
+  const set = data.sets[k];
+  if (set) for (const c of set.cards) allCardIds.add(c.id);
+}
+for (const [id, cq] of Object.entries(cardQuizBank)) {
+  if (!allCardIds.has(id)) { console.error(`FAIL card-quiz ${id}: unknown card id`); cqProblems++; continue; }
+  if (cq.q != null && (typeof cq.q !== 'string' || !cq.q.trim())) { console.error(`FAIL card-quiz ${id}: bad prompt override`); cqProblems++; }
+  if (!Array.isArray(cq.choices) || cq.choices.length < 2) { console.error(`FAIL card-quiz ${id}: needs >=2 choices`); cqProblems++; continue; }
+  if (new Set(cq.choices).size !== cq.choices.length) { console.error(`FAIL card-quiz ${id}: duplicate choices`); cqProblems++; }
+  if (typeof cq.answerIndex !== 'number' || cq.answerIndex < 0 || cq.answerIndex >= cq.choices.length) { console.error(`FAIL card-quiz ${id}: bad answerIndex`); cqProblems++; }
+  const g = choiceGiveaway(cq.choices, cq.answerIndex);
+  if (g) { console.error(`FAIL card-quiz ${id}: ${g}`); cqProblems++; }
+}
+// Coverage: mirrors quizEligible in js/app/quiz.js (inline block / overlay /
+// short answer with >=3 distinct short siblings in the same set).
+function coverageIsShort(c) {
+  const a = (c.a || '').trim();
+  return !!a && !a.includes('\n') && a.length <= 80 && !a.includes('|') && !a.includes('**');
+}
+let uncovered = 0;
+const uncoveredBySubject = {};
+for (const s of data.subjects) {
+  for (const k of s.setKeys) {
+    const set = data.sets[k];
+    if (!set) continue;
+    const shortSet = new Set(set.cards.filter(coverageIsShort).map(c => c.a.trim()));
+    for (const c of set.cards) {
+      const auto = coverageIsShort(c) && (shortSet.size - (shortSet.has(c.a.trim()) ? 1 : 0)) >= 3;
+      const covered = (c.quiz && Array.isArray(c.quiz.choices)) || cardQuizBank[c.id] || auto;
+      if (!covered) { uncovered++; uncoveredBySubject[s.id] = (uncoveredBySubject[s.id] || 0) + 1; }
+    }
+  }
+}
+console.log(`${Object.keys(cardQuizBank).length} per-card MCQ overlays, ${cqProblems} problem(s)`);
+if (uncovered) console.error(`FAIL MCQ coverage: ${uncovered} card(s) with no possible MCQ — ${JSON.stringify(uncoveredBySubject)} (list ids: node dev/mcq_coverage.mjs <subjectId>)`);
+else console.log('MCQ coverage: every card has at least one possible MCQ');
+
 // ── Catechisms (window.PCA_CATECHISMS) ─────────────────────────────────
 let catProblems = 0;
 try {
@@ -184,4 +234,4 @@ try {
   console.log('\nPsalms: data file not present (js/data/psalms_kjv.js)');
 }
 
-process.exit(problems + quizProblems + tfProblems + catProblems + psalmProblems ? 1 : 0);
+process.exit(problems + quizProblems + tfProblems + cqProblems + uncovered + catProblems + psalmProblems ? 1 : 0);

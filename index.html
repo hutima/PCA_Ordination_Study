@@ -312,6 +312,7 @@
 
 <!-- Hand-authored quiz bank (defer globals → window.PCA_QUIZ) -->
 <script defer src="js/data/quiz/bible_content.js?v=64"></script>
+<script defer src="js/data/quiz/bible_books.js?v=64"></script>
 <script defer src="js/data/quiz/bco.js?v=64"></script>
 <script defer src="js/data/quiz/sacraments.js?v=64"></script>
 <script defer src="js/data/quiz/church_history.js?v=64"></script>
@@ -319,6 +320,19 @@
 <script defer src="js/data/quiz/hot_topics.js?v=64"></script>
 <!-- Authored BCO True/False bank (defer global → window.PCA_QUIZ_TF; Mock exam only) -->
 <script defer src="js/data/quiz/bco_tf.js?v=64"></script>
+
+<!-- Per-card MCQ overlays (defer globals → window.PCA_CARD_QUIZ): a hand-
+     authored multiple-choice question for every card that can't auto-generate
+     one, so the whole bank is quizzable in Quiz mode and the Mock exam. -->
+<script defer src="js/data/quiz_cards/bible_books.js?v=64"></script>
+<script defer src="js/data/quiz_cards/bible_books_nt.js?v=64"></script>
+<script defer src="js/data/quiz_cards/bible_content.js?v=64"></script>
+<script defer src="js/data/quiz_cards/bco.js?v=64"></script>
+<script defer src="js/data/quiz_cards/bco_comprehensive.js?v=64"></script>
+<script defer src="js/data/quiz_cards/theology.js?v=64"></script>
+<script defer src="js/data/quiz_cards/wcf.js?v=64"></script>
+<script defer src="js/data/quiz_cards/church_history.js?v=64"></script>
+<script defer src="js/data/quiz_cards/small_subjects.js?v=64"></script>
 
 <!-- Entry point -->
 <script type="module" src="js/app/pca.js?v=64"></script>

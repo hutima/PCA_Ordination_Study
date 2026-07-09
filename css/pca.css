@@ -187,6 +187,9 @@ a.qa-ref-inline {
 
 /* ── Mock exam (written-exam practice) ────────────────────────────────── */
 .exam-intro { color: var(--muted); font-size: calc((14px) * var(--text-scale, 1)); line-height: 1.55; margin: 0 0 14px; text-align: center; }
+/* Run-option rows on the section chooser (length + format segmented controls). */
+.exam-opt-row { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0 0 10px; flex-wrap: wrap; }
+.exam-opt-label { color: var(--muted); font-family: var(--font-display); font-size: calc((13px) * var(--text-scale, 1)); letter-spacing: 0.5px; }
 .exam-sections { display: flex; flex-direction: column; gap: 10px; }
 .exam-section-card {
   display: flex; flex-direction: column; align-items: stretch; gap: 4px; width: 100%;
