@@ -147,6 +147,79 @@
       q: 'Notice of appeal in a judicial case must be filed within thirty days of the court’s decision.' },
     { id: 'qz-bcotf-52', answer: T, refs: ['BCO 43-1'],
       q: 'A complaint is a written representation against some act or decision of a court of the church.' },
+
+    // ── The visible church, licensure & examination ─────────────────────
+    { id: 'qz-bcotf-53', answer: T, refs: ['BCO 2-1'],
+      q: 'The visible church consists of all those who profess faith in Christ, together with their children.' },
+    { id: 'qz-bcotf-54', answer: F, refs: ['BCO 21-4'],
+      q: 'A candidate for ordination in the PCA is examined on his knowledge of civil law.',
+      note: 'Civil law is not among the examination areas — the exam covers subjects such as theology, church history, and the biblical languages.' },
+    { id: 'qz-bcotf-55', answer: T, refs: ['BCO 21-4'],
+      q: 'A candidate for ordination is examined on his knowledge of the biblical languages, among other subjects.' },
+
+    // ── Review and control; overtures; mission churches ──────────────────
+    { id: 'qz-bcotf-56', answer: T, refs: ['BCO 40'],
+      q: 'Under review and control, a Session’s minutes are submitted to Presbytery, ordinarily every year, for examination.' },
+    { id: 'qz-bcotf-57', answer: F, refs: ['BCO 40'],
+      q: 'Under review and control, it is the Presbytery whose minutes are submitted to the Session for approval.',
+      note: 'Review runs upward — a Session’s minutes go to Presbytery, and a Presbytery’s to the General Assembly — never the reverse.' },
+    { id: 'qz-bcotf-58', answer: T, refs: ['BCO 40-43'],
+      q: 'An overture is a formal proposal by which a lower court asks a higher court to take some action, such as amending the constitution.' },
+    { id: 'qz-bcotf-59', answer: F, refs: ['BCO 40-43'],
+      q: 'An overture is the document by which a party carries a judicial decision up to a higher court for review.',
+      note: 'That describes an appeal. An overture is a proposal for action, not a vehicle for challenging a judgment.' },
+    { id: 'qz-bcotf-60', answer: T, refs: ['BCO 5'],
+      q: 'A mission church is a congregation that is not yet self-governing and remains under the oversight of Presbytery.' },
+    { id: 'qz-bcotf-61', answer: F, refs: ['BCO 5'],
+      q: 'A mission church has its own Session and calls its own pastor independently of Presbytery.',
+      note: 'A mission church has no Session of its own; it is governed under Presbytery’s oversight until it is organized as a particular church.' },
+
+    // ── Evangelists & membership vows ────────────────────────────────────
+    { id: 'qz-bcotf-62', answer: T, refs: ['BCO 8-6'],
+      q: 'An evangelist is a teaching elder sent out to preach the gospel and gather and organize churches where there are none.' },
+    { id: 'qz-bcotf-63', answer: F, refs: ['BCO 8-6'],
+      q: 'An evangelist, in the BCO’s sense, is an unordained layperson authorized to preach on his own initiative.',
+      note: 'An evangelist is an ordained teaching elder sent by Presbytery for church-planting work, not an unordained layperson.' },
+    { id: 'qz-bcotf-64', answer: T, refs: ['BCO 57-5'],
+      q: 'A person makes five vows when he makes a public profession of faith.' },
+    { id: 'qz-bcotf-65', answer: F, refs: ['BCO 57-5'],
+      q: 'A person making a public profession of faith takes a single, general vow of allegiance to Christ.',
+      note: 'Five distinct vows are taken on profession of faith, not one.' },
+
+    // ── Censures that apply only to officers; restoration ────────────────
+    { id: 'qz-bcotf-66', answer: T, refs: ['BCO 30'],
+      q: 'Suspension from office and deposition are censures that apply only to church officers.' },
+    { id: 'qz-bcotf-67', answer: F, refs: ['BCO 30'],
+      q: 'Suspension from office may be applied to any communing member, whether or not he holds office.',
+      note: 'Suspension from office and deposition concern the exercise of office and so apply only to officers; admonition, suspension from the sacraments, and excommunication apply to members generally.' },
+    { id: 'qz-bcotf-68', answer: T, refs: ['BCO 37'],
+      q: 'When a censured person gives evidence of repentance, the same court that imposed the censure has authority to remove it.' },
+    { id: 'qz-bcotf-69', answer: F, refs: ['BCO 37'],
+      q: 'Only the General Assembly has authority to remove a censure, no matter which court originally imposed it.',
+      note: 'A censure is removed by the court that imposed it, not necessarily the General Assembly.' },
+    { id: 'qz-bcotf-70', answer: T, refs: ['BCO 38'],
+      q: 'A court may pronounce censure without the formality of a full trial when the accused makes voluntary confession of the offense.' },
+    { id: 'qz-bcotf-71', answer: F, refs: ['BCO 38'],
+      q: 'Even when the accused freely and voluntarily confesses the offense, the BCO still requires a full trial with witnesses before any censure may be pronounced.',
+      note: 'Voluntary confession lets a court act without the formality of a trial — that is the point of proceeding "without process."' },
+
+    // ── Directory for Worship’s constitutional chapters; the diaconate ───
+    { id: 'qz-bcotf-72', answer: T, refs: ['BCO Preface', 'BCO 59'],
+      q: 'The Directory for Worship’s definition of marriage in chapter 59, together with chapters 56–58, carries full constitutional authority.' },
+    { id: 'qz-bcotf-73', answer: T, refs: ['BCO 9'],
+      q: 'In a church that has no deacons, the duties of the diaconate devolve upon the ruling elders.' },
+    { id: 'qz-bcotf-74', answer: F, refs: ['BCO 9'],
+      q: 'In a church that has no deacons, the duties of the diaconate simply go undone until deacons are elected.',
+      note: 'Where there are no deacons, their duties devolve upon the ruling elders (the Session), not left undone.' },
+
+    // ── The Session moderator; congregational business; ministers’ bounds ─
+    { id: 'qz-bcotf-75', answer: T, refs: ['BCO 12'],
+      q: 'The pastor is the moderator of the Session by virtue of his office.' },
+    { id: 'qz-bcotf-76', answer: T, refs: ['BCO 25'],
+      q: 'Calling a pastor and matters touching the church’s property are business that belongs to the congregation, not the Session.' },
+    { id: 'qz-bcotf-77', answer: F, refs: ['BCO 13', 'BCO 20'],
+      q: 'A teaching elder may accept a call and labor outside the bounds of his Presbytery without its knowledge or approval.',
+      note: 'A minister’s call and labors are subject to his Presbytery’s approval and continued oversight, wherever he serves.' },
   ];
   global.PCA_QUIZ_TF = (global.PCA_QUIZ_TF || []).concat(Q);
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -23,6 +23,32 @@ import { subjectLabel } from './content.js';
 const BIBLE_SUBJECTS = ['bible_content', 'bible_books'];
 const THEOLOGY_SUBJECTS = ['theology', 'wcf', 'shorter_catechism', 'doctrines_proofs'];
 
+// Run options, persisted across visits:
+//   length — Quick / Medium / Full; per-section question counts below (Full
+//            matches the committee guide's stated numbers: 100 Bible, ~50 BCO).
+//   format — 'mixed' (the guide's mix: MCQ, short answer, T/F, written) or
+//            'mcq' (auto-graded only: multiple choice + True/False, no typing
+//            or self-grading).
+const LENGTH_KEY = 'pca_exam_length_v1';
+const FORMAT_KEY = 'pca_exam_format_v1';
+const LENGTHS = {
+  quick:  { label: 'Quick',  bible: 25,  theology: 10, bco: 15, mix: [10, 5, 10] },
+  medium: { label: 'Medium', bible: 50,  theology: 20, bco: 25, mix: [20, 10, 20] },
+  full:   { label: 'Full',   bible: 100, theology: 40, bco: 50, mix: [40, 20, 40] },
+};
+const examOpts = { length: 'medium', format: 'mixed' };
+try {
+  const l = localStorage.getItem(LENGTH_KEY);
+  if (LENGTHS[l]) examOpts.length = l;
+  if (localStorage.getItem(FORMAT_KEY) === 'mcq') examOpts.format = 'mcq';
+} catch (e) {}
+function saveExamOpts() {
+  try {
+    localStorage.setItem(LENGTH_KEY, examOpts.length);
+    localStorage.setItem(FORMAT_KEY, examOpts.format);
+  } catch (e) {}
+}
+
 // Every card of the given subjects (the whole bank, not the study selection),
 // tagged with its set for labels/sibling lookups like cardsForKeys does.
 function subjectCards(subjectIds) {
@@ -48,26 +74,42 @@ function authoredMcqItems(subjectIds) {
   }));
 }
 
-// Bible Knowledge: authored MCQs + one item per eligible card — MCQ when the
-// card can carry one, otherwise (or by coin flip, for variety) a short-answer
-// prompt, mirroring the guide's mixed multiple-choice / short-answer format.
-function bibleItems() {
+// Bible Knowledge: EVERY card of the Bible decks is in the bank — authored
+// MCQs, fact-style cards as MCQ or short-answer (coin flip for variety), and
+// the longer cards (book overviews, outlines, chapter summaries) as written
+// self-graded prompts. Previously only MCQ-able/short cards entered the pool,
+// which silently excluded all 229 Bible Book Summaries cards. In 'mcq' format
+// the bank is only the auto-graded choice questions.
+function bibleItems(format) {
   const items = authoredMcqItems(BIBLE_SUBJECTS);
   for (const c of subjectCards(BIBLE_SUBJECTS)) {
     const mcqable = quizEligible(c);
-    const shortable = isShortAnswer(c);
-    if (mcqable && (!shortable || Math.random() < 0.5)) {
-      items.push({ kind: 'mcq', card: c, quiz: buildQuiz(c) });
-    } else if (shortable) {
-      items.push({ kind: 'short', card: c });
+    if (format === 'mcq') {
+      if (mcqable) items.push({ kind: 'mcq', card: c, quiz: buildQuiz(c) });
+      continue;
     }
+    // Mixed format: an MCQ-able card flips a coin between MCQ and its
+    // recall form (short-answer if short, written prompt if long) so the run
+    // keeps the guide's mix even now that (nearly) every card carries an MCQ.
+    if (mcqable && Math.random() < 0.5) items.push({ kind: 'mcq', card: c, quiz: buildQuiz(c) });
+    else if (isShortAnswer(c)) items.push({ kind: 'short', card: c });
+    else items.push({ kind: 'written', card: c });
   }
   return items;
 }
 
 // Theology: written-answer prompts over the doctrine decks (WCF / WSC /
-// systematic theology / doctrines & proofs). Self-graded, never forced to MCQ.
-function theologyItems() {
+// systematic theology / doctrines & proofs). Self-graded, never forced to
+// MCQ — except in 'mcq' format, where the section runs on the authored
+// theology MCQ bank instead.
+function theologyItems(format) {
+  if (format === 'mcq') {
+    const items = authoredMcqItems(THEOLOGY_SUBJECTS);
+    for (const c of subjectCards(THEOLOGY_SUBJECTS)) {
+      if (quizEligible(c)) items.push({ kind: 'mcq', card: c, quiz: buildQuiz(c) });
+    }
+    return items;
+  }
   return subjectCards(THEOLOGY_SUBJECTS).map(c => ({ kind: 'written', card: c }));
 }
 
@@ -88,41 +130,75 @@ export function createExamMode(ctx) {
     renderRefs, resolveCardDetail, applyOutcome, rerender, setDeckMeta, shuffle,
   } = ctx;
 
-  // Mixed licensure practice: a shortened sampler of all three sections.
-  function mixedItems() {
-    const take = (arr, n) => shuffle(arr).slice(0, n);
-    return [...take(bibleItems(), 20), ...take(theologyItems(), 10), ...take(bcoItems(), 20)];
+  // Random draw spread across sub-decks: shuffle within each set, then deal
+  // round-robin from a shuffled rotation of sets, so a short run samples the
+  // whole span (Genesis to Revelation, every BCO block) instead of letting a
+  // few large decks dominate. Returns a final shuffle of the drawn items.
+  function drawSpread(items, n) {
+    const groups = new Map();
+    for (const it of items) {
+      const k = (it.card && (it.card._setKey || it.card._setLabel)) || 'other';
+      if (!groups.has(k)) groups.set(k, []);
+      groups.get(k).push(it);
+    }
+    const buckets = shuffle([...groups.values()].map(g => shuffle(g)));
+    const out = [];
+    while (out.length < n && buckets.length) {
+      for (let i = buckets.length - 1; i >= 0 && out.length < n; i--) {
+        out.push(buckets[i].pop());
+        if (!buckets[i].length) buckets.splice(i, 1);
+      }
+    }
+    return shuffle(out);
+  }
+
+  // Mixed licensure practice: a sampler of all three sections, sized by the
+  // current run length.
+  function mixedItems(format) {
+    const [b, t, c] = LENGTHS[examOpts.length].mix;
+    return [
+      ...drawSpread(bibleItems(format), b),
+      ...drawSpread(theologyItems(format), t),
+      ...drawSpread(bcoItems(format), c),
+    ];
   }
 
   const SECTIONS = [
     {
       id: 'bible', label: 'Bible Knowledge practice', target: 100,
-      kinds: '100 mixed multiple-choice & short-answer',
+      kinds: 'mixed multiple-choice & short-answer (guide: 100 questions)',
       build: bibleItems,
-      desc: 'Scripture broadly — especially Genesis, Exodus, Psalms, Isaiah, the Gospels, Acts, Romans, Ephesians & Hebrews.',
+      desc: 'Scripture broadly — especially Genesis, Exodus, Psalms, Isaiah, the Gospels, Acts, Romans, Ephesians & Hebrews. Every card in the Bible decks is in the bank: fact cards as multiple choice or short answer, book overviews & outlines as written self-graded prompts.',
     },
     {
-      id: 'theology', label: 'Theology written practice', target: null, sample: 20,
+      id: 'theology', label: 'Theology written practice', target: null,
       kinds: 'written answers, self-graded',
       build: theologyItems,
       desc: 'The Westminster Confession with a Shorter Catechism focus — Trinity, Scripture, creation, providence, sin, Christ, the ordo salutis, the Holy Spirit, the Church, death & the eschaton — supported from Scripture.',
-      note: 'The committee guide states no fixed question count for Theology; each run samples 20 prompts.',
+      note: 'The committee guide states no fixed question count for Theology.',
     },
     {
       id: 'bco', label: 'BCO practice', target: 50,
-      kinds: 'about 50 True / False',
+      kinds: 'True / False (guide: about 50 questions)',
       build: bcoItems,
       desc: 'PCA polity, courts & practices — the five permanent committees, elements of worship, the courts, the constitution, the three parts of the BCO, discipline & censures.',
     },
     {
       id: 'mixed', label: 'Mixed licensure practice', target: null,
-      kinds: 'a shortened sampler of all three sections',
+      kinds: 'all three sections in one sitting',
       build: mixedItems,
-      desc: '20 Bible Knowledge questions, 10 Theology written prompts, and 20 BCO True/False in one sitting.',
+      desc: 'Bible Knowledge, Theology written prompts, and BCO True/False together, sized by the run length.',
     },
   ];
   const sectionById = {};
   for (const s of SECTIONS) sectionById[s.id] = s;
+
+  // Question count for a section at the current run length.
+  function countFor(sec) {
+    const L = LENGTHS[examOpts.length];
+    if (sec.id === 'mixed') return L.mix[0] + L.mix[1] + L.mix[2];
+    return L[sec.id];
+  }
 
   const KIND_LABEL = { mcq: 'Multiple choice', tf: 'True / False', short: 'Short answer', written: 'Written answer' };
   const isChoice = (item) => item.kind === 'mcq' || item.kind === 'tf';
@@ -131,13 +207,16 @@ export function createExamMode(ctx) {
   function begin(sectionId) {
     const sec = sectionById[sectionId];
     if (!sec) return;
-    let items = sec.build();
-    const available = items.length;
+    const pool = sec.build(examOpts.format);
+    const available = pool.length;
     if (!available) return;
-    shuffle(items);
-    const cap = sec.target || sec.sample;
-    if (cap) items = items.slice(0, cap);
-    st.exam = { section: sec.id, items, pos: 0, done: false, available };
+    const want = countFor(sec);
+    // Mixed builds its own per-section spread; the rest draw across sub-decks.
+    const items = sec.id === 'mixed' ? shuffle(pool) : drawSpread(pool, Math.min(want, available));
+    st.exam = {
+      section: sec.id, items, pos: 0, done: false,
+      available, want, length: examOpts.length, format: examOpts.format,
+    };
     rerender();
   }
 
@@ -240,20 +319,26 @@ export function createExamMode(ctx) {
 
   // ── Section chooser (the mode's start screen) ──────────────────────
   function availabilityLine(sec, avail) {
-    if (sec.id === 'theology') return `${avail} prompts available · ${sec.sample} sampled per run`;
-    if (sec.id === 'mixed') return 'up to 50 questions per run';
-    const short = avail < sec.target ? `${avail} available of the` : `${avail} available ·`;
-    return `${short} ${sec.target}-question written section`;
+    if (sec.id === 'mixed') return `${avail} questions per run (${LENGTHS[examOpts.length].label})`;
+    let line = `${avail} in the bank · ${Math.min(countFor(sec), avail)} drawn at random per run`;
+    if (sec.target) line += ` · guide’s written section: ${sec.target}`;
+    return line;
+  }
+  function optRow(label, attr, options, current) {
+    const btns = options.map(([value, text, title]) =>
+      `<button class="theme-btn ${current === value ? 'active' : ''}" ${attr}="${value}" type="button"${title ? ` title="${escapeHtml(title)}"` : ''}>${text}</button>`).join('');
+    return `<div class="exam-opt-row" role="group" aria-label="${label}">
+      <span class="exam-opt-label">${label}</span><div class="theme-switcher">${btns}</div></div>`;
   }
   function renderChooser(area) {
     setDeckMeta('Mock exam — pick a written-exam section');
     const cards = SECTIONS.map(sec => {
-      const avail = sec.build().length;
+      const avail = sec.build(examOpts.format).length;
       return `<button class="exam-section-card" data-exam-section="${sec.id}" type="button" ${avail ? '' : 'disabled'}>
         <span class="exam-section-title">${escapeHtml(sec.label)}</span>
         <span class="exam-section-kinds">${escapeHtml(sec.kinds)}</span>
         <span class="exam-section-desc">${escapeHtml(sec.desc)}</span>
-        <span class="exam-section-meta">${avail ? escapeHtml(availabilityLine(sec, avail)) : 'No questions available yet'}</span>
+        <span class="exam-section-meta">${avail ? escapeHtml(availabilityLine(sec, avail)) : 'No questions available in this format yet'}</span>
         ${sec.note ? `<span class="exam-section-note">${escapeHtml(sec.note)}</span>` : ''}
       </button>`;
     }).join('');
@@ -261,16 +346,28 @@ export function createExamMode(ctx) {
       <p class="exam-intro">Practice modeled on the C&amp;C committee’s study guidelines for the
         written licensure exam — not an official PCA exam. Sections draw on the app’s whole
         card bank, regardless of your study selection.</p>
+      ${optRow('Length', 'data-exam-length',
+        [['quick', 'Quick'], ['medium', 'Medium'], ['full', 'Full', 'Full matches the committee guide’s counts: 100 Bible Knowledge, ~50 BCO True/False']],
+        examOpts.length)}
+      ${optRow('Format', 'data-exam-format',
+        [['mixed', 'Mixed', 'The guide’s mix — multiple choice, short answer, True/False, and written prompts'],
+         ['mcq', 'MCQ only', 'Auto-graded questions only: multiple choice and True/False — no typing or self-grading']],
+        examOpts.format)}
       <div class="exam-sections">${cards}</div>`;
     area.querySelectorAll('[data-exam-section]').forEach(btn =>
       btn.addEventListener('click', () => begin(btn.dataset.examSection)));
+    area.querySelectorAll('[data-exam-length]').forEach(btn =>
+      btn.addEventListener('click', () => { examOpts.length = btn.getAttribute('data-exam-length'); saveExamOpts(); renderChooser(area); }));
+    area.querySelectorAll('[data-exam-format]').forEach(btn =>
+      btn.addEventListener('click', () => { examOpts.format = btn.getAttribute('data-exam-format') === 'mcq' ? 'mcq' : 'mixed'; saveExamOpts(); renderChooser(area); }));
   }
 
   // ── Run rendering ──────────────────────────────────────────────────
   function renderRunMeta(ex) {
     const sec = sectionById[ex.section];
-    let m = `Mock exam · ${escapeHtml(sec.label)} — question <strong>${ex.pos + 1}</strong> of <strong>${ex.items.length}</strong>`;
-    if (sec.target && ex.items.length < sec.target) m += ` (target ${sec.target}; ${ex.items.length} available)`;
+    const mode = `${LENGTHS[ex.length] ? LENGTHS[ex.length].label : ''}${ex.format === 'mcq' ? ' · MCQ only' : ''}`;
+    let m = `Mock exam · ${escapeHtml(sec.label)} · ${mode} — question <strong>${ex.pos + 1}</strong> of <strong>${ex.items.length}</strong>`;
+    if (ex.want && ex.items.length < ex.want) m += ` (only ${ex.items.length} available)`;
     setDeckMeta(m);
   }
   function finishRowHtml(ex, nextHtml) {
@@ -310,7 +407,7 @@ export function createExamMode(ctx) {
     area.innerHTML = `
       <div class="qa-card revealed">
         <div class="qa-deck-label">${escapeHtml(item.card._setLabel)} · ${KIND_LABEL[item.kind]}</div>
-        <div class="qa-question">${escapeHtml(item.card.q)}</div>
+        <div class="qa-question">${escapeHtml(q.prompt || item.card.q)}</div>
         ${renderChoices(q, item.kind === 'tf')}
         ${feedback}
       </div>
@@ -384,9 +481,10 @@ export function createExamMode(ctx) {
     const scoreLines = [];
     if (auto.length) scoreLines.push(`<div class="exam-score">${autoCorrect} / ${auto.length} <span class="exam-score-pct">${pct}% auto-graded</span></div>`);
     if (selfG.length) scoreLines.push(`<div class="exam-self-score">Self-graded: <strong>${selfN('easy')}</strong> correct · <strong>${selfN('pass')}</strong> partial · <strong>${selfN('again')}</strong> incorrect</div>`);
+    const lenLabel = (LENGTHS[ex.length] ? LENGTHS[ex.length].label : 'Custom') + (ex.format === 'mcq' ? ', MCQ only' : '');
     const targetNote = sec.target
-      ? `Answered ${answered} of ${ex.items.length} shown · the written-exam section is ${sec.target} questions${ex.available < sec.target ? ` (${ex.available} available here)` : ''}.`
-      : `Answered ${answered} of ${ex.items.length} shown · ${sec.id === 'theology' ? 'no fixed count stated in the committee guide.' : 'mixed sampler.'}`;
+      ? `Answered ${answered} of ${ex.items.length} shown (${lenLabel} run) · the committee guide’s written section is ${sec.target} questions.`
+      : `Answered ${answered} of ${ex.items.length} shown (${lenLabel} run)${sec.id === 'theology' ? ' · no fixed count stated in the committee guide.' : '.'}`;
 
     const bySub = new Map();
     for (const it of ex.items) {
