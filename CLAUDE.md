@@ -69,17 +69,23 @@ That changes the update workflow:
   flow through the controller's `quizOutcome()` in `pca.js`, never
   `applyOutcome` directly, so the focus rules apply: under Flip deck a correct
   answer retires the card and a wrong one recycles it, no SRS writes; the deck
-  meta names quiz-ready vs selected counts and points long cards at
-  Review/Browse), Browse (collapsible outline,
+  meta names quiz-ready vs selected counts. **Every card is quiz-ready**: the
+  per-card MCQ overlay — see below — guarantees it, so a selection's quiz deck
+  covers the whole selection), Browse (collapsible outline,
   non-graded, **with card export/print** — see below), Mock exam
   (written-exam practice per the C&C committee study guidelines, `js/app/exam.js`:
-  a section chooser — Bible Knowledge targets 100 mixed MCQ/short-answer,
-  Theology is written self-graded practice with **no fixed count** (the guide
-  states none — don't fabricate one; 20 sampled per run), BCO targets ~50
-  True/False from the hand-authored paraphrase bank `js/data/quiz/bco_tf.js`
+  a section chooser with a **Length** control (Quick/Medium/Full — Full matches
+  the guide's counts) and a **Format** control (Mixed per the guide, or MCQ-only
+  = auto-graded MCQ+T/F), both persisted (`pca_exam_length_v1`,
+  `pca_exam_format_v1`) — Bible Knowledge targets 100 mixed MCQ/short-answer
+  (the **whole** Bible bank: fact cards as MCQ/short, long book cards as
+  written self-graded prompts), Theology is written self-graded practice with
+  **no fixed count** (the guide states none — don't fabricate one), BCO targets
+  ~50 True/False from the hand-authored paraphrase bank `js/data/quiz/bco_tf.js`
   (`window.PCA_QUIZ_TF`, validated by its own `validate.mjs` block), plus a
   mixed sampler. Pools draw from the whole card bank independent of the study
-  selection; when a pool is under target the run says so honestly.
+  selection, dealt round-robin across sub-decks (`drawSpread`) so a short run
+  spans the whole section; when a pool is under target the run says so honestly.
   Short/written items: optional type-your-answer box → reveal →
   Incorrect/Partial/Correct self-grade → the usual again/pass/easy outcomes),
   Catechisms (WSC/WLC
@@ -211,6 +217,18 @@ That changes the update workflow:
   this).
   3+-column Markdown tables are emitted with `class="md-stack"` + per-cell
   `data-th` and stack into labeled row-blocks under 640px (`css/pca.css`).
+- **Per-card MCQ overlay (`js/data/quiz_cards/*.js` → `window.PCA_CARD_QUIZ`):**
+  every review card has a hand-authored MCQ — card id →
+  `{ q?, choices: [4], answerIndex }` (`q` optionally overrides the card's own
+  question with a sharper MCQ prompt). Overlay files live OUTSIDE the generated
+  subject files so builder re-runs never wipe them; `cardQuiz()`/`buildQuiz()`
+  in `js/app/quiz.js` consume them (an inline `quiz` block on a card wins).
+  `dev/validate.mjs` **hard-fails if any card lacks a possible MCQ** (overlay,
+  inline block, or auto-generation from short-answer siblings) — so when you
+  add cards, add matching overlay entries; `node dev/mcq_coverage.mjs
+  <subjectId>` prints the uncovered worklist. Distractors must match the
+  correct choice in length (±30%) and grammatical shape (the giveaway check
+  catches egregious cases; the discipline is manual).
 - **Semicolon walls:** multi-part answers chained with semicolons must render
   as lists, not glued paragraphs (`SEMICOLON_CHAIN` class in `dev/audit.mjs`;
   church-history glossary cards are bulletized structurally by

@@ -3,8 +3,8 @@
 > **Resume doc.** This file is the source of truth for the build so work can
 > continue in a fresh chat. Update the **Status** and **Next steps** sections
 > as phases complete. Latest work: branch `claude/mock-exam-quiz-updates-16p6b8`
-> (Phase 31 — written-exam Mock exam per the C&C committee guide + Quiz focus
-> fixes: flip-deck under Quiz, honest deck meta, mode-specific empty states).
+> (Phase 32 — full-bank exam pools with Quick/Medium/Full + MCQ-only controls,
+> and hand-authored MCQ overlays covering every card in the app).
 
 ## 1. Goal
 
@@ -152,6 +152,33 @@ KEEP modules + the HTML shell):**
 
 ## 7. Phases & status
 
+- [x] **Phase 32 — Full-bank exam pools + per-card MCQ coverage (user feedback
+      round 2).** Release `?v=65`/`pca-v65`.
+      - **Diagnosed "96 of 402 prompts":** the Bible exam pool only admitted
+        MCQ-able/short cards, silently excluding all 229 long-form Bible Book
+        Summaries cards. Now **every card enters the bank** (long cards as
+        written self-graded prompts) — 457 Bible prompts.
+      - **`drawSpread()`**: exam draws deal round-robin across sub-decks/books
+        (shuffled within and across), so a run samples the whole span instead
+        of clumping.
+      - **Length control** (Quick 25/10/15, Medium 50/20/25 — the default,
+        Full 100/40/50 matching the guide) + **Format control** (Mixed / MCQ-
+        only = auto-graded MCQ+T/F), persisted (`pca_exam_length_v1`,
+        `pca_exam_format_v1`).
+      - **Per-card MCQ overlay** (`js/data/quiz_cards/*` →
+        `window.PCA_CARD_QUIZ`, consumed by `cardQuiz()` in `js/app/quiz.js`,
+        optional sharper `q` prompt override): **all 1,182 previously
+        uncovered cards** got hand-authored MCQs (9 overlay files: bible_books
+        OT 141 / NT 88, bible_content 95, bco 91, bco_comprehensive 166,
+        theology 187, wcf 173, church_history 91, small_subjects 152 —
+        authored by parallel subagents with distractor length/shape matched to
+        the correct answer). Every card in the app is now quiz-ready — Quiz
+        mode covers whole selections, and the exam's MCQ-only format has deep
+        pools. `validate.mjs` hard-fails if a future card lacks an MCQ;
+        `dev/mcq_coverage.mjs` prints the worklist.
+      - **Banks grown:** BCO True/False 52 → 77 (generated from existing
+        cards); new `js/data/quiz/bible_books.js` authored bank (40 whole-book
+        MCQs).
 - [x] **Phase 31 — Written-exam Mock exam + Quiz focus fixes (user-requested,
       from the C&C committee study guidelines).** Release `?v=64`/`pca-v64`.
       - **Mock exam rebuilt** (`js/app/exam.js`, replaces the fixed 25-question
