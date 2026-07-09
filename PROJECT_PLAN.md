@@ -2,8 +2,9 @@
 
 > **Resume doc.** This file is the source of truth for the build so work can
 > continue in a fresh chat. Update the **Status** and **Next steps** sections
-> as phases complete. Latest work: branch `claude/wcf-coverage-browse-export-r37y4i`
-> (Phase 30 — full WCF coverage + card-detail setting + Browse export/print).
+> as phases complete. Latest work: branch `claude/mock-exam-quiz-updates-16p6b8`
+> (Phase 31 — written-exam Mock exam per the C&C committee guide + Quiz focus
+> fixes: flip-deck under Quiz, honest deck meta, mode-specific empty states).
 
 ## 1. Goal
 
@@ -151,7 +152,37 @@ KEEP modules + the HTML shell):**
 
 ## 7. Phases & status
 
-- [x] **Phase 30 — Full WCF coverage + Full/Summary setting + Browse export
+- [x] **Phase 31 — Written-exam Mock exam + Quiz focus fixes (user-requested,
+      from the C&C committee study guidelines).** Release `?v=64`/`pca-v64`.
+      - **Mock exam rebuilt** (`js/app/exam.js`, replaces the fixed 25-question
+        MCQ-only session): a section chooser modeled on the committee guide's
+        secs 1–3 — **Bible Knowledge** (target 100, mixed MCQ + short-answer,
+        pools = Bible Content + Bible Book Summaries; honest "N available of
+        the 100-question section" note), **Theology** (written self-graded
+        prompts over Theology/WCF/WSC/Doctrines & Proofs; the guide states
+        **no fixed count**, so none is fabricated — 20 sampled per run and
+        labeled), **BCO** (~50 True/False from the new hand-authored paraphrase
+        bank `js/data/quiz/bco_tf.js` → `window.PCA_QUIZ_TF`, 52 items:
+        permanent committees, worship elements, courts, constitution, three
+        parts of the BCO, discipline, censures), and a **Mixed** 20/10/20
+        sampler. Pools draw from the whole card bank independent of the study
+        selection. Short/written items: optional type-your-answer box → reveal
+        → Incorrect/Partial/Correct self-grade (→ again/pass/easy). Results:
+        auto-graded score, self-graded tallies, answered-vs-target, per-deck
+        breakdown, missed list; "Finish now" ends early. Exam keys moved from
+        `initKeyboard` into the mode's own `onKey`. `validate.mjs` gained a
+        `PCA_QUIZ_TF` block (unique ids, boolean answers, long-quotation guard).
+      - **Quiz focus fixes:** answers now go through the controller's
+        `quizOutcome()` (via ctx) instead of `applyOutcome` directly — so
+        **Flip deck works under Quiz** (correct retires for the session, wrong
+        recycles to the back, applied on the next move so feedback stays
+        visible, no SRS writes per the Review flip convention). Deck meta now
+        explains the deck: quiz-question count, due/retired counts, and a
+        "X fact-style questions from your Y selected cards" note when the quiz
+        deck is smaller than the selection (the old "why only N questions?"
+        confusion). Flip retired counts are scoped to the active mode's card
+        universe. Mode-specific empty states for no-quiz-ready and
+        weak-spots-under-Quiz.
       (user-requested).** Release `?v=61`/`pca-v61`. Replaced the old §1-only
       `theo-wcf` theology sub-deck (26 chapter cards, each quoting only §1 with an
       "open the chip for the rest" note) with a dedicated **Westminster Confession

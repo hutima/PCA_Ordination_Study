@@ -42,7 +42,8 @@ export const state = {
   revealed: false,
   expanded: false,         // review card: is the full answer/quotations open
   quiz: null,              // current card's MCQ: { choices, correctIndex, picked }
-  exam: null,              // mock-exam session: { cards, quizzes, pos, done }
+  quizFlipOutcome: null,   // quiz + flip deck: pending 'retire'|'recycle', applied on the next move
+  exam: null,              // mock-exam session: { section, items, pos, done, available }
   dueCount: 0,
   progress: {},            // cardId -> SRS progress object
   activity: {},            // 'YYYY-MM-DD' -> number of reviews that day

@@ -34,7 +34,6 @@ import { createBrowsePrint } from './browsePrint.js';
 import { progressBodyHtml } from './progress.js';
 import { initPwaInstall, maybeScheduleInstallPrompt } from './pwaInstall.js';
 
-const EXAM_SIZE = 25;
 const $ = (id) => document.getElementById(id);
 const escapeText = escapeHtml; // template-literal alias
 
@@ -162,6 +161,7 @@ function buildDeck(opts = {}) {
 // Prepare per-card transient state for the current position.
 function syncCardState() {
   state.revealed = false;
+  state.quizFlipOutcome = null; // any rebuild/navigation clears a pending flip grade
   const card = state.deck[state.pos];
   state.quiz = (state.mode === 'quiz' && card) ? buildQuiz(card) : null;
 }
@@ -173,11 +173,36 @@ function setDeckMeta(html) {
   if (html === '') { meta.textContent = ''; return; }
   meta.innerHTML = html;
 }
+// Retired flip-deck cards that belong to the ACTIVE mode's card universe.
+// One flip session spans mode switches (a card retired in Quiz stays retired
+// in Review), but each mode's meta only counts its own cards — the quiz deck
+// includes authored bank questions the review deck doesn't, and vice versa.
+function flipRetiredCount() {
+  if (!state.flipArchived.size) return 0;
+  const cards = state.mode === 'quiz' ? quizDeckCards() : cardsForKeys(effectiveSetKeys());
+  return cards.reduce((n, c) => n + (state.flipArchived.has(c.id) ? 1 : 0), 0);
+}
 function renderSessionMeta() {
   if (!state.deck.length) { setDeckMeta(''); return; }
   const total = state.deck.length;
+  // Quiz: say plainly how many of the selected cards are quiz-ready, plus the
+  // focus-specific counts (due / retired), so the deck size is never a mystery.
+  if (state.mode === 'quiz') {
+    const selCount = cardsForKeys(effectiveSetKeys()).length;
+    const parts = [`<strong>${total}</strong> quiz questions`];
+    if (state.focus === 'flip') parts.push(`<strong>${flipRetiredCount()}</strong> retired`);
+    else if (state.spacedOn && state.focus === 'due') parts.push(`<strong>${state.dueCount}</strong> due`);
+    if (!state.spacedOn) parts.push('unspaced');
+    parts.push(`question ${state.pos + 1} of ${total}`);
+    const eligible = quizDeckCards().length;
+    const note = eligible < selCount
+      ? `<br>Quiz has <strong>${eligible}</strong> fact-style questions from your <strong>${selCount}</strong> selected cards — longer self-check cards are covered in Review &amp; Browse.`
+      : '';
+    setDeckMeta(parts.join(' · ') + note);
+    return;
+  }
   if (state.focus === 'flip') {
-    setDeckMeta(`<strong>${total}</strong> in the pile · <strong>${state.flipArchived.size}</strong> retired · card ${state.pos + 1} of ${total}`);
+    setDeckMeta(`<strong>${total}</strong> in the pile · <strong>${flipRetiredCount()}</strong> retired · card ${state.pos + 1} of ${total}`);
     return;
   }
   if (!state.spacedOn && state.mode === 'review') {
@@ -221,9 +246,46 @@ function withCardAnchor(render) {
 // ── Controller deck operations (used by review mode + keyboard) ────────
 function toggleReveal() { state.revealed = !state.revealed; withCardAnchor(renderCard); }
 function move(delta) {
+  // Quiz + Flip deck: once a card is answered it leaves its slot on the next
+  // move — retired for the session if correct, recycled to the back if wrong
+  // (the grade is applied here, not on answer, so the feedback stays visible).
+  if (state.quizFlipOutcome) { applyQuizFlip(); return; }
   const n = state.deck.length;
   if (!n) return;
   state.pos = (state.pos + delta + n) % n;
+  syncCardState();
+  withCardAnchor(renderCard);
+}
+// Quiz grading — the mode-aware counterpart of mark(). (Quiz used to call
+// applyOutcome directly from modes.js, which bypassed the flip-deck rules, so
+// Flip deck never retired or recycled anything under Quiz.) Under Flip deck no
+// SRS is written — the Review flip-deck convention: XP + the activity log
+// only. Every other focus applies the usual SRS outcome (which itself falls
+// back to XP/activity-only while spaced repetition is off).
+function quizOutcome(correct) {
+  const card = state.deck[state.pos];
+  if (!card) return;
+  state.lastSeenId = card.id;
+  state.lastStudyAt = Date.now();
+  if (state.focus === 'flip') {
+    state.quizFlipOutcome = correct ? 'retire' : 'recycle';
+    addXp(computeCardXpAward(correct ? 'easy' : 'again', false, false));
+    recordActivity();
+    return;
+  }
+  applyOutcome(card, correct ? 'easy' : 'again');
+}
+function applyQuizFlip() {
+  const retire = state.quizFlipOutcome === 'retire';
+  state.quizFlipOutcome = null;
+  const [card] = state.deck.splice(state.pos, 1);
+  if (retire) state.flipArchived.add(card.id);
+  else state.deck.push(card);
+  if (state.pos >= state.deck.length) {
+    // End of a pass — reshuffle what's still in play and start over.
+    if (state.shuffleOn) shuffle(state.deck);
+    state.pos = 0;
+  }
   syncCardState();
   withCardAnchor(renderCard);
 }
@@ -309,9 +371,9 @@ const browsePrint = createBrowsePrint({
 const MODES = createModes({
   state, DATA, escapeHtml,
   renderAnswer, summarize, hasMoreThanSummary, directAnswer, renderRefs, resolveCardDetail,
-  buildQuiz, applyOutcome, applyCatechismOutcome, getConfidencePct, rerender: renderCard, mark, move, toggleReveal,
-  withCardAnchor, effectiveSetKeys, quizDeckCards, shuffle,
-  emptyState, navRowHtml, wireNav, setDeckMeta, EXAM_SIZE, browsePrint,
+  buildQuiz, applyOutcome, applyCatechismOutcome, getConfidencePct, rerender: renderCard, mark, quizOutcome, move, toggleReveal,
+  withCardAnchor, effectiveSetKeys, shuffle,
+  emptyState, navRowHtml, wireNav, setDeckMeta, browsePrint,
 });
 
 function setMode(modeId) {
@@ -479,16 +541,19 @@ function renderCard() {
     if (!state.selected.size) {
       msg = `Choose one or more subjects, then press <strong>Start studying</strong>.`;
     } else if (state.focus === 'flip' && state.flipArchived.size) {
-      msg = `Flip deck finished — you've retired all <strong>${state.flipArchived.size}</strong> cards. 🎉<br>
+      msg = `Flip deck finished — you've retired all <strong>${flipRetiredCount()}</strong> cards. 🎉<br>
         <button class="quick-btn" id="flipResetBtn" type="button" style="margin-top:12px">↻ Restart the deck</button>`;
     } else if (!state.spacedOn && state.mode === 'review' && state.unspacedDone.size) {
       const note = state.unspacedDailyReset ? ' They come back tomorrow (daily reset is on).' : '';
       msg = `Unspaced deck finished — you've retired all <strong>${state.unspacedDone.size}</strong> cards. 🎉${note}<br>
         <button class="quick-btn" id="unspacedResetBtnInline" type="button" style="margin-top:12px">↻ Restart the deck</button>`;
     } else if (state.focus === 'weak') {
-      msg = `No weak spots in this selection yet. Weak spots are cards you've studied and scored under 60% on — keep reviewing and they'll collect here. Switch back to <strong>Due first</strong> to keep studying.`;
+      msg = state.mode === 'quiz'
+        ? `No weak quiz-ready cards yet. Weak spots are cards you've already studied and scored under 60% on — grade some cards first (in Quiz or Review), then come back. Switch to <strong>Due first</strong> to quiz the whole selection.`
+        : `No weak spots in this selection yet. Weak spots are cards you've studied and scored under 60% on — keep reviewing and they'll collect here. Switch back to <strong>Due first</strong> to keep studying.`;
     } else if (state.mode === 'quiz') {
-      msg = `No quiz-ready cards in this selection. Quiz mode works on fact-style cards (passages, events, key terms/people). Try <strong>Review</strong>, or pick more subjects.`;
+      const selCount = cardsForKeys(effectiveSetKeys()).length;
+      msg = `None of the <strong>${selCount}</strong> cards in this selection are quiz-ready. Quiz works on fact-style cards (short answers, passages, key terms/people) — longer self-check cards are covered in <strong>Review</strong> and <strong>Browse</strong>. Pick more subjects to add quiz questions.`;
     } else {
       msg = `Choose one or more subjects, then press <strong>Start studying</strong>.`;
     }
@@ -791,22 +856,13 @@ function initKeyboard() {
     if (/INPUT|TEXTAREA|SELECT/.test(tag)) return;
     if (document.querySelector('.consent-overlay.show')) return; // a modal is open
     if (state.mode === 'browse') return; // native <details> handles keyboard
-    // A mode may handle its own keys (e.g. catechism prev/next/reveal).
+    // A mode may handle its own keys (exam pick/reveal/grade/next, catechism
+    // prev/next/reveal).
     const activeMode = MODES.byId[state.mode];
     if (activeMode && activeMode.onKey && activeMode.onKey(e)) return;
-    if (state.mode === 'exam') {
-      const ex = state.exam;
-      if (!ex || ex.done) return;
-      const q = ex.quizzes[ex.pos];
-      if (/^[1-9]$/.test(e.key) && q.picked < 0) {
-        const i = Number(e.key) - 1;
-        if (i < q.choices.length) MODES.byId.exam.pick(i);
-      } else if ((e.code === 'Space' || e.key === 'Enter' || e.key === 'ArrowRight') && q.picked >= 0) {
-        if (/BUTTON|A/.test(tag)) return;
-        e.preventDefault(); MODES.byId.exam.next();
-      }
-      return;
-    }
+    // The exam doesn't use the shared deck; unhandled keys must not leak into
+    // deck navigation (state.deck still holds the previous mode's deck).
+    if (state.mode === 'exam') return;
     if (!state.deck.length) return;
     if (e.key === 'ArrowRight') { move(1); return; }
     if (e.key === 'ArrowLeft') { move(-1); return; }

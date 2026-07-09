@@ -9,7 +9,7 @@
 // surfaces an "Update available" banner (see registerServiceWorker in
 // js/app/pca.js) and reloads only when the user taps "Refresh now" — never
 // automatically, which would freeze iOS standalone PWAs.
-const CACHE = 'pca-v63';
+const CACHE = 'pca-v64';
 
 const PRECACHE = [
   './',
@@ -26,6 +26,7 @@ const PRECACHE = [
   'js/app/refs.js',
   'js/app/srs.js',
   'js/app/modes.js',
+  'js/app/exam.js',
   'js/app/browsePrint.js',
   'js/app/psalms.js',
   'js/app/progress.js',
@@ -61,6 +62,7 @@ const PRECACHE = [
   'js/data/quiz/church_history.js',
   'js/data/quiz/theology.js',
   'js/data/quiz/hot_topics.js',
+  'js/data/quiz/bco_tf.js',
   'js/data/subjects/hot_topics.js',
   'icons/icon-192.png',
   'icons/icon-512.png',
