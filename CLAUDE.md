@@ -86,6 +86,12 @@ That changes the update workflow:
   mixed sampler. Pools draw from the whole card bank independent of the study
   selection, dealt round-robin across sub-decks (`drawSpread`) so a short run
   spans the whole section; when a pool is under target the run says so honestly.
+  **Per-section progress persists** (`pca_exam_progress_v1`: per-section
+  answer-code maps + the in-flight run) until the section's **Reset** button:
+  new draws exclude already-answered questions so successive runs walk the
+  whole bank to completion, an interrupted run resumes with its remaining
+  questions, results show the cumulative saved tabulation, and mixed runs
+  credit answers to each question's home section.
   Short/written items: optional type-your-answer box → reveal →
   Incorrect/Partial/Correct self-grade → the usual again/pass/easy outcomes),
   Catechisms (WSC/WLC

@@ -3,8 +3,8 @@
 > **Resume doc.** This file is the source of truth for the build so work can
 > continue in a fresh chat. Update the **Status** and **Next steps** sections
 > as phases complete. Latest work: branch `claude/mock-exam-quiz-updates-16p6b8`
-> (Phase 32 — full-bank exam pools with Quick/Medium/Full + MCQ-only controls,
-> and hand-authored MCQ overlays covering every card in the app).
+> (Phase 33 — persistent per-section exam progress: answers and scores are
+> saved until Reset, runs resume, and sections can be completed bank-wide).
 
 ## 1. Goal
 
@@ -152,6 +152,18 @@ KEEP modules + the HTML shell):**
 
 ## 7. Phases & status
 
+- [x] **Phase 33 — Persistent per-section exam progress (user-requested).**
+      Release `?v=66`/`pca-v66`. Exam answers persist per section
+      (`pca_exam_progress_v1`) until an explicit **Reset**: each answer is
+      recorded by question id with a result code ('c'/'w' auto-graded,
+      'e'/'p'/'a' self-graded); new draws exclude answered questions so
+      successive runs walk the whole bank to **section completion**; an
+      interrupted sitting resumes (the in-flight run's question list is
+      persisted; answered ones drop out on rebuild); results screens and the
+      section-chooser cards show the **cumulative tabulation** ("N of BANK
+      answered · ✓ correct · ~ partial · ✗ incorrect · %"), with a final
+      section-complete screen; mixed runs credit answers to each question's
+      home section. Reset is per-section (chooser footer + complete screen).
 - [x] **Phase 32 — Full-bank exam pools + per-card MCQ coverage (user feedback
       round 2).** Release `?v=65`/`pca-v65`.
       - **Diagnosed "96 of 402 prompts":** the Bible exam pool only admitted

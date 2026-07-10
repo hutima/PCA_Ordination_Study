@@ -203,6 +203,15 @@ a.qa-ref-inline {
 .exam-section-desc { font-size: calc((13px) * var(--text-scale, 1)); color: var(--muted); line-height: 1.5; }
 .exam-section-meta { font-size: calc((12px) * var(--text-scale, 1)); color: var(--muted); margin-top: 2px; }
 .exam-section-note { font-size: calc((12px) * var(--text-scale, 1)); color: var(--gold-dim); font-style: italic; }
+/* Saved-progress footer under a section card (cumulative score + Reset). */
+.exam-section-wrap { display: flex; flex-direction: column; }
+.exam-section-foot {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 6px 6px 0; flex-wrap: wrap;
+}
+.exam-section-progress { color: var(--muted); font-size: calc((12px) * var(--text-scale, 1)); line-height: 1.5; }
+.exam-section-progress strong { color: var(--gold-light); }
+.exam-reset-btn { flex: 0 0 auto; }
 /* Short/written answer typing box (optional; never graded automatically). */
 .exam-answer-input {
   width: 100%; margin-top: 16px; padding: 12px 14px; border-radius: 10px;
