@@ -82,16 +82,21 @@ That changes the update workflow:
   written self-graded prompts), Theology is written self-graded practice with
   **no fixed count** (the guide states none — don't fabricate one), BCO targets
   ~50 True/False from the hand-authored paraphrase bank `js/data/quiz/bco_tf.js`
-  (`window.PCA_QUIZ_TF`, validated by its own `validate.mjs` block), plus a
-  mixed sampler. Pools draw from the whole card bank independent of the study
+  (`window.PCA_QUIZ_TF`, validated by its own `validate.mjs` block), plus an
+  **All sections (random)** card — a random draw over the union of the three
+  sections' remaining questions whose answers credit each question's home
+  section, so its score IS the three sections' combined ledger (its Reset
+  clears all three). Pools draw from the whole card bank independent of the study
   selection, dealt round-robin across sub-decks (`drawSpread`) so a short run
   spans the whole section; when a pool is under target the run says so honestly.
   **Per-section progress persists** (`pca_exam_progress_v1`: per-section
   answer-code maps + the in-flight run) until the section's **Reset** button:
   new draws exclude already-answered questions so successive runs walk the
   whole bank to completion, an interrupted run resumes with its remaining
-  questions, results show the cumulative saved tabulation, and mixed runs
-  credit answers to each question's home section.
+  questions, results show the cumulative saved tabulation, and a
+  **📊 Results summary** screen (chooser button) shows the overall + by-section
+  tabulation any time. Every question view carries a "‹ Back to sections"
+  button (safe mid-run — the run resumes).
   Short/written items: optional type-your-answer box → reveal →
   Incorrect/Partial/Correct self-grade → the usual again/pass/easy outcomes),
   Catechisms (WSC/WLC
