@@ -3,8 +3,8 @@
 > **Resume doc.** This file is the source of truth for the build so work can
 > continue in a fresh chat. Update the **Status** and **Next steps** sections
 > as phases complete. Latest work: branch `claude/mock-exam-quiz-updates-16p6b8`
-> (Phase 33 — persistent per-section exam progress: answers and scores are
-> saved until Reset, runs resume, and sections can be completed bank-wide).
+> (Phase 34 — exam navigation + linked overall score: back-to-sections button,
+> "All sections (random)" replacing Mixed, interim 📊 Results summary).
 
 ## 1. Goal
 
@@ -152,6 +152,19 @@ KEEP modules + the HTML shell):**
 
 ## 7. Phases & status
 
+- [x] **Phase 34 — Exam navigation + linked overall score (user feedback,
+      from phone screenshots).** Release `?v=67`/`pca-v67`.
+      - **"‹ Back to sections"** button on every exam question view (safe
+        mid-run — the persisted run resumes on return).
+      - **Mixed practice replaced by "All sections (random)"**: a random
+        `drawSpread` over the union of all three sections' REMAINING
+        questions; answers credit each question's home section, so the card's
+        score is the three sections' combined ledger ("Overall: N of 960 …").
+        Its **↻ Reset all** clears all three sections (explicit confirm).
+      - **📊 Results summary** (chooser button, shown once any progress
+        exists): overall score + per-section tabulation, viewable any time
+        without finishing a run; run-in-progress / complete states marked.
+      - Reset → next run redraws + reshuffles from the full bank (verified).
 - [x] **Phase 33 — Persistent per-section exam progress (user-requested).**
       Release `?v=66`/`pca-v66`. Exam answers persist per section
       (`pca_exam_progress_v1`) until an explicit **Reset**: each answer is

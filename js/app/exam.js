@@ -224,16 +224,17 @@ export function createExamMode(ctx) {
     return sectionById[secId].build(format).filter(it => !done.has(it.card.id));
   }
   function tagOrigin(items, origin) { for (const it of items) it.origin = origin; return items; }
-  // Mixed licensure practice: a sampler of all three sections, sized by the
-  // current run length. Answers are credited to each question's home section
-  // (`origin`), so mixed practice also advances section completion.
+  // All sections (random): a random draw over the union of all three sections'
+  // REMAINING questions, sized by the run length. Answers are credited to each
+  // question's home section (`origin`), so the overall score is simply the
+  // three sections' saved scores combined — one linked ledger.
   function mixedItems(format) {
-    const [b, t, c] = LENGTHS[examOpts.length].mix;
-    return [
-      ...tagOrigin(drawSpread(freshOf('bible', format), b), 'bible'),
-      ...tagOrigin(drawSpread(freshOf('theology', format), t), 'theology'),
-      ...tagOrigin(drawSpread(freshOf('bco', format), c), 'bco'),
+    const union = [
+      ...tagOrigin(freshOf('bible', format), 'bible'),
+      ...tagOrigin(freshOf('theology', format), 'theology'),
+      ...tagOrigin(freshOf('bco', format), 'bco'),
     ];
+    return drawSpread(union, countFor(sectionById.mixed));
   }
 
   const SECTIONS = [
@@ -257,10 +258,10 @@ export function createExamMode(ctx) {
       desc: 'PCA polity, courts & practices — the five permanent committees, elements of worship, the courts, the constitution, the three parts of the BCO, discipline & censures.',
     },
     {
-      id: 'mixed', label: 'Mixed licensure practice', target: null,
-      kinds: 'all three sections in one sitting',
+      id: 'mixed', label: 'All sections (random)', target: null,
+      kinds: 'random draw across all three sections',
       build: mixedItems,
-      desc: 'Bible Knowledge, Theology written prompts, and BCO True/False together, sized by the run length.',
+      desc: 'Bible Knowledge, Theology, and BCO questions drawn at random from everything you haven’t answered yet. Every answer counts toward its section, so each attempt builds the overall score below.',
     },
   ];
   const sectionById = {};
@@ -285,8 +286,19 @@ export function createExamMode(ctx) {
     saveProg();
   }
   // Cumulative section tabulation over the CURRENT bank (stale ids from old
-  // releases are simply not counted).
+  // releases are simply not counted). 'mixed' = the three sections combined —
+  // the overall licensure score.
   function cumulative(secId, format) {
+    if (secId === 'mixed') {
+      const parts = ['bible', 'theology', 'bco'].map(id => cumulative(id, format));
+      const s = { bank: 0, answered: 0, correct: 0, partial: 0, wrong: 0 };
+      for (const p of parts) {
+        s.bank += p.bank; s.answered += p.answered;
+        s.correct += p.correct; s.partial += p.partial; s.wrong += p.wrong;
+      }
+      s.pct = s.answered ? Math.round((s.correct / s.answered) * 100) : null;
+      return s;
+    }
     const rec = prog.sections[secId] || {};
     const pool = sectionById[secId].build(format);
     const s = { bank: pool.length, answered: 0, c: 0, w: 0, e: 0, p: 0, a: 0 };
@@ -306,12 +318,18 @@ export function createExamMode(ctx) {
     if (cum.pct != null) line += ` · <strong>${cum.pct}%</strong>`;
     return line;
   }
+  // Reset a section's saved answers (mixed = ALL three sections, since its
+  // overall score is the three combined). The next run redraws and reshuffles
+  // from the full bank.
   function resetSection(secId) {
     const sec = sectionById[secId];
-    const what = secId === 'mixed' ? 'the unfinished mixed run' : `your saved ${sec.label} answers and score`;
+    const what = secId === 'mixed'
+      ? 'ALL THREE sections’ saved answers and scores (the overall score is their combination)'
+      : `your saved ${sec.label} answers and score`;
     if (!confirm(`Reset ${what}? This cannot be undone.`)) return;
-    delete prog.sections[secId];
-    if (prog.run && prog.run.section === secId) prog.run = null;
+    if (secId === 'mixed') for (const id of ['bible', 'theology', 'bco']) delete prog.sections[id];
+    else delete prog.sections[secId];
+    if (prog.run && (prog.run.section === secId || secId === 'mixed')) prog.run = null;
     saveProg();
     st.exam = null;
     rerender();
@@ -456,6 +474,7 @@ export function createExamMode(ctx) {
     render(area) {
       const ex = st.exam;
       if (!ex) return renderChooser(area);
+      if (ex.summary) return renderSummary(area, ex.format);
       if (ex.complete) return renderSectionComplete(area, sectionById[ex.section], ex.format);
       if (ex.done) return renderResults(area);
       const item = ex.items[ex.pos];
@@ -488,8 +507,8 @@ export function createExamMode(ctx) {
       const bank = sec.build(examOpts.format).length;
       const remaining = sec.id === 'mixed' ? bank : freshOf(sec.id, examOpts.format).length;
       const runHere = prog.run && prog.run.section === sec.id;
-      const cum = sec.id === 'mixed' ? null : cumulative(sec.id, examOpts.format);
-      const done = cum && cum.bank > 0 && cum.answered >= cum.bank;
+      const cum = cumulative(sec.id, examOpts.format); // mixed = overall (all three)
+      const done = cum.bank > 0 && cum.answered >= cum.bank;
       const clickable = remaining > 0 || runHere || done;
       const metaLine = done ? 'Every question answered — tap for your final score'
         : remaining ? availabilityLine(sec, bank, remaining)
@@ -497,12 +516,15 @@ export function createExamMode(ctx) {
       // Saved-progress footer: cumulative score + a Reset, outside the main
       // button (a button can't nest another button).
       let foot = '';
-      if ((cum && cum.answered) || runHere) {
+      if (cum.answered || runHere) {
         const bits = [];
-        if (cum && cum.answered) bits.push(done ? `Section complete 🎉 · ${cumulativeLine(cum)}` : cumulativeLine(cum));
+        if (cum.answered) {
+          const label = sec.id === 'mixed' ? 'Overall: ' : '';
+          bits.push(done ? `${sec.id === 'mixed' ? 'All sections' : 'Section'} complete 🎉 · ${cumulativeLine(cum)}` : label + cumulativeLine(cum));
+        }
         if (runHere) bits.push('run in progress — tap the section to resume');
         foot = `<div class="exam-section-foot"><span class="exam-section-progress">${bits.join('<br>')}</span>
-          <button class="ctrl-btn exam-reset-btn" data-exam-reset="${sec.id}" type="button">↻ Reset</button></div>`;
+          <button class="ctrl-btn exam-reset-btn" data-exam-reset="${sec.id}" type="button">↻ Reset${sec.id === 'mixed' ? ' all' : ''}</button></div>`;
       }
       return `<div class="exam-section-wrap">
         <button class="exam-section-card" data-exam-section="${sec.id}" type="button" ${clickable ? '' : 'disabled'}>
@@ -513,11 +535,14 @@ export function createExamMode(ctx) {
           ${sec.note ? `<span class="exam-section-note">${escapeHtml(sec.note)}</span>` : ''}
         </button>${foot}</div>`;
     }).join('');
+    const anyProgress = ['bible', 'theology', 'bco'].some(id => cumulative(id, examOpts.format).answered);
     area.innerHTML = `
       <p class="exam-intro">Practice modeled on the C&amp;C committee’s study guidelines for the
         written licensure exam — not an official PCA exam. Sections draw on the app’s whole
         card bank, regardless of your study selection. Your answers and score persist per
         section — across runs and visits — until you press Reset.</p>
+      ${anyProgress ? `<div class="nav-row" style="justify-content:center;margin-bottom:12px">
+        <button class="nav-btn" id="examSummaryBtn" type="button">📊 Results summary</button></div>` : ''}
       ${optRow('Length', 'data-exam-length',
         [['quick', 'Quick'], ['medium', 'Medium'], ['full', 'Full', 'Full matches the committee guide’s counts: 100 Bible Knowledge, ~50 BCO True/False']],
         examOpts.length)}
@@ -530,6 +555,8 @@ export function createExamMode(ctx) {
       btn.addEventListener('click', () => begin(btn.dataset.examSection)));
     area.querySelectorAll('[data-exam-reset]').forEach(btn =>
       btn.addEventListener('click', () => resetSection(btn.getAttribute('data-exam-reset'))));
+    const sb = area.querySelector('#examSummaryBtn');
+    if (sb) sb.addEventListener('click', () => { st.exam = { summary: true, format: examOpts.format }; rerender(); });
     area.querySelectorAll('[data-exam-length]').forEach(btn =>
       btn.addEventListener('click', () => { examOpts.length = btn.getAttribute('data-exam-length'); saveExamOpts(); renderChooser(area); }));
     area.querySelectorAll('[data-exam-format]').forEach(btn =>
@@ -548,13 +575,20 @@ export function createExamMode(ctx) {
     const answered = countAnswered(ex);
     const finishBtn = answered && !ex.done
       ? `<button class="nav-btn nav-prev" id="examFinishBtn" type="button">Finish now</button>` : '<span></span>';
-    return `<div class="nav-row">${finishBtn}${nextHtml}</div>`;
+    // The run persists, so leaving for the section list is always safe —
+    // answered questions stay scored and the run resumes on return.
+    return `<div class="nav-row">${finishBtn}${nextHtml}</div>
+      <div class="nav-row exam-back-row">
+        <button class="nav-btn" id="examBackBtn" type="button">‹ Back to sections</button>
+      </div>`;
   }
   function wireRun(area) {
     const fb = area.querySelector('#examFinishBtn');
     if (fb) fb.addEventListener('click', () => exam.finish());
     const nb = area.querySelector('#examNextBtn');
     if (nb) nb.addEventListener('click', () => exam.next());
+    const bb = area.querySelector('#examBackBtn');
+    if (bb) bb.addEventListener('click', () => { st.exam = null; rerender(); });
   }
 
   function renderChoices(quiz, tf) {
@@ -687,7 +721,14 @@ export function createExamMode(ctx) {
     let cumHtml = '';
     let continueLabel = 'Take another ›';
     if (sec.id === 'mixed') {
-      cumHtml = `<p class="exam-target-note">Mixed answers are credited to each question’s home section — see the section cards for saved scores.</p>`;
+      const overall = cumulative('mixed', ex.format);
+      const perSection = ['bible', 'theology', 'bco'].map(id =>
+        `<div class="review-item">${escapeHtml(sectionById[id].label)}
+           <div class="exam-summary-line">${cumulativeLine(cumulative(id, ex.format))}</div></div>`).join('');
+      cumHtml = `<div class="prog-section-title">Overall — all three sections (saved until Reset)</div>
+        <div class="exam-self-score">${cumulativeLine(overall)}</div>
+        <div class="prog-section-title">By section</div>${perSection}`;
+      continueLabel = overall.answered >= overall.bank ? '' : 'Take another ›';
     } else {
       const cum = cumulative(sec.id, ex.format);
       const done = cum.answered >= cum.bank;
@@ -713,6 +754,33 @@ export function createExamMode(ctx) {
     area.querySelector('#examSectionsBtn').addEventListener('click', () => { st.exam = null; rerender(); });
     const rb = area.querySelector('#examRetakeBtn');
     if (rb) rb.addEventListener('click', () => begin(ex.section));
+  }
+
+  // Interim results summary — the saved tabulation by section plus the overall
+  // score, viewable any time from the chooser without finishing a run.
+  function renderSummary(area, format) {
+    const overall = cumulative('mixed', format);
+    const perSection = ['bible', 'theology', 'bco'].map(id => {
+      const sec = sectionById[id];
+      const cum = cumulative(id, format);
+      const state = cum.bank && cum.answered >= cum.bank ? ' · complete 🎉'
+        : prog.run && prog.run.section === id ? ' · run in progress' : '';
+      return `<div class="review-item">${escapeHtml(sec.label)}${state}
+        <div class="exam-summary-line">${cum.answered ? cumulativeLine(cum) : 'Not started'}</div></div>`;
+    }).join('');
+    setDeckMeta('Mock exam · results summary');
+    area.innerHTML = `
+      <div class="qa-card revealed exam-results">
+        <div class="qa-deck-label">Mock exam · results summary (saved until Reset)</div>
+        <div class="exam-score">${overall.correct} / ${overall.answered} <span class="exam-score-pct">${overall.pct != null ? overall.pct + '% overall' : ''}</span></div>
+        <div class="exam-self-score">${cumulativeLine(overall)}</div>
+        <div class="prog-section-title">By section</div>
+        ${perSection}
+        <div class="nav-row" style="margin-top:18px">
+          <button class="nav-btn nav-prev" id="examSectionsBtn" type="button">‹ Sections</button>
+        </div>
+      </div>`;
+    area.querySelector('#examSectionsBtn').addEventListener('click', () => { st.exam = null; rerender(); });
   }
 
   // A section whose whole bank has been answered: final tabulation + Reset.

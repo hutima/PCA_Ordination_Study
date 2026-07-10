@@ -212,6 +212,10 @@ a.qa-ref-inline {
 .exam-section-progress { color: var(--muted); font-size: calc((12px) * var(--text-scale, 1)); line-height: 1.5; }
 .exam-section-progress strong { color: var(--gold-light); }
 .exam-reset-btn { flex: 0 0 auto; }
+/* Persistent "back to sections" row under a run's controls; summary lines. */
+.exam-back-row { justify-content: center; margin-top: 4px; }
+.exam-summary-line { color: var(--muted); font-size: calc((13px) * var(--text-scale, 1)); margin-top: 3px; }
+.exam-summary-line strong { color: var(--gold-light); }
 /* Short/written answer typing box (optional; never graded automatically). */
 .exam-answer-input {
   width: 100%; margin-top: 16px; padding: 12px 14px; border-radius: 10px;
