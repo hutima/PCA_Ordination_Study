@@ -373,10 +373,11 @@ function advance() {
 }
 
 // ── Quiz scored-run controls (results open only on the user's next action) ─
-// The forward nav button in Quiz: once the run is complete it opens the
-// results screen instead of advancing past the last card.
+// The forward nav button in Quiz: once the run is over (complete, or ended
+// early — the score is frozen either way) it opens the results screen instead
+// of advancing past the last card.
 function quizAdvance() {
-  if (quizSession.hasRun() && quizSession.isComplete() && !quizSession.viewingResults()) {
+  if (quizSession.hasRun() && quizSession.isOver() && !quizSession.viewingResults()) {
     quizSession.openResults();
     renderCard();
   } else {

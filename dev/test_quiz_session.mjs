@@ -216,4 +216,27 @@ section('missedCards() returns the underlying card objects for missed entries', 
   assert.ok(!missed.includes(cardB1));
 });
 
+// ── early end freezes the run ────────────────────────────────────────────
+section('endEarly() freezes the tally: later answers never complete the run or write records', () => {
+  quizSession.startRun([cardB1, cardB2, cardT1]);
+  quizSession.recordAnswer(cardB1, q(0), true);
+  quizSession.endEarly();
+  assert.equal(quizSession.isOver(), true, 'ended-early run is over');
+  assert.equal(quizSession.isComplete(), false);
+
+  // Answers after the early end are study-only — not counted.
+  const r = quizSession.recordAnswer(cardB2, q(0), true);
+  assert.equal(r.counted, false, 'post-end answer must not count');
+  quizSession.recordAnswer(cardT1, q(0), true);
+  const s = quizSession.summary();
+  assert.equal(s.answered, 1, 'tally frozen at the early end');
+  assert.equal(s.complete, false, 'run can never complete after an early end');
+  assert.equal(s.endedEarly, true);
+
+  const spy = makeSpy();
+  const outcome = quizSession.finalize(spy);
+  assert.equal(outcome.applied, false, 'no records for an ended-early run');
+  assert.equal(spy.calls.length, 0);
+});
+
 console.log(`\n${sections} section(s) passed.`);

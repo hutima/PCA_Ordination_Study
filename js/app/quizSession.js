@@ -64,10 +64,21 @@ export function isComplete() {
     && currentRun.answers.size === currentRun.snapshot.length;
 }
 
+// A run is over once every snapshot card has a first answer OR the user ended
+// it early — either way the score is final and the forward action is results.
+export function isOver() {
+  return !!currentRun && (currentRun.endedEarly || isComplete());
+}
+
 // Record the FIRST attempt at a card only — a Flip-deck recycle or a revisit
 // that re-presents an already-answered card must never rewrite the score.
+// After an early end the tally is frozen too: later answers still study the
+// card normally (SRS/XP via the controller) but never reopen the run —
+// otherwise it could "complete" after its results (and their cached no-record
+// outcome) had already been shown.
 export function recordAnswer(card, quiz, correct) {
   if (!currentRun || !card) return { counted: false, complete: isComplete() };
+  if (currentRun.endedEarly) return { counted: false, complete: isComplete() };
   const entry = currentRun.snapshot.find(e => e.id === card.id);
   if (!entry || currentRun.answers.has(card.id)) return { counted: false, complete: isComplete() };
   currentRun.answers.set(card.id, !!correct);

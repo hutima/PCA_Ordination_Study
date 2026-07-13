@@ -101,7 +101,8 @@ export function createModes(ctx) {
   function quizRunMetaHtml() {
     if (!quizSession.hasRun()) return '';
     const s = quizSession.summary();
-    return `<div class="quiz-run-meta">Scored run: <strong>${s.answered}</strong> of <strong>${s.total}</strong> answered · streak <strong>${s.streak}</strong></div>`;
+    const ended = s.endedEarly ? ' · ended early' : '';
+    return `<div class="quiz-run-meta">Scored run: <strong>${s.answered}</strong> of <strong>${s.total}</strong> answered · streak <strong>${s.streak}</strong>${ended}</div>`;
   }
   function missedListHtml(missed) {
     if (!missed.length) return '';
@@ -220,9 +221,11 @@ export function createModes(ctx) {
       const feedback = q.picked >= 0
         ? `<div class="quiz-feedback ${q.picked === q.correctIndex ? 'correct' : 'wrong'}">${q.picked === q.correctIndex ? '✓ Correct' : '✗ Not quite'}</div>${flipHint}${renderRefs(card.refs)}`
         : '';
-      const complete = quizSession.isComplete();
-      const forwardLabel = complete ? 'See results ›' : 'Next ›';
-      const endEarlyBtn = (quizSession.answeredCount() >= 1 && !complete)
+      // Over = complete OR ended early — the score is frozen either way, so
+      // the forward action is the results screen, not further scoring.
+      const over = quizSession.isOver();
+      const forwardLabel = over ? 'See results ›' : 'Next ›';
+      const endEarlyBtn = (quizSession.answeredCount() >= 1 && !over)
         ? `<button class="ctrl-btn quiz-end-btn" id="quizEndBtn" type="button">End quiz now</button>`
         : '';
       area.innerHTML = `
