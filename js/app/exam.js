@@ -23,6 +23,7 @@ import { buildScore, scorePercent, gradeForPercent } from '../domain/scoring.js'
 import { tallyCodes } from '../domain/examScore.js';
 import { recordExamResult } from './scoreRecords.js';
 import { gradeBadgeHtml, scoreHeroHtml, expectedPassNote } from './scoreUi.js';
+import { playCorrect, playWrong, playResultSound, celebrateResult } from './celebration.js';
 
 const BIBLE_SUBJECTS = ['bible_content', 'bible_books'];
 const THEOLOGY_SUBJECTS = ['theology', 'wcf', 'shorter_catechism', 'doctrines_proofs'];
@@ -436,6 +437,7 @@ export function createExamMode(ctx) {
       item.quiz.picked = idx;
       const correct = idx === item.quiz.correctIndex;
       applyOutcome(item.card, correct ? 'easy' : 'again');
+      correct ? playCorrect() : playWrong();
       recordAnswer(ex, item, correct ? 'c' : 'w');
       rerender();
     },
@@ -817,6 +819,15 @@ export function createExamMode(ctx) {
     area.querySelector('#examSectionsBtn').addEventListener('click', () => { st.exam = null; rerender(); });
     const rb = area.querySelector('#examRetakeBtn');
     if (rb) rb.addEventListener('click', () => begin(ex.section));
+    // ex.rank is stamped once per sitting by completeSitting(), so this fires
+    // at most once per sitting even across re-renders of this screen.
+    if (rank && !rank.celebrated) {
+      rank.celebrated = true;
+      if (rank.complete && (rank.score.grade === 'A' || rank.score.grade === 'S')) {
+        playResultSound(rank.score.grade);
+        celebrateResult({ grade: rank.score.grade, newRecord: !!(rank.outcome && rank.outcome.isNewRecord), hostEl: area.querySelector('.score-hero') });
+      }
+    }
   }
 
   // Interim results summary — the saved tabulation by section plus the overall

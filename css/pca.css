@@ -781,3 +781,17 @@ html[data-theme="light"] .hm-l3 { background: rgba(142,108,30,0.70); }
   .grade-badge { width: 48px; height: 48px; font-size: calc((22px) * var(--text-scale, 1)); }
   .score-pct { font-size: calc((26px) * var(--text-scale, 1)); }
 }
+
+/* A static celebratory accent for reduced-motion users (or once the confetti
+   canvas has finished) — a gold ring + a very subtle gold-tinted wash over the
+   existing surface, no keyframes/motion. The wash is a translucent gold layer
+   over var(--surface) (so it adapts to either theme's surface colour rather
+   than replacing it) using the same rgba literal as .grade-badge.grade-s
+   above — this app's convention for a theme-stable gold tint. The ring is a
+   box-shadow (no border-width change), so there's no layout shift. */
+.score-hero.celebrate-accent {
+  position: relative;
+  border-color: var(--gold-dim);
+  background: linear-gradient(rgba(201,168,76,0.07), rgba(201,168,76,0.07)), var(--surface);
+  box-shadow: 0 0 0 2px rgba(201,168,76,0.25), 0 0 18px rgba(201,168,76,0.16);
+}

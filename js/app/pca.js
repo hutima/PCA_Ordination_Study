@@ -21,6 +21,7 @@ import {
   loadShuffle, saveShuffle, loadSelectorGroup, saveSelectorGroup, recordActivity,
   loadSpaced, saveSpaced, loadUnspacedReset, saveUnspacedReset, loadUnspaced, saveUnspaced,
   loadXp, saveXp, addXp, loadWcfDetail, saveWcfDetail,
+  loadSound, saveSound, loadCelebrations, saveCelebrations,
 } from './store.js';
 import {
   effectiveSetKeys, cardsForKeys, shuffle, isWeak,
@@ -470,6 +471,16 @@ function toggleUnspacedReset() {
   saveUnspacedReset();
   updateAdvancedButtons();
 }
+function toggleSound() {
+  state.soundOn = !state.soundOn;
+  saveSound();
+  updateAdvancedButtons();
+}
+function toggleCelebrations() {
+  state.celebrationsOn = !state.celebrationsOn;
+  saveCelebrations();
+  updateAdvancedButtons();
+}
 // Reflect a toggle's state: slide the switch pill, sync aria on the row button,
 // and dim/park it when disabled. `btnId` = the `.toggle-label` button, `switchId`
 // = its `.toggle-switch` pill. "In order" is by definition unshuffled, so the
@@ -488,6 +499,8 @@ function updateAdvancedButtons() {
   setToggle('shuffleToggle', 'shuffleBtn', state.shuffleOn, state.focus === 'order');
   setToggle('spacedToggle', 'spacedBtn', state.spacedOn, false);
   setToggle('unspacedResetToggle', 'unspacedResetBtn', state.unspacedDailyReset, state.spacedOn);
+  setToggle('soundToggle', 'soundBtn', state.soundOn, false);
+  setToggle('celebrateToggle', 'celebrateBtn', state.celebrationsOn, false);
 }
 // Inject a circled (i) into each Advanced-settings toggle that opens a
 // describe-modal with the toggle's full title text — so the row itself stays a
@@ -948,6 +961,8 @@ function init() {
   loadXp();
   loadWcfDetail();
   loadSelectorGroup();
+  loadSound();
+  loadCelebrations();
   installClickShield();
 
   document.querySelectorAll('[data-theme-mode]').forEach(b =>
@@ -988,6 +1003,8 @@ function init() {
   $('shuffleToggle').addEventListener('click', toggleShuffle);
   $('spacedToggle').addEventListener('click', toggleSpaced);
   $('unspacedResetToggle').addEventListener('click', toggleUnspacedReset);
+  $('soundToggle').addEventListener('click', toggleSound);
+  $('celebrateToggle').addEventListener('click', toggleCelebrations);
   installToggleInfo();
   const tic = $('toggleInfoCloseBtn');
   if (tic) tic.addEventListener('click', () => hideOverlay('toggleInfoOverlay'));

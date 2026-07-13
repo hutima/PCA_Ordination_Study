@@ -14,6 +14,7 @@ import { createPsalmReader } from './psalms.js';
 import { createExamMode } from './exam.js';
 import * as quizSession from './quizSession.js';
 import { gradeBadgeHtml, scoreHeroHtml, expectedPassNote } from './scoreUi.js';
+import { playCorrect, playWrong, playResultSound, celebrateResult, stopCelebration } from './celebration.js';
 
 export function createModes(ctx) {
   const {
@@ -191,6 +192,7 @@ export function createModes(ctx) {
       // Mode-aware grading via the controller (flip deck retires/recycles, the
       // other focuses feed the SRS) — never call applyOutcome directly here.
       quizOutcome(correct);
+      correct ? playCorrect() : playWrong();
       // First-attempt-only scoring for the finite run (a Flip-deck recycle or
       // revisit of an already-answered card is a no-op inside recordAnswer).
       quizSession.recordAnswer(card, q, correct);
@@ -203,11 +205,23 @@ export function createModes(ctx) {
       if (quizSession.viewingResults()) {
         area.innerHTML = resultsScreenHtml();
         const back = area.querySelector('#quizResultsBackBtn');
-        if (back) back.addEventListener('click', () => { quizSession.closeResults(); rerender(); });
+        if (back) back.addEventListener('click', () => { stopCelebration(); quizSession.closeResults(); rerender(); });
         const restart = area.querySelector('#quizRestartBtn');
         if (restart) restart.addEventListener('click', () => ctx.restartQuiz());
         const reviewMissed = area.querySelector('#quizReviewMissedBtn');
         if (reviewMissed) reviewMissed.addEventListener('click', () => ctx.startQuizPractice(quizSession.missedCards()));
+        // Celebrate at most once per results screen: the guard marks
+        // regardless of grade so re-renders never re-evaluate, and B/C/D
+        // grades stay quiet.
+        if (!quizSession.wasCelebrated()) {
+          quizSession.markCelebrated();
+          const s = quizSession.summary();
+          const fin = quizSession.finalize();
+          if (s.complete && !s.practice && !s.endedEarly && (s.score.grade === 'A' || s.score.grade === 'S')) {
+            playResultSound(s.score.grade);
+            celebrateResult({ grade: s.score.grade, newRecord: fin.anyNewRecord, hostEl: area.querySelector('.score-hero') });
+          }
+        }
         return;
       }
       const card = state.deck[state.pos];

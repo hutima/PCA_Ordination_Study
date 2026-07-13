@@ -52,6 +52,7 @@ export function startRun(cards, opts = {}) {
     endedEarly: false,
     viewingResults: false,
     finalized: null,     // cached finalize() outcome, once computed
+    celebrated: false,   // once-per-results-screen celebration guard
   };
 }
 
@@ -100,6 +101,12 @@ export function endEarly() { if (currentRun) currentRun.endedEarly = true; }
 export function openResults() { if (currentRun) currentRun.viewingResults = true; }
 export function closeResults() { if (currentRun) currentRun.viewingResults = false; }
 export function viewingResults() { return !!(currentRun && currentRun.viewingResults); }
+
+// Once-per-results-screen celebration guard: a re-render of the results screen
+// must not re-trigger the sound/confetti, so the caller marks it on the first
+// render and checks it before deciding whether to celebrate.
+export function markCelebrated() { if (currentRun) currentRun.celebrated = true; }
+export function wasCelebrated() { return !!(currentRun && currentRun.celebrated); }
 
 // The actual card objects behind the run's missed entries (snapshot order) —
 // used to build a "Review missed" practice run.
