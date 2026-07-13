@@ -853,10 +853,15 @@ function importProgress(file) {
       if (data && data.progress && typeof data.progress === 'object') {
         state.progress = data.progress; saveProgress();
         // scoreRecords is optional (absent in version-1 files) and must never
-        // block/fail the progress import if it's missing or malformed.
+        // block/fail the progress import if it's missing or malformed. A
+        // non-object section is ignored outright — sanitizing it would yield
+        // an empty record set and silently wipe the device's existing records.
         let importedScores = false;
         try {
-          if (data.scoreRecords) { saveRecords(sanitizeRecords(data.scoreRecords)); importedScores = true; }
+          if (data.scoreRecords && typeof data.scoreRecords === 'object') {
+            saveRecords(sanitizeRecords(data.scoreRecords));
+            importedScores = true;
+          }
         } catch (e) {}
         buildDeck({ forceShuffle: true }); renderCard();
         alert(importedScores ? 'Progress and best scores imported.' : 'Progress imported.');
