@@ -2,9 +2,10 @@
 
 > **Resume doc.** This file is the source of truth for the build so work can
 > continue in a fresh chat. Update the **Status** and **Next steps** sections
-> as phases complete. Latest work: branch `claude/mock-exam-quiz-updates-16p6b8`
-> (Phase 34 — exam navigation + linked overall score: back-to-sections button,
-> "All sections (random)" replacing Mixed, interim 📊 Results summary).
+> as phases complete. Latest work: branch
+> `claude/fable-orchestration-governance-0kcce8` (Phase 35 — ranked quiz/exam
+> results: shared grade scale, Quiz/Mock-exam high-score records, a Best
+> scores section in the Progress overlay, celebrations/sounds, export v2).
 
 ## 1. Goal
 
@@ -152,6 +153,51 @@ KEEP modules + the HTML shell):**
 
 ## 7. Phases & status
 
+- [x] **Phase 35 — Ranked quiz/exam results (Best scores).** Release
+      `?v=68`/`pca-v68`.
+      - **Grade scale** (`js/domain/scoring.js`, named constants, one place to
+        change): S≥95 / A≥80 / B≥70 / C≥60 / D≥0; A doubles as
+        `EXPECTED_PASS_PCT`, the "expected pass" practice benchmark, always
+        shown with `PASS_DISCLAIMER` ("practice benchmark only — presbytery
+        standards govern"). **Only auto-graded answers rank** — exam codes
+        `c`/`w`; self-graded `e`/`p`/`a` stay a separate tabulation
+        (`js/domain/examScore.js`'s `tallyCodes`) and never touch pct/records.
+      - **Quiz is now a finite, first-attempt-only scored run**
+        (`js/app/quizSession.js`): snapshotted at deck build, so a Flip-deck
+        recycle or revisit can't rewrite an already-scored card's result;
+        **End quiz now** freezes the tally (later answers still study
+        normally but never reopen the run); a complete, non-practice run
+        writes one high-score record per subject via `finalize()`
+        (idempotent — a results-screen re-render never re-applies it);
+        "Review missed" reruns are practice and never record.
+      - **High-score records** (`js/app/scoreRecords.js`,
+        `localStorage['pca_score_records_v1']`, `{version:1,
+        quiz:{[subjectId]:rec}, exam:{[sectionId]:{[variantKey]:rec}}}`,
+        defensively parsed/sanitized — malformed entries are dropped, never
+        thrown): Mock-exam sittings key on section × `'format:length'` (e.g.
+        `mixed:full`, `mcq:quick`), recorded only for a fully-answered,
+        non-resumed sitting with ≥1 auto-graded answer. A candidate beats the
+        stored record on a higher pct, then a larger total on a pct tie, then
+        refreshes the timestamp only on a full tie; incomplete/empty runs
+        never record.
+      - **Celebrations** (confetti, default on, `pca_celebrate_v1`) and
+        **sounds** (default off, `pca_sound_v1`) fire only on an A/S grade
+        (`js/app/celebration.js`), honor `prefers-reduced-motion` (a static
+        gold accent instead of the canvas burst), and fail silently on a
+        flaky device API.
+      - **Progress overlay** gained a **Best scores** section (`progress.js`)
+        listing every saved Quiz/Mock-exam record, right-aligned pct ·
+        correct/total + a small grade badge.
+      - **Export/import is version 2** (`{version:2, progress,
+        scoreRecords}`); version-1 files (`{progress}` only) still import,
+        and a missing/malformed `scoreRecords` section never blocks the
+        progress import. Settings' new **Clear best scores…** clears only
+        records; **Reset everything…** now also clears them (mock-exam saved
+        answers are untouched — they have their own per-section Resets).
+      - New modules `js/domain/{scoring,examScore}.js` and
+        `js/app/{scoreRecords,scoreUi,quizSession,celebration}.js`, added to
+        the `sw.js` PRECACHE; new tests `dev/test_scoring.mjs`,
+        `dev/test_quiz_session.mjs`, `dev/test_exam_scoring.mjs`.
 - [x] **Phase 34 — Exam navigation + linked overall score (user feedback,
       from phone screenshots).** Release `?v=67`/`pca-v67`.
       - **"‹ Back to sections"** button on every exam question view (safe
