@@ -109,9 +109,9 @@ answers never enter the ranked score. Incomplete runs never create records.
 |---|-------|-------|--------|
 | A | sonnet | scoring.js + scoreRecords.js + scoreUi.js + test_scoring.mjs | DONE 9be467a; Gate 2 passed |
 | D1 | sonnet | celebration.js + store.js prefs (no UI wiring yet) | DONE 8066771 |
-| B | sonnet | quizSession.js + modes.js quiz run/results + narrow pca.js hooks + base css | RUNNING |
-| C | sonnet | exam.js ranked results + records + cumulative auto fields + examScore.js | RUNNING (∥ B) |
-| D2 | sonnet | wire celebration/sounds into quiz+exam results, index.html toggle rows, pca.js toggle wiring, css polish (.celebrate-accent) | pending (after B+C) |
+| B | sonnet | quizSession.js + modes.js quiz run/results + narrow pca.js hooks + base css | DONE 674424d; Gate 3 passed w/ Fable fixup f8e8b2e |
+| C | sonnet | exam.js ranked results + records + cumulative auto fields + examScore.js | DONE 1e78f63; Gate 3 passed |
+| D2 | sonnet | wire celebration/sounds into quiz+exam results (once-per-screen guards: quizSession.markCelebrated / ex.rank.celebrated), index.html toggle rows (soundToggle/celebrateToggle), pca.js toggle wiring, css .celebrate-accent | RUNNING |
 | E | sonnet | progress.js Best scores + Clear-best-scores control + export v2/import + resetAll records + sw.js precache + v67→v68 bump + docs | pending (after D2) |
 | F | Fable | Gate reviews 2–5, final diff review | Gate 2 done |
 
@@ -120,13 +120,21 @@ pca.js, index.html, css/pca.css: B → D2 → E (one owner at a time).
 modes.js: B then D2 (sound/celebration calls only). exam.js: C then D2.
 store.js: D1 (done). sw.js/docs: E only.
 
-## Completed commits
+## Completed commits (all pushed)
 - 9be467a feat: add shared score grading and record persistence (A)
 - 8066771 feat: add celebration and sound utilities with persisted preferences (D1)
+- c61a6c3 chore: add orchestration restart ledger
+- 1e78f63 feat: add ranked mock exam results and section records (C)
+- 674424d feat: add finite quiz sessions and ranked results (B)
+- f8e8b2e fix: freeze quiz run tally after End quiz now (Fable Gate-3 fixup —
+  endEarly is now final; recordAnswer no-ops after it; isOver() drives the
+  See-results forward action)
 
 ## Tests already run
-- node dev/test_scoring.mjs — 7 sections pass (A)
-- node --check + node import smoke on celebration.js/store.js (D1)
+- node dev/test_scoring.mjs — 7 sections
+- node dev/test_quiz_session.mjs — 13 sections (incl. endEarly freeze)
+- node dev/test_exam_scoring.mjs — 6 sections
+- node dev/validate.mjs — 0 problems; node dev/audit.mjs — 8 baseline flags
 
 ## Known notes / risks
 - sanitizeRecord keeps stored pct without re-deriving from correct/total —
