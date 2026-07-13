@@ -18,6 +18,8 @@ export const UNSPACED_RESET_KEY = 'pca_unspaced_reset_v1';
 export const UNSPACED_KEY = 'pca_unspaced_v1';
 export const XP_KEY = 'pca_xp_v1';
 export const WCF_DETAIL_KEY = 'pca_wcf_detail_v1';
+export const SOUND_KEY = 'pca_sound_v1';
+export const CELEBRATE_KEY = 'pca_celebrate_v1';
 
 // The official 12-week study plan (Chapell/Meek "Schedule of Assignments").
 export const WEEKS = (typeof window !== 'undefined' && window.PCA_WEEKS) || [];
@@ -29,6 +31,8 @@ export const state = {
   shuffleOn: true,         // shuffle deck order (persisted)
   spacedOn: true,          // spaced-repetition master switch (persisted); off = unspaced
   wcfDetail: 'full',       // WCF card detail: 'full' (default) shows the full confession text, 'summary' a concise paraphrase (persisted)
+  soundOn: false,          // sound effects (persisted, default off)
+  celebrationsOn: true,    // result celebrations (persisted, default on)
   unspacedDailyReset: true,// re-present the unspaced deck each new day (persisted)
   unspacedDone: new Set(), // card ids retired in the current unspaced run (persisted, day-stamped)
   flipArchived: new Set(), // card ids retired ("Easy") this flip-deck session
@@ -112,6 +116,20 @@ export function loadWcfDetail() {
 }
 export function saveWcfDetail() {
   try { localStorage.setItem(WCF_DETAIL_KEY, state.wcfDetail === 'summary' ? 'summary' : 'full'); } catch (e) {}
+}
+export function loadSound() {
+  // Default OFF; only an explicit saved 'on' enables sound effects.
+  try { state.soundOn = localStorage.getItem(SOUND_KEY) === 'on'; } catch (e) {}
+}
+export function saveSound() {
+  try { localStorage.setItem(SOUND_KEY, state.soundOn ? 'on' : 'off'); } catch (e) {}
+}
+export function loadCelebrations() {
+  // Default ON; only an explicit saved 'off' disables result celebrations.
+  try { state.celebrationsOn = localStorage.getItem(CELEBRATE_KEY) !== 'off'; } catch (e) {}
+}
+export function saveCelebrations() {
+  try { localStorage.setItem(CELEBRATE_KEY, state.celebrationsOn ? 'on' : 'off'); } catch (e) {}
 }
 export function loadUnspacedReset() {
   // Default ON; only an explicit saved 'off' keeps retired cards across days.
