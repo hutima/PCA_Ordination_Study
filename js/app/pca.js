@@ -31,6 +31,7 @@ import { renderAnswer, summarize, hasMoreThanSummary, directAnswer, resolveCardD
 import { renderRefs } from './refs.js';
 import { applyOutcome, applyCatechismOutcome } from './srs.js';
 import * as quizSession from './quizSession.js';
+import { loadRecords, saveRecords, sanitizeRecords, clearRecords } from './scoreRecords.js';
 import { createModes } from './modes.js';
 import { createBrowsePrint } from './browsePrint.js';
 import { progressBodyHtml } from './progress.js';
@@ -833,8 +834,12 @@ function syncToggleActive(selector, attr, value) {
 }
 
 // ── Export / import / reset ────────────────────────────────────────────
+// version 2 adds `scoreRecords` (Quiz/Mock-exam high-score records) alongside
+// the original `progress` payload; version-1 files ({ progress } only) still
+// import cleanly below. Never export the in-flight quiz run or any
+// preference — this is study history only.
 function exportProgress() {
-  const blob = new Blob([JSON.stringify({ version: 1, progress: state.progress }, null, 2)], { type: 'application/json' });
+  const blob = new Blob([JSON.stringify({ version: 2, progress: state.progress, scoreRecords: loadRecords() }, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url; a.download = 'pca-study-progress.json'; a.click();
@@ -846,8 +851,15 @@ function importProgress(file) {
     try {
       const data = JSON.parse(reader.result);
       if (data && data.progress && typeof data.progress === 'object') {
-        state.progress = data.progress; saveProgress(); buildDeck({ forceShuffle: true }); renderCard();
-        alert('Progress imported.');
+        state.progress = data.progress; saveProgress();
+        // scoreRecords is optional (absent in version-1 files) and must never
+        // block/fail the progress import if it's missing or malformed.
+        let importedScores = false;
+        try {
+          if (data.scoreRecords) { saveRecords(sanitizeRecords(data.scoreRecords)); importedScores = true; }
+        } catch (e) {}
+        buildDeck({ forceShuffle: true }); renderCard();
+        alert(importedScores ? 'Progress and best scores imported.' : 'Progress imported.');
       } else { alert('Unrecognized progress file.'); }
     } catch (e) { alert('Could not read that file.'); }
   };
@@ -875,11 +887,18 @@ function resetSelectionProgress() {
   buildDeck({ forceShuffle: true }); renderCard();
 }
 function resetAllProgress() {
-  if (!confirm('Erase ALL study progress on this device (spaced and unspaced)? This cannot be undone.')) return;
+  if (!confirm('Erase ALL study progress on this device (spaced and unspaced), XP, and saved best scores? This cannot be undone.')) return;
   state.progress = {}; saveProgress();
   state.unspacedDone.clear(); saveUnspaced();
   state.xp = 0; saveXp();
+  clearRecords();
   buildDeck({ forceShuffle: true }); renderCard();
+}
+// Clears only the Quiz/Mock-exam high-score records — study progress, XP, and
+// in-progress mock-exam answers (their own per-section Resets) are untouched.
+function clearBestScores() {
+  if (!confirm('Clear all saved best scores (quiz and mock-exam records)? Study progress, XP and exam answers are not affected. This cannot be undone.')) return;
+  clearRecords();
 }
 // The reset buttons name what they clear so the action matches the active mode.
 function updateResetLabels() {
@@ -1017,6 +1036,7 @@ function init() {
   $('importFile').addEventListener('change', (e) => { if (e.target.files[0]) importProgress(e.target.files[0]); });
   $('resetSelectionBtn').addEventListener('click', resetSelectionProgress);
   $('resetAllBtn').addEventListener('click', resetAllProgress);
+  $('clearScoresBtn').addEventListener('click', clearBestScores);
 
   initKeyboard();
   initOverlayDismiss();

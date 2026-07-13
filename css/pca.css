@@ -795,3 +795,23 @@ html[data-theme="light"] .hm-l3 { background: rgba(142,108,30,0.70); }
   background: linear-gradient(rgba(201,168,76,0.07), rgba(201,168,76,0.07)), var(--surface);
   box-shadow: 0 0 0 2px rgba(201,168,76,0.25), 0 0 18px rgba(201,168,76,0.16);
 }
+
+/* ── Best scores (Progress overlay) ───────────────────────────────────── */
+/* Compact rows built by js/app/progress.js from the same high-score records
+   as the ranked-results screens above; register alongside .mastery-row. */
+.best-score-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 6px 0; border-bottom: 1px solid var(--border);
+  font-size: calc((13px) * var(--text-scale, 1));
+}
+.best-score-row:last-child { border-bottom: 0; }
+.best-score-label {
+  color: var(--cream); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.best-score-right {
+  display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; color: var(--muted);
+}
+.best-score-right .grade-badge {
+  width: 26px; height: 26px; margin: 0; border-width: 1px;
+  font-size: calc((12px) * var(--text-scale, 1));
+}
