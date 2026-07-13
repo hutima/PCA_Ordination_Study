@@ -21,6 +21,7 @@ import {
   loadShuffle, saveShuffle, loadSelectorGroup, saveSelectorGroup, recordActivity,
   loadSpaced, saveSpaced, loadUnspacedReset, saveUnspacedReset, loadUnspaced, saveUnspaced,
   loadXp, saveXp, addXp, loadWcfDetail, saveWcfDetail,
+  loadSound, saveSound, loadCelebrations, saveCelebrations,
 } from './store.js';
 import {
   effectiveSetKeys, cardsForKeys, shuffle, isWeak,
@@ -29,6 +30,8 @@ import { buildQuiz, quizDeckCards } from './quiz.js';
 import { renderAnswer, summarize, hasMoreThanSummary, directAnswer, resolveCardDetail } from './answer.js';
 import { renderRefs } from './refs.js';
 import { applyOutcome, applyCatechismOutcome } from './srs.js';
+import * as quizSession from './quizSession.js';
+import { loadRecords, saveRecords, sanitizeRecords, clearRecords } from './scoreRecords.js';
 import { createModes } from './modes.js';
 import { createBrowsePrint } from './browsePrint.js';
 import { progressBodyHtml } from './progress.js';
@@ -61,7 +64,16 @@ function avoidHeadCollision(deck) {
   const j = 1 + Math.floor(Math.random() * (deck.length - 1));
   [deck[0], deck[j]] = [deck[j], deck[0]];
 }
+// Rebuilds the deck (buildDeckCore), then — in Quiz mode — starts a fresh
+// scored run over the new deck. Every rebuild (mode entry, Start studying,
+// selection change, focus/shuffle/spaced toggles, resets, imports — they all
+// call buildDeck) therefore begins a clean run; the previous run's results
+// (if still being viewed) are discarded along with it.
 function buildDeck(opts = {}) {
+  buildDeckCore(opts);
+  if (state.mode === 'quiz') quizSession.startRun(state.deck);
+}
+function buildDeckCore(opts = {}) {
   const now = Date.now();
   let cards = state.mode === 'quiz' ? quizDeckCards() : cardsForKeys(effectiveSetKeys());
   if (state.focus === 'weak') cards = cards.filter(isWeak);
@@ -188,6 +200,7 @@ function renderSessionMeta() {
   // Quiz: say plainly how many of the selected cards are quiz-ready, plus the
   // focus-specific counts (due / retired), so the deck size is never a mystery.
   if (state.mode === 'quiz') {
+    if (quizSession.viewingResults()) { setDeckMeta('Quiz · scored-run results'); return; }
     const selCount = cardsForKeys(effectiveSetKeys()).length;
     const parts = [`<strong>${total}</strong> quiz questions`];
     if (state.focus === 'flip') parts.push(`<strong>${flipRetiredCount()}</strong> retired`);
@@ -361,6 +374,38 @@ function advance() {
   withCardAnchor(renderCard);
 }
 
+// ── Quiz scored-run controls (results open only on the user's next action) ─
+// The forward nav button in Quiz: once the run is over (complete, or ended
+// early — the score is frozen either way) it opens the results screen instead
+// of advancing past the last card.
+function quizAdvance() {
+  if (quizSession.hasRun() && quizSession.isOver() && !quizSession.viewingResults()) {
+    quizSession.openResults();
+    renderCard();
+  } else {
+    move(1);
+  }
+}
+// "Take another quiz" from the results screen: a plain forced-shuffle rebuild
+// (which itself starts a fresh scored run — see buildDeck above).
+function restartQuiz() {
+  quizSession.closeResults();
+  buildDeck({ forceShuffle: true });
+  renderCard();
+}
+// "Review missed" from the results screen: a practice run over just the
+// missed cards — scored, but flagged practice so finalize() never writes a
+// high-score record (a short missed-only retry could otherwise beat a
+// full-length record).
+function startQuizPractice(cards) {
+  quizSession.closeResults();
+  state.deck = shuffle(cards.slice());
+  state.pos = 0;
+  syncCardState();
+  quizSession.startRun(state.deck, { practice: true });
+  renderCard();
+}
+
 // ── Browse card export/print (selection mode + native window.print) ────
 const browsePrint = createBrowsePrint({
   escapeHtml, renderAnswer, renderRefs, resolveCardDetail, DATA,
@@ -374,6 +419,7 @@ const MODES = createModes({
   buildQuiz, applyOutcome, applyCatechismOutcome, getConfidencePct, rerender: renderCard, mark, quizOutcome, move, toggleReveal,
   withCardAnchor, effectiveSetKeys, shuffle,
   emptyState, navRowHtml, wireNav, setDeckMeta, browsePrint,
+  quizAdvance, restartQuiz, startQuizPractice,
 });
 
 function setMode(modeId) {
@@ -426,6 +472,16 @@ function toggleUnspacedReset() {
   saveUnspacedReset();
   updateAdvancedButtons();
 }
+function toggleSound() {
+  state.soundOn = !state.soundOn;
+  saveSound();
+  updateAdvancedButtons();
+}
+function toggleCelebrations() {
+  state.celebrationsOn = !state.celebrationsOn;
+  saveCelebrations();
+  updateAdvancedButtons();
+}
 // Reflect a toggle's state: slide the switch pill, sync aria on the row button,
 // and dim/park it when disabled. `btnId` = the `.toggle-label` button, `switchId`
 // = its `.toggle-switch` pill. "In order" is by definition unshuffled, so the
@@ -444,6 +500,8 @@ function updateAdvancedButtons() {
   setToggle('shuffleToggle', 'shuffleBtn', state.shuffleOn, state.focus === 'order');
   setToggle('spacedToggle', 'spacedBtn', state.spacedOn, false);
   setToggle('unspacedResetToggle', 'unspacedResetBtn', state.unspacedDailyReset, state.spacedOn);
+  setToggle('soundToggle', 'soundBtn', state.soundOn, false);
+  setToggle('celebrateToggle', 'celebrateBtn', state.celebrationsOn, false);
 }
 // Inject a circled (i) into each Advanced-settings toggle that opens a
 // describe-modal with the toggle's full title text — so the row itself stays a
@@ -776,8 +834,12 @@ function syncToggleActive(selector, attr, value) {
 }
 
 // ── Export / import / reset ────────────────────────────────────────────
+// version 2 adds `scoreRecords` (Quiz/Mock-exam high-score records) alongside
+// the original `progress` payload; version-1 files ({ progress } only) still
+// import cleanly below. Never export the in-flight quiz run or any
+// preference — this is study history only.
 function exportProgress() {
-  const blob = new Blob([JSON.stringify({ version: 1, progress: state.progress }, null, 2)], { type: 'application/json' });
+  const blob = new Blob([JSON.stringify({ version: 2, progress: state.progress, scoreRecords: loadRecords() }, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url; a.download = 'pca-study-progress.json'; a.click();
@@ -789,8 +851,20 @@ function importProgress(file) {
     try {
       const data = JSON.parse(reader.result);
       if (data && data.progress && typeof data.progress === 'object') {
-        state.progress = data.progress; saveProgress(); buildDeck({ forceShuffle: true }); renderCard();
-        alert('Progress imported.');
+        state.progress = data.progress; saveProgress();
+        // scoreRecords is optional (absent in version-1 files) and must never
+        // block/fail the progress import if it's missing or malformed. A
+        // non-object section is ignored outright — sanitizing it would yield
+        // an empty record set and silently wipe the device's existing records.
+        let importedScores = false;
+        try {
+          if (data.scoreRecords && typeof data.scoreRecords === 'object') {
+            saveRecords(sanitizeRecords(data.scoreRecords));
+            importedScores = true;
+          }
+        } catch (e) {}
+        buildDeck({ forceShuffle: true }); renderCard();
+        alert(importedScores ? 'Progress and best scores imported.' : 'Progress imported.');
       } else { alert('Unrecognized progress file.'); }
     } catch (e) { alert('Could not read that file.'); }
   };
@@ -818,11 +892,18 @@ function resetSelectionProgress() {
   buildDeck({ forceShuffle: true }); renderCard();
 }
 function resetAllProgress() {
-  if (!confirm('Erase ALL study progress on this device (spaced and unspaced)? This cannot be undone.')) return;
+  if (!confirm('Erase ALL study progress on this device (spaced and unspaced), XP, and saved best scores? This cannot be undone.')) return;
   state.progress = {}; saveProgress();
   state.unspacedDone.clear(); saveUnspaced();
   state.xp = 0; saveXp();
+  clearRecords();
   buildDeck({ forceShuffle: true }); renderCard();
+}
+// Clears only the Quiz/Mock-exam high-score records — study progress, XP, and
+// in-progress mock-exam answers (their own per-section Resets) are untouched.
+function clearBestScores() {
+  if (!confirm('Clear all saved best scores (quiz and mock-exam records)? Study progress, XP and exam answers are not affected. This cannot be undone.')) return;
+  clearRecords();
 }
 // The reset buttons name what they clear so the action matches the active mode.
 function updateResetLabels() {
@@ -864,7 +945,13 @@ function initKeyboard() {
     // deck navigation (state.deck still holds the previous mode's deck).
     if (state.mode === 'exam') return;
     if (!state.deck.length) return;
-    if (e.key === 'ArrowRight') { move(1); return; }
+    // Once the scored run's results screen is showing, deck-navigation keys
+    // are ignored entirely — its own buttons take focus/Enter natively.
+    if (state.mode === 'quiz' && quizSession.viewingResults()) return;
+    if (e.key === 'ArrowRight') {
+      if (state.mode === 'quiz') { quizAdvance(); return; }
+      move(1); return;
+    }
     if (e.key === 'ArrowLeft') { move(-1); return; }
     if (state.mode === 'quiz') {
       if (/^[1-9]$/.test(e.key) && state.quiz && state.quiz.picked < 0) {
@@ -872,7 +959,7 @@ function initKeyboard() {
         if (i < state.quiz.choices.length) MODES.byId.quiz.answer(i);
       } else if ((e.code === 'Space' || e.key === 'Enter') && state.quiz && state.quiz.picked >= 0) {
         if (/BUTTON|A/.test(tag)) return;
-        e.preventDefault(); move(1);
+        e.preventDefault(); quizAdvance();
       }
       return;
     }
@@ -898,6 +985,8 @@ function init() {
   loadXp();
   loadWcfDetail();
   loadSelectorGroup();
+  loadSound();
+  loadCelebrations();
   installClickShield();
 
   document.querySelectorAll('[data-theme-mode]').forEach(b =>
@@ -938,6 +1027,8 @@ function init() {
   $('shuffleToggle').addEventListener('click', toggleShuffle);
   $('spacedToggle').addEventListener('click', toggleSpaced);
   $('unspacedResetToggle').addEventListener('click', toggleUnspacedReset);
+  $('soundToggle').addEventListener('click', toggleSound);
+  $('celebrateToggle').addEventListener('click', toggleCelebrations);
   installToggleInfo();
   const tic = $('toggleInfoCloseBtn');
   if (tic) tic.addEventListener('click', () => hideOverlay('toggleInfoOverlay'));
@@ -950,6 +1041,7 @@ function init() {
   $('importFile').addEventListener('change', (e) => { if (e.target.files[0]) importProgress(e.target.files[0]); });
   $('resetSelectionBtn').addEventListener('click', resetSelectionProgress);
   $('resetAllBtn').addEventListener('click', resetAllProgress);
+  $('clearScoresBtn').addEventListener('click', clearBestScores);
 
   initKeyboard();
   initOverlayDismiss();

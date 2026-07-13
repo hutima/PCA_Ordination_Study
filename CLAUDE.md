@@ -35,7 +35,11 @@ That changes the update workflow:
   shape, Markdown render, teaser completeness, MCQ fairness) and
   `node dev/audit.mjs` (phone-use failure classes — questions-in-answers,
   glued answers, flattened tables, mid-thought teasers, semicolon walls).
-  The audit baseline is 8 known flags; don't add new ones.
+  The audit baseline is 8 known flags; don't add new ones. `node
+  dev/test_scoring.mjs`, `node dev/test_quiz_session.mjs`, and `node
+  dev/test_exam_scoring.mjs` cover the grade scale, the Quiz run/finalize
+  logic, and exam answer-code tallying (pure-logic unit tests, no DOM) — run
+  them too when touching scoring, quiz sessions, or exam grading.
 
 ## Orientation
 
@@ -44,7 +48,11 @@ That changes the update workflow:
   access), `quiz.js` (MCQ generation), `answer.js` (provenance rendering +
   summaries), `refs.js` (citation → official-source links), `srs.js` (outcome
   application), `modes.js` (study-mode registry), `progress.js` (analytics
-  overlay), `gamification.js` (XP→level ladder, current/longest streaks, badges).
+  overlay), `gamification.js` (XP→level ladder, current/longest streaks, badges),
+  `quizSession.js` (finite scored Quiz run), `scoreRecords.js` (Quiz/Mock-exam
+  high-score persistence), `scoreUi.js` (shared score/grade HTML builders),
+  `celebration.js` (result sounds + confetti) — plus `js/domain/scoring.js`
+  (grade scale) and `js/domain/examScore.js` (exam answer-code tallying).
   Styling: `styles.css` (base tokens) + `css/pca.css`. Progress
   persists to `localStorage['pca_progress_v1']`, selection to
   `['pca_selection_v1']`, daily-activity log to `['pca_activity_v1']`, XP to
@@ -142,6 +150,39 @@ That changes the update workflow:
   An empty subject selection means an empty deck — there is no implicit
   "study everything" fallback. Card re-renders run through `withCardAnchor()`
   (pca.js) so reveal/hide/next never jumps the page.
+- **Ranked quiz/exam results:** a shared grade scale (`js/domain/scoring.js`,
+  named constants — one place to change) grades any correct/total tally:
+  S≥95, A≥80 (`EXPECTED_PASS_PCT`, the expected-pass practice benchmark), B≥70,
+  C≥60, D≥0; `PASS_DISCLAIMER` ("Practice benchmark only — presbytery standards
+  govern," paraphrased) is shown wherever the benchmark is cited. **Only
+  auto-graded answers feed pct/rank/records** — exam result codes `'c'`/`'w'`;
+  self-graded `'e'`/`'p'`/`'a'` (short/written self-grade) tally separately
+  (`js/domain/examScore.js`'s `tallyCodes`) and never touch the score. **Quiz**
+  is a finite, first-attempt-only scored run (`js/app/quizSession.js`):
+  snapshotted at deck build, a Flip-deck recycle or revisit can't rewrite an
+  already-answered card's result; **End quiz now** freezes the tally (later
+  answers still study normally but never reopen the run); a complete,
+  non-practice run writes one high-score record per subject on its results
+  screen (`finalize()`, idempotent — a re-render never re-applies); "Review
+  missed" reruns are practice and never record. **Mock exam** sittings record
+  per section × `'format:length'` variant (e.g. `mixed:full`, `mcq:quick`),
+  only for a fully-answered, non-resumed sitting with ≥1 auto-graded answer.
+  Records live in `localStorage['pca_score_records_v1']`
+  (`js/app/scoreRecords.js`, `{version:1, quiz:{[subjectId]:rec},
+  exam:{[sectionId]:{[variantKey]:rec}}}`, defensively parsed/sanitized —
+  malformed entries are dropped, never thrown); a candidate beats the stored
+  record on a higher pct, then (on a pct tie) a larger total, then (on a full
+  tie) refreshes the timestamp only — incomplete/empty runs never record.
+  **Celebrations** (confetti, default on, `pca_celebrate_v1`) and **sounds**
+  (default off, `pca_sound_v1`) fire only on an A/S grade
+  (`js/app/celebration.js`), honor `prefers-reduced-motion` (a static gold
+  accent instead of the canvas burst), and never throw on a flaky device API.
+  The Progress overlay's **Best scores** section (`progress.js`) lists every
+  saved record. **Export is version 2** — `{version:2, progress, scoreRecords}`
+  — and version-1 files (`{progress}` only) still import; a missing/malformed
+  `scoreRecords` section never blocks a progress import. Settings' **Clear best
+  scores…** clears only records; **Reset everything…** now also clears records
+  (never mock-exam saved answers — those have their own per-section Resets).
 - **12-week study plan (By-week selector):** the "Choose subjects" modal has a
   **By subject / By week** toggle (`#groupBySubjectBtn`/`#groupByWeekBtn`,
   `state.selectorGroupBy`, persisted `pca_selector_group_v1`). **By week is the

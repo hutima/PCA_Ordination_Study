@@ -6,6 +6,8 @@ import { DATA, state, dayKey } from './store.js';
 import { getConfidencePct } from '../domain/srs/confidence.js';
 import { escapeHtml } from '../utils/text.js';
 import { computeXpAndLevel, computeStreaks, computeBadges } from './gamification.js';
+import { loadRecords } from './scoreRecords.js';
+import { gradeBadgeHtml } from './scoreUi.js';
 
 const CATECHISMS = (typeof window !== 'undefined' && window.PCA_CATECHISMS) || null;
 
@@ -28,6 +30,46 @@ function catechismMasteryHtml() {
       </div>`;
   }).filter(Boolean).join('');
   return rows ? `<div class="prog-section-title">Catechism mastery</div>${rows}` : '';
+}
+
+// Best scores: Quiz per-subject + Mock exam per-section/variant high-score
+// records (js/app/scoreRecords.js) — a compact right-aligned row per record,
+// shown only once at least one exists (a fresh install has no ranked history).
+const EXAM_SECTION_LABELS = { bible: 'Bible Knowledge', theology: 'Theology', bco: 'BCO', mixed: 'All sections' };
+
+function quizRecordLabel(subjectId) {
+  const subj = DATA.subjects.find(s => s.id === subjectId);
+  return subj ? subj.label : subjectId;
+}
+
+// variantKey is 'format:length' (e.g. 'mixed:full', 'mcq:quick').
+function examRecordLabel(sectionId, variantKey) {
+  const [format, length] = String(variantKey).split(':');
+  const lengthLabel = length ? length.charAt(0).toUpperCase() + length.slice(1) : length;
+  const formatLabel = format === 'mcq' ? 'MCQ only' : 'Mixed';
+  const sectionLabel = EXAM_SECTION_LABELS[sectionId] || sectionId;
+  return `Mock exam · ${sectionLabel} · ${lengthLabel}, ${formatLabel}`;
+}
+
+function bestScoreRow(label, rec) {
+  return `<div class="best-score-row">
+      <span class="best-score-label">${escapeHtml(label)}</span>
+      <span class="best-score-right">${rec.pct}% · ${rec.correct}/${rec.total} ${gradeBadgeHtml(rec)}</span>
+    </div>`;
+}
+
+function bestScoresHtml() {
+  const records = loadRecords();
+  const quizRows = Object.entries(records.quiz || {})
+    .map(([subjectId, rec]) => bestScoreRow(quizRecordLabel(subjectId), rec));
+  const examRows = [];
+  for (const [sectionId, variants] of Object.entries(records.exam || {})) {
+    for (const [variantKey, rec] of Object.entries(variants || {})) {
+      examRows.push(bestScoreRow(examRecordLabel(sectionId, variantKey), rec));
+    }
+  }
+  if (!quizRows.length && !examRows.length) return '';
+  return `<div class="prog-section-title">Best scores</div>${quizRows.join('')}${examRows.join('')}`;
 }
 
 // A ~17-week heatmap, columns = weeks, rows = days (Sun→Sat), shaded by volume.
@@ -143,5 +185,5 @@ export function progressBodyHtml() {
         <span class="badge-name">${escapeHtml(b.name)}</span>
       </div>`).join('') + `</div>`;
 
-  return { html: levelBanner + hero + forecast + bars + catechismMasteryHtml() + heat + weakHtml + badgesHtml, hasWeak: !!weak.length };
+  return { html: levelBanner + hero + forecast + bars + catechismMasteryHtml() + heat + weakHtml + badgesHtml + bestScoresHtml(), hasWeak: !!weak.length };
 }
