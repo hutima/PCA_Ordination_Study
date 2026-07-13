@@ -19,6 +19,10 @@
 import { DATA } from './store.js';
 import { quizEligible, isShortAnswer, buildQuiz } from './quiz.js';
 import { subjectLabel } from './content.js';
+import { buildScore, scorePercent, gradeForPercent } from '../domain/scoring.js';
+import { tallyCodes } from '../domain/examScore.js';
+import { recordExamResult } from './scoreRecords.js';
+import { gradeBadgeHtml, scoreHeroHtml, expectedPassNote } from './scoreUi.js';
 
 const BIBLE_SUBJECTS = ['bible_content', 'bible_books'];
 const THEOLOGY_SUBJECTS = ['theology', 'wcf', 'shorter_catechism', 'doctrines_proofs'];
@@ -292,23 +296,35 @@ export function createExamMode(ctx) {
     if (secId === 'mixed') {
       const parts = ['bible', 'theology', 'bco'].map(id => cumulative(id, format));
       const s = { bank: 0, answered: 0, correct: 0, partial: 0, wrong: 0 };
+      let autoAnswered = 0, autoCorrect = 0, autoWrong = 0;
       for (const p of parts) {
         s.bank += p.bank; s.answered += p.answered;
         s.correct += p.correct; s.partial += p.partial; s.wrong += p.wrong;
+        autoAnswered += p.autoAnswered; autoCorrect += p.autoCorrect; autoWrong += p.autoWrong;
       }
       s.pct = s.answered ? Math.round((s.correct / s.answered) * 100) : null;
+      s.autoAnswered = autoAnswered; s.autoCorrect = autoCorrect; s.autoWrong = autoWrong;
+      s.autoPct = scorePercent(autoCorrect, autoAnswered);
+      s.autoGrade = gradeForPercent(s.autoPct)?.grade ?? null;
       return s;
     }
     const rec = prog.sections[secId] || {};
     const pool = sectionById[secId].build(format);
     const s = { bank: pool.length, answered: 0, c: 0, w: 0, e: 0, p: 0, a: 0 };
+    const codes = [];
     for (const it of pool) {
       const code = rec[it.card.id];
       if (!code) continue;
       s.answered++; s[code] = (s[code] || 0) + 1;
+      codes.push(code);
     }
     s.correct = s.c + s.e; s.partial = s.p; s.wrong = s.w + s.a;
     s.pct = s.answered ? Math.round((s.correct / s.answered) * 100) : null;
+    // Auto-graded (rank-eligible) fields, derived from the codes alone —
+    // independent of the combined study tabulation above.
+    const tally = tallyCodes(codes);
+    s.autoAnswered = tally.autoAnswered; s.autoCorrect = tally.autoCorrect; s.autoWrong = tally.autoWrong;
+    s.autoPct = tally.autoPct; s.autoGrade = tally.autoGrade;
     return s;
   }
   function cumulativeLine(cum) {
@@ -317,6 +333,32 @@ export function createExamMode(ctx) {
     line += ` · ✗ <strong>${cum.wrong}</strong> incorrect`;
     if (cum.pct != null) line += ` · <strong>${cum.pct}%</strong>`;
     return line;
+  }
+  // Short auto-graded (rank-eligible) line for a cumulative tally, or '' when
+  // no auto-graded questions have been answered yet.
+  function autoLine(cum) {
+    if (!cum.autoAnswered) return '';
+    return `Auto-graded: <strong>${cum.autoCorrect}</strong>/${cum.autoAnswered} · ${cum.autoPct}% ${gradeBadgeHtml({ grade: cum.autoGrade })}`;
+  }
+  // Runs once per sitting (guarded by ex.rank), when the sitting ends (either
+  // end-of-items or an early Finish): computes this sitting's auto-graded
+  // score and, only when the sitting was fully answered, freshly drawn (not
+  // resumed), and had at least one auto-graded question, records it as a
+  // section/variant high score. Rendering never calls this — it only reads
+  // ex.rank, so re-rendering the results screen never double-records.
+  function completeSitting(ex) {
+    if (ex.rank) return;
+    const auto = ex.items.filter(it => isChoice(it) && it.quiz.picked >= 0);
+    const autoCorrect = auto.filter(it => it.quiz.picked === it.quiz.correctIndex).length;
+    const score = buildScore(autoCorrect, auto.length);
+    const complete = countAnswered(ex) === ex.items.length;
+    let outcome = null;
+    if (complete && !ex.resumed && auto.length > 0) {
+      outcome = recordExamResult(ex.section, `${ex.format}:${ex.length}`, {
+        pct: score.pct, correct: score.correct, total: score.total, grade: score.grade, completedAt: Date.now(),
+      });
+    }
+    ex.rank = { score, complete, outcome };
   }
   // Reset a section's saved answers (mixed = ALL three sections, since its
   // overall score is the three combined). The next run redraws and reshuffles
@@ -425,6 +467,7 @@ export function createExamMode(ctx) {
       if (ex.pos + 1 >= ex.items.length) {
         ex.done = true;
         prog.run = null; saveProg(); // the sitting is over; the score is kept
+        completeSitting(ex);
       } else ex.pos += 1;
       rerender();
     },
@@ -433,6 +476,7 @@ export function createExamMode(ctx) {
       if (!ex) return;
       ex.done = true;
       prog.run = null; saveProg();
+      completeSitting(ex);
       rerender();
     },
 
@@ -523,6 +567,8 @@ export function createExamMode(ctx) {
           bits.push(done ? `${sec.id === 'mixed' ? 'All sections' : 'Section'} complete 🎉 · ${cumulativeLine(cum)}` : label + cumulativeLine(cum));
         }
         if (runHere) bits.push('run in progress — tap the section to resume');
+        const auto = autoLine(cum);
+        if (auto) bits.push(auto);
         foot = `<div class="exam-section-foot"><span class="exam-section-progress">${bits.join('<br>')}</span>
           <button class="ctrl-btn exam-reset-btn" data-exam-reset="${sec.id}" type="button">↻ Reset${sec.id === 'mixed' ? ' all' : ''}</button></div>`;
       }
@@ -679,15 +725,28 @@ export function createExamMode(ctx) {
   function renderResults(area) {
     const ex = st.exam;
     const sec = sectionById[ex.section];
-    const auto = ex.items.filter(it => isChoice(it) && it.quiz.picked >= 0);
-    const autoCorrect = auto.filter(it => it.quiz.picked === it.quiz.correctIndex).length;
+    const rank = ex.rank; // stamped once by completeSitting() when the sitting ended
     const selfG = ex.items.filter(it => !isChoice(it) && it.self);
     const selfN = (o) => selfG.filter(it => it.self === o).length;
-    const answered = auto.length + selfG.length;
-    const pct = auto.length ? Math.round((autoCorrect / auto.length) * 100) : null;
+    const answered = rank.score.total + selfG.length;
 
     const scoreLines = [];
-    if (auto.length) scoreLines.push(`<div class="exam-score">${autoCorrect} / ${auto.length} <span class="exam-score-pct">${pct}% auto-graded</span></div>`);
+    if (rank.score.total > 0) {
+      const subLines = [];
+      if (ex.format === 'mixed') subLines.push('The letter rank reflects only the multiple-choice and True/False questions in this sitting.');
+      subLines.push(expectedPassNote());
+      if (!rank.complete) subLines.push('Ended early — high scores are saved only for fully answered sittings.');
+      if (ex.resumed) subLines.push('Resumed sitting — cumulative score updated; records unchanged.');
+      scoreLines.push(scoreHeroHtml({
+        score: rank.score,
+        ratioLine: `<strong>${rank.score.correct}</strong> / ${rank.score.total} auto-graded correct`,
+        isNewRecord: !!(rank.outcome && rank.outcome.isNewRecord),
+        previous: rank.outcome ? rank.outcome.previous : null,
+        subLines,
+      }));
+    } else {
+      scoreLines.push('<div class="exam-self-score">No auto-graded questions were completed, so no letter rank was assigned.</div>');
+    }
     if (selfG.length) scoreLines.push(`<div class="exam-self-score">Self-graded: <strong>${selfN('easy')}</strong> correct · <strong>${selfN('pass')}</strong> partial · <strong>${selfN('again')}</strong> incorrect</div>`);
     const lenLabel = (LENGTHS[ex.length] ? LENGTHS[ex.length].label : 'Custom') + (ex.format === 'mcq' ? ', MCQ only' : '');
     const targetNote = sec.target
@@ -722,18 +781,22 @@ export function createExamMode(ctx) {
     let continueLabel = 'Take another ›';
     if (sec.id === 'mixed') {
       const overall = cumulative('mixed', ex.format);
+      const overallAuto = autoLine(overall);
       const perSection = ['bible', 'theology', 'bco'].map(id =>
         `<div class="review-item">${escapeHtml(sectionById[id].label)}
            <div class="exam-summary-line">${cumulativeLine(cumulative(id, ex.format))}</div></div>`).join('');
       cumHtml = `<div class="prog-section-title">Overall — all three sections (saved until Reset)</div>
         <div class="exam-self-score">${cumulativeLine(overall)}</div>
+        ${overallAuto ? `<div class="exam-self-score">${overallAuto}</div>` : ''}
         <div class="prog-section-title">By section</div>${perSection}`;
       continueLabel = overall.answered >= overall.bank ? '' : 'Take another ›';
     } else {
       const cum = cumulative(sec.id, ex.format);
       const done = cum.answered >= cum.bank;
+      const cumAuto = autoLine(cum);
       cumHtml = `<div class="prog-section-title">Section so far (saved until Reset)</div>
         <div class="exam-self-score">${cumulativeLine(cum)}</div>
+        ${cumAuto ? `<div class="exam-self-score">${cumAuto}</div>` : ''}
         ${done ? '<p class="exam-target-note">Section complete — every question in the bank has been answered. 🎉</p>' : ''}`;
       continueLabel = done ? '' : 'Continue section ›';
     }
@@ -741,7 +804,7 @@ export function createExamMode(ctx) {
     area.innerHTML = `
       <div class="qa-card revealed exam-results">
         <div class="qa-deck-label">Mock exam · ${escapeHtml(sec.label)} · results</div>
-        ${scoreLines.join('') || '<div class="exam-self-score">No questions answered this sitting.</div>'}
+        ${scoreLines.join('')}
         <p class="exam-target-note">${escapeHtml(targetNote)}</p>
         ${cumHtml}
         ${subHtml ? `<div class="prog-section-title">By deck (this sitting)</div>${subHtml}` : ''}
@@ -760,13 +823,16 @@ export function createExamMode(ctx) {
   // score, viewable any time from the chooser without finishing a run.
   function renderSummary(area, format) {
     const overall = cumulative('mixed', format);
+    const overallAuto = autoLine(overall);
     const perSection = ['bible', 'theology', 'bco'].map(id => {
       const sec = sectionById[id];
       const cum = cumulative(id, format);
       const state = cum.bank && cum.answered >= cum.bank ? ' · complete 🎉'
         : prog.run && prog.run.section === id ? ' · run in progress' : '';
+      const auto = autoLine(cum);
       return `<div class="review-item">${escapeHtml(sec.label)}${state}
-        <div class="exam-summary-line">${cum.answered ? cumulativeLine(cum) : 'Not started'}</div></div>`;
+        <div class="exam-summary-line">${cum.answered ? cumulativeLine(cum) : 'Not started'}</div>
+        ${auto ? `<div class="exam-summary-line">${auto}</div>` : ''}</div>`;
     }).join('');
     setDeckMeta('Mock exam · results summary');
     area.innerHTML = `
@@ -774,6 +840,7 @@ export function createExamMode(ctx) {
         <div class="qa-deck-label">Mock exam · results summary (saved until Reset)</div>
         <div class="exam-score">${overall.correct} / ${overall.answered} <span class="exam-score-pct">${overall.pct != null ? overall.pct + '% overall' : ''}</span></div>
         <div class="exam-self-score">${cumulativeLine(overall)}</div>
+        ${overallAuto ? `<div class="exam-self-score">${overallAuto}</div>` : ''}
         <div class="prog-section-title">By section</div>
         ${perSection}
         <div class="nav-row" style="margin-top:18px">
@@ -786,12 +853,14 @@ export function createExamMode(ctx) {
   // A section whose whole bank has been answered: final tabulation + Reset.
   function renderSectionComplete(area, sec, format) {
     const cum = cumulative(sec.id, format);
+    const auto = autoLine(cum);
     setDeckMeta('');
     area.innerHTML = `
       <div class="qa-card revealed exam-results">
         <div class="qa-deck-label">Mock exam · ${escapeHtml(sec.label)} · section complete</div>
         <div class="exam-score">${cum.correct} / ${cum.answered} <span class="exam-score-pct">${cum.pct != null ? cum.pct + '%' : ''}</span></div>
         <div class="exam-self-score">${cumulativeLine(cum)}</div>
+        ${auto ? `<div class="exam-self-score">${auto}</div>` : ''}
         <p class="exam-target-note">You’ve answered every question in this section’s bank. 🎉
           Press Reset to clear the saved score and take the section again.</p>
         <div class="nav-row" style="margin-top:18px">
