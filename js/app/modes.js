@@ -12,6 +12,8 @@
 
 import { createPsalmReader } from './psalms.js';
 import { createExamMode } from './exam.js';
+import * as quizSession from './quizSession.js';
+import { gradeBadgeHtml, scoreHeroHtml, expectedPassNote } from './scoreUi.js';
 
 export function createModes(ctx) {
   const {
@@ -81,7 +83,7 @@ export function createModes(ctx) {
     },
   };
 
-  // ── Quiz (MCQ over the deck) ─────────────────────────────────────────
+  // ── Quiz (MCQ over the deck; finite scored run + ranked results) ─────
   function renderChoices(quiz) {
     return quiz.choices.map((choice, idx) => {
       let cls = 'quiz-choice';
@@ -93,6 +95,89 @@ export function createModes(ctx) {
       return `<button class="${cls}" data-choice="${idx}" type="button" ${quiz.picked >= 0 ? 'disabled' : ''}>${escapeHtml(choice)}</button>`;
     }).join('');
   }
+  // A restrained in-card line showing the scored run's live progress —
+  // separate from the deck-meta line (which the controller overwrites on
+  // every render).
+  function quizRunMetaHtml() {
+    if (!quizSession.hasRun()) return '';
+    const s = quizSession.summary();
+    return `<div class="quiz-run-meta">Scored run: <strong>${s.answered}</strong> of <strong>${s.total}</strong> answered · streak <strong>${s.streak}</strong></div>`;
+  }
+  function missedListHtml(missed) {
+    if (!missed.length) return '';
+    return `<details class="qa-full missed-questions">
+        <summary class="qa-full-toggle">Missed questions (${missed.length})</summary>
+        <div class="missed-list">${missed.map(m => `
+          <div class="missed-item">
+            <div class="missed-prompt">${escapeHtml(m.prompt)}</div>
+            <div class="missed-correct">Correct: ${escapeHtml(m.correctText)}</div>
+          </div>`).join('')}</div>
+      </details>`;
+  }
+  function subjectBreakdownHtml(bySubject, finBySubject) {
+    if (!bySubject.length) return '';
+    const rows = bySubject.map(b => {
+      const record = finBySubject && finBySubject[b.subjectId];
+      const star = record && record.isNewRecord ? ' ★' : '';
+      const pct = b.score.pct != null ? ` · ${b.score.pct}%` : '';
+      return `<div class="score-breakdown-row">
+        <span class="score-breakdown-label">${escapeHtml(b.label)}${star}</span>
+        <span class="score-breakdown-nums">${b.correct}/${b.answered}${pct} ${gradeBadgeHtml(b.score)}</span>
+      </div>`;
+    }).join('');
+    return `<div class="score-breakdown">${rows}</div>`;
+  }
+  // The results screen for a completed (or early-ended) scored run. Reads
+  // through quizSession's summary()/finalize() — finalize is idempotent, so a
+  // re-render of this screen never re-applies a high-score record.
+  function resultsScreenHtml() {
+    const s = quizSession.summary();
+    const fin = quizSession.finalize();
+    if (s.answered === 0) {
+      return `<div class="qa-card revealed quiz-results">
+          <div class="qa-deck-label">Quiz · results</div>
+          <p class="score-note">No questions were answered.</p>
+          <div class="quiz-results-actions">
+            <button class="ctrl-btn" id="quizResultsBackBtn" type="button">Back</button>
+          </div>
+        </div>`;
+    }
+    const hero = scoreHeroHtml({
+      score: s.score,
+      ratioLine: `<strong>${s.correct}</strong> / ${s.answered} correct`,
+      isNewRecord: fin.anyNewRecord && !s.endedEarly,
+      previous: fin.previous,
+      subLines: [
+        escapeHtml(`Answered ${s.answered} of ${s.total}`),
+        `<span class="streak-chip">🔥 Best streak: ${s.bestStreak}</span>`,
+        escapeHtml(expectedPassNote()),
+      ],
+    });
+    const earlyNote = s.endedEarly
+      ? `<p class="score-note quiz-early-note">Ended early — answered ${s.answered} of ${s.total}. High scores are only saved for completed runs.</p>`
+      : '';
+    const practiceNote = s.practice
+      ? `<p class="score-note">Practice run — records unchanged.</p>`
+      : '';
+    const breakdown = subjectBreakdownHtml(s.bySubject, fin.bySubject);
+    const missedBlock = missedListHtml(s.missed);
+    const reviewMissedBtn = s.missed.length
+      ? `<button class="ctrl-btn" id="quizReviewMissedBtn" type="button">Review missed</button>`
+      : '';
+    return `<div class="qa-card revealed quiz-results">
+        <div class="qa-deck-label">Quiz · results</div>
+        ${hero}
+        ${earlyNote}
+        ${practiceNote}
+        ${breakdown}
+        ${missedBlock}
+        <div class="quiz-results-actions">
+          <button class="ctrl-btn" id="quizRestartBtn" type="button">Take another quiz</button>
+          ${reviewMissedBtn}
+          <button class="ctrl-btn" id="quizResultsBackBtn" type="button">Back</button>
+        </div>
+      </div>`;
+  }
   const quiz = {
     id: 'quiz', label: 'Quiz', usesDeck: true, focusable: true,
     title: 'Multiple-choice quiz on fact-style cards (passages, events, key facts)',
@@ -100,12 +185,30 @@ export function createModes(ctx) {
       const q = state.quiz;
       if (!q || q.picked >= 0) return;
       q.picked = idx;
+      const card = state.deck[state.pos];
+      const correct = idx === q.correctIndex;
       // Mode-aware grading via the controller (flip deck retires/recycles, the
       // other focuses feed the SRS) — never call applyOutcome directly here.
-      quizOutcome(idx === q.correctIndex);
+      quizOutcome(correct);
+      // First-attempt-only scoring for the finite run (a Flip-deck recycle or
+      // revisit of an already-answered card is a no-op inside recordAnswer).
+      quizSession.recordAnswer(card, q, correct);
       rerender();
     },
     render(area) {
+      // A completed/early-ended run replaces the card with its results screen
+      // until the user goes Back (results open only on the user's next
+      // action, never automatically on the final answer).
+      if (quizSession.viewingResults()) {
+        area.innerHTML = resultsScreenHtml();
+        const back = area.querySelector('#quizResultsBackBtn');
+        if (back) back.addEventListener('click', () => { quizSession.closeResults(); rerender(); });
+        const restart = area.querySelector('#quizRestartBtn');
+        if (restart) restart.addEventListener('click', () => ctx.restartQuiz());
+        const reviewMissed = area.querySelector('#quizReviewMissedBtn');
+        if (reviewMissed) reviewMissed.addEventListener('click', () => ctx.startQuizPractice(quizSession.missedCards()));
+        return;
+      }
       const card = state.deck[state.pos];
       const q = state.quiz || (state.quiz = buildQuiz(card));
       // Under Flip deck, say what the grade will do so retirement is visible.
@@ -117,17 +220,32 @@ export function createModes(ctx) {
       const feedback = q.picked >= 0
         ? `<div class="quiz-feedback ${q.picked === q.correctIndex ? 'correct' : 'wrong'}">${q.picked === q.correctIndex ? '✓ Correct' : '✗ Not quite'}</div>${flipHint}${renderRefs(card.refs)}`
         : '';
+      const complete = quizSession.isComplete();
+      const forwardLabel = complete ? 'See results ›' : 'Next ›';
+      const endEarlyBtn = (quizSession.answeredCount() >= 1 && !complete)
+        ? `<button class="ctrl-btn quiz-end-btn" id="quizEndBtn" type="button">End quiz now</button>`
+        : '';
       area.innerHTML = `
         <div class="qa-card revealed">
           <div class="qa-deck-label">${escapeHtml(card._setLabel)} · Quiz</div>
           <div class="qa-question">${escapeHtml(q.prompt || card.q)}</div>
           <div class="quiz-choices">${renderChoices(q)}</div>
           ${feedback}
+          ${quizRunMetaHtml()}
         </div>
-        ${navRowHtml()}`;
+        <div class="nav-row">
+          <button class="nav-btn nav-prev" id="quizPrevBtn" type="button">‹ Prev</button>
+          <button class="nav-btn nav-next" id="quizNextBtn" type="button">${forwardLabel}</button>
+        </div>
+        ${endEarlyBtn}`;
       area.querySelectorAll('.quiz-choice').forEach(btn =>
         btn.addEventListener('click', () => quiz.answer(Number(btn.dataset.choice))));
-      wireNav();
+      const prevBtn = area.querySelector('#quizPrevBtn');
+      if (prevBtn) prevBtn.addEventListener('click', () => move(-1));
+      const nextBtn = area.querySelector('#quizNextBtn');
+      if (nextBtn) nextBtn.addEventListener('click', () => ctx.quizAdvance());
+      const endBtn = area.querySelector('#quizEndBtn');
+      if (endBtn) endBtn.addEventListener('click', () => { quizSession.endEarly(); quizSession.openResults(); rerender(); });
     },
   };
 

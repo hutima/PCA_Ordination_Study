@@ -29,6 +29,7 @@ import { buildQuiz, quizDeckCards } from './quiz.js';
 import { renderAnswer, summarize, hasMoreThanSummary, directAnswer, resolveCardDetail } from './answer.js';
 import { renderRefs } from './refs.js';
 import { applyOutcome, applyCatechismOutcome } from './srs.js';
+import * as quizSession from './quizSession.js';
 import { createModes } from './modes.js';
 import { createBrowsePrint } from './browsePrint.js';
 import { progressBodyHtml } from './progress.js';
@@ -61,7 +62,16 @@ function avoidHeadCollision(deck) {
   const j = 1 + Math.floor(Math.random() * (deck.length - 1));
   [deck[0], deck[j]] = [deck[j], deck[0]];
 }
+// Rebuilds the deck (buildDeckCore), then — in Quiz mode — starts a fresh
+// scored run over the new deck. Every rebuild (mode entry, Start studying,
+// selection change, focus/shuffle/spaced toggles, resets, imports — they all
+// call buildDeck) therefore begins a clean run; the previous run's results
+// (if still being viewed) are discarded along with it.
 function buildDeck(opts = {}) {
+  buildDeckCore(opts);
+  if (state.mode === 'quiz') quizSession.startRun(state.deck);
+}
+function buildDeckCore(opts = {}) {
   const now = Date.now();
   let cards = state.mode === 'quiz' ? quizDeckCards() : cardsForKeys(effectiveSetKeys());
   if (state.focus === 'weak') cards = cards.filter(isWeak);
@@ -188,6 +198,7 @@ function renderSessionMeta() {
   // Quiz: say plainly how many of the selected cards are quiz-ready, plus the
   // focus-specific counts (due / retired), so the deck size is never a mystery.
   if (state.mode === 'quiz') {
+    if (quizSession.viewingResults()) { setDeckMeta('Quiz · scored-run results'); return; }
     const selCount = cardsForKeys(effectiveSetKeys()).length;
     const parts = [`<strong>${total}</strong> quiz questions`];
     if (state.focus === 'flip') parts.push(`<strong>${flipRetiredCount()}</strong> retired`);
@@ -361,6 +372,37 @@ function advance() {
   withCardAnchor(renderCard);
 }
 
+// ── Quiz scored-run controls (results open only on the user's next action) ─
+// The forward nav button in Quiz: once the run is complete it opens the
+// results screen instead of advancing past the last card.
+function quizAdvance() {
+  if (quizSession.hasRun() && quizSession.isComplete() && !quizSession.viewingResults()) {
+    quizSession.openResults();
+    renderCard();
+  } else {
+    move(1);
+  }
+}
+// "Take another quiz" from the results screen: a plain forced-shuffle rebuild
+// (which itself starts a fresh scored run — see buildDeck above).
+function restartQuiz() {
+  quizSession.closeResults();
+  buildDeck({ forceShuffle: true });
+  renderCard();
+}
+// "Review missed" from the results screen: a practice run over just the
+// missed cards — scored, but flagged practice so finalize() never writes a
+// high-score record (a short missed-only retry could otherwise beat a
+// full-length record).
+function startQuizPractice(cards) {
+  quizSession.closeResults();
+  state.deck = shuffle(cards.slice());
+  state.pos = 0;
+  syncCardState();
+  quizSession.startRun(state.deck, { practice: true });
+  renderCard();
+}
+
 // ── Browse card export/print (selection mode + native window.print) ────
 const browsePrint = createBrowsePrint({
   escapeHtml, renderAnswer, renderRefs, resolveCardDetail, DATA,
@@ -374,6 +416,7 @@ const MODES = createModes({
   buildQuiz, applyOutcome, applyCatechismOutcome, getConfidencePct, rerender: renderCard, mark, quizOutcome, move, toggleReveal,
   withCardAnchor, effectiveSetKeys, shuffle,
   emptyState, navRowHtml, wireNav, setDeckMeta, browsePrint,
+  quizAdvance, restartQuiz, startQuizPractice,
 });
 
 function setMode(modeId) {
@@ -864,7 +907,13 @@ function initKeyboard() {
     // deck navigation (state.deck still holds the previous mode's deck).
     if (state.mode === 'exam') return;
     if (!state.deck.length) return;
-    if (e.key === 'ArrowRight') { move(1); return; }
+    // Once the scored run's results screen is showing, deck-navigation keys
+    // are ignored entirely — its own buttons take focus/Enter natively.
+    if (state.mode === 'quiz' && quizSession.viewingResults()) return;
+    if (e.key === 'ArrowRight') {
+      if (state.mode === 'quiz') { quizAdvance(); return; }
+      move(1); return;
+    }
     if (e.key === 'ArrowLeft') { move(-1); return; }
     if (state.mode === 'quiz') {
       if (/^[1-9]$/.test(e.key) && state.quiz && state.quiz.picked < 0) {
@@ -872,7 +921,7 @@ function initKeyboard() {
         if (i < state.quiz.choices.length) MODES.byId.quiz.answer(i);
       } else if ((e.code === 'Space' || e.key === 'Enter') && state.quiz && state.quiz.picked >= 0) {
         if (/BUTTON|A/.test(tag)) return;
-        e.preventDefault(); move(1);
+        e.preventDefault(); quizAdvance();
       }
       return;
     }
