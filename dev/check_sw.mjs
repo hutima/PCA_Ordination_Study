@@ -40,7 +40,7 @@ for (const p of precache) {
 // 3. Every local asset referenced by index.html is precached.
 const refs = [...html.matchAll(/(?:src|href)="([^"]+)"/g)]
   .map(m => m[1])
-  .filter(u => !/^(https?:|#|data:)/.test(u))
+  .filter(u => !/^(https?:|#|data:|mailto:)/.test(u))
   .map(u => u.replace(/\?v=\d+$/, ''));
 const preSet = new Set(precache);
 for (const r of refs) {
