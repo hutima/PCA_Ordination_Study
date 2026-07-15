@@ -153,6 +153,19 @@ KEEP modules + the HTML shell):**
 
 ## 7. Phases & status
 
+- [x] **Phase 36 — Contact-the-author footer (ported from Duff).** Release
+      `?v=69`/`pca-v69`. A centered "Contact author" footer link at the bottom
+      of the app shell (`.app-footer`/`.app-footer-link`, styles ported into
+      `css/pca.css`) opens a `#contactAuthorOverlay` consent-modal with the
+      Duff study tool's author note — maintainer line, blog + LinkedIn links,
+      other-projects list, and the coffee/e-transfer note. The self-referential
+      "PCA ordination study" project link was removed (and the Duff-specific
+      "prepared for the 2026 Summer Intensive" sentence dropped). Wiring is
+      three `showOverlay`/`hideOverlay` listeners in `pca.js` (footer button,
+      Close, ✕); backdrop/Escape dismiss comes free via `initOverlayDismiss`.
+      `dev/check_sw.mjs` now ignores `mailto:` hrefs when checking that every
+      referenced asset is precached.
+
 - [x] **Phase 35 — Ranked quiz/exam results (Best scores).** Release
       `?v=68`/`pca-v68`.
       - **Grade scale** (`js/domain/scoring.js`, named constants, one place to

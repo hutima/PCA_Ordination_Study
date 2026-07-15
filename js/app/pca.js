@@ -1018,6 +1018,9 @@ function init() {
   $('startStudyingBtn').addEventListener('click', () => { state.flipArchived.clear(); buildDeck({ forceShuffle: true }); renderCard(); });
   $('progressBtn').addEventListener('click', openProgress);
   $('progressCloseBtn').addEventListener('click', () => hideOverlay('progressOverlay'));
+  $('contactAuthorBtn').addEventListener('click', () => showOverlay('contactAuthorOverlay'));
+  $('contactAuthorCloseBtn').addEventListener('click', () => hideOverlay('contactAuthorOverlay'));
+  $('contactAuthorCloseX').addEventListener('click', () => hideOverlay('contactAuthorOverlay'));
 
   document.querySelectorAll('[data-mode]').forEach(b =>
     b.addEventListener('click', () => setMode(b.getAttribute('data-mode'))));

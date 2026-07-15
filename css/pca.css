@@ -566,6 +566,20 @@ a.qa-ref-chip { text-decoration: none; transition: background .12s, border-color
 .sources-list a { color: var(--gold-light); }
 .sources-note { color: var(--muted); font-size: calc((13px) * var(--text-scale, 1)); font-style: italic; }
 
+/* ── Footer credit + contact-the-author card (ported from Duff) ──────────── */
+.app-footer { text-align: center; margin-top: 18px; padding-bottom: 10px; }
+.app-footer-link {
+  background: none; border: 0; color: var(--muted);
+  font-family: var(--font-body); font-size: calc((12px) * var(--text-scale, 1));
+  letter-spacing: 0.3px; text-decoration: underline; text-underline-offset: 2px;
+  cursor: pointer; padding: 4px 8px; transition: color 0.08s;
+}
+.app-footer-link:hover { color: var(--gold); }
+.consent-copy a { color: var(--gold); text-decoration: underline; text-underline-offset: 2px; }
+.consent-copy a:hover { color: var(--gold-light); }
+.contact-projects { margin: 6px 0 0; padding-left: 20px; }
+.contact-projects li + li { margin-top: 4px; }
+
 /* ── Light theme overrides ────────────────────────────────────────────────
    The colors above are tuned for the dark theme; a handful are hard-coded
    (pale green/red text, white-tint backgrounds) and need darker equivalents
