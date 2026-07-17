@@ -37,9 +37,9 @@ const THEOLOGY_SUBJECTS = ['theology', 'wcf', 'shorter_catechism', 'doctrines_pr
 const LENGTH_KEY = 'pca_exam_length_v1';
 const FORMAT_KEY = 'pca_exam_format_v1';
 const LENGTHS = {
-  quick:  { label: 'Quick',  bible: 25,  theology: 10, bco: 15, mix: [10, 5, 10] },
-  medium: { label: 'Medium', bible: 50,  theology: 20, bco: 25, mix: [20, 10, 20] },
-  full:   { label: 'Full',   bible: 100, theology: 40, bco: 50, mix: [40, 20, 40] },
+  quick:  { label: 'Quick',  bible: 25,  theology: 10, bco: 15 },
+  medium: { label: 'Medium', bible: 50,  theology: 20, bco: 25 },
+  full:   { label: 'Full',   bible: 100, theology: 40, bco: 50 },
 };
 const examOpts = { length: 'medium', format: 'mixed' };
 try {
@@ -272,10 +272,12 @@ export function createExamMode(ctx) {
   const sectionById = {};
   for (const s of SECTIONS) sectionById[s.id] = s;
 
-  // Question count for a section at the current run length.
+  // Question count for a section at the current run length. All sections
+  // (random) is the three per-section counts combined — a Full run is the
+  // full 190 (100 Bible + 40 Theology + 50 BCO).
   function countFor(sec) {
     const L = LENGTHS[examOpts.length];
-    if (sec.id === 'mixed') return L.mix[0] + L.mix[1] + L.mix[2];
+    if (sec.id === 'mixed') return L.bible + L.theology + L.bco;
     return L[sec.id];
   }
 
