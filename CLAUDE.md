@@ -91,10 +91,11 @@ That changes the update workflow:
   **no fixed count** (the guide states none — don't fabricate one), BCO targets
   ~50 True/False from the hand-authored paraphrase bank `js/data/quiz/bco_tf.js`
   (`window.PCA_QUIZ_TF`, validated by its own `validate.mjs` block), plus an
-  **All sections (random)** card — a random draw over the union of the three
-  sections' remaining questions whose answers credit each question's home
-  section, so its score IS the three sections' combined ledger (its Reset
-  clears all three). Pools draw from the whole card bank independent of the study
+  **All sections (random)** card — a superset sitting, not a sample: each
+  section contributes its full per-length draw (Full = 100 Bible + 40 Theology
+  + 50 BCO = 190) from its remaining questions, shuffled together; answers
+  credit each question's home section, so its score IS the three sections'
+  combined ledger (its Reset clears all three). Pools draw from the whole card bank independent of the study
   selection, dealt round-robin across sub-decks (`drawSpread`) so a short run
   spans the whole section; when a pool is under target the run says so honestly.
   **Per-section progress persists** (`pca_exam_progress_v1`: per-section
