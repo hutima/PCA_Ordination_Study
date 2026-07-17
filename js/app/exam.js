@@ -37,9 +37,9 @@ const THEOLOGY_SUBJECTS = ['theology', 'wcf', 'shorter_catechism', 'doctrines_pr
 const LENGTH_KEY = 'pca_exam_length_v1';
 const FORMAT_KEY = 'pca_exam_format_v1';
 const LENGTHS = {
-  quick:  { label: 'Quick',  bible: 25,  theology: 10, bco: 15, mix: [10, 5, 10] },
-  medium: { label: 'Medium', bible: 50,  theology: 20, bco: 25, mix: [20, 10, 20] },
-  full:   { label: 'Full',   bible: 100, theology: 40, bco: 50, mix: [40, 20, 40] },
+  quick:  { label: 'Quick',  bible: 25,  theology: 10, bco: 15 },
+  medium: { label: 'Medium', bible: 50,  theology: 20, bco: 25 },
+  full:   { label: 'Full',   bible: 100, theology: 40, bco: 50 },
 };
 const examOpts = { length: 'medium', format: 'mixed' };
 try {
@@ -229,17 +229,21 @@ export function createExamMode(ctx) {
     return sectionById[secId].build(format).filter(it => !done.has(it.card.id));
   }
   function tagOrigin(items, origin) { for (const it of items) it.origin = origin; return items; }
-  // All sections (random): a random draw over the union of all three sections'
-  // REMAINING questions, sized by the run length. Answers are credited to each
-  // question's home section (`origin`), so the overall score is simply the
-  // three sections' saved scores combined — one linked ledger.
+  // All sections (random): a superset of the three individual runs, not a
+  // random sample of their union — each section contributes its own
+  // per-length draw (Full: 100 Bible + 40 Theology + 50 BCO = 190) from that
+  // section's REMAINING questions, and the three draws are shuffled together.
+  // The per-section composition is guaranteed (short only when a section's
+  // bank is nearly exhausted). Answers are credited to each question's home
+  // section (`origin`), so the overall score is simply the three sections'
+  // saved scores combined — one linked ledger.
   function mixedItems(format) {
-    const union = [
-      ...tagOrigin(freshOf('bible', format), 'bible'),
-      ...tagOrigin(freshOf('theology', format), 'theology'),
-      ...tagOrigin(freshOf('bco', format), 'bco'),
-    ];
-    return drawSpread(union, countFor(sectionById.mixed));
+    const L = LENGTHS[examOpts.length];
+    const part = (secId) => {
+      const fresh = freshOf(secId, format);
+      return tagOrigin(drawSpread(fresh, Math.min(L[secId], fresh.length)), secId);
+    };
+    return shuffle([...part('bible'), ...part('theology'), ...part('bco')]);
   }
 
   const SECTIONS = [
@@ -264,18 +268,20 @@ export function createExamMode(ctx) {
     },
     {
       id: 'mixed', label: 'All sections (random)', target: null,
-      kinds: 'random draw across all three sections',
+      kinds: 'all three sections in one sitting, shuffled together',
       build: mixedItems,
-      desc: 'Bible Knowledge, Theology, and BCO questions drawn at random from everything you haven’t answered yet. Every answer counts toward its section, so each attempt builds the overall score below.',
+      desc: 'One combined sitting: the full Bible Knowledge, Theology, and BCO draws for the chosen length, shuffled together, from everything you haven’t answered yet. Every answer counts toward its section, so each attempt builds the overall score below.',
     },
   ];
   const sectionById = {};
   for (const s of SECTIONS) sectionById[s.id] = s;
 
-  // Question count for a section at the current run length.
+  // Question count for a section at the current run length. All sections
+  // (random) is the three per-section counts combined — a Full run is the
+  // full 190 (100 Bible + 40 Theology + 50 BCO).
   function countFor(sec) {
     const L = LENGTHS[examOpts.length];
-    if (sec.id === 'mixed') return L.mix[0] + L.mix[1] + L.mix[2];
+    if (sec.id === 'mixed') return L.bible + L.theology + L.bco;
     return L[sec.id];
   }
 

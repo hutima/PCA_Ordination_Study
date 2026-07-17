@@ -153,6 +153,19 @@ KEEP modules + the HTML shell):**
 
 ## 7. Phases & status
 
+- [x] **Phase 37 — All sections (random) is a superset sitting (user
+      request).** Release `?v=70`/`pca-v70`. The mixed card no longer draws a
+      random N from the pooled union (Full was 100 with arbitrary
+      composition): `mixedItems()` now draws **each section's own per-length
+      count** from that section's remaining questions (`drawSpread` per
+      section, then one shuffle) — Full = 100 Bible + 40 Theology + 50 BCO
+      = **190**, Medium 95, Quick 50 — so the per-section composition is
+      guaranteed and the run is a true superset of the three individual
+      sittings. The redundant `LENGTHS[*].mix` arrays are gone; `countFor()`
+      derives the mixed target as the sum of the three section counts.
+      Ledger semantics unchanged: answers still credit their home section,
+      short banks still shrink the run honestly ("only N available").
+
 - [x] **Phase 36 — Contact-the-author footer (ported from Duff).** Release
       `?v=69`/`pca-v69`. A centered "Contact author" footer link at the bottom
       of the app shell (`.app-footer`/`.app-footer-link`, styles ported into
