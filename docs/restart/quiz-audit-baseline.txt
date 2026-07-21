@@ -1,0 +1,130 @@
+PCA quiz quality audit (read-only — report only, never rewrites content)
+
+=== Hand-authored MCQ banks (js/data/quiz/*.js, excl. bco_tf.js) ===
+  bco.js                       n=  30  malformed=0
+    answerIndex dist: 0:5 1:18 2:5 3:2
+    correct len  mean/median: 25.8/22.5   distractor len mean/median: 22.9/20.5
+    correct=longest: 46.7%   margin giveaway: 6.7%   comma tell: 0%   extreme imbalance: 3.3%   dup choices: 0%
+  bible_books.js               n=  40  malformed=0
+    answerIndex dist: 0:10 1:10 2:10 3:10
+    correct len  mean/median: 12.6/7.5   distractor len mean/median: 11.8/7
+    correct=longest: 47.5%   margin giveaway: 0%   comma tell: 2.5%   extreme imbalance: 0%   dup choices: 0%
+  bible_content.js             n=  15  malformed=0
+    answerIndex dist: 0:4 1:9 2:2 3:0
+    correct len  mean/median: 13.3/10   distractor len mean/median: 12.6/7
+    correct=longest: 66.7%   margin giveaway: 0%   comma tell: 0%   extreme imbalance: 0%   dup choices: 0%
+  church_history.js            n=  15  malformed=0
+    answerIndex dist: 0:2 1:12 2:1 3:0
+    correct len  mean/median: 27.6/32   distractor len mean/median: 24.2/22
+    correct=longest: 53.3%   margin giveaway: 0%   comma tell: 0%   extreme imbalance: 6.7%   dup choices: 0%
+  hot_topics.js                n=  12  malformed=0
+    answerIndex dist: 0:2 1:9 2:1 3:0
+    correct len  mean/median: 42.2/42.5   distractor len mean/median: 34.2/35
+    correct=longest: 58.3%   margin giveaway: 25%   comma tell: 25%   extreme imbalance: 16.7%   dup choices: 0%
+  sacraments.js                n=  15  malformed=0
+    answerIndex dist: 0:1 1:12 2:2 3:0
+    correct len  mean/median: 40.3/45   distractor len mean/median: 31.3/32
+    correct=longest: 86.7%   margin giveaway: 20%   comma tell: 20%   extreme imbalance: 0%   dup choices: 0%
+  theology.js                  n=  16  malformed=0
+    answerIndex dist: 0:3 1:11 2:2 3:0
+    correct len  mean/median: 40.3/40   distractor len mean/median: 35.6/38.5
+    correct=longest: 56.3%   margin giveaway: 0%   comma tell: 6.3%   extreme imbalance: 6.3%   dup choices: 0%
+  OVERALL (banks)              n= 143  malformed=0
+    answerIndex dist: 0:27 1:81 2:23 3:12
+    correct len  mean/median: 25.5/19   distractor len mean/median: 22.1/17
+    correct=longest: 55.9%   margin giveaway: 5.6%   comma tell: 5.6%   extreme imbalance: 3.5%   dup choices: 0%
+
+  -- OVERALL banks: flagged ids --
+  longest:            qz-bco-3, qz-bco-4, qz-bco-5, qz-bco-6, qz-bco-7, qz-bco-11, qz-bco-12, qz-bco-13, qz-bco-14, qz-bco-17, qz-bco-18, qz-bco-21, … (+68 more)
+  marginGiveaway:     qz-bco-12, qz-bco-28, qz-ht-4, qz-ht-9, qz-ht-11, qz-sac-5, qz-sac-12, qz-sac-14
+  commaTell:          qz-bb-1, qz-ht-4, qz-ht-7, qz-ht-9, qz-sac-1, qz-sac-11, qz-sac-12, qz-th-12
+  extremeImbalance:   qz-bco-1, qz-ch-11, qz-ht-2, qz-ht-8, qz-th-14
+  duplicateChoices:   (none)
+  malformed:          (none)
+
+=== Per-card MCQ overlays (js/data/quiz_cards/*.js) ===
+  bco.js                       n=  91  malformed=0
+    answerIndex dist: 0:23 1:23 2:23 3:22
+    correct len  mean/median: 63.5/63   distractor len mean/median: 61/61
+    correct=longest: 57.1%   margin giveaway: 2.2%   comma tell: 19.8%   extreme imbalance: 0%   dup choices: 0%
+  bco_comprehensive.js         n= 165  malformed=0
+    answerIndex dist: 0:42 1:41 2:41 3:41
+    correct len  mean/median: 82.2/83   distractor len mean/median: 67.7/68
+    correct=longest: 89.7%   margin giveaway: 41.8%   comma tell: 46.7%   extreme imbalance: 0%   dup choices: 0%
+  bible_books.js               n= 141  malformed=0
+    answerIndex dist: 0:39 1:48 2:50 3:4
+    correct len  mean/median: 72.4/73   distractor len mean/median: 53.6/53
+    correct=longest: 95%   margin giveaway: 63.8%   comma tell: 53.9%   extreme imbalance: 0%   dup choices: 0%
+  bible_books_nt.js            n=  88  malformed=0
+    answerIndex dist: 0:22 1:23 2:22 3:21
+    correct len  mean/median: 62.6/63   distractor len mean/median: 50.6/51
+    correct=longest: 84.1%   margin giveaway: 33%   comma tell: 46.6%   extreme imbalance: 0%   dup choices: 0%
+  bible_content.js             n=  94  malformed=0
+    answerIndex dist: 0:26 1:26 2:22 3:20
+    correct len  mean/median: 53.2/54   distractor len mean/median: 52.3/54
+    correct=longest: 33%   margin giveaway: 0%   comma tell: 7.4%   extreme imbalance: 0%   dup choices: 0%
+  church_history.js            n=  91  malformed=0
+    answerIndex dist: 0:23 1:23 2:23 3:22
+    correct len  mean/median: 15.6/16   distractor len mean/median: 15.5/15
+    correct=longest: 31.9%   margin giveaway: 1.1%   comma tell: 0%   extreme imbalance: 5.5%   dup choices: 0%
+  small_subjects.js            n= 152  malformed=11
+    answerIndex dist: 0:141 1:0 2:0 3:0
+    correct len  mean/median: 77.5/89   distractor len mean/median: 72.1/78
+    correct=longest: 61%   margin giveaway: 4.3%   comma tell: 10.6%   extreme imbalance: 0%   dup choices: 0%
+  theology.js                  n= 187  malformed=0
+    answerIndex dist: 0:52 1:76 2:33 3:26
+    correct len  mean/median: 121.9/122   distractor len mean/median: 100.1/101
+    correct=longest: 84%   margin giveaway: 33.7%   comma tell: 41.7%   extreme imbalance: 0%   dup choices: 0%
+  wcf.js                       n= 173  malformed=0
+    answerIndex dist: 0:44 1:43 2:43 3:43
+    correct len  mean/median: 107.5/108   distractor len mean/median: 88.8/88
+    correct=longest: 88.4%   margin giveaway: 41.6%   comma tell: 37.6%   extreme imbalance: 0%   dup choices: 0%
+  OVERALL (overlays)           n=1182  malformed=11
+    answerIndex dist: 0:412 1:303 2:257 3:199
+    correct len  mean/median: 80.1/79   distractor len mean/median: 67.7/67
+    correct=longest: 73.8%   margin giveaway: 28.4%   comma tell: 32.2%   extreme imbalance: 0.4%   dup choices: 0%
+
+  -- OVERALL overlays: flagged ids --
+  longest:            bco-003, bco-004, bco-011, bco-012, bco-013, bco-017, bco-025, bco-026, bco-027, bco-028, bco-029, bco-032, … (+852 more)
+  marginGiveaway:     bco-012, bco-017, bco-comp-003, bco-comp-010, bco-comp-019, bco-comp-020, bco-comp-027, bco-comp-028, bco-comp-031, bco-comp-042, bco-comp-045, bco-comp-048, … (+320 more)
+  commaTell:          bco-003, bco-010, bco-011, bco-014, bco-016, bco-020, bco-025, bco-029, bco-033, bco-039, bco-047, bco-065, … (+365 more)
+  extremeImbalance:   ch-030-radical-reformation, ch-032-puritanism, ch-045-clement-of-alexandria-155-220-the-ea, ch-047-eusebius-of-caesarea-263-c-339, ch-088-trace-the-historical-roots-of-the-rp
+  duplicateChoices:   (none)
+  malformed:          ht-003a-regulative (choices count is 2, expected 4) | ht-003b-normative (choices count is 2, expected 4) | ht-006a-broad-validity (choices count is 2, expected 4) | ht-006b-narrow-validity (choices count is 2, expected 4) | ht-007a-theonomy (choices count is 2, expected 4) | ht-007b-general-equity (choices count is 2, expected 4) | ht-009a-paedocommunion (choices count is 2, expected 4) | ht-009b-discerning (choices count is 2, expected 4) | ht-012a-open (choices count is 3, expected 4) | ht-012b-close (choices count is 3, expected 4) | ht-012c-closed (choices count is 3, expected 4)
+
+=== True/False bank (js/data/quiz/bco_tf.js -> PCA_QUIZ_TF) ===
+  n=77   True=52  False=25  ratio(T:F)=2.08   longest same-answer streak=5
+  by BCO chapter block (true/false):
+    2          true=1 false=0
+    3          true=1 false=1
+    5          true=1 false=1
+    6          true=2 false=1
+    7          true=3 false=0
+    8          true=3 false=1
+    9          true=1 false=3
+    10         true=1 false=1
+    12         true=3 false=0
+    13         true=3 false=1
+    14         true=1 false=0
+    21         true=1 false=1
+    24         true=1 false=1
+    25         true=3 false=0
+    26         true=1 false=2
+    27         true=1 false=0
+    29         true=1 false=0
+    30         true=4 false=2
+    37         true=1 false=1
+    38         true=1 false=1
+    40         true=2 false=2
+    42         true=1 false=0
+    43         true=1 false=0
+    47         true=2 false=1
+    57         true=1 false=1
+    other      true=1 false=0
+    Preface    true=5 false=1
+  giveaway absolutes (12): qz-bcotf-06[only]=true, qz-bcotf-12[all]=true, qz-bcotf-23[only]=true, qz-bcotf-24[only]=true, qz-bcotf-34[all]=true, qz-bcotf-40[only]=true, qz-bcotf-49[never]=false, qz-bcotf-53[all]=true, qz-bcotf-56[every]=true, qz-bcotf-62[none]=true, qz-bcotf-66[only]=true, qz-bcotf-69[only]=false
+  false-with-no-note (0): (none)
+  missing refs (8): qz-bcotf-17, qz-bcotf-18, qz-bcotf-27, qz-bcotf-28, qz-bcotf-29, qz-bcotf-30, qz-bcotf-34, qz-bcotf-50
+  absurd-token candidates for review (2): qz-bcotf-05[king], qz-bcotf-36[dance]
+
+(report only — exits 0 regardless of findings; run with --json for machine-readable output)
