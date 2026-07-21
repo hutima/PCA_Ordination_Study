@@ -21,9 +21,9 @@
       'Conscience is bound by majority vote, within each local church',
     ], answerIndex: 1 },
     'bco-003': { q: 'Can a church court bind a believer’s conscience beyond Scripture?', choices: [
-      'Yes, since a court’s rulings carry the same force as Scripture itself',
+      'Yes, since a court’s rulings carry the same binding force as Scripture',
       'Yes, once a majority of a presbytery has voted to approve a ruling',
-      'No, because church power is only ministerial and declarative, not legislative',
+      'No, because church power is only ministerial and declarative in nature',
       'No, but only if the General Assembly specifically forbids the practice',
     ], answerIndex: 2 },
     'bco-004': { q: 'What together makes up the PCA’s Constitution?', choices: [
@@ -64,21 +64,21 @@
     ], answerIndex: 0 },
     'bco-010': { q: 'What defines a particular church, as distinct from a mission work?', choices: [
       'A local congregation overseen temporarily by a presbytery-appointed commission',
-      'A local congregation with a permanent, organized governing body of its own',
+      'A local congregation with a permanent and organized governing body of its own',
       'A local congregation that has not yet elected any ruling elders',
       'A local congregation governed directly by the General Assembly’s staff',
     ], answerIndex: 1 },
     'bco-011': { q: 'What defines a mission church, per the BCO?', choices: [
       'A congregation governed by its own session but lacking ordained deacons',
       'A congregation with full voting rights but no organized worship service',
-      'A congregation without a permanent governing body, supervised until organized',
+      'A congregation supervised by presbytery until it gains a permanent governing body',
       'A congregation excluded from presbytery oversight until it calls a pastor',
     ], answerIndex: 2 },
     'bco-012': { q: 'What two classes of church membership does the BCO recognize, in terms of rights?', choices: [
       'Voting members, who attend, and silent members, who may only observe',
-      'Senior members, with full rights, and junior members, with none',
+      'Senior members, with full rights, and junior members, with none at all',
       'Elected members, who govern, and general members, who are governed only',
-      'Communing members, with full rights, and non-communing members, without voting or office',
+      'Communing members, with full rights, and non-communing members, without a vote',
     ], answerIndex: 3 },
     'bco-013': { q: 'What permanent officers has Christ given the church, per the BCO?', choices: [
       'Ruling elders, teaching elders, and deacons, as the church’s permanent officers',
@@ -88,7 +88,7 @@
     ], answerIndex: 0 },
     'bco-014': { q: 'Which of these is among the BCO’s stated qualifications for an elder?', choices: [
       'Extensive prior experience in professional or civic leadership roles',
-      'Ruling his own household well, as the Scriptures require of him',
+      'Ruling his own household well as the Scriptures require of him',
       'Completion of a formal seminary degree from an accredited institution',
       'Wide public recognition and popularity within the local community',
     ], answerIndex: 1 },
@@ -102,13 +102,13 @@
       'Both are called by the congregation to preach and administer sacraments',
       'Both must hold a seminary degree before being ordained to office',
       'Both serve fixed terms and must be re-elected by the congregation',
-      'Both share the same duties of oversight, discipline, and example',
+      'Both share the same duties of government and discipline over the flock',
     ], answerIndex: 3 },
     'bco-017': { q: 'How does a teaching elder’s role differ from a ruling elder’s?', choices: [
       'Only the teaching elder preaches the Word and administers the sacraments',
-      'Only the ruling elder may vote in meetings of the session',
-      'Only the teaching elder may serve on the diaconate as well',
-      'Only the ruling elder is bound by the ordination vows',
+      'Only the ruling elder preaches the Word and administers discipline',
+      'Only the teaching elder governs the church and administers discipline',
+      'Only the ruling elder governs the church and administers the sacraments',
     ], answerIndex: 0 },
     'bco-018': { q: 'What does the BCO mean by the “parity” of ruling and teaching elders?', choices: [
       'They rotate annually through the same single seat on the session',
@@ -123,9 +123,9 @@
       'An office of oversight, reviewing the session’s official records',
     ], answerIndex: 2 },
     'bco-020': { q: 'Which of these is among the BCO’s qualifications for deacons?', choices: [
-      'Extensive training in financial accounting and budgeting',
-      'Prior experience managing a business or nonprofit organization',
-      'A recommendation from at least three ordained teaching elders',
+      'Seminary training, honest repute, and sound judgment',
+      'Spiritual character, professional experience, and sound judgment',
+      'Spiritual character, honest repute, and financial expertise',
       'Spiritual character, honest repute, and sound judgment',
     ], answerIndex: 3 },
     'bco-024': { q: 'How are a court’s moderator and clerk chosen (except the session’s moderator)?', choices: [
@@ -135,10 +135,10 @@
       'Chosen by lot at the opening of each stated meeting',
     ], answerIndex: 0 },
     'bco-025': { q: 'What is involved in a lawful call to church office, per the BCO?', choices: [
-      'Only the individual’s own inward sense of calling from the Spirit',
+      'The presbytery’s nomination, the church’s desire, and a court’s judgment',
       'The individual’s inward call, the church’s desire, and a court’s judgment',
-      'Only a court’s judgment, without any congregational involvement at all',
-      'Only the congregation’s vote, without any inward call being required',
+      'The individual’s inward call, the elder board’s approval, and a court’s judgment',
+      'The individual’s inward call, the church’s desire, and denominational certification',
     ], answerIndex: 1 },
     'bco-026': { q: 'What is a ministerial candidate, per the BCO?', choices: [
       'A licensed preacher awaiting a call from a particular church',
@@ -159,10 +159,10 @@
       'A person licensed by the session to teach Sunday school classes',
     ], answerIndex: 0 },
     'bco-029': { q: 'In what areas is a prospective licentiate examined, per the BCO?', choices: [
-      'Only Greek and Hebrew exegesis, plus a written theological paper',
+      'Greek, Hebrew, church history, theology, and a sermon',
       'Christian experience, theology, the English Bible, BCO, and a sermon',
-      'Only church history and the history of the PCA denomination alone',
-      'Only the candidate’s personal finances and family background alone',
+      'Christian experience, theology, church history, BCO, and a sermon',
+      'Christian experience, theology, the English Bible, canon law, and a sermon',
     ], answerIndex: 1 },
     'bco-030': { q: 'What is the purpose and minimum length of ministerial internship?', choices: [
       'A trial of preaching ability only, lasting a single Sunday',
@@ -183,10 +183,10 @@
       'Knowledge of parliamentary procedure, alongside church finance law',
     ], answerIndex: 0 },
     'bco-033': { q: 'Which of these is among the ordination vows a candidate must take?', choices: [
-      'A pledge to remain in his first call for a minimum of ten years',
+      'Submission to the Confession, the General Assembly’s rulings, and form of government',
       'Submission to the Confession, Catechisms, and form of government',
-      'A pledge to preach only from a single approved translation',
-      'Submission to the personal preferences of the calling congregation',
+      'Submission to the Confession, Catechisms, and the session’s bylaws',
+      'Submission to the denomination’s mission statement, Catechisms, and form of government',
     ], answerIndex: 1 },
     'bco-034': { q: 'Who has final authority to establish or dissolve a pastoral relationship?', choices: [
       'The session of the particular church, acting alone',
@@ -222,7 +222,7 @@
       'Only the presbytery may authorize such a congregational meeting',
       'Only the senior pastor alone may call such a congregational meeting',
       'Only one annual stated meeting is permitted under the BCO',
-      'The session calls it, or must upon members’ written request',
+      'The session calls it or must do so upon members’ written request',
     ], answerIndex: 3 },
     'bco-042': { q: 'Who owns the property of a particular PCA church?', choices: [
       'The local church itself, through its own elected trustees',
@@ -250,9 +250,9 @@
     ], answerIndex: 3 },
     'bco-047': { q: 'What is the goal of church discipline, per the BCO?', choices: [
       'God’s glory, the church’s purity, and reclaiming disobedient sinners',
-      'Protecting the church’s reputation from outside public criticism',
-      'Enforcing uniform conformity to the session’s preferred customs',
-      'Punishing wrongdoing to deter future violations by other members',
+      'God’s glory, enforcing uniform conformity, and reclaiming disobedient sinners',
+      'Punishing wrongdoing, the church’s purity, and reclaiming disobedient sinners',
+      'God’s glory, the church’s purity, and protecting its public reputation',
     ], answerIndex: 0 },
     'bco-048': { q: 'What is the proper order of steps in church discipline, per the BCO?', choices: [
       'Court action first, then private admonition if the offender objects',
@@ -359,17 +359,17 @@
     'bco-065': { q: 'What is an associate member, per the BCO?', choices: [
       'A member who has fully transferred from another denomination',
       'A member on formal probation before becoming a communing member',
-      'A believer temporarily away from home, without voting or office rights',
+      'A believer temporarily away from home who lacks voting or office rights',
       'A retired officer who retains a seat but no voting rights',
     ], answerIndex: 2 },
     'bco-066': { q: 'Which parts of the Directory for Worship carry full constitutional authority (per this card)?', choices: [
       'All sixty-plus chapters of the Directory, without exception',
       'None of the Directory; it is advisory guidance only',
       'Only the chapter on public worship’s proper elements',
-      'Chapters 56, 57, and 58, approved by two-thirds of presbyteries',
+      'Chapters 56–58, with two-thirds presbytery approval',
     ], answerIndex: 3 },
     'bco-067': { q: 'What is the rule that must guide public worship, per the BCO?', choices: [
-      'Scripture alone, the only infallible rule for worship',
+      'Scripture alone as the only infallible rule for worship',
       'Longstanding denominational tradition and custom alone',
       'The personal preference of the presiding minister',
       'Whatever the session’s bylaws happen to specify',
@@ -383,7 +383,7 @@
     'bco-069': { q: 'Which of these is among the proper elements of worship listed in the BCO?', choices: [
       'Dramatic performance depicting scenes from Scripture',
       'Individual silent meditation apart from spoken words',
-      'Preaching of the Word, alongside prayer and the sacraments',
+      'Preaching of the Word together with prayer and the sacraments',
       'Congregational business meetings held during the service',
     ], answerIndex: 2 },
     'bco-070': { q: 'In brief, how ought believers keep the Lord’s Day, per the BCO?', choices: [
@@ -447,10 +447,10 @@
       'A permanent commission handling only the church’s judicial appeals',
     ], answerIndex: 0 },
     'bco-gov-006-ga-work': { q: 'How does the General Assembly carry out its work, per the BCO?', choices: [
-      'Solely through a single standing committee appointed annually',
+      'Through committees, agencies, the stated clerk’s office, and overtures from courts',
       'Through committees, agencies, the SJC, and overtures from courts',
-      'Solely through the moderator’s personal executive authority',
-      'Through binding directives issued to each local session',
+      'Through committees, regional synods, the SJC, and overtures from courts',
+      'Through committees, agencies, the SJC, and directives to sessions',
     ], answerIndex: 1 },
     'bco-gov-007-sjc': { q: 'What is the Standing Judicial Commission (SJC)?', choices: [
       'A temporary panel appointed fresh for each single appeal',
@@ -472,7 +472,7 @@
     ], answerIndex: 0 },
     'bco-gov-010-organizing-church': { q: 'How is a new PCA church typically organized as a particular church?', choices: [
       'A group of believers files incorporation papers with the state',
-      'A mission church petitions presbytery, which then organizes it',
+      'A mission church petitions presbytery to organize it as a particular church',
       'The General Assembly directly plants and organizes new churches',
       'A particular church divides itself into two new congregations',
     ], answerIndex: 1 },
@@ -496,7 +496,7 @@
     ], answerIndex: 0 },
     'bco-gov-014-membership-vows': { q: 'Which of these is among the membership vows a professing believer takes?', choices: [
       'A pledge to attend every worship service without exception',
-      'Resting on Christ alone for salvation, as offered in the gospel',
+      'Resting on Christ alone for salvation as He is offered in the gospel',
       'A pledge to serve as a Sunday school teacher if asked',
       'A promise to tithe a set percentage of one’s income',
     ], answerIndex: 1 },
