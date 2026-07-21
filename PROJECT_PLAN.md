@@ -153,6 +153,13 @@ KEEP modules + the HTML shell):**
 
 ## 7. Phases & status
 
+- [x] **Phase 38 — Author-card project links (Mounce & Duff).** Release
+      `?v=71`/`pca-v71`. The "Contact the author" card's other-projects list
+      gains the two Greek grammar study apps — "Greek grammar study tool:
+      Mounce" (`hutima.github.io/Mounce_study_tool`) and "Greek grammar study
+      tool: Duff" (`hutima.github.io/duff_study_tool`) — matching the existing
+      GitHub-Pages link pattern. `index.html` only, plus the release bump.
+
 - [x] **Phase 37 — All sections (random) is a superset sitting (user
       request).** Release `?v=70`/`pca-v70`. The mixed card no longer draws a
       random N from the pooled union (Full was 100 with arbitrary
