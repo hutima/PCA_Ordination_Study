@@ -5,17 +5,19 @@
 with balanced answers, plausible near-miss falses, refs + notes on every new
 question, no duplicates, and all quality gates green.
 
-## State
+## State — COMPLETE
 
-- **Branch:** `claude/bco-tf-questions-expansion-ksc1o8` (up to date with origin/main)
+- **Branch:** `claude/bco-tf-questions-expansion-ksc1o8`
 - **Base commit:** 098b838 (main)
-- **Existing question count:** 77 (39 True / 38 False, 50.6% T; longest streak 4; max ID `qz-bcotf-77`; all IDs unique)
-- **Target new questions:** ~40 (net-new; IDs continue at `qz-bcotf-78`)
-- **Drafted:** 0 · **Reviewed:** 0 · **Committed:** 0
-- **Files changed so far:** none (this ledger only)
-- **Tests run:** baseline stats computed; full suite not yet run this session
-- **Unresolved BCO questions:** none yet
-- **Mergeable:** yes (branch == origin/main)
+- **Previous question count:** 77 (39 True / 38 False, 50.6% T; longest streak 4; max ID `qz-bcotf-77`)
+- **Final question count:** 119 — **42 net-new** (`qz-bcotf-78`…`qz-bcotf-119`)
+- **Final balance:** 62 True (52.1%) / 57 False (47.9%); longest same-answer streak 4
+- **Drafted:** 45 (3 Sonnet batches × 15) · **Reviewed:** 45 (3 independent blind Sonnet reviewers — 45/45 answer agreement) · **Rejected:** 3 (duplicate of qz-bco-13; mirror-pair redundancy; absolute-tell redundancy) · **Rewritten in adjudication:** 8 (giveaway-absolute removal / near-miss sharpening; 2 flipped to positive-True form) · **Escalated to Opus:** 0 (no reviewer/drafter disagreements arose)
+- **Committed:** 42 (single content commit — one atomic unit keeps every commit green against the new 107-question size floor)
+- **Files changed:** js/data/quiz/bco_tf.js (+42 questions), dev/validate.mjs (new hard gates), index.html + sw.js (v72→v73 cache bump), this ledger
+- **Tests run (all green):** dev/validate.mjs (119 TF, 0 problems), dev/test_quiz_quality.mjs (13 sections incl. T/F balance/streak/notes/refs gates), dev/audit.mjs (8 flags = baseline), dev/test_scoring.mjs, dev/test_quiz_session.mjs, dev/test_exam_scoring.mjs, dev/check_sw.mjs (pca-v73 consistent)
+- **Unresolved BCO questions:** none
+- **Mergeable:** yes
 
 ## Audit findings (Phase 1, complete)
 
@@ -53,7 +55,16 @@ who administers sacraments.
 
 ## Exact next action
 
-Launch 3 Sonnet drafting batches (A: membership/officers/courts;
-B: candidacy/licensure/calls/GA procedure; C: discipline/worship), then
-blind-review, adjudicate, integrate at IDs 78+, run gates, bump cache,
-commit, push, open draft PR.
+None — work is complete. Topic distribution of the 42 new questions:
+membership transfer/jurisdiction (2), quorums & representation (5),
+commissions vs committees (2), congregational meetings & officer election (4),
+church organization + assistant/associate pastors (2), candidacy/internship/
+licensure (5), calls & pastoral relations (3), TE ordination (3),
+references (1), offenses & process (6), appeals vs complaints (2), cases
+without process & restoration (3), Directory for Worship (4).
+
+Known limitations: several new items reinforce facts also drilled by the
+BCO review-card MCQ overlays (different mode — the TF bank feeds only the
+Mock exam's BCO section, overlays feed the Quiz mode, so they never appear
+in the same deck); a few paragraph-level refs are deliberately chapter-level
+where paragraph precision wasn't confirmable from repo content.
