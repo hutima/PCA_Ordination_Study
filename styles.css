@@ -370,6 +370,7 @@
     max-width: 760px; margin: 2px 0 0; color: var(--muted);
     font-size: calc((12.5px) * var(--text-scale, 1)); line-height: 1.5;
   }
+  .display-prefs-note:empty { display: none; }
 
   /* ── Controls Bar ── */
   .controls-bar {

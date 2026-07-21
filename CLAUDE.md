@@ -39,7 +39,20 @@ That changes the update workflow:
   dev/test_scoring.mjs`, `node dev/test_quiz_session.mjs`, and `node
   dev/test_exam_scoring.mjs` cover the grade scale, the Quiz run/finalize
   logic, and exam answer-code tallying (pure-logic unit tests, no DOM) — run
-  them too when touching scoring, quiz sessions, or exam grading.
+  them too when touching scoring, quiz sessions, or exam grading. Quiz/MCQ
+  content also runs through `node dev/test_quiz_quality.mjs` (answer-tell and
+  T/F-balance regression gates; rubric in `docs/quiz-quality-rubric.md`,
+  allowlist in `dev/quiz_quality_allowlist.mjs`).
+- **Every content or code change that ships is a release — bump the cache.**
+  All `js/**`, `css/**`, and `index.html` assets are precached by the service
+  worker, so a PR that changes any of them but doesn't bump `?v=N` in
+  `index.html` + `CACHE` in `sw.js` (together — see the release ritual under
+  Maintenance rules) never reaches installed PWAs: no new worker is
+  installed, the "Update available" modal never fires, and clients keep
+  serving the old precached files indefinitely. Do the bump **in the same
+  PR** as the change; `node dev/check_sw.mjs` verifies the two stay in sync
+  but cannot detect a *missing* bump, so treat it as part of finishing any
+  change to shipped assets.
 
 ## Orientation
 
@@ -362,8 +375,11 @@ That changes the update workflow:
 
 - Keep `PROJECT_PLAN.md` **Status** and **Next steps** current as phases land.
 - **Release ritual:** asset URLs in `index.html` carry a `?v=N` cache-bust
-  param. On every release bump the `?v=N` in `index.html` **and** `CACHE` in
-  `sw.js` together. The new worker then *waits*; the page shows a blocking
+  param. **"Release" means any merged change to a precached asset (`js/**`,
+  `css/**`, `index.html`) — including content-only edits under `js/data/**`.**
+  Always bump the `?v=N` in `index.html` **and** `CACHE` in `sw.js` together,
+  in the same PR as the change; without the bump installed PWAs never install
+  a new worker, never show the update modal, and keep serving stale assets. The new worker then *waits*; the page shows a blocking
   "Update available" modal (`#refreshAvailableOverlay`, reusing the shared
   `.consent-overlay`/`.consent-modal` styles) and only reloads when the user
   taps "Refresh now" (or cold-starts) — never automatically (that froze iOS

@@ -1045,6 +1045,7 @@ function init() {
   $('resetSelectionBtn').addEventListener('click', resetSelectionProgress);
   $('resetAllBtn').addEventListener('click', resetAllProgress);
   $('clearScoresBtn').addEventListener('click', clearBestScores);
+  $('checkUpdateBtn').addEventListener('click', checkForUpdates);
 
   initKeyboard();
   initOverlayDismiss();
@@ -1074,15 +1075,19 @@ function init() {
 // (#refreshAvailableOverlay) — the old corner banner was easy to ignore, so
 // users lingered on a stale cached version. The page reloads only inside the
 // user's "Refresh now" tap.
+// Module-level so the manual "Check for updates" Settings button (below) can
+// reuse the same registration + the same "only show the modal once" guard
+// that the automatic background checks use.
+let swRegistration = null;
+let swPromptShown = false;
+function showUpdatePrompt() {
+  if (swPromptShown || !$('refreshAvailableOverlay')) return;
+  swPromptShown = true;
+  showOverlay('refreshAvailableOverlay');
+}
+
 function registerServiceWorker() {
   if (!('serviceWorker' in navigator)) return;
-
-  let shown = false;
-  function showUpdatePrompt() {
-    if (shown || !$('refreshAvailableOverlay')) return;
-    shown = true;
-    showOverlay('refreshAvailableOverlay');
-  }
 
   const refreshBtn = document.getElementById('updateRefreshBtn');
   if (refreshBtn) refreshBtn.addEventListener('click', () => window.location.reload());
@@ -1098,6 +1103,7 @@ function registerServiceWorker() {
   });
 
   navigator.serviceWorker.register('sw.js').then((reg) => {
+    swRegistration = reg;
     // A newer worker that installed on a previous visit is ready right away.
     if (reg.waiting && navigator.serviceWorker.controller) showUpdatePrompt();
     reg.addEventListener('updatefound', () => {
@@ -1112,6 +1118,62 @@ function registerServiceWorker() {
       if (document.visibilityState === 'visible') reg.update();
     });
   }).catch(() => {});
+}
+
+// Manual "Check for updates" (Settings). Reuses the registration + prompt
+// gate from registerServiceWorker() above rather than any new detection path
+// — this is a user-triggered nudge for reg.update(), not a parallel scheme.
+// Never throws and never reloads on its own (see the iOS PWA note above);
+// the only reload is still the user's own tap on "Refresh now".
+let checkUpdateMsgTimer = null;
+function setCheckUpdateMsg(text) {
+  const el = $('checkUpdateMsg');
+  if (!el) return;
+  el.textContent = text;
+  if (checkUpdateMsgTimer) clearTimeout(checkUpdateMsgTimer);
+  checkUpdateMsgTimer = setTimeout(() => { el.textContent = ''; checkUpdateMsgTimer = null; }, 5000);
+}
+function checkForUpdates() {
+  if (!('serviceWorker' in navigator) || !swRegistration) {
+    setCheckUpdateMsg("Checking for updates isn't available in this session.");
+    return;
+  }
+  const btn = $('checkUpdateBtn');
+  if (btn) btn.disabled = true;
+  swRegistration.update()
+    .then(() => {
+      if (swRegistration.waiting) return true;
+      const installing = swRegistration.installing;
+      if (!installing) return false;
+      // Wait out the same installedfound/installed cycle registerServiceWorker()
+      // watches, so a genuinely new worker gets a chance to reach "installed"
+      // before we decide there's nothing new.
+      return new Promise((resolve) => {
+        let settled = false;
+        const finish = (result) => { if (!settled) { settled = true; resolve(result); } };
+        installing.addEventListener('statechange', () => {
+          if (installing.state === 'installed' || installing.state === 'redundant') {
+            finish(!!swRegistration.waiting);
+          }
+        });
+        setTimeout(() => finish(!!swRegistration.waiting), 8000);
+      });
+    })
+    .then((hasUpdate) => {
+      if (hasUpdate || swRegistration.waiting) {
+        // A manual check is an explicit request — re-show the modal even if a
+        // background check already showed (and the user dismissed) it once.
+        swPromptShown = false;
+        showUpdatePrompt();
+        return;
+      }
+      const verMatch = /[?&]v=(\d+)/.exec(import.meta.url);
+      setCheckUpdateMsg(`You're up to date${verMatch ? ` (v${verMatch[1]})` : ''}.`);
+    })
+    .catch(() => {
+      setCheckUpdateMsg("Couldn't check — are you offline?");
+    })
+    .finally(() => { if (btn) btn.disabled = false; });
 }
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
