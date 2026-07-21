@@ -33,7 +33,7 @@
       choices: ['Heidelberg Catechism', 'Larger and Shorter Catechisms', 'Belgic Confession', 'Canons of Dort'], answerIndex: 1 },
     { id: 'qz-ch-11', subject: 'church_history',
       q: 'Presbyterian church government traces its Reformation roots especially from Geneva to:',
-      choices: ['Rome', 'Scotland', 'Constantinople', 'Wittenberg'], answerIndex: 1 },
+      choices: ['Zurich', 'Scotland', 'England', 'Wittenberg'], answerIndex: 1 },
     { id: 'qz-ch-12', subject: 'church_history',
       q: 'The Scottish Reformer who led the Presbyterian reform in Scotland was:',
       choices: ['Thomas Cranmer', 'John Knox', 'Menno Simons', 'Ulrich Zwingli'], answerIndex: 1 },

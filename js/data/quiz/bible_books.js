@@ -6,7 +6,7 @@
   const Q = [
     { id: 'qz-bb-1', subject: 'bible_books', refs: ['Genesis 3:15', 'Genesis 12:1-3'],
       q: 'Genesis identifies its central theme as:',
-      choices: ["beginnings — creation, the fall, and the launch of redemption through Abraham's family", 'deliverance — rescue from slavery and the giving of the Law at Sinai', 'holiness — how a sinful people may approach a holy God through sacrifice', 'covenant renewal — a new generation called to love and obey before entering Canaan'], answerIndex: 0 },
+      choices: ["beginnings — creation, the fall, and Abraham's calling", 'deliverance — slavery, Passover, and the Law at Sinai', 'holiness — sacrifice, priesthood, and access to God', 'covenant renewal — memory, love, and obedience before Canaan'], answerIndex: 0 },
     { id: 'qz-bb-2', subject: 'bible_books',
       q: 'The traditional author of Genesis, ministering during the wilderness period (c. 1446–1406 B.C.), is:',
       choices: ['Joshua', 'Moses', 'Samuel', 'Ezra'], answerIndex: 1 },
