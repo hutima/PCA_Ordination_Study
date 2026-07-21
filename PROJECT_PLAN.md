@@ -153,6 +153,28 @@ KEEP modules + the HTML shell):**
 
 ## 7. Phases & status
 
+- [x] **Phase 39 — BCO True/False bank expansion (77 → 119).** Release
+      `?v=73`/`pca-v73`. 42 net-new hand-authored questions
+      (`qz-bcotf-78`…`119`) widen the Mock exam's BCO pool into previously
+      uncovered ground: membership transfer/jurisdiction (46), quorums &
+      RE-representation formulas (12-1/13-1/13-4/14-2/14-5), commissions vs
+      committees (15), congregational meetings & officer-election thresholds
+      (24–25), organizing commissions (5-9), assistant vs associate pastors
+      (22), candidacy/internship/licensure (18–19), calls & dissolution
+      (20/23/13-6), ordination vows & stated differences (21-4/21-5),
+      references (41-1), offense classes & instituting process (29/31-2),
+      the 32-20 time limit, single-witness corroboration (35-3), appeal-vs-
+      complaint standing/exclusivity (42/43), divestiture without censure
+      (38-2), restoration (37), and DfW sacraments & marriage (56/58/59).
+      Every new item was drafted and then independently blind-reviewed
+      (reviewer re-derived each answer without seeing the key; 45/45
+      agreement; 3 drafts rejected as duplicates/redundant, 8 reworded to
+      kill giveaway absolutes). Bank-wide balance 62T/57F (52.1% True),
+      longest same-answer streak 4. `dev/validate.mjs` gains hard gates:
+      duplicate normalized-statement detection, refs+note required on every
+      id ≥ 78, and a 107-question size floor. Restart ledger:
+      `docs/restart/bco-tf-expansion.md`.
+
 - [x] **Phase 38 — Author-card project links (Mounce & Duff).** Release
       `?v=71`/`pca-v71`. The "Contact the author" card's other-projects list
       gains the two Greek grammar study apps — "Greek grammar study tool:

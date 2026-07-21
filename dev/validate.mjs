@@ -113,6 +113,7 @@ console.log(`${bank.length} authored quiz questions, ${quizProblems} problem(s)`
 // looks like a long verbatim quotation (quotation marks around 8+ words).
 const tfBank = globalThis.PCA_QUIZ_TF || [];
 let tfProblems = 0;
+const tfSeenStatements = new Map();
 for (const t of tfBank) {
   if (!t.id || seenIds.has(t.id)) { console.error(`FAIL tf: missing/duplicate id ${t.id}`); tfProblems++; }
   seenIds.add(t.id);
@@ -120,7 +121,35 @@ for (const t of tfBank) {
   if (typeof t.answer !== 'boolean') { console.error(`FAIL ${t.id}: answer must be boolean`); tfProblems++; }
   const quoted = /["“”']([^"“”']{40,})["“”']/.exec(t.q || '');
   if (quoted && quoted[1].split(/\s+/).length >= 8) { console.error(`FAIL ${t.id}: long quotation — BCO must be paraphrased`); tfProblems++; }
+  // No two entries may share the same normalized statement text.
+  const norm = (t.q || '').toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim();
+  if (norm) {
+    if (tfSeenStatements.has(norm)) { console.error(`FAIL ${t.id}: duplicate statement of ${tfSeenStatements.get(norm)}`); tfProblems++; }
+    tfSeenStatements.set(norm, t.id);
+  }
+  // Entries added in the 2026 expansion (numeric id >= 78) must carry both a
+  // reference and an explanatory note; the T/F quality gate in
+  // test_quiz_quality.mjs additionally requires refs on every entry and a
+  // note on every False, bank-wide.
+  const n = Number((String(t.id).match(/(\d+)$/) || [])[1]);
+  if (Number.isFinite(n) && n >= 78) {
+    if (!Array.isArray(t.refs) || !t.refs.length) { console.error(`FAIL ${t.id}: new T/F entries need at least one ref`); tfProblems++; }
+    if (!t.note || !String(t.note).trim()) { console.error(`FAIL ${t.id}: new T/F entries need a note`); tfProblems++; }
+  }
 }
+// The bank must not shrink below its post-expansion floor (77 original + 30
+// minimum net-new). Balance/streak gates live in test_quiz_quality.mjs.
+const TF_MIN_BANK = 107;
+if (tfBank.length < TF_MIN_BANK) { console.error(`FAIL tf: bank has ${tfBank.length} questions, expected >= ${TF_MIN_BANK}`); tfProblems++; }
+// The authored answer key must not contain a long strict T/F alternation —
+// as exploitable a pattern as a long same-answer streak (which
+// test_quiz_quality.mjs caps at 4).
+let tfAltRun = 1, tfAltMax = 1;
+for (let i = 1; i < tfBank.length; i++) {
+  tfAltRun = tfBank[i].answer !== tfBank[i - 1].answer ? tfAltRun + 1 : 1;
+  if (tfAltRun > tfAltMax) tfAltMax = tfAltRun;
+}
+if (tfAltMax > 7) { console.error(`FAIL tf: strict T/F alternation of ${tfAltMax} answers — break up the pattern`); tfProblems++; }
 console.log(`${tfBank.length} authored True/False questions, ${tfProblems} problem(s)`);
 
 // ── Per-card MCQ overlay (window.PCA_CARD_QUIZ) + MCQ coverage ─────────
