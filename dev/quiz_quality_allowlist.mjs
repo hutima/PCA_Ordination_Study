@@ -1,6 +1,6 @@
 // Documented exceptions to the quiz-quality regression gates in
 // dev/test_quiz_quality.mjs. Consumed by that test file AND pointed to by
-// docs/restart/quiz-quality-rubric.md's "Allowlist" section.
+// docs/quiz-quality-rubric.md's "Allowlist" section.
 //
 // Format: each category maps a flagged question `id` -> a one-line reason
 // string. An id listed here is exempted from THAT flag category only (e.g.
