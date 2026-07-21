@@ -74,6 +74,25 @@ compatibility. Add a quality audit tool + regression tests.
   bco-comp-132 (irreducible chapter list "BCO 56, 57, 58, and 59-3"),
   bco-comp-152 (fixed five-membership-vow enumeration).
 
+## Final statistics (post-fix, node dev/audit_quiz_quality.mjs)
+- Banks n=143: 0 marginGiveaway / 0 commaTell / 0 extremeImbalance /
+  0 malformed; correct=longest 50.3% (was 55.9%).
+- Overlays n=1182: 0 / 0 / 0 / 0 malformed (was 11); correct=longest by
+  file 31.9-77.5% with margin ~0 everywhere (WCF highest at 77.5% because
+  confessional correct wording was deliberately kept verbatim, distractor
+  mean raised 67.7->96.6 vs correct 107.5 — within the 1.2x/12-char margin).
+- T/F n=77: 39T/38F (1.03), streak 4, absolutes split 6T/6F, all falses
+  noted, refs complete.
+- Runtime: authored MCQ choices shuffle+remap per presentation
+  (shuffledAuthored in quiz.js), used by Quiz and Mock exam; T/F order fixed.
+
+## Workstream status: ALL CONTENT COMPLETE + COMMITTED
+Commits: cfd4e39 restart doc; 19bdbd0 baseline audit+rubric; cac0be7
+shuffle fix+structural tests; 59659eb BCO overlays; 21c7dea banks;
+90fe8b9 T/F rebalance; 1ef30e1 OT overlays; c8ece63 NT overlays;
+58a0f80 bco_comprehensive; dde24c5 remaining overlays+malformed;
+6a771bc theology; 5e07274 WCF.
+
 ## Files changed
 - docs/restart/quiz-difficulty.md, docs/restart/quiz-quality-rubric.md,
   docs/restart/quiz-audit-baseline.txt, dev/audit_quiz_quality.mjs
@@ -82,14 +101,10 @@ compatibility. Add a quality audit tool + regression tests.
 - node dev/validate.mjs — clean (after audit tool added)
 
 ## Next action
-Phase 4 fan-out (parallel Sonnet, disjoint files, agents do NOT commit):
-- W-shuffle: runtime shuffle fix + structural tests (js/app/quiz.js,
-  js/app/exam.js, dev/test_quiz_quality*.mjs)
-- WA: banks js/data/quiz/*.js (except bco_tf)
-- WB: js/data/quiz/bco_tf.js whole-bank rewrite
-- WC: overlays bco.js + bco_comprehensive.js
-- WD: overlays bible_books.js + bible_books_nt.js
-- WE: overlays theology.js + wcf.js
-- WF: overlays bible_content.js + church_history.js + small_subjects.js
-  (incl. fixing the 11 malformed 2-3-choice entries to 4 plausible choices)
-Orchestrator commits per workstream after review.
+1. Gate-test agent in flight: statistical gates in dev/test_quiz_quality.mjs
+   + empty allowlist dev/quiz_quality_allowlist.mjs → commit
+   "test: add quiz bias and answer-balance checks".
+2. Fresh Sonnet reviewer over the full branch diff (content samples, all
+   T/F changes, gate logic, shuffle behavior, accuracy).
+3. Address findings, final full-suite run, update this doc, draft PR with
+   before/after stats.
