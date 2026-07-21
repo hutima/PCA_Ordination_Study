@@ -52,6 +52,21 @@ compatibility. Add a quality audit tool + regression tests.
 - Structural tests land early (pass against current content); statistical
   gate tests land AFTER content fixes, with a documented allowlist in dev/.
 
+## Adjudications (orchestrator decisions)
+- qz-ht-12: agent's creation-days stem rewrite accepted, but stem re-worded
+  by orchestrator to "arranged topically rather than as a strict
+  chronological sequence" — the phrase "literary framework" lexically echoed
+  the correct choice "The framework (literary) view".
+- qz-bcotf-27/28/30 (five permanent GA program committees incl. Reformed
+  University Fellowship): confirmed accurate as True — AC, CDM, MNA, MTW,
+  RUF (RUF is the successor designation of Reformed University Ministries).
+  Left unchanged.
+- bco_tf true→false flips (13 ids) spot-verified by orchestrator:
+  01 (Constitution = WCF + both catechisms + BCO), 19 (two perpetual
+  offices), 39 (no denominational trust clause, BCO 25-9), 50 (burden on
+  prosecution, BCO 31-2), 51 (30-day appeal notice, BCO 42-4) — all
+  polity-accurate.
+
 ## Files changed
 - docs/restart/quiz-difficulty.md, docs/restart/quiz-quality-rubric.md,
   docs/restart/quiz-audit-baseline.txt, dev/audit_quiz_quality.mjs
