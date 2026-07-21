@@ -866,19 +866,19 @@
       'Open communion',
       'Close communion',
       'Closed communion',
-      'Examined communion',
+      'Paedocommunion',
     ], answerIndex: 0 },
     'ht-012b-close': { q: 'Which practice — the PCA’s ordinary practice — admits communicants in good standing of any evangelical church, fenced by invitation and warning rather than by interviewing visitors?', choices: [
       'Close communion',
       'Open communion',
       'Closed communion',
-      'Examined communion',
+      'Paedocommunion',
     ], answerIndex: 0 },
     'ht-012c-closed': { q: 'Which practice restricts admission to members of the local congregation or denomination, requiring visitors to be approved by the session beforehand?', choices: [
       'Closed communion',
       'Open communion',
       'Close communion',
-      'Examined communion',
+      'Paedocommunion',
     ], answerIndex: 0 },
 
     // ── hot_topics — post-1993 GA committee topics ────────────────────────

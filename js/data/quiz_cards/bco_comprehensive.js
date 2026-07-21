@@ -731,7 +731,7 @@
     'bco-comp-121': { choices: [
       'Procedural irregularity, improper evidence, undue haste, or manifest injustice.',
       'Personal dislike, minor inconvenience, hurt feelings, or wounded pride.',
-      'Moderator disagreement, seating disputes, scheduling conflicts, or room temperature.',
+      'Disagreement with the verdict, a divided vote, lengthy recesses, or changed court membership.',
       'Perceived leniency, insufficient publicity, short deliberation, or low attendance.'
     ], answerIndex: 0 },
     'bco-comp-122': { choices: [
@@ -915,9 +915,9 @@
       'By a congregational vote, taken formally at each stated quarterly meeting.'
     ], answerIndex: 2 },
     'bco-comp-152': { choices: [
-      'Affirming denominational loyalty, tithing regularly, attending weekly, and serving on committees.',
+      'Affirming denominational loyalty, tithing regularly, attending weekly, serving on committees, and voting in meetings.',
       'Confessing sin publicly, joining a small group, serving monthly, giving generously, and praying daily.',
-      'Believing the creed personally, attending worship weekly, serving as an officer, and giving generously.',
+      'Believing the creed personally, attending worship weekly, serving as an officer, giving generously, and witnessing publicly.',
       'Acknowledging sin, trusting Christ, resolving obedience, supporting the church, and submitting to government.'
     ], answerIndex: 3 },
     'bco-comp-153': { choices: [

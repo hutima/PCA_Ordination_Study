@@ -218,7 +218,7 @@
     // ── Directory for Worship’s constitutional chapters; the diaconate ───
     { id: 'qz-bcotf-72', answer: T, refs: ['BCO Preface', 'BCO 59'],
       q: 'The Directory for Worship’s definition of marriage in chapter 59, together with chapters 56–58, carries full constitutional authority.',
-      note: 'Chapters 56–58 (sacraments, profession of faith) and chapter 59 (marriage) are the Directory’s constitutionally binding chapters; the rest of the Directory is an approved guide.' },
+      note: 'Chapters 56–58 (sacraments, profession of faith) and the definition of marriage in 59-3 are the Directory’s constitutionally binding provisions; the rest of the Directory is an approved guide.' },
     { id: 'qz-bcotf-73', answer: T, refs: ['BCO 9'],
       q: 'In a church that has no deacons, the duties of the diaconate devolve upon the ruling elders.' },
     { id: 'qz-bcotf-74', answer: F, refs: ['BCO 9'],
