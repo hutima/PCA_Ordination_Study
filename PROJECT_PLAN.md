@@ -1298,6 +1298,18 @@ KEEP modules + the HTML shell):**
 
 ## 8. Key facts / conventions
 
+- **Quiz-quality pass (2026-07, post-Phase-16):** all authored MCQs (143 bank
+  + 1182 overlay) and the BCO T/F bank (77) were audited and rewritten to
+  remove answer tells: authored choices now shuffle at presentation
+  (`shuffledAuthored()` in `js/app/quiz.js`, also used by the exam's
+  `authoredItem()`); margin-length giveaways, comma/list tells, extreme
+  imbalance, and malformed sets are all at 0 and gated by
+  `dev/test_quiz_quality.mjs` (allowlist: `dev/quiz_quality_allowlist.mjs`,
+  empty; rubric: `docs/quiz-quality-rubric.md`); the T/F bank is 39T/38F,
+  streaks ≤4, every false explained, refs complete. Run
+  `node dev/audit_quiz_quality.mjs` for the metrics report; keep new quiz
+  content within the rubric or the gates will fail.
+
 - **SRS outcomes:** `again` (Hard, ~5min), `pass` (Uncertain), `easy` (Easy).
   Confidence is a rolling last-10 window; "easy" interval stabilizes (capped at
   1 day until 5+ flips AND ≥50% confidence), then grows to a 14-day cap.

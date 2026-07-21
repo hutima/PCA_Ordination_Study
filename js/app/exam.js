@@ -17,7 +17,7 @@
 // Partial / Correct → the same again/pass/easy outcomes the SRS understands).
 
 import { DATA } from './store.js';
-import { quizEligible, isShortAnswer, buildQuiz } from './quiz.js';
+import { quizEligible, isShortAnswer, buildQuiz, shuffledAuthored } from './quiz.js';
 import { subjectLabel } from './content.js';
 import { buildScore, scorePercent, gradeForPercent } from '../domain/scoring.js';
 import { tallyCodes } from '../domain/examScore.js';
@@ -95,11 +95,16 @@ function subjectCards(subjectIds) {
 }
 
 // Item factories, shared by the pool builders and run-resume rebuilding.
+// authoredItem shuffles choice order per presentation (see shuffledAuthored
+// in quiz.js) so the bank's file-order answer-position clustering isn't
+// exploitable; tfItem is NOT shuffled — True/False order (True first) is a
+// fixed convention, not an answer position to hide.
 function authoredItem(q) {
+  const { choices, correctIndex } = shuffledAuthored(q.choices, q.answerIndex);
   return {
     kind: 'mcq',
     card: { id: q.id, q: q.q, refs: q.refs || [], _setLabel: subjectLabel(q.subject) },
-    quiz: { choices: q.choices.slice(), correctIndex: q.answerIndex, picked: -1 },
+    quiz: { choices, correctIndex, picked: -1 },
   };
 }
 function tfItem(t) {

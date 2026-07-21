@@ -50,7 +50,7 @@
     },
     'bc-012-abraham': {
       q: 'Which of these is true of Abraham, according to Genesis 12-25?',
-      choices: ["This person led Israel's conquest of Canaan after Moses died.", 'God called this person out of Ur, promising land, offspring, and blessing.', 'This person defeated the Midianites with just three hundred men.', 'This person anointed both Saul and David as kings of Israel.'],
+      choices: ["This person led Israel's conquest of Canaan after Moses died.", 'This person left Ur at God’s call to receive the promised land.', 'This person defeated the Midianites with just three hundred men.', 'This person anointed both Saul and David as kings of Israel.'],
       answerIndex: 1
     },
     'bc-013-joseph': {
@@ -150,7 +150,7 @@
     },
     'bc-032-malachi': {
       q: 'Which of these is true of Malachi, the last book of the OT?',
-      choices: ['This person was anointed king in secret while tending sheep.', "This prophet's book, the OT's last, predicts Elijah's coming.", 'This Moabite widow became King David’s great-grandmother.', "This king found the Book of the Law and renewed Judah's covenant."],
+      choices: ['This person was anointed king in secret while tending sheep.', "This prophet's book closes the OT and predicts Elijah's coming.", 'This Moabite widow became King David’s great-grandmother.', "This king found the Book of the Law and renewed Judah's covenant."],
       answerIndex: 1
     },
     'bc-039-i-will-pour-out-my-spirit': {
@@ -215,7 +215,7 @@
     },
     'bc-065-what-is-the-synoptic-problem': {
       q: "What does the 'Synoptic Problem' refer to?",
-      choices: ['The literary relationship among Matthew, Mark, and Luke.', 'The chronological order of Paul’s missionary journeys.', 'The dating of the Old Testament prophetic books.', 'The authorship debate over the book of Hebrews.'],
+      choices: ['The literary relationship among Matthew, Mark, and Luke.', 'The chronological order of Paul’s first, second, and third missionary journeys.', 'The dating of the Old Testament prophetic books.', 'The authorship debate over the book of Hebrews.'],
       answerIndex: 0
     },
     'bc-066-outline-the-life-of-christ': {
@@ -245,7 +245,7 @@
     },
     'bc-069-law-and-grace': {
       q: 'Which verse teaches that believers "are not under law, but under grace"?',
-      choices: ['Galatians 3:11, "the righteous will live by faith."', '1 Corinthians 15:56, "the power of sin is the law."', 'Romans 6:14, "you are not under law, but under grace."', 'Hebrews 7:19, "the law made nothing perfect."'],
+      choices: ['Galatians 3:11, "the righteous will live by faith."', '1 Corinthians 15:56, "the power of sin is the law."', 'Romans 6:14, "you are not under law but under grace."', 'Hebrews 7:19, "the law made nothing perfect."'],
       answerIndex: 2
     },
     'bc-071-herod-the-great': {
@@ -265,7 +265,7 @@
     },
     'bc-074-sadducees': {
       q: 'Which of these is true of the Sadducees?',
-      choices: ['This apostle confessed Jesus as the Messiah at Caesarea Philippi.', 'This "true son in the faith" pastored the church at Ephesus.', 'This skeptic became a leader in Jerusalem after seeing the risen Christ.', 'This group, aligned with the temple, denied the resurrection.'],
+      choices: ['This apostle confessed Jesus as the Messiah at Caesarea Philippi.', 'This "true son in the faith" pastored the church at Ephesus.', 'This skeptic became a leader in Jerusalem after seeing the risen Christ.', 'This temple-aligned group denied the resurrection of the dead.'],
       answerIndex: 3
     },
     'bc-075-the-apostles-name-them': {
@@ -280,7 +280,7 @@
     },
     'bc-077-cornelius': {
       q: 'Which of these is true of Cornelius?',
-      choices: ['This tetrarch had John the Baptist beheaded over his marriage.', 'This skeptic became a leader in Jerusalem after seeing the risen Christ.', 'This centurion was among the first Gentile converts, through Peter.', 'This "true son in the faith" pastored the church at Ephesus.'],
+      choices: ['This tetrarch had John the Baptist beheaded over his marriage.', 'This skeptic became a leader in Jerusalem after seeing the risen Christ.', 'This centurion became one of the first Gentile converts through Peter.', 'This "true son in the faith" pastored the church at Ephesus.'],
       answerIndex: 2
     },
     'bc-078-barnabas': {
@@ -340,7 +340,7 @@
     },
     'bc-148-deity-of-christ': {
       q: 'Which verse records Jesus saying, "before Abraham was born, I am"?',
-      choices: ['John 1:14 — "the Word became flesh" among us.', 'Hebrews 1:3 — "the exact representation of his being."', 'John 8:58 — "before Abraham was born, I am."', 'John 20:28 — Thomas’s "My Lord and my God."'],
+      choices: ['John 1:14 — "the Word became flesh, and dwelt among us."', 'Hebrews 1:3 — "the exact representation of his being."', 'John 8:58 — "before Abraham was born, I am."', 'John 20:28 — Thomas’s "My Lord and my God."'],
       answerIndex: 2
     },
     'bc-149-resurrection-his-and-ours': {
