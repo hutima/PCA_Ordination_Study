@@ -67,6 +67,13 @@ compatibility. Add a quality audit tool + regression tests.
   prosecution, BCO 31-2), 51 (30-day appeal notice, BCO 42-4) — all
   polity-accurate.
 
+- bco-comp-080 (RE/deacon vows): orchestrator verified final choices against
+  the source card (BCO 24-6 paraphrase) — correct choice matches; distractors
+  are membership-vow-flavored near misses. Accepted.
+- Potential future allowlist entries (currently passing, noted only):
+  bco-comp-132 (irreducible chapter list "BCO 56, 57, 58, and 59-3"),
+  bco-comp-152 (fixed five-membership-vow enumeration).
+
 ## Files changed
 - docs/restart/quiz-difficulty.md, docs/restart/quiz-quality-rubric.md,
   docs/restart/quiz-audit-baseline.txt, dev/audit_quiz_quality.mjs
