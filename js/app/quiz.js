@@ -58,10 +58,28 @@ function pickBalancedDistractors(correct, pool, n = 3) {
   return shuffle(window).slice(0, n);
 }
 
+// Presentation-time shuffle for an authored MCQ's choices. Authored banks are
+// hand-written in a fixed file order and audits show heavy answer-position
+// clustering (e.g. one overlay file had every correct answer at index 0) —
+// exploitable by a guesser who learns "always pick the same slot" without
+// knowing the content. This randomizes the on-screen order per presentation.
+// The correct choice is tracked by INDEX through the shuffle (an array of
+// original indexes is shuffled, not the choice strings themselves), so two
+// choices with identical/duplicate text can never cause the wrong one to be
+// marked correct.
+export function shuffledAuthored(choices, answerIndex) {
+  const order = shuffle(choices.map((_, i) => i));
+  return {
+    choices: order.map(i => choices[i]),
+    correctIndex: order.indexOf(answerIndex),
+  };
+}
+
 export function buildQuiz(card) {
   const cq = cardQuiz(card);
   if (cq) {
-    return { prompt: cq.q || card.q, choices: cq.choices.slice(), correctIndex: cq.answerIndex, picked: -1 };
+    const { choices, correctIndex } = shuffledAuthored(cq.choices, cq.answerIndex);
+    return { prompt: cq.q || card.q, choices, correctIndex, picked: -1 };
   }
   const correct = card.a.trim();
   const distractors = pickBalancedDistractors(correct, shortSiblings(card._setKey, correct), 3);
