@@ -141,6 +141,15 @@ for (const t of tfBank) {
 // minimum net-new). Balance/streak gates live in test_quiz_quality.mjs.
 const TF_MIN_BANK = 107;
 if (tfBank.length < TF_MIN_BANK) { console.error(`FAIL tf: bank has ${tfBank.length} questions, expected >= ${TF_MIN_BANK}`); tfProblems++; }
+// The authored answer key must not contain a long strict T/F alternation —
+// as exploitable a pattern as a long same-answer streak (which
+// test_quiz_quality.mjs caps at 4).
+let tfAltRun = 1, tfAltMax = 1;
+for (let i = 1; i < tfBank.length; i++) {
+  tfAltRun = tfBank[i].answer !== tfBank[i - 1].answer ? tfAltRun + 1 : 1;
+  if (tfAltRun > tfAltMax) tfAltMax = tfAltRun;
+}
+if (tfAltMax > 7) { console.error(`FAIL tf: strict T/F alternation of ${tfAltMax} answers — break up the pattern`); tfProblems++; }
 console.log(`${tfBank.length} authored True/False questions, ${tfProblems} problem(s)`);
 
 // ── Per-card MCQ overlay (window.PCA_CARD_QUIZ) + MCQ coverage ─────────
