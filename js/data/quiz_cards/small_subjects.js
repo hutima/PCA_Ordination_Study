@@ -34,7 +34,7 @@
       'The inward call of financial need and the outward call of a job opening',
     ], answerIndex: 0 },
     'pc-005': { q: 'Besides Bible content, theology, and church government, what else do PCA ordination trials (BCO 21-4) examine?', choices: [
-      'Experiential religion and character, the biblical languages, sacraments, and history',
+      'Experiential religion and character, biblical languages and sacraments and history',
       'Preaching style and pulpit presence, plus fluency in modern apologetics',
       'Administrative skill and budgeting, plus experience in committee leadership',
       'Musical ability and liturgical taste, plus familiarity with hymn selection',
@@ -60,19 +60,19 @@
       'Total isolation — sin has severed every relationship between man and his neighbor',
     ], answerIndex: 0 },
     'dp-tulip-u': { q: 'On what ground does God choose His elect, per Unconditional Election?', choices: [
-      'His mere good pleasure, not any foreseen faith, works, or worth in them',
+      'His mere good pleasure, not any foreseen faith or works or worth in them',
       'Their foreseen faith, since God elects those He knows will freely believe',
       'Their future works, since God elects those He knows will persevere',
       'Their inherited status, since God elects the descendants of believing parents',
     ], answerIndex: 0 },
     'dp-tulip-l': { q: 'What is the better label for "Limited Atonement," and what does it mean?', choices: [
-      'Particular redemption — Christ’s death actually secured, not merely enabled, His people’s salvation',
+      'Particular redemption — Christ’s death secured rather than merely enabled his people’s salvation',
       'General redemption — Christ’s death made salvation merely possible for every person',
       'Partial redemption — Christ’s death paid for some sins but left others uncovered',
       'Provisional redemption — Christ’s death took effect only once a person is baptized',
     ], answerIndex: 0 },
     'dp-tulip-i': { q: 'What is the better label for "Irresistible Grace," and what does it mean?', choices: [
-      'Effectual calling — the Spirit’s regenerating work infallibly draws the sinner and cannot finally fail',
+      'Effectual calling — the Spirit’s work infallibly draws the sinner and cannot finally fail',
       'Common grace — every hearer is equally moved but may freely reject the gospel call',
       'Prevenient grace — grace restores free will so the sinner can choose to cooperate',
       'Sacramental grace — the sacraments alone convey the Spirit’s regenerating power',
@@ -103,17 +103,17 @@
     ], answerIndex: 0 },
     'dp-gospel-002': { q: 'How does the Heidelberg Catechism state a believer’s only comfort in life and death?', choices: [
       'That I belong, body and soul, to my faithful Savior Jesus Christ, who paid for all my sins',
-      'That I have kept the law faithfully enough to earn a right standing before God',
-      'That my good works will outweigh my sins on the day of final judgment',
-      'That my church membership guarantees my safety regardless of my own faith',
+      'That I have kept the law, resisted every temptation, and earned a right standing before God',
+      'That my good works, sincere efforts, and religious devotion will outweigh my sins in judgment',
+      'That my church membership, family heritage, and outward morality guarantee my safety before God',
     ], answerIndex: 0 },
 
     // ── sacraments ─────────────────────────────────────────────────────
     'sac-001-what-is-a-sacrament-explain-in-layman-s': { q: 'Per the WSC, what is a sacrament?', choices: [
       'A holy ordinance wherein sensible signs represent, seal, and apply Christ’s benefits to believers',
-      'A holy custom wherein spoken words remind believers of Christ’s past historical example',
-      'A holy tradition wherein church leaders confer merit on believers through good works',
-      'A holy ceremony wherein believers publicly vow allegiance to their local congregation',
+      'A holy custom wherein spoken words recall, retell, and remind believers of Christ’s example',
+      'A holy tradition wherein church leaders bless, dispense, and confer merit through good works',
+      'A holy ceremony wherein believers publicly vow, pledge, and swear allegiance to their congregation',
     ], answerIndex: 0 },
     'sac-002-why-did-god-give-us-sacraments-wcf-27-1': { q: 'Per WCF 27.1, why did God give the church the sacraments?', choices: [
       'As signs and seals of the covenant of grace that mark the church off from the world',
@@ -129,12 +129,12 @@
     ], answerIndex: 0 },
     'sac-004-does-anything-really-happen-in-a-sacrame': { q: 'Does anything really happen in a sacrament, per this card?', choices: [
       'Yes — by faith it is a means of grace, the Spirit nourishing and assuring the believer',
-      'No — a sacrament is merely a memorial with no spiritual effect whatsoever',
+      'No — a sacrament is merely a memorial, with no spiritual effect at all',
       'Yes — the elements themselves possess an inherent power apart from faith',
       'No — a sacrament only benefits those already assured of their salvation',
     ], answerIndex: 0 },
     'sac-005-what-nt-references-show-parallels-betwee': { q: 'Which New Testament passage draws a direct parallel between OT circumcision and NT baptism?', choices: [
-      'Colossians 2:11–12 — believers were circumcised with Christ’s circumcision, buried with him in baptism',
+      'Colossians 2:11–12 — believers are circumcised with Christ, buried with him in baptism',
       '1 Corinthians 11:23–26 — Paul recounts the words of institution for the Lord’s Supper',
       'Ephesians 2:8–9 — salvation is by grace through faith, not a result of works',
       'Acts 2:38 — Peter calls the crowd at Pentecost to repent and be baptized',
@@ -196,12 +196,12 @@
 
     'sac-015-how-would-you-deal-with-a-family-in-your': { q: 'How should a pastor respond to a family reluctant to have their child baptized?', choices: [
       'Approach humbly, discern their concerns, and patiently teach the covenant promises',
-      'Refuse further discussion and require immediate compliance with the session',
-      'Agree readily and administer the baptism without any prior conversation',
-      'Report the family to presbytery at once for refusing a sacrament',
+      'Refuse discussion, demand immediate compliance, and threaten discipline at once',
+      'Agree at once, skip any conversation, and administer the baptism without delay',
+      'Report the family, bypass the session, and refer the case straight to presbytery',
     ], answerIndex: 0 },
     'sac-016-does-baptism-actually-save-the-person-ba': { q: 'Does baptism itself save the person baptized, per this card?', choices: [
-      'No — it is an appeal to God for a good conscience, a means of grace, not the cause of salvation',
+      'No — it is a means of grace received by faith and not the cause of salvation',
       'Yes — the water itself washes away sin apart from any prior faith',
       'Yes — but only when administered by full immersion rather than sprinkling',
       'No — baptism has no spiritual significance and functions as a bare formality',
@@ -225,7 +225,7 @@
       'Baptize them only if the request comes by immersion rather than sprinkling',
     ], answerIndex: 0 },
     'sac-020-what-is-the-meaning-of-the-lord-s-supper': { q: 'What is the meaning of the Lord’s Supper, per this card?', choices: [
-      'A sign and seal of Christ’s death, a means of grace, and our participation in Him',
+      'A sign and seal of Christ’s death and a means of grace, uniting us to Him',
       'A civic meal that unites the congregation with the surrounding community',
       'A memorial only, carrying no spiritual benefit beyond remembrance',
       'A private devotional act, unrelated to the gathered worship of the church',
@@ -240,22 +240,22 @@
       'Yes — but not carnally, and with no change of substance in the elements',
       'No — Christ is bodily absent in every sense during the Supper',
       'Yes — His physical body becomes present in the bread and wine',
-      'Yes — but only for those who have been baptized by immersion',
+      'Yes — but only for those baptized, and only by full immersion',
     ], answerIndex: 0 },
     'sac-023-how-should-believers-celebrate-the-lord': { q: 'How should believers celebrate the Lord’s Supper, per this card?', choices: [
       'Discerning the Lord’s body, feeding on Him by faith, in repentance, love, and new obedience',
-      'Fasting the entire day beforehand and remaining silent throughout the service',
+      'Fasting the entire day, remaining silent, and avoiding all conversation beforehand',
       'Standing rather than being seated, as a sign of readiness for Christ’s return',
       'Inviting only ordained officers to partake, with members observing quietly',
     ], answerIndex: 0 },
     'sac-024-how-is-fencing-the-table-practiced-durin': { q: 'How is "fencing the table" practiced during communion, per this card?', choices: [
-      'Professing believers approved by session are welcomed; the ignorant and scandalous are barred',
+      'Professing believers approved by session; the ignorant and scandalous are barred',
       'Every attendee, believer or not, is invited to partake without qualification',
       'Only ordained officers are permitted to receive the elements',
       'Attendance alone qualifies a person, regardless of any profession of faith',
     ], answerIndex: 0 },
     'sac-025-how-do-the-sacraments-agree-how-are-they': { q: 'How do baptism and the Lord’s Supper agree, per this card?', choices: [
-      'God is the author and Christ the benefit, sealing the same covenant until He returns',
+      'God is the author and Christ the benefit, sealing one covenant until He returns',
       'Both use identical elements administered with the same frequency',
       'Both are administered once in a believer’s life, never to be repeated',
       'Neither requires a minister of the gospel to be validly administered',
@@ -267,7 +267,7 @@
       'Interviewing the godparents alone, then baptizing without the congregation present',
     ], answerIndex: 0 },
     'sac-027-administrating-lord-s-supper': { q: 'Per this card, what belongs to administrating the Lord’s Supper?', choices: [
-      'Explaining Christ’s institution, fencing the table, prayer, the words of institution, and distribution',
+      'Explaining the institution, fencing the table, prayer, and distribution',
       'Collecting tithes, reading announcements, and distributing the elements silently',
       'Examining each communicant individually before distributing the elements',
       'Singing the doxology, then distributing the elements without further comment',
@@ -534,7 +534,7 @@
     ], answerIndex: 0 },
     'wsc-83': { choices: [
       'No — some sins, by reason of several aggravations, are more heinous in God’s sight than others',
-      'Yes — every sin carries an identical weight of guilt, regardless of any circumstance or motive',
+      'Yes — every sin carries an identical weight of guilt, regardless of circumstance, motive, or intent',
       'No — sins committed in ignorance are in fact more heinous than sins committed knowingly',
       'Yes — only sins committed publicly are heinous, while private sins carry no real guilt',
     ], answerIndex: 0 },
@@ -614,7 +614,7 @@
     // ── hot_topics — Creation ────────────────────────────────────────────
     'ht-001-creation': { q: 'Per the 28th GA (2000) Creation Study Committee, what is the PCA’s position on creation views?', choices: [
       'Four views (Calendar-Day, Day-Age, Framework, Analogical Day) are acceptable, given full historicity',
-      'Only the Calendar-Day (24-hour) view is acceptable, and all the others are ruled out of accord',
+      'Only the Calendar-Day (24-hour) view is acceptable, while Day-Age, Framework, and Analogical Day are ruled out',
       'Evolution is affirmed as compatible, provided a historical Adam and Eve is still held',
       'No study committee report exists, so each presbytery sets its own binding requirement',
     ], answerIndex: 0 },
@@ -691,10 +691,14 @@
     'ht-003a-regulative': { q: 'Which principle of worship distinguishes fixed “elements” (commanded by Scripture) from “circumstances” (ordered by Christian prudence), permitting only what Scripture warrants?', choices: [
       'The regulative principle',
       'The normative principle',
+      'The Roman Catholic principle',
+      'The pragmatic principle',
     ], answerIndex: 0 },
     'ht-003b-normative': { q: 'Which principle of worship permits whatever Scripture does not forbid, giving the church liberty to add edifying forms not commanded?', choices: [
       'The normative principle',
       'The regulative principle',
+      'The Roman Catholic principle',
+      'The pragmatic principle',
     ], answerIndex: 0 },
 
     // ── hot_topics — The Sabbath / Lord’s Day ─────────────────────────────
@@ -739,10 +743,14 @@
     'ht-006a-broad-validity': { q: 'Which view holds a baptism is valid if it has water, the Trinitarian name, and intent to seal union with Christ — so even Roman Catholic baptism counts and should not be repeated?', choices: [
       'The broad view (Hodge / Old Princeton)',
       'The narrow view (Thornwell)',
+      'The Landmark (Baptist) view',
+      'The Orthodox “economy” view',
     ], answerIndex: 0 },
     'ht-006b-narrow-validity': { q: 'Which view holds that Rome’s apostasy voids its “baptism” entirely, so a convert’s Trinitarian baptism in a true church is a first baptism, not a re-baptism?', choices: [
       'The narrow view (Thornwell)',
       'The broad view (Hodge / Old Princeton)',
+      'The Landmark (Baptist) view',
+      'The Orthodox “economy” view',
     ], answerIndex: 0 },
     'ht-007-theonomy': { q: 'Per this card’s critique, what is the main problem with theonomy’s use of the Old Testament judicial law?', choices: [
       'It overemphasizes continuity between the covenants, though Israel was uniquely God’s chosen nation',
@@ -753,10 +761,14 @@
     'ht-007a-theonomy': { q: 'Which view holds the Old Testament judicial law, including its penal sanctions, remains morally binding on civil governments unless the New Testament abrogates it?', choices: [
       'The theonomic / reconstructionist view',
       'The general equity (confessional) view',
+      'The two-kingdoms (natural-law) view',
+      'The Anabaptist (separatist) view',
     ], answerIndex: 0 },
     'ht-007b-general-equity': { q: 'Which view (WCF 19.4) holds Israel’s judicial laws expired with that body politic, binding modern states now only in their “general equity”?', choices: [
       'The general equity (confessional) view',
       'The theonomic / reconstructionist view',
+      'The two-kingdoms (natural-law) view',
+      'The Anabaptist (separatist) view',
     ], answerIndex: 0 },
     'ht-008-civil-disobedience': { q: 'Per this card, when does a Christian’s duty shift from obeying the state to disobeying it?', choices: [
       'When the state commands what God forbids, our duty is to obey God rather than the authorities',
@@ -775,10 +787,14 @@
     'ht-009a-paedocommunion': { q: 'Which view holds covenant children should be admitted to the Lord’s Supper from infancy, without a separate profession of faith?', choices: [
       'The paedocommunion view',
       'The PCA / “discerning the body” view',
+      'The Baptist (credobaptist) view',
+      'The Roman Catholic “age of reason” view',
     ], answerIndex: 0 },
     'ht-009b-discerning': { q: 'Which view holds the Supper is only for those able to examine themselves and discern the Lord’s body, so children commune only after a session-examined profession?', choices: [
       'The PCA / “discerning the body” view',
       'The paedocommunion view',
+      'The Baptist (credobaptist) view',
+      'The Roman Catholic “age of reason” view',
     ], answerIndex: 0 },
 
     // ── hot_topics — Divorce & Remarriage ──────────────────────────────────
@@ -850,16 +866,19 @@
       'Open communion',
       'Close communion',
       'Closed communion',
+      'Examined communion',
     ], answerIndex: 0 },
     'ht-012b-close': { q: 'Which practice — the PCA’s ordinary practice — admits communicants in good standing of any evangelical church, fenced by invitation and warning rather than by interviewing visitors?', choices: [
       'Close communion',
       'Open communion',
       'Closed communion',
+      'Examined communion',
     ], answerIndex: 0 },
     'ht-012c-closed': { q: 'Which practice restricts admission to members of the local congregation or denomination, requiring visitors to be approved by the session beforehand?', choices: [
       'Closed communion',
       'Open communion',
       'Close communion',
+      'Examined communion',
     ], answerIndex: 0 },
 
     // ── hot_topics — post-1993 GA committee topics ────────────────────────
@@ -876,7 +895,7 @@
       'An endorsement of ethnic nationalism, provided it is tempered by broadly Christian civic values',
     ], answerIndex: 0 },
     'ht-018-racism': { q: 'What did the PCA’s 44th GA (2016) Overture 43 do?', choices: [
-      'Confessed and repented of corporate, historical sins of the civil-rights era, such as segregating worship',
+      'Confessed and repented of corporate historical sins of the civil-rights era, such as segregating worship',
       'Declined any corporate confession, referring the matter instead to individual congregations',
       'Commended the church’s civil-rights-era record as a faithful application of biblical principle',
       'Postponed any statement pending a further decade of study by a new committee',
@@ -910,7 +929,7 @@
     'ht-013-what-were-created-on-the-seven-day': { q: 'On the seven days of creation, what happens on Day 4, per this card?', choices: [
       'The light bearers — sun, moon, and stars — are created, filling what Day 1 had formed',
       'Light and darkness are separated, forming what Day 4 would later come to fill',
-      'Birds of the air and water creatures are created, filling what Day 2 had formed',
+      'Birds of the air, fish of the seas, and every water creature are created, filling what Day 2 had formed',
       'Land creatures and humankind are created, filling what Day 3 had formed',
     ], answerIndex: 0 },
     'ht-014-ten-plagues-exodus-7-12': { q: 'Which of the ten plagues (Exodus 7–12) left the Israelites in light while Egypt lay in darkness?', choices: [

@@ -135,7 +135,7 @@
     },
     'ch-026-old-school-new-school': {
       q: 'Which 1837–1869 division within American Presbyterianism pitted Old Calvinists like Hodge against New Haven–influenced revivalists?',
-      choices: ['The Auburn Affirmation', 'The Old School/New School division', 'The Marrow controversy', 'The Half-Way Covenant'],
+      choices: ['The Auburn Affirmation (1924)', 'The Old School/New School division', 'The Marrow controversy (1717–22)', 'The Half-Way Covenant (1662)'],
       answerIndex: 1
     },
     'ch-027-auburn-affirmation': {
@@ -155,7 +155,7 @@
     },
     'ch-030-radical-reformation': {
       q: 'Which 1520s–30s movement, led by Menno Simons, Conrad Grebel, and Felix Manz, rejected the state church and baptized only adults?',
-      choices: ['Pietism', 'The Radical Reformation', 'Puritanism', 'The Counter-Reformation'],
+      choices: ['Pietism', 'Radical Reformation', 'Puritanism', 'Counter-Reformation'],
       answerIndex: 1
     },
     'ch-031-pietism': {
@@ -165,7 +165,7 @@
     },
     'ch-032-puritanism': {
       q: 'Which movement reacted against the Elizabethan Settlement, purging “popish” elements from the Church of England, and called the Westminster Assembly?',
-      choices: ['Pietism', 'Humanism', 'The Counter-Reformation', 'Puritanism'],
+      choices: ['Pietism', 'Humanism', 'Counter-Reformation', 'Puritanism'],
       answerIndex: 3
     },
     'ch-033-modernism': {
@@ -230,7 +230,7 @@
     },
     'ch-045-clement-of-alexandria-155-220-the-ea': {
       q: 'Which 2nd–3rd-century theologian founded the School of Alexandria and sought an “intelligent orthodoxy” resisting Gnosticism in Egypt?',
-      choices: ['Clement of Alexandria', 'Tertullian', 'Origen', 'Eusebius of Caesarea'],
+      choices: ['Clement of Alexandria', 'Tertullian', 'Origen of Alexandria', 'Eusebius of Caesarea'],
       answerIndex: 0
     },
     'ch-046-cyprian-200-258-time-of-decian-perse': {
@@ -240,7 +240,7 @@
     },
     'ch-047-eusebius-of-caesarea-263-c-339': {
       q: 'Which bishop, called the “Father of Church History,” wrote a history of the church to 324 and attended the Council of Nicea?',
-      choices: ['Cyprian', 'Chrysostom', 'Eusebius of Caesarea', 'Jerome'],
+      choices: ['Cyprian of Carthage', 'Chrysostom of Antioch', 'Eusebius of Caesarea', 'Jerome of Stridon'],
       answerIndex: 2
     },
     'ch-048-constantine': {
@@ -450,7 +450,7 @@
     },
     'ch-088-trace-the-historical-roots-of-the-rp': {
       q: 'Which denomination, formed in 1965 by the merger of the Evangelical Presbyterian Church and the Reformed Presbyterian Church, General Synod, joined the PCA in 1982?',
-      choices: ['The RPCES', 'The OPC', 'The Bible Presbyterian Church', 'The PCUS'],
+      choices: ['The RPCES', 'The OPC', 'The BPC', 'The PCUS'],
       answerIndex: 0
     },
     'ch-089-when-where-and-why-did-the-pca-begin': {
