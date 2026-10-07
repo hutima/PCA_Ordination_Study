@@ -1,17 +1,118 @@
-// Applies a self-check / quiz outcome to a card's SRS progress, then persists
-// and logs the review for the activity heatmap. Wraps the pure scheduler in
-// domain/srs/* with the app's store.
-
-import { SRS_AGAIN_MS } from '../domain/srs/constants.js';
+// Applies a self-check / quiz outcome to card SRS progress, then persists
+// and logs the review. The spaced path mirrors the current Duff engine.
 import {
-  setProgressDelay, getUncertainDelayMs, getNextEasyIntervalDays, msFromDays,
+  SRS_UNCERTAIN_MIN_MS, SRS_RELEARN_STEP_DAYS, SRS_HARD_RELEARN_STEPS,
+  LEECH_LAPSE_THRESHOLD, LEECH_UNPIN_STREAK, LEECH_DRILL_DAYS,
+  getCadencePreset,
+} from '../domain/srs/constants.js';
+import {
+  setProgressDelay, getNextEasyIntervalDays, msFromDays,
+  getLastEasyIntervalDays, getSrsStage, getSrsEase,
 } from '../domain/srs/scheduler.js';
 import { recordConfidenceSample, getConfidencePct, computeCardXpAward } from '../domain/srs/confidence.js';
+import { clamp } from '../utils/helpers.js';
 import { state, getProgress, saveProgress, recordActivity, addXp } from './store.js';
 
+function preLapseIntervalDays(progress) {
+  return Math.max(getLastEasyIntervalDays(progress), Number(progress.intervalDays) || 0);
+}
+function applyEasyGrowth(progress, cadence, now) {
+  const nextIntervalDays = getNextEasyIntervalDays(progress, cadence);
+  progress.streak = (progress.streak || 0) + 1;
+  progress.easyStreak = (progress.easyStreak || 0) + 1;
+  progress.srsStage = getSrsStage(progress) + 1;
+  progress.ease = clamp(getSrsEase(progress) + 0.08, 1.3, 3.0);
+  progress.lastEasyIntervalDays = nextIntervalDays;
+  progress.firstConfirmedAt = progress.firstConfirmedAt || now;
+  setProgressDelay(progress, msFromDays(nextIntervalDays), now);
+}
+function resumeAfterLapse(progress, cadence, now) {
+  const resumeDays = clamp(
+    preLapseIntervalDays(progress) * 0.5,
+    SRS_RELEARN_STEP_DAYS,
+    cadence.lapseResumeCapDays,
+  );
+  progress.inRelearn = false;
+  progress.relearnLeft = 0;
+  progress.streak = (progress.streak || 0) + 1;
+  progress.easyStreak = (progress.easyStreak || 0) + 1;
+  progress.lastEasyIntervalDays = resumeDays;
+  setProgressDelay(progress, msFromDays(resumeDays), now);
+}
+function applyHardLapse(progress, cadence, now) {
+  const wasInRelearn = progress.inRelearn === true;
+  const wasLeech = progress.leechDrill === true;
+  const establishedDays = preLapseIntervalDays(progress);
+  const startsLapseEpisode = !wasInRelearn && !wasLeech && establishedDays > 0;
+
+  progress.streak = 0;
+  progress.easyStreak = 0;
+  if (startsLapseEpisode) {
+    progress.srsStage = Math.max(0, getSrsStage(progress) - 1);
+    progress.ease = clamp(getSrsEase(progress) - 0.2, 1.3, 3.0);
+    progress.lapseCount = (progress.lapseCount || 0) + 1;
+    progress.preLapseIntervalDays = establishedDays;
+  }
+
+  const shouldLeech = cadence.leechEnabled && (
+    wasLeech || (startsLapseEpisode && progress.lapseCount >= LEECH_LAPSE_THRESHOLD)
+  );
+  if (shouldLeech) {
+    progress.leechDrill = true;
+    progress.leechStreak = 0;
+    progress.inRelearn = false;
+    progress.relearnLeft = 0;
+    setProgressDelay(progress, 0, now);
+    return true;
+  }
+
+  if (!wasInRelearn) progress.preLapseIntervalDays = establishedDays;
+  progress.inRelearn = true;
+  progress.relearnLeft = SRS_HARD_RELEARN_STEPS;
+  setProgressDelay(progress, 0, now); // due-now; deck rebuild routes it through middle
+  return true;
+}
+function applyUncertainLapse(progress, now) {
+  if (!progress.inRelearn) progress.preLapseIntervalDays = preLapseIntervalDays(progress);
+  progress.inRelearn = true;
+  progress.relearnLeft = 0;
+  progress.streak = (progress.streak || 0) + 1;
+  progress.easyStreak = 0;
+  setProgressDelay(progress, SRS_UNCERTAIN_MIN_MS, now);
+}
+function applyCorrectOutcome(progress, cadence, now, ratedOutcome) {
+  if (progress.leechDrill) {
+    progress.leechStreak = (progress.leechStreak || 0) + 1;
+    if (progress.leechStreak < LEECH_UNPIN_STREAK) {
+      progress.streak = (progress.streak || 0) + 1;
+      setProgressDelay(progress, msFromDays(LEECH_DRILL_DAYS), now);
+      return;
+    }
+    progress.leechDrill = false;
+    progress.leechStreak = 0;
+    progress.lapseCount = 0;
+    progress.lastEasyIntervalDays = LEECH_DRILL_DAYS;
+    applyEasyGrowth(progress, cadence, now);
+    return;
+  }
+  if (progress.inRelearn) {
+    if ((progress.relearnLeft || 0) > 0) {
+      progress.relearnLeft -= 1;
+      progress.streak = (progress.streak || 0) + 1;
+      setProgressDelay(progress, msFromDays(SRS_RELEARN_STEP_DAYS), now);
+      return;
+    }
+    resumeAfterLapse(progress, cadence, now);
+    return;
+  }
+  if (ratedOutcome === 'pass') {
+    applyUncertainLapse(progress, now);
+    return;
+  }
+  applyEasyGrowth(progress, cadence, now);
+}
+
 export function applyOutcome(card, outcome) {
-  // Unspaced mode: no SRS writes — the rep is logged for the streak/heatmap
-  // (plus a little XP). Deck shaping (retire/recycle) is handled by the controller.
   if (!state.spacedOn) {
     addXp(computeCardXpAward(outcome, false, false));
     recordActivity();
@@ -19,26 +120,24 @@ export function applyOutcome(card, outcome) {
   }
   const p = getProgress(card.id);
   const now = Date.now();
+  const ratedOutcome = outcome === 'pass' ? 'pass' : outcome === 'easy' ? 'easy' : 'again';
+  const cadence = getCadencePreset(state.spacingCadence);
   const wasConfirmed = !!p.firstConfirmedAt;
-  recordConfidenceSample(p, outcome);
-  // First time the card crosses into "confirmed" (rolling confidence ≥ 70%):
-  // stamp it so the gamification layer can count confirmations and award a
-  // first-confirmation XP bonus.
+  recordConfidenceSample(p, ratedOutcome);
   if (!p.firstConfirmedAt) {
     const pct = getConfidencePct(p);
     if (pct !== null && pct >= 70) p.firstConfirmedAt = now;
   }
-  addXp(computeCardXpAward(outcome, !wasConfirmed && !!p.firstConfirmedAt, true));
-  if (outcome === 'again') {
-    setProgressDelay(p, SRS_AGAIN_MS, now);
+  addXp(computeCardXpAward(ratedOutcome, !wasConfirmed && !!p.firstConfirmedAt, true));
+
+  if (ratedOutcome === 'again') {
+    const dropFromActive = applyHardLapse(p, cadence, now);
+    if (dropFromActive && Array.isArray(state.spacedActiveIds)) {
+      state.spacedActiveIds = state.spacedActiveIds.filter(id => id !== card.id);
+    }
     p.failCount = (p.failCount || 0) + 1;
-  } else if (outcome === 'pass') {
-    setProgressDelay(p, getUncertainDelayMs(p), now);
-    p.passCount = (p.passCount || 0) + 1;
-  } else { // easy
-    const days = getNextEasyIntervalDays(p);
-    p.lastEasyIntervalDays = days;
-    setProgressDelay(p, msFromDays(days), now);
+  } else {
+    applyCorrectOutcome(p, cadence, now, ratedOutcome);
     p.passCount = (p.passCount || 0) + 1;
   }
   p.reps = (p.reps || 0) + 1;
@@ -47,12 +146,8 @@ export function applyOutcome(card, outcome) {
   recordActivity();
 }
 
-// Catechism-mode grading: a self-contained per-question progress signal for the
-// Catechisms reader, kept independent of the global spaced/unspaced toggle (the
-// mode is a straight read-through, not a scheduled deck). Records confidence, a
-// confirmation stamp (rolling ≥70%), XP, and the activity rep — but no SRS
-// dueAt scheduling. Keyed by a namespaced id (`cat:<cat>:<n>`) so it lives in
-// the same progress store yet never mixes with the subject decks.
+// Catechism grading remains a confidence/mastery signal, independent
+// of the subject-deck SRS cadence and the global spaced toggle.
 export function applyCatechismOutcome(id, outcome) {
   const p = getProgress(id);
   const now = Date.now();

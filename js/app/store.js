@@ -14,6 +14,7 @@ export const SHUFFLE_KEY = 'pca_shuffle_v1';
 export const SHUFFLE_MIGRATED_KEY = 'pca_shuffle_migrated_v1';
 export const SELECTOR_GROUP_KEY = 'pca_selector_group_v1';
 export const SPACED_KEY = 'pca_spaced_v1';
+export const SPACING_CADENCE_KEY = 'pca_spacing_cadence_v1';
 export const UNSPACED_RESET_KEY = 'pca_unspaced_reset_v1';
 export const UNSPACED_KEY = 'pca_unspaced_v1';
 export const XP_KEY = 'pca_xp_v1';
@@ -30,6 +31,7 @@ export const state = {
   selectorGroupBy: 'week', // selector modal grouping: 'subject' | 'week' (defaults to week)
   shuffleOn: true,         // shuffle deck order (persisted)
   spacedOn: true,          // spaced-repetition master switch (persisted); off = unspaced
+  spacingCadence: 'intensive', // 'intensive' (2-month, default) | 'relaxed' (8-month/continuous)
   wcfDetail: 'full',       // WCF card detail: 'full' (default) shows the full confession text, 'summary' a concise paraphrase (persisted)
   soundOn: false,          // sound effects (persisted, default off)
   celebrationsOn: true,    // result celebrations (persisted, default on)
@@ -106,6 +108,14 @@ export function loadSpaced() {
 }
 export function saveSpaced() {
   try { localStorage.setItem(SPACED_KEY, state.spacedOn ? 'on' : 'off'); } catch (e) {}
+}
+export function loadSpacingCadence() {
+  // Preserve the historical 2-month behavior unless the user explicitly opts into 8-month.
+  try { state.spacingCadence = localStorage.getItem(SPACING_CADENCE_KEY) === 'relaxed' ? 'relaxed' : 'intensive'; }
+  catch (e) { state.spacingCadence = 'intensive'; }
+}
+export function saveSpacingCadence() {
+  try { localStorage.setItem(SPACING_CADENCE_KEY, state.spacingCadence === 'relaxed' ? 'relaxed' : 'intensive'); } catch (e) {}
 }
 // WCF card detail. Default 'full' (the user wants WCF questions to contain the
 // full confession section); only an explicit saved 'summary' switches to the
@@ -195,7 +205,7 @@ export function currentStreak() {
 export function getProgress(cardId) {
   let p = state.progress[cardId];
   if (!p) {
-    p = { confidenceHistory: [], intervalDays: 0, dueAt: 0, ease: 2.3, passCount: 0, failCount: 0, reps: 0, lastReviewedAt: 0 };
+    p = { confidenceHistory: [], intervalDays: 0, dueAt: 0, ease: 2.3, srsStage: 0, streak: 0, easyStreak: 0, lastEasyIntervalDays: 0, lapseCount: 0, inRelearn: false, relearnLeft: 0, preLapseIntervalDays: 0, leechDrill: false, leechStreak: 0, passCount: 0, failCount: 0, reps: 0, lastReviewedAt: 0 };
     state.progress[cardId] = p;
   }
   return p;
