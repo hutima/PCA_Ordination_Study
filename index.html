@@ -7,7 +7,7 @@
 <meta name="description" content="Spaced-repetition review for PCA licensure and ordination exams — Bible Content, Theology, Sacraments, Church History, and the Book of Church Order.">
 <meta name="theme-color" content="#0e0f14">
 <link rel="icon" href="favicon.svg">
-<link rel="manifest" href="manifest.json?v=73">
+<link rel="manifest" href="manifest.json?v=74">
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y49JRJH39Q"></script>
@@ -38,8 +38,8 @@
 })();
 </script>
 
-<link rel="stylesheet" href="styles.css?v=73">
-<link rel="stylesheet" href="css/pca.css?v=73">
+<link rel="stylesheet" href="styles.css?v=74">
+<link rel="stylesheet" href="css/pca.css?v=74">
 </head>
 <body>
 <div class="app">
@@ -94,10 +94,17 @@
         <span class="toggle-text">Shuffle</span>
       </button>
       <button class="toggle-label" id="spacedToggle" type="button" role="switch" aria-checked="true"
-        title="Spaced repetition. On schedules each card by how well you know it and only resurfaces it when it's due — the 2-month / 14-day cadence. Off is unspaced: study the whole selection ignoring the schedule, marking cards until they're cleared (reps are still logged for your streak and XP).">
+        title="Spaced repetition. On schedules each card by how well you know it using the cadence selected below. Off is unspaced: study the whole selection ignoring the schedule, marking cards until they're cleared.">
         <span class="toggle-switch on" id="spacedBtn" aria-hidden="true"></span>
         <span class="toggle-text">Spaced repetition</span>
       </button>
+      <div class="display-prefs-row" id="cadenceControls">
+        <span class="display-prefs-label">SRS cadence</span>
+        <div class="theme-switcher" role="group" aria-label="Spaced repetition cadence">
+          <button class="theme-btn active" id="cadenceIntensiveBtn" type="button" data-cadence="intensive" title="2-month intensive: reviews top out at 14 days; leech drill disabled.">2-month</button>
+          <button class="theme-btn" id="cadenceRelaxedBtn" type="button" data-cadence="relaxed" title="8-month / continuous review: intervals may grow to 60 days and repeated genuine lapses can enter the leech drill.">8-month</button>
+        </div>
+      </div>
       <button class="toggle-label" id="unspacedResetToggle" type="button" role="switch" aria-checked="true"
         title="When spaced repetition is off, re-present every card again each new day so the selection comes back fresh. Off keeps the cards you've cleared retired until you reset.">
         <span class="toggle-switch on" id="unspacedResetBtn" aria-hidden="true"></span>
@@ -327,56 +334,56 @@
 </div>
 
 <!-- Subject data (plain defer globals → window.PCA_DATA) -->
-<script defer src="js/data/subjects/bible_content.js?v=73"></script>
-<script defer src="js/data/subjects/bible_books.js?v=73"></script>
-<script defer src="js/data/subjects/bco.js?v=73"></script>
-<script defer src="js/data/subjects/bco_governance.js?v=73"></script>
-<script defer src="js/data/subjects/bco_comprehensive.js?v=73"></script>
-<script defer src="js/data/subjects/sacraments.js?v=73"></script>
-<script defer src="js/data/subjects/church_history.js?v=73"></script>
-<script defer src="js/data/subjects/hot_topics.js?v=73"></script>
-<script defer src="js/data/subjects/theology.js?v=73"></script>
-<script defer src="js/data/subjects/theology_other.js?v=73"></script>
-<script defer src="js/data/subjects/wcf.js?v=73"></script>
-<script defer src="js/data/subjects/doctrines_proofs.js?v=73"></script>
-<script defer src="js/data/subjects/personal_call.js?v=73"></script>
-<script defer src="js/data/subjects/catechism_wsc.js?v=73"></script>
+<script defer src="js/data/subjects/bible_content.js?v=74"></script>
+<script defer src="js/data/subjects/bible_books.js?v=74"></script>
+<script defer src="js/data/subjects/bco.js?v=74"></script>
+<script defer src="js/data/subjects/bco_governance.js?v=74"></script>
+<script defer src="js/data/subjects/bco_comprehensive.js?v=74"></script>
+<script defer src="js/data/subjects/sacraments.js?v=74"></script>
+<script defer src="js/data/subjects/church_history.js?v=74"></script>
+<script defer src="js/data/subjects/hot_topics.js?v=74"></script>
+<script defer src="js/data/subjects/theology.js?v=74"></script>
+<script defer src="js/data/subjects/theology_other.js?v=74"></script>
+<script defer src="js/data/subjects/wcf.js?v=74"></script>
+<script defer src="js/data/subjects/doctrines_proofs.js?v=74"></script>
+<script defer src="js/data/subjects/personal_call.js?v=74"></script>
+<script defer src="js/data/subjects/catechism_wsc.js?v=74"></script>
 
 <!-- 12-week study plan (Schedule of Assignments) → window.PCA_WEEKS -->
-<script defer src="js/data/week_plan.js?v=73"></script>
+<script defer src="js/data/week_plan.js?v=74"></script>
 
 <!-- Westminster catechisms full text (defer global → window.PCA_CATECHISMS) -->
-<script defer src="js/data/catechisms.js?v=73"></script>
-<script defer src="js/data/catechisms_bco.js?v=73"></script>
+<script defer src="js/data/catechisms.js?v=74"></script>
+<script defer src="js/data/catechisms_bco.js?v=74"></script>
 <!-- The 150 Psalms, KJV (public domain) — the Psalms reader category in the
      Catechisms mode. Must load AFTER catechisms.js (which assigns the global). -->
-<script defer src="js/data/psalms_kjv.js?v=73"></script>
+<script defer src="js/data/psalms_kjv.js?v=74"></script>
 
 <!-- Hand-authored quiz bank (defer globals → window.PCA_QUIZ) -->
-<script defer src="js/data/quiz/bible_content.js?v=73"></script>
-<script defer src="js/data/quiz/bible_books.js?v=73"></script>
-<script defer src="js/data/quiz/bco.js?v=73"></script>
-<script defer src="js/data/quiz/sacraments.js?v=73"></script>
-<script defer src="js/data/quiz/church_history.js?v=73"></script>
-<script defer src="js/data/quiz/theology.js?v=73"></script>
-<script defer src="js/data/quiz/hot_topics.js?v=73"></script>
+<script defer src="js/data/quiz/bible_content.js?v=74"></script>
+<script defer src="js/data/quiz/bible_books.js?v=74"></script>
+<script defer src="js/data/quiz/bco.js?v=74"></script>
+<script defer src="js/data/quiz/sacraments.js?v=74"></script>
+<script defer src="js/data/quiz/church_history.js?v=74"></script>
+<script defer src="js/data/quiz/theology.js?v=74"></script>
+<script defer src="js/data/quiz/hot_topics.js?v=74"></script>
 <!-- Authored BCO True/False bank (defer global → window.PCA_QUIZ_TF; Mock exam only) -->
-<script defer src="js/data/quiz/bco_tf.js?v=73"></script>
+<script defer src="js/data/quiz/bco_tf.js?v=74"></script>
 
 <!-- Per-card MCQ overlays (defer globals → window.PCA_CARD_QUIZ): a hand-
      authored multiple-choice question for every card that can't auto-generate
      one, so the whole bank is quizzable in Quiz mode and the Mock exam. -->
-<script defer src="js/data/quiz_cards/bible_books.js?v=73"></script>
-<script defer src="js/data/quiz_cards/bible_books_nt.js?v=73"></script>
-<script defer src="js/data/quiz_cards/bible_content.js?v=73"></script>
-<script defer src="js/data/quiz_cards/bco.js?v=73"></script>
-<script defer src="js/data/quiz_cards/bco_comprehensive.js?v=73"></script>
-<script defer src="js/data/quiz_cards/theology.js?v=73"></script>
-<script defer src="js/data/quiz_cards/wcf.js?v=73"></script>
-<script defer src="js/data/quiz_cards/church_history.js?v=73"></script>
-<script defer src="js/data/quiz_cards/small_subjects.js?v=73"></script>
+<script defer src="js/data/quiz_cards/bible_books.js?v=74"></script>
+<script defer src="js/data/quiz_cards/bible_books_nt.js?v=74"></script>
+<script defer src="js/data/quiz_cards/bible_content.js?v=74"></script>
+<script defer src="js/data/quiz_cards/bco.js?v=74"></script>
+<script defer src="js/data/quiz_cards/bco_comprehensive.js?v=74"></script>
+<script defer src="js/data/quiz_cards/theology.js?v=74"></script>
+<script defer src="js/data/quiz_cards/wcf.js?v=74"></script>
+<script defer src="js/data/quiz_cards/church_history.js?v=74"></script>
+<script defer src="js/data/quiz_cards/small_subjects.js?v=74"></script>
 
 <!-- Entry point -->
-<script type="module" src="js/app/pca.js?v=73"></script>
+<script type="module" src="js/app/pca.js?v=74"></script>
 </body>
 </html>
