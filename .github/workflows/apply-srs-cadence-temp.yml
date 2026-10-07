@@ -1,0 +1,44 @@
+name: Apply temporary PCA SRS parity patch
+on:
+  push:
+    branches: [feat/srs-cadence-parity]
+permissions:
+  contents: write
+jobs:
+  patch-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/srs-cadence-parity
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Apply SRS parity patch
+        run: python dev/apply_srs_cadence_temp.py
+      - name: SRS regression tests
+        run: node --test dev/test_srs_cadence.mjs
+      - name: Existing test suite
+        run: node --test dev/test_*.mjs
+      - name: Content validation
+        run: node dev/validate.mjs
+      - name: Audit
+        run: node dev/audit.mjs
+      - name: Service worker consistency
+        run: node dev/check_sw.mjs
+      - name: Syntax and diff checks
+        run: |
+          node --check js/app/srs.js
+          node --check js/app/store.js
+          node --check js/app/pca.js
+          node --check js/domain/srs/constants.js
+          node --check js/domain/srs/scheduler.js
+          git diff --check
+      - name: Commit verified application changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/verify-srs-cadence-temp.yml .github/workflows/apply-srs-cadence-temp.yml dev/apply_srs_cadence_temp.py
+          git add -A
+          git commit -m 'Add Duff-aligned 2-month and 8-month SRS cadences'
+          git push origin HEAD:feat/srs-cadence-parity
