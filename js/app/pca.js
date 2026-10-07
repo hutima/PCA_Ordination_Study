@@ -19,7 +19,7 @@ import { installClickShield, shieldClicksBriefly } from '../utils/clickShield.js
 import {
   DATA, state, WEEKS, loadProgress, saveProgress, loadSelection, saveSelection, loadActivity,
   loadShuffle, saveShuffle, loadSelectorGroup, saveSelectorGroup, recordActivity,
-  loadSpaced, saveSpaced, loadUnspacedReset, saveUnspacedReset, loadUnspaced, saveUnspaced,
+  loadSpaced, saveSpaced, loadSpacingCadence, saveSpacingCadence, loadUnspacedReset, saveUnspacedReset, loadUnspaced, saveUnspaced,
   loadXp, saveXp, addXp, loadWcfDetail, saveWcfDetail,
   loadSound, saveSound, loadCelebrations, saveCelebrations,
 } from './store.js';
@@ -121,8 +121,10 @@ function buildDeckCore(opts = {}) {
   //   deferred — not due yet (dueAt in the future). With shuffle on these are
   //              shuffled too (the user asked for unseen cards to be shuffled),
   //              otherwise ordered by soonest-due.
-  let due = cards.filter(isDue);
-  let deferred = cards.filter(c => !isDue(c));
+  const retryIds = new Set(state.spacedMiddleIds || []);
+  const isSessionDue = (c) => isDue(c) || retryIds.has(c.id);
+  let due = cards.filter(isSessionDue);
+  let deferred = cards.filter(c => !isSessionDue(c));
 
   // Backstop: if nothing is due but cards come due within 30 minutes, pull them
   // forward so the user never lands on a dead deck.
@@ -131,8 +133,8 @@ function buildDeckCore(opts = {}) {
     if (near.length) {
       near.forEach(c => { const p = state.progress[c.id]; p.dueAt = now; p.intervalDays = 0; });
       saveProgress();
-      due = cards.filter(isDue);
-      deferred = cards.filter(c => !isDue(c));
+      due = cards.filter(isSessionDue);
+      deferred = cards.filter(c => !isSessionDue(c));
     }
   }
 
@@ -146,6 +148,7 @@ function buildDeckCore(opts = {}) {
   if (freshStart) {
     active = state.shuffleOn ? shuffle([...due]) : dueOrder(due);
     middle = [];
+    state.spacedMiddleIds = [];
   } else {
     // Resume: preserve the in-flight active order from the previous deck;
     // newly-due cards collect in middle.
@@ -163,6 +166,7 @@ function buildDeckCore(opts = {}) {
   }
   avoidHeadCollision(active);
   state.spacedActiveIds = active.map(c => c.id);
+  state.spacedMiddleIds = middle.map(c => c.id);
   const orderedDeferred = state.shuffleOn ? shuffle([...deferred]) : dueOrder(deferred);
   state.deck = [...active, ...middle, ...orderedDeferred];
   state.dueCount = active.length + middle.length;
@@ -466,6 +470,13 @@ function toggleSpaced() {
   buildDeck({ forceShuffle: true });
   renderCard();
 }
+function setSpacingCadence(cadence) {
+  state.spacingCadence = cadence === 'relaxed' ? 'relaxed' : 'intensive';
+  saveSpacingCadence();
+  updateAdvancedButtons();
+  buildDeck({ forceShuffle: true });
+  renderCard();
+}
 function toggleUnspacedReset() {
   if (state.spacedOn) return; // meaningful only while spaced repetition is off
   state.unspacedDailyReset = !state.unspacedDailyReset;
@@ -499,6 +510,12 @@ function setToggle(btnId, switchId, on, disabled) {
 function updateAdvancedButtons() {
   setToggle('shuffleToggle', 'shuffleBtn', state.shuffleOn, state.focus === 'order');
   setToggle('spacedToggle', 'spacedBtn', state.spacedOn, false);
+  for (const id of ['cadenceIntensiveBtn', 'cadenceRelaxedBtn']) {
+    const b = $(id); if (!b) continue;
+    const cadence = b.getAttribute('data-cadence');
+    b.classList.toggle('active', cadence === state.spacingCadence);
+    b.disabled = !state.spacedOn;
+  }
   setToggle('unspacedResetToggle', 'unspacedResetBtn', state.unspacedDailyReset, state.spacedOn);
   setToggle('soundToggle', 'soundBtn', state.soundOn, false);
   setToggle('celebrateToggle', 'celebrateBtn', state.celebrationsOn, false);
@@ -980,6 +997,7 @@ function init() {
   loadActivity();
   loadShuffle();
   loadSpaced();
+  loadSpacingCadence();
   loadUnspacedReset();
   loadUnspaced(); // applies the daily reset using the loaded reset flag
   loadXp();
@@ -1029,6 +1047,7 @@ function init() {
   syncToggleActive('[data-focus]', 'data-focus', state.focus);
   $('shuffleToggle').addEventListener('click', toggleShuffle);
   $('spacedToggle').addEventListener('click', toggleSpaced);
+  document.querySelectorAll('[data-cadence]').forEach(b => b.addEventListener('click', () => setSpacingCadence(b.getAttribute('data-cadence'))));
   $('unspacedResetToggle').addEventListener('click', toggleUnspacedReset);
   $('soundToggle').addEventListener('click', toggleSound);
   $('celebrateToggle').addEventListener('click', toggleCelebrations);
