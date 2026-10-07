@@ -19,7 +19,7 @@ import { installClickShield, shieldClicksBriefly } from '../utils/clickShield.js
 import {
   DATA, state, WEEKS, loadProgress, saveProgress, loadSelection, saveSelection, loadActivity,
   loadShuffle, saveShuffle, loadSelectorGroup, saveSelectorGroup, recordActivity,
-  loadSpaced, saveSpaced, loadUnspacedReset, saveUnspacedReset, loadUnspaced, saveUnspaced,
+  loadSpaced, saveSpaced, loadSpacingCadence, saveSpacingCadence, loadUnspacedReset, saveUnspacedReset, loadUnspaced, saveUnspaced,
   loadXp, saveXp, addXp, loadWcfDetail, saveWcfDetail,
   loadSound, saveSound, loadCelebrations, saveCelebrations,
 } from './store.js';
@@ -466,6 +466,16 @@ function toggleSpaced() {
   buildDeck({ forceShuffle: true });
   renderCard();
 }
+function setSpacingCadence(value) {
+  const next = value === 'relaxed' ? 'relaxed' : 'intensive';
+  if (state.spacingCadence === next) return;
+  state.spacingCadence = next;
+  saveSpacingCadence();
+  updateAdvancedButtons();
+  // Existing dueAt timestamps remain untouched; the selected cadence
+  // governs the next review outcome onward.
+  renderReviewPanel();
+}
 function toggleUnspacedReset() {
   if (state.spacedOn) return; // meaningful only while spaced repetition is off
   state.unspacedDailyReset = !state.unspacedDailyReset;
@@ -499,6 +509,7 @@ function setToggle(btnId, switchId, on, disabled) {
 function updateAdvancedButtons() {
   setToggle('shuffleToggle', 'shuffleBtn', state.shuffleOn, state.focus === 'order');
   setToggle('spacedToggle', 'spacedBtn', state.spacedOn, false);
+  syncToggleActive('[data-srs-cadence]', 'data-srs-cadence', state.spacingCadence);
   setToggle('unspacedResetToggle', 'unspacedResetBtn', state.unspacedDailyReset, state.spacedOn);
   setToggle('soundToggle', 'soundBtn', state.soundOn, false);
   setToggle('celebrateToggle', 'celebrateBtn', state.celebrationsOn, false);
@@ -980,6 +991,7 @@ function init() {
   loadActivity();
   loadShuffle();
   loadSpaced();
+  loadSpacingCadence();
   loadUnspacedReset();
   loadUnspaced(); // applies the daily reset using the loaded reset flag
   loadXp();
@@ -997,6 +1009,8 @@ function init() {
     b.addEventListener('click', () => setSize(b.getAttribute('data-size'))));
   document.querySelectorAll('[data-wcf-detail]').forEach(b =>
     b.addEventListener('click', () => setWcfDetail(b.getAttribute('data-wcf-detail'))));
+  document.querySelectorAll('[data-srs-cadence]').forEach(b =>
+    b.addEventListener('click', () => setSpacingCadence(b.getAttribute('data-srs-cadence'))));
   syncToggleActive('[data-theme-mode]', 'data-theme-mode', localStorage.getItem('pca_theme') || 'system');
   syncToggleActive('[data-font]', 'data-font', localStorage.getItem('pca_font') || 'sans');
   syncToggleActive('[data-size]', 'data-size', localStorage.getItem('pca_text_size') || 'medium');

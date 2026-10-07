@@ -158,8 +158,9 @@ That changes the update workflow:
   rep to the activity heatmap only (no SRS writes); and **Unspaced daily reset**
   (`pca_unspaced_reset_v1`, default on, disabled while spaced is on) which clears
   a stale day-stamped pile on load so the selection re-presents each new day. The
-  SRS engine uses Duff's *intensive* 2-month cadence (14-day cap) only — the
-  8-month relaxed preset/toggle is deliberately not imported. Review grade buttons
+  SRS engine now exposes both current Duff cadence presets: **2-month intensive**
+  remains the default for existing users (14-day cap), while **8-month / continuous**
+  is opt-in (60-day cap, per-card ease, relearn/leech protection). Review grade buttons
   show on both hidden and revealed states.
   An empty subject selection means an empty deck — there is no implicit
   "study everything" fallback. Card re-renders run through `withCardAnchor()`

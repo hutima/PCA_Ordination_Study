@@ -1411,3 +1411,8 @@ The lean app is built and runs (Phases 2–4 core landed). Remaining:
 - ~~Hide-answer toggle~~ — DONE. The card is now tap-to-flip: tapping it (or
   Space/Enter) toggles the answer on/off so you can test recall back and forth.
   The separate "Reveal answer" button was removed.
+
+
+### SRS cadence modernization — 2026-10-07
+- Ported the current Duff 2-month / 8-month cadence model into the subject-deck SRS. Existing users remain on 2-month unless they opt into 8-month in Advanced settings.
+- Hard now follows Duff's in-session relearn path (middle/due-now), and the 8-month preset enables leech handling only for genuine repeated lapses of established cards.
